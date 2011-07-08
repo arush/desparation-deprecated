@@ -1,0 +1,62 @@
+startup:Running Magmi Product Import Engine v1.1.6a by dweeves
+plugin;Magmi_CSVDataSource;pluginhello:CSV Datasource-1.0.7-Dweeves- 
+plugin;Magmi_OptimizerPlugin;pluginhello:Magmi Optimizer-1.0.4-Dweeves- 
+plugin;Magmi_ReindexingPlugin;pluginhello:Magmi Magento Reindexer-1.0.3c-Dweeves- 
+plugin;GenericMapperProcessor;pluginhello:Generic mapper-0.0.6a-Dweeves- 
+plugin;GenericMapperProcessor;startup:Generic mapper v0.0.6a - No custom mapping found
+plugin;ImageAttributeItemProcessor;pluginhello:Image attributes processor-0.1.14-Dweeves- 
+plugin;Magmi_ConfigurableItemProcessor;pluginhello:Configurable Item processor-1.2.1-Dweeves- 
+plugin;Magmi_DefaultAttributeItemProcessor;pluginhello:Standard Attribute Import-1.0.0-Dweeves- 
+startup:Import Mode:create
+title:MAGMI by dweeves - version:0.7.9
+step:step:0.5%
+plugin;Magmi_CSVDataSource;startup:CSV Datasource v1.0.7 - Importing CSV : ../../var/import/magmi_upload_flo.csv using separator [ , ] enclosing [ " ]
+plugin;Magmi_OptimizerPlugin;info:Magmi Optimizer v1.0.4 - Optimizing magmi
+plugin;Magmi_OptimizerPlugin;info:Magmi Optimizer v1.0.4 - Adding index MAGMI_EAOV_OPTIMIZATION_IDX on eav_attribute_option_value
+plugin;Magmi_OptimizerPlugin;info:Magmi Optimizer v1.0.4 - Adding index MAGMI_CPEM_OPTIMIZATION_IDX on catalog_product_entity_media_gallery
+plugin;Magmi_OptimizerPlugin;info:Magmi Optimizer v1.0.4 - Adding index MAGMI_CCEV_OPTIMIZATION_IDX on catalog_category_entity_varchar
+startup:Performing Datasouce Lookup...
+lookup:2:0.00066995620727539
+startup:Found 2 records, took 0.00066995620727539 sec
+plugin;Magmi_CSVDataSource;startup:CSV Datasource v1.0.7 - 95 CSV headers columns found
+columns:95
+startup:Ajusted processed columns:95
+itime:1 - 0.00024008750915527 - 0.00024008750915527
+dbtime:0 - 0 - 0 - 0
+itime:2 - 0.017496109008789 - 0.017133951187134
+dbtime:29 - 0.011832714080811 - 0.011832714080811 - 29
+plugin;ImageAttributeItemProcessor;warning:Image attributes processor v0.1.14 - 10m003WHT1.jpg not found, skipping image
+plugin;ImageAttributeItemProcessor;warning:Image attributes processor v0.1.14 - /la_martina_shirts/10m003WHT/10m003WHT2.jpg not found, skipping image
+plugin;ImageAttributeItemProcessor;warning:Image attributes processor v0.1.14 - /la_martina_shirts/10m003WHT/10m003WHT1.jpg not found, skipping image
+plugin;ImageAttributeItemProcessor;warning:Image attributes processor v0.1.14 - /la_martina_shirts/10m003WHT/10m003WHT3.jpg not found, skipping image
+plugin;ImageAttributeItemProcessor;warning:Image attributes processor v0.1.14 - /la_martina_shirts/10m003WHT/10m003WHT4.jpg not found, skipping image
+plugin;ImageAttributeItemProcessor;warning:Image attributes processor v0.1.14 - /la_martina_shirts/10m003WHT/10m003WHT5.jpg not found, skipping image
+plugin;ImageAttributeItemProcessor;warning:Image attributes processor v0.1.14 - error creating ../../media/catalog/product/: 2,mkdir(): No such file or directory
+itime:2 - 0.030732154846191 - 0.013113021850586
+dbtime:56 - 0.019002199172974 - 0.0071694850921631 - 27
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - running indexer
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Reindexing catalog_product_attribute....
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Product Attributes index was rebuilt successfully<br>Segmentation fault<br>
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - done in 0.22 secs
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Reindexing catalog_product_price....
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Product Prices index was rebuilt successfully<br>Segmentation fault<br>
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - done in 0.44 secs
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Reindexing catalog_product_flat....
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Product Flat Data index was rebuilt successfully<br>Segmentation fault<br>
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - done in 0.25 secs
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Reindexing catalog_category_flat....
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Category Flat Data index was rebuilt successfully<br>Segmentation fault<br>
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - done in 0.17 secs
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Reindexing catalog_category_product....
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Category Products index was rebuilt successfully<br>Segmentation fault<br>
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - done in 0.2 secs
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Reindexing cataloginventory_stock....
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Stock Status index was rebuilt successfully<br>Segmentation fault<br>
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - done in 0.19 secs
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Reindexing catalog_url....
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Catalog URL Rewrites index was rebuilt successfully<br>Segmentation fault<br>
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - done in 0.25 secs
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Reindexing catalogsearch_fulltext....
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Catalog Search Index index was rebuilt successfully<br>Segmentation fault<br>
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - done in 0.21 secs
+end:Import Ended
