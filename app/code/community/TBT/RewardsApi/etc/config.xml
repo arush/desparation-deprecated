@@ -2,18 +2,18 @@
 <config>
     <modules>
         <TBT_RewardsApi>
-            <version>1.0.0.0</version>
+            <version>0.6.2</version>
         </TBT_RewardsApi>
     </modules>
-    <admin>
+	<admin>
         <routers>
-            <rewardsapiadmin>
-                <use>admin</use>
-                <args>
-                    <module>TBT_RewardsApi</module>
-                    <frontName>rewardsapiadmin</frontName>
-                </args>
-            </rewardsapiadmin>
+			<rewardsapiadmin>
+				<use>admin</use>
+				<args>
+					<module>TBT_RewardsApi</module>
+					<frontName>rewardsapiadmin</frontName>
+				</args>
+			</rewardsapiadmin>
         </routers>
     </admin>
     <frontend>
@@ -33,7 +33,7 @@
                 </rewardsapi>
             </updates>
         </layout>
-        <translate>
+		<translate>
             <modules>
                 <TBT_RewardsApi>
                     <files>
@@ -48,7 +48,7 @@
     </frontend>
 	
     <adminhtml>
-        <translate>
+		<translate>
             <modules>
                 <TBT_RewardsApi>
                     <files>
@@ -57,13 +57,13 @@
                 </TBT_RewardsApi>
             </modules>
         </translate>
-        <layout>
-            <updates>
-                <rewardsapi>
-                    <file>rewardsapi.xml</file>
-                </rewardsapi>
-            </updates>
-        </layout>
+		<layout>
+			<updates>
+				<rewardsapi>
+					<file>rewardsapi.xml</file>
+				</rewardsapi>
+			</updates>
+		</layout>
     </adminhtml>   
     
     <global>

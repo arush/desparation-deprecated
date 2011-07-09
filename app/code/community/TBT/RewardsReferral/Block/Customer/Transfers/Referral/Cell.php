@@ -1,4 +1,5 @@
 <?php
+
 /**
  * WDCA - Sweet Tooth
  * 
@@ -33,27 +34,22 @@
  * @package    [TBT_Rewards]
  * @copyright  Copyright (c) 2009 Web Development Canada (http://www.wdca.ca)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
-*/
+ */
 
 /**
- * Customer Controller
+ * Customer Transfers
  *
  * @category   TBT
  * @package    TBT_Rewards
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
-class TBT_RewardsApi_IndexController extends Mage_Core_Controller_Front_Action
-{
-    public function indexAction()
-    {
+class TBT_RewardsReferral_Block_Customer_Transfers_Referral_Cell extends TBT_Rewards_Block_Customer_Transfers_Reference {
 
-        if(Mage::getConfig()->getModuleConfig('TBT_Rewards')->is('active', 'false')) {
-            throw new Exception(Mage::helper('rewardsapi')->__("Sweet Tooth must be installed on the server in order to use the Sweet Tooth API"));
-        }
-        die(Mage::helper('rewardsapi')->__("If you're seeing this page it confirms that Sweet Tooth is installed and the API is ready for use."));
-
-        return $this;
+    protected function _construct() {
+        parent::_construct();
+        $this->_controller = 'customer';
+        $this->_blockGroup = 'rewards';
+        $this->setTemplate('rewardsref/customer/transfers/referral/cell.phtml');
     }
-
 
 }

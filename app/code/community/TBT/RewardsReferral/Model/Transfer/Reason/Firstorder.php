@@ -1,4 +1,5 @@
 <?php
+
 /**
  * WDCA - Sweet Tooth
  * 
@@ -33,27 +34,45 @@
  * @package    [TBT_Rewards]
  * @copyright  Copyright (c) 2009 Web Development Canada (http://www.wdca.ca)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
-*/
+ */
 
 /**
- * Customer Controller
+ * Transfer Reference
  *
  * @category   TBT
  * @package    TBT_Rewards
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
-class TBT_RewardsApi_IndexController extends Mage_Core_Controller_Front_Action
-{
-    public function indexAction()
-    {
+class TBT_RewardsReferral_Model_Transfer_Reason_Firstorder extends TBT_Rewards_Model_Transfer_Reason_Abstract {
+    const REASON_TYPE_ID = 21;
 
-        if(Mage::getConfig()->getModuleConfig('TBT_Rewards')->is('active', 'false')) {
-            throw new Exception(Mage::helper('rewardsapi')->__("Sweet Tooth must be installed on the server in order to use the Sweet Tooth API"));
-        }
-        die(Mage::helper('rewardsapi')->__("If you're seeing this page it confirms that Sweet Tooth is installed and the API is ready for use."));
-
-        return $this;
+    /**
+     * passes the $available_reasons array of existing available reasons so that other modules
+     * can remove reasons as well.  This is bad however because the dependencies 
+     * are left unmanaged.  The module creator should keep this in mind when developing add-on extensions.
+     */
+    public function getAvailReasons($current_reason, &$availR) {
+        return $availR;
     }
 
+    public function getOtherReasons() {
+        return array();
+    }
+
+    public function getManualReasons() {
+        return array();
+    }
+
+    public function getDistributionReasons() {
+        return array();
+    }
+
+    public function getRedemptionReasons() {
+        return array();
+    }
+
+    public function getAllReasons() {
+        return array();
+    }
 
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * WDCA - Sweet Tooth
  * 
@@ -33,27 +34,66 @@
  * @package    [TBT_Rewards]
  * @copyright  Copyright (c) 2009 Web Development Canada (http://www.wdca.ca)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
-*/
+ */
 
 /**
- * Customer Controller
+ * Helper for Debugging
  *
  * @category   TBT
  * @package    TBT_Rewards
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
-class TBT_RewardsApi_IndexController extends Mage_Core_Controller_Front_Action
-{
-    public function indexAction()
-    {
+class TBT_RewardsReferral_Helper_Debug extends Mage_Core_Helper_Abstract {
 
-        if(Mage::getConfig()->getModuleConfig('TBT_Rewards')->is('active', 'false')) {
-            throw new Exception(Mage::helper('rewardsapi')->__("Sweet Tooth must be installed on the server in order to use the Sweet Tooth API"));
+    public function dd($vo, $with_pre_tags = true, $die = true) {
+        if ($vo instanceof Varien_Object) {
+            $str = print_r($vo->toArray(), true);
+        } else {
+            $str = print_r($vo, true);
         }
-        die(Mage::helper('rewardsapi')->__("If you're seeing this page it confirms that Sweet Tooth is installed and the API is ready for use."));
 
-        return $this;
+        if ($with_pre_tags) {
+            echo("<PRE>" . $str . "</PRE>");
+        } else {
+            echo( $str);
+        }
+
+        if ($die) {
+            die();
+        } else {
+            return $this;
+        }
     }
 
+    /**
+     * @return  a simple backtrace string of the current position (not including
+     *          any travering into this function)
+     * @nelkaake Added on Monday August 20, 2010:      
+     */
+    public function getSimpleBacktrace($offset=1) {
+        $str = "";
+        $bt = debug_backtrace();
+        foreach ($bt as $index => &$btl) {
+            if ($offset > 0) {
+                $offset--;
+                continue;
+            }
+            $str .= "> {$btl['file']}";
+            $str .= " in function {$btl['function']}(*)";
+            $str .= " on line {$btl['line']}.";
+            $str .= "\n";
+        }
+        return $str;
+    }
+
+    /**
+     * @return  a simple backtrace string of the current position (not including
+     *          any travering into this function)  
+     * @nelkaake Added on Monday August 20, 2010:   
+     */
+    public function noticeBacktrace($msg="") {
+        Mage::helper('rewardsref')->notice($msg . "\n" . $this->getSimpleBacktrace(2));
+        return $this;
+    }
 
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * WDCA - Sweet Tooth
  * 
@@ -33,27 +34,39 @@
  * @package    [TBT_Rewards]
  * @copyright  Copyright (c) 2009 Web Development Canada (http://www.wdca.ca)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
-*/
+ */
 
 /**
- * Customer Controller
+ * Transfer Reference
  *
  * @category   TBT
  * @package    TBT_Rewards
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
-class TBT_RewardsApi_IndexController extends Mage_Core_Controller_Front_Action
-{
-    public function indexAction()
-    {
+class TBT_RewardsReferral_Model_Transfer_Reference_Referral extends TBT_Rewards_Model_Transfer_Reference_Abstract {
+    const REFERENCE_TYPE_ID = 20;
+    protected $_transferCellRenderer = 'rewardsref/customer_transfers_referral_cell';
+    /*
+     * in the format [reference_type] => renderer
+     */
 
-        if(Mage::getConfig()->getModuleConfig('TBT_Rewards')->is('active', 'false')) {
-            throw new Exception(Mage::helper('rewardsapi')->__("Sweet Tooth must be installed on the server in order to use the Sweet Tooth API"));
-        }
-        die(Mage::helper('rewardsapi')->__("If you're seeing this page it confirms that Sweet Tooth is installed and the API is ready for use."));
+    public function getTRefCellRenderers() {
+        return array(self::REFERENCE_TYPE_ID => $this->_transferCellRenderer);
+    }
 
+    public function loadReferenceInformation(&$transfer) {
         return $this;
     }
 
+    public function clearReferences(&$transfer) {
+        return $this;
+    }
+
+    public function getReferenceOptions() {
+        $reference_options = array(
+            self::REFERENCE_TYPE_ID => Mage::helper('rewards')->__('Referred Customer')
+        );
+        return $reference_options;
+    }
 
 }

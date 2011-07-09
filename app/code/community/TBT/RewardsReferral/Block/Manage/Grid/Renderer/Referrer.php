@@ -1,4 +1,5 @@
 <?php
+
 /**
  * WDCA - Sweet Tooth
  * 
@@ -33,27 +34,42 @@
  * @package    [TBT_Rewards]
  * @copyright  Copyright (c) 2009 Web Development Canada (http://www.wdca.ca)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
-*/
+ */
 
 /**
- * Customer Controller
+ * A points total renderer for grid row cells.  The grid row must contain customer id.
+ * !!! Please set filter => false and sortable => false for the grid column showing this. !!!
  *
  * @category   TBT
  * @package    TBT_Rewards
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
-class TBT_RewardsApi_IndexController extends Mage_Core_Controller_Front_Action
-{
-    public function indexAction()
-    {
+class TBT_RewardsReferral_Block_Manage_Grid_Renderer_Referrer extends Mage_Adminhtml_Block_Widget_Grid_Column_Renderer_Abstract {
 
-        if(Mage::getConfig()->getModuleConfig('TBT_Rewards')->is('active', 'false')) {
-            throw new Exception(Mage::helper('rewardsapi')->__("Sweet Tooth must be installed on the server in order to use the Sweet Tooth API"));
+    protected $_customers = array();
+
+    public function render(Varien_Object $row) {
+        $str = '';
+        if ($cid = $row->getReferralParentId()) {
+            if ($customer = $this->_getCustomer($cid)) {
+                $str = $customer->getName();
+                $url = $this->getUrl("adminhtml/customer/edit/", array('id' => $cid));
+                $str = "<a href='{$url}' target='{$str}'>{$str}</a>";
+            }
         }
-        die(Mage::helper('rewardsapi')->__("If you're seeing this page it confirms that Sweet Tooth is installed and the API is ready for use."));
-
-        return $this;
+        return $str;
     }
 
+    protected function _getCustomer($cid) {
+        if (isset($this->_customers[$cid])) {
+            return $this->_customers[$cid];
+        }
+        $customer = Mage::getModel('rewards/customer')->load($cid);
+        if ($customer->getId()) {
+            $this->_customers[$cid] = $customer;
+            return $this->_customers[$cid];
+        }
+        return false;
+    }
 
 }

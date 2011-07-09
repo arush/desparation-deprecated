@@ -1,4 +1,5 @@
 <?php
+
 /**
  * WDCA - Sweet Tooth
  * 
@@ -33,27 +34,59 @@
  * @package    [TBT_Rewards]
  * @copyright  Copyright (c) 2009 Web Development Canada (http://www.wdca.ca)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
-*/
+ */
 
 /**
- * Customer Controller
+ * Transfer
  *
  * @category   TBT
  * @package    TBT_Rewards
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
-class TBT_RewardsApi_IndexController extends Mage_Core_Controller_Front_Action
-{
-    public function indexAction()
-    {
+class TBT_RewardsReferral_Model_Transfer extends TBT_Rewards_Model_Transfer {
+    const REFERENCE_REFERRAL = TBT_RewardsReferral_Model_Transfer_Reference_Referral::REFERENCE_TYPE_ID;
 
-        if(Mage::getConfig()->getModuleConfig('TBT_Rewards')->is('active', 'false')) {
-            throw new Exception(Mage::helper('rewardsapi')->__("Sweet Tooth must be installed on the server in order to use the Sweet Tooth API"));
-        }
-        die(Mage::helper('rewardsapi')->__("If you're seeing this page it confirms that Sweet Tooth is installed and the API is ready for use."));
+    public function getTransfersAssociatedWithReferredFriend($friend_id) {
+        return $this->getCollection()
+                ->addFilter('reference_type', self::REFERENCE_REFERRAL)
+                ->addFilter('reference_id', $friend_id);
+    }
 
+    public function setReferredFriendId($id) {
+        $this->clearReferences();
+        $this->setReferenceType(self::REFERENCE_REFERRAL);
+        $this->setReferenceId($id);
+        $this->_data['friend_id'] = $id;
         return $this;
     }
 
+    public function create($num_points, $currency_id, $earnerCustomerId, $referredCustomerId, $comments="", $reason_id=1) {
+        if ($num_points <= 0)
+            return $this;
+        $transfer = &$this;
+
+        $customer_id = $earnerCustomerId;
+        // ALWAYS ensure that we only give an integral amount of points
+        $num_points = floor($num_points);
+
+        $this->setReferredFriendId($referredCustomerId);
+
+        $transfer->setReasonId($reason_id);
+        //get the default starting status - usually Pending
+        if (!$transfer->setStatus(null, TBT_Rewards_Model_Transfer_Status::STATUS_APPROVED)) {
+            return $this;
+        }
+
+        $transfer->setId(null)
+                ->setCreationTs(now())
+                ->setLastUpdateTs(now())
+                ->setCurrencyId($currency_id)
+                ->setQuantity($num_points)
+                ->setComments($comments)
+                ->setCustomerId($customer_id)
+                ->save();
+
+        return $this;
+    }
 
 }
