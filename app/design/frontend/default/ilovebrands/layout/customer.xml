@@ -82,7 +82,7 @@ Load this update on every page when customer is logged out
             <!-- <action method="addLink" translate="label title" module="customer"><label>register</label><url helper="customer/getRegisterUrl" /><title>register</title><prepare/><urlParams/><position>100</position><li/><a/><before_text> or </before_text><after_text>.</after_text></action> -->
         </reference>
 		<reference name="account.links">
-            <action method="addLink" translate="label title before_text" module="customer"><label>register now for free membership</label><url>http://www.evogue.co.uk/editorial/?page_id=154</url><title>register now for free membership</title><prepare/><urlParams/><position>100</position><li/><a/></action>
+            <action method="addLink" translate="label title" module="customer"><label>register now for free membership</label><url>http://www.evogue.co.uk/editorial/?page_id=154</url><title>register now for free membership</title><prepare/><urlParams/><position>100</position><li/><a/></action>
         </reference>
         <remove name="wishlist_sidebar"></remove>
         <remove name="reorder"></remove>
