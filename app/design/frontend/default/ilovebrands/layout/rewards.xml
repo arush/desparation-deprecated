@@ -1,40 +1,30 @@
 <?xml version="1.0"?>
 <!--
 /**
- * WDCA - Sweet Tooth
- * 
+ * Magento
+ *
  * NOTICE OF LICENSE
- * 
- * This source file is subject to the WDCA SWEET TOOTH POINTS AND REWARDS 
- * License, which extends the Open Software License (OSL 3.0).
- * The Sweet Tooth License is available at this URL: 
- *      http://www.wdca.ca/solutions_page_sweettooth/Sweet_Tooth_License.php
- * The Open Software License is available at this URL: 
- *      http://opensource.org/licenses/osl-3.0.php
- * 
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
  * DISCLAIMER
- * 
- * By adding to, editing, or in any way modifying this code, WDCA is 
- * not held liable for any inconsistencies or abnormalities in the 
- * behaviour of this code. 
- * By adding to, editing, or in any way modifying this code, the Licensee
- * terminates any agreement of support offered by WDCA, outlined in the 
- * provided Sweet Tooth License. 
- * Upon discovery of modified code in the process of support, the Licensee 
- * is still held accountable for any and all billable time WDCA spent 
- * during the support process.
- * WDCA does not guarantee compatibility with any other framework extension. 
- * WDCA is not responsbile for any inconsistencies or abnormalities in the
- * behaviour of this code if caused by other framework extension.
- * If you did not receive a copy of the license, please send an email to 
- * contact@wdca.ca or call 1-888-699-WDCA(9322), so we can send you a copy 
- * immediately.
- * 
- * @category   [TBT]
- * @package    [TBT_Rewards]
- * @copyright  Copyright (c) 2009 Web Development Canada (http://www.wdca.ca)
- * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category   design_default
+ * @package    Mage
+ * @copyright  Copyright (c) 2008 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
+
 -->
 <layout version="0.1.0">
 
@@ -48,7 +38,7 @@ Customer account pages, rendered for all tabs in dashboard
             <action method="addLink" translate="label" module="rewards" ifconfig="rewards/general/layoutsactive">
                 <name>rewards</name>
                 <path>rewards/customer</path>
-                <label>My Points and Rewards</label>
+                <label>Reward Points</label>
             </action>
         </reference>
     </customer_account>
@@ -57,7 +47,7 @@ Customer account pages, rendered for all tabs in dashboard
     <rewards_customer_index>
         <update handle="customer_account"/>
         <reference name="content">
-            <block type="rewards/customer" name="rewards.customer" template="rewards/customer.phtml">
+            <block type="rewards/customer" name="rewards.customer" as="customer" template="rewards/customer.phtml">
                 <block type="rewards/customer_summary" name="customer.summary" as="summary"/>
                 <block type="rewards/customer_transfers_spendings" name="customer.spendings" as="spendings" />
                 <block type="rewards/customer_transfers_earnings" name="customer.earnings" as="earnings" />
@@ -68,8 +58,15 @@ Customer account pages, rendered for all tabs in dashboard
             </block>
         </reference>
     </rewards_customer_index>
+
+    <default>
+        <reference name="header">
+            <block type="rewards/special_header" name="rewards.special.header" as="rewardsHeader" 
+                template="rewards/special/header.phtml"/>
+            <block type="core/template" name="cart_points_js" template="rewards/checkout/js.phtml" />
+        </reference>
+    </default>
     
-    <!-- point slider -->
     <catalog_product_view>           
         <reference name="head">
             <action method="addCss" ifconfig="rewards/general/layoutsactive">
@@ -78,7 +75,7 @@ Customer account pages, rendered for all tabs in dashboard
             <action method="addJs" ifconfig="rewards/general/layoutsactive">		
                 <script>tbt/rewards/util.js</script>							
             </action>
-           <action method="addJs" ifconfig="rewards/general/layoutsactive">		
+            <action method="addJs" ifconfig="rewards/general/layoutsactive">		
                 <script>tbt/rewards/catalog/product/view/redeemer.js</script>		
             </action>
             <action method="addJs" ifconfig="rewards/general/layoutsactive">		
@@ -95,55 +92,10 @@ Customer account pages, rendered for all tabs in dashboard
             <block type="core/template" name="js_points_captions" template="rewards/js/captions.phtml" />
             <block type="core/template" name="js_points_redemption_validation" template="rewards/product/view/validationjs.phtml" />
         </reference>
-    </catalog_product_view>
-    
-    
-    <!-- @nelkaake AUTOINTEGRATED BEGIN -->
-    
-    
-    <!-- @nelkaake BEGIN Points Balance in Header -->
-    <default>
-        <reference name="header">
-            <block type="rewards/special_header" name="rewards.special.header" as="rewardsHeader" 
-                template="rewards/special/header.phtml"/>
-            <block type="core/template" name="cart_points_js" template="rewards/checkout/js.phtml" />
-        </reference>
-        <reference name="top.links">
-            <block type="rewards/integrated_special_header" name="rewards.top.links.points_balance" as="rewards_points_balance" 
-                template="rewards/special/header.phtml"/>
-            <block type="core/template" name="cart_points_js" template="rewards/checkout/js.phtml" />
-        </reference>
-    </default>
-    <!-- @nelkaake END Points Balance in Header -->
-    
-    
-    <!-- @nelkaake BEGIN Points Amount in Product Info page for Reviews  -->
-    <catalog_product_view>           
-        <reference name="alert.urls">
-            <block type="rewards/integrated_special_review" name="rewards.special.product_info.review" as="rewards_review" 
-                template="rewards/special/review.phtml"/>
-        </reference>   
         <reference name="product.info">
             <block type="rewards/special_review" name="rewards.special.review" as="rewardsReview" 
                 template="rewards/special/review.phtml"/>
-        </reference>
-    </catalog_product_view>
-    <!-- @nelkaake END Points Amount in Product Info Page for Product Points -->
-    
-    
-    <!-- @nelkaake BEGIN Points Amount in Review Listing Page -->
-    <review_product_list>
-        <reference name="product.review.form.fields.before">
-            <block type="rewards/integrated_special_review_form" name="rewards_review_points" 
-                    as="rewards_review_points" template="rewards/special/reviewform.phtml" />
-        </reference>
-    </review_product_list>
-    <!-- @nelkaake END Points Amount in Review Listing Page -->
-    
-    <!-- @nelkaake BEGIN Points Amount in Product Info Page for Product Points -->
-    <catalog_product_view>           
-        <reference name="product.info.extrahint">
-            <block type="rewards/integrated_product_view_points" name="rewards.integrated.product.view.points" as="rewards_points" 
+            <block type="rewards/product_view_points" name="rewards.product.view.points" as="points" 
             	   template="rewards/product/view/points.phtml" >
                 <block type="rewards/product_view_points_earned" name="rewards.product.view.points.earned" as="points_earned" 
                     template="rewards/product/view/points_earned.phtml" />
@@ -155,53 +107,11 @@ Customer account pages, rendered for all tabs in dashboard
                         template="rewards/product/view/slider_js.phtml" />
                 </block>
             </block>
-        </reference>
-        <reference name="product.info">
-            <block type="rewards/product_view_points" name="rewards.product.view.points" as="points" 
-                   template="rewards/product/view/points.phtml" >
-                <block type="rewards/product_view_points_earned" name="rewards.product.view.points.earned" as="points_earned" 
-                    template="rewards/product/view/points_earned.phtml" />
-                <block type="rewards/product_view_points_redeemed" name="rewards.product.view.points.redeemed" as="points_redeemed" 
-                    template="rewards/product/view/points_redeemed.phtml" >
-                    <block type="rewards/points_slider" name="rewards.product.view.points.slider" as="points_slider" 
-                        template="rewards/product/view/slider.phtml" />
-                    <block type="rewards/points_slider" name="rewards.product.view.points.slider.js" as="points_slider_js" 
-                        template="rewards/product/view/slider_js.phtml" />
-                </block>
-            </block>
         </reference> 
     </catalog_product_view>
-    <!-- @nelkaake END Points Amount in Product Info Page for Product Points -->
     
-    <!-- @nelkaake BEGIN Shopping cart autointegrated content  -->
-   	<checkout_cart_index>
-        <!-- Mage_Checkout -->
-        <reference name="checkout.cart.coupon">
-            <block type="core/template" name="rewards_js_points_captions" as="rewards_cartpoints_spender_js" template="rewards/js/captions.phtml" />
-            <block type="rewards/checkout_cart" name="rewards_points_cart_minibox" as="rewards_cartpoints_spender" template="rewards/checkout/cartmini.phtml" >
-                <block type="rewards/checkout_cart_slider" name="points_cart_box.slider" as="points_slider" template="rewards/checkout/cart/slider.phtml" />
-                <block type="core/template" name="points_cart_box.js" as="minicart_js" template="rewards/checkout/minicart_js.phtml" />
-            </block>
-        </reference> 
-    </checkout_cart_index>
-    <!-- @nelkaake END Shopping cart autointegrated content -->
-    
-    <!-- @nelkaake BEGIN Customer dashboard autointegrated content  -->
-    <customer_account_index >
-        <reference name="customer_account_dashboard_top">
-        	<block type="rewards/integrated_customer_summary" name="rewards.points.customer.summary" 
-        	       as="rewards_points_summary" before="customer_account_dashboard_top" />
-        </reference>
-    </customer_account_index>
-    <!-- @nelkaake END Customer dashboard autointegrated content -->
-    
-    <catalog_product_view>
-	    <reference name="product.info.additional">
-	    	<block type="rewards/integrated_special_tag" name="rewards_tag_points" as="rewards_tag_points" 
-	    			template="rewards/special/tag.phtml"  after="product_tag_list" />
-	    </reference>
-    </catalog_product_view>
-    <!-- @nelkaake AUTOINTEGRATED END -->
+       
+    <!-- /Special Rules -->
     <default>
         <reference name="head">
             <action method="addCss" ifconfig="rewards/general/layoutsactive">
@@ -212,9 +122,9 @@ Customer account pages, rendered for all tabs in dashboard
             </action>
         </reference>
         <!-- TBT_Rewards Sidebox (sidebar) -->
-        <reference name="right">
+        <!--<reference name="right">
             <block type="rewards/customer_sidebar" name="rewards_sidebar" as="rewards" after="cart_sidebar" template="rewards/customer/sidebar.phtml"/>
-        </reference>
+        </reference>-->
         
     </default>
     <checkout_cart_index>
@@ -305,6 +215,44 @@ Customer account pages, rendered for all tabs in dashboard
         </reference>
     </rewards_cart_redeem_changepointsspending>
 
+    <!-- checkout_onepage_index>
+        <reference name="content">
+            <block type="core/template" name="js_points_captions" template="rewards/js/captions.phtml" />
+            <block type="rewards/checkout_cart" name="rewards.popup" template="rewards/checkout/onepage/points/popup.phtml" >
+                <block type="core/template" name="rewards.popup.js" as="popupjs" template="rewards/checkout/onepage/points/popupjs.phtml"  />
+                <block type="core/template" name="rewards.popup.slider" as="slider" template="rewards/checkout/onepage/points/slider.phtml" >
+                    <block type="rewards/checkout_cart_slider" name="rewards.popup.slider.html" as="points_slider" template="rewards/checkout/cart/slider.phtml" />
+                </block>
+                <block type="core/template" name="rewards.popup.slider.js" as="sliderjs" template="rewards/checkout/onepage/points/sliderjs.phtml"  />
+            </block>
+            <block type="core/template" name="js_points_captions" template="rewards/js/captions.phtml" />
+        	<reference name="checkout.onepage.review">
+                <block type="rewards/checkout_cart" template="rewards/checkout/onepage/review/redeem.phtml" name="rewards.redeem.payment.method" as="redeem_points" />
+	        </reference>
+        </reference> 
+        <reference name="head">
+			<action method="addCss" ifconfig="rewards/general/layoutsactive">
+                <stylesheet>css/rewards/slider.css</stylesheet>						
+            </action>
+			<action method="addJs" ifconfig="rewards/general/layoutsactive">		
+                <script>tbt/rewards/util.js</script>							
+            </action>
+			<action method="addJs" ifconfig="rewards/general/layoutsactive">		
+                <script>tbt/scriptaculous/SmoothSlider.js</script>					
+            </action>
+			<action method="addJs" ifconfig="rewards/general/layoutsactive">		
+                <script>tbt/rewards/points/RedemptionSlider.js</script>					
+            </action>
+        </reference> 
+	</checkout_onepage_index>
+
+    <default>
+        <reference name="checkout.onepage.shipping_method.additional">
+            <block type="core/template" name="redeem_points" as="redeem_points" template="rewards/checkout/onepage/shippingmethod/redeem.phtml" />
+        </reference> 
+	</default -->
+
+    
     <!--
     In Magento 1.3.x and lower...
 	//@nelkaake -a 14/12/10: 
@@ -372,4 +320,13 @@ Customer account pages, rendered for all tabs in dashboard
             </block>
         </reference>    
     </sales_email_order_items>
+    
+    
+                                   
+    <default>
+        <reference name="before_body_end">
+            <block type="rewards/debug_profiler" name="rewards_pofiler" ifconfig="rewards/developer/profiler"></block>
+        </reference>
+    </default>
+                          
 </layout>

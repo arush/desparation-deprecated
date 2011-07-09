@@ -456,16 +456,12 @@ button.button {
   overflow: visible;
   cursor: pointer;
   vertical-align: middle;
-	background: #b14e4e;
-}
-button.button:hover{
 	-moz-box-shadow: 0pt 0px 2px #acacac;
 	-webkit-box-shadow: 0pt 0px 2px #acacac;
 	-khtml-box-shadow: 0pt 0px 2px #acacac;
-	background: url('../images/button-rollover.png');
+	background: #b14e4e;
 }
-.registered-users button.button{background: transparent;}
-.registered-users button.button:rollover{background: transparent;}
+
 a.button, button.button span, a.button span, button.button span span {
 }
 
@@ -605,7 +601,7 @@ p.required {
 
 .fieldset h2.legend {
   margin: 0pt 0pt 1.5em;
-  color: #2f2f2f;
+  color: rgb(253, 252, 229);
 }
 
 .form-list {
@@ -923,6 +919,9 @@ a.back-link {
 
 }
 
+#continue-shopping-button {
+  background: url("../images/sprites.png") no-repeat scroll -765px -246px transparent;
+}
 #continue-shopping-button span{color: #fff; font-family: Gotham-book; font-weight: normal; padding: 5px; height: auto;}
 #continue-shopping-button span span{padding: 0;}
 .col3-layout .form-buttons p.back-link, .col3-layout .form-list label {
@@ -4342,6 +4341,7 @@ p.product-image {
     0, 0);
   text-align: center;
   text-transform: lowercase;
+  padding: 5px 0pt;
 }
 
 .product-view .product-name {
@@ -6368,11 +6368,6 @@ ul.cms-menu.type-square ul {
     -10px -249px transparent;
   height: 30px;
 }
-#shopping-cart-table button.button:hover{
-	-moz-box-shadow: none;
-	-webkit-box-shadow: none;
-	-khtml-box-shadow: none;
-}
 
 #shopping-cart-table {
   width: 96%;
@@ -7526,19 +7521,16 @@ textarea {
 }
 
 .my-account .button.button {
-  width: 194px;
-  text-align: center;
-  font-size: 13px;
-  font-family: Gotham-book;
+  background: url("../images/sprites.png") no-repeat scroll
+    -10px -249px transparent;
+  height: 30px;
 }
 
 .my-account .button.button span {
   font-weight: normal;
-  color: #fff;
-  line-height: 20px;
-  padding: 0;
+  color: rgb(25, 25, 25);
 }
-.my-account .address-book .button.button{height: 30px; margin: 5px 6px 4px 0; text-transform: uppercase;}
+
 .my-account p.required {
   color: rgb(112, 112, 112);
 }
@@ -11509,34 +11501,22 @@ font-size: 20px; }
   font-family: Gotham-Book;
 }
 
-.product-view .product-shop .add-to-links, .product-view .add-to-box .add-to-links{
+.product-view .product-options-bottom .add-to-cart button.button, .product-view .add-to-box button.button, .product-view .product-shop .add-to-links, .product-view .add-to-box .add-to-links{
+	background: url("../images/sprites.png") no-repeat scroll -640px -47px transparent;
 	height: 33px;
+	-moz-box-shadow: 0pt 0px 2px #acacac;
+	-webkit-box-shadow: 0pt 0px 2px #acacac;
+	-khtml-box-shadow: 0pt 0px 2px #acacac;
+	box-shadow: 0pt 0px 2px #acacac;
+	border: 1px solid #acacac\9;
 	font-family: Gotham-book;
-}
-.product-view .product-options-bottom .add-to-cart button.button, .product-view .add-to-box button.button{
-	background: #b14e4e;
-	height: 33px;
-	font-family: Gotham-book;
-}
-.product-view button.button span{color: #fff; font-size: 11px; line-height: 24px;}
-.product-view .product-options-bottom .add-to-cart button.button:hover, .product-view .add-to-box button.button:hover{
-	background: url('../images/button-rollover.png');
 }
 .product-view .product-options p.required{display: none;}
 .product-view .product-options-bottom .add-to-cart button.button, .product-view .add-to-box button.button{width: 177px !important; margin-bottom: 10px;}
 .product-view .product-shop .add-to-links li{border-bottom: none; text-transform: uppercase;}
-.add-to-links a{color: #5b5757; font-size: 11px; line-height: 24px;}
+.add-to-links a, .product-view .product-essential button.btn-cart span span, .add-to-cart button.btn-cart span{color: #5b5757; font-size: 11px; line-height: 24px;}
 .add-to-links a:hover{text-decoration: none;}
-.product-shop a.link-wishlist{
-	display: block;
-	background: url("../images/sprites.png") no-repeat scroll -640px -47px transparent;
-	padding: 5px 0 4px;
-}
-.product-shop a.link-wishlist:hover{
-	-moz-box-shadow: 0pt 0px 4px #acacac;
-	-webkit-box-shadow: 0pt 0px 4px #acacac;
-	-khtml-box-shadow: 0pt 0px 4px #acacac;
-}
+a.link-wishlist{display: block;}
 .product-view .product-shop .add-to-cart, .product-view .add-to-box .add-to-cart{float: left; padding: 0; width: 177px;}
 .product-view .product-shop .add-to-links, .product-view .add-to-box .add-to-links{float: left; margin: 0 0 0 5px !important; width: 95px;}
 .product-view .product-options-bottom, .add-to-box{padding: 20px 10px;}
@@ -11610,12 +11590,12 @@ font-size: 20px; }
 }
 .my-account .button.button{
 	height: 38px;
+	background: transparent;
 	margin: 1px;
 }
 .my-account .form-buttons{
 	width: 640px;
 }
-.my-account .share-wishlist .form-buttons{width: 675px;}
 	/*DASHBOARD START*/
 	.dashboard, .st-dashboard{
 		background: #fff;
@@ -11948,6 +11928,10 @@ font-size: 20px; }
 	border-color: #9c9c9c;
 }
 #shopping-cart-table  .price{color: #494949;}
+.cart .checkout-types button.button {
+  background: url("../images/sprites.png") no-repeat scroll
+    -800px -249px transparent;
+}
 
 .cart .checkout-types .btn-proceed-checkout span {
   background: none repeat scroll
@@ -11982,8 +11966,10 @@ font-size: 20px; }
 	text-decoration: underline;
 }
 .cart .totals .checkout-types button.button {
-  height: 55px;
-  width: 259px;
+  background: url("../images/sprites.png") no-repeat scroll
+    -759px -240px transparent;
+  height: 61px;
+  width: 265px;
 }
 .cart .totals .checkout-types .btn-proceed-checkout span {
   font-size: 14px;
@@ -12293,6 +12279,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 }
 #checkoutSteps button span{color: #fff; padding: 13px 38px; font-family: Gotham-book;}
 #checkoutSteps button span span{padding: 0;}
+#checkoutSteps button{background: url("../images/sprites.png") no-repeat scroll -765px -246px transparent;}
 #checkoutSteps .form-buttons{width: 657px;}
 #checkoutSteps p.required{width: 605px;}
 #payment-buttons-container p.required{width: 620px;}
@@ -12427,7 +12414,14 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 #wishlist-table  input{background: #fff; margin: 0; border: 1px solid #C7C7C7; color: #494949;}
 #wishlist-table .availability{display: block; padding-top: 5px;}
 #wishlist-table td.last{text-align: center;}
-#wishlist-table button, #wishlist-view-form button, .share-wishlist #form-validate button{height: 30px; margin-top: 5px;}
+#wishlist-table button, #wishlist-view-form button, .share-wishlist #form-validate button{background: #b14e4e; height: 30px; margin-top: 5px;}
+#wishlist-table button:hover, #wishlist-view-form button:hover, .share-wishlist #form-validate button:hover{
+	-moz-box-shadow: 0pt 0px 2px #acacac;
+	-webkit-box-shadow: 0pt 0px 2px #acacac;
+	-khtml-box-shadow: 0pt 0px 2px #acacac;
+	box-shadow: 0pt 0px 2px #acacac;
+	border: 1px solid #acacac\9;
+}
 #wishlist-table button span, #wishlist-view-form button span, .share-wishlist #form-validate button span{color: #fff; font-family: Gotham-book; padding: 1px 3px;}
 .my-wishlist .page-title{border-bottom: none;}
 #wishlist-view-form .buttons-set2{margin: 5px 14px 0 0;}
@@ -12568,179 +12562,3 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	.product-options-bottom{*width: 277px;}
 
 /* IE7 FIXES END */
-
-/*START FLORIAN NEW PRODUCT LAYOUT 2011/07/05*/
-/*RESERVATION-PRODUCT-NAME*/
-.reservation-main{float: left; width: 620px;}
-#reservation-product-name-title {
-	background-color: #fff;
-	padding: 20px 0;
-	height: 78px;
-	width: 604px;
-}
-.reservation-product-name {
-	background: transparent;
-	float: left;
-	height: 118px;
-	width: 604px;	
-	font-size: 12px;
-	-moz-box-shadow: 0pt 0px 2px #acacac;
-	-webkit-box-shadow: 0pt 0px 2px #acacac;
-	-khtml-box-shadow: 0pt 0px 2px #acacac;
-	margin-bottom: 10px;
-}
-.product-view .reservation-product-name h1 {
-  font-size: 22px;
-  line-height: 1.2;
-  color: #5f5f5f;
-  font-weight: normal;
-  font-family: HelveticaNeueLight;
-  padding: 0 20px 10px;
-  border-bottom: 1px solid #acacac;
-  height: 53px;
-}
-#product-subtitle {
-	color: #757575;
-	font-size: 14px;
-	padding: 8px 20px 0;
-	font-weight: normal;
-}
-/*RESERVATION-PRODUCT-IMG-BOX*/
-.reservation-product-img-box {
-  width: 604px;
-  float: left;
-}
-.reservation-product-img-box .zoom-text{padding-left: 212px;}
-.reservation-product-img-box .product-image {
-    height: 318px;
-    overflow: hidden;
-    position: relative;
-    width: 604px;
-    z-index: 9;
-  	-moz-box-shadow: 0pt 0px 2px #acacac;
-	-webkit-box-shadow: 0pt 0px 2px #acacac;
-	-khtml-box-shadow: 0pt 0px 2px #acacac;
-}
-.reservation-product-img-box .more-views {
-    margin: 0 0 10px;
-    padding: 0;
-    position: relative;
-}
-.reservation-product-img-box .more-views h2 {
-    display: none;
-}
-.reservation-product-img-box .more-views li {
-    float: left;
-    margin: 0 1px 1px 0;
-}
-.reservation-product-img-box .more-views ul:after{
-  display: block;
-  content: ".";
-  clear: both;
-  font-size: 0pt;
-  line-height: 0pt;
-  height: 0pt;
-  overflow: hidden;
-}
-/*RESERVATION-PRODUCT-COLLATERAL*/
-.product-view .product-collateral{
-	width: 604px;
-	background: #fff;
-  	-moz-box-shadow: 0pt 0px 2px #acacac;
-	-webkit-box-shadow: 0pt 0px 2px #acacac;
-	-khtml-box-shadow: 0pt 0px 2px #acacac;
-}
-.product-collateral .tabs{width: 576px;}
-.product-collateral .padder{padding: 20px;}
-.tab-list .reservation-tab-container {
-  position: absolute;
-  left: 0pt;
-  width: 100%;
-}
-.collateral-tabs .editorial-tab-content {
-  min-height: 110px;
-  font-size: 12px;
-  margin: 30px 20px;
-  color: #757575;
-  background: #f2efe0;
-}
-.reservation-editorial{
-	background: #ffffff;
-	padding: 0 15px 15px 13px;
-	margin: 0 0 15px 94px;
-	font-size: 13px;
-	font-style: italic;
-}
-.reservation-editorial-header{
-	color: #000000;
-    font-size: 14px;
-    font-weight: bold;
-    padding: 15px 15px 10px 15px;
-	background: #ffffff;
-}
-.editorial-balloon{
-	float: left;
-	padding: 0 0 15px 15px;
-	background: #ffffff;
-	margin-bottom: 15px;
-	position: relative;
-}
-.detail-arrow{
-	position: relative;
-	top: -300px;
-	clear: both;
-}
-.active .detail-arrow{
-	position: relative;
-	top: 3px;
-	z-index: 8;
-	left: 20%;
-	clear: both;
-}
-.reservation-product-collateral .data-table {
-  border: 0 none;
-}
-.reservation-product-collateral .data-table th {
-  padding: 15px;
-  color: #383838;
-}
-.reservation-product-collateral .data-table td {
-  background: #ffffff;
-  padding: 15px;
-  color: #757575;
-}
-.reservation-product-collateral .collateral-tabs .editorial-tab-content .data-table td.label, .reservation-product-collateral .data-table th.label{
-	color: #383838;
-	background: #ffffff ! important;
-}
-.editorial-tab-content #product-attribute-specs-table{
-	border-color: #ffffff;
-}
-.reservation-tab-container .data-table tr.first th, .reservation-tab-container .data-table tr.first td,
-.reservation-tab-container .data-table tr.even th, .reservation-tab-container .data-table tr.even td{
-	border-bottom: 15px solid #F2EFE0;
-}
-.reservation-tab-container .editorial-tab-content .data-table {
-	border-collapse: separate;
-	*border-collapse: collapse;
-}
-.reservation-tab-container .editorial-tab-content .data-table ul{
-	list-style-image: url("../images/listarrow.png");
-	padding-left: 20px;
-}
-.reservation-tab-container .editorial-tab-content .data-table li{
-	padding-bottom: 15px;
-}
-.reservation-tab-container .editor-summary{
-	background: #ffffff;
-}
-.product-view .box-related input.checkbox {
-  display: none;
-}
-.reservation-tab-container iframe {
-	width: 444px;
-	height: 444px;
-	scrolling: no;
-	border: 0 none;
-} 
-/*END FLORIAN NEW PRODUCT LAYOUT 2011/07/05*/

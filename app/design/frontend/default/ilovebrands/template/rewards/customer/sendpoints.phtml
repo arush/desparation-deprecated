@@ -33,7 +33,8 @@
  * @package    [TBT_Rewards]
  * @copyright  Copyright (c) 2009 Web Development Canada (http://www.wdca.ca)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- */
+*/
+
 /**
  * Customer Send Points
  *
@@ -41,55 +42,58 @@
  * @package    TBT_Rewards
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
+ 
+ $points_currency_ids = Mage::getSingleton('customer/session')->getCustomer()->getCustomerCurrencyIds();
+ $hasMultipleCurrencies = (sizeof($points_currency_ids) > 1);
 ?>
 
 <div class="account-box ad-account-info mypoints-sendfriend"
-     <?php if (!Mage::getStoreConfigFlag('rewards/display/showMiniRedeemCatalog')): ?> style="float:none;"<?php endif; ?>
-     >
+        <?php if(!Mage::getStoreConfigFlag('rewards/display/showMiniRedeemCatalog')): ?> style="float:none;"<?php endif; ?>
+        >
     <div class="head head-alt2">
         <h4 class="title"><?php echo $this->__("Send Points to a Friend") ?></h4>
     </div>
     <form method="post" action="<?php echo $this->getUrl('rewards/customer_sendpoints/send/') ?>">
         <table cellspacing="5" border="0">
             <tr>
-                <td> <label for="friend_email"><?php echo $this->__("Friend's Email:") ?> </label> </td>
+                <td> <label for="friend_email"><?php echo $this->__("Friend's Email:")?> </label> </td>
                 <td> </td>
-                <td> <input type="text" name="friend_email" id="friend_email" /> </td>
-            </tr>
-            <tr>
-                <td> <label for="point_amt"><?php echo $this->__("Point Amount:") ?></label> </td>
+		        <td> <input type="text" name="friend_email" id="friend_email" /> </td>
+		    </tr>
+		    <tr>
+		        <td> <label for="point_amt"><?php echo $this->__("Point Amount:") ?></label> </td>
                 <td> </td>
-                <td> <input type="text" name="points_amt" id="points_amt" /> </td>
-            </tr>
-            <!--  tr <?php if (!$this->getHasMultipleCurrencies()): ?>style="display:none;"<?php endif; ?> >
-                <td> <label for="currency_id"><?php echo $this->__("Currency:") ?></label> </td>
+		        <td> <input type="text" name="points_amt" id="points_amt" /> </td>
+		    </tr>
+		    <tr <?php if(!$hasMultipleCurrencies): ?>style="display:none;"<?php endif; ?> >
+		        <td> <label for="currency_id"><?php echo $this->__("Currency:")?></label> </td>
                 <td> </td>
-                <td>
-                <?php if ($this->getNumPointsCurrencies() == 1): ?>
-                    <select name="currency_id" id="currency_id" disabled="disabled">
-                <?php else: ?>
-                  	<select name="currency_id" id="currency_id">
-                <?php endif; ?>
-                    <?php foreach ($this->getPointsCurrencyIds() as $curr_id) : ?>
-                        <option value="<?php echo $curr_id ?>">
-                            <?php echo Mage::getModel('rewards/currency')->getCurrencyCaption($curr_id) ?>
-                        </option>
-                    <?php endforeach; ?>
+		        <td>
+                    <?php if (Mage::getSingleton('customer/session')->getCustomer()->getNumCurrencies() == 1): ?>
+                        <select name="currency_id" id="currency_id" disabled>
+                    <?php else: ?>
+                        <select name="currency_id" id="currency_id">
+                    <?php endif; ?>
+                        <?php foreach($points_currency_ids as $curr_id) :?>
+                            <option value="<?php echo $curr_id ?>">
+                                <?php echo Mage::getModel('rewards/currency')->getCurrencyCaption($curr_id) ?>
+                            </option>
+                        <?php endforeach;?>
                     </select>
                 </td>
-            </tr -->
-            <tr>
-                <td> <label for="personal_comment"><?php echo $this->__("Comment:") ?></label> </td>
+		    </tr>
+		    <tr>
+                <td> <label for="personal_comment"><?php echo $this->__("Comment:")?></label> </td>
                 <td> </td>
                 <td> <textarea name="personal_comment" id="personal_comment" cols="25" rows="7"></textarea> </td>
-            </tr>
-        </table>
-        <br />
+		    </tr>
+	    </table>
+	    <br />
 
-        <button class="form-button" type="submit">
+        <button class="form-button">
             <span><?php echo $this->__('Send to Friend') ?></span>
         </button>
-    </form>
+     </form>
 </div>
 
 
