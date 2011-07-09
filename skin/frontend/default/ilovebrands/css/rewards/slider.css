@@ -1,0 +1,14 @@
+
+@import url("../../../../base/default/css/rewards/slider.css");
+
+.sliderCaption
+{
+    margin-bottom: 12px;
+    margin-left: 12px;
+    margin-top: 10px;
+    width: 128px;
+    /*+placement:shift 0px 6px;*/
+    position: relative;
+    left: 0px;
+    top: 6px;
+}
