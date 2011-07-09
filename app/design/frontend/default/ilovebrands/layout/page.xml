@@ -61,7 +61,11 @@ Default layout, loads most of the pages
         <action method="addItem"><type>skin_js</type><name>js/jquery-ui-1.8.11.custom.min.js</name><params/></action>
 		        
                 <block type="page/js_cookie" name="js_cookies" template="page/js/cookie.phtml"/>
-
+                
+		
+				<!-- START HIGHSLIDE MODULE -->
+				<action method="addCss"><stylesheet>css/highslide.css</stylesheet></action>
+				<!-- END HIGHSLIDE MODULE -->
                 <action method="addCss"><stylesheet>css/styles.css</stylesheet></action>
                 <action method="addItem"><type>skin_css</type><name>css/styles-ie.css</name><params/><if>lt IE 8</if></action>
                 <action method="addCss"><stylesheet>css/widgets.css</stylesheet></action>
