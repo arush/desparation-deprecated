@@ -33,7 +33,8 @@
  * @package    [TBT_Rewards]
  * @copyright  Copyright (c) 2009 Web Development Canada (http://www.wdca.ca)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- */
+*/
+
 /**
  * Checkout Reward Spent
  *
@@ -42,36 +43,36 @@
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
 ?>
-<?php if ($this->showSpendings()): ?>
-    <tr>
-        <td class="a-right cart-points-total_spent" colspan="<?php echo $this->getColspan(); ?>">          
-            <div class="caption"><?php echo $this->__('You Will Spend:') ?></div>
-        </td>
-        <td class="a-right cart-points-total_spent"> 
-            <div class="points-amount">
-                <?php echo $this->getPointsSpent() ?>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td class="a-right cart-points-total_spent cart-points-spending_warnings" colspan="<?php echo $this->getColspan() + 1; ?>">          
-            <?php if ($this->getShowNEPWarning()): ?>
-                <div class="warning rewards-nep">
-                    <?php echo $this->__("Not Enough Points!"); ?>
-                </div>
-            <?php endif; ?>
-            <?php if ($this->getShowMinOrderWarning()): ?>
-                <div class="warning rewards-min_order">
-                    <?php echo $this->getMinOrderWarning(); ?>
-                </div>
-            <?php endif; ?>
-            <?php if ($this->getShowRefreshNotice()): ?>
-                <div class="notice rewards-may_need_refresh">
-                    <?php echo $this->__("You may need to refresh the shopping cart to checkout."); ?>
-                </div>
-            <?php endif; ?>
-        </td>
-    </tr>
+<?php if($this->showSpendings()): ?>
+<tr>
+    <td class="a-right cart-points-total_spent left-col-spent" colspan="<?php echo $this->getColspan(); ?>">   
+        <div class="caption"><?php echo $this->__('You Will Spend') ?></div>
+    </td>
+     <td class="a-right cart-points-total_spent"> 
+         <div class="points-amount">
+             <?php echo $this->getPointsSpent() ?>
+         </div>
+     </td>
+</tr>
+<tr>
+    <td class="a-right cart-points-total_spent cart-points-spending_warnings" colspan="<?php echo $this->getColspan()+1; ?>">          
+        <?php if($this->getShowNEPWarning()): ?>
+         	<div class="warning rewards-nep">
+        		<?php echo $this->__("Not Enough Points!"); ?>
+        	</div>
+        <?php endif; ?>
+        <?php if($this->getShowMinOrderWarning()): ?>
+        	<div class="warning rewards-min_order">
+	       		<?php echo $this->getMinOrderWarning(); ?>
+        	</div>
+        <?php endif; ?>
+        <?php if($this->getShowRefreshNotice()): ?>
+        	<div class="notice rewards-may_need_refresh">
+	       		<?php echo $this->__("You may need to refresh the shopping cart to checkout."); ?>
+        	</div>
+        <?php endif; ?>
+    </td>
+</tr>
 <?php endif; ?>
 
 

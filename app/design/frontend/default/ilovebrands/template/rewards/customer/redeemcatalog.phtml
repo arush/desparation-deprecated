@@ -33,7 +33,8 @@
  * @package    [TBT_Rewards]
  * @copyright  Copyright (c) 2009 Web Development Canada (http://www.wdca.ca)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- */
+*/
+
 /**
  * Customer Redemption catalog
  *
@@ -44,59 +45,59 @@
 $numProducts = $this->getNumProducts();
 ?>
 <div class="account-box mypoints-redeemcatalog"
-     align="center" <?php if (!Mage::getStoreConfigFlag('rewards/display/showSendPointsToAFriend')): ?>
-         style="float:none;" <?php endif; ?>>
-    <div class="head head-alt2">
-        <h4 class="title">
-            <?php echo $this->__('Use your points on any of these products') ?>
-        </h4>
-    </div><?php $products = $this->selectRandomProductsWithRedemptions($numProducts); ?><?php if (count($products) > 0): ?>
-        <div class="listing">
-            <table cellspacing="5" border="0" width="300">
-                <?php $product_count = 0; ?><?php while ($product_count < count($products)): ?>
-                    <tr>
-                        <td align="center" width="48%" style="vertical-align:text-bottom">
-                            <p class="product-image">
-                                <a href="<?php echo $products[$product_count]->getProductUrl() ?>"
-                                   title="<?php echo $this->htmlEscape($this->getImageLabel($products[$product_count], 'small_image')) ?>">
+align="center" <?php if(!Mage::getStoreConfigFlag('rewards/display/showSendPointsToAFriend')): ?>
+style="float:none;" <?php endif; ?>>
+  <div class="head head-alt2">
+    <h4 class="title">
+      <?php echo $this->__('Use your points on any of these products') ?>
+    </h4>
+  </div><?php $products = $this->selectRandomProductsWithRedemptions($numProducts); ?><?php if ( count($products) > 0 ): ?>
+  <div class="listing">
+    <table cellspacing="5" border="0" width="300">
+      <?php $product_count = 0; ?><?php while($product_count < count($products)): ?>
+      <tr>
+        <td align="center" width="48%" style="vertical-align:text-bottom">
+          <p class="product-image">
+            <a href="<?php echo $products[$product_count]->getProductUrl() ?>"
+            title="<?php echo $this->htmlEscape($this->getImageLabel($products[$product_count], 'small_image')) ?>">
 
-                                    <img src="<?php echo $this->helper('catalog/image')->init($products[$product_count], 'small_image')->resize(50, 50); ?>"
-                                         width="50" height="50"
-                                         alt="<?php echo $this->htmlEscape($this->getImageLabel($products[$product_count], 'small_image')) ?>"
-                                         title="<?php echo $this->htmlEscape($this->getImageLabel($products[$product_count], 'small_image')) ?>" />
-                                </a>
-                            </p>
-                            <h5>
-                                <a href="<?php echo $products[$product_count]->getProductUrl() ?>"
-                                   title="<?php echo $this->htmlEscape($products[$product_count]->getName()) ?>">
-                                       <?php echo $this->getProductName($products[$product_count]) ?>
-                                </a><?php echo $this->getPointsOptimizer($products[$product_count]); ?>
-                            </h5>
-                        </td><?php $product_count++; ?>
-                        <td width="4%"></td><?php if ($product_count < count($products)): ?>
-                            <td align="center" width="48%" style="vertical-align:text-bottom">
-                                <p class="product-image">
-                                    <a href="<?php echo $products[$product_count]->getProductUrl() ?>"
-                                       title="<?php echo $this->htmlEscape($this->getImageLabel($products[$product_count], 'small_image')) ?>">
+              <img src="<?php echo $this->helper('catalog/image')->init($products[$product_count], 'small_image')->resize(50, 50); ?>"
+              width="50" height="50"
+              alt="<?php echo $this->htmlEscape($this->getImageLabel($products[$product_count], 'small_image')) ?>"
+              title="<?php echo $this->htmlEscape($this->getImageLabel($products[$product_count], 'small_image')) ?>" />
+            </a>
+          </p>
+          <h5>
+            <a href="<?php echo $products[$product_count]->getProductUrl() ?>"
+            title="<?php echo $this->htmlEscape($products[$product_count]->getName()) ?>">
+              <?php echo $this->getProductName($products[$product_count]) ?>
+            </a><?php echo $this->getPointsOptimizer($products[$product_count]); ?>
+          </h5>
+        </td><?php $product_count++; ?>
+        <td width="4%"></td><?php if ( $product_count < count($products)): ?>
+        <td align="center" width="48%" style="vertical-align:text-bottom">
+          <p class="product-image">
+            <a href="<?php echo $products[$product_count]->getProductUrl() ?>"
+            title="<?php echo $this->htmlEscape($this->getImageLabel($products[$product_count], 'small_image')) ?>">
 
-                                        <img src="<?php echo $this->helper('catalog/image')->init($products[$product_count], 'small_image')->resize(50, 50); ?>"
-                                             width="50" height="50"
-                                             alt="<?php echo $this->htmlEscape($this->getImageLabel($products[$product_count], 'small_image')) ?>"
-                                             title="<?php echo $this->htmlEscape($this->getImageLabel($products[$product_count], 'small_image')) ?>" />
-                                    </a>
-                                </p>
-                                <h5>
-                                    <a href="<?php echo $products[$product_count]->getProductUrl() ?>"
-                                       title="<?php echo $this->htmlEscape($products[$product_count]->getName()) ?>">
-                                           <?php echo $this->getProductName($products[$product_count]) ?>
-                                    </a><?php echo $this->getPointsOptimizer($products[$product_count]); ?>
-                                </h5>
-                            </td><?php else: ?>
-                            <td width="48%"></td><?php endif; ?><?php $product_count++; ?>
-                    </tr><?php endwhile; ?>
-            </table>
-        </div><?php else: ?>
-        <div class="noproducts">
-            <?php echo $this->__('There are currently no products you can purchase using your points.'); ?>
-        </div><?php endif; ?>
+              <img src="<?php echo $this->helper('catalog/image')->init($products[$product_count], 'small_image')->resize(50, 50); ?>"
+              width="50" height="50"
+              alt="<?php echo $this->htmlEscape($this->getImageLabel($products[$product_count], 'small_image')) ?>"
+              title="<?php echo $this->htmlEscape($this->getImageLabel($products[$product_count], 'small_image')) ?>" />
+            </a>
+          </p>
+          <h5>
+            <a href="<?php echo $products[$product_count]->getProductUrl() ?>"
+            title="<?php echo $this->htmlEscape($products[$product_count]->getName()) ?>">
+              <?php echo $this->getProductName($products[$product_count]) ?>
+            </a><?php echo $this->getPointsOptimizer($products[$product_count]); ?>
+          </h5>
+        </td><?php else: ?>
+        <td width="48%"></td><?php endif; ?><?php $product_count++; ?>
+      </tr><?php endwhile; ?>
+    </table>
+  </div><?php else: ?>
+  <div class="noproducts">
+    <?php echo $this->__('There are currently no products you can purchase using your points.'); ?>
+  </div><?php endif; ?>
 </div>
