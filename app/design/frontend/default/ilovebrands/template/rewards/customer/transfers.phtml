@@ -47,11 +47,9 @@
         $table_id = 'my-transfers-table-' . md5($this->headerText);
 ?>
 <div class="mypoints-transfers">
-	<div class="mypoints-transfers-header">
-      <h4>
-        <?php echo $this->headerText; ?>
-      </h4>
-    </div>
+  <h2>
+    <?php echo $this->headerText; ?>
+  </h2>
   <div class="content">
     <!--Checks too see if the customer has any tramsfers  -->
     <?php if(sizeof($transferArray)): ?>

@@ -52,11 +52,11 @@
 	<?php if(isset($points_adjusted_array['points_string']) && $points_adjusted_array['points_string'] != "") :?>
 	    <?php if($points_adjusted_array['points_price'] === Mage::helper('core')->formatCurrency(0)) :?>
 		<div class="as_low_as free_with_points">
-			<?php echo $this->__("<span class='as-low'>Free</span> with <span>%s</span>",$points_adjusted_array['points_string']);?>
+	        <?php echo $this->__("Free using <b>%s!</b>",$points_adjusted_array['points_string']); ?>
 	    </div>
 	    <?php else :?>
 		<div class="as_low_as">
-			<?php echo $this->__("<span class='as-low'>%s</span> with <span>%s</span>" ,$points_adjusted_array['points_price'],$points_adjusted_array['points_string']);?>
+	        <?php echo $this->__("As low as <b>%s</b> using <b>%s</b>" ,$points_adjusted_array['points_price'],$points_adjusted_array['points_string']); ?>
 	    </div>
 	    <?php endif ?>
 	<?php endif ?>
@@ -64,31 +64,18 @@
 	<?php if($this->hasEarnablePoints() && !($this->getHideEarning())) :?>
     	<?php if($this->doGraphicalEarning()): ?>        
     		<div class="earnable" align="left">
-            	<div class="earn-points-category">
-                    <span>
-					<?php 
-					$earnpoints = $this->__("Earn %s", $this->getEarnablePointsString());
-					$earn = substr_replace($earnpoints,"",-7);
-					$points = substr_replace($earn,"",0,5);
-					echo $points;
-					?>
-                    
-                    </span>
-                </div>
+    		    <table border=0 cellspacing=0 cellpadding=0><tbody><tr>
+    		    	<td align="left" class="rewards-mini-icon-holder">
+    				<img src="<?php echo $this->getSkinUrl("images/rewards/add_points.png"); ?>">
+    			</td>
+                  <td align="left">
+                    <?php echo $this->__("Earn %s", $this->getEarnablePointsString()); ?>
+                  </td>
+                </tr></tbody></table>
             </div>
     	<?php else: ?>
     		<div class="earnable">
-            	<div class="earn-points-category">
-                    <span>
-					<?php 
-					$earnpoints = $this->__("Earn %s", $this->getEarnablePointsString());
-					$earn = substr_replace($earnpoints,"",-7);
-					$points = substr_replace($earn,"",0,5);
-					echo $points;
-					?>
-                    
-                    </span>
-                </div>
+            <?php echo $this->__("Earn %s", $this->getEarnablePointsString()); ?>
             </div>
     	<?php endif ?>
 	<?php endif ?>

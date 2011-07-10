@@ -33,14 +33,14 @@
  * @package    [TBT_Rewards]
  * @copyright  Copyright (c) 2009 Web Development Canada (http://www.wdca.ca)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
-*/
+ */
 ?>
 <?php
-    $callback = $this->getCallback();
-    $url = $this->getActionUrl();
-    $src = $this->getSrc();
+$callback = $this->getCallback();
+$url = $this->getActionUrl();
+$src = $this->getSrc();
 ?>
 
 <a onclick="javascript:if(<?php echo $callback ?>) { window.location='<?php echo $url ?>'};" href='#'>
-	<img src='<?php echo $src ?>' border=0 />
+    <img src='<?php echo $src ?>' border=0 />
 </a>
