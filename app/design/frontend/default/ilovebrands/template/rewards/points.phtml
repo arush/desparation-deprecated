@@ -1,5 +1,4 @@
 <?php
-
 /**
  * WDCA - Sweet Tooth
  * 
@@ -34,7 +33,8 @@
  * @package    [TBT_Rewards]
  * @copyright  Copyright (c) 2009 Web Development Canada (http://www.wdca.ca)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- */
+*/
+
 /**
  * Points display template.  This governs how points strings are displayed.
  *
@@ -42,47 +42,50 @@
  * @package    TBT_Rewards
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
-$points_array = $this->getPointsForDisplay();
-$num = sizeof($points_array);
-if ($this->hasPoints()) {
-    // if there are some points: 
-    if ($num == 1) {
-        //////////// IF YOU ONLY HAVE ONE POINTS CURRENCY THEN ONLY THIS SECTION IS IMPORTANT //////////
 
-        $p = $points_array[0];
-        // The next line prints something like "1234 Gold Point(s)"
-        if (empty($p['currency'])) {   // if the currency caption is blank or empty
-            echo $p['amount'];       // <- then don't display the caption
-        } else {                     // <- otherwise display the caption as normal
-            echo $p['amount'] . " " . $p['currency'];
-        }
-        if (!$this->getDontShowStringPoints()) {
-            echo " " . (($p['amount'] == 1) ? $this->__('Point') : $this->__('Points'));
-        }
-    } else {
-        /* MORE THAN ONE points currency in the store: */
 
-        foreach ($points_array as $i => $p) {
-            /* This will run for each points currency. */
-            if (empty($p['currency'])) {   // if the currency caption is blank or empty
-                echo $p['amount'];       // <- then don't display the caption
+	$points_array = $this->getPointsForDisplay();
+	$num = sizeof($points_array);
+	if ($this->hasPoints()) { 
+	// if there are some points: 
+		if($num == 1) {
+		//////////// IF YOU ONLY HAVE ONE POINTS CURRENCY THEN ONLY THIS SECTION IS IMPORTANT //////////
+			
+			$p = $points_array[0];
+			// The next line prints something like "1234 Gold Point(s)"
+			if(empty($p['currency'])) {   // if the currency caption is blank or empty
+			    echo $p['amount'];       // <- then don't display the caption
             } else {                     // <- otherwise display the caption as normal
-                echo $p['amount'] . " " . $p['currency'];
+			    echo $p['amount'] . " " . $p['currency'];
             }
-            if (!$this->getDontShowStringPoints()) {
-                echo " " . (($p['amount'] == 1) ? $this->__('Point') : $this->__('Points'));
-            }
-            if ($i < $num - 1) { /* more points currencies to print... */
-                if ($i == $num - 2) { /* one more to go */
-                    echo $this->__('and');
-                } else {
-                    echo ',';
+			if(!$this->getDontShowStringPoints()) {
+				echo " " . (($p['amount'] == 1) ? $this->__('Point') : $this->__('Points'));
+			}
+			
+		} else {
+		/* MORE THAN ONE points currency in the store: */
+			
+			foreach($points_array as $i => $p) { 
+			/* This will run for each points currency. */
+    			if(empty($p['currency'])) {   // if the currency caption is blank or empty
+    			    echo $p['amount'];       // <- then don't display the caption
+                } else {                     // <- otherwise display the caption as normal
+    			    echo $p['amount'] . " " . $p['currency'];
                 }
-                echo ' ';
-            }
-        }
-    }
-} else { /* No points */
-    echo $this->__('No Points');
-};
-?>
+				if(!$this->getDontShowStringPoints()) {
+					echo " " . (($p['amount'] == 1) ? $this->__('Point') : $this->__('Points'));
+				}
+				if($i < $num-1){ /* more points currencies to print... */
+					if ($i == $num-2){ /* one more to go */ 
+						echo $this->__('and'); 
+					} else {
+						echo ','; 
+					}
+					echo ' ';
+				}
+			}
+		}
+	} else { /* No points */ 
+		echo $this->__('No Points');
+	};
+	?>

@@ -33,7 +33,8 @@
  * @package    [TBT_Rewards]
  * @copyright  Copyright (c) 2009 Web Development Canada (http://www.wdca.ca)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- */
+*/
+
 /**
  * Special Header
  *
@@ -42,9 +43,29 @@
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
 ?>
-
-<?php if ($this->getPointsSummary() != ""): ?> 
-    <div class="points-special-header">
-        <?php echo $this->__("You have %s", $this->getPointsSummary()); ?> 
-    </div>         
-<?php endif; ?>               
+<div class="points-special-header">
+    <?php if($this->getPointsSummary() != ""): ?>
+    	<a href="/index.php/rewards/customer/"><?php $pointssummary = $this->getPointsSummary();
+        $header_points_balance = substr_replace($pointssummary,"",-7);
+        echo $header_points_balance; ?>
+    <?php endif; ?> </a>
+</div>	
+    <div class="tooltip">
+        <div class="nav-points">
+        <p>Spend points instead of cash</p>
+        <img src="<?php echo $this->getSkinUrl();?>images/points.jpg"/ width="44" height="41">
+        <span class="nav-earn">Earn points wherever<br/>you see this logo</span>
+        <span class="nav-spend">Spend points at checkout for big savings</span>
+        <div><span class="nav-expl">&pound;10-off costs 1000 points</span><a href="/index.php/rewards/customer">View my points</a></div>
+        </div>
+    </div>
+    <script>// What is $(document).ready ? See: http://flowplayer.org/tools/documentation/basics.html#document_ready
+    jQuery(document).ready(function() {
+        jQuery(".points-special-header").tooltip({
+            offset: [21, 0],
+			position: 'bottom center',
+			relative: true,
+            effect: 'slide'
+            })
+        ;});
+    </script>

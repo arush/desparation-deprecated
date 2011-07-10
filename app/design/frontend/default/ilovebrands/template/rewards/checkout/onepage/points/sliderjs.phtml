@@ -41,10 +41,10 @@
             showLoading();
             new Ajax.Updater('onepage_points_slider', slider_refresh_url, {
                 onComplete: function(t) {
-                    rSlider = new RedemptionSlider('sliderHandle', 'sliderRail', 'sliderCaption', 'redemption_rule_uses');
-                    rSlider.regenerateSlider(min_spendable, max_spendable, step, current_value); 
-                    rSlider.setExternalValue(current_value);
-                    hideLoading();
+		            rSlider = new RedemptionSlider('sliderHandle', 'sliderRail', 'sliderCaption', 'redemption_rule_uses');
+            		rSlider.regenerateSlider(min_spendable, max_spendable, step, current_value); 
+            		rSlider.setExternalValue(current_value);
+            		hideLoading();
                     slider_needs_refresh = false;
                 }
             });
@@ -59,11 +59,11 @@
     }
     
     document.observe("dom:loaded", function() {
-        $$('dl.shipment-methods input[type=radio]').each(function(el){
+		$$('dl.shipment-methods input[type=radio]').each(function(el){
             $(el).observe("change", function(e){
                 slider_needs_refresh = true;
             });
         }, this);
-    });
+	});
     
 </script>

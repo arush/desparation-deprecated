@@ -11,8 +11,6 @@ $show_slider = true;
 //$use_slider_for_single_redemption = true;
 ?>
 
-<div class="divider"></div>
-
 <script type="text/javascript">
 
     // Configurations ///////////////
@@ -98,11 +96,11 @@ $show_slider = true;
 
 <div class="redeem_section">
     <span class="use_points">
-        <?php echo $this->__('Use Your Points') . ':'; ?>
+        <?php echo $this->__('Use your reward points') ; ?>
     </span>
     <select name="redemption_rule" id="redemption_rule" 
             class="redemption_selector validate-can_use_points validate-has_enough_points">
-        <option value="" selected="selected"></option>
+        <option value="" selected="selected">I don't want to use reward points</option>
         <?php foreach ($ruleOptions as $ruleOption): ?>
             <?php if (isset($ruleOption['rule_id'])): ?>
                 <option value="<?php echo $ruleOption['rule_id']; ?>">

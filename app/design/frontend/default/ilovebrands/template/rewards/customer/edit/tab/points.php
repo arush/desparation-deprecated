@@ -21,17 +21,17 @@
 
 
 <div class="content-header">
-    <table cellspacing="0">
-        <tr>
-            <td style="width:50%;">
-                <h4 class="icon-head head-products">
-                    <?php echo $this->__('Customer Point Balances') ?></h4></td>
-        </tr>
-        <tr> <td> <?php echo $this->getChildHtml('tab_points_summary'); ?> </td> </tr>
-        <tr>
-            <td style="width:50%;">
-                <h4 class="icon-head head-products">
-                    <?php echo $this->__('Customer Point Transfers') ?></h4></td>
-        </tr>
-        <tr> <td> <?php echo $this->getChildHtml('tab_points_grid'); ?> </td> </tr>
-    </table>
+<table cellspacing="0">
+    <tr>
+        <td style="width:50%;">
+            <h4 class="icon-head head-products">
+                <?php echo $this->__('Customer Point Balances') ?></h4></td>
+    </tr>
+    <tr> <td> <?php echo $this->getChildHtml('tab_points_summary'); ?> </td> </tr>
+    <tr>
+        <td style="width:50%;">
+            <h4 class="icon-head head-products">
+                <?php echo $this->__('Customer Point Transfers') ?></h4></td>
+    </tr>
+    <tr> <td> <?php echo $this->getChildHtml('tab_points_grid'); ?> </td> </tr>
+</table>

@@ -21,16 +21,16 @@
 
 <div class="account-box ad-reviews mypoints-summary">
     <p>
-
-    <div class="head">
-        <h4><?php echo $this->__('Points Summary'); ?></h4>
-    </div>
-    <div class="usable-points"><?php echo $this->__('There are %s in this account.', $this->getCustomerPointsSummary()); ?></div>
-    <?php if ($this->hasPendingPoints()): ?>
-        <div class="pending-points"><?php echo $this->__('%s are pending approval.', $this->getCustomerPendingPointsSummary()); ?></div>
-    <?php endif; ?>
-    <?php if ($this->hasOnHoldPoints()): ?>
-        <div class="onhold-points"><?php echo $this->__('%s are on hold.', $this->getCustomerOnHoldPointsSummary()); ?></div>
-    <?php endif; ?>
-</p>
+    
+      <div class="head">
+		    <h4><?php echo $this->__('Points Summary'); ?></h4>
+	    </div>
+	    <div class="usable-points"><?php echo $this->__('There are %s in this account.', $this->getCustomerPointsSummary()); ?></div>
+	    <?php if($this->hasPendingPoints()): ?>
+	       <div class="pending-points"><?php echo $this->__('%s are pending approval.', $this->getCustomerPendingPointsSummary()); ?></div>
+	    <?php endif; ?>
+	    <?php if($this->hasOnHoldPoints()): ?>
+	       <div class="onhold-points"><?php echo $this->__('%s are on hold.', $this->getCustomerOnHoldPointsSummary()); ?></div>
+	    <?php endif; ?>
+    </p>
 </div>

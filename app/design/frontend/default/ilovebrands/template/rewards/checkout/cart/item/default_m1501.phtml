@@ -166,9 +166,8 @@ $isVisibleProduct = $_item->getProduct()->isVisibleInSiteVisibility();
         <input name="cart[<?php echo $_item->getId() ?>][qty]" value="<?php echo $this->getQty() ?>" size="4" title="<?php echo $this->__('Qty') ?>" class="input-text qty" maxlength="12" />
     </td>
 
-<!-- // WDCA CODE BEGINS:  // -->
-<?php if($this instanceof TBT_Rewards_Block_Checkout_Cart_Item_Renderer): /* Failsafe to make sure that the parent functions exist before outputting anything. */ ?>
-    
+    <!-- // WDCA CODE BEGINS:  // -->
+	<!-- Changes are as of Magento 1.4.2.0 -->
     <?php 
     	$item_id = $_item->getId();
     	
@@ -183,7 +182,6 @@ $isVisibleProduct = $_item->getProduct()->isVisibleInSiteVisibility();
 		$earned_points_data = $this->getEarningData();
 		
     ?>
-    
     <?php if($this->showBeforePointsColumn()): ?>
     <td align="center">
     	<?php echo $this->getRowTotalBeforeRedemptions(); ?>
@@ -247,8 +245,7 @@ $isVisibleProduct = $_item->getProduct()->isVisibleInSiteVisibility();
     </td>
     <?php endif; ?>
     
-<?php endif; /* END Failsafe to make sure that the parent functions exist before outputting anything. */ ?>
-<!-- // WDCA CODE ENDS // -->
+    <!-- // WDCA CODE ENDS // -->
 
     <?php if ($this->helper('tax')->displayCartPriceExclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
     <td class="a-right">
