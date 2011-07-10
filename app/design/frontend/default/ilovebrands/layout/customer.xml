@@ -266,12 +266,7 @@ Customer account pages, rendered for all tabs in dashboard
         </reference>
 
         <reference name="left">
-			<block type="customer/account_navigation" name="customer_account_navigation" before="-" template="customer/account/navigation.phtml">
-					<action method="addLink" translate="label" module="customer"><name>account</name><path>customer/account/</path><label>Dashboard</label></action>
-					<action method="addLink" translate="label" module="customer"><name>account_edit</name><path>customer/account/edit/</path><label>Account</label></action>
-					<action method="addLink" translate="label" module="customer"><name>address_book</name><path>customer/address/</path><label>Addresses</label></action>
-			</block>
-            <!--<block type="catalog/product_compare_sidebar" name="catalog.compare.sidebar" template="catalog/product/compare/sidebar.phtml"/>
+			<!--<block type="catalog/product_compare_sidebar" name="catalog.compare.sidebar" template="catalog/product/compare/sidebar.phtml"/>
             <block type="sales/reorder_sidebar" name="sale.reorder.sidebar" as="reorder" template="sales/reorder/sidebar.phtml"/>-->
             <remove name="tags_popular"/>
 
@@ -290,6 +285,12 @@ Customer account home dashboard layout
             <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
         </reference>
         <reference name="my.account.wrapper">
+            <block type="customer/account_navigation" name="customer_account_navigation" before="-" template="customer/account/navigation.phtml">
+					<action method="addLink" translate="label" module="customer"><name>account</name><path>customer/account/</path><label>Dashboard</label></action>
+					<action method="addLink" translate="label" module="customer"><name>account_edit</name><path>customer/account/edit/</path><label>Account</label></action>
+					<action method="addLink" translate="label" module="customer"><name>address_book</name><path>customer/address/</path><label>Addresses</label></action>
+			</block>
+            
             <block type="customer/account_dashboard" name="customer_account_dashboard" template="customer/account/dashboard.phtml">
                 <block type="customer/account_dashboard_hello" name="customer_account_dashboard_hello" as="hello" template="customer/account/dashboard/hello.phtml"/>
                 <block type="core/template" name="customer_account_dashboard_top" as="top" />
