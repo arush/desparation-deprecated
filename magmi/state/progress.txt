@@ -2,6 +2,7 @@ startup:Running Magmi Product Import Engine v1.1.6a by dweeves
 plugin;Magmi_CSVDataSource;pluginhello:CSV Datasource-1.0.7-Dweeves- 
 plugin;Magmi_OptimizerPlugin;pluginhello:Magmi Optimizer-1.0.4-Dweeves- 
 plugin;Magmi_ReindexingPlugin;pluginhello:Magmi Magento Reindexer-1.0.3c-Dweeves- 
+plugin;DefaultValuesItemProcessor;pluginhello:Default Values setter-0.0.5-Dweeves- 
 plugin;GenericMapperProcessor;pluginhello:Generic mapper-0.0.6a-Dweeves- 
 plugin;GenericMapperProcessor;startup:Generic mapper v0.0.6a - No custom mapping found
 plugin;ImageAttributeItemProcessor;pluginhello:Image attributes processor-0.1.14-Dweeves- 
@@ -10,53 +11,126 @@ plugin;Magmi_DefaultAttributeItemProcessor;pluginhello:Standard Attribute Import
 startup:Import Mode:create
 title:MAGMI by dweeves - version:0.7.9
 step:step:0.5%
-plugin;Magmi_CSVDataSource;startup:CSV Datasource v1.0.7 - Importing CSV : ../../var/import/magmi_upload_flo.csv using separator [ , ] enclosing [ " ]
+plugin;Magmi_CSVDataSource;startup:CSV Datasource v1.0.7 - Importing CSV : ../../var/import/magmi_upload_flo2.csv using separator [ , ] enclosing [ " ]
 plugin;Magmi_OptimizerPlugin;info:Magmi Optimizer v1.0.4 - Optimizing magmi
 plugin;Magmi_OptimizerPlugin;info:Magmi Optimizer v1.0.4 - Adding index MAGMI_EAOV_OPTIMIZATION_IDX on eav_attribute_option_value
+plugin;Magmi_OptimizerPlugin;info:Magmi Optimizer v1.0.4 - Already optmized!
 plugin;Magmi_OptimizerPlugin;info:Magmi Optimizer v1.0.4 - Adding index MAGMI_CPEM_OPTIMIZATION_IDX on catalog_product_entity_media_gallery
+plugin;Magmi_OptimizerPlugin;info:Magmi Optimizer v1.0.4 - Already optmized!
 plugin;Magmi_OptimizerPlugin;info:Magmi Optimizer v1.0.4 - Adding index MAGMI_CCEV_OPTIMIZATION_IDX on catalog_category_entity_varchar
+plugin;Magmi_OptimizerPlugin;info:Magmi Optimizer v1.0.4 - Already optmized!
 startup:Performing Datasouce Lookup...
-lookup:2:0.00066995620727539
-startup:Found 2 records, took 0.00066995620727539 sec
+lookup:40:0.0061230659484863
+startup:Found 40 records, took 0.0061230659484863 sec
 plugin;Magmi_CSVDataSource;startup:CSV Datasource v1.0.7 - 95 CSV headers columns found
 columns:95
+plugin;DefaultValuesItemProcessor;startup:Default Values setter v0.0.5 - Adding Columns 
 startup:Ajusted processed columns:95
-itime:1 - 0.00024008750915527 - 0.00024008750915527
+itime:1 - 0.00021505355834961 - 0.00021505355834961
 dbtime:0 - 0 - 0 - 0
-itime:2 - 0.017496109008789 - 0.017133951187134
-dbtime:29 - 0.011832714080811 - 0.011832714080811 - 29
-plugin;ImageAttributeItemProcessor;warning:Image attributes processor v0.1.14 - 10m003WHT1.jpg not found, skipping image
-plugin;ImageAttributeItemProcessor;warning:Image attributes processor v0.1.14 - /la_martina_shirts/10m003WHT/10m003WHT2.jpg not found, skipping image
-plugin;ImageAttributeItemProcessor;warning:Image attributes processor v0.1.14 - /la_martina_shirts/10m003WHT/10m003WHT1.jpg not found, skipping image
-plugin;ImageAttributeItemProcessor;warning:Image attributes processor v0.1.14 - /la_martina_shirts/10m003WHT/10m003WHT3.jpg not found, skipping image
-plugin;ImageAttributeItemProcessor;warning:Image attributes processor v0.1.14 - /la_martina_shirts/10m003WHT/10m003WHT4.jpg not found, skipping image
-plugin;ImageAttributeItemProcessor;warning:Image attributes processor v0.1.14 - /la_martina_shirts/10m003WHT/10m003WHT5.jpg not found, skipping image
-plugin;ImageAttributeItemProcessor;warning:Image attributes processor v0.1.14 - error creating ../../media/catalog/product/: 2,mkdir(): No such file or directory
-itime:2 - 0.030732154846191 - 0.013113021850586
-dbtime:56 - 0.019002199172974 - 0.0071694850921631 - 27
+itime:2 - 0.019874095916748 - 0.019574165344238
+dbtime:27 - 0.0065877437591553 - 0.0065877437591553 - 27
+itime:3 - 0.037000894546509 - 0.01702880859375
+dbtime:76 - 0.01773738861084 - 0.011149644851685 - 49
+itime:4 - 0.068830013275146 - 0.031738996505737
+dbtime:121 - 0.043637037277222 - 0.025899648666382 - 45
+itime:5 - 0.089200973510742 - 0.02027702331543
+dbtime:171 - 0.054029226303101 - 0.010392189025879 - 50
+itime:6 - 0.12673902511597 - 0.037450075149536
+dbtime:215 - 0.063098430633545 - 0.0090692043304443 - 44
+itime:7 - 0.14370489120483 - 0.016876935958862
+dbtime:265 - 0.073465824127197 - 0.010367393493652 - 50
+itime:8 - 0.15901303291321 - 0.015221118927002
+dbtime:309 - 0.082991361618042 - 0.0095255374908447 - 44
+itime:9 - 0.17672300338745 - 0.017622947692871
+dbtime:359 - 0.093690872192383 - 0.010699510574341 - 50
+itime:10 - 0.19266700744629 - 0.015818119049072
+dbtime:403 - 0.10312604904175 - 0.0094351768493652 - 44
+itime:11 - 0.28231000900269 - 0.089550018310547
+dbtime:453 - 0.11349940299988 - 0.01037335395813 - 50
+itime:12 - 0.29842495918274 - 0.016008853912354
+dbtime:497 - 0.12375068664551 - 0.01025128364563 - 44
+itime:13 - 0.31668996810913 - 0.018174886703491
+dbtime:547 - 0.13529229164124 - 0.011541604995728 - 50
+itime:14 - 0.33252000808716 - 0.015741109848022
+dbtime:591 - 0.1450662612915 - 0.0097739696502686 - 44
+itime:15 - 0.34904599189758 - 0.01643705368042
+dbtime:641 - 0.15482783317566 - 0.0097615718841553 - 50
+itime:16 - 0.36590504646301 - 0.016771078109741
+dbtime:685 - 0.16526794433594 - 0.010440111160278 - 44
+itime:17 - 0.38269591331482 - 0.016703844070435
+dbtime:735 - 0.17592072486877 - 0.010652780532837 - 50
+itime:18 - 0.39820408821106 - 0.015416145324707
+dbtime:779 - 0.18586349487305 - 0.0099427700042725 - 44
+itime:19 - 0.4140100479126 - 0.015718936920166
+dbtime:829 - 0.19548916816711 - 0.0096256732940674 - 50
+itime:20 - 0.43217706680298 - 0.018079042434692
+dbtime:873 - 0.20767903327942 - 0.012189865112305 - 44
+itime:21 - 0.46787691116333 - 0.03559398651123
+dbtime:923 - 0.21898436546326 - 0.011305332183838 - 50
+itime:22 - 0.48567700386047 - 0.017524003982544
+dbtime:967 - 0.2299907207489 - 0.011006355285645 - 44
+itime:23 - 0.50360703468323 - 0.017840147018433
+dbtime:1017 - 0.24182844161987 - 0.011837720870972 - 50
+itime:24 - 0.53361201286316 - 0.029916048049927
+dbtime:1061 - 0.25084900856018 - 0.0090205669403076 - 44
+itime:25 - 0.55218410491943 - 0.018481016159058
+dbtime:1111 - 0.26296615600586 - 0.012117147445679 - 50
+itime:26 - 0.56726908683777 - 0.014995098114014
+dbtime:1155 - 0.2717616558075 - 0.0087954998016357 - 44
+itime:27 - 0.58526992797852 - 0.017911911010742
+dbtime:1205 - 0.28365206718445 - 0.011890411376953 - 50
+itime:28 - 0.60127210617065 - 0.015913009643555
+dbtime:1249 - 0.29323172569275 - 0.0095796585083008 - 44
+itime:29 - 0.62073397636414 - 0.019373893737793
+dbtime:1299 - 0.30609488487244 - 0.012863159179688 - 50
+itime:30 - 0.63537693023682 - 0.01455283164978
+dbtime:1343 - 0.31476473808289 - 0.0086698532104492 - 44
+itime:31 - 0.65499711036682 - 0.019513130187988
+dbtime:1393 - 0.32784104347229 - 0.013076305389404 - 50
+itime:32 - 0.67049598693848 - 0.015383005142212
+dbtime:1437 - 0.33739376068115 - 0.0095527172088623 - 44
+itime:33 - 0.70283198356628 - 0.032219886779785
+dbtime:1487 - 0.35124135017395 - 0.013847589492798 - 50
+itime:34 - 0.71851801872253 - 0.01554799079895
+dbtime:1531 - 0.36016035079956 - 0.0089190006256104 - 44
+itime:35 - 0.73545289039612 - 0.016829967498779
+dbtime:1581 - 0.37044596672058 - 0.010285615921021 - 50
+itime:36 - 0.75284504890442 - 0.017300128936768
+dbtime:1625 - 0.38180732727051 - 0.011361360549927 - 44
+itime:37 - 0.85742592811584 - 0.10448288917542
+dbtime:1675 - 0.39180707931519 - 0.0099997520446777 - 50
+itime:38 - 0.87482404708862 - 0.017261028289795
+dbtime:1719 - 0.40270829200745 - 0.010901212692261 - 44
+itime:39 - 0.89441895484924 - 0.019504070281982
+dbtime:1769 - 0.41589546203613 - 0.013187170028687 - 50
+itime:40 - 0.90944194793701 - 0.014931917190552
+dbtime:1813 - 0.4249153137207 - 0.0090198516845703 - 44
+itime:40 - 0.92654895782471 - 0.017015933990479
+dbtime:1864 - 0.43564581871033 - 0.010730504989624 - 51
 plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - running indexer
 plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Reindexing catalog_product_attribute....
 plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Product Attributes index was rebuilt successfully<br>Segmentation fault<br>
-plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - done in 0.22 secs
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - done in 0.63 secs
 plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Reindexing catalog_product_price....
 plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Product Prices index was rebuilt successfully<br>Segmentation fault<br>
-plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - done in 0.44 secs
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - done in 0.96 secs
 plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Reindexing catalog_product_flat....
 plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Product Flat Data index was rebuilt successfully<br>Segmentation fault<br>
-plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - done in 0.25 secs
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - done in 0.76 secs
 plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Reindexing catalog_category_flat....
 plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Category Flat Data index was rebuilt successfully<br>Segmentation fault<br>
-plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - done in 0.17 secs
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - done in 0.54 secs
 plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Reindexing catalog_category_product....
 plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Category Products index was rebuilt successfully<br>Segmentation fault<br>
-plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - done in 0.2 secs
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - done in 0.55 secs
 plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Reindexing cataloginventory_stock....
 plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Stock Status index was rebuilt successfully<br>Segmentation fault<br>
-plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - done in 0.19 secs
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - done in 0.62 secs
 plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Reindexing catalog_url....
 plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Catalog URL Rewrites index was rebuilt successfully<br>Segmentation fault<br>
-plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - done in 0.25 secs
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - done in 0.99 secs
 plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Reindexing catalogsearch_fulltext....
 plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - Catalog Search Index index was rebuilt successfully<br>Segmentation fault<br>
-plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - done in 0.21 secs
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.3c - done in 0.63 secs
 end:Import Ended
