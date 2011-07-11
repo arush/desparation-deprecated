@@ -12405,7 +12405,8 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 
 /* 404 PAGE START */
 .col1-layout h1, .col1-layout h2{color: #2e2e2e;}
-.col1-layout p, .col1-layout li{color: #444444;font-family: HelveticaNeueLight;font-size: 13px;}
+.col1-layout p, .col1-layout li{color: #444444;}
+.order-info .col1-layout li{font-family: HelveticaNeueLight;font-size: 13px;}
 .notfound404{
 	background: #fff;
 	-moz-box-shadow: 0pt 0px 2px #acacac;
