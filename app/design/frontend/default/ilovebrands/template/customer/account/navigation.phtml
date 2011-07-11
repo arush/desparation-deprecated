@@ -45,34 +45,3 @@
 </div>
 <div class="floatingPhantomDiv">
 </div>
-<script type="text/javascript">
-var d = this,
-            e = d.fabBase.params.pg;
-        if (!($.browser.msie && $.browser.version == "7.0")) {
-            var g = $(".customer-navigation");
-            var h = $(".floatingPhantomDiv");
-            if (g.length > 0) {
-                var f = parseInt($(".main").offset().top);
-                $(window).scroll(function () {
-                    var j = $(window).scrollTop() + h.height();
-                    var i = g.css("position") == "fixed";
-                    if (j > f && !i) {
-                        h.show();
-                        g.stop().css({
-                            position: "fixed",
-                            top: 0
-                        })
-                    } else {
-                        if (j < f && i) {
-                            h.hide();
-                            g.css({
-                                position: "relative",
-                                top: 0
-                            })
-                        }
-                    }
-                })
-            }
-        }
-
-</script>
