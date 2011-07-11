@@ -49,7 +49,6 @@ Customer account pages, rendered for all tabs in dashboard
                 <name>rewards</name>
                 <path>rewards/customer</path>
                 <label>My Activity</label>
-                <position>1</position>
             </action>
         </reference>
     </customer_account>
