@@ -10,9 +10,9 @@ Default layout, loads most of the pages
         <reference name="top.links">
             <action method="addLink" translate="label title" module="customer"><label>My Account</label><url helper="customer/getAccountUrl"/><title>My Account</title><prepare/><urlParams/><position>10</position></action>
         </reference>
-        <reference name="account.links">
+        <!-- <reference name="account.links">
             <action method="addLink" translate="label title before_text" module="customer"><label>register</label><url helper="customer/getRegisterUrl" /><title>register</title><prepare/><urlParams/><position>100</position><li/><a/><before_text> or </before_text><after_text>.</after_text></action>
-        </reference>
+        </reference> -->
 <!--    <reference name="header">
             <remove name="top.container"/>
         </reference> -->
