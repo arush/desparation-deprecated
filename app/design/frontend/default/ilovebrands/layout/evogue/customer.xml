@@ -214,9 +214,9 @@ Customer account pages, rendered for all tabs in dashboard
 
 		<reference name="breadcrumbs.container">
 			<block type="customer/account_navigation" name="customer_account_navigation" before="-" template="customer/account/navigation.phtml">
-					<!-- <action method="addLink" translate="label" module="customer"><name>account</name><path>customer/account/</path><label>Dashboard</label></action> -->
-					<action method="addLink" translate="label" module="customer"><name>account_edit</name><path>customer/account/edit/</path><label>Account</label><position>30</position></action>
-					<action method="addLink" translate="label" module="customer"><name>address_book</name><path>customer/address/</path><label>Addresses</label><position>40</position></action>
+					<action method="addLink" translate="label" module="customer"><name>account</name><path>customer/account/</path><label>Dashboard</label></action>
+					<action method="addLink" translate="label" module="customer"><name>account_edit</name><path>customer/account/edit/</path><label>Account</label></action>
+					<action method="addLink" translate="label" module="customer"><name>address_book</name><path>customer/address/</path><label>Addresses</label></action>
 			</block>
 		</reference>
 
