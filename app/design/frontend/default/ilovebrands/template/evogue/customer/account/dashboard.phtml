@@ -26,7 +26,10 @@
 ?>
 <div class="dashboard">
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
-    <div class="account-information"><h4 class="sub-title"><?php echo $this->__('Account Information') ?></h4></div>
+    <div class="account-information">
+    	<h4 class="sub-title"><?php echo $this->__('Account Information') ?></h4>
+    	<div class="edit"><a href="<?php echo $this->getUrl('customer/account/edit') ?>"><?php echo $this->__('Edit') ?></a></div>
+    </div>
     <?php echo $this->getChildHtml('info') ?>
 </div>
 <div class="st-dashboard">

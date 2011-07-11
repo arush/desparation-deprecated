@@ -11648,7 +11648,7 @@ font-size: 20px; }
 	.st-dashboard .mypoints-summary a:hover{text-decoration: underline;}
 	.st-dashboard h4{font-family: HelveticaNeueLight; font-size: 15px; font-weight: normal; color: #2e2e2e;}
 	.st-dashboard{margin-left: 20px;}
-	.dashboard .edit{position: absolute; top: 11px; right: 20px;}
+	.dashboard .edit{position: absolute;top: 0;right: 0;padding: 10px 15px;}
 	.dashboard .edit a:hover{text-decoration: underline;}
 	.dashboard .info-box{position: inherit;}
 	.dashboard .box-content a{line-height: 30px;}
