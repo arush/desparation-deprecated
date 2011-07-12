@@ -12551,9 +12551,9 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 /* CROSS SELL PRODUCTS END */
 
 /* TBT REWARDS CART SLIDER */
-.discount-codes.box rewards-box-spend-minicart discount {border-bottom: 1px solid #ccc;}
+.rewards-box-spend-minicart {border-bottom: 1px solid #ccc;}
 .rewards-box-spend-minicart .box-content {margin-bottom: 22px;}
-.rewards-box-spend-minicart .box-content .label {color: #1a1a1a;}
+.rewards-box-spend-minicart label {color: #1a1a1a;}
 /* TBT REWARDS CART SLIDER END */
 
 /* IE7 FIXES START
