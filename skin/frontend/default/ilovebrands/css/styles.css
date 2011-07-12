@@ -12094,7 +12094,9 @@ font-size: 20px; }
 }
 .cart-shipping-options {
   color: #000;
-  text-transform: none;  
+  text-transform: none;
+  border-bottom: 1px solid #CCC;
+  margin-bottom: 20px;
 }
 .cart .deals input.input-text{
 	background: #f1f1f1;
@@ -12500,7 +12502,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 /* CROSS SELL PRODUCTS START */
 .cart .crosssell {
   float: left;
-  min-height: 400px;
+  min-height: 460px;
   width: 280px;
   padding: 0 0 15px 30px;
 }
@@ -12547,6 +12549,12 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 }
 .cart .crosssell .button span span{padding: 0;}
 /* CROSS SELL PRODUCTS END */
+
+/* TBT REWARDS CART SLIDER */
+.discount-codes.box rewards-box-spend-minicart discount {border-bottom: 1px solid #ccc;}
+.rewards-box-spend-minicart .box-content {margin-bottom: 22px;}
+.rewards-box-spend-minicart .box-content .label {color: #1a1a1a;}
+/* TBT REWARDS CART SLIDER END */
 
 /* IE7 FIXES START
 

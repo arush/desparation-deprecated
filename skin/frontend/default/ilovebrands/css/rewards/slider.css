@@ -51,6 +51,8 @@ A.sliderHandle
 	position: relative;
 	text-align: center;
 	top: -4px;
+	margin-top: 19px;
+	color: #B14E4E;
 }
 .cartSlider_cell
 {
