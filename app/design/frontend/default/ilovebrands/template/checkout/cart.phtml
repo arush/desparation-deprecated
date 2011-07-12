@@ -128,6 +128,11 @@
     </div>
     <div class="cart-collaterals<?php if($this->getChildHtml('crosssell')) echo ' cross-inside'; ?>">
         <?php echo $this->getChildHtml('crosssell') ?>
+		
+		<?php /*WDCA CODE BEGINS*/?>
+            <?php echo $this->getChildHtml('cartpoints_spender'); ?>        
+        <?php /*WDCA CODE ENDS*/?>
+		
 		<div class="shipping">
 			<h2>Shipping Options</h2><br>
 			<div class="cart-shipping-options">
@@ -141,10 +146,6 @@
 			</div>
 		</div>
         <div class="deals">
-
-			<?php /*WDCA CODE BEGINS*/?>
-            <?php echo $this->getChildHtml('cartpoints_spender'); ?>        
-            <?php /*WDCA CODE ENDS*/?>    
 
             <?php echo $this->getChildHtml('coupon') ?>
             <?php echo $this->getChildHtml('giftcards') ?>
