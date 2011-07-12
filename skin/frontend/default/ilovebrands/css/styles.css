@@ -12502,7 +12502,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 /* CROSS SELL PRODUCTS START */
 .cart .crosssell {
   float: left;
-  min-height: 460px;
+  min-height: 550px;
   width: 280px;
   padding: 0 0 15px 30px;
 }
