@@ -340,16 +340,15 @@
 .cart-earned{margin-bottom: 10px;}
 .points-amount{*white-space:nowrap; *text-align: left;}
 .cart .totals table .cart-points-total_spent{
-	background: #b14e4e;
 	padding-top: 5px;
-	color: #fff;
+	color: #B14E4E;
 	font-family: Gotham-book;
+	
 }
 .cart .totals table .cart-points-spending_warnings{background: #fff;}
 .cart .totals table .cart-points-total_earned{
-	background: #8cd28b;
 	padding-top: 5px;
-	color: #fff;
+	color: #8cd28b;
 	font-family: Gotham-book;
 }
 .item-points-list-earned li span{
