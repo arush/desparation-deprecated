@@ -1071,15 +1071,14 @@ p.error-msg {
 }
 
 .messages li.note-msg, .messages li.notice-msg {
-  background: none repeat scroll
-    0% 0% rgb(209, 208, 179);
-  border: 1px solid rgb(253,
-    252, 229);
-  color: rgb(25, 25, 25);
+  background: none repeat scroll 0% 0% #FEEFB3;
+  /*border: 1px solid #9F6000;*/
+  color: #9F6000;
+  font-family: Gotham-book;
 }
 
 .messages li.note-msg a, .messages li.notice-msg a {
-  color: rgb(25, 25, 25);
+  color: #9F6000;
   text-decoration: underline;
 }
 
