@@ -11673,6 +11673,8 @@ font-size: 20px; }
 		border: 1px solid #acacac\9;
 		float: left;
 	}
+	.newsletter{width: 100%;}
+
 	.account-information-page, .newsletter-page{
 		background: #fff;
 		padding: 20px;
@@ -11690,7 +11692,8 @@ font-size: 20px; }
 		color: #555555;
 		background: none repeat scroll 0 0 #F1F1F1;
 	}
-	/*ACCOUNT INFORMATION END*/
+	.newsletter-page .form-list .control .input-box  {margin-left:0px;}
+	/*ACCOUNT INFORMATION / NEWSLETTER END*/
 	
 	/*ADDRESS BOOK START*/
 	.address-edit, .address-book{
