@@ -11663,8 +11663,8 @@ font-size: 20px; }
 	.my-account .dashboard .points-summary-emphasize{color: #000;}
 	/*DASHBOARD END*/
 	
-	/*ACCOUNT INFORMATION START*/
-	.account-edit{
+	/*ACCOUNT INFORMATION / NEWSLETTER START*/
+	.account-edit, .newsletter{
 		background: #fff;
 		-moz-box-shadow: 0pt 0px 2px #acacac;
 		-webkit-box-shadow: 0pt 0px 2px #acacac;
@@ -11673,7 +11673,7 @@ font-size: 20px; }
 		border: 1px solid #acacac\9;
 		float: left;
 	}
-	.account-information-page{
+	.account-information-page, .newsletter-page{
 		background: #fff;
 		padding: 20px;
 	}
@@ -11682,7 +11682,7 @@ font-size: 20px; }
 		padding-bottom: 15px;
 		clear: left;
 	}
-	.my-account .account-information-page .form-list label{
+	.my-account .account-information-page .form-list label, .my-account .newsletter-page .form-list label{
 		color: #555555;
 	}
 	.my-account .account-information-page .form-list input.input-text, .my-account .account-information-page .form-list select{
