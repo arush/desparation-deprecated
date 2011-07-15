@@ -8,12 +8,16 @@
 class ValueTrimItemProcessor extends Magmi_ItemProcessor
 {
 
+	protected $_totrim=array();
+	protected $_scanned=false;
+	
     public function getPluginInfo()
     {
         return array(
             "name" => "Value Trimmer for select/multiselect",
             "author" => "Dweeves",
-            "version" => "0.0.1"
+            "version" => "0.0.3",
+			"url"=>"http://sourceforge.net/apps/mediawiki/magmi/index.php?title=Value_Trimmer_for_select/multiselect"
         );
     }
 	
@@ -28,41 +32,65 @@ class ValueTrimItemProcessor extends Magmi_ItemProcessor
 	 */
 	
 	
+    public function getTrimmableCols($item)
+    {
+    	if(!$this->_scanned)
+    	{
+    		foreach(array_keys($item) as $col)
+			{
+				$ainfo=$this->getAttrInfo($col);
+				if(count($ainfo)>0)
+				{
+					if($ainfo["frontend_input"]=="select" || $ainfo["frontend_input"]=="multiselect")
+					{
+						$this->_totrim[$col]=$ainfo["frontend_input"];
+					}
+				}
+    		}
+    		$this->_scanned=true;
+		}
+		return $this->_totrim;
+	}
+	
 	public function processItemBeforeId(&$item,$params=null)
 	{
-		//return true , enable item processing
+		//get list of trimmable columns
+		$tc=$this->getTrimmableCols($item);
+		foreach($tc as $col=>$mode)
+		{
+			//for select, just trim value
+			if($mode=="select")
+			{
+				$item[$col]=trim($item[$col]);
+			}
+			else
+			//for multiselect, recompose trimmed value list
+			{
+				$sep=Magmi_Config::getInstance()->get("GLOBAL","mutiselect_sep",",");
+				$vt=explode($sep,$item[$col]);
+				foreach($vt as &$v)
+				{
+					$v=trim($v);
+				}
+				$item[$col]=implode($sep,$vt);
+				unset($vt);
+			}
+		}
 		return true;
 	}
 	
-	public function processItemAfterId(&$item,$params=null)
-	{
-		return true;
-	}
-	
-	/*
-	public function processItemException(&$item,$params=null)
-	{
-		
-	}*/
 	
 	public function initialize($params)
 	{
+		$this->_scanned=false;
+		$this->_totrim=array();
 		return true;
+		
+	}
+
+	static public function getCategory()
+	{
+		return "Input Data Preprocessing";
 	}
 	
-	public function processColumnList(&$cols,$params=null)
-	{
-		foreach($cols as $col)
-		{
-			$ainfo=$this->getAttrInfo($col);
-			if(isset($ainfo))
-			{
-				if($ainfo["frontend_input"]=="select" || $ainfo["frontend_input"]=="multiselect")
-				{
-					$item[$col]=trim($item[$col]);
-				}
-			}
-		}
-        return true;
-	}
 }
