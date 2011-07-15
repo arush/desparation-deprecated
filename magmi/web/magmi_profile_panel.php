@@ -63,7 +63,20 @@ else{?>
 	require_once("magmi_pluginhelper.php");
 	$order=array("datasources","general","itemprocessors");
 	$plugins=Magmi_PluginHelper::getInstance('main')->getPluginClasses($order);
-	
+	$pcats=array();
+	foreach($plugins as $k=>$pclasslist)
+	{
+		foreach($pclasslist as $pclass)
+		{
+			//invoke static method, using call_user_func (5.2 compat mode)
+			$pcat=call_user_func(array($pclass,"getCategory"));
+			if(!isset($pcats[$pcat]))
+			{
+				$pcats[$pcat]=array();
+			}
+			$pcats[$pcat][]=$pclass;
+		}
+	}
 ?>
 </form>
 </div>
@@ -73,6 +86,7 @@ else{?>
 	<input type="hidden" name="profile" id="curprofile" value="<?php echo $profile?>">
 	<?php foreach($order as $k)
 	{?>
+	<input type="hidden" id="plc_<?php echo strtoupper($k)?>" value="<?php echo implode(",",$eplconf->getEnabledPluginClasses($k))?>" name="PLUGINS_<?php echo strtoupper($k)?>:classes"></input>
 	<div class="grid_12 col <?php if($k==$order[count($order)-1]){?>omega<?php }?>">
 		<h3><?php echo ucfirst($k)?></h3>
 		<?php if($k=="datasources")
@@ -80,6 +94,7 @@ else{?>
 			<?php $pinf=$plugins[$k];?>
 			<?php if(count($pinf)>0){?>
 			<div class="pluginselect" style="float:left">
+			
 			<select name="PLUGINS_DATASOURCES:class" class="pl_<?php echo $k?>">
 			
 			
@@ -105,6 +120,11 @@ else{?>
 			
 			</select>
 			</div>
+			<?php if(isset($pinfo["url"])){?>
+			<div class="plugindoc" >
+			<a href="<?php echo $pinfo["url"]?>" target="magmi_doc">documentation</a>
+			</div>
+			<?php }?>
 			<div class="pluginconfpanel selected">
 			<?php echo $sinst->getOptionsPanel()->getHtml();?>
 			</div>
@@ -117,59 +137,71 @@ else{?>
 			<?php 
 		}
 		else
-		{?>
-		<ul >
-		<?php $pinf=$plugins[$k];?>
-		<?php foreach($pinf as $pclass)	{
-			$pinst=Magmi_PluginHelper::getInstance($profile)->createInstance($k,$pclass);
-			$pinfo=$pinst->getPluginInfo();
-		?>
-		<li>
-		<div class="pluginselect">
-	<?php $plrunnable=$pinst->isRunnable()?>
-	<?php if($plrunnable[0]){?>
+		{
+			foreach($pcats as $pcat=>$pclasslist) {?>
+								
+				<?php 
+				$catopen=false;
+				$pinf=$plugins[$k];?>
+		
+				<?php foreach($pinf as $pclass)	{
+					if(!in_array($pclass,$pclasslist))
+					{
+						continue;
+					}
+					else
+					{?>
+						<?php if(!$catopen){$catopen=true?>
+						<div class="grid_12 omega"><h1><?php echo $pcat?></h1>
+						<?php }?>
+						<ul>
+						<?php
+							$pinst=Magmi_PluginHelper::getInstance($profile)->createInstance($k,$pclass);
+							$pinfo=$pinst->getPluginInfo();
+			  				$info=$pinst->getShortDescription();
+			  				$plrunnable=$pinst->isRunnable();
+							$enabled=$eplconf->isPluginEnabled($k,$pclass)
+			  				?>
+						<li>
+							<div class="pluginselect">
+							<?php if($plrunnable[0]){?>
+								<input type="checkbox" class="pl_<?php echo $k?>" name="<?php echo $pclass?>" <?php if($eplconf->isPluginEnabled($k,$pclass)){?>checked="checked"<?php }?>>
+							<?php } else {?>
+								<input type="checkbox" class="pl_<?php echo $k?>" name="<?php echo $pclass?>" disabled="disabled">
+							<?php }?>	
+							<span class="pluginname"><?php echo $pinfo["name"]." v".$pinfo["version"];?></span>
+							</div>	
+							<div class="plugininfo">
+							<?php if($info!==null){?>
+								<span>info</span>
+								<div class="plugininfohover">
+								<?php echo $info?>
+								<?php if(!$plrunnable[0]){?>
+									<div class="error">
+										<pre><?php echo $plrunnable[1]?></pre>
+									</div>
+								<?php }?>
+								</div>
+							<?php }?>
+							</div>
+							<div class="pluginconf"  <?php if(!$enabled){?>style="display:none"<?php }?>>
+							<span><a href="javascript:void(0)">configure</a></span>
+							</div>
+							<?php if(isset($pinfo["url"])){?>
+							<div class="plugindoc">
+							<a href="<?php echo $pinfo["url"]?>" target="magmi_doc">documentation</a>
+							</div>
+							<?php }?>
 	
-		<input type="checkbox" class="pl_<?php echo $k?>" name="<?php echo $pclass?>" <?php if($eplconf->isPluginEnabled($k,$pclass)){?>checked="checked"<?php }?>>
-	<?php } else {?>
-		<input type="checkbox" class="pl_<?php echo $k?>" name="<?php echo $pclass?>" disabled="disabled">
-	<?php }?>	
-	<span class="pluginname"><?php echo $pinfo["name"]." v".$pinfo["version"];?></span>
-		</div>
-	
-		<?php 
-			  $info=$pinst->getShortDescription();
-		?>
-		<div class="plugininfo">
-		<?php if($info!==null){?>
-			<span>info</span>
-			<div class="plugininfohover">
-				<?php echo $info?>
-	<?php if(!$plrunnable[0]){?>
-		<div class="error">
-			<pre><?php echo $plrunnable[1]?></pre>
-		</div>
-	<?php }?>
-	
-			</div>
-			
-		<?php }?>
-		</div>
-		<?php $enabled=$eplconf->isPluginEnabled($k,$pclass)?>
-		<div class="pluginconf"  <?php if(!$enabled){?>style="display:none"<?php }?>>
-			<span><a href="javascript:void(0)">configure</a></span>
-		</div>
-		<div class="pluginconfpanel">
-			<?php if($enabled){echo $pinst->getOptionsPanel()->getHtml();}?>
-		</div>
-
-		</li>
-		<?php }?>	
-		<input type="hidden" id="plc_<?php echo strtoupper($k)?>" value="<?php echo implode(",",$eplconf->getEnabledPluginClasses($k))?>" name="PLUGINS_<?php echo strtoupper($k)?>:classes"></input>
-					
-		<?php 
-		}?>
+							<div class="pluginconfpanel">
+							<?php if($enabled){echo $pinst->getOptionsPanel()->getHtml();}?>
+							</div>
+					</li>
 				</ul>
-
+			<?php }?>
+		<?php }?>	
+		<?php if($catopen){?></div><?php }?>
+		<?php }}?>
 	</div>
 	<?php }?>
 </form>
@@ -179,7 +211,112 @@ else{?>
 </div>
 </div>
 </div>
+
+<div id="paramchanged" style="display:none">
+		<div class="subtitle"><h3>Parameters changed</h3></div>
+
+	<div class="changedesc"><b>You changed parameters without saving profile , would you like to:</b></div>
+	
+	<ul>
+	<li>
+		<input type="radio" name="paramcr" value="saveprof">Save chosen Profile (<?php echo $profilename ?>) with current parameters
+	</li>
+	<li>
+		<input type="radio" name="paramcr" value="applyp" checked="checked">Apply current parameters as profile override without saving
+	</li>
+	<li>
+		<input type="radio" name="paramcr" value="useold">Discard changes &amp; apply last saved <?php echo $profilename ?> profile values
+	</li>
+	</ul>
+	<div class="actionbuttons">
+	<a class="actionbutton" href="javascript:handleRunChoice('paramcr',comparelastsaved());" id="paramchangeok">Run with selected option</a>
+	<a class="actionbutton" href="javascript:cancelimport();" id="paramchangecancel">Cancel Run</a>
+	</div>
+</div>
+
+<div id="pluginschanged" style="display:none">
+	<div class="subtitle"><h3>Plugin selection changed</h3></div>
+	<div class="changedesc"><b>You changed selected plugins without saving profile , would you like to:</b></div>
+	
+	<ul>
+	<li>
+		<input type="radio" name="plugselcr" value="saveprof" checked="checked">Save chosen Profile (<?php echo $profilename ?>) with current parameters
+	</li>
+	<li>
+		<input type="radio" name="plugselcr" value="useold">Discard changes &amp; apply  last saved <?php echo $profilename ?> profile values
+	</li>
+	</ul>
+	<div class="actionbuttons">
+	<a class="actionbutton" href="javascript:handleRunChoice('plugselcr',comparelastsaved());" id="plchangeok">Run with selected option</a>
+	<a class="actionbutton" href="javascript:cancelimport();" id="plchangecancel">Cancel Run</a>
+	</div>
+</div>
+
 <script type="text/javascript">
+
+window.lastsaved={};
+
+handleRunChoice=function(radioname,changeinfo)
+{
+	var changed=changeinfo.changed;
+	var sval=$$('input:checked[type="radio"][name="'+radioname+'"]').pluck('value');
+	if(sval=='saveprof')
+	{
+		saveProfile(1,function(){$('runmagmi').submit();});
+	}
+	if(sval=='useold')
+	{
+		$('runmagmi').submit();
+	}
+	if(sval=='applyp')
+	{
+		changed.each(function(it){
+			$('runmagmi').insert({bottom:'<input type="hidden" name="'+it.key+'" value="'+it.value+'">'});
+		});
+		$('runmagmi').submit();
+	}
+}
+
+cancelimport=function()
+{
+ $('overlay').hide();	
+}
+
+updatelastsaved=function()
+{ 
+ gatherclasses(['DATASOURCES','GENERAL','ITEMPROCESSORS']);
+ window.lastsaved=$H($('saveprofile_form').serialize(true));	
+};
+
+comparelastsaved=function()
+{
+ gatherclasses(['DATASOURCES','GENERAL','ITEMPROCESSORS']);
+ var curprofvals=$H($('saveprofile_form').serialize(true));
+ var changeinfo={changed:false,target:''};
+ var out="";
+ var diff={};
+ changeinfo.target='paramchanged';
+ curprofvals.each(function(kv)
+ {
+	 var lastval=window.lastsaved.get(kv.key);
+ 	if(kv.value!=lastval)
+ 	{
+		diff[kv.key]=kv.value;
+		if(kv.key.substr(0,8)=="PLUGINS_")
+		{
+			changeinfo.target='pluginschanged';
+		}
+	}
+ });
+
+changeinfo.changed=$H(diff);
+if(changeinfo.changed.size()==0)
+{
+	changeinfo.changed=false;
+}
+ return changeinfo;
+};
+
 addclass=function(it,o)
 {
 	if(it.checked){
@@ -218,7 +355,7 @@ initConfigureLink=function(maincont)
  	 	});
 
  }
-}
+};
 showConfLink=function(maincont)
 {
 	var cfgdiv=maincont.select('.pluginconf');
@@ -229,7 +366,7 @@ showConfLink=function(maincont)
 	cfgdiv.show();
 	 }
 	
-}
+};
 
 loadConfigPanel=function(container,profile,plclass,pltype)
 {
@@ -244,7 +381,8 @@ loadConfigPanel=function(container,profile,plclass,pltype)
 	 		showConfLink($(container.parentNode));
 	 		initConfigureLink($(container.parentNode));
 	 	}});
-}
+};
+
 removeConfigPanel=function(container)
 {
 var cfgdiv=$(container.parentNode).select('.pluginconf');
@@ -253,7 +391,7 @@ cfgdiv.stopObserving('click');
  cfgdiv.hide();
  container.removeClassName('selected');
  container.update('');
-}
+};
 
 
 initAjaxConf=function(profile)
@@ -285,27 +423,52 @@ initAjaxConf=function(profile)
 			}
 		});
 	});			
-}
+};
+
 initDefaultPanels=function()
 {
 	$$('.pluginselect').each(function(it){initConfigureLink($(it.parentNode));});
-}
+	updatelastsaved();
+};
 
-initAjaxConf('<?php echo $profile?>');
-initDefaultPanels();
-$('saveprofile').observe('click',function()
-		{
-		gatherclasses(['GENERAL','ITEMPROCESSORS']);
+saveProfile=function(confok,onsuccess)
+{
+	gatherclasses(['DATASOURCES','GENERAL','ITEMPROCESSORS']);
+  	updatelastsaved();
 	new Ajax.Updater('profileconf_msg',
 			 "magmi_saveprofile.php",
 			 {parameters:$('saveprofile_form').serialize('true'),
 			  onSuccess:function(){
-			  <?php if(!$conf_ok){?>
-					$('chooseprofile').submit();					
-			  <?php }else{?>
-			  		$('profileconf_msg').show();
-			  <?php }?>}
-			 
- 			});
-		});							
+			  if(confok)
+              {
+				 onsuccess();
+			  }
+			  else
+			  {
+			  	$('profileconf_msg').show();
+			  }}
+	  		});
+	
+};
+
+initAjaxConf('<?php echo $profile?>');
+initDefaultPanels();
+
+
+$('saveprofile').observe('click',function()
+								{
+									saveProfile(<?php echo $conf_ok?1:0 ?>,function(){$('chooseprofile').submit();});
+									});	
+
+$('runmagmi').observe('submit',function(ev){
+
+	var ls=comparelastsaved();
+	if(ls.changed!==false)
+	{
+		 $('overlaycontent').update($(ls.target));
+		 $$('#overlaycontent > div').each(function(el){el.show()});
+		 $('overlay').show();			
+		 ev.stop();
+	}
+	});
 	</script>

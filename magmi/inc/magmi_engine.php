@@ -6,17 +6,25 @@ require_once("magmi_utils.php");
 require_once("magmi_statemanager.php");
 require_once("magmi_pluginhelper.php");
 
+/**
+ * 
+ * This class is the mother class for magmi engines
+ * A magmi engine is a class that performs operations on DB
+ * @author dweeves
+ *
+ */
 abstract class Magmi_Engine extends DbHelper
 {
 	protected $_conf;
 	protected $_initialized=false;
-	
+	protected $_exceptions=array();
 	public $magversion;
 	public $magdir;
 	public $tprefix;
 	protected $_connected;
 	protected $_activeplugins;
 	protected $_pluginclasses;
+	protected $_builtinplugins=array();
 	private $_excid=0;
 	public $logger=null;
 	
@@ -31,6 +39,7 @@ abstract class Magmi_Engine extends DbHelper
 		mb_internal_encoding("UTF-8");
 	}
 	
+
 	public final  function initialize($params=array())
 	{
 		try
@@ -42,6 +51,7 @@ abstract class Magmi_Engine extends DbHelper
 			$this->tprefix=$this->_conf->get("DATABASE","table_prefix");
 			$this->_excid=0;
 			$this->_initialized=true;
+			$this->_exceptions=array();
 		}
 		catch(Exception $e)
 		{
@@ -79,7 +89,21 @@ abstract class Magmi_Engine extends DbHelper
 	
 	public function getBuiltinPluginClasses()
 	{
-		return array();
+		$bplarr=array();
+		
+		foreach($this->_builtinplugins as $pfamily=>$pdef)
+		{
+			$plinfo=explode("::",$pdef);
+			$pfile=$plinfo[0];
+			$pclass=$plinfo[1];
+			require_once($pfile);
+			if(!isset($bplarr[$pfamily]))
+			{
+				$bplarr[$pfamily]=array();
+			}
+			$bplarr[$pfamily][]=$pclass;
+		}
+		return $bplarr;
 	}
 	
 	public function getPluginClasses()
@@ -101,10 +125,23 @@ abstract class Magmi_Engine extends DbHelper
 		return $pil;
 	}
 	
+	public function setBuiltinPluginClasses($pfamily,$pclasses)
+	{
+		$this->_builtinplugins[$pfamily]=$pclasses;
+	}
+	
 	public function createPlugins($profile,$params)
 	{
 		$plhelper=Magmi_PluginHelper::getInstance($profile);
 		$this->_pluginclasses = array_merge_recursive($this->_pluginclasses,$this->getBuiltinPluginClasses());
+		foreach($this->_pluginclasses as $pfamily=>$pclasses)
+		{
+			if($pfamily[0]=="*")
+			{
+				$this->_pluginclasses[substr($pfamily,1)]=$pclasses;
+				unset($this->_pluginclasses[$pfamily]);
+			}
+		}
 		foreach($this->_pluginclasses as $pfamily=>$pclasses)
 		{
 			if(!isset($this->_activeplugins[$pfamily]))
@@ -119,9 +156,29 @@ abstract class Magmi_Engine extends DbHelper
 		
 	}
 	
-
-	public function getPluginInstance($family,$order=0)
+	public function getPluginInstanceByClassName($pfamily,$pclassname)
 	{
+		$inst=null;
+		if(isset($this->_activeplugins[$pfamily]))
+		{
+			foreach($this->_activeplugins[$pfamily] as $pinstance)
+			{
+				if(get_class($pinstance)==$pclassanme)
+				{
+					$inst=$pinstance;
+					break;
+				}
+			}
+		}
+		return $inst;
+	}
+	
+	public function getPluginInstance($family,$order=-1)
+	{
+		if($order<0)
+		{
+			$order+=count($this->_activeplugins[$family]);
+		}
 		return $this->_activeplugins[$family][$order];	
 	}
 	
@@ -177,32 +234,30 @@ abstract class Magmi_Engine extends DbHelper
 	 * @param string $data : string to log
 	 * @param string $type : log type
 	 */
-	public function log($data,$type="default")
+	public function log($data,$type="default",$logger=null)
 	{
-		if(isset($this->logger))
+		if($logger==null)
+		{
+			$logger=$this->logger;
+		}
+		if(isset($logger))
 		{
 			$this->logger->log($data,$type);
 		}
 	}
 	
-	public function logException($e,$data)
+	public function logException($e,$data="",$logger=null)
 	{
-		$this->_excid++;
-		$this->trace($e);
-		$this->log($this->_excid.":".$e->getMessage()." - ".$data,"error");
+		$this->trace($e,$data);
+		$this->log($this->_excid.":".$e->getMessage()." - ".$data,"error",$logger);
 	}
 	
-	public function trace($e)
+	public function getExceptionTrace($tk,&$traces)
 	{
-		
-		$traces=$e->getTrace();
-		$f=fopen(Magmi_StateManager::getTraceFile(),"a");
-		fwrite($f,"---- TRACE : $this->_excid -----\n");
+		$this->_excid++;
 		$trstr="";
-		
 		foreach($traces as $trace)
 		{
-			$trstr="**********************************************\n";
 			if(isset($trace["file"]))
 			{
 				$fname=str_replace(dirname(dirname(__FILE__)),"",$trace["file"]);
@@ -219,16 +274,45 @@ abstract class Magmi_Engine extends DbHelper
 					{
 						$trstr.=print_r($trace["args"],true);
 					}
-					
 					$trstr.="\n";
-					fwrite($f,$trstr);
 				}
 			}
 		}
-		fwrite($f,"+++++++++++++++++++++++++++++\nCONTEXT DUMP\n+++++++++++++++++++++++++++++\n");
-		fwrite($f,print_r($this,true));
-		fwrite($f,"\n+++++++++++++++++++++++++++++\nEND CONTEXT DUMP\n+++++++++++++++++++++++++++++\n");		
-		
+		if(!isset($this->_exceptions[$tk]))
+		{
+			$this->_exceptions[$tk]=array(0,$this->_excid);
+		}
+		$this->_exceptions[$tk][0]++;
+		$trstr="************************************\n$trstr";
+		return array($trstr,$this->_exceptions[$tk][0]==1,$this->_exceptions[$tk][1]);
+	}
+	
+	public function trace($e,$data="")
+	{		
+		$traces=$e->getTrace();
+		$tk=$e->getMessage();
+		$traceinfo=$this->getExceptionTrace($tk,$traces);
+		$f=fopen(Magmi_StateManager::getTraceFile(),"a");	
+		fwrite($f,"---- TRACE : $this->_excid -----\n");
+		try
+		{
+			if($traceinfo[1]==true)
+			{
+				fwrite($f,$traceinfo[0]);	
+				fwrite($f,"+++++++++++++++++++++++++++++\nCONTEXT DUMP\n+++++++++++++++++++++++++++++\n");
+				fwrite($f,print_r($this,true));
+				fwrite($f,"\n+++++++++++++++++++++++++++++\nEND CONTEXT DUMP\n+++++++++++++++++++++++++++++\n");			
+			}
+			else
+			{
+				$tnum=$traceinfo[2];
+				fwrite($f,"Duplicated exception - same trace as TRACE : $tnum\n");
+			}
+		}
+		catch(Exception $te)
+		{
+			fwrite($f,"Exception occured during trace:".$te->getMessage());
+		}
 		fwrite($f,"---- ENDTRACE : $this->_excid -----\n");
 		fclose($f);
 	}
@@ -266,9 +350,7 @@ abstract class Magmi_Engine extends DbHelper
 	
 	public function handleException($e)
 	{
-		$this->_excid++;
-		$this->trace($e);
-		$this->log($this->_excid.":".$e->getMessage(),"error");		
+		$this->logException($e);
 		$this->onEngineException($e);
 	}
 	
@@ -293,8 +375,8 @@ abstract class Magmi_Engine extends DbHelper
 			$user=$this->getProp("DATABASE","user");
 			$pass=$this->getProp("DATABASE","password");
 			$debug=$this->getProp("DATABASE","debug");
-			$conn=$this->getProp("DATABASE","connectivity");
-			$port=$this->getProp("DATABASE","port");
+			$conn=$this->getProp("DATABASE","connectivity","net");
+			$port=$this->getProp("DATABASE","port","3306");
 			$socket=$this->getProp("DATABASE","unix_socket");
 			$this->initDb($host,$dbname,$user,$pass,$port,$socket,$conn,$debug);
 			//suggested by pastanislas
