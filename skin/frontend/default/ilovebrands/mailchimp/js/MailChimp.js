@@ -29,11 +29,11 @@
 		}
    	}
 
-if (!window.Mailchimppro) {
-    window.Mailchimppro = {};
+if (!window.Mailchimp) {
+    window.Mailchimp = {};
 }
 
-Mailchimppro.general= {
+Mailchimp.general= {
     initialize: function (element,fieldset) {
 		if($(element)){
 			this.element = $(element);
