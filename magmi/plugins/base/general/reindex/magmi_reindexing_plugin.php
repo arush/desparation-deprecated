@@ -3,13 +3,14 @@ class Magmi_ReindexingPlugin extends Magmi_GeneralImportPlugin
 {
 	protected $_reindex;
 	protected $_indexlist="catalog_product_attribute,catalog_product_price,catalog_product_flat,catalog_category_flat,catalog_category_product,cataloginventory_stock,catalog_url,catalogsearch_fulltext";
+	protected $_phpexecname;
+	protected $_indexingcl=null;
 	
 	public function getPluginInfo()
 	{
 		return array("name"=>"Magmi Magento Reindexer",
 					 "author"=>"Dweeves",
-					 "version"=>"1.0.5",
-					 "url"=>"http://sourceforge.net/apps/mediawiki/magmi/index.php?title=Magmi_Magento_Reindexer");
+					 "version"=>"1.0.3c");
 	}
 	
 	public function afterImport()
@@ -21,7 +22,7 @@ class Magmi_ReindexingPlugin extends Magmi_GeneralImportPlugin
 	
 	public function getPluginParamNames()
 	{
-		return array("REINDEX:indexes","REINDEX:phpcli");
+		return array("REINDEX:indexes");
 	}
 	
 	public function getIndexList()
@@ -31,13 +32,19 @@ class Magmi_ReindexingPlugin extends Magmi_GeneralImportPlugin
 	
 	public function updateIndexes()
 	{
-		//make sure we are not in session
-		if(session_id()!=="")
+		if(!isset($this->_indexingcl))
 		{
-			session_write_close();
+			$cl=$this->getIndexingCommandLine();
+			if(is_array($cl))
+			{
+				$this->log($cl[1],"error");
+				return false;			
+			}
+			else
+			{
+				$this->_indexingcl=$cl;
+			}
 		}
-		$magdir=Magmi_Config::getInstance()->get("MAGENTO","basedir");
-		$cl=$this->getParam("REINDEX:phpcli")." $magdir/shell/indexer.php";
 		$idxlstr=$this->getParam("REINDEX:indexes","");
 		$idxlist=explode(",",$idxlstr);
 		if(count($idxlist)==0)
@@ -49,7 +56,7 @@ class Magmi_ReindexingPlugin extends Magmi_GeneralImportPlugin
 		{
 			$tstart=microtime(true);
 			$this->log("Reindexing $idx....","info");
-			$out = shell_exec("$cl --reindex $idx");
+			$out = shell_exec("$this->_indexingcl --reindex $idx 2>&1");
 			$this->log($out,"info");
 			$tend=microtime(true);
 			$this->log("done in ".round($tend-$tstart,2). " secs","info");
@@ -60,11 +67,57 @@ class Magmi_ReindexingPlugin extends Magmi_GeneralImportPlugin
 			flush();
 		}
 	}
+	
+	public function getIndexingCommandLine()
+	{
+		$magdir=Magmi_Config::getInstance()->get("MAGENTO","basedir");
+		
+		$indexer=realpath("$magdir/shell/indexer.php");
+		if($indexer==false)
+		{
+			return array(false,"cannot find magento shell indexer script");
+		}
+		
+		$phpexectest=array("php5","php");
+		$runok=false;
+		$errors=array();
+		foreach($phpexectest as $php)
+		{
 			
+			$this->_phpexecname=$php;
+			$out=shell_exec("$php $indexer 2>&1");
+			if(preg_match("/Usage:/msi",$out))
+			{
+				$runok=true;	
+				break;
+			}
+			else
+			{
+				$errors[]=$out;
+			}
+			
+		}
+		if($runok)
+		{
+			return "$php $indexer";
+		}
+		else
+		{
+			return array($runok,"Multiple tries result:\n".implode("---------\n",$errors));
+		}
+	}
 	
 	public function isRunnable()
 	{
-		return array(true,"");
+		$cl=$this->getIndexingCommandLine();
+		if(is_array($cl))
+		{
+			return $cl;
+		}
+		else
+		{
+			return array(true,"");
+		}
 	}
 	
 	public function initialize($params)

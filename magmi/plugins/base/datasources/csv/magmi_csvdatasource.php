@@ -15,7 +15,6 @@ class Magmi_CSVDataSource extends Magmi_Datasource
 	protected $_buffersize;
 	protected $_curline;
 	protected $_nhcols;
-	protected $_ignored=array();
 	
 	public function initialize($params)
 	{
@@ -31,7 +30,7 @@ class Magmi_CSVDataSource extends Magmi_Datasource
 		
 		$this->_cenc=$this->getParam("CSV:enclosure",'"');
 		$this->_buffersize=$this->getParam("CSV:buffer",0);
-		$this->_ignored=explode(",",$this->getParam("CSV:ignore"));
+		
 		
 	}
 	
@@ -57,43 +56,27 @@ class Magmi_CSVDataSource extends Magmi_Datasource
 	
 	public function getPluginParamNames()
 	{
-		return array('CSV:filename','CSV:enclosure','CSV:separator','CSV:basedir','CSV:headerline','CSV:noheader','CSV:allowtrunc');
+		return array('CSV:filename','CSV:enclosure','CSV:separator','CSV:basedir');
 	}
 	public function getPluginInfo()
 	{
 		return array("name"=>"CSV Datasource",
 					 "author"=>"Dweeves",
-					 "version"=>"1.1.2");
+					 "version"=>"1.0.7");
 	}
 	
 	public function getRecordsCount()
 	{
 		//open csv file
 		$f=fopen($this->_filename,"rb");
-		if($this->getParam("CSV:noheader",false)==true)
-		{
-			$count=0;
-		}
-		else
-		{
-			$count=-1;
-		}
-		$linenum=0;
+		$count=-1;
+	
 		if($f!=false)
 		{
-			$line=1;
-			while($line<$this->getParam("CSV:headerline",1))
-			{
-				$line++;
-				$dummy=fgetcsv($f,$this->_buffersize,$this->_csep,$this->_cenc);
-			}
 			//get records count
 			while(fgetcsv($f,$this->_buffersize,$this->_csep,$this->_cenc))
 			{
-				if(!in_array($line,$this->_ignored))
-				{
-					$count++;
-				}
+				$count++;
 			}
 			fclose($f);
 		}
@@ -138,44 +121,22 @@ class Magmi_CSVDataSource extends Magmi_Datasource
 	
 	public function getColumnNames($prescan=false)
 	{
+	
 		if($prescan==true)
 		{
 			$this->_fh=fopen($this->getParam("CSV:filename"),"rb");
 			$this->_csep=$this->getParam("CSV:separator",",");
 			$this->_dcsep=$this->_csep;
 		
-			if($this->_csep=="\\t")
-			{
-				$this->_csep="\t";
-			}
-		
-			$this->_cenc=$this->getParam("CSV:enclosure",'"');
-			$this->_buffersize=$this->getParam("CSV:buffer",0);
-		}
-		
-		$line=1;
-		
-		while($line<$this->getParam("CSV:headerline",1))
+		if($this->_csep=="\\t")
 		{
-			$line++;
-			$dummy=fgetcsv($this->_fh,$this->_buffersize,$this->_csep,$this->_cenc);
-			$this->log("skip line $line:$dummy","info");
+			$this->_csep="\t";
 		}
-		$cols=fgetcsv($this->_fh,$this->_buffersize,$this->_csep,$this->_cenc);
-		//if csv has no headers,use column number as column name
-		if($this->getParam("CSV:noheader",false)==true)
-		{
-			$kl=array_merge(array("dummy"),$cols);
-			unset($kl[0]);
-			$cols=array();
-			foreach(array_keys($kl) as $c)
-			{
-				$cols[]="col".$c;
-			}
-			//reset file pointer	
-			fseek($this->_fh,0);
+		
+		$this->_cenc=$this->getParam("CSV:enclosure",'"');
+		$this->_buffersize=$this->getParam("CSV:buffer",0);
 		}
-		$this->_cols=$cols;
+		$this->_cols=fgetcsv($this->_fh,$this->_buffersize,$this->_csep,$this->_cenc);
 		$this->_nhcols=count($this->_cols);
 		//trim column names
 		for($i=0;$i<$this->_nhcols;$i++)
@@ -202,56 +163,21 @@ class Magmi_CSVDataSource extends Magmi_Datasource
 	public function isemptyline($row) {
   		return ( !isset($row[1]) && empty($row[0]) );
 	}
-	
 	public function getNextRecord()
 	{
 		$row=null;
-		$allowtrunc=$this->getParam("CSV:allowtrunc",false);
-		while($row!==false)
+		while($row!==false && count($row)!=count($this->_cols))
 		{
 			$row=fgetcsv($this->_fh,$this->_buffersize,$this->_csep,$this->_cenc);
-			if($row !==false)
-			{
-				$this->_curline++;			
-				//skip empty lines
-				if($this->isemptyline($row))
-				{
-					continue;
-				}
-				$rcols=count($row);
-				if(!$allowtrunc && $rcols!=$this->_nhcols)
-				{			
-					//if strict matching, warning & continue	
-					$this->log("warning: line $this->_curline , wrong column number : $rcols found over $this->_nhcols, line skipped","warning");
-					continue;
-				}
-				break;
-			}
+			$this->_curline++;			
+			$rcols=count($row);
+			if(!$this->isemptyline($row) && $rcols!=$this->_nhcols)
+			{				
+				$this->log("warning: line $this->_curline , wrong column number : $rcols found over $this->_nhcols, line skipped","warning");
+			}			
 		}
-		//if we read something
-		if(is_array($row))
-		{
-			//strict mode
-			if(!$allowtrunc)
-			{
-				//create product attributes values array indexed by attribute code
-				$record=array_combine($this->_cols,$row);
-			}
-			else
-			{
-				
-				//relax mode, recompose keys from read columns , others will be left unset
-				$ncols=count($row);
-				$cols=array_slice($this->_cols,0,$ncols);
-				$record=array_combine($cols,$row);
-			}
-			
-				
-		}
-		else
-		{
-			$record=false;
-		}
+		//create product attributes values array indexed by attribute code
+		$record=(is_array($row)?array_combine($this->_cols,$row):false);
 		unset($row);
 		return $record;
 	}

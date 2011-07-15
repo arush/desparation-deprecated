@@ -73,76 +73,18 @@ body
 	font-family: sans-serif;
 }
 
-div.title
-{
- width:100%;
- position:relative;
- height:120px;
- background-color:#ffffff;
-}
-
-.title .logo
-{
- 	float:left;
- 	height:120px;
-	width:340px;
-	background:url("../images/logo.png") no-repeat transparent;
-	background-color:#ffffff;
-}
-
-.title  .logoauth
-{
-	position:absolute;
-	top:104px;
-	left:5px;
-	font-size:xx-small;
-}
-
-.title .info
-{
- float:left;
- width:598px;
- border: 1px solid #8888cc;
- height:100%;
-}
-
-.title .info h3
-{
-	background-color:#8888cc;
-	width:100%;
-	color:#ffffff;
-}
-
-.title  .author
+.title
 {
 	width:100%;
-	float:right;
-	font-size:12pt;
+	line-height: 3em;
+	font-size: large;
+	background-color: #0044cc;
+	color: #ffffff;
+	border: 1px solid ##0044cc;
 }
-
-.title .license .hover
+.title > span
 {
- display:none;
-}
-
-
-.title .license a:hover .hover
-{
- font-family:monospace;
- display:block;
- z-index:200;
- background:#ffffcc;
- border:1px solid #000000;
- color:#000000;
-
-}
-
-
-
-.title  .version
-{
-	width:100%;
-		float:right;
+	padding-left: 10px;
 	font-weight: bold;
 }
 
@@ -423,12 +365,6 @@ div.pluginconf
  margin-left:10px;
 }
 
-div.plugindoc
-{
- float:left;
- margin-left:10px;
-}
-
 select
 {
  border:1px solid #888888;
@@ -580,17 +516,6 @@ ul#globstep.formline li.label
 	 width:200px;
 }
 
-ul#mssep input[type=text]
-{
-	 width:50px;
-}
-
-ul#mssep.formline li.label
-{
-	 width:250px;
-}
-
-
 li.utility
 {
 	margin-top:2px;
@@ -621,76 +546,5 @@ li.utility
 .utility .pluginoptionpanel
 {
 	clear:both;
-}
-
-.separator
-{
-width:100%;
-border:0px;
-border-top:1px solid #cccccc;
-margin-bottom:5px;
-clear:both;
-}
-.pluginrun_results 
-{
-	border:1px solid #0000cc;
-}
-
-p.logentry
-{
- margin:0px;
- padding:0px;
- border-bottom:1px solid #cccccc;
-}
-
-.pluginrun_results h3
-{
- background-color:#0000cc;
- color:#ffffff;
-} 
-
-#overlay {
-     position: absolute;
-     left: 0px;
-     top: 0px;
-     width:100%;
-     height:100%;
-     text-align:center;
-     z-index: 1000;
-	 background:url("../images/white50.png");
-}
-
-#overlaycontent {
-     width:800px;
-     margin: 200px auto;
-     background-color: #fff;
-     border:1px solid #000;
-     text-align:left;
-}
-
-div.actionbuttons
-{
- width:100%;
- border-top:1px solid #000000;
- margin-top:5px;
- padding-top:5px;
- height:24px;
-}
-
-div.actionbuttons a
-{
- display:block;
- float:right;
- margin-right:5px;
-}
-
-div.changedesc
-{
- width:100%;
- border-top:1px solid #000000;
- border-bottom:1px solid #000000;
- margin-top:5px;
- padding-top:5px;
- padding-bottom:5px;
-	
+	border:1px solid #000000;
 }

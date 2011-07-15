@@ -3,10 +3,14 @@ require_once("dbhelper.class.php");
 
 class ExtDBHelper extends DBHelper
 {
-	public function initDBMysql($dbname,$host,$user,$pass)
+	public function initDBMysql($dbname,$host,$user,$pass,$init)
 	{
 		
-		$this->_db=new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
+		if($init!="")
+		{
+			$init=array(PDO::MYSQL_ATTR_INIT_COMMAND => "$init");
+		}
+		$this->_db=new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass,$init);
 	}
 	
 	public function initDBPDOStr($user,$pass,$pdostr)
@@ -40,13 +44,12 @@ class SQL_Datasource extends Magmi_Datasource
 			$cdbname=$this->getParam("SQL:dbname");
 			$cdbhost=$this->getParam("SQL:dbhost");
 			$extra=$this->getParam("SQL:dbextra");
-			$this->dbh->initDbMysql($cdbname,$cdbhost,$cdbusr, $cdbpass);
+			$this->dbh->initDbMysql($cdbname,$cdbhost,$cdbusr, $cdbpass,$extra);
 			
-		}		
-		//handle extra initial commands			
+		}			
 		if(isset($extra) && $extra!="")
 		{
-			foreach(explode(";\n",$extra) as $st)
+			foreach(explode(";",$extra) as $st)
 			{
 				if($st!="")
 				{
@@ -63,7 +66,7 @@ class SQL_Datasource extends Magmi_Datasource
 	{
 		return array("name"=>"Generic SQL Datasource",
 					 "author"=>"Dweeves",
-					 "version"=>"1.0.2");
+					 "version"=>"1.0.1");
 	}
 	
 	public function getPluginParamNames()

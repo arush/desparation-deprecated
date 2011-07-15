@@ -1,6 +1,9 @@
 <?php
 require_once("properties.php");
-
+if(!defined("DS"))
+{
+	define("DS",DIRECTORY_SEPARATOR);
+}
 
 class DirbasedConfig extends Properties
 { 

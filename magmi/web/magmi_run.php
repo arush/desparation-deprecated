@@ -47,9 +47,7 @@
 	{
 		public function log($data,$type)
 		{
-			$info=explode(";",$type);
-			$type=$info[0];
-			echo('<p class="logentry log_'.$type.'">'.$data."</p>");
+			echo("$type:$data<br>");
 		}
 		
 	}
@@ -69,9 +67,7 @@
 			$mmi_imp->setLogger(new EchoLogger());
 		
 		}
-		
 		$mmi_imp->run($params);
-		
 		
 	}
 	else

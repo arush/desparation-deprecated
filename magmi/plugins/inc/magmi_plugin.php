@@ -292,11 +292,6 @@ abstract class Magmi_Plugin
 		return $info;
 	}
 	
-	static public function getCategory()
-	{
-		return "common";
-	}
-	
 	public function getPluginDir()
 	{
 		return $this->_plugindir;

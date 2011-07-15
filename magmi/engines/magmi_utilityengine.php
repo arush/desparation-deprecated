@@ -63,14 +63,7 @@ class Magmi_UtilityEngine extends Magmi_Engine
 		$this->createPlugins("__utilities__",$params);
 		foreach($this->_activeplugins["utilities"] as $pinst)
 		{
-			try
-			{
-				$pinst->runUtility();
-			}
-			catch(Exception $e)
-			{
-				$this->logException($e);
-			}
+			$pinst->runUtility();
 		}
 		
 		Magmi_StateManager::setState("idle");		

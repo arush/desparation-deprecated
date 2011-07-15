@@ -9,8 +9,7 @@ class ImportLimiter extends Magmi_ItemProcessor
 	{
 		return array("name"=>"Magmi Import Limiter",
 					 "author"=>"Dweeves",
-					 "version"=>"0.0.4a",
-					 "url"=>"http://sourceforge.net/apps/mediawiki/magmi/index.php?title=Magmi_Import_Limiter");
+					 "version"=>"0.0.3");
 	}
 	
 	
@@ -78,23 +77,18 @@ class ImportLimiter extends Magmi_ItemProcessor
 	public function parseFilters($fltstr)
 	{
 		$this->_filters=array();
-		if($fltstr=="")
-		{	
-			return;
-		}
 		$fltlist=explode(";;",$fltstr);
 		foreach($fltlist as $fltdef)
 		{
 			$fltinf=explode("::",$fltdef);
 			$this->_filters[]=$fltinf;			
 		}
-		
 	}
 	
 	public function parseRanges($rangestr)
 	{
 		$this->_recranges=array();
-		if($rangestr=="")
+		if($rangelist=="")
 		{
 		  return;
 		}
@@ -144,10 +138,5 @@ class ImportLimiter extends Magmi_ItemProcessor
 	public function getPluginParamNames()
 	{
 		return array('LIMITER:ranges','LIMITER:filters');
-	}
-	
-	static public function getCategory()
-	{
-		return "Input Data Preprocessing";
 	}
 }

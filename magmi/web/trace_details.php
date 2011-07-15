@@ -2,35 +2,12 @@
 require_once("../inc/magmi_statemanager.php");
 $tid=$_REQUEST["traceid"];
 $tracefile=Magmi_StateManager::getTraceFile();
-$f=fopen($tracefile,"r");
-$display=false;
-$startout=false;
-while(!feof($f))
+$c=file_get_contents($tracefile);
+if(preg_match("/---- TRACE : $tid -----(.*?)---- ENDTRACE : $tid -----/msi",$c,$match))
 {
-	$line=fgets($f);
-
-	if(preg_match("/--- TRACE :\s+(\d+).*?/",$line,$match))
-	{
-		
-		$trid=$match[1];
-		if($trid==$tid)
-		{
-			$startout=true;
-			$display=true;
-		}
-	}
-	if(preg_match("/--- ENDTRACE :\s+(\d+).*?/",$line,$match))
-	{
-		$startout=false;
-		break;
-	}
-	if($startout)
-	{
-		echo '<p class="trace">'.$line."</p>";
-	}
+echo nl2br(trim($match[1]));
 }
-fclose($f);
-if(!$display)
+else
 {
 	echo "Trace not found";
 }

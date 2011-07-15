@@ -50,6 +50,3 @@
 	}
 ?>
 <?php require_once("footer.php");?>
-<div id="overlay" style="display:none">
-<div id="overlaycontent"></div>
-</div>
