@@ -10403,11 +10403,9 @@ label#source-label, input#source, label#invite-label, input#invite, label#gender
 /*START SHUTL RE-SKIN PRODUCT PAGE BY FLO 17/02/2011*/
 
 .shutl-right-col{
-	height: 92px;
 	float: left;
 	width: 300px;
 	background: #0d0d0d;
-	padding-top: 10px;
 }
 .shutl-right-col img{
 	width: 300px;
