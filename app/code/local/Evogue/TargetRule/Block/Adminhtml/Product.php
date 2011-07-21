@@ -1,5 +1,5 @@
 <?php
-class Eveogue_TargetRule_Block_Adminhtml_Product extends Mage_Adminhtml_Block_Widget {
+class Evogue_TargetRule_Block_Adminhtml_Product extends Mage_Adminhtml_Block_Widget {
 
     protected $_readOnly = false;
 
