@@ -49,8 +49,10 @@ A.sliderHandle
 .cartSlider_caption
 {
 	position: relative;
-	text-align: center;
+	text-align: left;
 	top: -4px;
+	margin-top: 19px;
+	color: #B14E4E;
 }
 .cartSlider_cell
 {

@@ -289,57 +289,5 @@ Customer account address edit page
             </block>
         </reference>
         <update handle="customer_form_template_handle"/>
-    </customer_address_form>
-
-    <customer_form_template_handle>
-        <reference name="content">
-            <block name="customer_form_template" type="enterprise_customer/form_template">
-                <action method="addRenderer">
-                    <type>text</type>
-                    <renderer_block>enterprise_customer/form_renderer_text</renderer_block>
-                    <template>customer/form/renderer/text.phtml</template>
-                </action>
-                <action method="addRenderer">
-                    <type>textarea</type>
-                    <renderer_block>enterprise_customer/form_renderer_textarea</renderer_block>
-                    <template>customer/form/renderer/textarea.phtml</template>
-                </action>
-                <action method="addRenderer">
-                    <type>multiline</type>
-                    <renderer_block>enterprise_customer/form_renderer_multiline</renderer_block>
-                    <template>customer/form/renderer/multiline.phtml</template>
-                </action>
-                <action method="addRenderer">
-                    <type>date</type>
-                    <renderer_block>enterprise_customer/form_renderer_date</renderer_block>
-                    <template>customer/form/renderer/date.phtml</template>
-                </action>
-                <action method="addRenderer">
-                    <type>select</type>
-                    <renderer_block>enterprise_customer/form_renderer_select</renderer_block>
-                    <template>customer/form/renderer/select.phtml</template>
-                </action>
-                <action method="addRenderer">
-                    <type>multiselect</type>
-                    <renderer_block>enterprise_customer/form_renderer_multiselect</renderer_block>
-                    <template>customer/form/renderer/multiselect.phtml</template>
-                </action>
-                <action method="addRenderer">
-                    <type>boolean</type>
-                    <renderer_block>enterprise_customer/form_renderer_boolean</renderer_block>
-                    <template>customer/form/renderer/boolean.phtml</template>
-                </action>
-                <action method="addRenderer">
-                    <type>file</type>
-                    <renderer_block>enterprise_customer/form_renderer_file</renderer_block>
-                    <template>customer/form/renderer/file.phtml</template>
-                </action>
-                <action method="addRenderer">
-                    <type>image</type>
-                    <renderer_block>enterprise_customer/form_renderer_image</renderer_block>
-                    <template>customer/form/renderer/image.phtml</template>
-                </action>
-            </block>
-        </reference>
-    </customer_form_template_handle>
+    </customer_address_form> 
 </layout>

@@ -119,8 +119,10 @@ class Evogue_Customer_Block_Form extends Mage_Core_Block_Template {
     }
 
     public function getAttributeHtml(Mage_Customer_Model_Attribute $attribute) {
+
         $type   = $attribute->getFrontendInput();
         $block  = $this->getRenderer($type);
+        
         if ($block) {
             $block->setAttributeObject($attribute)
                 ->setEntity($this->getEntity())
