@@ -25,8 +25,21 @@
                     <action method="setTemplate" ifconfig="easy_tabs/general/enabled"><template>easytabs/tabs.phtml</template></action>
 					<action method="addTab" translate="title" module="catalog" ifconfig="easy_tabs/general/descriptiontabbed"><alias>description_tabbed</alias><title>Product Description</title><block>catalog/product_view_description</block><template>easytabs/description.phtml</template></action>
                     <action method="addTab" translate="title" module="catalog" ifconfig="easy_tabs/general/additionaltabbed"><alias>additional_tabbed</alias><title>details</title><block>catalog/product_view_attributes</block><template>easytabs/attributes.phtml</template></action>
-					<action method="addTab" translate="title" module="catalog" ifconfig="easy_tabs/general/upsellproductstabbed"><alias>upsell_products_tabbed</alias><title>We Also Recommend</title><block>catalog/product_list_upsell</block><template>catalog/product/list/upsell.phtml</template></action>                   
-                    <action method="addTab" translate="title" module="catalog" ifconfig="easy_tabs/general/relatedtabbed"><alias>related_tabbed</alias><title>Related Products</title><block>catalog/product_list_related</block><template>easytabs/catalogproductrelated.phtml</template></action>               
+
+					<action method="addTab" translate="title" module="evogue_targetrule" ifconfig="easy_tabs/general/upsellproductstabbed">
+						<alias>upsell_products_tabbed</alias>
+						<title>We Also Recommend</title>
+						<block>evogue_targetrule/catalog_product_list_upsell</block>
+						<template>evogue/targetrule/catalog/product/list/upsell.phtml</template>
+					</action>                   
+                    <action method="addTab" translate="title" module="evogue_targetrule" ifconfig="easy_tabs/general/relatedtabbed">
+                    	<alias>related_tabbed</alias>
+                    	<title>Related Products</title>
+                    	<block>evogue_targetrule/catalog_product_list_related</block>
+                    	<template>evogue/targetrule/catalog/product/list/related.phtml</template>
+                    </action>               
+                    
+                    
 		            <action method="addTab" translate="title" module="tag" ifconfig="easy_tabs/general/tagstabbed"><alias>tags_tabbed</alias><title>Product Tags</title><block>tag/product_list</block><template>easytabs/catalogproducttags.phtml</template></action>
 					<action method="addTab" translate="title" module="review" ifconfig="easy_tabs/general/reviewtabbed"><alias>review_tabbed</alias><title>Product's Review</title><block>review/product_view_list</block><template>easytabs/catalogproductreview.phtml</template></action>
 					<action method="addTab" translate="title" module="catalog" ifconfig="easy_tabs/custom/customtab"><alias>custom</alias><title>Custom tab</title><block>catalog/product_view</block><template>easytabs/catalogproductcustom.phtml</template></action>
