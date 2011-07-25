@@ -364,7 +364,6 @@ class TBT_Rewards_Model_Sales_Quote extends Mage_Sales_Model_Quote {
 		if ($price < 0.00001 && $price > - 0.00001) {
 			$price = 0;
 		}
-		print_r("Total discountable: ". $price . "|");
 		return $price;
 	}
 	
