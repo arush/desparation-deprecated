@@ -6,11 +6,7 @@
     <?php foreach ($this->getUserDefinedAttributes() as $attribute):?>
         <?php $attributeContent = $this->getAttributeHtml($attribute);?>
         <?php //if ($attributeContent): ?>
-<<<<<<< HEAD
-        <li><?php echo $attributeContent;?>1</li>
-=======
         <li><?php echo $attributeContent;?></li>
->>>>>>> b9a75a01d15561658b9cc98974fa8d1244740b3a
         <?php //endif;?>
     <?php endforeach;?>
     <?php if ($this->isShowContainer()): ?>
