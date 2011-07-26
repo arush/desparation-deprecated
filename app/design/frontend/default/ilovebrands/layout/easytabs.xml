@@ -15,9 +15,9 @@
 				<action method="setTemplate"><template>easytabs/catalogproductview.phtml</template></action>								
     	</reference>
         
-        <!--reference name="right">
+        <reference name="additional.products">
             <action method="unsetChild" ifconfig="easy_tabs/general/relatedtabbed"><name>catalog.product.related</name></action>
-        </reference-->			
+        </reference>
         
         <reference name="product.info.additional">
                 <action method="unsetChild" ifconfig="easy_tabs/general/tagstabbed"><name>product_tag_list</name></action>
@@ -28,13 +28,13 @@
 
 					<action method="addTab" translate="title" module="evogue_targetrule" ifconfig="easy_tabs/general/upsellproductstabbed">
 						<alias>upsell_products_tabbed</alias>
-						<title>upsell</title>
+						<title>alternatives</title>
 						<block>evogue_targetrule/catalog_product_list_upsell</block>
 						<template>evogue/targetrule/catalog/product/list/upsell.phtml</template>
 					</action>                   
                     <action method="addTab" translate="title" module="evogue_targetrule" ifconfig="easy_tabs/general/relatedtabbed">
                     	<alias>related_tabbed</alias>
-                    	<title>related</title>
+                    	<title>goes with</title>
                     	<block>evogue_targetrule/catalog_product_list_related</block>
                     	<template>evogue/targetrule/catalog/product/list/related.phtml</template>
                     </action>               
