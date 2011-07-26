@@ -28,13 +28,13 @@
 
 					<action method="addTab" translate="title" module="evogue_targetrule" ifconfig="easy_tabs/general/upsellproductstabbed">
 						<alias>upsell_products_tabbed</alias>
-						<title>alternatives</title>
+						<title>upsell</title>
 						<block>evogue_targetrule/catalog_product_list_upsell</block>
 						<template>evogue/targetrule/catalog/product/list/upsell.phtml</template>
 					</action>                   
                     <action method="addTab" translate="title" module="evogue_targetrule" ifconfig="easy_tabs/general/relatedtabbed">
                     	<alias>related_tabbed</alias>
-                    	<title>goes with</title>
+                    	<title>similar</title>
                     	<block>evogue_targetrule/catalog_product_list_related</block>
                     	<template>evogue/targetrule/catalog/product/list/related.phtml</template>
                     </action>               

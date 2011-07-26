@@ -12464,8 +12464,14 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 .share-wishlist textarea:focus{background: #f8f8f8;}
 /* WISHLIST SKIN END */
 
-/* RECENTLY VIEWED PRODUCTS START */
-#last-viewed {
+/* ADDITIONAL PRODUCTS */
+.additional-products {
+	margin-top: 40px;
+
+}
+
+
+#last-viewed, #related-items, #upsell {
   width: 448px;
   background: #fff;
 	-moz-box-shadow: 0pt 0px 2px #acacac;
@@ -12474,30 +12480,55 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	box-shadow: 0pt 0px 2px #acacac;
 	border: 1px solid #acacac\9;
 	margin-bottom: 20px;
+	position: relative;
+	float: right;
 }
-#last-viewed .block-title {
+
+#related-items, #upsell { float: left;}
+
+#related-items {width:960px; height: 207px;}
+
+#last-viewed .block-title, #related-items .block-title, #upsell .block-title {
   padding: 8px 13px;
   border-bottom: 1px solid #E6E6E6;
 }
-#last-viewed .block-content {
+#last-viewed .block-content, #related-items .block-content, #upsell .block-content {
   padding: 2px;
 }
-#last-viewed h2 {
-  font-size: 17px;
+#related-items .block-content { float: left; }
+
+#last-viewed h2, #related-items h2, #upsell h2{
+  font-size: 14px;
   color: #5b5757;
   font-weight: normal;
   text-transform: uppercase;
   font-family: Gotham-light;
 }
-#last-viewed .product-image img {
+#last-viewed .product-image img, #related-items .product-image img, #upsell .product-image img {
   height: 164px;
 }
-#last-viewed li.item{
+#last-viewed li.item, #related-items li.item, #upsell li.item {
 	margin-right: 1px;
 	width: auto;
 	padding: 0 !important;
 }
-/* RECENTLY VIEWED PRODUCTS END */
+
+#next-btn, #prev-btn {
+	background: url("../images/scroll-right.png") no-repeat scroll transparent;
+	background-position:center; 
+	float:left;
+	width: 40px;
+	height: 164px;
+	}
+#prev-btn {
+	background: url("../images/scroll-left.png") no-repeat scroll transparent;
+	background-position:center; 
+}
+
+
+.caroufredsel_wrapper {float:left;}
+
+/* ADDITIONAL PRODUCTS END */
 
 /* CROSS SELL PRODUCTS START */
 .cart .crosssell {

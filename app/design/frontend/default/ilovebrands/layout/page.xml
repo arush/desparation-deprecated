@@ -58,7 +58,8 @@ Default layout, loads most of the pages
                 <action method="addJs"><script>cufon/Helvetica_Neue_Bold_300.font.js</script></action>
 				<action method="addJs"><script>cufon/Museo_Sans_500_400.font.js</script></action-->
 		<!-- START COUNTDOWN -->
-		<action method="addItem"><type>skin_js</type><name>js/jquery.carouFredSel-2.5.2-packed.js</name><params/></action>
+		<!-- action method="addItem"><type>skin_js</type><name>js/jquery.js</name><params/></action -->
+		<action method="addItem"><type>skin_js</type><name>js/jquery.carouFredSel-4.3.3-packed.js</name><params/></action>
 		<action method="addItem"><type>skin_js</type><name>js/jquery.easing.1.3.js</name><params/></action>
 		<action method="addItem"><type>skin_js</type><name>js/date.js</name><params/></action>
 		<!-- END COUNTDOWN MODULE -->
