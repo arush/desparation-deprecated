@@ -1,7 +1,7 @@
 <layout version="0.1.0">
     <catalog_product_view>
-        <reference name="product.info">
-            <!-- remove name="catalog.product.related" / -->
+        <reference name="additional_products">
+            <!-- remove name="catalog.product.related"/ -->
             <block type="evogue_targetrule/catalog_product_list_related" name="catalog.product.related" as="relatedProducts" template="evogue/targetrule/catalog/product/list/related.phtml">
                 <action method="setColumnCount"><columns>3</columns></action>
             </block>

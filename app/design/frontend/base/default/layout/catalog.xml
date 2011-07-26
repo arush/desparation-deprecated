@@ -264,10 +264,14 @@ Product view
                 <action method="unsetCallChild"><child>container1</child><call>ifEquals</call><if>0</if><key>alias_in_layout</key><key>options_container</key></action>
                 <action method="unsetCallChild"><child>container2</child><call>ifEquals</call><if>0</if><key>alias_in_layout</key><key>options_container</key></action>
             </block>
+            <block type="evogue_targetrule/catalog_product_list_related" name="catalog.product.related" as="relatedProducts" template="evogue/targetrule/catalog/product/list/related.phtml">
+                <action method="setColumnCount"><columns>3</columns></action>
+            </block>
+
         </reference>
-        <reference name="right">
+        <!--reference name="right">
             <block type="catalog/product_list_related" name="catalog.product.related" before="-" template="catalog/product/list/related.phtml"/>
-        </reference>
+        </reference-->
     </catalog_product_view>
 
 <!--
