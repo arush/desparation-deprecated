@@ -64,7 +64,7 @@ Default layout, loads most of the pages
 		<!-- END COUNTDOWN MODULE -->
 
 		<!--action method="addItem"><type>skin_js</type><name>js/cufon.js</name><params/></action-->
-		<action method="addItem"><type>skin_js</type><name>js/scripts.js</name></action>
+		<!--action method="addItem"><type>skin_js</type><name>js/scripts.js</name></action-->
         <action method="addItem"><type>skin_js</type><name>js/jquery-ui-1.8.11.custom.min.js</name><params/></action>
 		        
                 <block type="page/js_cookie" name="js_cookies" template="page/js/cookie.phtml"/>
