@@ -227,11 +227,9 @@ Product view
 
                 <action method="setTierPriceTemplate"><template>catalog/product/view/tierprices.phtml</template></action>
 
-                <block type="catalog/product_list_upsell" name="product.info.upsell" as="upsell_products" template="evogue/targetrule/catalog/product/list/upsell.phtml">
-                    <action method="setColumnCount"><columns>4</columns></action>
-                    <action method="setItemLimit"><type>upsell</type><limit>4</limit></action>
-                </block>
                 
+                
+
                 <block type="catalog/product_view_additional" name="product.info.additional" as="product_additional_data" />
                 <block type="catalog/product_view_description" name="product.description" as="description" template="catalog/product/view/description.phtml">
                     <action method="addToParentGroup"><group>detailed_info</group></action>
@@ -284,8 +282,12 @@ Product view
 				
 
         </reference>
-        <reference name="right">
-            <block type="catalog/product_list_related" name="catalog.product.related" before="-" template="catalog/product/list/related.phtml"/>
+        <reference name="additional.products">
+            <block type="catalog/product_list_related" name="catalog.product.related" as="relatedProducts" template="evogue/targetrule/catalog/product/list/related.phtml"/>
+            <block type="catalog/product_list_upsell" name="product.info.upsell" as="upsell_products" template="evogue/targetrule/catalog/product/list/upsell.phtml">
+                    <!--action method="setColumnCount"><columns>4</columns></action>
+                    <action method="setItemLimit"><type>upsell</type><limit>4</limit></action-->
+            </block>
         </reference>
     </catalog_product_view>
 
