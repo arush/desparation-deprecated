@@ -1071,15 +1071,14 @@ p.error-msg {
 }
 
 .messages li.note-msg, .messages li.notice-msg {
-  background: none repeat scroll
-    0% 0% rgb(209, 208, 179);
-  border: 1px solid rgb(253,
-    252, 229);
-  color: rgb(25, 25, 25);
+  background: none repeat scroll 0% 0% #FEEFB3;
+  /*border: 1px solid #9F6000;*/
+  color: #9F6000;
+  font-family: Gotham-book;
 }
 
 .messages li.note-msg a, .messages li.notice-msg a {
-  color: rgb(25, 25, 25);
+  color: #9F6000;
   text-decoration: underline;
 }
 
@@ -10404,11 +10403,9 @@ label#source-label, input#source, label#invite-label, input#invite, label#gender
 /*START SHUTL RE-SKIN PRODUCT PAGE BY FLO 17/02/2011*/
 
 .shutl-right-col{
-	height: 92px;
 	float: left;
 	width: 300px;
 	background: #0d0d0d;
-	padding-top: 10px;
 }
 .shutl-right-col img{
 	width: 300px;
@@ -11664,8 +11661,8 @@ font-size: 20px; }
 	.my-account .dashboard .points-summary-emphasize{color: #000;}
 	/*DASHBOARD END*/
 	
-	/*ACCOUNT INFORMATION START*/
-	.account-edit{
+	/*ACCOUNT INFORMATION / NEWSLETTER START*/
+	.account-edit, .newsletter{
 		background: #fff;
 		-moz-box-shadow: 0pt 0px 2px #acacac;
 		-webkit-box-shadow: 0pt 0px 2px #acacac;
@@ -11674,7 +11671,9 @@ font-size: 20px; }
 		border: 1px solid #acacac\9;
 		float: left;
 	}
-	.account-information-page{
+	.newsletter{width: 100%;}
+
+	.account-information-page, .newsletter-page{
 		background: #fff;
 		padding: 20px;
 	}
@@ -11683,7 +11682,7 @@ font-size: 20px; }
 		padding-bottom: 15px;
 		clear: left;
 	}
-	.my-account .account-information-page .form-list label{
+	.my-account .account-information-page .form-list label, .my-account .newsletter-page .form-list label{
 		color: #555555;
 	}
 	.my-account .account-information-page .form-list input.input-text, .my-account .account-information-page .form-list select{
@@ -11691,7 +11690,8 @@ font-size: 20px; }
 		color: #555555;
 		background: none repeat scroll 0 0 #F1F1F1;
 	}
-	/*ACCOUNT INFORMATION END*/
+	.newsletter-page .form-list .control .input-box  {margin-left:0px;}
+	/*ACCOUNT INFORMATION / NEWSLETTER END*/
 	
 	/*ADDRESS BOOK START*/
 	.address-edit, .address-book{
@@ -12094,7 +12094,9 @@ font-size: 20px; }
 }
 .cart-shipping-options {
   color: #000;
-  text-transform: none;  
+  text-transform: none;
+  border-bottom: 1px solid #CCC;
+  margin-bottom: 20px;
 }
 .cart .deals input.input-text{
 	background: #f1f1f1;
@@ -12500,7 +12502,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 /* CROSS SELL PRODUCTS START */
 .cart .crosssell {
   float: left;
-  min-height: 400px;
+  min-height: 550px;
   width: 280px;
   padding: 0 0 15px 30px;
 }
@@ -12547,6 +12549,12 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 }
 .cart .crosssell .button span span{padding: 0;}
 /* CROSS SELL PRODUCTS END */
+
+/* TBT REWARDS CART SLIDER */
+.rewards-box-spend-minicart {border-bottom: 1px solid #ccc;}
+.rewards-box-spend-minicart .box-content {margin-bottom: 22px;color: #AAA;}
+.rewards-box-spend-minicart label {color: #1a1a1a;}
+/* TBT REWARDS CART SLIDER END */
 
 /* IE7 FIXES START
 

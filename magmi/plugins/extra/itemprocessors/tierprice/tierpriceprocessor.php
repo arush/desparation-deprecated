@@ -14,7 +14,8 @@ class TierpriceProcessor extends Magmi_ItemProcessor
 		return array(
             "name" => "Tier price importer",
             "author" => "Dweeves",
-            "version" => "0.0.2"
+            "version" => "0.0.6",
+			"url"=>"http://sourceforge.net/apps/mediawiki/magmi/index.php?title=Tier_price_importer"
             );
 	}
 
@@ -33,8 +34,49 @@ class TierpriceProcessor extends Magmi_ItemProcessor
 	public function processItemAfterId(&$item,$params=null)
 	{
 		$pid=$params["product_id"];
+		$tpn=$this->tablename("catalog_product_entity_tier_price");
 		$tpcol=array_intersect(array_keys($this->_tpcol),array_keys($item));
-
+		//do nothing if item has no tier price info or has not change
+		if(count($tpcol)==0 || $params["same"]==true )
+		{
+			return true;
+		}
+		else
+		{
+			//clear all existing tier price info for existing customer groups in csv
+			$cgids=array();
+			foreach($tpcol as $k)
+			{
+				$tpinf=$this->_tpcol[$k];
+				if($tpinf["id"]!=null)
+				{
+					$cgids[]=$tpinf["id"];
+				}
+				else
+				{
+					$cgids=array();
+					break;
+				}
+			
+			}
+			//if we have specific customer groups
+			if(count($cgids)>0)
+			{
+				//delete only for thos customer groups
+				$instr=$this->arr2values($cgids);
+			
+				//clear tier prices for selected tier price columns
+				$sql="DELETE FROM $tpn WHERE entity_id=? AND customer_group_id IN ($instr)";
+				$this->delete($sql,array_merge(array($pid),$cgids));
+			}
+			else
+			{
+				//delete for all customer groups
+				$sql="DELETE FROM $tpn WHERE entity_id=?";
+				$this->delete($sql,$pid);
+			}
+		}
+		
 		foreach($tpcol as $k)
 		{
 		//get tier price column info
@@ -42,24 +84,61 @@ class TierpriceProcessor extends Magmi_ItemProcessor
 		  //now we've got a customer group id
 		  $cgid=$tpinf["id"];
 		  //add tier price
-		  $sql="INSERT INTO ".$this->tablename("catalog_product_entity_tier_price")."
+		  $sql="INSERT INTO $tpn
 			(entity_id,all_groups,customer_group_id,qty,value,website_id) VALUES ";
 		  $inserts=array();
 		  $data=array();
-		  $wsids=$this->getItemWebsites($item);
+		  //it seems that magento cannot handle correctly "per website" tier price , so force it to "default"
+		  //$wsids=$this->getItemWebsites($item);
+		  $wsids=array(0);
+		  if($item[$k]=="")
+		  {
+		  	continue;
+		  }
+		  $tpvals=explode(";",$item[$k]);
+		  
 		  foreach($wsids as $wsid)
 		  {
-		  	if($wsid!=0)
-		  	{
-		  		$inserts[]="(?,?,?,?,?,?)";
-		  		$data[]=$pid;
-		  		//if all , set all_groups flag
-		  		$data[]=(isset($cgid)?0:1);
-		  		$data[]=$cgid;
-		  		$data[]=1.0;
-		  		$data[]=$item[$k];
-		  		$data[]=$wsid;
-		  	}
+		  		//for each tier price value definition
+		  		foreach($tpvals as $tpval)
+		  		{
+		  			//split on ":"
+		  			$tpvinf=explode(":",$tpval);
+		  			//if we have only one item
+		  			if(count($tpvinf)==1)
+		  			{
+		  				//set qty to one 
+		  				array_unshift($tpvinf,1.0);
+		  			}
+		  			//if more thant 1, qty first,price second
+		  			$tpquant=$tpvinf[0];
+		  			$tpprice=str_replace(",",".",$tpvinf[1]);
+		  			if($tpprice=="")
+		  			{
+		  				continue;
+		  			}
+		  			if(substr($tpprice,-1)=="%")
+		  			{
+		  				//if no reference price,skip % tier price
+		  				if(!isset($item["price"]))
+		  				{
+		  					$this->warning("No price define, cannot apply % on tier price");
+		  					continue;
+		  				}
+		  				$fp=(float)(str_replace(",",".",$item["price"]));
+		  				$pc=(float)(substr($tpprice,0,-1));
+		  				$m=($pc<0?(100+$pc):$pc);
+		  				$tpprice=strval(($fp*($m))/100.0);
+		  			}
+		  			$inserts[]="(?,?,?,?,?,?)";
+		  			$data[]=$pid;
+		  			//if all , set all_groups flag
+		  			$data[]=(isset($cgid)?0:1);
+		  			$data[]=(isset($cgid)?$cgid:0);
+		  			$data[]=$tpquant;
+		  			$data[]=$tpprice;
+		  			$data[]=$wsid;
+		  		}
 		  }
 		  if(count($inserts)>0)
 		  {

@@ -39,7 +39,8 @@ class ImageAttributeItemProcessor extends Magmi_ItemProcessor
 		return array(
             "name" => "Image attributes processor",
             "author" => "Dweeves",
-            "version" => "0.1.14"
+            "version" => "1.0.17",
+			"url"=>"http://sourceforge.net/apps/mediawiki/magmi/index.php?title=Image_attributes_processor"
             );
 	}
 	
@@ -56,8 +57,10 @@ class ImageAttributeItemProcessor extends Magmi_ItemProcessor
 		//for each image
 		foreach($images as $imagefile)
 		{
+			//trim image file in case of spaced split
+			$imagefile=trim($imagefile);
 			//handle exclude flag explicitely
-			$exclude=$this->getExclude($image,false); 
+			$exclude=$this->getExclude($imagefile,false); 
 			$infolist=explode("::",$imagefile);
 			$label=null;
 			if(count($infolist)>1)
@@ -71,7 +74,8 @@ class ImageAttributeItemProcessor extends Magmi_ItemProcessor
 			if($imagefile!==false)
 			{
 				//add to gallery
-				$vid=$this->addImageToGallery($pid,$storeid,$attrdesc,$imagefile,$label,$exclude);
+				$targetsids=$this->getStoreIdsForStoreScope($item["store"]);
+				$vid=$this->addImageToGallery($pid,$storeid,$attrdesc,$imagefile,$targetsids,$label,$exclude);
 			}
 		}
 		unset($images);
@@ -127,7 +131,8 @@ class ImageAttributeItemProcessor extends Magmi_ItemProcessor
 			{
 				$label=$item[$attrcode."_label"];
 			}
-			$vid=$this->addImageToGallery($pid,$storeid,$attrdesc,$imagefile,$label,$exclude,$attrdesc["attribute_id"]);
+			$targetsids=$this->getStoreIdsForStoreScope($item["store"]);
+			$vid=$this->addImageToGallery($pid,$storeid,$attrdesc,$imagefile,$targetsids,$label,$exclude,$attrdesc["attribute_id"]);
 		}
 		return $ovalue;
 	}
@@ -166,8 +171,7 @@ class ImageAttributeItemProcessor extends Magmi_ItemProcessor
 		{
 			$vc=$this->tablename('catalog_product_entity_varchar');
 			$sql.=" JOIN $vc ON $t.entity_id=$vc.entity_id AND $t.value=$vc.value AND $vc.attribute_id=?
-					WHERE $t.entity_id=?";
-		
+					WHERE $t.entity_id=?";		
 			$imgid=$this->selectone($sql,array($refid,$pid),'value_id');
 		}
 		else
@@ -216,9 +220,14 @@ class ImageAttributeItemProcessor extends Magmi_ItemProcessor
 	 * @param array $attrdesc : product attribute description
 	 * @param string $imgname : image file name (relative to /products/media in magento dir)
 	 */
-	public function addImageToGallery($pid,$storeid,$attrdesc,$imgname,$imglabel=null,$excluded=false,$refid=null)
+	public function addImageToGallery($pid,$storeid,$attrdesc,$imgname,$targetsids,$imglabel=null,$excluded=false,$refid=null)
 	{
 		$gal_attinfo=$this->getAttrInfo("media_gallery");
+		if($gal_attinfo==null)
+		{
+			$this->initAttrInfos(array("media_gallery"));
+			$gal_attinfo=$this->getAttrInfo("media_gallery");
+		}
 			$tg=$this->tablename('catalog_product_entity_media_gallery');
 			$tgv=$this->tablename('catalog_product_entity_media_gallery_value');
 		$vid=$this->getImageId($pid,$gal_attinfo["attribute_id"],$imgname,$refid);
@@ -235,16 +244,28 @@ class ImageAttributeItemProcessor extends Magmi_ItemProcessor
 			$pos=($pos==null?0:$pos+1);
 			#insert new value (ingnore duplicates)
 				
-			$sql="INSERT INTO $tgv
-				(value_id,store_id,position,disabled,label)
-				VALUES(?,?,?,?,".($imglabel==null?"NULL":"?").")
-				ON DUPLICATE KEY UPDATE label=VALUES(`label`)";
-			$data=array($vid,$storeid,$pos,$excluded?1:0);
-			if($imglabel!=null)
+			$vinserts=array();
+			$data=array();
+			 
+			foreach($targetsids as $tsid)
 			{
-				$data[]=$imglabel;
+				$vinserts[]="(?,?,?,?,".($imglabel==null?"NULL":"?").")";
+				$data=array_merge($data,array($vid,$tsid,$pos,$excluded?1:0));
+				if($imglabel!=null)
+				{
+					$data[]=$imglabel;
+				}
 			}
-			$this->insert($sql,$data);
+			
+			if(count($data)>0)
+			{
+				$sql="INSERT INTO $tgv
+					(value_id,store_id,position,disabled,label)
+					VALUES ".implode(",",$vinserts)." 
+					ON DUPLICATE KEY UPDATE label=VALUES(`label`)";
+				$this->insert($sql,$data);
+			}
+			unset($vinserts);
 			unset($data);
 		}
 	}
@@ -344,6 +365,8 @@ class ImageAttributeItemProcessor extends Magmi_ItemProcessor
 		if(function_exists("curl_init"))
 		{
 			$handle = curl_init(str_replace(" ","%20",$url));
+			//add support for https urls
+			curl_setopt($handle, CURLOPT_SSL_VERIFYPEER ,false);
 		}
 		return $handle;
 	}
@@ -413,6 +436,7 @@ class ImageAttributeItemProcessor extends Magmi_ItemProcessor
 				curl_setopt($context, CURLOPT_FOLLOWLOCATION, 1);
 				
 				curl_exec($context);
+				@fclose($fp);
 				return true;
 			}
 			else
@@ -450,7 +474,7 @@ class ImageAttributeItemProcessor extends Magmi_ItemProcessor
 			};
 			return false;
 		}
-		
+		$checkexist= ($this->getParam("IMG:existingonly")=="yes");
 		$curlh=false;
 		$bimgfile=$this->getTargetName(basename($imgfile),$item,$extra);
 		//source file exists
@@ -481,7 +505,7 @@ class ImageAttributeItemProcessor extends Magmi_ItemProcessor
 			{			
 				$exists=($this->getImageFSPath($imgfile,true)!==false);
 			}
-			if(!$exists)
+			if(!$exists && $checkexist)
 			{
 				$this->log("$fname not found, skipping image","warning");
 				$this->fillErrorAttributes($item);
@@ -489,44 +513,47 @@ class ImageAttributeItemProcessor extends Magmi_ItemProcessor
 				$this->destroyUrlContext($curlh);
 				return false;
 			}
-			/* test if 1st level product media dir exists , create it if not */
-			if(!file_exists("$l1d"))
+			if($exists)
 			{
-				$tst=@mkdir($l1d,0777);
-				if(!$tst)
+				/* test if 1st level product media dir exists , create it if not */
+				if(!file_exists("$l1d"))
 				{
-					$errors= error_get_last();
-					$this->log("error creating $l1d: {$errors["type"]},{$errors["message"]}","warning");
-					unset($errors);
-					$this->destroyUrlContext($curlh);
-					return false;
+					$tst=@mkdir($l1d,0777);
+					if(!$tst)
+					{
+						$errors= error_get_last();
+						$this->log("error creating $l1d: {$errors["type"]},{$errors["message"]}","warning");
+						unset($errors);
+						$this->destroyUrlContext($curlh);
+						return false;
+					}
 				}
-			}
-			/* test if 2nd level product media dir exists , create it if not */
-			if(!file_exists("$l2d"))
-			{
-				$tst=@mkdir($l2d,0777);
-				if(!$tst)
+				/* test if 2nd level product media dir exists , create it if not */
+				if(!file_exists("$l2d"))
 				{
-					$errors= error_get_last();
-					$this->log("error creating $l2d: {$errors["type"]},{$errors["message"]}","warning");
-					unset($errors);
-					$this->destroyUrlContext($curlh);
-					return false;
+					$tst=@mkdir($l2d,0777);
+					if(!$tst)
+					{
+						$errors= error_get_last();
+						$this->log("error creating $l2d: {$errors["type"]},{$errors["message"]}","warning");
+						unset($errors);
+						$this->destroyUrlContext($curlh);
+						return false;
+					}
 				}
-			}
 
-			if(!$this->saveImage($imgfile,"$l2d/$bimgfile",$curlh))
-			{
-				$errors=error_get_last();
-				$this->fillErrorAttributes($item);
-				$this->log("error copying $l2d/$bimgfile : {$errors["type"]},{$errors["message"]}","warning");
-				unset($errors);
+				if(!$this->saveImage($imgfile,"$l2d/$bimgfile",$curlh))
+				{
+					$errors=error_get_last();
+					$this->fillErrorAttributes($item);
+					$this->log("error copying $l2d/$bimgfile : {$errors["type"]},{$errors["message"]}","warning");
+					unset($errors);
+					$this->destroyUrlContext($curlh);
+					return false;
+				}
 				$this->destroyUrlContext($curlh);
-				return false;
-			}
-			$this->destroyUrlContext($curlh);
-			@chmod("$l2d/$bimgfile",0664);			
+				@chmod("$l2d/$bimgfile",0664);
+			}			
 		}
 		$this->_lastimage=$result;
 		/* return image file name relative to media dir (with leading / ) */
@@ -583,7 +610,8 @@ class ImageAttributeItemProcessor extends Magmi_ItemProcessor
 	public function processColumnList(&$cols,$params=null)
 	{
 		//automatically add modified attributes if not found in datasource
-		//automatically add media_gallery for attributes to handle
+		
+		//automatically add media_gallery for attributes to handle		
 		$imgattrs=array_intersect($this->_img_baseattrs,$cols);
 		if(count($imgattrs)>0)
 		{

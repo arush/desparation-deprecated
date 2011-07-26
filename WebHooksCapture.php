@@ -16,7 +16,16 @@
 	if($_POST) {
 
 		Mage::app("default")->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
-		Mage::helper('mailchimpPro')->webHookFilter($_POST);
+
+		foreach(Mage::app()->getStores() as $store){
+			if($store->getIsActive()){
+				$defaultStoreId = $store->getStoreId();
+				break;
+			}
+		}
+
+		Mage::app("default")->setCurrentStore($defaultStoreId);
+		Mage::helper('mailchimp')->webHookFilter($_POST);
 
 	}else{
 		echo "<div style='width:500px;padding-top:50px;margin:auto;'>" .
