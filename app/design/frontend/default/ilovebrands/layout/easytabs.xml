@@ -13,6 +13,7 @@
                 <action method="unsetChild" ifconfig="easy_tabs/general/additionaltabbed"><name>additional</name></action>                    
                 <action method="unsetChild" ifconfig="easy_tabs/general/upsellproductstabbed"><name>upsell_products</name></action>
 				<action method="setTemplate"><template>easytabs/catalogproductview.phtml</template></action>								
+				
     	</reference>
         
         <reference name="right">
