@@ -36,7 +36,9 @@ class Vdh_Customerurl_Model_Customer_Observer {
 	
 	public function createUnique($observer) {
 		$customer = $observer->getEvent()->getCustomer();
-		
+		if (!$customer->getCustomerurl()) {
+			$customer->setCustomerurl($customer->getFirstname());
+		}
 		$otherCustomers = Mage::getModel('customer/customer')
 			->getCollection()
 			->addAttributeToFilter('customerurl', $customer->getCustomerurl());
