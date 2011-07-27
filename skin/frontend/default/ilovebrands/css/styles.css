@@ -11900,6 +11900,21 @@ font-size: 20px; }
 
 /*CMS HELP PAGES SKIN END FLO*/
 
+/* LOGOUT PAGE SKINNING ARUSH */
+
+.logout-page {
+	-moz-box-shadow: 0pt 0px 2px #acacac;
+	-webkit-box-shadow: 0pt 0px 2px #acacac;
+	-khtml-box-shadow: 0pt 0px 2px #acacac;
+	box-shadow: 0pt 0px 2px #acacac;
+	border: 1px solid #acacac\9;
+	background: #fff;
+	padding: 20px;
+	margin-top: 30px;
+}
+
+/* LOGOUT END */
+
 /*CART SKINNING START FLO*/
 .cart {
 	background: #FFF;
