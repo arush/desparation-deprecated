@@ -8,7 +8,7 @@ class Vdh_Popup_Helper_Data extends Mage_Core_Helper_Abstract {
 	
 	public function getUrls() {
 		$url = Mage::getStoreConfig('popup/general/url');
-		if (!$url) { array(); }
+		if (!$url) { return array(); }
 		return unserialize($url);
 	}
 }
