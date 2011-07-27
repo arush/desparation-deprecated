@@ -1,0 +1,13 @@
+<?php
+$helper = Mage::helper('popup');
+$currentUrl = str_replace(Mage::getBaseUrl(), '/', $this->helper('core/url')->getCurrentUrl());
+if (trim($currentUrl, '\/') == trim($helper->getTriggerUrl(), '\/')): ?>
+<script type="text/javascript">
+vdh.trigger = '<?php echo $helper->getTriggerUrl(); ?>';
+vdh.urls = new Array();
+<?php $i=0;foreach($helper->getUrls() as $url):?>
+vdh.urls[<?php echo $i; $i++ ?>] = { url: '<?php echo $url['url']; ?>', loaded: false };
+<?php endforeach;?>
+vdh.popup();
+</script>
+<?php endif ?>
