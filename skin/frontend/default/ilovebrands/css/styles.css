@@ -3214,8 +3214,6 @@ ul.disc li {
 }
 
 .top-cart .actions button.button {
-  background: url("../images/sprites.png") no-repeat scroll
-    -10px -249px transparent;
   cursor: pointer;
   overflow: visible;
 }
@@ -3223,7 +3221,15 @@ ul.disc li {
 .top-cart .actions button.button span, .top-cart .actions button.button span span
  {
   background-repeat: no-repeat;
+  color: white;
+  font-family: Gotham-light;
+  font-size: 11px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  text-decoration: none;
 }
+
+.top-cart .button {height: 35px;}
 
 .block-wishlist {
 
@@ -11993,6 +11999,7 @@ font-size: 20px; }
   text-decoration: none;
   text-transform: uppercase;
 }
+
 #shopping-cart-table .last button.button{
 	background: none;
 }
