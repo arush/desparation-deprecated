@@ -3637,16 +3637,18 @@ ul.disc li {
 }
 
 .products-grid li.item {
-  background: url("../images/price-bg.jpg") no-repeat scroll
-    left bottom transparent;
+  background: url("../images/price-bg.jpg") no-repeat scroll left bottom transparent;
   float: left;
   width: 300px;
   height: 439px;
   margin-right: 10px;
   overflow: hidden;
-  border-bottom: 1px solid rgb(79,
-    78, 74);
+  border-bottom: 1px solid rgb(79,78, 74);
   margin-bottom: 40px;
+}
+
+.lte9 .products-grid li.item {
+  margin-right: 7px;
 }
 
 .products-grid li.last {
@@ -11127,6 +11129,8 @@ font-size: 20px; }
 	width: 758px;
 	padding: 0;
 }
+.lte9 .category-products{width:765px;}
+
 .products-grid li.item, .products-grid .product-image{
 	width: 246px;
 }
@@ -11224,7 +11228,7 @@ font-size: 20px; }
 	line-height: 15px;	
 }
 a.cat-view-now {
-color: black;
+	color: black;
 }
 .products-grid li.item .price-discount{
 	top: 23px; left: 10px;
@@ -11331,6 +11335,10 @@ color: black;
 	border: 1px solid #acacac\9;
 }
 
+.lte9 .left-layered-nav{
+	width: 183px;
+}
+
 .left-layered-nav .block .block-title{
 	padding: 13px 17px 9px;
 	font-family: Gotham-book;
@@ -11428,6 +11436,9 @@ color: black;
 	margin-right: 10px;
 	width: 354px;
 }
+
+.lte9 .product-view .product-collateral { width: 350px;}
+
 .cms-block1{background: #dfdfdf; text-align: center; line-height: 51px; color: #000; float: left; width: 100%;}
 .box-collateral{background: none;}
 .product-view .product-name{
@@ -12637,7 +12648,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 /*
 --> BOOKING TYPE PRODUCT PAGE */
 	.reservation-product-img-box{*margin-bottom: 10px;}
-	.product-collateral{*clear: left;}
+	/* this broke normal product pages! .product-collateral{*clear: left;} */
 	.product-options-bottom{*width: 277px;}
 
 /* IE7 FIXES END */
