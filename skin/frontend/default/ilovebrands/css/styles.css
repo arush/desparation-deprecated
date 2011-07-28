@@ -11223,6 +11223,9 @@ font-size: 20px; }
 	border: 1px solid #000\9;
 	line-height: 15px;	
 }
+a.cat-view-now {
+color: black;
+}
 .products-grid li.item .price-discount{
 	top: 23px; left: 10px;
 	color: #B14E4E;
@@ -11236,7 +11239,7 @@ font-size: 20px; }
     display: block;
     height: 70px;
 	background-color: rgba(0, 0, 0, 0.6);
-	bottom: 0;
+	bottom: 63px;
 	left: 0;
 	opacity: 0;
 	position: absolute;
@@ -11249,7 +11252,7 @@ font-size: 20px; }
 	-moz-transition: all 0.2s ease 0s;
 	background-color: rgba(0, 0, 0, 0.6);
 	height: 100px;
-	bottom: 0;
+	bottom: 83px;
 	display: block\9;
 	background: URL('../images/grid_rollover.png')\9;
 }
@@ -11274,7 +11277,7 @@ font-size: 20px; }
 	background: URL('../images/grid_rollover.png')\9;
 }
 .ProdImgRollover-static-wl{
-	bottom: 235px;
+	bottom: 300px;
 	position: relative;
 	margin-bottom: -90px;
 }

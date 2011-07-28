@@ -112,10 +112,11 @@
                 <?php endif; ?>
                 
                 <?php echo $this->getPriceHtml($_product, true) ?>
-
+				</a>
 				<!-- ARUSH 28/7/11 ADDED DIV FOR SOLD OUT IMAGE -->
 				<?php /*?>FLO ADD ROLLOVER START<?php */?>
 					<?php if ($_product->isSalable()): ?>    
+							
 							<div class="ProdImgRollover">
 								<?php /*WDCA CODE BEGINS*/ ?>
 								<?php if(!Mage::getStoreConfigFlag('advanced/modules_disable_output/TBT_Rewards') && Mage::getConfig()->getModuleConfig('TBT_Rewards')->is('active', 'true')) : ?>
@@ -124,9 +125,9 @@
 									<?php echo $predict_points_block->toHtml()?>
 								<?php endif; ?>
 								<?php /*WDCA CODE ENDS*/ ?>
-								<div class="cat-view-now">View now</div>    
+								<a class="cat-view-now" href="<?php echo $_product->getProductUrl() ?>">View now</a>    
 							</div>
-						</a>
+						<!--/a-->
 					
 					<?php else: ?>
                		
@@ -148,7 +149,7 @@
 									<div class="ProdImgRollover-static">
 										<div class="list-soldout">SOLD OUT</div>
 									</div>
-								</a>
+								<!-- /a -->
 							<?php endif; ?>
 						<?php /*?>FLO ADD ROLLOVER END<?php */?>
 				
