@@ -105,14 +105,14 @@
                     <?php /*?><div class="discount"><?php echo $_discount ?></div><?php */?>
                 </div>
 				
-				<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(246,369); ?>" width="246" height="369" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+				<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(246,369); ?>" width="246" height="369" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>
 				<div class="product-name"><h2><a href="<?php echo $_product->getProductUrl() ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2></div>
                 <?php if($_product->getRatingSummary()): ?>
                 <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
                 <?php endif; ?>
                 
                 <?php echo $this->getPriceHtml($_product, true) ?>
-				</a>
+				
 				<!-- ARUSH 28/7/11 ADDED DIV FOR SOLD OUT IMAGE -->
 				<?php /*?>FLO ADD ROLLOVER START<?php */?>
 					<?php if ($_product->isSalable()): ?>    
@@ -196,7 +196,7 @@
         <?php if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
         </ul>
         <?php endif ?>
-        <?php endforeach ?>
+    <?php endforeach ?>
         <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
     <?php endif; ?>
 </div>
