@@ -84,6 +84,11 @@
     <?php else: ?>
 
     <?php // Grid Mode ?>
+    
+<!-- BEGIN ARUSH EDIT 2/11/10 get category event -->
+<?php $currentCategory = Mage::registry('current_category'); ?>
+<?php $_event = $currentCategory->getEvent(); ?>
+<!-- END ARUSH EDIT 2/11/10 get category event -->
 
     <?php $_collectionSize = $_productCollection->count() ?>
     <?php $_columnCount = $this->getColumnCount(); ?>
@@ -99,9 +104,11 @@
                 <div class="product-brand"><h2><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_brand ?></a></h2>
                     <?php /*?><div class="discount"><?php echo $_discount ?></div><?php */?>
                 </div>
+				
+				<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(246,369); ?>" width="246" height="369" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+				<!-- ARUSH 28/7/11 ADDED DIV FOR SOLD OUT IMAGE -->
 				<?php /*?>FLO ADD ROLLOVER START<?php */?>
 					<?php if ($_product->isSalable()): ?>    
-						<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(246,369); ?>" width="246" height="369" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
 							<div class="ProdImgRollover">
 								<?php /*WDCA CODE BEGINS*/ ?>
 								<?php if(!Mage::getStoreConfigFlag('advanced/modules_disable_output/TBT_Rewards') && Mage::getConfig()->getModuleConfig('TBT_Rewards')->is('active', 'true')) : ?>
@@ -113,24 +120,53 @@
 								<div class="cat-view-now">View now</div>    
 							</div>
 						</a>
-					<?php elseif ($this->helper('wishlist')->isAllow()):?>	
-						<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(246,369); ?>" width="246" height="369" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>
-							<div class="ProdImgRollover-static-wl">
-								<div class="list-soldout">SOLD OUT</div>
-								<div class="cat-view-now"><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Wishlist') ?></a></div>
-							</div>
-					<?php else:?>
-						<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(246,369); ?>" width="246" height="369" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />			
-							<div class="ProdImgRollover-static">
-								<div class="list-soldout">SOLD OUT</div>
-							</div>
-						</a>
-					<?php endif; ?>
-				<?php /*?>FLO ADD ROLLOVER END<?php */?>
+					
+					<?php else: ?>
+               		
+               <div class="out-of-stock-image">
+                    
+                    <?php switch ($_event->getStatus()):
+                        case 'upcoming': ?>
+                            <a href="<?php echo $_product->getProductUrl() ?>"><img class="PREVIEWNOW-img" src="<?php echo $this->getSkinUrl(); ?>/images/PREVIEWNOW.png" alt="PREVIEW NOW"></a>
+                           <!-- <p class="availability out-of-stock upcoming"><span><?php// echo $this->__('PREVIEW NOW') ?></span></p> -->
+                        <?php break;
+                        case 'open': ?>
+                            <!-- <a href="<?php // echo $_product->getProductUrl() ?>"><img class="SOLDOUT-img" src="<?php // echo $this->getSkinUrl(); ?>/images/SOLDOUT.png" alt="SOLD OUT"></a> -->
+                        	<?php if ($this->helper('wishlist')->isAllow()):?>	
+								<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(246,369); ?>" width="246" height="369" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>
+									<div class="ProdImgRollover-static-wl">
+										<div class="list-soldout">SOLD OUT</div>
+										<div class="cat-view-now"><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Wishlist') ?></a></div>
+									</div>
+							<?php else:?>
+								<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(246,369); ?>" width="246" height="369" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />			
+									<div class="ProdImgRollover-static">
+										<div class="list-soldout">SOLD OUT</div>
+									</div>
+								</a>
+							<?php endif; ?>
+						<?php /*?>FLO ADD ROLLOVER END<?php */?>
+				
+                        <?php break;
+                        case 'closed': ?>
+                            <a href="<?php echo $_product->getProductUrl() ?>"><img class="NOWCLOSED-img" src="<?php echo $this->getSkinUrl(); ?>/images/NOWCLOSED.png" alt="COLLECTION CLOSED"></a>
+                            <!-- <p class="availability out-of-stock closed"><span><?php// echo $this->__('COLLECTION CLOSED') ?></span></p> -->
+                        <?php break; ?>
+                    <?php endswitch; ?>
+               </div>
+				
+						<?php endif; ?>
+				
+				<!-- END ARUSH 2/11/10 ADDED DIV FOR SOLD OUT IMAGE -->
+
+					
+					
+					
                 <div class="product-name"><h2><a href="<?php echo $_product->getProductUrl() ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2></div>
                 <?php if($_product->getRatingSummary()): ?>
                 <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
                 <?php endif; ?>
+                
                 <?php echo $this->getPriceHtml($_product, true) ?>
 					<div class="only-left"><?php 
                         $qtyLeft = (int) Mage::getModel('cataloginventory/stock_item')->loadByProduct($_product)->getQty();    

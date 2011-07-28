@@ -33,6 +33,15 @@
 ?>
 <?php $_helper = $this->helper('catalog/output'); ?>
 <?php $_product = $this->getProduct(); ?>
+
+<!-- BEGIN ARUSH EDIT 2/11/10 get category event -->
+<?php $currentCategory = Mage::registry('current_category'); ?>
+<?php if($this->getProduct()->getCategory() ? $this->getProduct()->getCategory()->getName() : 'no category' !=='no category'): ?>
+    <?php $_event = $currentCategory->getEvent(); ?>
+<?php endif;?>
+<!-- END ARUSH EDIT 2/11/10 get category event -->
+
+
 <script type="text/javascript">
     var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
 </script>
@@ -81,7 +90,7 @@
             <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
             <?php /*?><?php echo $this->getChildHtml('alert_urls') ?><?php */?>
             
-            
+            <!-- this somehow makes the price box appear -->
 			<?php echo $this->getChildHtml('product_type_data') ?>
        
 			<?php if($_product->isSaleable()): ?>
@@ -93,40 +102,93 @@
             <?php echo $this->getTierPriceHtml() ?>
             <?php echo $this->getChildHtml('extrahint') ?>
 
-			<?php if ($_product->isSaleable() && $this->hasOptions()):?>
+			<?php if ($_product->isSaleable() && $this->hasOptions() && $this->getChildChildHtml('container2')):?>
+                
                 <div class="container2">
                 <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
-                <a onclick="window.open('/index.php/sizing','popup','width=790,height=500,scrollbars=yes,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=575,top=0'); return false" href="/index.php/sizing" id="my-size"><?php echo $this->__('Whats My Size?') ?></a>
+                
+                <?php if ($_product->getTypeId() === 'configurable'): ?>
+                	<a onclick="window.open('/index.php/sizing','popup','width=790,height=500,scrollbars=yes,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=575,top=0'); return false" href="/index.php/sizing" id="my-size"><?php echo $this->__('Whats My Size?') ?></a>
+				<?php endif; ?>
+				</div>
+				
 			<?php endif;?>
-                </div>
+                
                 
 
             <?php if (!$this->hasOptions()):?>
+            
+            		<?php if($_product->isSaleable()): ?>
+						<?php /*WDCA CODE BEGINS*/ ?>
+                        <?php echo $this->getChildHtml('points'); ?>
+                        <?php /*WDCA CODE ENDS*/ ?>
+					<?php endif; ?>
+					
                 <div class="add-to-box">
                     <?php if($_product->isSaleable()): ?>
                         <?php echo $this->getChildHtml('addtocart') ?>
-                        <?php /*?><?php if( $this->helper('wishlist')->isAllow() || $_compareUrl=$this->helper('catalog/product_compare')->getAddUrl($_product)): ?>
-                            <span class="or"><?php echo $this->__('OR') ?></span>
-                        <?php endif; ?><?php */?>
+                    <?php elseif (!$_product->isSaleable()): ?>
+							<div class="availability out-of-stock detail-view">
+							<?php if($this->getProduct()->getCategory() ? $this->getProduct()->getCategory()->getName() : 'no category' !=='no category'): ?>
+							    <?php switch ($_event->getStatus()):
+							    case 'upcoming': ?>
+								<p>You're early!<br>This Collection is not open yet.</p>
+							    <?php break;
+							    case 'open': ?>
+								<p><br>SOLD OUT<br><br>Gotta be quicker next time!</p>
+							    <?php break;
+							    default : ?>
+								<p><br>COLLECTION CLOSED<br><br>Gotta be quicker next time!</p>
+							    <?php break; ?>
+							    <?php endswitch; ?>
+							<?php else:?>
+							    <p><br>COLLECTION CLOSED<br><br>Gotta be quicker next time!</p>
+							<?php endif;?>    
+						    </div>
+						    <div class="sold-out-wishlist"><?php echo $this->getChildHtml('addto') ?></div>
                     <?php endif; ?>
-                    <?php echo $this->getChildHtml('addto') ?>
                 </div>
-                <?php echo $this->getChildHtml('extra_buttons') ?>
-            <?php endif; ?>
+               
+               
+                
+            
+			<?php else:?>
+				
+				<?php if ($_product->isSaleable() && $this->hasOptions() && $this->getChildChildHtml('container1') ):?>
+                	<?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+				<?php elseif (!$_product->isSaleable()): ?>
+					<div class="add-to-box">
+						<div class="availability out-of-stock detail-view">
 
-            <?php if ($_product->getShortDescription()):?>
-                <div class="short-description">
-                    <h2><?php echo $this->__('Quick Overview') ?></h2>
-                    <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
-                </div>
-            <?php endif;?>
+							<?php if($this->getProduct()->getCategory() ? $this->getProduct()->getCategory()->getName() : 'no category' !=='no category'): ?>
+								<?php switch ($_event->getStatus()):
+									case 'upcoming': ?>
+						    			<p>You're early!<br>This Collection is not open yet.</p>
+										<?php break;
+									case 'open': ?>
+										<p>SOLD OUT<br><br>Gotta be quicker next time!</p>
+										<?php break;
+									default : ?>
+										<p><br>COLLECTION CLOSED<br><br>Gotta be quicker next time!</p>
+										<?php break; ?>
+								<?php endswitch; ?>
+					    	<?php else:?>
+								<p><br>COLLECTION CLOSED<br><br>Gotta be quicker next time!</p>
+					    	<?php endif;?>
+					    	
+						</div>
+						<div class="sold-out-wishlist"><?php echo $this->getChildHtml('addto') ?></div>
 
-            <?php echo $this->getChildHtml('other');?>
-
-            <?php if ($_product->isSaleable() && $this->hasOptions()):?>
-                <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
-            <?php endif;?>
+					</div>
+				
+				<?php endif;?>
+                
 			
+			<?php endif; ?>
+			            
+        <?php echo $this->getChildHtml('extra_buttons') ?>
+        <?php echo $this->getChildHtml('other');?>
+
         </div>
 
         <div class="clearer"></div>
