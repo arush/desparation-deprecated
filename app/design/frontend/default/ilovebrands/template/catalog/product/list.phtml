@@ -106,6 +106,13 @@
                 </div>
 				
 				<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(246,369); ?>" width="246" height="369" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+				<div class="product-name"><h2><a href="<?php echo $_product->getProductUrl() ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2></div>
+                <?php if($_product->getRatingSummary()): ?>
+                <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                <?php endif; ?>
+                
+                <?php echo $this->getPriceHtml($_product, true) ?>
+
 				<!-- ARUSH 28/7/11 ADDED DIV FOR SOLD OUT IMAGE -->
 				<?php /*?>FLO ADD ROLLOVER START<?php */?>
 					<?php if ($_product->isSalable()): ?>    
@@ -133,13 +140,11 @@
                         case 'open': ?>
                             <!-- <a href="<?php // echo $_product->getProductUrl() ?>"><img class="SOLDOUT-img" src="<?php // echo $this->getSkinUrl(); ?>/images/SOLDOUT.png" alt="SOLD OUT"></a> -->
                         	<?php if ($this->helper('wishlist')->isAllow()):?>	
-								<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(246,369); ?>" width="246" height="369" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>
 									<div class="ProdImgRollover-static-wl">
 										<div class="list-soldout">SOLD OUT</div>
 										<div class="cat-view-now"><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Wishlist') ?></a></div>
 									</div>
 							<?php else:?>
-								<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(246,369); ?>" width="246" height="369" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />			
 									<div class="ProdImgRollover-static">
 										<div class="list-soldout">SOLD OUT</div>
 									</div>
@@ -162,12 +167,6 @@
 					
 					
 					
-                <div class="product-name"><h2><a href="<?php echo $_product->getProductUrl() ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2></div>
-                <?php if($_product->getRatingSummary()): ?>
-                <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
-                <?php endif; ?>
-                
-                <?php echo $this->getPriceHtml($_product, true) ?>
 					<div class="only-left"><?php 
                         $qtyLeft = (int) Mage::getModel('cataloginventory/stock_item')->loadByProduct($_product)->getQty();    
                         if ($qtyLeft == 2)
