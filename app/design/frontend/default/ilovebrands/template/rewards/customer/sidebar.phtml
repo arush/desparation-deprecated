@@ -43,62 +43,29 @@
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
 ?>
-
-<div class="block box base-mini ad-reviews rewards-customer-sidebar" id="my_points">
-    <div class="head block-title">
-        <h4><strong><?php echo $this->__('My Points') ?></strong></h4>
+<div class="rewards-sidebar">
+    <div class="page-title">
+        <h4><?php echo $this->__('Points Balance') ?></h4>
     </div>
+    
     <div class="content block-content">
-    	<?php if($this->isCustomerLoggedIn()): ?>
-    		<?php if ($this->isSpendingAnyPoints()): ?>
-        		<div class="balance">
-        			<?php echo $this->__('Balance: ') ?> <?php echo $this->getCustomerPoints() ?> 
-    			</div>
-        		<div class="to_spend">
-        		<?php echo $this->__('To Spend: ') ?> <?php echo $this->getPointsSpending() ?> 
-    			</div>
-	    		<?php if ($this->isCartOverspent()): ?>
-	        		<span class="warning">
-	        			<?php echo $this->__('You are spending too many points!  You may not be able to checkout.') ?>
-	        		</span>
-	    		<?php else: ?>
-		    		<div class="divider"></div>
-	        		<div class="remaining">
-	        			<?php echo $this->__('Remaining: ') ?> <?php echo $this->getPointsRemaining() ?> 
-	        		</div>
-    			<?php endif; ?>
-    		<?php else: ?>
-        		<div class="to_spend">
-	    			<?php if($this->getCustomerPoints() == ""): ?>
-	        			<?php echo $this->__('You have no points to spend.') ?>
-	    			<?php else: ?>
-	        			<?php echo $this->__('You have %s to spend.', $this->getCustomerPoints()) ?>
-	    			<?php endif; ?>  
+    		<?php if($this->isCustomerLoggedIn()): ?>        		
+        		<div class="balance">        		
+	        		<?php echo $this->__('You have %s to spend.', $this->getCustomerPoints()) ?>
         		</div>  			
     		<?php endif; ?>
-    	<?php else: ?>
-    		<?php if ($this->isSpendingAnyPoints()): ?>
-        		<div class="to_spend">
-        		<?php echo $this->__('To Spend: ') ?> <?php echo $this->getPointsSpending() ?>
-        		</div>
-        		<div class="warning">
-   					<?php echo $this->__('You are trying to redeem points without being logged in.  Please log-in or create a new account to spend points.') ?>
-   				</div>
-    		<?php else: ?>
-        		<div class="notice">
-   					<?php echo $this->__('Please log-in or create an account, to use your points.') ?>
-   				</div>
-    		<?php endif; ?>
-    	<?php endif; ?>
-    </div>
     <div class="actions">
     	<a href="<?php echo $this->getUrl('rewards/customer') ?>">
     		<?php if($this->isCustomerLoggedIn()): ?>
-    			<?php echo $this->__('Manage My Points') ?>
+    			<?php echo $this->__('View My Activity') ?><br/><br/><br/>
+    			
     		<?php else: ?>
     			<?php echo $this->__('Log-in or create a new account') ?>
     		<?php endif; ?>
+    		<a href="<?php echo $this->getUrl('rewardsref/customer/index') ?>"><?php echo $this->__('Earn more points now') ?></a>
     	</a>
     </div>
+    </div>
+    
     	
 </div>

@@ -16,7 +16,7 @@ font-weight: bold;margin-top: -33px;padding: 0 8px;}*/
 .rewardsref-customer-index .group-select ul li textarea{ width:525px;}
 .rewardsref-customer-index .group-select .button-set {/*border-top: 1px solid #E4E4E4;*/clear: both;margin-top: 0em;padding-top: 8px;/*text-align: right;*/}
 .invitation-link{padding-bottom: 20px;}
-.send-now-box .secure{color: #848484; font-weight: bold; margin: 85px 13px 0 139px;}
+.send-now-box .secure{color: #848484; font-weight: bold; margin: 85px 22px 0 139px;}
 
 .referrals h4.legend{color:#2e2e2e; font-family: HelveticaNeueLight; font-size: 15px; font-weight: normal;}
 .referrals label{color:#464646;}
@@ -58,7 +58,6 @@ input#referral_url{margin-right: 20px;}
 }
 /*REFERRAL PAGE START 12/04/11*/
 .referrals{
-	width: 710px;
 }
 .social-share{
 	height: 50px;
@@ -82,7 +81,6 @@ input#referral_url{margin-right: 20px;}
 }
 .send-now-box {
 	background-color: #ffffff;
-	width: 687px;
 	height: 343px;
 	padding: 15px 11px;
 }
@@ -91,12 +89,13 @@ input#referral_url{margin-right: 20px;}
 	float: left;
 }
 .send-now-box-right{
-	width: 314px;
-	padding: 11px 13px 0;
+	width: 450px;
+	padding: 11px 0 0 25px;
 }
 .send-addresses{padding-top: 7px;}
 .send-now-box-left{
-	width: 335px;
+	width: 450px;
+	margin-right:10px;
 }
 .send-now-box-middle{float: left; width: 1px;}
 .send-now-box-left .send-header-left{margin: 11px 0 0 14px;}
@@ -122,7 +121,7 @@ input#referral_url{margin-right: 20px;}
 }
 .plaxo a.plaxo-link{color: #fff;}
 .plaxo-link{
-	width: 311px;
+	width: 420px;
 	background: #b14e4e;
 }
 .plaxo-link:hover{
@@ -132,7 +131,7 @@ input#referral_url{margin-right: 20px;}
 	background: url('../../images/button-rollover.png');
 }
 .sendinvitations{
-	width: 322px;
+	width: 430px;
 
 }
 .savepreferences{

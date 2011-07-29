@@ -1055,7 +1055,7 @@ p.error-msg {
 }
 
 .messages li.success-msg {
-  background: url("../images/success.png") no-repeat scroll 0 0 #D2F2D2;
+  background: url("../images/success.png") no-repeat scroll 0 0 #d2f2d2;
   border: 1px solid #d2f2d2;
   color: #467c46;
   font-family: Gotham-book;
@@ -11601,13 +11601,16 @@ a.cat-view-now {
 	padding: 0;
 	margin: 20px 0 0;
 }
-.my-account .page-title h4{
+.my-account .page-title h4, .rewards-sidebar .page-title h4{
 	color: #2e2e2e;
 	font-family: HelveticaNeueLight;
 	font-size: 15px;
 	font-weight: normal;
 }
-.my-account .page-title{
+
+
+
+.my-account .page-title, .rewards-sidebar .page-title{
 	margin: 0;
 	padding: 10px 15px;
 	border-bottom: 1px solid #E6E6E6;
@@ -11644,7 +11647,7 @@ a.cat-view-now {
 	.dashboard, .st-dashboard{
 		background: #fff;
 		color: #555555;
-		width: 320px;
+		width: 700px;
 		-moz-box-shadow: 0pt 0px 2px #acacac;
 		-webkit-box-shadow: 0pt 0px 2px #acacac;
 		-khtml-box-shadow: 0pt 0px 2px #acacac;
@@ -11653,6 +11656,19 @@ a.cat-view-now {
 		position: relative;
 		float: left;
 	}
+	
+	.rewards-sidebar {
+		background: #fff;
+		color: #555555;
+		width: 234px;
+		-moz-box-shadow: 0pt 0px 2px #acacac;
+		-webkit-box-shadow: 0pt 0px 2px #acacac;
+		-khtml-box-shadow: 0pt 0px 2px #acacac;
+		box-shadow: 0pt 0px 2px #acacac;
+		border: 1px solid #acacac\9;
+		margin-top: 20px;
+	}
+	
 	.st-dashboard .mypoints-summary .usable-points, .st-dashboard .mypoints-summary .msg {padding: 15px 15px 0;}
 	.st-dashboard .mypoints-summary a{color: #b14e4e; display: block; margin: 15px; text-transform: uppercase; font-family: Gotham-book;}
 	.st-dashboard .mypoints-summary a:hover{text-decoration: underline;}
@@ -11668,8 +11684,22 @@ a.cat-view-now {
 	.customer-account-index .my-account .dashboard h2, .dashboard h4.sub-title, .my-account .info-box .box-title{
 		color: #2e2e2e;
 	}
-	.my-account .dashboard a, .my-account .dashboard .recent-orders .data-table a, .my-account .dashboard .recent-orders .table-caption a{color: #b14e4e; font-familyy: Gotham-book; text-transform: uppercase;}
+	.my-account .dashboard a, .my-account .dashboard .recent-orders .data-table a, .my-account .dashboard .recent-orders .table-caption a{color: #b14e4e; font-family: Gotham-book; text-transform: uppercase;}
 	.my-account .dashboard .points-summary-emphasize{color: #000;}
+	.my-account .page-title a {font-size:11px;}
+	
+	.rewards-sidebar .block-content {
+		padding: 20px 15px 20px;
+	}
+	.points-summary-emphasize{font-family: arial; color:#567B55; font-weight: bold; }
+	
+	.rewards-sidebar .block-content a{
+		color: #B14E4E;
+		font-family: Gotham-book;
+		text-transform: uppercase;
+		font-size: 11px;
+	}
+	
 	/*DASHBOARD END*/
 	
 	/*ACCOUNT INFORMATION / NEWSLETTER START*/
@@ -11798,7 +11828,6 @@ a.cat-view-now {
 		box-shadow: 0pt 0px 2px #acacac;
 		border: 1px solid #acacac\9;
 		background: #fff;
-		width: 710px;
 	}
 	.my-account .storecredit{
 		background: #ffffff;

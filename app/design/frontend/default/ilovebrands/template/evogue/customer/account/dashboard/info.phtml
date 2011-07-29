@@ -27,10 +27,10 @@
 <div class="col2-set">
     <div class="col-1">
         <div class="info-box">
-            
+            <h3 class="box-title"><?php echo $this->__('My Info') ?> <span class="separator">|</span> <a href="<?php echo $this->getUrl('customer/account/edit') ?>"><?php echo $this->__('Edit') ?></a></h3>
             <p class="box-content">
-                <strong>Name: </strong><?php echo $this->htmlEscape($this->getCustomer()->getName()) ?><br />
-                <strong>Email: </strong><?php echo $this->htmlEscape($this->getCustomer()->getEmail()) ?><br />
+                <?php echo $this->htmlEscape($this->getCustomer()->getName()) ?><br />
+                <?php echo $this->htmlEscape($this->getCustomer()->getEmail()) ?><br />
                 <a href="<?php echo $this->getChangePasswordUrl() ?>"><?php echo $this->__('Change Password') ?></a>
             </p>
         </div>
