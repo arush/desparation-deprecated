@@ -35,7 +35,7 @@
 			<?php //echo $this->getChildHtml('topSearch') ?>	
 			<div class="checkout-link"><?php echo $this->getChildHtml('checkoutLinks') ?></div>	
 			<?php echo $this->getChildHtml('topCart') ?>
-			<?php echo $this->getChildHtml('accountLinks') ?>	
+			<div class="my-account-links"><?php echo $this->getChildHtml('accountLinks') ?></div>
 			  <?php if (Mage::getSingleton('customer/session')->isLoggedIn()):?> 
                 <?php echo $this->getChildHtml('topLinks') ?>
                     <?php /*WDCA CODE BEGIN*/ ?>

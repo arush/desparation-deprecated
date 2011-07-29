@@ -10995,7 +10995,7 @@ button::-moz-focus-inner{border:0;padding:0;margin:0;}
 	/*ACCOUNT LINKS START*/
 		.header-panel ul.links li{padding-right: 20px;}
 		.header .checkout-link, .header .links{text-transform: uppercase; font-size: 10px; font-family: Gotham-book, sans-serif;}
-		.header .links{*position: absolute; *right: 0;}
+		.ie7 .my-account-links ul.links {clear:both;}
 		.header .links .account{*position: absolute; *right: 225px;}
 		.header-panel .links li a{color: #eaeaea;}
 	/*ACCOUNT LINKS END*/
