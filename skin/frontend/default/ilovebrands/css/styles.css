@@ -11039,7 +11039,7 @@ button::-moz-focus-inner{border:0;padding:0;margin:0;}
 		.nav-invite form input{float: left; color: #929292;}
 		.nav-invite span{font-size: 11px; padding: 25px 0 0 10px; position: absolute;}
 		.nav-invite input{margin-right: 10px; width: 175px; *width: 170px; height: 24px; padding-left:5px; background: #e7e7e7; border: 1px solid #B2AEAE;}
-		.nav-invite button{height: 26px; border: 1px solid #B2AEAE; background: url("../images/sprites.png") no-repeat scroll -30px -625px transparent; color:#dedede; float: left; padding: 0 5px; font-family: Gotham-book, sans-serif; cursor: pointer;}
+		.nav-invite button{height: 26px; border: 1px solid #B2AEAE; color:#dedede; float: left; padding: 0 5px; font-family: Gotham-book, sans-serif; cursor: pointer; background-color:#B14E4E;}
 		.nav-invite button:hover{color: #000000; background: url("../images/sprites.png") no-repeat scroll -749px -103px transparent;}
 		.nav-invite img{padding-top: 15px; }
 		
@@ -12306,7 +12306,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 #shipping-method-buttons-container{margin-top: 15px;}
 .opc .buttons-set p.required { margin:0; padding:0 0 10px; }
 .opc .buttons-set .back-link { display:none; }
-.opc .buttons-set .please-wait { position:absolute; z-index:99; top:30%; left:50%; margin:-80px 0 0 -146px; border:5px solid #f3b66f; font-size:12px; background:#fff; padding:30px; white-space:nowrap; border:1px solid #c0c0c0; -moz-border-radius:6px; -webkit-border-radius:6px; border-radius:6px; -moz-box-shadow:1px 1px 2px rgba(0,0,0,0.2); -webkit-box-shadow:0 0 50px rgba(0,0,0,0.2); box-shadow:0 0 50px rgba(0,0,0,0.2); }
+.opc .buttons-set .please-wait { position:absolute; z-index:99; top:30%; left:60%; margin:-80px 0 0 -146px; border:5px solid #f3b66f; font-size:12px; background:#fff; padding:30px; white-space:nowrap; border:1px solid #c0c0c0; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px; -moz-box-shadow:1px 1px 2px rgba(0,0,0,0.2); -webkit-box-shadow:0 0 50px rgba(0,0,0,0.2); box-shadow:0 0 50px rgba(0,0,0,0.2); }
 .opc .buttons-set a { color:#b14e4e; }
 .opc .ul { list-style:disc outside; padding-left:18px; }
 .opc li.section { display:inline; }
@@ -12458,6 +12458,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	padding: 13px 5px 13px 13px;
 	border-bottom: 1px solid #e6e6e6;
 	color: #2e2e2e;
+	text-transform: uppercase;
 }
 .opc-block-progress div div a{
 	float: right;

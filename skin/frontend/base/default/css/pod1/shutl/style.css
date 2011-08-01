@@ -29,14 +29,23 @@
 .shutl .get_quote {
 	/*margin-left: 0px;
 	margin-top: 20px;*/
-	font: 14px;
+	font: 10px;
 	border: none;
 	margin: 20px;
 	/*flo add*/
-	background: url('../../../images/get-quote.jpg');
 	width: 183px;
 	height: 37px;
-	color: #e5e5e5;
+	color: #fff;
+	background: #B14E4E;
+	text-transform: uppercase;
+	font-family: Gotham-light;
+	
+}
+
+.shutl .get_quote:hover {
+	-moz-box-shadow: 0pt 0px 4px #acacac;
+	-webkit-box-shadow: 0pt 0px 4px #acacac;
+	-khtml-box-shadow: 0pt 0px 4px #acacac;
 }
 
 .shutl.about {
@@ -65,8 +74,7 @@
 	/*height: 500px;*/
 	z-index: 1501;
 	position: absolute;
-	/*background: #fff;*/
-	background: #000000;
+	background: #F4F4ED;
 	text-align: left;
 	overflow-y: auto;
 
@@ -107,12 +115,12 @@ a.shutl.close {
 }
 
 .shutl.quote h1 {
-	/*color: #d10610;*/
-	color: #ffffff;
+	color: #000;
 	font-size: 18px;
 	/*font-weight: bold;*/
 	/*flo add*/
 	padding-bottom: 10px;
+	font-family: HelveticaNeueLight;
 }
 
 .shutl.quote ul {
@@ -206,9 +214,9 @@ a.shutl.close {
 .shutl.quote .postcode {
 	font-size: 14px;
 	color: #717171;
-	padding: 4px;
+	padding: 8px;
 	/*border: 2px solid #D10610;*/
-	border: 2px solid #cc191d;
+	border: 1px solid #B14E4E;
 	margin-bottom: 10px;
 }
 
@@ -353,6 +361,7 @@ dl.sp-methods li {
 	float: right;
 }
 .shutl.about p{
+	color: #444;
 	font-size: 14px;
 }
 .shutl.quote fieldset{
