@@ -7228,7 +7228,7 @@ textarea {
   border: 5px solid rgb(243,
     182, 111);
   font-size: 12px;
-  color: rgb(241, 130, 0);
+  color: #B14E4E;
   font-weight: bold;
   background: none repeat scroll
     0% 0% rgb(255, 255, 255);
@@ -10623,7 +10623,7 @@ dl.sp-methods li#serversecure{padding-top: 0;}
 .opc .step #co-billing-form .form-list label{color: #555555;}
 .opc .step .form-list .form-alt .input-box, .opc .step .form-list .form-alt .input-box select#billing-address-select{width: 640px; color: #555555;}
 .opc .step .form-list .form-alt .input-box select#billing-address-select{border: 1px solid #ababab;} 
-#co-billing-form .form-list input.input-text{width: 377px; background: #f1f1f1; color: #555555; border: 1px solid #ababab;}
+#co-billing-form .form-list input.input-text{width: 371px; background: #f1f1f1; color: #555555; border: 1px solid #ababab; padding: 5px;}
 #co-billing-form .form-list select{width: 383px; background: #f1f1f1; color: #555555; border: 1px solid #ababab;}
 /*BILLING INFORMATION END*/
 
@@ -10638,7 +10638,7 @@ dl.sp-methods li#serversecure{padding-top: 0;}
 .opc .step #co-shipping-form .form-list label{color: #555555;}
 .opc .step .form-list .form-alt .input-box select#shipping-address-select{width: 640px; color: #555555;}
 .opc .step .form-list .form-alt .input-box select#shipping-address-select{border: 1px solid #ababab;} 
-#co-shipping-form .form-list input.input-text{width: 377px; background: #f1f1f1; color: #555555; border: 1px solid #ababab;}
+#co-shipping-form .form-list input.input-text{width: 371px; background: #f1f1f1; color: #555555; border: 1px solid #ababab; padding: 5px;}
 #co-shipping-form .form-list select{width: 383px; background: #f1f1f1; color: #555555; border: 1px solid #ababab;}
 /*SHIPPING INFORMATION END*/
 
