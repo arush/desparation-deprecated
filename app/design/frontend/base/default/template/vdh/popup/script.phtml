@@ -1,7 +1,7 @@
 <?php
 $helper = Mage::helper('popup');
 $currentUrl = str_replace(Mage::getBaseUrl(), '/', $this->helper('core/url')->getCurrentUrl());
-if (trim($currentUrl, '\/') == trim($helper->getTriggerUrl(), '\/') && (trim($helper->getTriggerUrl(), '\/') != '')): ?>
+if (trim($currentUrl, '\/') == trim($helper->getTriggerUrl(), '\/') && (trim($helper->getTriggerUrl(), '\/') != '') || $helper->getTriggerUrl() == '*'): ?>
 <script type="text/javascript">
 vdh.trigger = '<?php echo $helper->getTriggerUrl(); ?>';
 vdh.urls = new Array();
