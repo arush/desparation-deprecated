@@ -389,7 +389,7 @@ class Gigya_Socialize_Customer_AccountController extends Mage_Customer_AccountCo
 	               $session->login($username, $password);
 	           } catch (Mage_Core_Exception $e) {
 	           		$session->addError('login failed, please try again.');
-	                $session->setUsername($login['username']);
+	                $session->setUsername($username);
 	                Mage::log('login for user ' . $username . ' failed');
 	                return false;
 	           } catch (Exception $e) {
