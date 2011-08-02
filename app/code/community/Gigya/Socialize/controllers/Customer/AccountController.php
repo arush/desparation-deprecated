@@ -216,7 +216,7 @@ class Gigya_Socialize_Customer_AccountController extends Mage_Customer_AccountCo
                    $this->_welcomeCustomer($session->getCustomer(), true);
                }
            } catch (Mage_Core_Exception $e) {
-           		$session->addError($message);
+           		$session->addError($e->getMessage());
                 $session->setUsername($login['username']);
            } catch (Exception $e) {
                     // Mage::logException($e); // PA DSS violation: this exception log can disclose customer password
