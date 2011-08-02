@@ -1,0 +1,11 @@
+<script type="text/javascript">
+
+	var gs4m_replacerElementsCollection=$$(<?php echo json_encode($this->getSelector()) ?>);
+	if (gs4m_replacerElementsCollection.length>0) {
+		gs4m_replacerElementsCollection.each(function(el){
+			if (el.innerHTML == <?php echo json_encode($this->__($this->getTextToReplace()))?>) {
+				el.update(<?php echo json_encode($this->__($this->getReplacementText()))?>);
+			};
+		});
+	}
+</script>

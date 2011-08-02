@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <tabs>
+        <socialize_tab translate="label" module="socialize">
+            <label>Gigya Socialize</label>
+            <sort_order>450</sort_order>
+        </socialize_tab>
+    </tabs>
+    <sections>
+        <socialize_sec translate="label comment" module="socialize">
+            <label>Socialize</label>
+            <tab>socialize_tab</tab>
+            <sort_order>10</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+        	<groups>
+        		<socialize_general_group translate="label comment" module="socialize">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>200</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>1</expanded>
+                    <comment><![CDATA[For help with these settings, please refer to <a href="http://wiki.gigya.com/050_CMS_Modules/050_Magento">Gigya's Developer Documentation</a>.]]></comment>
+                    <fields>
+                        <enabled translate="label comment">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Use this to enable or disable all aspects of Gigya socialize. Please note that the plugin will ignore this if you do not provide an API key and a secret key below. ]]></comment>
+                        </enabled>
+                        <api_key translate="label comment">
+                            <label>Gigya Socialize API Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[In order to enable social optimization, you must first register and setup your account at <a href="http://gigya.com">Gigya</a>.]]></comment>
+                        </api_key>
+						<secret_key translate="label comment">
+                            <label>Gigya Socialize Secret Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </secret_key>
+						<enabled_providers translate="label comment">
+                            <label>Enabled Providers</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[A comma-separated list of providers you want your site to use. See the documentation for enabledProviders <a href="http://wiki.gigya.com/030_API_reference/010_Client_API/010_Objects/Conf_object">here</a> for a complete list of supported providers.]]></comment>
+                        </enabled_providers>
+                        <advanced translate="label comment">
+                            <label>Advanced Parameters</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Please only use code received from Gigya or you might break your store.]]></comment>
+                        </advanced>                        
+                    </fields>
+	            </socialize_general_group>
+        		<socialize_login_group translate="label comment" module="socialize">
+                    <label>Login</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>210</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>1</expanded>
+                    <comment><![CDATA[Use the following settings to configure your login:]]></comment>
+                    <fields>
+                        <enabled translate="label comment">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Use this to disable or re-enable socialize login.]]></comment>
+                        </enabled>
+                        <width translate="label comment">
+                            <label>Width</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[The width of the login plugin.]]></comment>
+                        </width>                        
+                        <height translate="label comment">
+                            <label>Height</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[The height of the login plugin.]]></comment>
+                        </height>                        
+                        <button_style translate="label comment">
+                            <label>Button Style</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>socialize/system_config_source_buttonStyle</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Choose a design for the login buttons.]]></comment>
+                        </button_style>                        
+                        <advanced translate="label comment">
+                            <label>Advanced Parameters</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Please only use code received from Gigya or you might break your store.]]></comment>
+                        </advanced>
+                    </fields>
+	            </socialize_login_group>
+        		<socialize_product_share_group translate="label comment" module="socialize">
+                    <label>Product Share</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>220</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>1</expanded>
+                    <comment><![CDATA[Use the following settings to configure sharing on your site:]]></comment>
+                    <fields>
+                        <enabled translate="label comment">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Use this to disable or re-enable sharing.]]></comment>
+                        </enabled>
+
+                        <share_link_format translate="label comment">
+                            <label>Share link format</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>socialize/system_config_source_linkFormat</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[]]></comment>
+                         </share_link_format>
+                        <share_link_icon_url translate="label comment">
+                            <label>Share link icon URL</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[]]></comment>
+                            <depends>
+                            	<share_link_format>icon</share_link_format>
+                            </depends>
+                         </share_link_icon_url>
+
+                        <email_link_format translate="label comment">
+                            <label>Email link format</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>socialize/system_config_source_linkFormat</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[]]></comment>
+                         </email_link_format>
+                        <email_link_icon_url translate="label comment">
+                            <label>Email link icon URL</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[]]></comment>
+                            <depends>
+                            	<email_link_format>icon</email_link_format>
+                            </depends>
+                         </email_link_icon_url>
+
+                        <scope translate="label comment">
+                            <label>Scope</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>socialize/system_config_source_scope</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Use this to determine whether to publish only to external social networks or to the site's internal activity feed plugin as well ('Both').]]></comment>
+                        </scope>
+                        <privacy translate="label comment">
+                            <label>Privacy</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>socialize/system_config_source_privacy</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Privacy level determines how the user action is presented in each of the Activity Feed Plugin tabs. Read more <a href="http://wiki.gigya.com/030_API_reference/010_Client_API/020_Methods/socialize.showShareUI">here</a>.]]></comment>
+                        </privacy>
+                        <advanced translate="label comment">
+                            <label>Advanced Parameters</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Please only use code received from Gigya or you might break your store.]]></comment>
+                        </advanced>
+                                                 
+                    </fields>
+	            </socialize_product_share_group>
+        		<socialize_product_comments_group translate="label comment" module="socialize">
+                    <label>Product Comments</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>230</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>1</expanded>
+                    <comment><![CDATA[Use the following settings to configure commenting on your site:]]></comment>
+                    <fields>
+                        <enabled translate="label comment">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Use this to disable or re-enable product comments.]]></comment>
+                        </enabled>
+                        <product_comments_categoryID translate="label comment">
+                            <label>Product Comments Category ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Please follow the instructions <a href="http://wiki.gigya.com/020_Developer_Guide/66_The_Comments_Plugin">here</a> to create a category called "Product Comments" and get the categoryID for it from the code provided at the site.]]></comment>
+                        </product_comments_categoryID>
+                 
+                        <advanced translate="label comment">
+                            <label>Advanced Parameters</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Please only use code received from Gigya or you might break your store.]]></comment>
+                        </advanced>
+                    </fields>
+	            </socialize_product_comments_group>
+        		<socialize_product_reactionsbar_group translate="label comment" module="socialize">
+                    <label>Product Reactions Bar</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>240</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>1</expanded>
+                    <comment><![CDATA[Use the following settings to configure a Reactions Bar on your site:]]></comment>
+                    <fields>
+                        <enabled translate="label comment">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Use this to disable or re-enable reactions.]]></comment>
+                        </enabled>
+                        <repositionUI translate="label comment">
+                            <label>Reposition UI</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Select 'Yes' to reposition the UI from its default location.]]></comment>
+                        </repositionUI>
+                        <repositionUISelector translate="label comment">
+                            <label>Reposition UI Selector</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[This should be a CSS Selector to get the element into which you want the UI to be repositioned. The UI will be repossitioned to be a child of the first element in the selected collection. e.g. .product-img-box ]]></comment>
+                            <depends>
+                            	<repositionUI>1</repositionUI>
+                            </depends>
+                        </repositionUISelector>
+                        <reactions translate="label comment">
+                            <label>Reactions</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[A comma-separated list of reaction IDs. You can use IDs from the following list or use your own self-defined reactions. Predefined reactions: loveit, cute, killer, amazing, omg, musthear, geeky, fashionable, attending, mustread, aged, agree, alluring, annoying, awesome, blah, boo, covet, crazy, designer, disagree, dislike, dull, elegant, fail, finally, fresh, funny, hardcore, harsh, hateit, haveit, hot, important, inmyplaylist, innovative, inspiring, support, wish, jammin, justweird, like, lol, musthave, needit, new, noway, obsessed, old, onmyipod, outrageous, recommend, rotfl, scary, swish, taboo, tired, trashy, trendy, ttth, worn, wtf, yada, yay, yuck.]]></comment>
+                        </reactions>
+                        <self_defiend_reactions translate="label comment">
+                            <label>Define More Reactions</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[A JSON array of action objects as described <a href="http://wiki.gigya.com/020_Developer_Guide/63_The_Reactions_Plugin#Step_1.3a_Define_an_array_of_Reaction_objects">here</a>. You can use the IDs of these reactions in the list of reactions above.]]></comment>
+                        </self_defiend_reactions>
+                        <scope translate="label comment">
+                            <label>Scope</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>socialize/system_config_source_scope</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Use this to determine whether to publish only to external social networks or to the site's internal activity feed plugin as well ('Both').]]></comment>
+                        </scope>
+                        <privacy translate="label comment">
+                            <label>Privacy</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>socialize/system_config_source_privacy</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Privacy level determines how the user action is presented in each of the Activity Feed Plugin tabs. Read more <a href="http://wiki.gigya.com/030_API_reference/010_Client_API/020_Methods/socialize.showShareUI">here</a>.]]></comment>
+                        </privacy>
+                        <advanced translate="label comment">
+                            <label>Advanced Parameters</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Please only use code received from Gigya or you might break your store.]]></comment>
+                        </advanced>
+                    </fields>
+	            </socialize_product_reactionsbar_group>
+        		<socialize_recommendations_group translate="label comment" module="socialize">
+                    <label>Recommendations</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>250</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>1</expanded>
+                    <comment><![CDATA[Use the following settings to configure Recommendations on your site:]]></comment>
+                    <fields>
+                        <enabled translate="label comment">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Use this to disable or re-enable recommendations.]]></comment>
+                        </enabled>
+                        <repositionUI translate="label comment">
+                            <label>Reposition UI</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Select 'Yes' to reposition the UI from its default location.]]></comment>
+                        </repositionUI>
+                        <repositionUISelector translate="label comment">
+                            <label>Reposition UI Selector</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[This should be a CSS Selector to get the element into which you want the UI to be repositioned. The UI will be repossitioned to be a child of the first element in the selected collection. e.g. .product-img-box ]]></comment>
+                            <depends>
+                            	<repositionUI>1</repositionUI>
+                            </depends>
+                        </repositionUISelector>
+                        <advanced translate="label comment">
+                            <label>Advanced Parameters</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Please only use code received from Gigya or you might break your store.]]></comment>
+                        </advanced>
+                    </fields>
+	            </socialize_recommendations_group>
+            </groups>
+		</socialize_sec>
+	</sections>
+</config>

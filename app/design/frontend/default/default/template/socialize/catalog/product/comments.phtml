@@ -1,0 +1,21 @@
+<!-- BEGIN Gigya Socialize Catalog Product Comments -->
+<?php if ($this->isEnabled() && $this->isConfigured()) {
+	//$CommentsCategoryID=$this->getCategoryID();
+	//$divID="commentsDiv_$CommentsCategoryID";
+?>
+
+<div class="box-collateral box-comments">
+	<br/>
+    <h2><?php echo $this->__('Product Comments') ?></h2>
+    <?php echo $this->getChildHtml('socialize_plugin_comments') ?>
+</div>
+
+<?php
+}
+else {
+?>
+	<!-- Comments are either disabled or not configured properly -->
+<?php 
+}
+?> 		
+<!-- End Gigya Socialize Catalog Product Comments -->

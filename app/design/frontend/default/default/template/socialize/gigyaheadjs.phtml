@@ -1,0 +1,57 @@
+
+<!-- BEGIN Gigya Socialize -->
+<!-- socialize.js script should only be included once -->
+<?php
+	$cfg=Mage::getSingleton('socialize/config');
+	$_apiKey= $cfg->getApiKey();
+?>
+<?php
+	  if($_apiKey): 
+		  //if($this->isSecure()):
+		  if(Mage::app()->getStore()->isCurrentlySecure()):
+?>
+			  <script type="text/javascript" src="https://cdns.gigya.com/js/socialize.js?apiKey=<?php echo(Mage::helper('socialize')->encodeURIComponent($_apiKey)) ?>"></script>
+<?php 	  else: ?>
+			  <script type="text/javascript" src="http://cdn.gigya.com/js/socialize.js?apiKey=<?php echo(Mage::helper('socialize')->encodeURIComponent($_apiKey)) ?>"></script>
+<?php 	  endif; ?>
+		<script type="text/javascript">
+		var conf=
+		{
+			APIKey: <?php echo json_encode($_apiKey) ?>
+			,enabledProviders: <?php echo Mage::helper('socialize')->toJSStringLiteral($cfg->getSetting('enabled_providers','general')); ?>
+			,connectWithoutLoginBehavior: 'alwaysLogin'
+			,onError:function(e) {
+			}
+				
+		};
+
+		// onLogin Event handler    
+		function onGigyaLoginHandler(eventObj) {  
+		   switch(eventObj.context) {
+		   case 'loginPlugin':
+		   	 break;
+		   default:
+		   	   var redirectURL='<?php echo $this->helper('customer')->getLoginPostUrl(); ?>';
+		   	   if (!(eventObj.user.hasOwnProperty('signature'))) {
+		   		eventObj.user['signature']=eventObj.user['UIDSig'];
+		   	   }
+			   gigya.services.socialize._redirectTo(redirectURL, [eventObj, eventObj.user]);
+			   break;
+		   }
+		}  
+		function onGigyaLogoutHandler(eventObj) {
+			document.location.replace('<?php echo Mage::helper('socialize')->getLogoutUrl() ?>');
+		}
+			
+		gigya.services.socialize.addEventHandlers(conf, {  
+	        onLogin: onGigyaLoginHandler
+	        ,onLogout: onGigyaLogoutHandler   
+	     } );  
+	  
+	  
+			
+		</script>
+<?php 	  else: ?>
+	<!--  no api_key -->
+<?php endif; ?>
+<!-- END Gigya Socialize -->
