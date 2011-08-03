@@ -24,7 +24,8 @@
                 <?php if($this->customerHasUsablePoints()): ?>
                         <?php /***** Here's where the slider gets inserted ******/ ?>
                         <?php echo $this->getChildHtml("slider"); ?>
-                    <input type="checkbox" name="use_all_points" id="use_all_points" onclick="toggleUseAllPoints(this.checked)"/>&nbsp;
+                        <br />
+                    <input type="checkbox" name="use_all_points" id="use_all_points" onclick="maximise();"/>&nbsp;
                     <label for="use_all_points"><?php echo $this->__('Maximize my discount with points'); ?></label>
                 <?php else: ?>
                     <span class="no_points_to_spend"><?php echo $this->__("You don't currently have any points to spend."); ?></span>

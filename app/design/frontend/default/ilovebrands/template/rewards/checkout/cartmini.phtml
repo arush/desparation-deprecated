@@ -25,7 +25,8 @@ $cant_use_points = (($this->getMinSpendablePoints() == $this->getMaxSpendablePoi
             <div class="cartSlider">
                 <?php echo $this->getChildHtml('points_slider'); ?>
             </div>
-            <input type="checkbox" name="use_all_points" id="use_all_points" onclick="toggleUseAllPoints(this.checked)"/>&nbsp;
+            <br />
+            <input type="checkbox" name="use_all_points" id="use_all_points" onclick="maximise();"/>&nbsp;
             <label for="use_all_points"><?php echo $this->__('Maximize my discount with points'); ?></label>
         <?php else: ?>
             <?php if($cant_use_points): ?>

@@ -9,8 +9,7 @@ function feignPriceChange() {
 }
 
 </script>
-
-<div class="slider" onmouseup="sliderNotSliding()">
+<div class="slider" onmouseup="sliderNotSliding()" style="display:none;">
 	<table cellspacing="0" cellpadding="0">
 		<tbody>
 			<tr>
@@ -43,6 +42,7 @@ function feignPriceChange() {
 	</table>
 	<div id="sliderCaption" class="cartSlider_caption">
 	</div>
+	
 	<input type="hidden" name="redemption_uses" id="redemption_rule_uses"/>
 </div>
 <div align="center" id="payment-please-wait" class="rewards-opc-please-wait">
@@ -73,3 +73,25 @@ function feignPriceChange() {
 	}
 </script>
 
+<input type="range" id="range" name="test" min="<?php echo (string)$this->getMinSpendablePoints(); ?>" max="<?php echo (string)$this->getMaxSpendablePoints(); ?>" value="<?php echo (string)$this->getCurrentSpendingPoints(); ?>" /><br />
+
+<script type="text/javascript">
+jQuery(":range").rangeinput();
+Event.observe($$('.handle')[0], 'mouseup', function(obj){
+	updateTotalsDueToSpendings($('range').value);
+	if ($('range').value == <?php echo (string)$this->getMaxSpendablePoints(); ?>) {
+		$('use_all_points').checked	= true;
+	} else {
+		$('use_all_points').checked	= false;	
+	}
+});
+
+function maximise() {
+	if ($('use_all_points').checked) {
+		$$('.handle')[0].setStyle({ left: '147px' });
+		$('range').value = <?php echo (string)$this->getMaxSpendablePoints(); ?>;
+		updateTotalsDueToSpendings($('range').value);
+	}
+
+}
+</script>
