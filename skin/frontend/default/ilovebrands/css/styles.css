@@ -11730,6 +11730,12 @@ a.cat-view-now {
 		float: left;
 	}
 	.newsletter{width: 100%;}
+	
+	.newsletter-page #generalFieldset {
+		clear:both;
+		margin-left: 255px;
+	}
+	.newsletter-page .form-list .control {margin-bottom:20px;}	
 
 	.account-information-page, .newsletter-page{
 		background: #fff;
@@ -12715,12 +12721,12 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	position:relative; 
 	cursor:pointer;
 	border:1px solid #333;
-	width:175px;
+	width:280px;
 	float:left; 
 	clear:right;
 	margin-top:10px;
-	-moz-border-radius:5px; 
-	-webkit-border-radius:5px; 
+	-moz-border-radius:3px; 
+	-webkit-border-radius:3px; 
 	-moz-box-shadow:inset 0 0 8px #000;
 }
 

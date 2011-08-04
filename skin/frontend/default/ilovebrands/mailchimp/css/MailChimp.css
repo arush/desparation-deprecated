@@ -15,7 +15,7 @@
 #generalFieldset fieldset,
 #additionalFieldset fieldset {margin:0 10px 5px;}
 #generalFieldset .title,
-#additionalFieldset .title {font-size:13px;color:#0A263C;margin-top:5px;}
+#additionalFieldset .title {font-size:13px;color:#666;margin-top:5px;}
 #generalFieldset input,
 #additionalFieldset input{margin-right:0px !important;}
 #generalFieldset label,

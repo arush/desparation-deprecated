@@ -36,16 +36,16 @@
     <?php echo $this->getBlockHtml('formkey')?>
     <ul class="form-list">
         <li class="control">
-            <label for="subscription"><?php echo $this->__('Subscribe for Live Alerts') ?></label>
+            <label for="subscription"><?php echo $this->__('Subscribe to emails') ?></label>
             <div class="input-box">
                 <input type="checkbox" name="is_subscribed" id="subscription" value="1" title="<?php echo $this->__('General Subscription') ?>"<?php if($this->getIsSubscribed()): ?> checked="checked"<?php endif; ?> class="checkbox" />
             </div>
         </li>
         
      <!--************* MAILCHIMP PRO HERE ************************-->
-
+		<div class="mc-groups">
         <?php echo $this->getChildHtml('generalNewsletter'); ?>
-
+		</div>
      <!--************* MAILCHIMP PRO HERE ************************-->
         
     </ul>
