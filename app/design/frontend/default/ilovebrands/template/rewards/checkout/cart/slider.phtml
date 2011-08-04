@@ -80,8 +80,9 @@ function feignPriceChange() {
 
 	Event.observe($$('.wrapper')[0], 'mouseup', function(obj){
 		setTimeout(function(){
-			if ($$('.points-amount').length == 0) { return; }
-			if (parseInt($$('.points-amount')[0].innerHTML) == $('range').value) { return; }
+			var currentValue = 0;
+			if ($$('.points-amount').length > 0) { currentValue = parseInt($$('.points-amount')[0].innerHTML); }
+			if (currentValue == $('range').value) { return; }
 			
 			updateTotalsDueToSpendings($('range').value);
 			if ($('range').value == '<?php echo (string)$this->getMaxSpendablePoints(); ?>') {
