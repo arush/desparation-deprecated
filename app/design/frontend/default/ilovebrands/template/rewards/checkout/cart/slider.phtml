@@ -72,26 +72,33 @@ function feignPriceChange() {
 		$('sliderHandle').removeClassName('sliderHandle-sliding');
 	}
 </script>
+<div class="rangeinput">
+	<input type="range" id="range" name="test" min="<?php echo (string)$this->getMinSpendablePoints(); ?>" max="<?php echo (string)$this->getMaxSpendablePoints(); ?>" value="<?php echo (string)$this->getCurrentSpendingPoints(); ?>" /><br />
 
-<input type="range" id="range" name="test" min="<?php echo (string)$this->getMinSpendablePoints(); ?>" max="<?php echo (string)$this->getMaxSpendablePoints(); ?>" value="<?php echo (string)$this->getCurrentSpendingPoints(); ?>" /><br />
+	<script type="text/javascript">
+	jQuery(":range").rangeinput();
 
-<script type="text/javascript">
-jQuery(":range").rangeinput();
-Event.observe($$('.handle')[0], 'mouseup', function(obj){
-	updateTotalsDueToSpendings($('range').value);
-	if ($('range').value == <?php echo (string)$this->getMaxSpendablePoints(); ?>) {
-		$('use_all_points').checked	= true;
-	} else {
-		$('use_all_points').checked	= false;	
+	Event.observe($$('.wrapper')[0], 'mouseup', function(obj){
+		setTimeout(function(){
+			if (parseInt($$('.points-amount')[0].innerHTML) == $('range').value) { return; }
+			
+			updateTotalsDueToSpendings($('range').value);
+			if ($('range').value == '<?php echo (string)$this->getMaxSpendablePoints(); ?>') {
+				$('use_all_points').checked	= true;
+			} else {
+				$('use_all_points').checked	= false;	
+			}
+		}, 500);
+	});
+
+
+	function maximise() {
+		if ($('use_all_points').checked) {
+			$$('.handle')[0].setStyle({ left: '147px' });
+			$('range').value = <?php echo (string)$this->getMaxSpendablePoints(); ?>;
+			updateTotalsDueToSpendings($('range').value);
+		}
+	
 	}
-});
-
-function maximise() {
-	if ($('use_all_points').checked) {
-		$$('.handle')[0].setStyle({ left: '147px' });
-		$('range').value = <?php echo (string)$this->getMaxSpendablePoints(); ?>;
-		updateTotalsDueToSpendings($('range').value);
-	}
-
-}
-</script>
+	</script>
+</div>
