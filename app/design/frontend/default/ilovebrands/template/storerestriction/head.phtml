@@ -1,0 +1,6 @@
+<?php 
+Mage::getSingleton('customer/session')->setBeforeAuthUrl($this->getRequest()->getRequestUri());
+if(!Mage::getSingleton('customer/session')->isLoggedIn()) {
+    echo "<script type=\"text/javascript\">window.location='".Mage::getUrl("customer/account/login")."';</script>";  
+}
+?>
