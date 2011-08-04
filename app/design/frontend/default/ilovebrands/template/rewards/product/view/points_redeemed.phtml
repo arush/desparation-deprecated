@@ -99,7 +99,7 @@ $show_slider = true;
         <?php echo $this->__('Use your reward points') ; ?>
     </span>
     <select name="redemption_rule" id="redemption_rule" 
-            class="redemption_selector validate-can_use_points validate-has_enough_points">
+            class="redemption_selector validate-can_use_points validate-has_enough_points"  style="display:none;">
         <option value="" selected="selected">I don't want to use reward points</option>
         <?php foreach ($ruleOptions as $ruleOption): ?>
             <?php if (isset($ruleOption['rule_id'])): ?>
@@ -109,7 +109,7 @@ $show_slider = true;
             <?php endif; ?>
         <?php endforeach; ?>
     </select>
-    <div id="redemption_rule_uses_container" class="redemption_uses_container" style="display:none;">
+    <div id="redemption_rule_uses_container" class="redemption_uses_container">
         <?php if ($show_slider): ?>
             <?php echo $this->getChildHtml('points_slider'); ?>
             <?php echo $this->getChildHtml('points_slider_js'); ?>
