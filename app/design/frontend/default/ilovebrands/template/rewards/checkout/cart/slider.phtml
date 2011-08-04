@@ -80,6 +80,7 @@ function feignPriceChange() {
 
 	Event.observe($$('.wrapper')[0], 'mouseup', function(obj){
 		setTimeout(function(){
+			if ($$('.points-amount').length == 0) { return; }
 			if (parseInt($$('.points-amount')[0].innerHTML) == $('range').value) { return; }
 			
 			updateTotalsDueToSpendings($('range').value);
