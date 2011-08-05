@@ -17,14 +17,13 @@ vdh.formListener = function() {
 			e.stop();
 			var postData = '';
 			for (var i = 0; i < this.elements.length; i++) {
-				if (postData != '') { postData += '&'; }
-				postData += this.elements[i].name + '=' + this.elements[i].value;
+				if (postData != '') { postData += '/'; }
+				postData += this.elements[i].name + '/' + this.elements[i].value;
 			}
 			
 			var ajax = new Ajax.Request(
-				this.action, {
+				this.action + '/' + postData, {
 					method: 'post',
-					params: postData,
 					onSuccess: function(transport) {
 	
 						if (transport.responseText == '') {
@@ -37,11 +36,17 @@ vdh.formListener = function() {
 								}
 							}
 							document.body.setStyle({ overflow: 'auto' });
-							$$('.vdh.close').each(function(obj){		
-								obj.up().previous().remove();						
-								obj.up().remove();
 							
+							
+							$$('.vdh.overlay').each(function(obj){
+
+								document.body.setStyle({ overflow: 'auto' });
+								obj.next().remove();						
+								obj.remove();
+							
+								
 							});
+
 						} 
 						$$('.vdh.content').each(function(obj){
 							obj.innerHTML = '';		
