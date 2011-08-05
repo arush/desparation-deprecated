@@ -10,6 +10,53 @@ vdh.windowSize = function(w) {
     
     }
 }
+
+vdh.formListener = function() {
+	$$('.vdh.content form').each(function(obj){
+		Event.observe(obj, 'submit', function(e){
+			e.stop();
+			var postData = '';
+			for (var i = 0; i < this.elements.length; i++) {
+				if (postData != '') { postData += '&'; }
+				postData += this.elements[i].name + '=' + this.elements[i].value;
+			}
+			
+			var ajax = new Ajax.Request(
+				this.action, {
+					method: 'post',
+					params: postData,
+					onSuccess: function(transport) {
+	
+						if (transport.responseText == '') {
+							for(var i = 0; i < vdh.urls.length; i++) {
+								if (!vdh.urls[i].loaded) {
+									vdh.urls[i].loaded = true;
+									var ajax = new Ajax.Request(
+										vdh.urls[i].url, { method: 'post' }
+									);						
+								}
+							}
+							document.body.setStyle({ overflow: 'auto' });
+							$$('.vdh.close').each(function(obj){		
+								obj.up().previous().remove();						
+								obj.up().remove();
+							
+							});
+						} 
+						$$('.vdh.content').each(function(obj){
+							obj.innerHTML = '';		
+							obj.insert(transport.responseText);			
+							vdh.formListener();			
+							
+						});
+	
+					}
+				}
+			);
+				
+		});
+	});	
+}
 vdh.popup = function() {
 	document.body.insert('<div class="vdh overlay loading"></div>');
 	document.body.insert('<div class="vdh content"><a class="vdh close"><span>close</span></a></div>');	
@@ -74,11 +121,11 @@ vdh.popup = function() {
 					obj.up().remove();
 				
 				});
-				
+				return;
 							
 			} 
 			$$('.vdh.content').each(function(obj){
-
+				obj.innerHTML = '';		
 				obj.insert(request.transport.responseText);			
 				var offsets = document.viewport.getScrollOffsets();
 			
@@ -89,6 +136,9 @@ vdh.popup = function() {
 				obj.setStyle({ left: left, top: top });
 
 				obj.fade({ duration: 1.0, from: 0, to: 1 });
+				
+				
+				vdh.formListener();			
 				
 			});
 		},
