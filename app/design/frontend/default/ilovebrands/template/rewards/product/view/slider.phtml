@@ -9,8 +9,7 @@ function feignPriceChange() {
 }
 
 </script>
-
-<div class="slider" onmouseup="sliderNotSliding()">
+<div class="slider" onmouseup="sliderNotSliding()" style="display:none;">
 	<table cellspacing="0" cellpadding="0">
 		<tbody>
 			<tr>
@@ -44,7 +43,6 @@ function feignPriceChange() {
 			</tr>
 		</tbody>
 	</table>
-	<input type="hidden" name="redemption_uses" id="redemption_rule_uses"/>
 </div>
 <script type="text/javascript">
 	document.observe("dom:loaded", function() {
@@ -62,4 +60,25 @@ function feignPriceChange() {
 		$('sliderHandle').removeClassName('sliderHandle-sliding');
 	}
 </script>
+	<input type="text" name="redemption_uses" id="redemption_rule_uses"/>
 
+<div class="rangeinput">
+	<?php
+	$quote = Mage::getSingleton ('rewards/session')->getQuote();
+	?>
+	<input type="range" id="range" name="test" min="<?php echo (string)$quote->getMinSpendablePoints(); ?>" max="<?php echo (string)$quote->getMaxSpendablePoints(); ?>" value="" /><br />
+
+	<script type="text/javascript">
+	jQuery(":range").rangeinput();
+	Event.observe($$('.wrapper')[0], 'mouseup', function(obj){
+			setTimeout(function(){
+			if ($('redemption_rule_uses').value == $('range').value) {
+				return;
+			} else {
+				$('redemption_rule_uses').value = $('range').value;
+			}
+		}, 500);
+	});
+
+	</script>
+</div>
