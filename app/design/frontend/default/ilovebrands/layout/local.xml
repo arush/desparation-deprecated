@@ -8,5 +8,11 @@
     <customer_account_login>
         <remove name="storerestriction"/>       
     </customer_account_login>
+    <customer_account_create>
+        <remove name="storerestriction"/>       
+    </customer_account_create>
+    <customer_account_forgotpassword>
+        <remove name="storerestriction"/>       
+    </customer_account_forgotpassword>    
    
 </layout>
