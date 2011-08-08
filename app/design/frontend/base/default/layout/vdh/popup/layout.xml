@@ -38,5 +38,11 @@
    <customer_account_login>
         <remove name="popup" />
         <remove name="popup_header" />
-    </customer_account_login>        
-</layout>
+    </customer_account_login>
+ 
+ 	<customer_account_create>
+        <remove name="popup" />
+        <remove name="popup_header" />
+    </customer_account_create>
+ 
+ </layout>
