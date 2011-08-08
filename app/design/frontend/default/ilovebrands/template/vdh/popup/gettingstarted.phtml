@@ -1,5 +1,5 @@
 <?php
-if (Mage::getSingleton('customer/session')->getCustomer()->isLoggedIn() && !Mage::getModel('core/cookie')->get('getting_started')):
+if (Mage::getSingleton('customer/session')->getCustomer() && !Mage::getModel('core/cookie')->get('getting_started')):
 	Mage::getModel('core/cookie')->set('getting_started', true);
 ?>
 
