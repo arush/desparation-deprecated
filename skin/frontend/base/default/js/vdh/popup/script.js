@@ -24,6 +24,15 @@ vdh.queue = {
 	iterate: function() {
 		url = this.queue.pop();
 		if (url) {
+
+			$$('.vdh.overlay').each(function(obj){
+			
+				if (vdh.popupCount > 0) {
+					obj.setStyle({ display: 'block'});
+				
+				}
+			});		
+		
 			var ajax = new Ajax.Request(
 				url, {
 				method: 'post',
@@ -120,7 +129,7 @@ vdh.popup = function() {
 		onComplete: function(request) {
 		
 			if (request.url.indexOf('popup/count') >= 0) {
-				if (vdh.trim(request.transport.responseText) == '') {
+				if (request.transport.responseText != '') {
 					vdh.popupCount++;				
 				}
 
@@ -131,14 +140,21 @@ vdh.popup = function() {
 		}
 	});
 	
+	
+
 	document.body.insert('<div class="vdh overlay loading"></div>');
 	document.body.insert('<div class="vdh content"><a class="vdh close"><span>close</span></a></div>');	
 	document.body.setStyle({ overflow: 'hidden' });
 
-
 	var dimensions = vdh.windowSize();
 
 	$$('.vdh.overlay').each(function(obj){
+	
+		if (vdh.popupCount == 0) {
+			obj.setStyle({ display: 'none'});
+		
+		}
+	
 		obj.setStyle(dimensions);
 		obj.setStyle({ opacity: 0 });
 		obj.fade({ duration: 1.0, from: 0, to: 0.7 });
@@ -154,6 +170,9 @@ vdh.popup = function() {
 		});
 		
 	});
+	
+	
+	
 	if (vdh.urls[0].loaded) {
 		vdh.urls[0].loaded = false;
 	}
