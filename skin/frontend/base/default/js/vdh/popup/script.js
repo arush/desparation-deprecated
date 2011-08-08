@@ -20,47 +20,53 @@ vdh.formListener = function() {
 				if (postData != '') { postData += '/'; }
 				postData += this.elements[i].name + '/' + this.elements[i].value;
 			}
-			
 			var ajax = new Ajax.Request(
 				this.action + '/' + postData, {
 					method: 'post',
 					onSuccess: function(transport) {
-	
+
 						if (transport.responseText == '') {
 							for(var i = 0; i < vdh.urls.length; i++) {
 								if (!vdh.urls[i].loaded) {
-									vdh.urls[i].loaded = true;
 									var ajax = new Ajax.Request(
 										vdh.urls[i].url, { method: 'post' }
-									);						
+									);
+									return;
 								}
 							}
-							document.body.setStyle({ overflow: 'auto' });
-							
-							
-							$$('.vdh.overlay').each(function(obj){
+						} else {
 
-								document.body.setStyle({ overflow: 'auto' });
-								obj.next().remove();						
-								obj.remove();
-							
+							$$('.vdh.content').each(function(obj){
+								obj.setStyle({display: 'block'});
+								obj.innerHTML = '<a class="vdh close"><span>close</span></a>';		
+								obj.insert(transport.responseText);			
+								vdh.formListener();			
 								
 							});
-
-						} 
-						$$('.vdh.content').each(function(obj){
-							obj.innerHTML = '';		
-							obj.insert(transport.responseText);			
-							vdh.formListener();			
-							
-						});
-	
+						}
 					}
 				}
 			);
 				
 		});
 	});	
+}
+
+vdh.closeListener = function() {
+	$$('.vdh.close').each(function(obj){
+	
+		Event.observe(obj, 'click', function(){
+			document.body.setStyle({ overflow: 'auto' });
+			this.up().previous().remove();						
+			this.up().remove();
+
+		});
+		
+	});	
+}
+
+vdh.trim = function(stringToTrim) {
+	return stringToTrim.replace(/^\s+|\s+$/g,"");
 }
 vdh.popup = function() {
 	document.body.insert('<div class="vdh overlay loading"></div>');
@@ -108,18 +114,28 @@ vdh.popup = function() {
 				obj.removeClassName('loading');						
 			
 			});
-
-
+			var urlFound = false;
+			var eof = false;
 			if (request.transport.responseText == '') {
+				console.log(request.url);
 				for(var i = 0; i < vdh.urls.length; i++) {
+						console.log(vdh.urls[i]);
 					if (!vdh.urls[i].loaded) {
 						vdh.urls[i].loaded = true;
 						var ajax = new Ajax.Request(
 							vdh.urls[i].url, { method: 'post' }
-						);						
-						return;
+						);
+						urlFound = true;
+						break;
 					}
 				}
+				if (!urlFound) { eof = true; }
+			}
+			
+			if (urlFound) { return false; }
+			
+			if (vdh.trim(request.transport.responseText) == '' && eof) {
+				
 				document.body.setStyle({ overflow: 'auto' });
 				$$('.vdh.close').each(function(obj){		
 					obj.up().previous().remove();						
@@ -129,8 +145,10 @@ vdh.popup = function() {
 				return;
 							
 			} 
+
 			$$('.vdh.content').each(function(obj){
-				obj.innerHTML = '';		
+				obj.setStyle({display: 'block'});
+				obj.innerHTML = '<a class="vdh close"><span>close</span></a>';		
 				obj.insert(request.transport.responseText);			
 				var offsets = document.viewport.getScrollOffsets();
 			
@@ -144,8 +162,11 @@ vdh.popup = function() {
 				
 				
 				vdh.formListener();			
+				vdh.closeListener();
 				
 			});
+			
+		
 		},
 		onFailure: function(response) {
 		

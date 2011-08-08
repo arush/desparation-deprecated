@@ -9,6 +9,7 @@
 	background: #000 url('../../../images/vdh/popup/loader.gif') 50% 50% no-repeat;
 }
 .vdh.content {
+	display: none;
 	width: 90%;
 	height: 90%;
 	z-index: 1501;

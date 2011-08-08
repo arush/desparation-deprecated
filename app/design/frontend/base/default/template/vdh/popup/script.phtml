@@ -6,7 +6,7 @@ if (trim($currentUrl, '\/') == trim($helper->getTriggerUrl(), '\/') && (trim($he
 vdh.trigger = '<?php echo $helper->getTriggerUrl(); ?>';
 vdh.urls = new Array();
 <?php $i=0;foreach($helper->getUrls() as $url):?>
-vdh.urls[<?php echo $i; $i++ ?>] = { url: '<?php echo $url['url']; ?>', loaded: false };
+vdh.urls[<?php echo $i; $i++ ?>] = { url: '<?php echo $url; ?>', loaded: false };
 <?php endforeach;?>
 vdh.popup();
 </script>

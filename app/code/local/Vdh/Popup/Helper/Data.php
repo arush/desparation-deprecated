@@ -7,8 +7,15 @@ class Vdh_Popup_Helper_Data extends Mage_Core_Helper_Abstract {
 	}
 	
 	public function getUrls() {
-		$url = Mage::getStoreConfig('popup/general/url');
-		if (!$url) { return array(); }
-		return unserialize($url);
+		$urls = Mage::getStoreConfig('popup/general/url');
+		if (!$urls) { return array(); }
+		$return = array();
+		
+		$urls = unserialize($urls);
+		foreach($urls as $url) {
+			$return[$url['sort_order']] = $url['url'];
+		}
+		ksort($return);
+		return $return;
 	}
 }

@@ -12,6 +12,8 @@
     </default>
     
     <popup_index_index>
+    	<remove name="popup" />
+    
     	<reference name="root">
             <action method="setTemplate"><template>page/empty.phtml</template></action>
     	</reference>
@@ -25,7 +27,5 @@
     
     <popup_form_page>
     	<remove name="popup" />
-    <popup_form_page>    
-    Vdh_Popup_Form
-    
+    </popup_form_page>    
 </layout>

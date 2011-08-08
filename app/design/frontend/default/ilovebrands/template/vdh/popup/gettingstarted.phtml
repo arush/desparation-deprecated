@@ -1,0 +1,10 @@
+<?php
+if (Mage::getSingleton('customer/session')->getCustomer() && !Mage::getModel('core/cookie')->get('getting_started')):
+	Mage::getModel('core/cookie')->set('getting_started', true);
+?>
+
+<form name="getting_started" action="/popup/form/page/index/gettingstarted">
+	<p>Welcome to Evogue, where shopping is more than just a dream...</p>
+	<input type="submit" name="next" value="next" />
+</form>
+<?php endif; ?>
