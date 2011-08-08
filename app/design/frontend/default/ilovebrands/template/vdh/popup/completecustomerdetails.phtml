@@ -1,0 +1,15 @@
+<?php
+$customer = Mage::getSingleton('customer/session')->getCustomer();
+if ($this->getDob()) {
+	$customer->setDob($this->getDob());
+	$customer->save();
+}
+//Only render if the Customer's DOB is not set and we have not yet submitted this form
+if (!$customer->getDob() && !$this->getDob()):
+?>
+<form name="customer_details" action="/popup/form/page/index/completecustomerdetails">
+	<label><?php echo $this->__('Date of Birth'); ?></label><input type="text" name="dob" value="" />
+	<br />
+	<input type="submit" name="update" value="update" />
+</form>
+<?php endif; ?>

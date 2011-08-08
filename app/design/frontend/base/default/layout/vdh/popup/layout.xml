@@ -6,12 +6,19 @@
             <action method="addCss"><stylesheet>css/vdh/popup/style.css</stylesheet></action>
             
         </reference>
+		<reference name="after_body_start">			
+				<block type="core/template" name="popup_header" template="vdh/popup/header.phtml"/>			
+		</reference>        
 		<reference name="before_body_end">			
 				<block type="core/template" name="popup" template="vdh/popup/script.phtml"/>			
 		</reference>
     </default>
     
     <popup_index_index>
+    	<remove name="popup" />
+		<remove name="popup_header" />
+    	
+    
     	<reference name="root">
             <action method="setTemplate"><template>page/empty.phtml</template></action>
     	</reference>
@@ -23,4 +30,9 @@
     	</reference>
     </popup_index_first>
     
+    <popup_form_page>
+    	<remove name="popup" />
+		<remove name="popup_header" />
+
+    </popup_form_page>    
 </layout>

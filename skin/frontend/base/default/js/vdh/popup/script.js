@@ -10,7 +10,127 @@ vdh.windowSize = function(w) {
     
     }
 }
+vdh.queue = {
+	queue: [],
+	sending: false,
+	send: function(url) {
+		this.queue.push(url);
+		if (!this.sending) {
+			this.sending = true;
+			this.iterate();			
+		}
+	},
+	
+	iterate: function() {
+		url = this.queue.pop();
+		if (url) {
+			var ajax = new Ajax.Request(
+				url, {
+				method: 'post',
+				onSuccess: function(transport) {
+					vdh.queue.sending = false;
+					if (transport.responseText == '') {
+						var nextUrl = false;
+						for(var i = 0; i < vdh.urls.length; i++) {
+							if (!vdh.urls[i].loaded) {
+								vdh.urls[i].loaded = true;
+								nextUrl = true;
+								vdh.queue.send(vdh.urls[i].url);
+								break;
+							}
+						}
+						if (!nextUrl) {
+							document.body.setStyle({ overflow: 'auto' });
+							$$('.vdh.close').each(function(obj){		
+								obj.up().previous().remove();						
+								obj.up().remove();
+								for(var i = 0; i < vdh.urls.length; i++) {				
+									vdh.urls[i].loaded = false;
+								}					
+							
+							});
+						}
+					} else {
+
+						$$('.vdh.content').each(function(obj){
+							obj.setStyle({display: 'block'});
+							obj.innerHTML = '<a class="vdh close"><span>close</span></a>';		
+							obj.insert(transport.responseText);			
+						
+							var dimensions = vdh.windowSize();
+							var offsets = document.viewport.getScrollOffsets();
+						
+							var left = ((parseInt(dimensions.width) - parseInt(obj.getStyle('width'))) / 2) + offsets.left + 'px';
+							var top = ((parseInt(dimensions.height) - parseInt(obj.getStyle('height'))) / 2) + offsets.top + 'px';
+			
+							obj.setStyle({ opacity: 0 });
+							obj.setStyle({ left: left, top: top });
+			
+							obj.fade({ duration: 1.0, from: 0, to: 1 });
+							
+							
+							vdh.formListener();			
+							vdh.closeListener();							
+						});
+					}
+					vdh.queue.iterate();
+				}
+			});
+		}
+	}
+};
+vdh.formListener = function() {
+	$$('.vdh.content form').each(function(obj){
+		Event.observe(obj, 'submit', function(e){
+			e.stop();
+			var postData = '';
+			for (var i = 0; i < this.elements.length; i++) {
+				if (postData != '') { postData += '/'; }
+				postData += this.elements[i].name + '/' + this.elements[i].value;
+			}
+			vdh.queue.send(this.action + '/' + postData);
+				
+		});
+	});	
+}
+
+vdh.closeListener = function() {
+	$$('.vdh.close').each(function(obj){
+	
+		Event.observe(obj, 'click', function(){
+			document.body.setStyle({ overflow: 'auto' });
+			this.up().previous().remove();						
+			this.up().remove();
+			for(var i = 0; i < vdh.urls.length; i++) {				
+				vdh.urls[i].loaded = false;
+			}					
+
+		});
+		
+	});	
+}
+
+vdh.trim = function(stringToTrim) {
+	return stringToTrim.replace(/^\s+|\s+$/g,"");
+}
 vdh.popup = function() {
+
+	Ajax.Responders.register({
+	
+		onComplete: function(request) {
+		
+			if (request.url.indexOf('popup/count') >= 0) {
+				if (vdh.trim(request.transport.responseText) == '') {
+					vdh.popupCount++;				
+				}
+
+				$('popupCounter').innerHTML = vdh.popupCount;
+				return;
+			}
+			
+		}
+	});
+	
 	document.body.insert('<div class="vdh overlay loading"></div>');
 	document.body.insert('<div class="vdh content"><a class="vdh close"><span>close</span></a></div>');	
 	document.body.setStyle({ overflow: 'hidden' });
@@ -27,98 +147,27 @@ vdh.popup = function() {
 			document.body.setStyle({ overflow: 'auto' });
 			this.next().remove();						
 			this.remove();
+			for(var i = 0; i < vdh.urls.length; i++) {				
+				vdh.urls[i].loaded = false;
+			}			
 
 		});
 		
 	});
-
-	$$('.vdh.close').each(function(obj){
-	
-		Event.observe(obj, 'click', function(){
-			document.body.setStyle({ overflow: 'auto' });
-			this.up().previous().remove();						
-			this.up().remove();
-
-		});
-		
-	});
-	
-	Ajax.Responders.register({
-	
-		onComplete: function(request) {
-			var popup = false;		
-			for(var i = 0; i < vdh.urls.length; i++) {
-				if (request.url.indexOf(vdh.urls[i].url) >= 0) { popup = true; }
-			}
-			if (!popup) { return; }
-			
-			$$('.vdh.overlay.loading').each(function(obj){		
-				obj.removeClassName('loading');						
-			
-			});
-
-
-			if (request.transport.responseText == '') {
-				for(var i = 0; i < vdh.urls.length; i++) {
-					if (!vdh.urls[i].loaded) {
-						vdh.urls[i].loaded = true;
-						var ajax = new Ajax.Request(
-							vdh.urls[i].url, { method: 'post' }
-						);						
-						return;
-					}
-				}
-				document.body.setStyle({ overflow: 'auto' });
-				$$('.vdh.close').each(function(obj){		
-					obj.up().previous().remove();						
-					obj.up().remove();
-				
-				});
-				
-							
-			} 
-			$$('.vdh.content').each(function(obj){
-
-				obj.insert(request.transport.responseText);			
-				var offsets = document.viewport.getScrollOffsets();
-			
-				var left = ((parseInt(dimensions.width) - parseInt(obj.getStyle('width'))) / 2) + offsets.left + 'px';
-				var top = ((parseInt(dimensions.height) - parseInt(obj.getStyle('height'))) / 2) + offsets.top + 'px';
-
-				obj.setStyle({ opacity: 0 });
-				obj.setStyle({ left: left, top: top });
-
-				obj.fade({ duration: 1.0, from: 0, to: 1 });
-				
-			});
-		},
-		onFailure: function(response) {
-		
-			var popup = false;		
-			for(var i = 0; i < vdh.urls.length; i++) {
-				if (request.url.indexOf(vdh.urls[i].url) >= 0) { popup = true; }
-			}
-			if (!popup) { return; }
-			
-			$$('.vdh.overlay.loading').each(function(obj){		
-				obj.removeClassName('loading');						
-			
-			});
-
-			
-			document.body.setStyle({ overflow: 'auto' });
-			$$('.vdh.close').each(function(obj){		
-				obj.up().previous().remove();						
-				obj.up().remove();
-			
-			});
-		}	
-	});
-	
+	if (vdh.urls[0].loaded) {
+		vdh.urls[0].loaded = false;
+	}
 	vdh.urls[0].loaded = true;	
-	var ajax = new Ajax.Request(
-		vdh.urls[0].url, { method: 'post' }
-	);
-
+	vdh.queue.send(vdh.urls[0].url);
+	vdh.count();
 
 }
+vdh.count = function() {
+	for(var i = 0; i < vdh.urls.length; i++) {
+		var ajax = new Ajax.Request(
+			vdh.urls[i].url + '/popup/count', { method: 'post' }
+		);
+	}
+
+}
+vdh.popupCount = 0;
