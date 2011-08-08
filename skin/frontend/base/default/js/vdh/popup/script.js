@@ -24,9 +24,7 @@ vdh.queue = {
 	iterate: function() {
 		url = this.queue.pop();
 		if (url) {
-		
 
-/*
 			$$('.vdh.overlay').each(function(obj){
 			
 				if (vdh.popupCount > 0) {
@@ -34,7 +32,6 @@ vdh.queue = {
 				
 				}
 			});		
-*/
 		
 			var ajax = new Ajax.Request(
 				url, {
@@ -132,7 +129,7 @@ vdh.popup = function() {
 		onComplete: function(request) {
 		
 			if (request.url.indexOf('popup/count') >= 0) {
-				if (vdh.trim(request.transport.responseText) == '') {
+				if (request.transport.responseText != '') {
 					vdh.popupCount++;				
 				}
 
