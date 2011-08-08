@@ -33,6 +33,10 @@
     <popup_form_page>
     	<remove name="popup" />
 		<remove name="popup_header" />
-
-    </popup_form_page>    
+    </popup_form_page>
+    
+   <customer_account_login>
+        <remove name="popup" />
+        <remove name="popup_header" />
+    </customer_account_login>        
 </layout>
