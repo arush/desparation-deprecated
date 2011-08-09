@@ -7660,6 +7660,7 @@ textarea {
   *padding-bottom: 60px; 
 }
 
+
 .account-login .registered-users p {
   margin-bottom: 1.5em;
 }
@@ -7770,6 +7771,40 @@ div.validation-passed {
   border-width: 1px;
   width: 200px;
 }
+
+/* gigya additions */
+.account-login .gigya-content {margin-left: 17px;}
+
+.account-login #slider {
+  width: 320px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.account-login .scroll {
+  height: 250px;
+  overflow: auto;
+  position: relative; /* fix for IE to respect overflow */
+  clear: left;
+  background: #FFFFFF url(images/content_pane-gradient.gif) repeat-x scroll left bottom;
+}
+
+.account-login .scrollContainer div.panel {
+  padding: 20px;
+  height: 210px;
+  width: 260px; /* change to 560px if not using JS to remove rh.scroll */
+}
+
+.account-login .slider .navigation .li{
+	padding: 16px;
+	float: left;
+	font-family: HelveticaNeueLight;
+	font-size: 16px;
+	text-transform: lowercase;
+}
+
+/* END gigya */
+
 
 .customer-account-forgotpassword .form-list input.input-text {
   color: rgb(134, 134, 134);

@@ -52,39 +52,79 @@
 
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
     <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="login-form">
-        <div class="fieldset">			
-			<div id="login-title" class="cufon">
-				<?php echo $this->__('members sign in') ?>
+        <div class="fieldset">
+        	
+			<!-- <div id="login-title" class="cufon">
+				<?php // echo $this->__('members sign in') ?>
 			</div>
-			<?php if ($this->helper('customer')->isRegistrationAllowed()): ?>
+			<?php // if ($this->helper('customer')->isRegistrationAllowed()): ?>
 			<div id="btn-request" class="cufon">
 				<a href="http://www.evogue.co.uk/editorial/?page_id=120"><span><?php echo $this->__('become a member') ?></span></a>
-			</div>
-			<?php endif; ?>
+			</div> -->
+			<?php // endif; ?>
+			
+		
+		
 			<div class="col-1 registered-users">
-				<ul class="form-list">
-					<li>
-						<label for="email" class="required"><?php echo $this->__('email') ?></label>
-						<div class="input-box">
-							<input name="login[username]" value="<?php echo $this->htmlEscape($this->getUsername()) ?>" id="email" type="text" class="input-text required-entry validate-email" title="<?php echo $this->__('Email Address') ?>" />
-						</div>
-					</li>
-					<li>
-						<label for="pass" class="required"><?php echo $this->__('password') ?></label>
-						<div class="input-box">
-							<input name="login[password]" type="password" class="input-text required-entry validate-password" id="pass" title="<?php echo $this->__('Password') ?>" />
-						</div>
-					</li>
-				</ul>
-				<div class="buttons-set form-buttons btn-only">
-					<button type="submit" class="button" name="send" id="send2"><span><span class="cufon"><?php echo $this->__('Sign in') ?></span></span></button>
-					<a href="<?php echo $this->getForgotPasswordUrl() ?>"><?php echo $this->__('Forgot Your Password?') ?></a>
-				</div>
-			<div style="clear: both;"><!-- --></div>
-			</div>  
-        </div>
+			
+			<div id="panes">
+				
+				<div id="slider">
+  					<ul class="navigation">
+    					<li><a href="#login">Members sign in</a></li>
+    					<li><a href="#register">Become a Member</a></li>
+  					</ul>
+							
+				<!-- element with overflow applied -->
+  					<div class="scroll">
+    					<!-- the element that will be scrolled during the effect -->
+    					<div class="scrollContainer">
+      						<!-- our individual panels -->
+      						<div class="panel" id="login">
+      							<h3>Connect or Register</h3>
+      							<?php echo $this->getChildHtml('socialize_plugin_login') ?>
+      							<p>Connecting helps us personalise content that is relevant to you. We'll never post without your permission.
+      							<br/>
+      							<br/>
+      							<a href="#register">I don't have a social account</a></p>
+      						</div>
+      						<div class="panel" id="register">
+      							<div class="login-normal">
+									<ul class="form-list">
+										<li>
+											<label for="email" class="required"><?php echo $this->__('email') ?></label>
+											<div class="input-box">
+												<input name="login[username]" value="<?php echo $this->htmlEscape($this->getUsername()) ?>" id="email" type="text" class="input-text required-entry validate-email" title="<?php echo $this->__('Email Address') ?>" />
+											</div>
+										</li>
+										<li>
+											<label for="pass" class="required"><?php echo $this->__('password') ?></label>
+											<div class="input-box">
+												<input name="login[password]" type="password" class="input-text required-entry validate-password" id="pass" title="<?php echo $this->__('Password') ?>" />
+											</div>
+										</li>
+									</ul>
+									<div class="buttons-set form-buttons btn-only">
+										<button type="submit" class="button" name="send" id="send2"><span><span class="cufon"><?php echo $this->__('Sign in') ?></span></span></button>
+										<a href="#forgotpass<?php // echo $this->getForgotPasswordUrl() ?>"><?php echo $this->__('Forgot Your Password?') ?></a>
+									</div>
+									<div style="clear: both;"><!-- --></div>
+								</div>
+      						</div>
+      						<div class="panel" id="forgotpass">
+      						<!--  forgotpass content -->
+      						</div>
+    					</div> <!-- end scrollContainer -->
+  					</div> <!-- end scroll -->
+				</div> <!-- end slider -->
+			
+			</div> <!-- end panes -->
+			
+			</div> <!-- end col-1 registered-users -->
+			  
+        </div> <!-- end fieldset -->
     </form>
-        
+
 	<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('home-text')->toHtml() ?>
 	<div id="content-links">
 		
@@ -102,5 +142,5 @@
     //]]>
     </script>
     
-        
+            
 </div>
