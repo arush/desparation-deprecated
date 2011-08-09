@@ -122,7 +122,8 @@ vdh.closeListener = function() {
 vdh.trim = function(stringToTrim) {
 	return stringToTrim.replace(/^\s+|\s+$/g,"");
 }
-vdh.popup = function() {
+vdh.popup = function(suppress) {
+	if (suppress) { return; }
 
 	Ajax.Responders.register({
 	
@@ -141,19 +142,19 @@ vdh.popup = function() {
 	});
 	
 	
+	if (vdh.popupCount == 0) {
+		return;
+	}
+
 
 	document.body.insert('<div class="vdh overlay loading"></div>');
 	document.body.insert('<div class="vdh content"><a class="vdh close"><span>close</span></a></div>');	
 	document.body.setStyle({ overflow: 'hidden' });
+	
 
 	var dimensions = vdh.windowSize();
 
 	$$('.vdh.overlay').each(function(obj){
-	
-		if (vdh.popupCount == 0) {
-			obj.setStyle({ display: 'none'});
-		
-		}
 	
 		obj.setStyle(dimensions);
 		obj.setStyle({ opacity: 0 });
