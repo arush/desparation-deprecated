@@ -96,7 +96,8 @@ function feignPriceChange() {
 
 	function maximise() {
 		if ($('use_all_points').checked) {
-			$$('.handle')[0].setStyle({ left: '147px' });
+			var newLeft = parseInt($$('.slider')[0].getStyle('width')) - parseInt($$('.handle')[0].getStyle('width'));
+			$$('.handle')[0].setStyle({ left: newLeft + 'px'});
 			$('range').value = <?php echo (string)$this->getMaxSpendablePoints(); ?>;
 			updateTotalsDueToSpendings($('range').value);
 		}
