@@ -73,24 +73,17 @@ function feignPriceChange() {
 	}
 </script>
 <div class="rangeinput">
-[<?php echo (string)$this->getCurrentSpendingPoints(); ?>]
+
 	<input type="range" id="range" name="test" min="<?php echo (string)$this->getMinSpendablePoints(); ?>" max="<?php echo (string)$this->getMaxSpendablePoints(); ?>" value="<?php echo (string)$this->getCurrentSpendingPoints(); ?>" /><br />
+	<input type="hidden" id="pointWatcher" value="<?php echo (string)$this->getCurrentSpendingPoints(); ?>" />
 
 	<script type="text/javascript">
 	jQuery(":range").rangeinput();
 
 	Event.observe($$('.wrapper')[0], 'mouseup', function(obj){
 		setTimeout(function(){
-			var currentValue = 0;
-			if ($$('.points-amount').length > 0) {
-			
-				currentValue = parseInt($$('.points-amount')[0].innerHTML);
-				currentValue -= <?php echo (string)$this->getCurrentSpendingPoints(); ?>;
-			
-			}
-			
-			if (currentValue == $('range').value) { return; }
-			
+			if ($('pointWatcher').value == $('range').value) { return; }
+			$('pointWatcher').value = $('range').value;
 			updateTotalsDueToSpendings($('range').value);
 			if ($('range').value == '<?php echo (string)$this->getMaxSpendablePoints(); ?>') {
 				$('use_all_points').checked	= true;
@@ -106,6 +99,7 @@ function feignPriceChange() {
 			var newLeft = parseInt($$('.rangeinput .slider')[0].getStyle('width')) - parseInt($$('.rangeinput .handle')[0].getStyle('width'));
 			$$('.rangeinput .handle')[0].setStyle({ left: newLeft + 'px'});
 			$('range').value = <?php echo (string)$this->getMaxSpendablePoints(); ?>;
+			$('pointWatcher').value = $('range').value;			
 			updateTotalsDueToSpendings($('range').value);
 		}
 	

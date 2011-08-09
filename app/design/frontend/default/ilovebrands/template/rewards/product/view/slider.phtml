@@ -63,8 +63,14 @@ function feignPriceChange() {
 	<input type="hidden" name="redemption_uses" id="redemption_rule_uses"/>
 
 <div class="rangeinput">
-
-	<input type="range" id="range" name="test" min="0" max="<?php echo number_format(Mage::registry('current_product')->getFinalPrice(),2); ?>" value="0" /><br />
+	<?php
+	$max = Mage::registry('current_product')->getFinalPrice();
+	if ($max > Mage::registry('pointsPerPound')) {
+		$max = Mage::registry('pointsPerPound');
+	}
+	$max = number_format($max, 2);
+	?>
+	<input type="range" id="range" name="test" min="0" max="<?php echo $max; ?>" value="0" /><br />
 	<?php $currencySymbol = Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getSymbol(); ?>
 	<script type="text/javascript">
 	jQuery(":range").rangeinput();
