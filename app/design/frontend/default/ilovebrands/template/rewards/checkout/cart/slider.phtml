@@ -73,6 +73,7 @@ function feignPriceChange() {
 	}
 </script>
 <div class="rangeinput">
+[<?php echo (string)$this->getCurrentSpendingPoints(); ?>]
 	<input type="range" id="range" name="test" min="<?php echo (string)$this->getMinSpendablePoints(); ?>" max="<?php echo (string)$this->getMaxSpendablePoints(); ?>" value="<?php echo (string)$this->getCurrentSpendingPoints(); ?>" /><br />
 
 	<script type="text/javascript">
@@ -81,7 +82,13 @@ function feignPriceChange() {
 	Event.observe($$('.wrapper')[0], 'mouseup', function(obj){
 		setTimeout(function(){
 			var currentValue = 0;
-			if ($$('.points-amount').length > 0) { currentValue = parseInt($$('.points-amount')[0].innerHTML); }
+			if ($$('.points-amount').length > 0) {
+			
+				currentValue = parseInt($$('.points-amount')[0].innerHTML);
+				currentValue -= <?php echo (string)$this->getCurrentSpendingPoints(); ?>;
+			
+			}
+			
 			if (currentValue == $('range').value) { return; }
 			
 			updateTotalsDueToSpendings($('range').value);

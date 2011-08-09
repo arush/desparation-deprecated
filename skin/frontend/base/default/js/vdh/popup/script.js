@@ -124,6 +124,15 @@ vdh.trim = function(stringToTrim) {
 }
 vdh.popup = function(suppress) {
 
+	document.observe('dom:loaded', function(){
+		Event.observe($('popupCounter'), 'click', function(){
+			if (vdh.popupCounter > 0) {
+				vdh.popup(false);			
+			}
+
+		});
+	});
+
 	Ajax.Responders.register({
 	
 		onComplete: function(request) {
