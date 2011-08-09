@@ -123,7 +123,6 @@ vdh.trim = function(stringToTrim) {
 	return stringToTrim.replace(/^\s+|\s+$/g,"");
 }
 vdh.popup = function(suppress) {
-	if (suppress) { return; }
 
 	Ajax.Responders.register({
 	
@@ -141,6 +140,7 @@ vdh.popup = function(suppress) {
 		}
 	});
 	
+	if (suppress) { return; }
 	
 	if (vdh.popupCount == 0) {
 		return;
