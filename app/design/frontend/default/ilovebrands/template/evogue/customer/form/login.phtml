@@ -51,8 +51,7 @@
 	</div> -->
 
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
-    <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="login-form">
-        <div class="fieldset">
+        
         	
 			<!-- <div id="login-title" class="cufon">
 				<?php // echo $this->__('members sign in') ?>
@@ -72,7 +71,7 @@
 				<div id="slider">
   					<ul class="navigation">
     					<li><a href="#login">Members sign in</a></li>
-    					<li><a href="#register">Become a Member</a></li>
+    					<li><a href="http://www.evogue.co.uk/editorial/?page_id=120">Become a Member</a></li>
   					</ul>
 							
 				<!-- element with overflow applied -->
@@ -80,15 +79,18 @@
     					<!-- the element that will be scrolled during the effect -->
     					<div class="scrollContainer">
       						<!-- our individual panels -->
+      						
       						<div class="panel" id="login">
-      							<h3>Connect or Register</h3>
-      							<?php echo $this->getChildHtml('socialize_plugin_login') ?>
-      							<p>Connecting helps us personalise content that is relevant to you. We'll never post without your permission.
-      							<br/>
-      							<br/>
-      							<a href="#register">I don't have a social account</a></p>
-      						</div>
-      						<div class="panel" id="register">
+      						<form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="login-form">
+      						<div class="fieldset">
+      							<div class="gigya-group">
+      								<div class="gigya-label"><p>login with</p></div>
+      								<div class="gigya-block">
+      									<?php echo $this->getChildHtml('socialize_plugin_login') ?>
+      								</div>
+      							</div>
+      							
+      							
       							<div class="login-normal">
 									<ul class="form-list">
 										<li>
@@ -106,14 +108,57 @@
 									</ul>
 									<div class="buttons-set form-buttons btn-only">
 										<button type="submit" class="button" name="send" id="send2"><span><span class="cufon"><?php echo $this->__('Sign in') ?></span></span></button>
-										<a href="#forgotpass<?php // echo $this->getForgotPasswordUrl() ?>"><?php echo $this->__('Forgot Your Password?') ?></a>
+										<p class="forgotpass-back-link"><a href="#forgotpass">Forgot your password?</a></p>
 									</div>
+									
 									<div style="clear: both;"><!-- --></div>
+									
+									<!-- <a href="#forgotpass<?php // echo $this->getForgotPasswordUrl() ?>"><?php // echo $this->__('Forgot Your Password?') ?></a> -->
 								</div>
-      						</div>
+      						</div> <!-- end fieldset -->
+      						</form>
+      						</div> <!-- end panel -->
+      						
       						<div class="panel" id="forgotpass">
-      						<!--  forgotpass content -->
+      							
+     								
+      								<form action="<?php echo $this->getUrl('*/*/forgotpasswordpost') ?>" method="post" id="form-validate">
+      								<fieldset>
+									    <div class="field set">
+									        <div class="password-message"><?php echo $this->__('Please enter your email below and we\'ll send you a new password.') ?></div>
+									        <ul class="form-list">
+									            <li>
+									                <label for="email_address" class="required"><?php echo $this->__('email') ?></label>
+									                <div class="input-box">
+									                    <input type="text" name="email" alt="email" id="forgotpass_address" class="input-text required-entry validate-email" value="<?php echo $this->htmlEscape($this->getEmailValue()) ?>" />
+									                </div>
+									            </li>
+									        </ul>
+											<div class="buttons-set form-buttons">
+												<button type="submit" name="submit" class="button" id="submit_btn" value="Send"><span><span class="cufon"><?php echo $this->__('Reset Password') ?></span></span></button>
+												
+												
+												<p class="forgotpass-back-link"><a href="#login"><small>&laquo; </small>return to login</a></p>
+											<div style="clear: both;"><!-- --></div>
+											</div>
+									    </div>
+									</fieldset>
+									</form>
+
+      							
       						</div>
+      						
+      						<div class="panel" id="register">
+      							
+      							<h3>Connect to register</h3>
+      							<?php echo $this->getChildHtml('socialize_plugin_login') ?>
+      							<p>Connecting helps us personalise content that is relevant to you. We'll never post without your permission.
+      							<br/>
+      							<br/>
+      							<a href="#register">I don't have a social account</a></p>
+      							
+      						</div>
+      						
     					</div> <!-- end scrollContainer -->
   					</div> <!-- end scroll -->
 				</div> <!-- end slider -->
@@ -122,8 +167,8 @@
 			
 			</div> <!-- end col-1 registered-users -->
 			  
-        </div> <!-- end fieldset -->
-    </form>
+        
+    
 
 	<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('home-text')->toHtml() ?>
 	<div id="content-links">
@@ -138,7 +183,6 @@
     <script type="text/javascript">
     //<![CDATA[
         var dataForm = new VarienForm('login-form', true);
-		
     //]]>
     </script>
     

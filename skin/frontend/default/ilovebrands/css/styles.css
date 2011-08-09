@@ -7496,7 +7496,7 @@ textarea {
 
 .my-account .form-list input.input-text, .form-list textarea {
   background: none repeat scroll
-    0pt 0pt rgb(27, 26, 26);
+    0pt 0pt #eee;
   border-color: rgb(0, 0, 0)
     rgb(51, 51, 51) rgb(51, 51,
     51) rgb(0, 0, 0);
@@ -7652,12 +7652,11 @@ textarea {
 
 .account-login .new-users, .account-login .registered-users {
   clear: both;
-  background: url("../images/60_black.png") repeat scroll
-    0% 0% transparent;
-  width: 324px;
-  padding: 0pt 20px 20px
-    0pt;
-  *padding-bottom: 60px; 
+ /* background: url("../images/60_black.png") repeat scroll 0% 0% transparent; */
+  width: 340px;
+  /* padding: 0pt 20px 20px 0pt; */
+  *padding-bottom: 60px;
+  margin-top: 50px;
 }
 
 
@@ -7681,7 +7680,7 @@ textarea {
 
 .account-login .fieldset {
   float: left;
-  margin: 50px 0pt 0pt;
+  /* margin: 50px 0pt 0pt; */
 }
 
 .account-login .fieldset h2 {
@@ -7689,10 +7688,13 @@ textarea {
 }
 
 .account-login .form-list label, .account-login .form-list span.label {
-  color: rgb(134, 134, 134);
-  font-size: 16px ! important;
-  font-weight: normal;
-  width: 90px;
+ font-family: HelveticaNeueLight;
+ font-size: 14px;
+ color: #ccc;
+ font-weight: 100;
+ padding-top: 0px;
+ text-transform:lowercase;
+  width: 75px;
 }
 
 .customer-account-forgotpassword .form-list label {
@@ -7715,7 +7717,7 @@ textarea {
   width: 210px;
   height: 28px;
   margin: 0px 0px 0px
-    105px;
+    90px;
   text-transform: uppercase;
   *right: 17px;
 }
@@ -7729,6 +7731,7 @@ textarea {
   width: 196px;
   height: 28px;
   text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
 .account-login span.validation-error, div.validation-error, span.validation-passed,
@@ -7740,15 +7743,17 @@ div.validation-passed {
 
 .account-login .btn-only button.button span, .account-login .btn-only button.button span,
 .customer-account-forgotpassword .form-buttons .button span {
-  padding: 2px 27px;
+  /*padding: 2px 27px; */
   color: rgb(0, 0, 0);
   font-size: 16px;
-  font-weight: normal;
+  font-weight: 100;
+  font-family: HelveticaNeueLight;
+  color: #444;
 }
 
 .account-login .btn-only a {
   text-decoration: none;
-  color: rgb(112, 112, 112);
+	color: #B14E4E;
   text-transform: lowercase;
   margin-top: 20px;
   float: right;
@@ -7776,31 +7781,114 @@ div.validation-passed {
 .account-login .gigya-content {margin-left: 17px;}
 
 .account-login #slider {
-  width: 320px;
+  width: 340px;
   margin: 0 auto;
   position: relative;
 }
 
-.account-login .scroll {
-  height: 250px;
+.account-login #slider .scroll {
+  height: 300px;
   overflow: auto;
   position: relative; /* fix for IE to respect overflow */
   clear: left;
-  background: #FFFFFF url(images/content_pane-gradient.gif) repeat-x scroll left bottom;
+  background: #000;
+}
+
+.account-login .login-normal {
+	height: 200px;
 }
 
 .account-login .scrollContainer div.panel {
-  padding: 20px;
-  height: 210px;
-  width: 260px; /* change to 560px if not using JS to remove rh.scroll */
+  padding: 10px;
+  width: 330px; /* change to 560px if not using JS to remove rh.scroll */
 }
 
-.account-login .slider .navigation .li{
+.account-login #slider .navigation a {
 	padding: 16px;
 	float: left;
-	font-family: HelveticaNeueLight;
-	font-size: 16px;
+    color: #C1C1C1;
+	font-family: HelveticaNeueLight, Arial;
+	font-size: 17px;
 	text-transform: lowercase;
+    margin: 0 !important;
+    padding: 5px 10px 10px;
+    position: relative;
+
+
+}
+.account-login #slider .navigation a.selected{
+    background: url("../images/60_black.png") repeat scroll 0 0 transparent;
+	color: #eee;
+}
+
+.account-login #forgotpass .password-message {
+	padding:20px;
+	color: #eee;
+	font-size: 12px;
+	margin-bottom: 20px;
+}
+
+.account-login #forgotpass .form-list label {
+color: #ccc;
+font-size: 14px ! important;
+font-weight: normal;
+font-family: HelveticaNeueLight;
+width: 67px;
+float: left;
+}
+
+.account-login #forgotpass .form-buttons {width:auto; margin-right: 35px; float: right;}
+
+.account-login #forgotpass .form-buttons .button {
+background: url("../images/sprites.gif") no-repeat scroll
+ -8px -4px transparent;
+border: 1px solid #CFCEC4;
+margin-right: 2px;
+width: 210px;
+height: 28px;
+text-transform: uppercase;
+
+}
+
+.account-login #forgotpass .form-buttons .button span {
+ font-family: HelveticaNeueLight;
+ font-size: 16px;
+ color: #444;
+ font-weight: 100;
+ padding-top: 0px;
+}
+
+.account-login #forgotpass .forgotpass-back-link {
+	margin: 10px 0 0 20px;
+
+}
+
+.account-login .gigya-group {
+
+}
+
+.account-login .gigya-block { float:left;
+
+}
+
+.account-login .gigya-label {
+ float:left;
+ margin-top: 41px;
+ width:75px;
+}
+.account-login .gigya-label p { 
+ font-family: HelveticaNeueLight;
+ font-size: 14px;
+ color: #ccc;
+ font-weight: 100;
+ padding-top: 0px;
+ text-transform:lowercase;
+ float:right;
+
+}
+
+.account-login .login-normal .form-buttons .button {
+    margin-left: 58px;
 }
 
 /* END gigya */
@@ -7811,7 +7899,7 @@ div.validation-passed {
   padding: 5px;
   float: right;
   background: none repeat scroll
-    0% 0% rgb(27, 26, 26);
+    0% 0% #eee;
   border-color: rgb(0, 0, 0)
     rgb(51, 51, 51) rgb(51, 51,
     51) rgb(0, 0, 0);
@@ -9008,6 +9096,7 @@ font-size: 13px;
 
 .customer-account-forgotpassword .form-buttons {
   width: auto;
+  float: right;
 }
 
 .customer-account-create .form-buttons, .enterprise-invitation-customer-account-create .form-buttons
