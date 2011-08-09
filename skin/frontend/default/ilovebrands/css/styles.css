@@ -12715,7 +12715,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 
 
 /* slider root element */
-.slider { 
+.rangeinput .slider { 
 	background:#3C72E6 url(../../../img/gradient/h30.png) repeat-x 0 0; 
 	height:9px; 
 	position:relative; 
@@ -12731,7 +12731,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 }
 
 /* progress bar (enabled with progress: true) */
-.progress {
+.rangeinput .progress {
 	height:9px; 
 	background-color:#C5FF00; 
 	display:none;
@@ -12739,7 +12739,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 }
 
 /* drag handle */
-.handle { 
+.rangeinput .handle { 
 	background:#fff url(../../../img/gradient/h30.png) repeat-x 0 0; 
 	height:28px;
 	width:28px;
@@ -12757,7 +12757,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 }
 
 /* the input field */
-.range {
+.rangeinput .range {
 /*
 	border:1px inset #ddd;
 	float:left;

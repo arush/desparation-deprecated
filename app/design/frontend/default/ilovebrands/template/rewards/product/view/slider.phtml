@@ -60,24 +60,56 @@ function feignPriceChange() {
 		$('sliderHandle').removeClassName('sliderHandle-sliding');
 	}
 </script>
-	<input type="text" name="redemption_uses" id="redemption_rule_uses"/>
+	<input type="hidden" name="redemption_uses" id="redemption_rule_uses"/>
 
 <div class="rangeinput">
-	<?php
-	$quote = Mage::getSingleton ('rewards/session')->getQuote();
-	?>
-	<input type="range" id="range" name="test" min="<?php echo (string)$quote->getMinSpendablePoints(); ?>" max="<?php echo (string)$quote->getMaxSpendablePoints(); ?>" value="" /><br />
 
+	<input type="range" id="range" name="test" min="0" max="<?php echo number_format(Mage::registry('current_product')->getFinalPrice(),2); ?>" value="0" /><br />
+	<?php $currencySymbol = Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getSymbol(); ?>
 	<script type="text/javascript">
 	jQuery(":range").rangeinput();
+	
+	$('redemption_rule').options[1].selected = true;
 	Event.observe($$('.wrapper')[0], 'mouseup', function(obj){
-			setTimeout(function(){
-			if ($('redemption_rule_uses').value == $('range').value) {
-				return;
+		if ($('redemption_rule_uses').value == $('range').value) {
+			return;
+		} else {
+			$('redemption_rule_uses').value = $('range').value;
+			if ($('range').value > 0) {
+				var newPrice = <?php echo number_format(Mage::registry('current_product')->getFinalPrice(),2); ?> - $('range').value;
+				$$('.price-box .price')[$$('.price-box .price').length-1].innerHTML = '<?php echo $currencySymbol; ?>' + parseInt(newPrice) + '.00 with ' + parseInt(pointsPerPound * $('range').value) + ' points';
 			} else {
-				$('redemption_rule_uses').value = $('range').value;
+				$$('.price-box .price')[$$('.price-box .price').length-1].innerHTML = '<?php echo $currencySymbol; ?><?php echo number_format(Mage::registry('current_product')->getFinalPrice(),2); ?>';		
 			}
-		}, 500);
+
+		}
+	});
+
+	Event.observe($$('.wrapper')[0], 'mousemove', function(obj){
+		if ($('redemption_rule_uses').value == $('range').value) {
+			return;
+		} else {
+			$('redemption_rule_uses').value = $('range').value;
+			if ($('range').value > 0) {
+				var newPrice = <?php echo number_format(Mage::registry('current_product')->getFinalPrice(),2); ?> - $('range').value;
+				$$('.price-box .price')[$$('.price-box .price').length-1].innerHTML = '<?php echo $currencySymbol; ?>' + parseInt(newPrice) + '.00 with ' + parseInt(pointsPerPound * $('range').value) + ' points';
+			} else {
+				$$('.price-box .price')[$$('.price-box .price').length-1].innerHTML = '<?php echo $currencySymbol; ?><?php echo number_format(Mage::registry('current_product')->getFinalPrice(),2); ?>';		
+			}
+		}
+	});
+	
+	document.observe('dom:loaded', function(){
+		$$('.product-options select').each(function(obj){
+			Event.observe(obj, 'change', function(){
+				$('redemption_rule').options[1].selected = true;
+			
+				$('redemption_rule_uses_container').setStyle({ display: 'block' });			
+			});
+		
+		});
+	
+	
 	});
 
 	</script>
