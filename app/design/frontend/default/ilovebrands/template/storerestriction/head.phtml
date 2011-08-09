@@ -1,7 +1,7 @@
 <?php 
 //Mage::getSingleton('customer/session')->setBeforeAuthUrl($this->getRequest()->getRequestUri());
 Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("customer/account/index"));
-if(!Mage::getSingleton('customer/session')->isLoggedIn()) {
+if(!Mage::getSingleton('customer/session')->isLoggedIn() && strpos($this->getRequest()->getRequestUri(), Mage::getBaseUrl()) >= 0) {
     echo "<script type=\"text/javascript\">window.location='".Mage::getUrl("customer/account/login")."';</script>";  
 }
 ?>
