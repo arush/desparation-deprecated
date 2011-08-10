@@ -136,7 +136,7 @@ vdh.popup = function(suppress) {
 	Ajax.Responders.register({
 	
 		onComplete: function(request) {
-		
+			vdh.popupCount = 0;
 			if (request.url.indexOf('popup/count') >= 0) {
 				if (request.transport.responseText != '') {
 					vdh.popupCount++;				
