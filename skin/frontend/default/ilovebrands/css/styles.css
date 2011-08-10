@@ -7787,7 +7787,7 @@ div.validation-passed {
 }
 
 .account-login #slider .scroll {
-  height: 300px;
+  height: 200px;
   overflow: auto;
   position: relative; /* fix for IE to respect overflow */
   clear: left;
@@ -7795,15 +7795,15 @@ div.validation-passed {
 }
 
 .account-login .login-normal {
-	height: 200px;
+	height: 170px;
 }
 
 .account-login .scrollContainer div.panel {
   padding: 10px;
-  width: 330px; /* change to 560px if not using JS to remove rh.scroll */
+  width: 320px; /* change to 560px if not using JS to remove rh.scroll */
 }
 
-.account-login #slider .navigation a {
+.account-login #slider .navigation a, a#become-member {
 	padding: 16px;
 	float: left;
     color: #C1C1C1;
@@ -7811,18 +7811,19 @@ div.validation-passed {
 	font-size: 17px;
 	text-transform: lowercase;
     margin: 0 !important;
-    padding: 5px 10px 10px;
+    padding: 5px 19px 10px;
     position: relative;
-
-
 }
 .account-login #slider .navigation a.selected{
     background: url("../images/60_black.png") repeat scroll 0 0 transparent;
 	color: #eee;
 }
 
+
+.account-login #forgotpass {clear:both;height:300px;}
+
 .account-login #forgotpass .password-message {
-	padding:20px;
+	padding: 0 20px;
 	color: #eee;
 	font-size: 12px;
 	margin-bottom: 20px;
@@ -7837,7 +7838,7 @@ width: 67px;
 float: left;
 }
 
-.account-login #forgotpass .form-buttons {width:auto; margin-right: 35px; float: right;}
+.account-login #forgotpass .form-buttons {width:auto; margin-right: 25px; float: right;}
 
 .account-login #forgotpass .form-buttons .button {
 background: url("../images/sprites.gif") no-repeat scroll
@@ -7858,13 +7859,19 @@ text-transform: uppercase;
  padding-top: 0px;
 }
 
-.account-login #forgotpass .forgotpass-back-link {
-	margin: 10px 0 0 20px;
-
+.account-login #forgotpass .forgotpass-back-link a {
+	float: right;
+	margin-right: 6px;
+	margin-top: 11px;
+}
+.account-login #forgotpass .forgotpass-back-link a:hover {
+	text-decoration: underline;
 }
 
-.account-login .gigya-group {
+.account-login #gigya-fieldset {margin:0; background-color:#000;}
 
+.account-login .gigya-group {
+	padding:12px;
 }
 
 .account-login .gigya-block { float:left;
@@ -7873,9 +7880,19 @@ text-transform: uppercase;
 
 .account-login .gigya-label {
  float:left;
- margin-top: 41px;
- width:75px;
+ margin-top: 26px;
+ width:85px;
+ position: relative;
 }
+
+.account-login #loginwith {position:absolute;right:0;top;0;color:#eee;}
+.account-login #connectwith {position:absolute;right:0;top;0;display:none;color:#eee;}
+
+.account-login #login .or, .account-login #register .or {border-top:1px solid #444;font-family:HelveticaNeueLight,Arial,sans-serif;text-align: center; margin:0 15px 25px 15px;}
+.account-login .or .or-text {margin-top:-10px;}
+
+.account-login #register p {padding:0 20px; color:#ddd;}
+
 .account-login .gigya-label p { 
  font-family: HelveticaNeueLight;
  font-size: 14px;
@@ -7890,6 +7907,11 @@ text-transform: uppercase;
 .account-login .login-normal .form-buttons .button {
     margin-left: 58px;
 }
+
+.account-login .panel #register {
+	padding: 20px;
+}
+
 
 /* END gigya */
 
@@ -7915,7 +7937,7 @@ text-transform: uppercase;
 }
 
 .account-login .fieldset .form-list {
-  padding: 20px 0pt 0pt;
+  /* padding: 20px 0pt 0pt; */
   width: 335px;
 }
 

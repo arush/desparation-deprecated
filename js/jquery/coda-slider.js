@@ -34,7 +34,7 @@ var $j = jQuery.noConflict();
 
     $j('#slider .navigation').find('a').click(selectNav);
 
-    // go find the navigation link that has this target and select the nab
+    // go find the navigation link that has this target and select the nav
 
     function trigger(data) {
         var el = $j('#slider .navigation').find('a[href$="' + data.id + '"]').get(0);
