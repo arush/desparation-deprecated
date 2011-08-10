@@ -1,6 +1,8 @@
 <?php
 $ruleOptions = $this->getRedeemableOptions();
-Mage::register('pointsPerPound', $ruleOptions[0]['points']);
+if (!Mage::registry('pointsPerPund') && sizeof($ruleOptions) > 0) {
+	Mage::register('pointsPerPound', $ruleOptions[0]['points']);
+}
 $ruleMap = $this->getApplicableRulesMap();
 $c = Mage::helper('rewards/currency');
 $pid = $this->getProduct()->getId();
