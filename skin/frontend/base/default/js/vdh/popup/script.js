@@ -126,7 +126,7 @@ vdh.popup = function(suppress) {
 
 	document.observe('dom:loaded', function(){
 		Event.observe($('popupCounter'), 'click', function(){
-			if (vdh.popupCounter > 0) {
+			if (vdh.popupCount > 0) {
 				vdh.popup(false);			
 			}
 
@@ -136,7 +136,6 @@ vdh.popup = function(suppress) {
 	Ajax.Responders.register({
 	
 		onComplete: function(request) {
-			vdh.popupCount = 0;
 			if (request.url.indexOf('popup/count') >= 0) {
 				if (request.transport.responseText != '') {
 					vdh.popupCount++;				
@@ -150,11 +149,13 @@ vdh.popup = function(suppress) {
 	});
 	if (suppress) { return; }
 	
+/*
 	if (vdh.popupCount == 0) {
 		return;
 	}
 
 
+*/
 	document.body.insert('<div class="vdh overlay loading"></div>');
 	document.body.insert('<div class="vdh content"><a class="vdh close"><span>close</span></a></div>');	
 	document.body.setStyle({ overflow: 'hidden' });
@@ -197,3 +198,4 @@ vdh.count = function() {
 	}
 
 }
+vdh.popupCount = 0;
