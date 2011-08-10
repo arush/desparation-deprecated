@@ -1,11 +1,11 @@
-<?php 
-print_r($this->getRequest()->getRequestUri());
-if (strpos($this->getRequest()->getRequestUri(), Mage::getBaseUrl()) >= 0) {
-	Mage::getSingleton('customer/session')->setBeforeAuthUrl($this->getRequest()->getRequestUri());
-}
+<?php $referer = '';
+if (isset($_SERVER['HTTP_REFERER'])) { $refer = $_SERVER['HTTP_REFERER']; } // Get referer
 
-Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("customer/account/index"));
-if(!Mage::getSingleton('customer/session')->isLoggedIn() && strpos($this->getRequest()->getRequestUri(), Mage::getBaseUrl()) >= 0) {
-    echo "<script type=\"text/javascript\">window.location='".Mage::getUrl("customer/account/login")."';</script>";  
-}
-?>
+if (Mage::app()->getRequest()->getActionName() != 'noRoute') { // Only do our auth logic if we did not hit a 404 page
+
+	Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("customer/account/index"));	
+
+	if(!Mage::getSingleton('customer/session')->isLoggedIn() && strpos($referer, Mage::getBaseUrl()) < 0) { // Only redirect to login if customer is not logged in AND referer is not from Evogue
+	    echo "<script type=\"text/javascript\">window.location='".Mage::getUrl("customer/account/login")."';</script>";  
+	}
+} ?>
