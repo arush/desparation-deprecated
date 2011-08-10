@@ -65,8 +65,10 @@ function feignPriceChange() {
 <div class="rangeinput">
 	<?php
 	$max = Mage::registry('current_product')->getFinalPrice();
-	if ($max > Mage::registry('pointsPerPound')) {
-		$max = Mage::registry('pointsPerPound');
+	$usable = Mage::getSingleton ( 'rewards/session' )->getCustomer()->getUsablePoints();
+	$usable = $usable[1];
+	if ($max > ($usable / Mage::registry('pointsPerPound'))) {
+		$max = $usable / Mage::registry('pointsPerPound');
 	}
 	$max = number_format($max, 2);
 	?>
