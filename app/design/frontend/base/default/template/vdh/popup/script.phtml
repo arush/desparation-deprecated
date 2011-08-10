@@ -8,6 +8,7 @@ vdh.urls = new Array();
 <?php $i=0;foreach($helper->getUrls() as $url):?>
 vdh.urls[<?php echo $i; $i++ ?>] = { url: '<?php echo $url; ?>', loaded: false };
 <?php endforeach;?>
+vdh.count();
 <?php if (Mage::getModel('core/cookie')->get('suppress_popup')): ?>
 	vdh.popup(true);
 <?php else: ?>

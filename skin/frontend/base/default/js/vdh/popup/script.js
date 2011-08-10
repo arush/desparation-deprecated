@@ -148,7 +148,6 @@ vdh.popup = function(suppress) {
 			
 		}
 	});
-	
 	if (suppress) { return; }
 	
 	if (vdh.popupCount == 0) {
@@ -188,7 +187,6 @@ vdh.popup = function(suppress) {
 	}
 	vdh.urls[0].loaded = true;	
 	vdh.queue.send(vdh.urls[0].url);
-	vdh.count();
 
 }
 vdh.count = function() {
@@ -199,4 +197,3 @@ vdh.count = function() {
 	}
 
 }
-vdh.popupCount = 0;
