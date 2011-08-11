@@ -54,6 +54,11 @@
         <remove name="popup" />
         <remove name="popup_header" />
     </customer_account_logout>
+
+  	<customer_account_logoutsuccess>
+        <remove name="popup" />
+        <remove name="popup_header" />
+    </customer_onepage_logoutsuccess>
  
  	<customer_onepage_index>
         <remove name="popup" />
