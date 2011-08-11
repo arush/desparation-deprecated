@@ -49,5 +49,15 @@
         <remove name="popup" />
         <remove name="popup_header" />
     </customer_account_forgotpassword>
+ 
+ 	<customer_account_logout>
+        <remove name="popup" />
+        <remove name="popup_header" />
+    </customer_account_logout>
+ 
+ 	<customer_onepage_index>
+        <remove name="popup" />
+        <remove name="popup_header" />
+    </customer_onepage_index>
 
  </layout>
