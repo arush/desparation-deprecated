@@ -1,6 +1,14 @@
+<?php
+	if(Mage::getSingleton('customer/session')->isLoggedIn()) {
+	?>
+	
 <div id="vdh-popup-phantom" class="vdh-popup-header" ><?php echo $this->__('click here to earn points for completing'); ?> <span class="counter" href="#">0</span> <?php echo $this->__(' outstanding task(s)'); ?></div>
 
 <a href="#" id="popupButton"><div class="vdh-popup-header drawer" id="popupDrawer"><?php echo $this->__('click here to earn points for completing'); ?> <span class="counter" href="#" id="popupCounter">…loading</span> <?php echo $this->__(' outstanding task(s)'); ?></div></a>
+
+<?php
+}
+?>
 <!-- <script type="text/javascript">
 	var $j = jQuery.noConflict();
 	
