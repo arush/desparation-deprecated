@@ -12867,7 +12867,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	position:relative; 
 	cursor:pointer;
 	border:1px solid #333;
-	width:280px;
+	width:267px;
 	float:left; 
 	clear:right;
 	margin-top:10px;
@@ -12917,5 +12917,40 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 */
 	display: none;	
 }
+
+/* VDH POPUP HEADER */
+
+
+.vdh-popup-header {
+	background: #feefb3 url(../images/message-bg.png) repeat-x 0 0;
+	color: #9f6000;
+	font-family: Gotham-light,Arial;
+	font-size:18px;
+	height: 41px;
+	padding-top: 5px;
+	display: none;
+	-moz-box-shadow: 0pt 0px 8px #acacac;
+	-webkit-box-shadow: 0pt 0px 8px #acacac;
+	-khtml-box-shadow: 0pt 0px 8px #acacac;
+	box-shadow: 0pt 0px 8px #acacac;
+}
+
+#popupDrawer {
+	position:fixed;
+	width: 100%;
+	top:0;
+	left:0;
+	z-index: 1400;
+}
+
+.vdh-popup-header span.counter {
+	font-family:Arial,sans-serif;
+	font-weight:bold;
+	font-size: 24px;
+	margin-bottom:-5px;
+	color: #9f6000;
+	
+}
+
 
 

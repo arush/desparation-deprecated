@@ -125,7 +125,7 @@ vdh.trim = function(stringToTrim) {
 vdh.popup = function(suppress) {
 
 	document.observe('dom:loaded', function(){
-		Event.observe($('popupCounter'), 'click', function(){
+		Event.observe($('popupButton'), 'click', function(){
 			if (vdh.popupCount > 0) {
 				vdh.popup(false);			
 			}
@@ -142,6 +142,7 @@ vdh.popup = function(suppress) {
 				}
 
 				$('popupCounter').innerHTML = vdh.popupCount;
+				
 				return;
 			}
 			
@@ -167,6 +168,7 @@ vdh.popup = function(suppress) {
 	
 		obj.setStyle(dimensions);
 		obj.setStyle({ opacity: 0 });
+		obj.setStyle({top:0}); //arush
 		obj.fade({ duration: 1.0, from: 0, to: 0.7 });
 
 		Event.observe(obj, 'click', function(){
