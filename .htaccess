@@ -184,3 +184,16 @@
 ## http://developer.yahoo.com/performance/rules.html#etags
 
     #FileETag none
+
+############################################
+## Set up multi domain magento
+
+SetEnvIf Host staging\.evogue\.co\.uk MAGE_RUN_CODE=base
+SetEnvIf Host staging\.evogue\.co\.uk MAGE_RUN_TYPE=website
+SetEnvIf Host ^evogue\.co\.uk MAGE_RUN_CODE=base
+SetEnvIf Host ^evogue\.co\.uk MAGE_RUN_TYPE=website
+
+SetEnvIf Host www\.ilovebrandsoutlet\.com MAGE_RUN_CODE=ilovebrands
+SetEnvIf Host www\.ilovebrandsoutlet\.com MAGE_RUN_TYPE=website
+SetEnvIf Host ^ilovebrands\.com MAGE_RUN_CODE=ilovebrands
+SetEnvIf Host ^ilovebrands\.com MAGE_RUN_TYPE=website
