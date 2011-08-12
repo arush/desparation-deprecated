@@ -1826,11 +1826,24 @@ ul.disc li {
 .branding {
   float: left;
   width: 240px;
-  padding: 29px 0pt 20px 15px;
+  height: 20px;
+  position: absolute;
+  left: -18px;
 }
+.branding img.logo-back {
+	z-index: 100;
+	position:absolute;
+}
+
 
 .branding .logo strong {
   display: none;
+}
+
+#logo-container {
+	z-index: 110;
+	margin-left: 17px;
+	position: absolute;
 }
 
 #content-menu {
@@ -10509,10 +10522,9 @@ label#source-label, input#source, label#invite-label, input#invite, label#gender
 /*HOMEPAGE BANNER START 18-03-2011*/
 #homepage-banner{
 	background: url("../images/banner-background-repeat.png");
-	width: 931px;
+	width: 960px;
 	height: 242px;
 	color: #848484;
-	margin: 0 0 0 17px;
 }
 #homepage-banner img{float: left;}
 #homepage-banner .column-top{padding: 0 0 25px 45px; *padding-left: 10px; height: 35px; font-size: 14px; color: #717171;}
@@ -10551,19 +10563,19 @@ label#source-label, input#source, label#invite-label, input#invite, label#gender
 	.banner-middle .banner-pic a:hover {visibility: visible;}
 	/*ROLLOVER BUTTON END*/
 	
-#openbanner{margin-left: 17px; width: 931px;}
-#openbanner img{width: 931px;}
+#openbanner{width: 960px;}
+#openbanner img{width: 960px;}
 
 /*MINIMISE MAXIMISE CHANGE START*/
 	#openbanner{
 		background: url("../images/minimize.png") no-repeat;
 		white-space: nowrap;
 		display: block;
-		width: 931px;
+		width: 960px;
 		height: 21px;
 	}
-	#openbanner a{display: block; width: 931px; height: 29px;}
-	#openbanner img{width: 931px; height: 29px;}
+	#openbanner a{display: block; width: 960px; height: 29px;}
+	#openbanner img{width: 960px; height: 29px;}
 	#openbanner .bg-minimise img{visibility: hidden; height: 21px;}
 	#openbanner .bg-minimise a {visibility: visible; height: 21px;}
 	/*MINIMISE MAXIMISE CHANGE END*/
@@ -10923,12 +10935,10 @@ button::-moz-focus-inner{border:0;padding:0;margin:0;}
 
 	/*ADD GOTHAM FONT END*/
 
-	/*CHANGE LOGO START*/
-		.branding{height: 20px; padding: 16px 0 67px 17px;}
-	/*CHANGE LOGO END*/
+		
 
 	/*NAV-BAR TOP LEVEL START*/
-		.header{border-bottom: 1px solid #7a7a69;}
+		.header{border-bottom: 1px solid #7a7a69; height:103px;}
 		.header-panel{border-bottom: none;}
 		.nav-container{
 			margin: 0;
@@ -11238,7 +11248,7 @@ font-size: 20px; }
 .main-bottom{background: none;}
 .breadcrumbs, .breadcrumbs li span, .breadcrumbs a{color: #6c6c6c;}
 .breadcrumbs ul{border-bottom: none;}
-.nav-container{left: 0;}
+.nav-container{left: 165px;}
 .header-panel .checkout-link .links{right: 0;}
 .header-container, .main col1-layout, .main-bottom{
 	padding: 0;
