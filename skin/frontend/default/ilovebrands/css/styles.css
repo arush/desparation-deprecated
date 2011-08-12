@@ -1805,8 +1805,8 @@ ul.disc li {
 }
 
 .header-container {
-  background: url("../images/bg-page.gif") repeat-y scroll
-    0% 0% transparent;
+  /* background: url("../images/bg-page.gif") repeat-y scroll
+    0% 0% transparent; */
   margin: 0pt auto;
   padding: 0pt 8px;
   position: relative;
@@ -1816,8 +1816,8 @@ ul.disc li {
 }
 
 .header {
-  background: url("../images/bg-header.gif") no-repeat scroll
-    left top transparent;
+/*  background: url("../images/bg-header.gif") no-repeat scroll
+    left top transparent; */
   border-bottom: 1px solid rgb(173,
     172, 158);
   width: 960px;
