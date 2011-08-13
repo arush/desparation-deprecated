@@ -75,18 +75,32 @@
   					</ul>
 	  					<!-- a id="become-member" href="http://www.evogue.co.uk/editorial/?page_id=120">Become a Member</a -->
       			
-      				<form action="<?php echo Mage::getUrl('engage/rpx/loginpost') ?>" method="post" id="login-form">
+      				<form action="<?php echo Mage::getUrl('oneall/rpx/loginpost') ?>" method="post" id="login-form">
 						<div class="fieldset" id="gigya-fieldset">
   							<div class="gigya-group">
   								<div class="gigya-label"><p id="loginwith">login with</p><p id="connectwith">connect with</p></div>
   								<div class="gigya-block">
-  									<?php // janrain
+  									
+  									<!-- The provider login will be embedded in this div //-->
+										<div id="oa_social_login_container"></div>
+										
+										<script type="text/javascript">
+										 oneall.api.plugins.social_login.build("oa_social_login_container",{
+										  providers : ["Facebook", "google", "twitter", "yahoo"],
+										  callback_uri: "http://staging.evogue.co.uk/oneall/rpx/token_url/", 
+										  button_style: "icons"
+										});
+										</script>
+  									
+  									
+  									<?php /* janrain
 									    echo $this->getLayout()
-									        ->createBlock('engage/auth', 'janrain_engage_register')
+									        ->createBlock('oneall/auth', 'arush_oneall_register')
 									        ->setSize('large')
 									        ->setLabelText('Use a Social Account')
 									        ->toHtml();
-									?>
+									*/ ?>
+									
   									<?php // echo $this->getChildHtml('socialize_plugin_login') ?>
   								</div>
   							</div>	
