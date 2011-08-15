@@ -36,14 +36,47 @@
 <script>
   window.fbAsyncInit = function() {
     FB.init({appId: '<?php echo Mage::helper("evlike")->getLikeConfig("ev_facebook_app_id") ?>',
-             xfbml: true});
+    		Status: true,
+        	Cookie: true,
+            xfbml: true
+    });
+   	
+   	
+  	
+  	FB.Event.subscribe('edge.remove', function(href, widget) {
+    	alert('You unliked ' + href, widget);
+  	}); 
+    
+  	FB.Event.subscribe('edge.create', function(href, widget) {
+    	var dataSend = 'hello';
+    	alert(dataSend);
+                jQuery.ajax({
+                    type: 'POST',
+                    url: '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>test.php',
+                    data: dataSend,
+                    success: function(data) {
+                        alert(data);
+                    },
+                    error: function(data) {
+                        alert('Try again later');
+                    }
+                });
+    	
+    	
+    	alert('You liked ' + href, widget);
+  	});
+  	
   };
+  
+  
   (function() {
     var e = document.createElement('script'); e.async = true;
     e.src = document.location.protocol +
-      '//connect.facebook.net/<?php echo $_locale ?>/all.js';
+      '//connect.facebook.net/<?php echo $_locale ?>/all.js#appId=<?php echo Mage::helper("evlike")->getLikeConfig("ev_facebook_app_id") ?>';
     document.getElementById('fb-root').appendChild(e);
   }());
+  
+  
 </script>
 
 <?php endif; ?>
