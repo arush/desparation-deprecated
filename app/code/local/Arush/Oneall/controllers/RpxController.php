@@ -98,6 +98,24 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 		}
 	}
 
+	public function getSocialId($returnObject) {
+	
+		switch ($returnObject->user->identity->provider) {
+			    case 'twitter':
+			        return $returnObject->user->identity->accounts->userid;
+			        break;
+			    case 'facebook':
+			        $facebookUrl = $returnObject->user->identity->id;
+					$pieces = explode("?id=", $facebookUrl);
+					return $pieces[1];
+			        break;
+			    case 2:
+			        echo "i equals 2";
+			        break;
+			}
+
+	}
+
 	public function authenticateAction() {
 		$session = $this->_getSession();
 
@@ -107,8 +125,12 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 		
 		// need to make a better if auth_info check here
 		
-		if(isset($auth_info) /* && $auth_info->stat=='ok' */) {
-			$customer = Mage::helper('oneall/identifiers')->get_customer($auth_info->profile->identifier);
+		if(isset($auth_info) /*&& $auth_info->result->code ===1000*/) {
+			
+			$socialid = 'not yet defined';
+			
+						
+			$customer = Mage::helper('oneall/identifiers')->get_customer($this->getSocialId);
 
 			if ($customer === false) {
 				$this->loadLayout();
@@ -143,6 +165,7 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 		} else {
 			$session->addWarning('Could not retrieve account info. Please try again.');
 			$this->_redirect('customer/account/login');
+		
 		}
 	}
 

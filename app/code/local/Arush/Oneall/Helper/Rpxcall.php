@@ -167,17 +167,22 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
 			
 			$curl = curl_init();
 		        
-		    curl_setopt($curl, CURLOPT_URL, 'https://'.$OAdomain.'/user/social_login/lookup.json?token='.$postParams["oa_social_login_token"]);
+		    curl_setopt($curl, CURLOPT_URL, $OAdomain.'user/social_login/lookup.json?token='.$postParams["oa_social_login_token"]);
 		    curl_setopt($curl, CURLOPT_HEADER, 0);
- 			curl_setopt($curl, CURLOPT_USERPWD, $oa_application_public_key . ":" . $oa_application_private_key);
+ 			curl_setopt($curl, CURLOPT_USERPWD, $OAusername . ":" . $OApassword);
 		    curl_setopt($curl, CURLOPT_TIMEOUT, 5);
 		    curl_setopt($curl, CURLOPT_VERBOSE, 0);
 		    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 		    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 1);
 		    curl_setopt($curl, CURLOPT_FAILONERROR, 0);
 		 
+		 	$json = curl_exec($curl);
+		 	$info = curl_getinfo($curl);  
+  
+			$infoverbose = 'Took ' . $info['total_time'] . ' seconds for url ' . $info['url'] . ' with code ' . $info['http_code'];
+		    
 		    //Error
-		    if ( ($json = curl_exec($curl)) === false)
+		    if ($json === false)
 		    {
 		        echo 'Curl error: ' . curl_error($curl);
 		    }
@@ -202,7 +207,7 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
 	                return $result;
 	            }
 	            else {
-	                throw Mage::exception('Mage_Core', "something went wrong");
+	                throw Mage::exception('Mage_Core', $infoverbose);
 	            }
 	            // end varien flow
             
