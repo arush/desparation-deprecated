@@ -3,11 +3,11 @@
 class Arush_Oneall_Helper_Data extends Mage_Core_Helper_Abstract {
 
 	private $providers = array(
-		'Facebook'		=> 'facebook',
-		'Google'		=> 'google',
+		'facebook'		=> 'facebook',
+		'google'		=> 'google',
 		'LinkedIn'		=> 'linkedin',
 		'MySpace'		=> 'myspace',
-		'Twitter'		=> 'twitter',
+		'twitter'		=> 'twitter',
 		'Windows Live'	=> 'live_id',
 		'Yahoo!'		=> 'yahoo',
 		'AOL'			=> 'aol',
@@ -98,22 +98,42 @@ class Arush_Oneall_Helper_Data extends Mage_Core_Helper_Abstract {
 	public function buildProfile($auth_info) {
 		$profile_name = false;
 
-		if(isset($auth_info->profile->preferredUsername))
-			$profile_name = $auth_info->profile->preferredUsername;
+		if(isset($auth_info->user->identity->preferredUsername)) //twitter
+			$profile_name = $auth_info->user->identity->preferredUsername;
 
-		else if(isset($auth_info->profile->email))
-			$profile_name = $auth_info->profile->email;
+		else if(isset($auth_info->user->identity->emails->other))
+			$profile_name = $auth_info->user->identity->emails['other'];
 		
-		else if(isset($auth_info->profile->displayName))
-			$profile_name = $auth_info->profile->displayName;
+		else if(isset($auth_info->user->identity->displayName))
+			$profile_name = $auth_info->user->identity->displayName;
 		
 		else if(isset($auth_info->profile->name->formatted))
-			$profile_name = $auth_info->profile->name->formatted;
+			$profile_name = $auth_info->user->identity->name->formatted;
 		
 		else
-			$profile_name = $auth_info->profile->providerName;
+			$profile_name = $auth_info->user->identity->provider;
 
-		return array('provider' => $this->providers[$auth_info->profile->providerName], 'identifier' => $auth_info->profile->identifier, 'profile_name' => $profile_name);
+		return array('provider' => $auth_info->user->identity->provider,
+					'identifier' => $this->getSocialId($auth_info),
+					'profile_name' => $profile_name,
+					'oneall_uuid' => $auth_info->user->uuid);
 	}
+	
+	public function getSocialId($returnObject) {
+	
+		switch ($returnObject->user->identity->provider) {
+			    case 'twitter':
+			        return $returnObject->user->identity->accounts->userid;
+			        break;
+			    case 'facebook':
+			        $facebookUrl = $returnObject->user->identity->id;
+					$pieces = explode("?id=", $facebookUrl);
+					return $pieces[1];
+			        break;
+			    // add more providers
+			}
+
+	}
+
 
 }

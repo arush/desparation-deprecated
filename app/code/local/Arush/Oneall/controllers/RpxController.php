@@ -98,24 +98,7 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 		}
 	}
 
-	public function getSocialId($returnObject) {
 	
-		switch ($returnObject->user->identity->provider) {
-			    case 'twitter':
-			        return $returnObject->user->identity->accounts->userid;
-			        break;
-			    case 'facebook':
-			        $facebookUrl = $returnObject->user->identity->id;
-					$pieces = explode("?id=", $facebookUrl);
-					return $pieces[1];
-			        break;
-			    case 2:
-			        echo "i equals 2";
-			        break;
-			}
-
-	}
-
 	public function authenticateAction() {
 		$session = $this->_getSession();
 
@@ -129,8 +112,7 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 			
 			$socialid = 'not yet defined';
 			
-						
-			$customer = Mage::helper('oneall/identifiers')->get_customer($this->getSocialId);
+			$customer = Mage::helper('oneall/identifiers')->get_customer(Mage::helper('oneall')->getSocialId($auth_info));
 
 			if ($customer === false) {
 				$this->loadLayout();
@@ -138,12 +120,13 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 				if($block !== false) {
 					$form_data = $block->getFormData();
 
-					if(isset($auth_info->profile) && isset($auth_info->profile->verifiedEmail))
-						$email = $auth_info->profile->verifiedEmail;
-					else if(isset($auth_info->profile) && isset($auth_info->profile->email))
-						$email = $auth_info->profile->email;
-					else
+					if(isset($auth_info->user->identity->emails['other'])) {
+						$email = $auth_info->user->identity->emails['other']; }
+					/*else if(isset($auth_info->profile) && isset($auth_info->profile->email))
+						$email = $auth_info->profile->email; */
+					else {
 						$email = '';
+					}
 
 					$firstName = Mage::helper('oneall/rpxcall')->getFirstName($auth_info);
 					$lastName = Mage::helper('oneall/rpxcall')->getLastName($auth_info);
@@ -176,7 +159,7 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 		$token = Mage::getSingleton('oneall/session')->getData($key);
 		$auth_info = Mage::helper('oneall/rpxcall')->rpxAuthInfoCall($token);
 
-		$customer = Mage::helper('oneall/identifiers')->get_customer($auth_info->profile->identifier);
+		$customer = Mage::helper('oneall/identifiers')->get_customer(Mage::helper('oneall')->getSocialId($auth_info));
 
 		if ($customer===false) {
 			$customer_id = $session->getCustomer()->getId();

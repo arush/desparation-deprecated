@@ -221,13 +221,13 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
     }
 
 	public function getFirstName($auth_info) {
-		if (isset($auth_info->profile->name->givenName))
-			return $auth_info->profile->name->givenName;
+		if (isset($auth_info->user->identity->name->givenName))
+			return $auth_info->user->identity->name->givenName;
         
-        if (!isset($auth_info->profile->name->formatted))
+        if (!isset($auth_info->user->identity->name->formatted))
             return '';
 
-		$name = str_replace(",", "", $auth_info->profile->name->formatted);
+		$name = str_replace(",", "", $auth_info->user->identity->name->formatted);
 
         if (!$name)
             return '';
@@ -239,13 +239,13 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
 	}
 
 	public function getLastName($auth_info) {
-		if (isset($auth_info->profile->name->familyName))
-			return $auth_info->profile->name->familyName;
+		if (isset($auth_info->user->identity->name->familyName))
+			return $auth_info->user->identity->name->familyName;
         
-        if (!isset($auth_info->profile->name->formatted))
+        if (!isset($auth_info->user->identity->name->formatted))
             return '';
 
-		$name = str_replace(",", "", $auth_info->profile->name->formatted);
+		$name = str_replace(",", "", $auth_info->user->identity->name->formatted);
         
         if (!$name)
             return '';

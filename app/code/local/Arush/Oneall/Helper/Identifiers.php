@@ -31,6 +31,10 @@ class Arush_Oneall_Helper_Identifiers extends Mage_Core_Helper_Abstract {
 					->setProfileName($profile['profile_name'])
 					->setCustomerId($customer_id)
 					->save();
+			
+			$customerattrubute = Mage::getModel('customer/attribute')->loadById($customer_id);
+			$customerattrubute->setData('onealluuid', $profile['oneall_uuid']);
+			$customerattrubute->save();
 		}
 		catch (Exception $e) {
 			echo "Could not save: " . $e->getMessage() . "\n";
