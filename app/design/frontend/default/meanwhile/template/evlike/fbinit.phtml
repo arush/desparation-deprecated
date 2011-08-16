@@ -41,26 +41,59 @@
             xfbml: true
     });
    	
+   	
   	
   	FB.Event.subscribe('edge.remove', function(href, widget) {
     	alert('You unliked ' + href, widget);
   	}); 
     
   	FB.Event.subscribe('edge.create', function(href, widget) {
-    	var dataSend = 'ajaxFace=true&submitAdd=true&code='+SomeCodeToAdd;
+    	var dataSend = 'hello';
                 jQuery.ajax({
                     type: 'POST',
-                    url: '<?php Mage::app()->getStore()->getHomeUrl();?>test.php',
+                    url: '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>test.php',
                     data: dataSend,
                     success: function(data) {
-                        alert(data);
+                        var notice = '<div class="notice">'
+								  + '<div class="notice-body">' 
+									  + '<img src="<?php echo $this->getSkinUrl('');?>images/info.png" alt="" />'
+									  + '<h3>+3 points!</h3>'
+									  + '<p>You liked something and earned points</p>'
+								  + '</div>'
+								  + '<div class="notice-bottom">'
+								  + '</div>'
+							  + '</div>';
+							  
+						jQuery( notice ).purr(
+							{
+								usingTransparentPNG: true
+							}
+						);
+						
+						return false;
                     },
                     error: function(data) {
-                        alert('Sorry, we were unable to add points right now... try again later');
+                        var notice = '<div class="notice">'
+								  + '<div class="notice-body">' 
+									  + '<img src="<?php echo $this->getSkinUrl('');?>images/info.png" alt="" />'
+									  + '<h3>Sorry!</h3>'
+									  + '<p>This is a test. Sorry dude.</p>'
+								  + '</div>'
+								  + '<div class="notice-bottom">'
+								  + '</div>'
+							  + '</div>';
+							  
+						jQuery( notice ).purr(
+							{
+								usingTransparentPNG: true
+							}
+						);
+						
+						return false;
+
                     }
                 });
-    	
-    	
+   	
   	});
   	
   };
