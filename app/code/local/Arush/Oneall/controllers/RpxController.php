@@ -120,8 +120,8 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 				if($block !== false) {
 					$form_data = $block->getFormData();
 
-					if(isset($auth_info->user->identity->emails['other'])) {
-						$email = $auth_info->user->identity->emails['other']; }
+					if(isset($auth_info->user->identity->emails[0]->value)) {
+						$email = $auth_info->user->identity->emails[0]->value; }
 					/*else if(isset($auth_info->profile) && isset($auth_info->profile->email))
 						$email = $auth_info->profile->email; */
 					else {
@@ -142,7 +142,10 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 				return;
 			} else {
 				Mage::getSingleton('oneall/session')->setLoginRequest(true);
-				$session->login($customer->getEmail(), 'REQUIRED_SECOND_PARAM');
+				//$session->login($customer->getEmail(), 'REQUIRED_SECOND_PARAM');
+				$session->setCustomerAsLoggedIn($customer);
+				//$this->_redirectReferer();
+				//Mage::dispatchEvent('customer_login', array('customer'=>$customer));
 				$this->_loginPostRedirect();
 			}
 		} else {
@@ -168,10 +171,10 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 			Mage::helper('oneall/identifiers')
 					->save_identifier($customer_id, $profile);
 
-			$session->addSuccess('New provider successfully added.');
+			$session->addSuccess('New identity successfully added.');
 
 		} else {
-			$session->addWarning('Could not add Provider. This account is already associated with a user.');
+			$session->addWarning('Could not add identity. This account is already associated with a user.');
 		}
 
 		$this->_redirect('customer/account');
@@ -247,7 +250,7 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 
 		Mage::helper('oneall/identifiers')
 				->delete_identifier($id);
-		$session->addSuccess('Provider removed');
+		$session->addSuccess('Identity removed');
 		$this->_redirect('customer/account');
 	}
 

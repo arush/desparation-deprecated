@@ -7898,8 +7898,9 @@ text-transform: uppercase;
  position: relative;
 }
 
-.account-login #loginwith {position:absolute;right:0;top;0;color:#eee;}
-.account-login #connectwith {position:absolute;right:0;top;0;display:none;color:#eee;}
+.account-login #loginwith {position:absolute;right:0;top:10px;color:#eee;}
+.account-login #connectwith {position:absolute;right:0;top:10px;display:none;color:#eee;}
+.account-login #oa_social_login_container {margin-left:103px;width:212px;height:72px;}
 
 .account-login #login .or, .account-login #register .or {border-top:1px solid #444;font-family:HelveticaNeueLight,Arial,sans-serif;text-align: center; margin:0 15px 25px 15px;}
 .account-login .or .or-text {margin-top:-10px;}
@@ -10045,8 +10046,19 @@ ul.timer li .title {
   
 }
 
+.oneall-register .account-create .fieldset {
+	border: none;
+}
+
+.oneall-register .account-create .fieldset {
+	position: relative; 
+	right:0;
+	top:0;
+}
+
+
 .account-create .form-list select, .account-create .form-list input.input-text {
-  color: #333;
+  color: #444;
   padding: 5px;
   float: right;
   background: none repeat scroll 0% 0% #e2e2df;
@@ -10058,7 +10070,7 @@ ul.timer li .title {
 
 .account-create .form-list label, .account-create .form-list span.label {
   text-transform: lowercase;
-  color: #eee;
+  color: #444;
   font-size: 12px ! important;
   font-weight: normal;
   width: 79px;
@@ -10090,6 +10102,11 @@ ul.timer li .title {
 .account-create {
   /*float: left;*/
   min-height: 907px;
+}
+
+.oneall-register .account-create {
+	float: left;
+	min-height 20px;
 }
 
 .customer-account-create .col-main {

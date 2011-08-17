@@ -44,7 +44,12 @@
         <remove name="popup" />
         <remove name="popup_header" />
     </customer_account_create>
- 
+ 	
+ 	<oneall_rpx_authenticate>
+        <remove name="popup" />
+        <remove name="popup_header" />
+    </oneall_rpx_authenticate>
+
 	<customer_account_forgotpassword>
         <remove name="popup" />
         <remove name="popup_header" />

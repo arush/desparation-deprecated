@@ -102,7 +102,7 @@ class Arush_Oneall_Helper_Data extends Mage_Core_Helper_Abstract {
 			$profile_name = $auth_info->user->identity->preferredUsername;
 
 		else if(isset($auth_info->user->identity->emails->other))
-			$profile_name = $auth_info->user->identity->emails['other'];
+			$profile_name = $auth_info->user->identity->emails[0]->value;
 		
 		else if(isset($auth_info->user->identity->displayName))
 			$profile_name = $auth_info->user->identity->displayName;
@@ -123,13 +123,16 @@ class Arush_Oneall_Helper_Data extends Mage_Core_Helper_Abstract {
 	
 		switch ($returnObject->user->identity->provider) {
 			    case 'twitter':
-			        return $returnObject->user->identity->accounts->userid;
+			        return $returnObject->user->identity->accounts[0]->userid;
 			        break;
 			    case 'facebook':
-			        $facebookUrl = $returnObject->user->identity->id;
-					$pieces = explode("?id=", $facebookUrl);
-					return $pieces[1];
-			        break;
+			        if(isset($returnObject->user->identity->accounts[0]->userid)) {return $returnObject->user->identity->accounts[0]->userid;}
+			        else {
+			        	$facebookUrl = $returnObject->user->identity->id;
+						$pieces = explode("=", $facebookUrl);
+						return $pieces[1];
+			       	}
+			       	break;
 			    // add more providers
 			}
 
