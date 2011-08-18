@@ -10,8 +10,8 @@
 }
 .vdh.content {
 	display: none;
-	width: 90%;
-	height: 90%;
+	width: 790px;
+	height: 395px;
 	z-index: 1501;
 	position: absolute;
 	background: #fff;
@@ -22,6 +22,7 @@
 	box-shadow: 0px 4px 30px #000;
 	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
 	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+	overflow: hidden;
 }
 
 a.vdh.close {

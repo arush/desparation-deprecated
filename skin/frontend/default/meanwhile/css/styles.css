@@ -1826,11 +1826,24 @@ ul.disc li {
 .branding {
   float: left;
   width: 240px;
-  padding: 29px 0pt 20px 15px;
+  height: 20px;
+  position: absolute;
+  left: -18px;
 }
+.branding img.logo-back {
+	z-index: 100;
+	position:absolute;
+}
+
 
 .branding .logo strong {
   display: none;
+}
+
+#logo-container {
+	z-index: 110;
+	margin-left: 17px;
+	position: absolute;
 }
 
 #content-menu {
@@ -7885,8 +7898,9 @@ text-transform: uppercase;
  position: relative;
 }
 
-.account-login #loginwith {position:absolute;right:0;top;0;color:#eee;}
-.account-login #connectwith {position:absolute;right:0;top;0;display:none;color:#eee;}
+.account-login #loginwith {position:absolute;right:0;top:10px;color:#eee;}
+.account-login #connectwith {position:absolute;right:0;top:10px;display:none;color:#eee;}
+.account-login #oa_social_login_container {margin-left:103px;width:212px;height:72px;}
 
 .account-login #login .or, .account-login #register .or {border-top:1px solid #444;font-family:HelveticaNeueLight,Arial,sans-serif;text-align: center; margin:0 15px 25px 15px;}
 .account-login .or .or-text {margin-top:-10px;}
@@ -10032,8 +10046,19 @@ ul.timer li .title {
   
 }
 
+.oneall-register .account-create .fieldset {
+	border: none;
+}
+
+.oneall-register .account-create .fieldset {
+	position: relative; 
+	right:0;
+	top:0;
+}
+
+
 .account-create .form-list select, .account-create .form-list input.input-text {
-  color: #333;
+  color: #444;
   padding: 5px;
   float: right;
   background: none repeat scroll 0% 0% #e2e2df;
@@ -10045,7 +10070,7 @@ ul.timer li .title {
 
 .account-create .form-list label, .account-create .form-list span.label {
   text-transform: lowercase;
-  color: #eee;
+  color: #444;
   font-size: 12px ! important;
   font-weight: normal;
   width: 79px;
@@ -10077,6 +10102,11 @@ ul.timer li .title {
 .account-create {
   /*float: left;*/
   min-height: 907px;
+}
+
+.oneall-register .account-create {
+	float: left;
+	min-height 20px;
 }
 
 .customer-account-create .col-main {
@@ -10509,10 +10539,9 @@ label#source-label, input#source, label#invite-label, input#invite, label#gender
 /*HOMEPAGE BANNER START 18-03-2011*/
 #homepage-banner{
 	background: url("../images/banner-background-repeat.png");
-	width: 931px;
+	width: 960px;
 	height: 242px;
 	color: #848484;
-	margin: 0 0 0 17px;
 }
 #homepage-banner img{float: left;}
 #homepage-banner .column-top{padding: 0 0 25px 45px; *padding-left: 10px; height: 35px; font-size: 14px; color: #717171;}
@@ -10551,19 +10580,19 @@ label#source-label, input#source, label#invite-label, input#invite, label#gender
 	.banner-middle .banner-pic a:hover {visibility: visible;}
 	/*ROLLOVER BUTTON END*/
 	
-#openbanner{margin-left: 17px; width: 931px;}
-#openbanner img{width: 931px;}
+#openbanner{width: 960px;}
+#openbanner img{width: 960px;}
 
 /*MINIMISE MAXIMISE CHANGE START*/
 	#openbanner{
 		background: url("../images/minimize.png") no-repeat;
 		white-space: nowrap;
 		display: block;
-		width: 931px;
+		width: 960px;
 		height: 21px;
 	}
-	#openbanner a{display: block; width: 931px; height: 29px;}
-	#openbanner img{width: 931px; height: 29px;}
+	#openbanner a{display: block; width: 960px; height: 29px;}
+	#openbanner img{width: 960px; height: 29px;}
 	#openbanner .bg-minimise img{visibility: hidden; height: 21px;}
 	#openbanner .bg-minimise a {visibility: visible; height: 21px;}
 	/*MINIMISE MAXIMISE CHANGE END*/
@@ -10923,12 +10952,10 @@ button::-moz-focus-inner{border:0;padding:0;margin:0;}
 
 	/*ADD GOTHAM FONT END*/
 
-	/*CHANGE LOGO START*/
-		.branding{height: 20px; padding: 16px 0 67px 17px;}
-	/*CHANGE LOGO END*/
+		
 
 	/*NAV-BAR TOP LEVEL START*/
-		.header{border-bottom: 1px solid #7a7a69;}
+		.header{border-bottom: 1px solid #7a7a69; height:103px;}
 		.header-panel{border-bottom: none;}
 		.nav-container{
 			margin: 0;
@@ -11238,7 +11265,7 @@ font-size: 20px; }
 .main-bottom{background: none;}
 .breadcrumbs, .breadcrumbs li span, .breadcrumbs a{color: #6c6c6c;}
 .breadcrumbs ul{border-bottom: none;}
-.nav-container{left: 0;}
+.nav-container{left: 165px;}
 .header-panel .checkout-link .links{right: 0;}
 .header-container, .main col1-layout, .main-bottom{
 	padding: 0;
@@ -12952,5 +12979,62 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	
 }
 
+.vdh-popup-customerdetails {
+	margin: 20px;
+	font-family: HelveticaNeueLight, Arial, sans-serif;
+	color: #444;
+	size: 10px;
+}
 
+.vdh-popup-customerdetails h1 {
+	padding: 10px;
+	font-family: HelveticaNeueLight, Arial, sans-serif;
+	color: #444;
+	size: 22px;
+
+}
+
+.vdh-popup-customerdetails .field-section {
+	padding-right: 20px;
+	font-family: HelveticaNeueLight, Arial, sans-serif;
+	color: #444;
+	size: 22px;
+	float: left;
+	width: 350px;
+	height: 290px;
+}
+
+
+/* VDH POPUP HEADER */
+
+/* PURR */
+				
+		#purr-container {
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 99999;
+		}
+		
+		.notice {
+			position: relative;
+			width: 324px;
+		}
+			.notice .close	{position: absolute; top: 12px; right: 12px; display: block; width: 18px; height: 17px; text-indent: -9999px; background: url(../images/purrClose.png) no-repeat 0 10px;}
+		
+		.notice-body {
+			min-height: 50px;
+			padding: 30px 0 30px 30px;
+			background: url(../images/purrTop.png) no-repeat left top;
+			color: #f9f9f9;
+		}
+			.notice-body img	{width: 50px; margin: 0 0 0 10px; float: left;}
+			.notice-body h3	{margin: 0; font-size: 20px;}
+			.notice-body p		{margin: 5px 60px 0 0; font-size: 14px; text-align: center;}
+		
+		.notice-bottom {
+			height: 22px;
+			background: url(../images/purrBottom.png) no-repeat left top;
+		}
+/* END PURR */
 

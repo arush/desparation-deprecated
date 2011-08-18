@@ -100,6 +100,23 @@ lang="<?php echo $this->getLang() ?>">             <!--<![endif]-->
 <!-- END Javascripthead module -->
 
 
+<!-- custom skinning javascript -->
+
+<script type="text/javascript">
+
+var $j = jQuery.noConflict();
+
+$j(document).ready(function () {
+    $j("#logo-container").fadeTo("slow", 0.3); // This sets the opacity of the thumbs to fade down to 30% when the page loads
+    $j("#logo-container").hover(function () {
+        $j(this).fadeTo("slow", 1.0); // This should set the opacity to 100% on hover
+    }, function () {
+        $j(this).fadeTo("slow", 0.3); // This should set the opacity back to 30% on mouse out
+    });
+});
+</script>
+<!-- custom skinning javascript -->
+
 </head>
 <body<?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':'' ?>>
 

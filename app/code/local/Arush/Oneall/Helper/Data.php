@@ -120,22 +120,7 @@ class Arush_Oneall_Helper_Data extends Mage_Core_Helper_Abstract {
 	}
 	
 	public function getSocialId($returnObject) {
-	
-		switch ($returnObject->user->identity->provider) {
-			    case 'twitter':
-			        return $returnObject->user->identity->accounts[0]->userid;
-			        break;
-			    case 'facebook':
-			        if(isset($returnObject->user->identity->accounts[0]->userid)) {return $returnObject->user->identity->accounts[0]->userid;}
-			        else {
-			        	$facebookUrl = $returnObject->user->identity->id;
-						$pieces = explode("=", $facebookUrl);
-						return $pieces[1];
-			       	}
-			       	break;
-			    // add more providers
-			}
-
+	    return $returnObject->user->identity->accounts[0]->userid;
 	}
 
 

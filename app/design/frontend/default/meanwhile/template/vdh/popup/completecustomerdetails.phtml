@@ -7,9 +7,62 @@ if ($this->getDob()) {
 //Only render if the Customer's DOB is not set and we have not yet submitted this form
 if (!$customer->getDob() && !$this->getDob()):
 ?>
-<form name="customer_details" action="/popup/form/page/index/completecustomerdetails">
-	<label><?php echo $this->__('Date of Birth'); ?></label><input type="text" name="dob" value="" />
-	<br />
-	<input type="submit" name="update" value="update" />
-</form>
+<div class="vdh-popup-customerdetails">
+	<div class="heading">
+		<img src="" alt="your avatar" style="width:50px;height:50px;float:left;"/>
+		<h1>Complete some info to earn 50 points immediately!</h1>
+	</div>
+	<div style="clear:both"></div>
+	<div class="field-section">
+	
+		<form name="customer_details" action="/popup/form/page/index/completecustomerdetails">
+		
+		<?php $customer = Mage::helper('customer'); ?>
+		
+		<ul class="form-list">
+               
+                <li>
+                    <label for="email_address" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
+                    <div class="input-box">
+                        <input type="text" name="email" id="email_address" value="" title="<?php echo $this->__('Email Address')?>" />
+                    </div>
+                </li>
+				
+				<li>
+                	<label for="dob" class="required"><em>*</em><?php echo $this->__('Date of Birth') ?></label>
+                	<div class="input-box">
+                		<input type="text" name="dob" id="dob" value="dd/mm/yyyy" title="<?php echo $this->__('Date of Birth (dd/mm/yyyy)')?>"/>
+                	</div>
+                </li>	
+	</div>
+	
+	<div class="field-section">
+		                <li>
+                	<label for="gender" class="required"><em>*</em><?php echo $this->__('Gender') ?></label>
+                	<div class="input-box">
+                		<input type="select" name="gender" id="gender" value="" title="<?php echo $this->__('Gender')?>"/>
+                	</div>
+                </li>
+
+	   	    
+	    		<li class="passwords-fields">
+                    <div class="field">
+						<label for="password" class="required"><em>*</em><?php echo $this->__('Password') ?></label>
+                        <div class="input-box">
+                            <input type="password" name="password" id="password" title="<?php echo $this->__('Password') ?>" class="input-text required-entry validate-password" />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="confirmation" class="required"><em>*</em><?php echo $this->__('Confirm Password') ?></label>
+                        <div class="input-box">
+                            <input type="password" name="confirmation" title="<?php echo $this->__('Confirm Password') ?>" id="confirmation" class="input-text required-entry validate-cpassword" />
+                        </div>
+                    </div>
+            	</li>
+                
+			</ul>
+			<input type="submit" name="update" value="update" />
+		</form>
+	</div>
+</div>
 <?php endif; ?>
