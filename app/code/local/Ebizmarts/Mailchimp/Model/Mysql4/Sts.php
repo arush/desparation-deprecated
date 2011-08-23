@@ -16,8 +16,9 @@ class Ebizmarts_Mailchimp_Model_Mysql4_Sts extends Varien_Data_Collection {
         curl_close ($ch);
 
         $data = json_decode($result);
+
         if (isset($data->http_code)) {
-            Mage::getSingleton('core/session')->addError('STS integration is not set on mailchimp.');
+        	Mage::getSingleton('adminhtml/session')->addError(Mage::helper('mailchimp')->__('Mailchimp General Error: ').$data->message);
         }
         if (isset($data->email_addresses)){
             $this->_emailCollection = $data->email_addresses;

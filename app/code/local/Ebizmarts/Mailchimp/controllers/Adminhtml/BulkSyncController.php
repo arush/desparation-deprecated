@@ -32,7 +32,8 @@ class Ebizmarts_Mailchimp_Adminhtml_BulkSyncController extends Mage_Adminhtml_Co
 	public function deleteAction() {
 
 		$params = $this->getRequest()->getParams();
-		if(isset($params['time'],$params['type'],$params['list'],$params['key'])){
+
+		if(isset($params['time'],$params['type'],$params['list'])){
 			$file = Mage::getModel('mailchimp/BulkSynchro')
 	            ->setTime((int)$params['time'])
 	            ->setType($params['type'])
@@ -50,7 +51,7 @@ class Ebizmarts_Mailchimp_Adminhtml_BulkSyncController extends Mage_Adminhtml_Co
 	public function downloadAction() {
 
 		$params = $this->getRequest()->getParams();
-		if(isset($params['time'],$params['type'],$params['list'],$params['key'])){
+		if(isset($params['time'],$params['type'],$params['list'])){
 			$file = Mage::getModel('mailchimp/BulkSynchro')
 	            ->setTime((int)$params['time'])
 	            ->setType($params['type'])
@@ -76,7 +77,7 @@ class Ebizmarts_Mailchimp_Adminhtml_BulkSyncController extends Mage_Adminhtml_Co
 		$params = $this->getRequest()->getParams();
 		$helper = Mage::helper('mailchimp');
 
-		if(isset($params['time'],$params['type'],$params['list'],$params['key'])){
+		if(isset($params['time'],$params['type'],$params['list'])){
 			try {
 				$file = Mage::getModel('mailchimp/BulkSynchro')
 		            ->setTime((int)$params['time'])

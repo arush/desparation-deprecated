@@ -30,41 +30,69 @@ class Ebizmarts_Mailchimp_Model_WebHooks extends Ebizmarts_Mailchimp_Model_MCAPI
 		}
 
 		$this->MCAPI($apikey);
-		$webHookUrl = str_replace('index.php/','',Mage::getBaseUrl()).'WebHooksCapture.php';
+		$this->setWebHookUrl(str_replace('index.php/','',Mage::getBaseUrl()).'WebHooksCapture.php');
 
 		if(is_array($listId)){
 			$list = array();
-
 			foreach($listId as $val){
 				$list[substr($val,0,strpos($val,'='))] = substr($val,strpos($val,'=')+1,strlen($val));
 			}
-
 			$this->setWebHookParams($list);
-			try {
-				if($this->listWebhooks($list['list_id'])){
-					$this->listWebhookDel($list['list_id'],$webHookUrl);
+
+			$this->_response = $this->listWebhooks($list['list_id']);
+			if ($this->errorCode){
+				$this->setErrorOutput();
+				return false;
+			}
+
+			if($this->getHook()){
+				$this->listWebhookDel($list['list_id'],$this->getWebHookUrl());
+				if ($this->errorCode){
+					$this->setErrorOutput();
+					return false;
 				}
-				$this->listWebhookAdd($list['list_id'],$webHookUrl,$this->_actions,$this->_sources);
-			}catch (Exception $e) {
-				$helper->addException($e);
-	        }
+			}
+			$this->listWebhookAdd($list['list_id'],$this->getWebHookUrl(),$this->_actions,$this->_sources);
+			if ($this->errorCode){
+				$this->setErrorOutput();
+				return false;
+			}
 		}else{
-			try {
-				$this->_response = $this->listWebhooks($listId);
-			}catch (Exception $e) {
-				$helper->addException($e);
-	        }
+			$this->_response = $this->listWebhooks($listId);
+			if ($this->errorCode){
+				$this->setErrorOutput();
+				return false;
+			}
 		}
+
+		if($hook = $this->getHook()){
+			return $hook;
+		}
+		return true;
+	}
+
+	private function getHook(){
 
 		if(count($this->_response)){
 			foreach($this->_response as $hook){
-				if($hook['url'] == $webHookUrl){
+				if($hook['url'] == $this->getWebHookUrl()){
 					return $hook;
 				}
 			}
 		}
-
 		return false;
+	}
+
+	private function setErrorOutput(){
+
+		$this->setCode($this->errorCode);
+		$this->setMessage($this->errorMessage);
+
+		Mage::helper('mailchimp')->addException($this);
+
+		unset($this->errorCode, $this->errorMessage);
+
+		return $this;
 	}
 
 }

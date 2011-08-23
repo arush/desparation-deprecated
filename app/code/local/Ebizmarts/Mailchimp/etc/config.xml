@@ -216,7 +216,7 @@
 	<default>
 		<mailchimp>
 			<general>
-				<version>3.0.3</version>
+				<version>3.0.4</version>
 				<active>0</active>
 				<intgr>0</intgr>
 				<ecomm360>0</ecomm360>
@@ -306,7 +306,7 @@
                     </mailchimp_ecomm360>
                 </observers>
              </sales_order_place_after>
-	        <controller_action_predispatch>
+	        <controller_action_layout_load_before>
                 <observers>
                     <mailchimp_ecomm360_setCookies>
                         <type>singleton</type>
@@ -314,7 +314,7 @@
                         <method>registerMe</method>
                     </mailchimp_ecomm360_setCookies>
                 </observers>
-            </controller_action_predispatch>
+            </controller_action_layout_load_before>
         </events>
 		<layout>
             <updates>

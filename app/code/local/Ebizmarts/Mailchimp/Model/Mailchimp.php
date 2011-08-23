@@ -17,9 +17,7 @@ class Ebizmarts_Mailchimp_Model_Mailchimp extends Ebizmarts_Mailchimp_Model_MCAP
 		// if user subscribes own login email - confirmation is not needed
 		$this->setDoubleOptin(($this->getCustomer()->getEntityId())? (bool)0 : (bool)$helper->getSubscribeConfig('double_optin',$this->getStore()));
 		$this->setUpdateExisting((bool)$helper->getSubscribeConfig('update_existing',$this->getStore()));
-		if($this->getCustomer()->getAction() == self::ACTION_UPDATE){
-			$this->setReplaceInterests((bool)0);
-		}elseif($this->getCustomer()->getAction() == self::ACTION_UNSUBSCRIBE){
+		if($this->getCustomer()->getAction() == self::ACTION_UNSUBSCRIBE){
 			$this->setReplaceInterests((bool)1);
 		}else{
 			$this->setReplaceInterests((bool)$helper->getSubscribeConfig('replace_interests',$this->getStore()));
@@ -48,26 +46,23 @@ class Ebizmarts_Mailchimp_Model_Mailchimp extends Ebizmarts_Mailchimp_Model_MCAP
 		}
 
 		$this->MCAPI($apikey);
-
 		$this->setSubsParams();
+
 		$merge_vars = Mage::helper('mailchimp')->getMergeVars($this->getCustomer(),false);
-
-		try {
-			$retval = $this->listSubscribe($this->getListId(),
-										   $this->getEmail(),
-										   $merge_vars,
-										   $this->getEmailType(),
-										   $this->getDoubleOptin(),
-										   $this->getUpdateExisting(),
-										   $this->getReplaceInterests(),
-										   $this->getSendWelcome());
-			$this->registerSubscription();
-		   	return $retval;
-		}catch (Exception $e) {
-			Mage::helper('mailchimp')->addException($e);
-        }
-
-		return $this;
+		$retval = $this->listSubscribe($this->getListId(),
+									   $this->getEmail(),
+									   $merge_vars,
+									   $this->getEmailType(),
+									   $this->getDoubleOptin(),
+									   $this->getUpdateExisting(),
+									   $this->getReplaceInterests(),
+									   $this->getSendWelcome());
+		if ($this->errorCode){
+			$this->setErrorOutput();
+			return false;
+		}
+		$this->registerSubscription();
+		return $retval;
 	}
 
 	private function unSubscribeCustomer(){
@@ -78,21 +73,19 @@ class Ebizmarts_Mailchimp_Model_Mailchimp extends Ebizmarts_Mailchimp_Model_MCAP
 		}
 
 		$this->MCAPI($apikey);
-
 		$this->setUnSubsParams();
-		try {
-			$retval = $this->listUnsubscribe($this->getListId(),
-											 $this->getCustomer()->getIdentifier(),
-											 $this->getDeleteMember(),
-											 $this->getSendGoodbye(),
-											 $this->getSendNotify());
-			$this->registerSubscription();
-		   	return $retval;
-		}catch (Exception $e) {
-			Mage::helper('mailchimp')->addException($e);
-        }
 
-		return $this;
+		$retval = $this->listUnsubscribe($this->getListId(),
+										 $this->getCustomer()->getIdentifier(),
+										 $this->getDeleteMember(),
+										 $this->getSendGoodbye(),
+										 $this->getSendNotify());
+		if ($this->errorCode){
+			$this->setErrorOutput();
+			return false;
+		}
+		$this->registerSubscription();
+		return $retval;
 	}
 
 	private function updateCustomer(){
@@ -107,19 +100,17 @@ class Ebizmarts_Mailchimp_Model_Mailchimp extends Ebizmarts_Mailchimp_Model_MCAP
 		$this->setSubsParams();
 		$merge_vars = Mage::helper('mailchimp')->getMergeVars($this->getCustomer(),true);
 
-		try {
-			$retval = $this->listUpdateMember($this->getListId(),
-										      $this->getCustomer()->getIdentifier(),
-										      $merge_vars,
-										      $this->getEmailType(),
-										      $this->getReplaceInterests());
-			$this->registerSubscription();
-			return $retval;
-		}catch (Exception $e) {
-			Mage::helper('mailchimp')->addException($e);
-        }
-
-		return $this;
+		$retval = $this->listUpdateMember($this->getListId(),
+									      $this->getCustomer()->getIdentifier(),
+									      $merge_vars,
+									      $this->getEmailType(),
+									      $this->getReplaceInterests());
+		if ($this->errorCode){
+			$this->setErrorOutput();
+			return false;
+		}
+		$this->registerSubscription();
+		return $retval;
 	}
 
 	public function getListMemberInfo(){
@@ -131,14 +122,14 @@ class Ebizmarts_Mailchimp_Model_Mailchimp extends Ebizmarts_Mailchimp_Model_MCAP
 
 		$this->MCAPI($apikey);
 
-		try {
-			$retval = $this->listMemberInfo($this->getListId(),$this->getEmail());
-			if($retval['success'] > 0){
-				return $retval['data'][0];
-			}
-		}catch (Exception $e) {
-			Mage::helper('mailchimp')->addException($e);
-        }
+		$retval = $this->listMemberInfo($this->getListId(),$this->getEmail());
+		if ($this->errorCode){
+			$this->setErrorOutput();
+			return false;
+		}
+		if($retval['success'] > 0){
+			return $retval['data'][0];
+		}
 
 		return false;
 	}
@@ -152,14 +143,12 @@ class Ebizmarts_Mailchimp_Model_Mailchimp extends Ebizmarts_Mailchimp_Model_MCAP
 
 		$this->MCAPI($apikey);
 
-		try{
-			$retval = $this->listInterestGroupings($this->getListId());
-			return $retval;
-		}catch (Exception $e) {
-			Mage::helper('mailchimp')->addException($e);
-        }
-
-		return $this;
+		$retval = $this->listInterestGroupings($this->getListId());
+		if ($this->errorCode){
+			$this->setErrorOutput();
+			return false;
+		}
+		return $retval;
 	}
 
 	public function getLists(){
@@ -172,25 +161,22 @@ class Ebizmarts_Mailchimp_Model_Mailchimp extends Ebizmarts_Mailchimp_Model_MCAP
 
 		$this->MCAPI($apikey);
 
-		try{
-			$retval = $this->lists();
-			return $retval;
-		}catch (Exception $e) {
-        	Mage::helper('mailchimp')->addException($e);
-        }
-
-        return $this;
+		$retval = $this->lists();
+		if ($this->errorCode){
+			$this->setErrorOutput();
+			return false;
+		}
+		return $retval;
 	}
 
 	public function mainAction(){
 
-		if($this->getCustomer()->getAction() == self::ACTION_SUBSCRIBE ||
-			$this->getCustomer()->getAction() == self::ACTION_RESUBSCRIBE ||
-			$this->getCustomer()->getAction() == self::ACTION_SILENTSUBSCRIBE){
+		$action = $this->getCustomer()->getAction();
+		if($action == self::ACTION_SUBSCRIBE || $action == self::ACTION_RESUBSCRIBE || $action == self::ACTION_SILENTSUBSCRIBE){
 			$this->subscribeCustomer();
-		}elseif($this->getCustomer()->getAction() == self::ACTION_UPDATE){
+		}elseif($action == self::ACTION_UPDATE){
 			$this->updateCustomer();
-		}elseif($this->getCustomer()->getAction() == self::ACTION_SILENTUPDATE){
+		}elseif($action == self::ACTION_SILENTUPDATE){
 			$response = $this->subscribeCustomer();
 			if($response){
 				$response = $this->updateCustomer();
@@ -198,7 +184,7 @@ class Ebizmarts_Mailchimp_Model_Mailchimp extends Ebizmarts_Mailchimp_Model_MCAP
 					$this->unSubscribeCustomer();
 				}
 			}
-		}elseif($this->getCustomer()->getAction() == self::ACTION_UNSUBSCRIBE){
+		}elseif($action == self::ACTION_UNSUBSCRIBE){
 			$response = $this->updateCustomer();
 			if($response){
 				$this->unSubscribeCustomer();
@@ -223,14 +209,20 @@ class Ebizmarts_Mailchimp_Model_Mailchimp extends Ebizmarts_Mailchimp_Model_MCAP
 
 
 			if(!empty($registered)){
-				$group = array();
-
 				$this->setEmail($subscriber->getEmail());
 				$member = $this->getListMemberInfo();
 
 				if(isset($member['id'])){
+					$group = array();
 					foreach($member['merges']['GROUPINGS'] as $val){
-						$group = array_merge($group, explode(', ',$val['groups']));
+						if($val) $group = array_merge($group, explode(', ',$val['groups']));
+			        }
+			        foreach($group as $k=>$v){
+			        	if(substr($v,-1) == '\\'){
+		        			$a = $k+1;
+			        		$group[$k] = str_replace('\\','',$v).', '.$group[$a];
+			        		unset($group[$a]);
+			        	}
 			        }
 					if(count($group)){
 						foreach($listgroups as $ky=>$item){
@@ -260,4 +252,15 @@ class Ebizmarts_Mailchimp_Model_Mailchimp extends Ebizmarts_Mailchimp_Model_MCAP
 		return true;
 	}
 
+	private function setErrorOutput(){
+
+		$this->setCode($this->errorCode);
+		$this->setMessage($this->errorMessage);
+
+		Mage::helper('mailchimp')->addException($this);
+
+		unset($this->errorCode, $this->errorMessage);
+
+		return $this;
+	}
 }

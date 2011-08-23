@@ -13,22 +13,17 @@ class Ebizmarts_Mailchimp_Adminhtml_WebHooksController extends Mage_Adminhtml_Co
 	public function newAction(){
 
 		$mod = 0;
-
      	foreach($this->getRequest()->getPost() as $list){
      		$items = explode('&',$list);
 
      		if(is_array($items) && count($items) > 1){
-     			Mage::getSingleton('mailchimp/webHooks')->mainWebHooksAction($items);
-     			$mod++;
+     			if(Mage::getSingleton('mailchimp/webHooks')->mainWebHooksAction($items)) $mod++;
      		}
     	}
 
-		if(count($mod)){
-			if($mod == 1){
-				Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('mailchimp')->__('Total of %d list was updated.', $mod));
-			}else{
-				Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('mailchimp')->__('Total of %d list(s) were updated.', $mod));
-			}
+		if($mod > 0){
+			$text = ($mod == 1)? Mage::helper('mailchimp')->__('Total of %d list was updated.', $mod) : Mage::helper('mailchimp')->__('Total of %d list(s) were updated.', $mod);
+			Mage::getSingleton('adminhtml/session')->addSuccess($text);
 		}
 	}
 

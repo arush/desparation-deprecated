@@ -171,35 +171,21 @@ class Ebizmarts_Mailchimp_Helper_Data extends Mage_Core_Helper_Abstract{
 				}
 			}
 		}
-
 		if($flag) $merge_vars['EMAIL'] = $customer->getEmail();
+
 		$groups = $customer->getListGroups();
-		$interests = $grpToSend = array();
+		$groupings = array();
 		if(is_array($groups) && count($groups)){
-			$groupings = array();
-			$grpName = '';
-			$count = 0;
 			foreach($groups as $option){
-				$parts = explode(']',$option);
-				if(substr($parts[0],1) == $customer->getListId() && count($parts) == 5){
-					if($count == 0 || $grpName != substr($parts[1],1)){
-						$grpName = substr($parts[1],1);
-						$currentInterests = $currentInterest = array();
-						if($count) $grpToSend[] = end($groupings);
-					}
-					$count++;
-					if(substr($parts[3],1) != '') $interests[] = substr($parts[3],1);
-					$currentInterest[] = substr($parts[3],1);
-					$currentInterests = implode(", ", $currentInterest);
-					$groupings[] = array('id'=>substr($parts[2],1),
-									   'name'=>$grpName,
-									   'groups'=>$currentInterests);
-				    if($count == count($groups)) $grpToSend[] = end($groupings);
+				$parts = explode(']',str_replace('[','',$option));
+				if($parts[0] == $customer->getListId() && count($parts) == 5){
+					$groupings[] = array('id'=>$parts[2],
+									   'name'=>str_replace(',','\,',$parts[1]),
+									   'groups'=>str_replace(',','\,',$parts[3]));
 				}
 			}
 		}
-		$merge_vars['GROUPINGS'] = $grpToSend;
-		$merge_vars['INTERESTS'] = ($interests)? implode(", ", $interests) : '';
+		$merge_vars['GROUPINGS'] = $groupings;
 
 		return $merge_vars;
 	}
@@ -207,21 +193,13 @@ class Ebizmarts_Mailchimp_Helper_Data extends Mage_Core_Helper_Abstract{
 	private function getAllListGroups($params,$currentStore){
 
 		$allGrps = array();
-
 		if($this->getGeneralConfig('intgr',$currentStore)){
 			$params = (is_array($params))? $params : $allGrps;
 
 			if(isset($params['group']) || isset($params['allgroups'])){
-				$flag = false;
-				if(isset($params['group'])){
-					foreach($params['group'] as $list=>$group){
-						if($group){
-							$flag = true;
-							$arrayCheck = array();
-						}
-					}
-				}
-				$groups = ($flag)? $params['group'] : $params['allgroups'];
+
+				$groups = (isset($params['group']) && count($params['group']))? $params['group'] : array();
+				$arrayCheck = array();
 
 				foreach($groups as $list=>$group){
 					if(is_array($group)){
@@ -229,7 +207,8 @@ class Ebizmarts_Mailchimp_Helper_Data extends Mage_Core_Helper_Abstract{
 							if(is_array($checkbox)){
 								foreach($checkbox as $item){
 									$allGrps[] = '['.$list.']'.str_replace('|','][',$item);
-									$arrayCheck[] = $item;
+									$aux = substr($item,0,strpos($item,']')).']';
+									if(!in_array($aux,$arrayCheck)) $arrayCheck[] = $aux;
 								}
 							}else{
 								if($checkbox){
@@ -249,12 +228,13 @@ class Ebizmarts_Mailchimp_Helper_Data extends Mage_Core_Helper_Abstract{
 						}
 					}
 				}
-
-				if($flag && isset($params['allgroups'])){
-					$missingGrps = explode("]",str_replace("[","",$params['allgroups'][$list]));
-					foreach($missingGrps as $fixing){
-						if($fixing && !in_array('['.$fixing.'][]',$arrayCheck)){
-							$allGrps[] = '['.$list.']['.str_replace('|','][',$fixing).'][]';
+				if(isset($params['allgroups'])){
+					foreach($params['allgroups'] as $list=>$value){
+						$parts = explode(']',str_replace('[','',$value));
+						foreach($parts as $item){
+							if($item && !in_array('['.$item.']',$arrayCheck)){
+								$allGrps[] = '['.$list.']['.str_replace('|','][',$item).'][]';
+							}
 						}
 					}
 				}
@@ -306,11 +286,10 @@ class Ebizmarts_Mailchimp_Helper_Data extends Mage_Core_Helper_Abstract{
 
 		if(strstr($params['tab'],'newsletter') == 'newsletter'){
 			$params['is_general'] = true;
-			$this->mailChimpFilter($subscriber,$params);
 		}else{
 			$params['onlyUpdate'] = true;
-			$this->mailChimpFilter($subscriber,$params);
 		}
+		$this->mailChimpFilter($subscriber,$params);
 
 		return true;
 	}
@@ -325,7 +304,16 @@ class Ebizmarts_Mailchimp_Helper_Data extends Mage_Core_Helper_Abstract{
 			if($subscriber->getCustomerId()){
 				$customer = Mage::getSingleton('customer/customer')->load($subscriber->getCustomerId())->setSoreId($subscriber->getStoreId());
 
-				foreach($customer->getData() as $k=>$v) $subscriber->setData($k,$v);
+				foreach($customer->getData() as $k=>$v){
+					if($customer->getAttribute($k) && $customer->getAttribute($k)->usesSource()){
+						$options = $customer->getAttribute($k)->getSource()->getAllOptions();
+				        $value = $customer->getData($k);
+				        foreach ($options as $option){
+				            if($option['value'] == $value) $v = $option['label'];
+				        }
+					}
+					$subscriber->setData($k,$v);
+				}
 
 				$address = ($customer->getDefaultBillingAddress())? $customer->getDefaultBillingAddress() : Mage::getSingleton('checkout/session')->getQuote()->getBillingAddress() ;
 
@@ -459,7 +447,7 @@ class Ebizmarts_Mailchimp_Helper_Data extends Mage_Core_Helper_Abstract{
 		}
 	}
 
- 	public function addException(Exception $e){
+ 	public function addException($e){
 
 		$currentStore = Mage::app()->getStore()->getStoreId();
 
@@ -469,17 +457,12 @@ class Ebizmarts_Mailchimp_Helper_Data extends Mage_Core_Helper_Abstract{
     		}else{
     			Mage::getSingleton('customer/session')->addError($this->__('An error occurred while saving your subscription, please try again later.'));
     		}
-    		$this->logInfo($e, $this->__('Mailchimp General Error: ').$message);
+			$message = 'Exception code: '.$e->getCode().' ||| Exception message: '.$e->getMessage();
+			if($e->getTraceAsString()) $message .= ' ||| Trace: '.$e->getTraceAsString();
+        	Mage::log($message, Zend_Log::DEBUG, 'mailChimp_Exceptions.log');
         }
-	}
-
-	private function logInfo(Exception $exception, $alternativeText){
-
-        $message = sprintf('Exception code: '.$exception->getCode().' \n Exception message: '.$exception->getMessage().' \n Trace: '.$exception->getTraceAsString());
-        Mage::log($message, Zend_Log::DEBUG, 'mailChimp_Exceptions.log');
-
         return $this;
-    }
+	}
 
 }
 ?>

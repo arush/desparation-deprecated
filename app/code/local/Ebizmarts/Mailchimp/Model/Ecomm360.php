@@ -60,14 +60,17 @@ class Ebizmarts_Mailchimp_Model_Ecomm360 extends Ebizmarts_Mailchimp_Model_MCAPI
 
 		$this->setItemstoSend();
 
-		try {
-     	   $res = $this->campaignEcommOrderAdd($this->_info);
-        }catch (Exception $e) {
-			Mage::helper('mailchimp')->addException($e);
-        }
+ 	   $res = $this->campaignEcommOrderAdd($this->_info);
+		if ($this->errorCode){
+			$this->setCode($this->errorCode);
+			$this->setMessage($this->errorMessage);
+
+			Mage::helper('mailchimp')->addException($this);
+			return false;
+		}
 
 		if($res) $this->registerInfo();
-
+		return $this;
     }
 
     private function setItemstoSend(){

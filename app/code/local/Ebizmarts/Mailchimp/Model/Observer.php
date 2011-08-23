@@ -142,11 +142,10 @@ class Ebizmarts_Mailchimp_Model_Observer extends Mage_Core_Model_Abstract {
         return $this;
     }
 
-	public function registerMe(){
+	public function registerMe($observer){
 
 		Mage::getSingleton('mailchimp/ecomm360')->registerMe();
         return $this;
     }
-
 }
 ?>

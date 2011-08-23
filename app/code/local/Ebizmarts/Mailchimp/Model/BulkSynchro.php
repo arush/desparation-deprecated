@@ -233,7 +233,7 @@ class Ebizmarts_Mailchimp_Model_BulkSynchro extends Ebizmarts_Mailchimp_Model_MC
 	   					->addAttributeToSelect('*');
 			$customerArray = array();
 	    	foreach($customers as $customer){
-				$customerArray[$customer->getEmail()] = $customer->getData();
+				$customerArray[$customer->getEmail()] = $customer;
 	    	}
 	    	if(count($customerArray)) $this->_customCol = $customerArray;
     	}
@@ -283,9 +283,17 @@ class Ebizmarts_Mailchimp_Model_BulkSynchro extends Ebizmarts_Mailchimp_Model_MC
 
 		if(count($this->_customCol) && array_key_exists($email,$this->_customCol)){
 			$customer->setCustomerId($this->_customCol[$email]['entity_id']);
-			foreach($this->_customCol[$email] as $k=>$v){
+			foreach($this->_customCol[$email]->getData() as $k=>$v){
+				if($this->_customCol[$email]->getAttribute($k) && $this->_customCol[$email]->getAttribute($k)->usesSource()){
+					$options = $this->_customCol[$email]->getAttribute($k)->getSource()->getAllOptions();
+			        $value = $this->_customCol[$email]->getData($k);
+			        foreach ($options as $option){
+			            if($option['value'] == $value) $v = $option['label'];
+			        }
+				}
 				$customer->setData($k,$v);
 			}
+
 			if($address = $customer->getDefaultBillingAddress()){
 				$addressArray = array();
 				foreach($address->getData() as $k=>$v){
