@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Sweet Tooth Instore</title>
+        
+        <style type="text/css">
+            @font-face {
+                font-family: HelveticaLT;
+                src: url('<?php echo $this->getSkinUrl('rewardsinstore/fonts/helvetica_light.ttf') ?>') format('truetype');
+            } 
+            @font-face {
+                font-family: HelveticaLT;
+                font-weight: bold;
+                src: url('<?php echo $this->getSkinUrl('rewardsinstore/fonts/helvetica_bold.otf') ?>') format('opentype');
+            } 
+        </style>
+        <!--[if IE]>
+        <style type="text/css">
+            @font-face {
+                font-family: HelveticaLT;
+                src: src: url('<?php echo $this->getSkinUrl('rewardsinstore/fonts/helvetica_light.eot') ?>');
+            }
+            @font-face {
+                font-family: HelveticaLT;
+                font-weight: bold;
+                src: url('<?php echo $this->getSkinUrl('rewardsinstore/fonts/helvetica_bold.eot') ?>');
+            }
+        </style>
+        <![endif]-->
+        
+        <?php echo $this->getChildHtml('head') ?>
+        <?php /* @TODO: in page/html/head.phtml the Translator script is added... Should we keep Prototype? */ ?>
+        <script type="text/javascript">
+        //<![CDATA[
+            var launchUri = "<?php echo $this->getLaunchUri() ?>";
+            var loginUri = "<?php echo Mage::getModel('adminhtml/url')->getUrl('rewardsinstoreadmin/webapp_ajax/main') ?>";
+            var formKey = "<?php echo Mage::getSingleton('core/session')->getFormKey() ?>";
+            var isLoggedIn = <?php echo $this->isLoggedIn() ? "true" : "false" ?>;
+            var storefronts = <?php echo $this->getStorefronts() ?>;
+        //]]>
+        </script>
+        
+        <!--[if IE 7]>
+        <link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('rewardsinstore/css/webapp/ie7.css') ?>" />
+        <![endif]-->
+        
+        <link rel="apple-touch-icon" type="image" href="<?php echo $this->getSkinUrl('rewardsinstore/images/apple-touch-icon.png') ?>" />
+    </head>
+    <body>
+        <div id="container" style="overflow:hidden; position:relative;">
+            <div class="wide2" style="width:1700px;">
+                <div class="centerPreLogin" style="position:relative; float:left;"></div>
+                <div class="centerPostLogin" style="display:none; position:relative; float:left; left:-775px;">
+                    <p>
+                        <?php echo $this->__("Logged in as %s", "") ?>
+                        <strong>
+                            <span id="userFullName"></span>, <span id="storefrontName"></span>
+                        </strong>
+                        <span id="logoutBar">
+                            <a href="#"><?php echo $this->__("Switch user") ?></a>
+                        </span>
+                    </p>
+                </div>
+                <div style="clear:both;"></div>
+                <div id="loginDiv" class="mainCenter"></div>
+                <div id="mainDiv" class="mainCenter" style="display:none; overflow:hidden;"></div>
+                <div style="clear: both"></div>
+            </div>
+                
+            <div class="mainFoot" style="position:relative;">
+                <div class="footRight">
+                    Powered by: 
+                    <img src="<?php echo $this->getSkinUrl('rewardsinstore/images/powered_by_logo.png') ?>" style="width:100px; height:18px; vertical-align:bottom;" />
+                </div>
+                Problems? Contact <a href="http://www.wdca.ca/support" target="_blank">Support</a> for help.
+            </div>
+        </div>
+        <img id="loader" src="<?php echo $this->getSkinUrl('rewardsinstore/images/ajax-loader.gif') ?>" style="position:absolute; opacity:0;" />
+    </body>
+</html>

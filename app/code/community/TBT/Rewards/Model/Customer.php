@@ -111,11 +111,13 @@ class TBT_Rewards_Model_Customer extends Mage_Customer_Model_Customer {
 			$this->oldId = $this->getId (); //This stops multiple triggers of this function
 			$this->createTransferForNewCustomer ();
 		}
+		
 		Mage::getSingleton ( 'rewards/session' )->setCustomer ( $this );
 		if ($isNew) {
-			//		    Mage::helper('rewards')->notice("New customer event triggered with customer id #{$this->getId()}");
-			Mage::getSingleton ( 'rewards/session' )->triggerNewCustomerCreate ( $this );
-			Mage::dispatchEvent ( 'rewards_new_customer_create', array ('customer' => &$this ) );
+			if (Mage::helper('rewards/dispatch')->smartDispatch('rewards_customer_signup', array('customer' => $this))) {
+				Mage::getSingleton ( 'rewards/session' )->triggerNewCustomerCreate ( $this );
+				Mage::dispatchEvent ( 'rewards_new_customer_create', array ('customer' => &$this ) );
+			}
 		}
 		return parent::_afterSave ();
 	}
@@ -137,7 +139,7 @@ class TBT_Rewards_Model_Customer extends Mage_Customer_Model_Customer {
 			
 			if ($is_transfer_successful) {
 				//Alert the customer on the distributed points   
-				Mage::getSingleton ( 'core/session' )->addSuccess ( Mage::helper ( 'rewards' )->__ ( 'You received %s for signing up!', Mage::getModel ( 'rewards/points' )->set ( $rule ) ) );
+				Mage::getSingleton ( 'core/session' )->addSuccess ( Mage::helper ( 'rewards' )->__ ( 'You received %s for signing up!', (string)Mage::getModel ( 'rewards/points' )->set ( $rule ) ) );
 			} else {
 				Mage::getSingleton ( 'core/session' )->addError ( Mage::helper ( 'rewards' )->__ ( 'Could not transfer points.' ) );
 			}

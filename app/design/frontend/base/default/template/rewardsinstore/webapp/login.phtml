@@ -1,0 +1,34 @@
+
+<img src="<?php echo $this->getLogoSrc() ?>" style="margin:30px;" />
+
+<div id="fullWidth" style="margin-top:15px; width:300px;">
+	<h3>Login</h3>
+	<p><img src="<?php echo $this->getSkinUrl("rewardsinstore/images/hr.jpg") ?>" style="width:260px;" /></p>
+	
+    <div class="messages">
+        <?php echo $this->getChild('global_messages')->getGroupedHtml() ?>
+    </div>
+    <div class="select-box" style="margin:10px;">
+        <select id="LST_storefronts" class="select required-entry" title="<?php echo $this->__('Storefront') ?>">
+            <option value="-1"><?php echo $this->__("Select Store Location") ?></option>
+            <?php foreach ($this->getStorefrontCollection() as $storefront): ?>
+            <option value="<?php echo $storefront->getId() ?>" <?php echo $this->getStorefrontSelected($storefront->getCode()) ?>><?php echo $storefront->getName() ?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+    <div id="DIV_loginForm" style="display:inline-block;">
+        <div class="input-box" style="margin:5px;">
+            <input type="text" id="TXT_username" class="input-text required-entry validate-email" title="<?php echo $this->__('Email Address') ?>" />
+        </div>
+        <div class="input-box" style="margin:5px;">
+            <input type="password" id="TXT_password" class="input-text required-entry validate-password" title="<?php echo $this->__('Password') ?>" />
+        </div>
+    </div>
+    <div class="submit" style="margin:20px;">
+        <button id="BTN_login" class="button" title="<?php echo $this->__('Login') ?>" name="send" onclick="login()"><span><?php echo $this->__('Login') ?></span></button>
+    </div>
+    
+    <img src="<?php echo $this->getSkinUrl("rewardsinstore/images/panel3.jpg") ?>" style="width:100%;" />
+</div>
+<img id="IMG_mageLogo" src="<?php echo $this->getSkinUrl("rewardsinstore/images/magento_logo.gif") ?>" style="position:absolute; width:26px; height:30px; padding-right:5px;" onload="onImageLoaded(this.id)" />
+<img id="IMG_loading" src="<?php echo $this->getSkinUrl("rewardsinstore/images/ajax-loader-tr.gif") ?>" style="position:absolute; padding-left:10px;" onload="onImageLoaded(this.id)" />

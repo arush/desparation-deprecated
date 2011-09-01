@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addCss"><name>rewardsinstore/css/skin.css</name></action>
+        </reference>
+    </default>
+    <rewardsinstoreadmin_manage_storefront_index>
+        <reference name="content">
+            <block type="rewardsinstore/manage_storefront" name="manage_storefront"/>
+        </reference>
+    </rewardsinstoreadmin_manage_storefront_index>
+    
+    <rewardsinstoreadmin_manage_storefront_edit>
+        <reference name="content">
+            <block type="rewardsinstore/manage_storefront_edit_address" name="manage_storefront_edit_address"/>
+        </reference>
+    </rewardsinstoreadmin_manage_storefront_edit>
+    
+    <rewardsinstoreadmin_webapp_ajax_main>
+        <block name="root" type="rewardsinstore/webapp_ajax_main" template="rewardsinstore/webapp/main2.phtml">
+            <block name="global_messages" type="adminhtml/messages" as="global_messages" />
+        </block>
+    </rewardsinstoreadmin_webapp_ajax_main>
+    <rewardsinstoreadmin_webapp_ajax_logout />
+    <rewardsinstoreadmin_webapp_ajax_fetchCustomers />
+    <rewardsinstoreadmin_webapp_ajax_estimatePoints />
+    <rewardsinstoreadmin_webapp_ajax_rewardCustomer />
+</layout>

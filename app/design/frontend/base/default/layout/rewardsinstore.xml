@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <rewardsinstore_webapp_index>
+        <block name="root" type="rewardsinstore/webapp" template="rewardsinstore/webapp.phtml">
+            <block name="head" type="page/html_head">
+                <action method="addJs"><script>tbt/rewardsinstore/jquery/jquery-1.6.1.js</script></action>
+                <action method="addJs"><script>tbt/rewardsinstore/jquery/plugins/labelintoinput.js</script></action>
+                <action method="addJs"><script>tbt/rewardsinstore/jquery-ui/jquery-ui-1.8.13.custom.js</script></action>
+                <action method="addJs"><script>tbt/rewardsinstore/jquery-ui/plugins/autocomplete.html.js</script></action>
+                <action method="addCss"><stylesheet>rewardsinstore/css/jquery-ui/sunny/jquery-ui-1.8.13.custom.css</stylesheet></action>
+                
+                <action method="addCss"><stylesheet>rewardsinstore/css/blackbird.css</stylesheet></action>
+                <action method="addJs"><script>tbt/rewardsinstore/blackbird.js</script></action>
+                
+                <action method="addJs"><script>tbt/rewardsinstore/webapp.js</script></action>
+                <action method="addCss"><script>rewardsinstore/css/style.css</script></action>
+            </block>
+            
+            <block name="login" type="rewardsinstore/webapp_login" template="rewardsinstore/webapp/login.phtml">
+                <block name="global_messages" type="adminhtml/messages" as="global_messages" />
+            </block>
+            <block name="main" type="rewardsinstore/webapp_main" template="rewardsinstore/webapp/main.phtml" />
+        </block>
+    </rewardsinstore_webapp_index>
+    
+    <rewardsinstore_index_index>
+        <block name="root" type="rewardsinstore/webapp" template="rewardsinstore/webapp.phtml">
+            <block name="head" type="page/html_head">
+                <action method="addJs"><script>tbt/rewardsinstore/jquery/jquery-1.6.1.js</script></action>
+                <action method="addJs"><script>tbt/rewardsinstore/jquery/plugins/labelintoinput.js</script></action>
+                <action method="addJs"><script>tbt/rewardsinstore/jquery-ui/jquery-ui-1.8.13.custom.js</script></action>
+                <action method="addJs"><script>tbt/rewardsinstore/jquery-ui/plugins/autocomplete.html.js</script></action>
+                <action method="addCss"><stylesheet>rewardsinstore/css/jquery-ui/sunny/jquery-ui-1.8.13.custom.css</stylesheet></action>
+                
+                <action method="addCss"><stylesheet>rewardsinstore/css/blackbird.css</stylesheet></action>
+                <action method="addJs"><script>tbt/rewardsinstore/blackbird.js</script></action>
+                
+                <action method="addJs"><script>tbt/rewardsinstore/webapp.js</script></action>
+                <action method="addCss"><script>rewardsinstore/css/style.css</script></action>
+            </block>
+            
+            <block name="login" type="rewardsinstore/webapp_login" template="rewardsinstore/webapp/login.phtml">
+                <block name="global_messages" type="adminhtml/messages" as="global_messages" />
+            </block>
+            <block name="main" type="rewardsinstore/webapp_main" template="rewardsinstore/webapp/main.phtml" />
+        </block>
+    </rewardsinstore_index_index>
+    
+    <storefront_index_index>
+        <block name="root" type="rewardsinstore/webapp" template="rewardsinstore/webapp.phtml">
+            <block name="head" type="page/html_head">
+                <action method="addJs"><script>tbt/rewardsinstore/jquery/jquery-1.6.1.js</script></action>
+                <action method="addJs"><script>tbt/rewardsinstore/jquery/plugins/labelintoinput.js</script></action>
+                <action method="addJs"><script>tbt/rewardsinstore/jquery/plugins/blockUI.js</script></action>
+                <action method="addJs"><script>tbt/rewardsinstore/jquery/plugins/numeric.js</script></action>
+                <action method="addJs"><script>tbt/rewardsinstore/jquery-ui/jquery-ui-1.8.13.custom.js</script></action>
+                <action method="addJs"><script>tbt/rewardsinstore/jquery-ui/plugins/autocomplete.html.js</script></action>
+                <action method="addCss"><stylesheet>rewardsinstore/css/jquery-ui/sunny/jquery-ui-1.8.13.custom.css</stylesheet></action>
+                
+                <action method="addCss"><stylesheet>rewardsinstore/css/blackbird.css</stylesheet></action>
+                <action method="addJs"><script>tbt/rewardsinstore/blackbird.js</script></action>
+                
+                <action method="addJs"><script>tbt/rewardsinstore/webapp.js</script></action>
+                <!-- <action method="addCss"><script>rewardsinstore/css/style.css</script></action> -->
+                <action method="addCss"><script>rewardsinstore/css/webapp.css</script></action>
+            </block>
+            
+            <block name="login" type="rewardsinstore/webapp_login" template="rewardsinstore/webapp/login.phtml">
+                <block name="global_messages" type="adminhtml/messages" as="global_messages" />
+            </block>
+            <block name="main" type="rewardsinstore/webapp_main" template="rewardsinstore/webapp/main.phtml" />
+        </block>
+    </storefront_index_index>
+    
+    <rewardsinstore_webapp_login>
+        <block name="root" type="rewardsinstore/webapp_login" template="rewardsinstore/webapp/login2.phtml">
+            <block name="global_messages" type="adminhtml/messages" as="global_messages" />
+        </block>
+    </rewardsinstore_webapp_login>
+</layout>

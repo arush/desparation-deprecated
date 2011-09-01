@@ -1,0 +1,61 @@
+
+<script type="text/javascript">
+    var autocompleteUri = "<?php echo $this->getUrl('rewardsinstoreadmin/webapp_ajax/fetchCustomers') ?>";
+    var estimateUri = "<?php echo $this->getUrl('rewardsinstoreadmin/webapp_ajax/estimatePoints') ?>";
+    var rewardUri = "<?php echo $this->getUrl('rewardsinstoreadmin/webapp_ajax/rewardCustomer') ?>";
+    var createUri = "<?php echo $this->getUrl('rewardsinstoreadmin/webapp_ajax/createCustomer') ?>";
+    var logoutUri = "<?php echo $this->getUrl('rewardsinstoreadmin/webapp_ajax/logout') ?>";
+</script>
+<script type="text/javascript" src="<?php echo $this->getJsUrl('tbt/rewardsinstore/webapp/main.js') ?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('rewardsinstore/css/style.css') ?>" />
+<link rel="stylesheet" type="type/css" href="<?php echo $this->getSkinUrl('rewardsinstore/css/main.css') ?>" />
+
+<div id="DIV_spacer" style="padding:20px;"></div>
+<div id="fullWidth" style="margin-top:0px; width:50%;">
+    <div id="DIV_variableContent" style="padding-top: 15px;">
+        <div id="DIV_txtCustomer" style="position:relative; display:inline-block; padding-bottom:20px; padding-top:20px;">
+        	<label for="customerName">Name or Email</label>
+            <input type="text" id="TXT_customerName" name="customerName" class="input-text required-entry" title="<?php echo $this->__('Customer') ?>" />
+            <input type="hidden" id="HDN_customerEmail" name="customerEmail" />
+        </div>
+        
+        <div id="DIV_customerData" style="position:relative; display:inline-block; padding-bottom:20px; padding-top:20px; text-align:left;">
+            <div style="font-size:xx-large; font-weight:bold; clear:both;" id="LBL_customerName">X</div>
+            <div id="DIV_pointsFromPurchase" style="font-size:small; vertical-align:super;">+<span id="LBL_pointsFromPurchase"></span> points for total purchase</div> 
+            <div style="font-size:small; vertical-align:super;">Balance: <span id="LBL_customerPoints"></span> points</div>
+        </div>
+        
+        <div id="DIV_newCustomer" style="position:relative; display:inline-block; padding-bottom:20px; padding-top:20px; text-align:center;">
+        	<label for="cxFirstName">First Name</label>
+        	<label for="cxLastName">Last Name</label>
+        	<label for="cxEmail">Email</label>
+        	<input type="text" id="TXT_cxFirstName" name="cxFirstName" style="width:110px; position:relative;" class="input-text required-entry" title="<?php echo $this->__('New Customer - First Name') ?>" />
+        	<input type="text" id="TXT_cxLastName" name="cxLastName" style="width:110px; position:relative;" class="input-text required-entry" title="<?php echo $this->__('New Customer - Last Name') ?>" />
+        	<br/>
+        	<input type="text" id="TXT_cxEmail" name="cxEmail" style="width:256px; position:relative;" class="input-text required-entry" title="<?php echo $this->__('New Customer - Email Address') ?>" />
+        </div>
+    </div>
+    
+    <div id="DIV_staticContent" style="display:block; position:relative;">
+    	<label for="subtotal">Order Subtotal</label>
+    	<img id="IMG_subtotal" style="display:inline-block; position:absolute; padding-right:15px;" src="<?php echo $this->getSkinUrl("rewardsinstore/images/dollar.png") ?>" onload="onImageLoaded(this.id)" />
+        <input type="text" id="TXT_subtotal" name="subtotal" class="input-text required-entry" style="margin-bottom:20px;" title="<?php echo $this->__('Order Total') ?>" /> <br/>
+        <span id="LBL_estimatedPoints" style="color:gray; padding-right:5px;"></span>
+        <button id="BTN_reward" class="button" title="<?php echo $this->__('Reward Customer') ?>" name="send" onclick="reward()" style="margin:10px;">
+        	<span><?php echo $this->__('Reward Customer') ?></span>
+        	<div id="LBL_createAccount" style="font-size:x-small; padding-top:5px; display:none;"><?php echo $this->__("and Create Account")?></div>
+        </button>
+        
+        <img src="<?php echo $this->getSkinUrl("rewardsinstore/images/panel3.jpg") ?>" style="width:100%; height:22px;" />
+    </div>
+</div>
+
+<img id="IMG_customer" style="position:absolute; display:inline-block; padding-right:15px;" src="<?php echo $this->getSkinUrl("rewardsinstore/images/customer.png") ?>" onload="onImageLoaded(this.id)" />
+<img id="IMG_add" style="position:absolute; display:inline-block; padding-left:15px;" src="<?php echo $this->getSkinUrl("rewardsinstore/images/add.gif") ?>" onload="onImageLoaded(this.id)" onclick="addCustomer()" />
+<img id="IMG_delete" style="position:absolute; display:inline-block; padding-left:15px;" src="<?php echo $this->getSkinUrl("rewardsinstore/images/delete.gif") ?>" onload="onImageLoaded(this.id)" onclick="cancel()" />
+<img id="IMG_loading" style="position:absolute; display:inline-block; padding-left:15px;" src="<?php echo $this->getSkinUrl("images/ajax-loader-tr.gif") ?>" onload="onImageLoaded(this.id)" />
+<span id="LBL_pointsEarned" style="position:absolute; display:inline-block; font-size:xx-large; font-weight:bold; color:green; padding-left:15px;">+50</span>
+
+<script type="text/javascript">
+	log.info("finished parsing HTML");
+</script>

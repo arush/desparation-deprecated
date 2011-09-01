@@ -209,7 +209,7 @@ class TBT_Rewards_Model_Sales_Quote extends Mage_Sales_Model_Quote {
 	 *
 	 * @return TBT_Rewards_Model_Observer_Sales_Catalogtransfers
 	 */
-	private function _getCatalogTransfersSingleton() {
+	protected function _getCatalogTransfersSingleton() {
 		return Mage::getSingleton ( 'rewards/observer_sales_catalogtransfers' );
 	}
 	
@@ -218,7 +218,7 @@ class TBT_Rewards_Model_Sales_Quote extends Mage_Sales_Model_Quote {
 	 *
 	 * @return TBT_Rewards_Model_Observer_Sales_Carttransfers
 	 */
-	private function _getCartTransfersSingleton() {
+	protected function _getCartTransfersSingleton() {
 		return Mage::getSingleton ( 'rewards/observer_sales_carttransfers' );
 	}
 	

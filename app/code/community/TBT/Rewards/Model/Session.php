@@ -670,7 +670,7 @@ class TBT_Rewards_Model_Session extends Mage_Core_Model_Session_Abstract {
 		$points = array ();
 		$points_exist = false;
 		
-		$total_cart_points = $this->updateShoppingCartPoints ();
+		$total_cart_points = $this->updateShoppingCartPoints ( $cart );
 		//    	Mage::helper('rewards/debug')->dd($total_cart_points);
 		
 

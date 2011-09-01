@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<config>
+    <api>
+        <resources>
+            <rewardsinstore_storefront translate="title" module="rewardsinstore">
+                <model>rewardsinstore/storefront_api</model>
+                <title>Sweet Tooth Instore - Storefront API</title>
+                <acl>rewardsinstore/storefront</acl>
+                <methods>
+                    <create translate="title" module="rewardsinstore">
+                        <title>Create a new storefront</title>
+                        <acl>rewardsinstore/storefront/create</acl>
+                    </create>
+                    <info translate="title" module="rewardsinstore">
+                        <title>Get info of a storefront</title>
+                        <acl>rewardsinstore/storefront/read</acl>
+                    </info>
+                    <list translate="title" module="rewardsinstore">
+                        <title>Get a list of all storefronts matching a set of filters</title>
+                        <method>items</method>
+                        <acl>rewardsinstore/storefront/read</acl>
+                    </list>
+                    <update translate="title" module="rewardsinstore">
+                        <title>Update an existing storefront</title>
+                        <acl>rewardsinstore/storefront/update</acl>
+                    </update>
+                    <delete translate="title" module="rewardsinstore">
+                        <title>Delete an existing storefront</title>
+                        <acl>rewardsinstore/storefront/delete</acl>
+                    </delete>
+                </methods>
+                <faults module="rewardsinstore">
+                    <data_invalid>
+                        <code>100</code>
+                        <message>Invalid storefront data. Details in error message.</message>
+                    </data_invalid>
+                    <filters_invalid>
+                        <code>101</code>
+                        <message>Invalid filters specified. Details in error message.</message>
+                    </filters_invalid>
+                    <not_exists>
+                        <code>102</code>
+                        <message>Storefront does not exist.</message>
+                    </not_exists>
+                    <not_deleted>
+                        <code>103</code>
+                        <message>Storefront not deleted. Details in error message.</message>
+                    </not_deleted>
+                </faults>
+            </rewardsinstore_storefront>
+            <rewardsinstore_transfer translate="title" module="rewardsinstore">
+                <model>rewardsinstore/transfer_api</model>
+                <title>Sweet Tooth Instore - Points Transfer API</title>
+                <acl>rewardsinstore/transfer</acl>
+                <methods>
+                    <info translate="title" module="rewardsinstore">
+                        <title>Get info of a points transfer</title>
+                        <acl>rewardsinstore/transfer/read</acl>
+                    </info>
+                    <list translate="title" module="rewardsinstore">
+                        <title>Get a list of all points transfers matching a set of filters</title>
+                        <method>items</method>
+                        <acl>rewardsinstore/transfer/read</acl>
+                    </list>
+                </methods>
+                <faults>
+                    <data_invalid>
+                        <code>100</code>
+                        <message>Invalid points transfer data. Details in error message.</message>
+                    </data_invalid>
+                    <filters_invalid>
+                        <code>101</code>
+                        <message>Invalid filters specified. Details in error message.</message>
+                    </filters_invalid>
+                    <not_exists>
+                        <code>102</code>
+                        <message>Points Transfer does not exist.</message>
+                    </not_exists>
+                </faults>
+            </rewardsinstore_transfer>
+            <rewardsinstore_rule translate="title" module="rewardsinstore">
+                <model>rewardsinstore/cartrule_api</model>
+                <title>Sweet Tooth Instore - Points Rule API</title>
+                <acl>rewardsinstore/rule</acl>
+                <methods>
+                    <info translate="title" module="rewardsinstore">
+                        <title>Get info of a points rule</title>
+                        <acl>rewardsinstore/rule/read</acl>
+                    </info>
+                    <list translate="title" module="rewardsinstore">
+                        <title>Get a list of all points rules matching a set of filters</title>
+                        <method>items</method>
+                        <acl>rewardsinstore/rule/read</acl>
+                    </list>
+                </methods>
+                <faults>
+                    <data_invalid>
+                        <code>100</code>
+                        <message>Invalid points rule data. Details in error message.</message>
+                    </data_invalid>
+                    <filters_invalid>
+                        <code>101</code>
+                        <message>Invalid filters specified. Details in error message.</message>
+                    </filters_invalid>
+                    <not_exists>
+                        <code>102</code>
+                        <message>Points Rule does not exist.</message>
+                    </not_exists>
+                </faults>
+            </rewardsinstore_rule>
+            <rewardsinstore_customer translate="title" module="rewardsinstore">
+                <model>rewardsinstore/customer_api</model>
+                <title>Sweet Tooth Instore - Customer API</title>
+                <acl>rewardsinstore/customer</acl>
+                <methods>
+                    <create translate="title" module="rewardsinstore">
+                        <title>Create a new Instore Customer</title>
+                        <acl>rewardsinstore/customer/create</acl>
+                    </create>
+                </methods>
+                <faults>
+                    <data_invalid>
+                        <code>100</code>
+                        <message>Invalid customer data. Details in error message.</message>
+                    </data_invalid>
+                </faults>
+            </rewardsinstore_customer>
+            <rewardsinstore_cart translate="title" module="rewardsinstore">
+                <model>rewardsinstore/cart_api</model>
+                <title>Sweet Tooth Instore - Cart API</title>
+                <acl>rewardsinstore/cart</acl>
+                <methods>
+                    <order translate="title" module="rewardsinstore">
+                        <title>Complete an order through Sweet Tooth Instore</title>
+                        <acl>rewardsinstore/cart/place_order</acl>
+                    </order>
+                </methods>
+                <faults>
+                    <data_invalid>
+                        <code>100</code>
+                        <message>Invalid input. Details in error message.</message>
+                    </data_invalid>
+                </faults>
+            </rewardsinstore_cart>
+        </resources>
+        <resources_alias>
+            <rewardsinstoreStorefront>rewardsinstore_storefront</rewardsinstoreStorefront>
+            <rewardsinstoreTransfer>rewardsinstore_transfer</rewardsinstoreTransfer>
+            <rewardsinstoreRule>rewardsinstore_rule</rewardsinstoreRule>
+            <rewardsinstoreCustomer>rewardsinstore_customer</rewardsinstoreCustomer>
+            <rewardsinstoreCart>rewardsinstore_cart</rewardsinstoreCart>
+        </resources_alias>
+        <v2>
+            <resources_function_prefix>
+                <rewardsinstore_storefront>rewardsinstoreStorefront</rewardsinstore_storefront>
+                <rewardsinstore_transfer>rewardsinstoreTransfer</rewardsinstore_transfer>
+                <rewardsinstore_rule>rewardsinstoreRule</rewardsinstore_rule>
+                <rewardsinstore_customer>rewardsinstoreCustomer</rewardsinstore_customer>
+                <rewardsinstore_cart>rewardsinstoreCart</rewardsinstore_cart>
+            </resources_function_prefix>
+        </v2>
+        <acl>
+            <resources>
+                <rewardsinstore translate="title" module="rewardsinstore">
+                    <title>Sweet Tooth Instore API</title>
+                    <sort_order>3</sort_order>
+                    <storefront translate="title" module="rewardsinstore">
+                        <title>Storefront API</title>
+                        <create translate="title" module="rewardsinstore">
+                            <title>Create storefronts</title>
+                        </create>
+                        <read translate="title" module="rewardsinstore">
+                            <title>Read storefront info</title>
+                        </read>
+                        <update translate="title" module="rewardsinstore">
+                            <title>Update storefront info</title>
+                        </update>
+                        <delete translate="title" module="rewardsinstore">
+                            <title>Delete storefronts</title>
+                        </delete>
+                    </storefront>
+                    <transfer translate="title" module="rewardsinstore">
+                        <title>Points Transfer API</title>
+                        <read translate="title" module="rewardsinstore">
+                            <title>Read points transfer info</title>
+                        </read>
+                    </transfer>
+                    <rule translate="title" module="rewardsinstore">
+                        <title>Points Rule API</title>
+                        <read translate="title" module="rewardsinstore">
+                            <title>Read points rule info</title>
+                        </read>
+                    </rule>
+                    <customer translate="title" module="rewardsinstore">
+                        <title>Instore Customer API</title>
+                        <create translate="title" module="rewardsinstore">
+                            <title>Create Instore customers</title>
+                        </create>
+                    </customer>
+                    <cart translate="title" module="rewardsinstore">
+                        <title>Instore Cart API</title>
+                        <place_order translate="title" module="rewardsinstore">
+                            <title>Place Instore orders</title>
+                        </place_order>
+                    </cart>
+                </rewardsinstore>
+            </resources>
+        </acl>
+    </api>
+</config>
