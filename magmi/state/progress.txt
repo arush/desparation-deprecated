@@ -1,0 +1,229 @@
+startup:Running Magmi Product Import Engine v1.3.2 by dweeves
+startup:Import Mode:create
+title:MAGMI by dweeves - version:0.7.12
+step:step:0.5%
+plugin;Magmi_CSVDataSource;pluginhello:CSV Datasource-1.1.2-Dweeves- 
+plugin;Magmi_OptimizerPlugin;pluginhello:Magmi Optimizer-1.0.5-Dweeves-http://sourceforge.net/apps/mediawiki/magmi/index.php?title=Magmi_Optimizer 
+plugin;Magmi_ReindexingPlugin;pluginhello:Magmi Magento Reindexer-1.0.5-Dweeves-http://sourceforge.net/apps/mediawiki/magmi/index.php?title=Magmi_Magento_Reindexer 
+plugin;ImageAttributeItemProcessor;pluginhello:Image attributes processor-1.0.17-Dweeves-http://sourceforge.net/apps/mediawiki/magmi/index.php?title=Image_attributes_processor 
+plugin;ItemIndexer;pluginhello:On the fly indexer-0.1.3-Dweeves-http://sourceforge.net/apps/mediawiki/magmi/index.php?title=On_the_fly_indexer 
+plugin;GenericMapperProcessor;pluginhello:Generic mapper-0.0.6a-Dweeves-http://sourceforge.net/apps/mediawiki/magmi/index.php?title=Generic_mapper 
+plugin;GenericMapperProcessor;startup:Generic mapper v0.0.6a - No custom mapping found
+plugin;Magmi_ConfigurableItemProcessor;pluginhello:Configurable Item processor-1.3.3-Dweeves-http://sourceforge.net/apps/mediawiki/magmi/index.php?title=Configurable_Item_processor 
+plugin;Magmi_DefaultAttributeItemProcessor;pluginhello:Standard Attribute Import-1.0.0-Dweeves- 
+plugin;Magmi_CSVDataSource;startup:CSV Datasource v1.1.2 - Importing CSV : ../../var/import/Mens_Jeans.csv using separator [ , ] enclosing [ " ]
+plugin;Magmi_OptimizerPlugin;info:Magmi Optimizer v1.0.5 - Optimizing magmi
+plugin;Magmi_OptimizerPlugin;info:Magmi Optimizer v1.0.5 - Adding index MAGMI_EAOV_OPTIMIZATION_IDX on eav_attribute_option_value
+plugin;Magmi_OptimizerPlugin;info:Magmi Optimizer v1.0.5 - Already optmized!
+plugin;Magmi_OptimizerPlugin;info:Magmi Optimizer v1.0.5 - Adding index MAGMI_CPEM_OPTIMIZATION_IDX on catalog_product_entity_media_gallery
+plugin;Magmi_OptimizerPlugin;info:Magmi Optimizer v1.0.5 - Already optmized!
+plugin;Magmi_OptimizerPlugin;info:Magmi Optimizer v1.0.5 - Adding index MAGMI_CCEV_OPTIMIZATION_IDX on catalog_category_entity_varchar
+plugin;Magmi_OptimizerPlugin;info:Magmi Optimizer v1.0.5 - Already optmized!
+plugin;Magmi_OptimizerPlugin;info:Magmi Optimizer v1.0.5 - Adding index MAGMI_EA_CODE_OPTIMIZATION_IDX on eav_attribute
+plugin;Magmi_OptimizerPlugin;info:Magmi Optimizer v1.0.5 - Already optmized!
+startup:Performing Datasouce Lookup...
+lookup:86:0.014035940170288
+startup:Found 86 records, took 0.014035940170288 sec
+plugin;Magmi_CSVDataSource;startup:CSV Datasource v1.1.2 - 95 CSV headers columns found
+columns:95
+startup:Ajusted processed columns:95
+itime:1 - 0.00019192695617676 - 0.00019192695617676
+dbtime:0 - 0 - 0 - 0
+itime:2 - 0.025913953781128 - 0.02564001083374
+dbtime:49 - 0.015906095504761 - 0.015906095504761 - 49
+itime:3 - 0.31176996231079 - 0.28574395179749
+dbtime:103 - 0.033562421798706 - 0.017656326293945 - 54
+itime:4 - 0.33652305603027 - 0.024615049362183
+dbtime:157 - 0.049354076385498 - 0.015791654586792 - 54
+itime:5 - 0.39976906776428 - 0.063133955001831
+dbtime:211 - 0.065331697463989 - 0.015977621078491 - 54
+itime:6 - 0.4690260887146 - 0.069143056869507
+dbtime:265 - 0.080544948577881 - 0.015213251113892 - 54
+itime:7 - 0.49357795715332 - 0.024435043334961
+dbtime:319 - 0.095508098602295 - 0.014963150024414 - 54
+itime:8 - 0.52413892745972 - 0.030448913574219
+dbtime:378 - 0.11672616004944 - 0.021218061447144 - 59
+itime:9 - 0.54844498634338 - 0.024194955825806
+dbtime:430 - 0.13212466239929 - 0.015398502349854 - 52
+itime:10 - 0.57194709777832 - 0.023388147354126
+dbtime:480 - 0.14676642417908 - 0.014641761779785 - 50
+itime:11 - 0.59701204299927 - 0.024953126907349
+dbtime:535 - 0.16271829605103 - 0.015951871871948 - 55
+itime:12 - 0.62319707870483 - 0.026072025299072
+dbtime:591 - 0.1797182559967 - 0.016999959945679 - 56
+itime:13 - 0.64896488189697 - 0.025648832321167
+dbtime:650 - 0.19608521461487 - 0.016366958618164 - 59
+itime:14 - 0.67894101142883 - 0.029859066009521
+dbtime:714 - 0.216468334198 - 0.02038311958313 - 64
+itime:15 - 0.70756602287292 - 0.028511047363281
+dbtime:776 - 0.23519945144653 - 0.018731117248535 - 62
+itime:16 - 0.73713493347168 - 0.029422998428345
+dbtime:843 - 0.25501012802124 - 0.019810676574707 - 67
+itime:17 - 0.76110196113586 - 0.023855924606323
+dbtime:895 - 0.26992416381836 - 0.014914035797119 - 52
+itime:18 - 0.78451299667358 - 0.023305892944336
+dbtime:945 - 0.28463125228882 - 0.014707088470459 - 50
+itime:19 - 0.82195591926575 - 0.037336826324463
+dbtime:995 - 0.29886293411255 - 0.01423168182373 - 50
+itime:20 - 0.85018396377563 - 0.028115034103394
+dbtime:1050 - 0.31792497634888 - 0.019062042236328 - 55
+itime:21 - 0.87404489517212 - 0.023743867874146
+dbtime:1102 - 0.33299088478088 - 0.015065908432007 - 52
+itime:22 - 0.89624905586243 - 0.022109031677246
+dbtime:1152 - 0.34672093391418 - 0.013730049133301 - 50
+itime:23 - 0.91836905479431 - 0.022030115127563
+dbtime:1202 - 0.36036372184753 - 0.01364278793335 - 50
+itime:24 - 0.94172692298889 - 0.023268938064575
+dbtime:1252 - 0.37520170211792 - 0.014837980270386 - 50
+itime:25 - 0.96774196624756 - 0.025924921035767
+dbtime:1307 - 0.3923773765564 - 0.017175674438477 - 55
+itime:26 - 0.99513792991638 - 0.027304887771606
+dbtime:1371 - 0.41045880317688 - 0.018081426620483 - 64
+itime:27 - 1.0215520858765 - 0.026321172714233
+dbtime:1433 - 0.4276442527771 - 0.01718544960022 - 62
+itime:28 - 1.049556016922 - 0.027905941009521
+dbtime:1500 - 0.4459342956543 - 0.018290042877197 - 67
+itime:29 - 1.0727169513702 - 0.02305793762207
+dbtime:1552 - 0.46045804023743 - 0.01452374458313 - 52
+itime:30 - 1.0974791049957 - 0.024669170379639
+dbtime:1607 - 0.47643113136292 - 0.015973091125488 - 55
+itime:31 - 1.162143945694 - 0.06456995010376
+dbtime:1675 - 0.49695944786072 - 0.020528316497803 - 68
+itime:32 - 1.2293949127197 - 0.067154884338379
+dbtime:1741 - 0.51570296287537 - 0.018743515014648 - 66
+itime:33 - 1.2928009033203 - 0.06330394744873
+dbtime:1812 - 0.53448843955994 - 0.01878547668457 - 71
+itime:34 - 1.3186869621277 - 0.025791883468628
+dbtime:1868 - 0.55160784721375 - 0.017119407653809 - 56
+itime:35 - 1.3424170017242 - 0.023639917373657
+dbtime:1922 - 0.56643223762512 - 0.014824390411377 - 54
+itime:36 - 1.3658421039581 - 0.023337125778198
+dbtime:1976 - 0.58112645149231 - 0.014694213867188 - 54
+itime:37 - 1.4557271003723 - 0.089792013168335
+dbtime:2030 - 0.59870553016663 - 0.017579078674316 - 54
+itime:38 - 1.6603710651398 - 0.20453095436096
+dbtime:2084 - 0.61437368392944 - 0.015668153762817 - 54
+itime:39 - 1.6849980354309 - 0.024493932723999
+dbtime:2138 - 0.62960481643677 - 0.015231132507324 - 54
+itime:40 - 1.7099890708923 - 0.024899005889893
+dbtime:2192 - 0.64577507972717 - 0.016170263290405 - 54
+itime:41 - 1.7336449623108 - 0.023561954498291
+dbtime:2246 - 0.66051840782166 - 0.014743328094482 - 54
+itime:42 - 1.7595610618591 - 0.025820970535278
+dbtime:2305 - 0.67740035057068 - 0.016881942749023 - 59
+itime:43 - 1.8271079063416 - 0.067456007003784
+dbtime:2369 - 0.69664192199707 - 0.019241571426392 - 64
+itime:44 - 2.0952289104462 - 0.26800084114075
+dbtime:2431 - 0.7158567905426 - 0.019214868545532 - 62
+itime:45 - 2.382040977478 - 0.28671002388
+dbtime:2498 - 0.73565649986267 - 0.019799709320068 - 67
+itime:46 - 2.4110078811646 - 0.028852939605713
+dbtime:2562 - 0.75528454780579 - 0.019628047943115 - 64
+itime:47 - 2.436821937561 - 0.025719881057739
+dbtime:2624 - 0.77186727523804 - 0.016582727432251 - 62
+itime:48 - 2.4641780853271 - 0.027266979217529
+dbtime:2686 - 0.78904294967651 - 0.017175674438477 - 62
+itime:49 - 2.4953548908234 - 0.03108286857605
+dbtime:2753 - 0.81044793128967 - 0.021404981613159 - 67
+itime:50 - 2.5222220420837 - 0.026772022247314
+dbtime:2817 - 0.828125 - 0.017677068710327 - 64
+itime:51 - 2.5479938983917 - 0.02567982673645
+dbtime:2879 - 0.84473299980164 - 0.016607999801636 - 62
+itime:52 - 2.5746910572052 - 0.026602983474731
+dbtime:2941 - 0.86218738555908 - 0.017454385757446 - 62
+itime:53 - 2.6047079563141 - 0.029926061630249
+dbtime:3008 - 0.88219785690308 - 0.020010471343994 - 67
+itime:54 - 2.6330680847168 - 0.028262138366699
+dbtime:3072 - 0.90112924575806 - 0.01893138885498 - 64
+itime:55 - 2.659511089325 - 0.026334047317505
+dbtime:3134 - 0.91810894012451 - 0.016979694366455 - 62
+itime:56 - 2.6883940696716 - 0.028748989105225
+dbtime:3196 - 0.93704080581665 - 0.018931865692139 - 62
+itime:57 - 2.7165040969849 - 0.027996063232422
+dbtime:3258 - 0.95571613311768 - 0.018675327301025 - 62
+itime:58 - 2.7444660663605 - 0.027855157852173
+dbtime:3325 - 0.97404623031616 - 0.018330097198486 - 67
+itime:59 - 2.7709939479828 - 0.026417016983032
+dbtime:3381 - 0.99089860916138 - 0.016852378845215 - 56
+itime:60 - 2.7960419654846 - 0.024940967559814
+dbtime:3435 - 1.0069193840027 - 0.016020774841309 - 54
+itime:61 - 2.8203580379486 - 0.024198055267334
+dbtime:3489 - 1.0221307277679 - 0.015211343765259 - 54
+itime:62 - 2.8476960659027 - 0.027227163314819
+dbtime:3543 - 1.0407011508942 - 0.018570423126221 - 54
+itime:63 - 2.8710989952087 - 0.023312091827393
+dbtime:3597 - 1.0554003715515 - 0.014699220657349 - 54
+itime:64 - 2.8960609436035 - 0.024870872497559
+dbtime:3656 - 1.0714492797852 - 0.016048908233643 - 59
+itime:65 - 4.6410439014435 - 1.7448937892914
+dbtime:3720 - 1.0923235416412 - 0.020874261856079 - 64
+itime:66 - 4.7426888942719 - 0.10152888298035
+dbtime:3782 - 1.1105108261108 - 0.018187284469604 - 62
+itime:67 - 4.7735478878021 - 0.030717849731445
+dbtime:3849 - 1.1313128471375 - 0.020802021026611 - 67
+itime:68 - 5.8174149990082 - 1.0437500476837
+dbtime:3905 - 1.1500358581543 - 0.018723011016846 - 56
+itime:69 - 5.841411113739 - 0.023885011672974
+dbtime:3959 - 1.1646273136139 - 0.014591455459595 - 54
+itime:70 - 5.8647110462189 - 0.023209095001221
+dbtime:4013 - 1.179062128067 - 0.014434814453125 - 54
+itime:71 - 5.8900029659271 - 0.025199890136719
+dbtime:4072 - 1.1949868202209 - 0.015924692153931 - 59
+itime:72 - 5.9176681041718 - 0.027565002441406
+dbtime:4136 - 1.2133722305298 - 0.018385410308838 - 64
+itime:73 - 5.9541919231415 - 0.036432027816772
+dbtime:4198 - 1.2323071956635 - 0.018934965133667 - 62
+itime:74 - 5.9806520938873 - 0.026370048522949
+dbtime:4260 - 1.2496047019958 - 0.017297506332397 - 62
+itime:75 - 6.0101029872894 - 0.029360055923462
+dbtime:4327 - 1.2696771621704 - 0.020072460174561 - 67
+itime:76 - 6.0353729724884 - 0.025177955627441
+dbtime:4383 - 1.286158323288 - 0.016481161117554 - 56
+itime:77 - 6.0598359107971 - 0.024369955062866
+dbtime:4437 - 1.301762342453 - 0.015604019165039 - 54
+itime:78 - 6.0854830741882 - 0.025550127029419
+dbtime:4491 - 1.3187217712402 - 0.016959428787231 - 54
+itime:79 - 6.1102850437164 - 0.024702072143555
+dbtime:4545 - 1.3348333835602 - 0.016111612319946 - 54
+itime:80 - 6.1356129646301 - 0.025238990783691
+dbtime:4604 - 1.3511340618134 - 0.016300678253174 - 59
+itime:81 - 6.1614019870758 - 0.025696039199829
+dbtime:4656 - 1.3682849407196 - 0.01715087890625 - 52
+itime:82 - 6.1856789588928 - 0.024188041687012
+dbtime:4706 - 1.3839163780212 - 0.015631437301636 - 50
+itime:83 - 6.2092270851135 - 0.023432970046997
+dbtime:4756 - 1.398508310318 - 0.014591932296753 - 50
+itime:84 - 6.2338449954987 - 0.024497985839844
+dbtime:4806 - 1.4140214920044 - 0.015513181686401 - 50
+itime:85 - 6.2577879428864 - 0.023825883865356
+dbtime:4856 - 1.4289267063141 - 0.014905214309692 - 50
+itime:86 - 6.2830839157104 - 0.025193929672241
+dbtime:4906 - 1.445645570755 - 0.016718864440918 - 50
+itime:86 - 6.3109540939331 - 0.027768135070801
+dbtime:4962 - 1.4646008014679 - 0.018955230712891 - 56
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.5 - running indexer
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.5 - Reindexing catalog_product_attribute....
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.5 - Product Attributes index was rebuilt successfully<br>
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.5 - done in 0.87 secs
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.5 - Reindexing catalog_product_price....
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.5 - Product Prices index was rebuilt successfully<br>
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.5 - done in 3.36 secs
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.5 - Reindexing catalog_product_flat....
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.5 - Product Flat Data index was rebuilt successfully<br>
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.5 - done in 1.24 secs
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.5 - Reindexing catalog_category_flat....
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.5 - Category Flat Data index was rebuilt successfully<br>
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.5 - done in 0.64 secs
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.5 - Reindexing catalog_category_product....
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.5 - Category Products index was rebuilt successfully<br>
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.5 - done in 0.75 secs
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.5 - Reindexing cataloginventory_stock....
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.5 - Stock Status index was rebuilt successfully<br>
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.5 - done in 0.69 secs
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.5 - Reindexing catalog_url....
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.5 - Catalog URL Rewrites index was rebuilt successfully<br>
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.5 - done in 1.96 secs
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.5 - Reindexing catalogsearch_fulltext....
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.5 - Catalog Search Index index was rebuilt successfully<br>
+plugin;Magmi_ReindexingPlugin;info:Magmi Magento Reindexer v1.0.5 - done in 0.88 secs
+end:Import Ended
