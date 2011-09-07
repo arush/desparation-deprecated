@@ -8712,45 +8712,6 @@ font-size: 13px;
 .form-subscribe a {
   color: rgb(119, 119, 119);
 }
-
-.footer {
-  background: none repeat scroll
-    0% 0% rgb(0, 0, 0);
-  min-width: 980px;
-  min-height: 330px;
-}
-
-.footer-container {
-  margin: 0pt auto 20px;
-  position: relative;
-  text-align: left;
-  width: 960px;
-  z-index: 1;
-}
-
-#bg-footer {
-  position: absolute;
-  right: 0px;
-  top: 50px;
-  z-index: -1;
-}
-
-.footer-content {
-  float: left;
-  width: 960px;
-}
-
-.footer-content a {
-  color: rgb(183, 183, 183);
-}
-
-.footer-content #social-links {
-  float: left;
-  width: 940px;
-  margin: 30px 0pt;
-  padding: 0pt 10px;
-}
-
 #social-buttons {
   background: none repeat scroll
     0% 0% rgb(21, 21, 21);
@@ -8815,37 +8776,7 @@ font-size: 13px;
   padding-left: 10px;
 }
 
-.footer-content #footer-links {
-  float: left;
-  width: 960px;
-  font-size: 1.17em;
-}
 
-#footer-links .link-column {
-  float: left;
-  width: 192px;
-}
-
-#footer-links .link-column h4 {
-  border-bottom: 1px solid rgb(31,
-    31, 31);
-  color: rgb(201, 201, 179);
-  font-size: 1.21em;
-  margin-bottom: 10px;
-  padding: 10px;
-}
-
-#footer-links .link-column ul {
-  padding: 0pt 10px;
-}
-
-#footer-links .link-column ul li {
-  line-height: 3em;
-}
-
-#footer-links a:hover {
-  color: rgb(255, 255, 255);
-}
 
 .page-head-alt {
 
@@ -13012,3 +12943,122 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 		}
 /* END PURR */
 
+/* FLO START HOMEPAGE SKIN 5/9/2011 */
+	/*ADD PROXIMA NOVA FONT START*/
+		@font-face{
+			font-family: 'ProximaNovaBold';
+			src: url('fonts/ProximaNovaBold.eot?') format('eot'), url('fonts/ProximaNovaBold.otf') format('opentype');
+		}
+	/*ADD PROXIMA NOVA FONT END*/
+.shop-woman, .shop-man {
+	float: left;
+	-moz-box-shadow: 0pt 0px 2px #acacac;
+	-webkit-box-shadow: 0pt 0px 2px #acacac;
+	-khtml-box-shadow: 0pt 0px 2px #acacac;
+	box-shadow: 0pt 0px 2px #acacac;
+	border: 1px solid #acacac\9;	
+}
+.shop-woman {margin-right: 21px;}
+.hp-cms{
+	-moz-box-shadow: 0pt 0px 3px #acacac;
+	-webkit-box-shadow: 0pt 0px 3px #acacac;
+	-khtml-box-shadow: 0pt 0px 3px #acacac;
+	box-shadow: 0pt 0px 3px #acacac;
+	border: 1px solid #acacac\9;
+	width: 958px;
+	height: 318px;
+	float: left;
+	margin-top: 21px;
+	background: #fff;
+}
+.hp-cms img.line{float: right; padding: 15px 0;}
+.hp-cms img, .hp-cms p{float: left;}
+.hp-cms p{text-transform: uppercase; text-align: center; font-family: Gotham-book; color: #8c8c8c; font-size: 13px;}
+.hp-cms1-1,.hp-cms1-2,.hp-cms1-3{float: left; width: 319px; height: 159px;}
+.hp-cms2-1,.hp-cms2-2{float: left; width: 479px; height: 159px;}
+.hp-cms1-1 img{padding: 15px 25px 9px;} .hp-cms1-1 p{padding: 35px 20px 0;} .hp-cms1-1 .app{padding: 10px;}
+.hp-cms1-2 img{padding: 23px 20px 9px;} .hp-cms1-2 iframe{padding: 31px 10px 0 0;} .hp-cms1-2 p{padding: 10px 20px 0;}
+.hp-cms1-3 img{padding: 23px 20px 9px;} .hp-cms1-3 p{padding: 55px 15px 0;}
+.hp-cms2-1 .big{color: #ac2323; font-size: 48px; margin-bottom: -15px; padding-top: 9px;}
+.hp-cms2-1 p{color: #5d5d5d; font-size: 36px; float: none; font-family: ProximaNovaBold; letter-spacing: -2.5px;}
+.hp-cms2-1 a{color: #8c8c8c; font-family: Gotham-book; font-size: 12px; text-transform: uppercase; text-align: center; display: block; margin-top: 5px;}
+.hp-cms2-2 p{float: none; margin: auto; padding: 10px 0;}
+.hp-cms2-2 a{
+	-moz-box-shadow: inset 0pt 0px 4px #acacac;
+	-webkit-box-shadow: inset 0pt 0px 4px #acacac;
+	-khtml-box-shadow: inset 0pt 0px 4px #acacac;
+	box-shadow: inset 0pt 0px 4px #acacac;
+	border: 1px solid #acacac\9;
+	background: url('../images/ebay.jpg');
+	margin: auto;
+	width: 405px; height: 80px;
+	display: block;
+}
+.hp-cms2-2 a p{display: none;}
+
+/* FLO END HOMEPAGE SKIN*/
+
+/* FLO FOOTER START 7.9.2011*/
+.footer {
+  background: none repeat scroll #fff;
+  min-width: 980px;
+  min-height: 230px;
+  	-moz-box-shadow:  0pt 0px 3px #acacac;
+	-webkit-box-shadow:  0pt 0px 3px #acacac;
+	-khtml-box-shadow:  0pt 0px 3px #acacac;
+	box-shadow:  0pt 0px 3px #acacac;
+	border: 1px solid #acacac\9;
+
+}
+.footer-container {
+  margin: 0pt auto 20px;
+  position: relative;
+  text-align: left;
+  width: 960px;
+  z-index: 1;
+  padding-top: 30px;
+}
+#bg-footer {
+  position: absolute;
+  right: 0px;
+  top: 50px;
+  z-index: -1;
+}
+.footer-content {
+  float: left;
+  width: 960px;
+  text-transform: uppercase;
+}
+.footer-content a {
+  color: rgb(183, 183, 183);
+}
+.footer-content #social-links {
+  float: left;
+  width: 940px;
+  margin: 30px 0pt;
+  padding: 0pt 10px;
+}
+.footer-content #footer-links {
+  float: left;
+  width: 660px;
+  padding-bottom: 10px;
+}
+#footer-links .link-column {
+  float: left;
+  width: 132px;
+}
+#footer-links .link-column h4 {
+  color: #444;
+  font-family: Gotham-book;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+#footer-links .link-column ul {
+}
+#footer-links .link-column ul li {
+}
+#footer-links a:hover {
+}
+.footer-right{width: 300px; float: right;}
+.footer-cards{padding-top: 10px;}
+/* FLO FOOTER END*//**/
