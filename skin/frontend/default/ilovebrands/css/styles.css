@@ -1804,38 +1804,6 @@ ul.disc li {
   color: rgb(255, 255, 255);
 }
 
-.header-container {
-  /* background: url("../images/bg-page.gif") repeat-y scroll
-    0% 0% transparent; */
-  margin: 0pt auto;
-  padding: 0pt 8px;
-  position: relative;
-  text-align: left;
-  width: 960px;
-  z-index: 100;
-}
-
-.header {
-/*  background: url("../images/bg-header.gif") no-repeat scroll
-    left top transparent; */
-  border-bottom: 1px solid rgb(173,
-    172, 158);
-  width: 960px;
-}
-
-.branding {
-  float: left;
-  width: 240px;
-  height: 20px;
-  position: absolute;
-  left: -18px;
-}
-.branding img.logo-back {
-	z-index: 100;
-	position:absolute;
-}
-
-
 .branding .logo strong {
   display: none;
 }
@@ -12977,7 +12945,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 .hp-cms1-1,.hp-cms1-2,.hp-cms1-3{float: left; width: 319px; height: 159px;}
 .hp-cms2-1,.hp-cms2-2{float: left; width: 479px; height: 159px;}
 .hp-cms1-1 img{padding: 15px 25px 9px;} .hp-cms1-1 p{padding: 35px 20px 0;} .hp-cms1-1 .app{padding: 10px;}
-.hp-cms1-2 img{padding: 23px 20px 9px;} .hp-cms1-2 iframe{padding: 31px 10px 0 0;} .hp-cms1-2 p{padding: 10px 20px 0;}
+.hp-cms1-2 img{padding: 23px 20px 9px;} .hp-cms1-2 iframe{padding: 37px 10px 0 26px;} .hp-cms1-2 p{padding: 10px 20px 0;}
 .hp-cms1-3 img{padding: 23px 20px 9px;} .hp-cms1-3 p{padding: 55px 15px 0;}
 .hp-cms2-1 .big{color: #ac2323; font-size: 48px; margin-bottom: -15px; padding-top: 9px;}
 .hp-cms2-1 p{color: #5d5d5d; font-size: 36px; float: none; font-family: ProximaNovaBold; letter-spacing: -2.5px;}
@@ -13061,4 +13029,42 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 }
 .footer-right{width: 300px; float: right;}
 .footer-cards{padding-top: 10px;}
-/* FLO FOOTER END*//**/
+/* FLO FOOTER END*/
+
+/* FLO HEADER START 7.9.2011*/
+.header-container {
+  /* background: url("../images/bg-page.gif") repeat-y scroll
+    0% 0% transparent; */
+  margin: 0pt auto;
+  padding: 0pt 8px;
+  position: relative;
+  text-align: left;
+  width: 960px;
+  z-index: 100;
+}
+.header {
+  background: #fff;
+  border-bottom: 1px solid rgb(173,
+    172, 158);
+  width: 960px;
+  height: 166px;
+}
+.branding {
+  float: left;
+  position: relative;
+}
+.branding img.logo-back {
+	z-index: 100;
+	position:absolute;
+}
+.header-middle{float: left; padding: 11px 30px;}
+.header-contact {text-transform: uppercase;}
+.header-contact img{float: left; margin-bottom: -1px;}
+.header-contact img.visit{margin-top: -2px;}
+.header-contact p{float: left; color: #8c8c8c;}
+.header-contact .header-shipping {color: #ac2323; font-family: ProximaNovaBold; font-size: 24px;}
+
+
+/* FLO HEADER END*/
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/

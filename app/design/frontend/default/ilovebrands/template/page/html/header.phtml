@@ -4,9 +4,22 @@
 
 <div class="header-container">
     <div class="header">
+		
+		<div class="branding">
+        <?php if ($this->getIsHomePage()):?>
+            <h1 class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
+            <?php else:?>
+            <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
+        <?php endif?>
+        </div>	         
+	
+		<div class="header-middle">
+			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('header-fb-like')->toHtml() ?>
+			<?php echo $this->getChildHtml('store_language') ?>
+			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('header-contact')->toHtml() ?>
+		</div>
+	
 		<div class="header-panel">
-			<!-- REMOVING SEARCH -->
-			<?php //echo $this->getChildHtml('topSearch') ?>	
 			<div class="checkout-link"><?php echo $this->getChildHtml('checkoutLinks') ?></div>	
 			<?php echo $this->getChildHtml('topCart') ?>
 			<div class="my-account-links"><?php echo $this->getChildHtml('accountLinks') ?></div>
@@ -43,23 +56,8 @@
               <?php endif?>
 		</div>
         
-               
+		 
 		<?php echo $this->getChildHtml('topMenu') ?>
-      <?php /*?><?php if (Mage::getSingleton('customer/session')->isLoggedIn()):?> 
-		<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('content-menu')->toHtml() ?>
-      <?php else:?>
-		<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('content-menu-2')->toHtml() ?>
-      <?php endif?><?php */?>
-		<?php echo $this->getChildHtml('topContainer'); ?>
-		<div class="branding absolutetop">
-			<img id="logo-back" class="logo-back" src="<?php echo $this->getSkinUrl('images/logo-back.png'); ?>" alt="logo" title="logo"/>
-        	<?php if ($this->getIsHomePage()):?>
-
-	            <h1 class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img class="logo-container" id="logo-container" src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
-	            <?php else:?>
-	            <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img class="logo-container" id="logo-container" src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
-		        <?php endif?>
-        </div>	
     </div>
     
     
