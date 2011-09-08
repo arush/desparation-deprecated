@@ -1860,46 +1860,6 @@ ul.disc li {
 #invitation-send-link a, x:-moz-any-link, x:default {
   background-position: 3px 6px;
 }
-
-.header-panel {
-  border-bottom: 1px solid rgb(46,
-    46, 46);
-  float: right;
-  width: 440px;
-  padding: 8px 0pt;
-  z-index: 994;
-}
-
-.header-panel #search_mini_form {
-  float: left;
-  width: 145px;
-}
-
-.header-panel .checkout-link {
-  float: right;
-  width: 95px;
-  padding: 0pt 0pt 0pt
-    5px;
-}
-
-.checkout-link li {
-  background: url("../images/sprites.png") no-repeat scroll
-    -470px -4px transparent;
-  display: block;
-  padding: 3px 0pt 5px;
-  width: 78px;
-}
-
-.checkout-link li a.top-link-checkout {
-  color: rgb(0, 0, 0)
-    ! important;
-  font-size: 0.92em;
-  padding: 0pt 11px 0pt
-    8px;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
 .header-panel ul.links {
   float: right;
   line-height: 28px;
@@ -2049,84 +2009,6 @@ ul.disc li {
     ! important;
 }
 
-.header .form-search {
-  float: right;
-  clear: right;
-  padding: 5px 0pt 0pt;
-  white-space: nowrap;
-}
-
-.header .form-search label {
-  display: none;
-}
-
-.header .form-search input.input-text {
-  background: url("../images/bg-search.gif") no-repeat scroll
-    right center rgb(30, 30, 30);
-  border-color: rgb(0, 0, 0)
-    rgb(51, 51, 51) rgb(51, 51,
-    51) rgb(0, 0, 0);
-  border-style: solid;
-  border-width: 1px;
-  color: rgb(134, 134, 134);
-  -moz-border-radius: 8px 8px 8px
-    8px;
-  padding: 3px 8px;
-}
-
-.header .form-search a {
-  display: none;
-}
-
-.header .form-search button.button {
-  margin: 0pt 0pt 0pt
-    2px;
-}
-
-.header .form-search .search-autocomplete {
-  z-index: 999;
-  position: relative ! important;
-  top: 0pt ! important;
-  left: 0pt ! important;
-  height: 0pt ! important;
-  overflow: visible ! important;
-}
-
-.header .form-search .search-autocomplete ul {
-  border-right: 1px solid rgb(199,
-    199, 199);
-  border-width: 0pt 1px 1px;
-  border-style: none solid solid;
-  border-color: -moz-use-text-color rgb(199, 199,
-    199) rgb(199, 199, 199);
-  padding-left: 0pt;
-  width: 210px;
-  background-color: rgb(252, 248, 244);
-  position: absolute;
-  top: -1px;
-}
-
-.header .form-search .search-autocomplete li {
-  padding: 4px 6px 4px
-    24px;
-  border-bottom: 1px solid rgb(255,
-    255, 255);
-  font-size: 12px;
-  cursor: pointer;
-}
-
-.header .form-search .search-autocomplete li .amount {
-  float: right;
-  font-weight: bold;
-}
-
-.header .form-search .search-autocomplete li.selected {
-
-}
-
-.header .form-search .search-autocomplete li.last {
-  border-bottom: 0pt none;
-}
 
 .cat-banner-desc .event {
   float: left;
@@ -3033,39 +2915,6 @@ ul.disc li {
 .block-products .mini-products-list .product-details {
   margin-left: 65px;
 }
-
-.top-cart {
-  float: right;
-  width: 100px;
-  position: relative;
-  padding-left: 7px;
-  z-index: 1000;
-}
-
-.top-cart .block-title {
-  white-space: nowrap;
-  cursor: pointer;
-  height: 18px;
-  padding: 5px 0pt 0pt;
-}
-
-.top-cart #basket-img {
-  float: left;
-  width: 15px;
-  padding-right: 15px;
-}
-
-.top-cart #basket-items {
-  float: right;
-  width: 85px;
-}
-
-.top-cart .block-title strong {
-  display: block;
-  color: rgb(255, 255, 255);
-  text-decoration: underline;
-}
-
 /*.top-cart .block-title.expanded {
   background-position: 0pt 3px ! important;
 }*/
@@ -10406,9 +10255,6 @@ color: #555555;
 	*left: 44px;
 	*position: relative;
 }
-.header .header-panel {
-	width: 700px;
-}
 .top-cart #basket-items{
 	*width: 87px;
 }
@@ -10837,256 +10683,12 @@ button::-moz-focus-inner{border:0;padding:0;margin:0;}
 /*NAV BAR BY VARIEN MOVED FROM END*/
 
 
-/*NAV BAR NEW 2011-05-30 BY FLO START*/
-
-	/*ADD GOTHAM FONT START*/
-		@font-face{
-			font-family: 'Gotham-book';
-			src: url('fonts/Gotham-Book.eot?') format('eot'), url('fonts/Gotham-Book.otf') format('opentype');
-		}
-				@font-face{
-			font-family: 'Gotham-light';
-			src: url('fonts/Gotham-Light.eot?') format('eot'), url('fonts/Gotham-Light.otf') format('opentype');
-		}
-
-	/*ADD GOTHAM FONT END*/
-
 		
-
-	/*NAV-BAR TOP LEVEL START*/
-		.header{border-bottom: 1px solid #7a7a69; height:103px;}
-		.header-panel{border-bottom: none;}
-		.nav-container{
-			margin: 0;
-			position: absolute;
-			left: 0;
-			bottom: 1px;
-			width: 771px;
-			height: 55px;
-			background: url("../images/sprites.png") repeat scroll -9px -600px transparent;
-			border-top: 1px solid #58584c;
-			z-index: 4;
-		}
-		#nav{
-			width: auto; /*none*/
-			text-align: left;
-		}
-		#nav li.level-top{
-			height: 55px;
-			background: url("../images/sprites.png") no-repeat scroll -526px -96px transparent;
-			border-right: 1px solid #2a2a2a;
-			width: 91px;
-			text-align: center;
-			float: left;
-			position: relative;
-			z-index: 1;
-		}
-		#nav a.level-top{
-			height: 55px;
-			line-height: 54px;
-			float: none;
-			color: #c1c1c1;
-			font-size: 11px;
-			text-transform: uppercase;
-			font-family: Gotham-book, sans-serif;
-			width: 91px;
-			display: block;
-		}
-		#nav a.level-top:hover, #nav a.over{
-			background: none;
-			color: #000000;
-		}
-		#nav li.level0:hover, #nav li.over{
-			background: url("../images/sprites.png") no-repeat scroll -720px -96px transparent;
-		}
-		#nav a.level-top span{float: none; white-space: nowrap;}
-		#nav li.over a.level-top span, #nav li.active a.level-top span{padding: 0;}
-	/*NAV-BAR TOP LEVEL END*/
-	
-	/*NAV-BAR DROP DOWN START*/
-		#nav li .shown-sub{
-			left: 0 !important;
-		}
-		#nav li.nav-4 .shown-sub{
-			left: -349px !important;
-		}
-		#nav li.last .shown-sub ul{
-			left: 0 !important;
-		}
-		#nav ul.level0{
-			top: 55px;
-			width: 263px;
-			background: #fff;
-			padding: 0 0 30px;
-			  -moz-box-shadow: 0pt 6px 10px
-				rgba(0, 0, 0, 0.2);
-			-webkit-box-shadow: 0pt 6px 10px
-				rgba(0, 0, 0, 0.2);
-			-khtml-box-shadow: 0pt 6px 10px
-				rgba(0, 0, 0, 0.2);
-			  overflow: hidden;
-				center top rgb(163, 161, 122);
-			  border-width: 0pt 1px 1px;
-			  border-style: none solid solid;
-			  border-color: -moz-use-text-color rgb(255, 255,
-				255) rgb(255, 255, 255);
-			  position: absolute;
-			  left: -10000px;
-			  z-index: 10000;
-		}
-		#nav li.last ul.level0{width: 789px;}
-		#nav ul li.level1{
-			float: none;
-		}
-		
-		#nav ul.level0 a{
-			font-size: 11px;
-			font-weight: normal;
-			font-family: Gotham-book, sans-serif;
-			letter-spacing: -0.5px;
-			text-transform: uppercase;
-			color: #92927f;
-			display: block;
-		}
-		#nav ul.level0 a:hover{letter-spacing: -0.5px; color: #000000;}
-		#nav ul.level0 li.first, #nav ul.level0 li.last, #nav li.level0 level1:hover, #nav li.level1.over, #nav li.level1 ul.level1 a:hover, #nav li.level1 ul.level1 li.over{background: none;}
-		#nav .level0 li.level1 {text-align: left;}
-		#nav li.level0 li.first a{padding: 30px 0 0 20px;}
-		#nav .level0 li.level1 a{padding: 15px 0 0 20px;}
-		#nav .level0 li.last a{padding: 15px 0 0 20px;}
-		#nav ul.level0 li.level1{padding: 0; width: 243px;}
-		#nav ul.level1 li a {
-		display: block;
-		font-size: 11px;
-		line-height: 1.2;
-		padding: 5px 0px 5px 30px;
-		text-decoration: none ! important;
-		text-transform: uppercase;
-		color: #92927F;
-		}
-		#nav ul.level0  li.parent {
-			font-family: Gotham-book;
-			text-transform: uppercase;
-			font-weight: bold;
-			color: #000;
-			font-size: 11px;
-			padding: 15px 0 0 20px;
-			float: left;
-			background: URL('../images/navdrop.png') repeat-x;
-		}
-		ul.level1 li.first{padding-top: 15px;}
-		#nav li.level0 li.level1 li.level2 a{
-			padding: 15px 0 0;
-		}
-
-	/*NAV BAR DROP DOWN END*/
-	
-	/*CHECKOUT-BUTTON START*/
-		.top-link-checkout:hover{background: url("../images/sprites.png") no-repeat scroll -720px -96px transparent;}
-		.header-panel .checkout-link{
-			padding: 0;
-		}
-		.header-panel .checkout-link ul.links li{
-			padding: 0;
-			display: block;
-			background: none;
-			width: 94px;
-			height: 55px;
-			line-height:55px;
-		}
-		.header-panel .checkout-link .links{
-			height: 55px;
-			position: absolute;
-			top: 47px;
-			right: 0;
-			background: url("../images/sprites.png") no-repeat scroll -313px -96px transparent;
-			width: 94px;
-			z-index: 5;
-			border-top: 1px solid #58584C;
-			text-align: center;
-		}
-		.checkout-link li a.top-link-checkout{
-			padding: 0;
-			font-size: 11px;
-			font-family: Gotham-book, sans-serif;
-			display: block;
-		}
-	/*CHECKOUT-BUTTON END*/
-	
-	/*BASKET START*/
-		.top-cart #basket-items{
-			background: url("../images/sprites.png") no-repeat scroll -420px -96px transparent;
-			height: 55px;
-			width: 94px;
-			position: absolute;
-			top: 39px;
-			right: 94px;
-			z-index: 5p;
-			border-top: 1px solid #58584C;
-			border-right: 1px solid #58584C;
-			*right: -1px;
-		}
-		.top-cart #basket-items:hover{
-			background: url("../images/sprites.png") no-repeat scroll -908px -96px transparent;
-		}
-		.top-cart .block-title{padding: 0;}
-		.top-cart .block-title strong{
-			padding: 35px 25px 5px 27px;
-			letter-spacing: -1px;
-			font-size: 11px;
-		}
-		#basket-img{
-			display: none;
-		}
-		.top-cart .block-content{top: 97px; right: 0; *right: -95px;}
-	
-	  /*COMMENT OUT LINE 3363 - 3370 : CART EXPANDED*/
-	
-	/*BASKET END*/
-	
-	/*POINTS START*/
-		.header .header-panel .points-special-header{
-			background: url("../images/sprites.png") no-repeat scroll -660px -243px transparent;
-			color: #606060;
-			font-size: 9px;
-			height: 55px;
-			position: absolute;
-			right: 188px;
-			text-align: center;
-			top: 48px;
-			z-index: 5;
-			width: 95px;
-			text-transform: none;
-		}
-		.header-panel .points-special-header a{display: block; height: 55px; width: 95px; color: #567b55; font-size: 20px; font-weight: bold; line-height:50px;}
-	/*POINTS END*/
-	
-	/*INVITE LINK START*/
-		#nav-invite{
-			background: url("../images/sprites.png") no-repeat scroll -559px -243px transparent;
-			height: 55px;
-			width: 95px;
-			position: absolute;
-			top: 48px;
-			right: 282px;
-			z-index: 5;
-		}
-		#nav-invite a {
-			font-family: Gotham-book, sans-serif;
-			text-transform: uppercase;
-			color: black;
-			display: block;
-			height: 55px;
-			width: 95px;
-		}
-	/*INVITE LINK END*/
-	
 	/*ACCOUNT LINKS START*/
 		.header-panel ul.links li{padding-right: 20px;}
 		.header .checkout-link, .header .links{text-transform: uppercase; font-size: 10px; font-family: Gotham-book, sans-serif;}
 		.ie7 .my-account-links ul.links {clear:both;}
 		.header .links .account{*position: absolute; *right: 225px;}
-		.header-panel .links li a{color: #eaeaea;}
 	/*ACCOUNT LINKS END*/
 
 	/*JQUERY HOVER START*/
@@ -11159,12 +10761,11 @@ font-size: 20px; }
 /*NEW CATEGORY DESIGN START FLO 20/06/2011*/
 	/*Category Pic: 612px x 234px*/
 	/*Product Pic: 182px x 273px*/
-.wrapper{background: url("../images/background-new.png") repeat-x scroll #f4f4ed;}
+.wrapper{background: url("../images/header-bg.png") repeat-x scroll #f4f4ed;}
 .main{background: #f4f4ed;}
 .main-bottom{background: none;}
 .breadcrumbs, .breadcrumbs li span, .breadcrumbs a{color: #6c6c6c;}
 .breadcrumbs ul{border-bottom: none;}
-.nav-container{left: 165px;}
 .header-panel .checkout-link .links{right: 0;}
 .header-container, .main col1-layout, .main-bottom{
 	padding: 0;
@@ -12947,8 +12548,8 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 .hp-cms1-1 img{padding: 15px 25px 9px;} .hp-cms1-1 p{padding: 35px 20px 0;} .hp-cms1-1 .app{padding: 10px;}
 .hp-cms1-2 img{padding: 23px 20px 9px;} .hp-cms1-2 iframe{padding: 37px 10px 0 26px;} .hp-cms1-2 p{padding: 10px 20px 0;}
 .hp-cms1-3 img{padding: 23px 20px 9px;} .hp-cms1-3 p{padding: 55px 15px 0;}
-.hp-cms2-1 .big{color: #ac2323; font-size: 48px; margin-bottom: -15px; padding-top: 9px;}
-.hp-cms2-1 p{color: #5d5d5d; font-size: 36px; float: none; font-family: ProximaNovaBold; letter-spacing: -2.5px;}
+.hp-cms2-1 .big{color: #ac2323; font-size: 42px; margin-bottom: -10px; padding-top: 9px;}
+.hp-cms2-1 p{color: #5d5d5d; font-size: 29px; float: none; font-family: ProximaNovaBold; letter-spacing: -0.05em;}
 .hp-cms2-1 a{color: #8c8c8c; font-family: Gotham-book; font-size: 12px; text-transform: uppercase; text-align: center; display: block; margin-top: 5px;}
 .hp-cms2-2 p{float: none; margin: auto; padding: 10px 0;}
 .hp-cms2-2 a{
@@ -13033,21 +12634,18 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 
 /* FLO HEADER START 7.9.2011*/
 .header-container {
-  /* background: url("../images/bg-page.gif") repeat-y scroll
-    0% 0% transparent; */
   margin: 0pt auto;
   padding: 0pt 8px;
   position: relative;
   text-align: left;
   width: 960px;
   z-index: 100;
+  height: 157px;
 }
 .header {
   background: #fff;
-  border-bottom: 1px solid rgb(173,
-    172, 158);
   width: 960px;
-  height: 166px;
+  height: 110px;
 }
 .branding {
   float: left;
@@ -13057,14 +12655,356 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	z-index: 100;
 	position:absolute;
 }
-.header-middle{float: left; padding: 11px 30px;}
+.header-middle{float: left; padding: 10px 30px;}
 .header-contact {text-transform: uppercase;}
 .header-contact img{float: left; margin-bottom: -1px;}
 .header-contact img.visit{margin-top: -2px;}
 .header-contact p{float: left; color: #8c8c8c;}
 .header-contact .header-shipping {color: #ac2323; font-family: ProximaNovaBold; font-size: 24px;}
 
+.header-panel {
+  float: left;
+  z-index: 994;
+  width: 385px;
+  height: 100px;
+  padding: 10px 10px 0 0;
+}
+.header-buttons{float: right;}
 
+	/*CHECKOUT-BUTTON START*/
+		.header-panel .checkout-link{
+			padding: 0;
+			float: right;
+		}
+		.header-panel .checkout-link ul.links li{
+			padding: 0;
+			display: block;
+			background: none;
+		}
+		.header-panel .checkout-link .links{
+			z-index: 5;
+			text-align: center;
+		}
+		.header-panel .checkout-link li a.top-link-checkout{
+			padding: 0;
+			font-size: 11px;
+			font-family: Gotham-book, sans-serif;
+			display: block;
+			text-transform: uppercase;
+			color: #fff;
+			background: #B14E4E;
+			border: 1px solid #d9d9d9;
+		}
+		.checkout-link li {
+			width: 120px;
+		}
+		.header-panel .checkout-link li a.top-link-checkout:hover{
+		background: url('../images/button-rollover.png');
+		}
+
+	/*CHECKOUT-BUTTON END*/
+		
+	/*BASKET START*/
+		.top-cart {
+			float: right;
+			position: relative;
+			z-index: 1000;
+		}
+		.top-cart #basket-items{
+			z-index: 5p;
+			border: 1px solid #d9d9d9;
+			background: #f5f5f5;
+			float: right;
+			width: 121px;
+			border-right: none;
+		}
+		.top-cart .block-title strong{
+			letter-spacing: -1px;
+			font-size: 11px;
+			font-family: Gotham-book;
+			line-height: 28px;
+			color: #444;
+			padding-left: 40px;
+		}
+		.top-cart img{padding: 8px 0 0  15px;}
+		#basket-img{
+			display: none;
+		}
+		.top-cart .block-title {
+		  white-space: nowrap;
+		  cursor: pointer;
+		}
+		.top-cart #basket-img {
+		  float: left;
+		  width: 15px;
+		  padding-right: 15px;
+		}
+		
+		/*COMMENT OUT LINE 3363 - 3370 : CART EXPANDED*/
+		
+	/*BASKET END*/
+	
+	/*SEARCH START*/
+		.form-search img{
+			padding: 5px;
+		}
+		.form-search button.button, .form-search button.button:hover {background: #fff;}
+		.form-search button.button:hover{
+			-moz-box-shadow: none;
+			-webkit-box-shadow: none;
+			box-shadow: none;		
+		}
+		.header .form-search {
+			float: right;
+			clear: right;
+			white-space: nowrap;
+			line-height: 28px;
+			border: 1px solid #d9d9d9;
+			width: 240pxp;
+			margin-top: 5px;
+		}
+		.header .form-search input.input-text {
+		  border-right: 1px solid #d9d9d9;
+		  border-left: none;
+		  border-top: none;
+		  border-bottom: none;
+		  color: #444;
+		  background: #f5f5f5;
+		  padding: 7px;
+		  display: block;
+		  float: left;
+		  width: 196px;
+		}
+		.header .form-search .search-autocomplete {
+		  z-index: 999;
+		  position: relative ! important;
+		  top: 0pt ! important;
+		  left: 0pt ! important;
+		  height: 0pt ! important;
+		  overflow: visible ! important;
+		}
+		.header .form-search .search-autocomplete ul {
+		  border-right: 1px solid rgb(199,
+			199, 199);
+		  border-width: 0pt 1px 1px;
+		  border-style: none solid solid;
+		  border-color: -moz-use-text-color rgb(199, 199,
+			199) rgb(199, 199, 199);
+		  padding-left: 0pt;
+		  width: 210px;
+		  background-color: rgb(252, 248, 244);
+		  position: absolute;
+		  top: -1px;
+		}
+		.header .form-search .search-autocomplete li {
+		  padding: 4px 6px 4px
+			24px;
+		  border-bottom: 1px solid rgb(255,
+			255, 255);
+		  font-size: 12px;
+		  cursor: pointer;
+		}
+		.header .form-search .search-autocomplete li .amount {
+		  float: right;
+		  font-weight: bold;
+		}
+		.header .form-search .search-autocomplete li.last {
+		  border-bottom: 0pt none;
+		}
+		.form-search input.input-text:focus{
+			-moz-box-shadow: none;
+			-webkit-box-shadow: none;
+			box-shadow: none;
+			border-color: #d9d9d9 ! important;
+			color:#444 ! important;
+		}
+	
+	/*SEARCH END*/
+	
+	/*POINTS START*/
+		.header .header-panel .points-special-header{
+			float: right;
+			clear: right;
+			border: 1px solid #d9d9d9;
+			background: #CFF8D3;
+			width: 118px;
+			margin-top: 5px;
+		}
+		.header-panel .points-special-header a{
+			color: #388922;
+			line-height: 28px;
+			display: block;
+			font-weight: bold;
+			text-align: center;
+		}
+	/*POINTS END*/
+	
+	/*INVITE LINK START*/
+		#nav-invite{
+			background: #f5f5f5;
+			border: 1px solid #d9d9d9;
+			width: 121px;
+			float: right;
+			z-index: 5;
+			border-right: none;
+			margin-top: 5px;
+		}
+		#nav-invite a {
+			font-family: Gotham-book, sans-serif;
+			text-transform: uppercase;
+			color: #444;
+			display: block;
+			line-height: 28px;
+			text-align: center;
+			font-size: 11px;
+		}
+	/*INVITE LINK END*/
+.help-link{
+	float: right;
+	margin: 7px -8px 0 0;
+}
+.my-account-links{
+	float: right;
+	padding-top: 7px;
+	margin-right: -10px;
+}
+.my-account-links ul.links, .my-account-links ul.links li{display: block; float: right; }
+.header-panel .my-account-links li.last a{color: #b14e4e;}
+.header-panel .links li a{color: #8c8c8c; font-size: 11px;}
+
+/*NAV BAR NEW 2011-05-30 BY FLO START*/
+
+	/*ADD GOTHAM FONT START*/
+		@font-face{
+			font-family: 'Gotham-book';
+			src: url('fonts/Gotham-Book.eot?') format('eot'), url('fonts/Gotham-Book.otf') format('opentype');
+		}
+				@font-face{
+			font-family: 'Gotham-light';
+			src: url('fonts/Gotham-Light.eot?') format('eot'), url('fonts/Gotham-Light.otf') format('opentype');
+		}
+
+	/*ADD GOTHAM FONT END*/
+
+		
+
+	/*NAV-BAR TOP LEVEL START*/
+		#nav{
+			width: auto; /*none*/
+			text-align: left;
+		}
+		#nav li.level-top{
+			height: 47px;
+			background: url("../images/nav-bg.png") repeat-x;
+			width: 91px;
+			text-align: center;
+			float: left;
+			position: relative;
+			z-index: 1;
+		}
+		#nav a.level-top{
+			height: 40px;
+			line-height: 39px;
+			float: none;
+			color: #444;
+			font-size: 10px;
+			text-transform: uppercase;
+			font-family: Gotham-book, sans-serif;
+			width: 91px;
+			display: block;
+			margin-top: 5px;
+		}
+		#nav a.level-top:hover, #nav a.over{
+			background: #fff;
+			-moz-box-shadow: 0pt 0px 2px #acacac;
+			-webkit-box-shadow: 0pt 0px 2px #acacac;
+			-khtml-box-shadow: 0pt 0px 2px #acacac;
+		}
+		#nav li.level0:hover, #nav li.over{
+		}
+		#nav a.level-top span{float: none; white-space: nowrap;}
+		#nav li.over a.level-top span, #nav li.active a.level-top span{padding: 0;}
+	/*NAV-BAR TOP LEVEL END*/
+	
+	/*NAV-BAR DROP DOWN START*/
+		#nav li .shown-sub{
+			left: 0 !important;
+		}
+		#nav li.nav-4 .shown-sub{
+			left: -349px !important;
+		}
+		#nav li.last .shown-sub ul{
+			left: 0 !important;
+		}
+		#nav ul.level0{
+			top: 45px;
+			width: 263px;
+			background: #fff;
+			padding: 0 0 30px;
+			  -moz-box-shadow: 0pt 6px 10px
+				rgba(0, 0, 0, 0.2);
+			-webkit-box-shadow: 0pt 6px 10px
+				rgba(0, 0, 0, 0.2);
+			-khtml-box-shadow: 0pt 6px 10px
+				rgba(0, 0, 0, 0.2);
+			  overflow: hidden;
+				center top rgb(163, 161, 122);
+			  border-width: 0pt 1px 1px;
+			  border-style: none solid solid;
+			  border-color: -moz-use-text-color rgb(255, 255,
+				255) rgb(255, 255, 255);
+			  position: absolute;
+			  left: -10000px;
+			  z-index: 10000;
+		}
+		#nav li.last ul.level0{width: 789px;}
+		#nav ul li.level1{
+			float: none;
+		}
+		
+		#nav ul.level0 a{
+			font-size: 11px;
+			font-weight: normal;
+			font-family: Gotham-book, sans-serif;
+			letter-spacing: -0.5px;
+			text-transform: uppercase;
+			color: #92927f;
+			display: block;
+		}
+		#nav ul.level0 a:hover{letter-spacing: -0.5px; color: #000000;}
+		#nav ul.level0 li.first, #nav ul.level0 li.last, #nav li.level0 level1:hover, #nav li.level1.over, #nav li.level1 ul.level1 a:hover, #nav li.level1 ul.level1 li.over{background: none;}
+		#nav .level0 li.level1 {text-align: left;}
+		#nav li.level0 li.first a{padding: 30px 0 0 20px;}
+		#nav .level0 li.level1 a{padding: 15px 0 0 20px;}
+		#nav .level0 li.last a{padding: 15px 0 0 20px;}
+		#nav ul.level0 li.level1{padding: 0; width: 243px;}
+		#nav ul.level1 li a {
+		display: block;
+		font-size: 11px;
+		line-height: 1.2;
+		padding: 5px 0px 5px 30px;
+		text-decoration: none ! important;
+		text-transform: uppercase;
+		color: #92927F;
+		}
+		#nav ul.level0  li.parent {
+			font-family: Gotham-book;
+			text-transform: uppercase;
+			font-weight: bold;
+			color: #000;
+			font-size: 11px;
+			padding: 15px 0 0 20px;
+			float: left;
+			background: URL('../images/navdrop.png') repeat-x;
+		}
+		ul.level1 li.first{padding-top: 15px;}
+		#nav li.level0 li.level1 li.level2 a{
+			padding: 15px 0 0;
+		}
+
+	/*NAV BAR DROP DOWN END*/
+	
+	
 /* FLO HEADER END*/
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/

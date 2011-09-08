@@ -43,13 +43,18 @@
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
 ?>
-<div class="points-special-header">
-    <?php if($this->getPointsSummary() != ""): ?>
+<?php if($this->getPointsSummary() != ""): ?>
+	<div class="points-special-header">
     	<a href="/index.php/rewards/customer/"><?php $pointssummary = $this->getPointsSummary();
         $header_points_balance = substr_replace($pointssummary,"",-7);
-        echo $header_points_balance; ?>
-    <?php endif; ?> </a>
-</div>	
+        echo $pointssummary; ?>
+<?php else: ?>	
+	<div class="points-special-header" style="width: 60px;">
+		<a href="#">0 Points
+<?php endif; ?>
+		</a>
+	</div>	
+	
     <div class="tooltip">
         <div class="nav-points">
         <p>Spend points instead of cash</p>

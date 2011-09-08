@@ -27,7 +27,7 @@
 <form id="search_mini_form" action="<?php echo $this->helper('catalogsearch')->getResultUrl() ?>" method="get">
     <div class="form-search">
         <input id="search" type="text" name="<?php echo $this->helper('catalogsearch')->getQueryParamName() ?>" value="search the store" class="input-text" onclick="searchClick()" onBlur="searchBlur()" />
-        <!--<button type="submit" title="<?php echo $this->__('Search') ?>" class="button"><span><span><?php echo $this->__('Search') ?></span></span></button>-->
+        <button type="submit" title="<?php echo $this->__('Search') ?>" class="button"><img src="<?php echo $this->getSkinUrl();?>images/magnifier.jpg" /></button>
         <div id="search_autocomplete" class="search-autocomplete"></div>
         <script type="text/javascript">
         //<![CDATA[

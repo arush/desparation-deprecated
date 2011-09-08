@@ -8,7 +8,7 @@ Default layout, loads most of the pages
     <default>
         <!-- Mage_Customer -->
         <reference name="top.links">
-            <action method="addLink" translate="label title" module="customer"><label>My Account</label><url helper="customer/getAccountUrl"/><title>My Account</title><prepare/><urlParams/><position>10</position></action>
+			<action method="addLink" translate="label title" module="customer"><label>help</label><url>/index.php/help</url><title>help</title><prepare/><urlParams/><position>1</position></action>
         </reference>
         <!-- <reference name="account.links">
             <action method="addLink" translate="label title before_text" module="customer"><label>register</label><url helper="customer/getRegisterUrl" /><title>register</title><prepare/><urlParams/><position>100</position><li/><a/><before_text> or </before_text><after_text>.</after_text></action>
@@ -24,9 +24,9 @@ Load this update on every page when customer is logged in
 
     <customer_logged_in>
         <reference name="account.links">
-            <action method="addLink" translate="label title" module="customer"><label>sign out</label><url helper="customer/getLogoutUrl"/><title>sign out</title><prepare/><urlParams/><position>20</position></action>
-			<action method="addLink" translate="label title" module="customer"><label>help</label><url>/index.php/help</url><title>help</title><prepare/><urlParams/><position>2</position></action>
-            <!-- once mod_rewrite is enabled you will need this version of the link or it will break!
+            <action method="addLink" translate="label title" module="customer"><label>My Account</label><url helper="customer/getAccountUrl"/><title>My Account</title><prepare/><urlParams/><position>2</position></action>
+            <action method="addLink" translate="label title" module="customer"><label>sign out</label><url helper="customer/getLogoutUrl"/><title>sign out</title><prepare/><urlParams/><position>3</position></action>
+           <!-- once mod_rewrite is enabled you will need this version of the link or it will break!
 			<action method="addLink" translate="label title" module="customer"><label>my reward points</label><url>/reward/customer/info</url><title>my reward points</title><prepare/><urlParams/><position>2</position></action>-->
 			<!-- action method="removeLinkByUrl"><url helper="customer/getRegisterUrl" /></action> -->
         </reference>
@@ -38,14 +38,13 @@ Load this update on every page when customer is logged out
 
     <customer_logged_out>
         <reference name="account.links">
-            <action method="addLink" translate="label title" module="customer"><label>log in</label><url helper="customer/getLoginUrl"/><title>log in</title><prepare/><urlParams/><position>1</position></action>
-			<action method="addLink" translate="label title" module="customer"><label>help</label><url>/index.php/help</url><title>help</title><prepare/><urlParams/><position>2</position></action>
+            <action method="addLink" translate="label title" module="customer"><label>log in or register to start earning</label><url helper="customer/getLoginUrl"/><title>log in or register to start earning</title><prepare/><urlParams/><position>2</position></action>
            <!-- <action method="removeLinkByUrl" ifconfig="evogue_invitation/general/registration_required_invitation"><url helper="customer/getRegisterUrl" /></action> -->
             <!-- <action method="addLink" translate="label title" module="customer"><label>register</label><url helper="customer/getRegisterUrl" /><title>register</title><prepare/><urlParams/><position>100</position><li/><a/><before_text> or </before_text><after_text>.</after_text></action> -->
         </reference>
-		<reference name="account.links">
+		<!--<reference name="account.links">
             <action method="addLink" translate="label title" module="customer"><label>register now for free membership</label><url>http://www.evogue.co.uk/editorial/?page_id=154</url><title>register now for free membership</title><prepare/><urlParams/><position>100</position><li/><a/></action>
-        </reference>
+        </reference>-->
         <remove name="wishlist_sidebar"></remove>
         <remove name="reorder"></remove>
     </customer_logged_out>
