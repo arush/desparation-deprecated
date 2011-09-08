@@ -239,11 +239,11 @@ ul, ol {
   height: 9px;
 }
 
-.customer-account-login .main-bottom, .customer-account-forgotpassword .main-bottom,
+/*.customer-account-login .main-bottom, .customer-account-forgotpassword .main-bottom,
 .customer-account-create .main-bottom, .enterprise-invitation-customer-account-create .main-bottom
  {
   display: none;
-}
+}*/
 
 .col-left {
   float: left;
@@ -8796,27 +8796,27 @@ font-size: 13px;
 
 
 
-.customer-account-login .wrapper, .customer-account-forgotpassword .wrapper /*.customer-account-create .wrapper, 
+.customer-account-forgotpassword .wrapper /*.customer-account-create .wrapper, 
 .enterprise-invitation-customer-account-create .wrapper */{
   background: url("../images/bg-eros.png") no-repeat scroll center top transparent;
   height: 100%;
 }
 
-.customer-account-login .page, .customer-account-forgotpassword .page, .enterprise-invitation-customer-account-create .page,
+/*.customer-account-login .page, .customer-account-forgotpassword .page, .enterprise-invitation-customer-account-create .page,
 .customer-account-create .page {
   margin: 0pt auto;
   width: 1007px;
   height: 100%;
-}
+}*/
 
-.customer-account-login .main, .customer-account-forgotpassword .main /*.customer-account-create .main,
-.enterprise-invitation-customer-account-create .main */ {
+/*.customer-account-login .main, .customer-account-forgotpassword .main .customer-account-create .main,
+.enterprise-invitation-customer-account-create .main  {
   background: url("../images/bg-login.png") repeat scroll
     left top transparent;
   float: right;
   width: 420px;
   height: 100%;
-}
+}*/
 
 .customer-account-login .main {
   min-height: 624px;
@@ -9383,8 +9383,8 @@ font-size: 13px;
   color: rgb(253, 252, 229);
 }
 
-.customer-account-login, .customer-account-login #bg, .customer-account-login #bg table,
-.customer-account-login #bg td, .customer-account-login .wrapper, .customer-account-create,
+.customer-account-login #bg, .customer-account-login #bg table,
+.customer-account-login #bg td, .customer-account-create,
 .customer-account-create #bg, .customer-account-create #bg table, .customer-account-create #bg td,
 .customer-account-create .wrapper, .customer-account-forgotpassword, .customer-account-forgotpassword #bg,
 .customer-account-forgotpassword #bg table, .customer-account-forgotpassword #bg td,
@@ -13007,4 +13007,9 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	
 /* FLO HEADER END*/
 
+
+.customer-account-login .wrapper{
+	background: url('../images/header-bg.png') repeat-x #F4F4ED;
+	overflow: auto;
+}
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
