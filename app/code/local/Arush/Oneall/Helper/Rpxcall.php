@@ -71,7 +71,7 @@ try {
         return $result;
 
     }
-    
+*/
     public function rpxAuthInfoCall($token) {
 
         $postParams = array();
@@ -93,7 +93,7 @@ try {
         return $result;
 
     }
-*/
+
 
 
     public function rpxActivityCall($identifier, $activity_message, $url) {
