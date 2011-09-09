@@ -88,14 +88,15 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 		if ($this->getRequest()->getPost('connection_token')) {
 			
 			$token = $this->getRequest()->getPost('connection_token');
+			//testing echo
 			echo $token;
 			
 			// Store token in session under random key
 			$key = Mage::helper('oneall')->rand_str(12);
 			Mage::getSingleton('oneall/session')->setData($key, $token);
 
+			// below commented out for testing purposes
 			// Redirect user to $this->authAction method passing $key as ses
-
 			// $this->_redirect("arush-oneall/rpx/addidentifier", array("ses" => $key));
 		}
 		else { echo 'watt up';}
