@@ -24,8 +24,11 @@ Load this update on every page when customer is logged in
 
     <customer_logged_in>
         <reference name="account.links">
+			<action method="addLink" translate="label title" module="customer"><label>help</label><url>/index.php/help</url><title>help</title><prepare/><urlParams/><position>1</position></action>
             <action method="addLink" translate="label title" module="customer"><label>My Account</label><url helper="customer/getAccountUrl"/><title>My Account</title><prepare/><urlParams/><position>2</position></action>
-            <action method="addLink" translate="label title" module="customer"><label>sign out</label><url helper="customer/getLogoutUrl"/><title>sign out</title><prepare/><urlParams/><position>3</position></action>
+			<action method="addLink" translate="label title" module="customer"><label>Change password</label><url>/index.php/customer/account/edit/changepass/1/</url><title>Change Password</title><prepare/><urlParams/><position>3</position></action>
+			<action method="addLink" translate="label title" module="customer"><label>Invite and earn credit</label><url>/index.php/rewardsref/customer/index/</url><title>Invite and earn credit</title><prepare/><urlParams/><position>4</position></action>
+            <action method="addLink" translate="label title" module="customer"><label>sign out</label><url helper="customer/getLogoutUrl"/><title>sign out</title><prepare/><urlParams/><position>5</position></action>
            <!-- once mod_rewrite is enabled you will need this version of the link or it will break!
 			<action method="addLink" translate="label title" module="customer"><label>my reward points</label><url>/reward/customer/info</url><title>my reward points</title><prepare/><urlParams/><position>2</position></action>-->
 			<!-- action method="removeLinkByUrl"><url helper="customer/getRegisterUrl" /></action> -->

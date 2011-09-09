@@ -12622,7 +12622,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
   text-align: left;
   width: 960px;
   z-index: 100;
-  height: 157px;
+  height: 192px;
 }
 .header {
   background: #fff;
@@ -12682,6 +12682,8 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 			color: #fff;
 			background: #000;
 			height: 35px;
+			line-height: 35px;
+			text-align: center;
 		}
 		.top-header .top-name a:hover{
 			background: #fff;
@@ -12690,10 +12692,13 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 		.points-special-header{display: none;}
 		.my-account-links{
 			position: absolute;
-			left: -1000px;
-			padding-top: 7px;
-			margin-right: -10px;
+			background: #fff;
+			top: 35px; right: 0px;
 		}
+		.my-account-links ul.links, .my-account-links ul.links li{
+			display: block;
+		}
+
 	/*TOP HEADER END*/
 
 	/*CHECKOUT-BUTTON START*/
@@ -12889,7 +12894,6 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	margin: 7px -8px 0 0;
 }
 
-.my-account-links ul.links, .my-account-links ul.links li{display: block; float: right; }
 .header-panel .my-account-links li.last a{color: #b14e4e;}
 .header-panel .links li a{color: #8c8c8c; font-size: 11px;}
 
