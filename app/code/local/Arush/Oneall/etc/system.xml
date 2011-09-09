@@ -65,7 +65,8 @@
                                                 
                     </fields>
                 </options>
-				<accountdata translate="label">
+				<!--
+<accountdata translate="label">
                     <label>Account Info</label>
                     <frontend_type>text</frontend_type>
                     <frontend_model>oneall/accountdata</frontend_model>
@@ -74,6 +75,7 @@
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                 </accountdata>
+-->
                 <info translate="label">
                     <label>About</label>
                     <frontend_type>text</frontend_type>
