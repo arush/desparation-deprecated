@@ -42,7 +42,7 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 	}
 
 	/**
-	 * Oneall Callback
+	 * Oneall Login Callback
 	 */
 	public function token_urlAction() {
 		$session = $this->_getSession();
@@ -74,7 +74,7 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 	}
 
 	/**
-	 * RPX Callback for Additional Identifiers
+	 * Oneall Callback for Social Link
 	 */
 	public function token_url_addAction(){
 		$session = $this->_getSession();
@@ -86,15 +86,17 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 		}
 
 		if ($this->getRequest()->getPost('connection_token')) {
+			
 			$token = $this->getRequest()->getPost('connection_token');
-
+			echo $token;
+			
 			// Store token in session under random key
 			$key = Mage::helper('oneall')->rand_str(12);
 			Mage::getSingleton('oneall/session')->setData($key, $token);
 
 			// Redirect user to $this->authAction method passing $key as ses
-			// $_GET variable (Magento style)
-			$this->_redirect("arush-oneall/rpx/addidentifier", array("ses" => $key));
+
+			// $this->_redirect("arush-oneall/rpx/addidentifier", array("ses" => $key));
 		}
 		else { echo 'watt up';}
 	}
