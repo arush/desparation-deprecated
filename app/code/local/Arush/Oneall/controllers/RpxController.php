@@ -85,8 +85,8 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 			return;
 		}
 
-		if ($this->getRequest()->isPost()) {
-			$token = $this->getRequest()->getPost('token');
+		if ($this->getRequest()->getPost('connection_token')) {
+			$token = $this->getRequest()->getPost('connection_token');
 
 			// Store token in session under random key
 			$key = Mage::helper('oneall')->rand_str(12);

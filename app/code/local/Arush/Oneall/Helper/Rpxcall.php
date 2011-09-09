@@ -49,11 +49,12 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
 	}
 
 	/* replace this with Oneall api custom built call */
-    public function rpxLookupRpCall() {
+   /*
+ public function rpxLookupRpCall() {
         $version = Mage::getConfig()->getModuleConfig("Arush_Oneall")->version;
 
         $postParams = array();
-        $postParams["apiKey"] = $this->getOneallApiKey();
+        $postParams["apiKey"] = $this->getOneallApiDomain();
         $postParams["pluginName"] = "magento";
         $postParams["pluginVersion"] = $version;
 
@@ -90,6 +91,7 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
         return $result;
 
     }
+*/
 
 
     public function rpxActivityCall($identifier, $activity_message, $url) {

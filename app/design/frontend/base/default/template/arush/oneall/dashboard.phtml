@@ -51,7 +51,7 @@
 				/* uuid: "", */
 						
 				options:{
-					'callback_redirect_uri': 'http://www.oneall.com/test/get_result.php',			
+					'callback_redirect_uri': '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK); ?>arush-oneall/rpx/token_url_add/',			
 					
 					/* Redirect only on success + condition redirect_if_new_user/redirect_if_returning_user */
 					'redirect_onsuccess' : true,
