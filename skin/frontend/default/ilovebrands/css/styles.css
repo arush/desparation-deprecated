@@ -12667,6 +12667,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 			height: 35px;
 		}
 		.top-header img{float: left; padding-top: 1px;}
+		.top-header img.rt{float: right; padding-top: 1px;}
 		.top-header .facebook-header{
 			float: left;
 			padding: 8px 0 0 7px;

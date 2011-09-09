@@ -9,10 +9,26 @@
 			<div class="store-language"><?php echo $this->getChildHtml('store_language') ?></div>
 			<img src="<?php echo $this->getSkinUrl();?>images/thline.jpg"/>
 			<div class="facebook-header"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('header-fb-like')->toHtml() ?></div>
-			<div class="help-link"><?php /* echo $this->getChildHtml('topLinks') */ ?></div>
+			<?php /* echo $this->getChildHtml('topLinks') */ ?>
 		    
 			<?php if (Mage::getSingleton('customer/session')->isLoggedIn()):?> 
 				
+				<div class="top-name">
+					<a href="#">First Last Name</a>
+				</div>
+				
+				<div class="my-account-links">
+					<?php echo $this->getChildHtml('accountLinks') ?>
+				</div>
+				
+					<img class="rt" src="<?php echo $this->getSkinUrl();?>images/thline.jpg"/>
+				<div class="account-link"><a href="/customer/account/index/">My Account</a></div>
+					<img class="rt" src="<?php echo $this->getSkinUrl();?>images/thline.jpg"/>
+					
+				<?php /*WDCA CODE BEGIN*/ ?>
+				<?php echo $this->getChildHtml('rewardsHeader') ?>
+				<?php /*WDCA CODE END*/ ?>
+
 				<div id="nav-invite"><a href="/index.php/rewardsref/customer/index/">Invite and earn</a></div>
 				<div class="tooltip">
 					<div class="nav-invite">
@@ -38,21 +54,8 @@
 					;});
 				</script>
 				
-		    <?php endif?>
+			<?php endif?>
 			
-			<?php /*WDCA CODE BEGIN*/ ?>
-			<?php echo $this->getChildHtml('rewardsHeader') ?>
-			<?php /*WDCA CODE END*/ ?>
-			
-			<div class="top-name">
-				<a href="#">First Last Name</a>
-			</div>
-			
-			<div class="my-account-links">
-				<?php echo $this->getChildHtml('accountLinks') ?>
-				<?php /*echo $this->getChildHtml('topLinks') */?>
-			</div>
-						
 		</div>
 		
 		<div class="branding">
@@ -74,7 +77,6 @@
 				<?php echo $this->getChildHtml('topSearch') ?>	
 			</div>
 		</div>
-        
 		 
 		<?php echo $this->getChildHtml('topMenu') ?>
     </div>
