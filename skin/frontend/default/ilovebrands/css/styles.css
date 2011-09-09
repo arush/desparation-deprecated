@@ -12653,6 +12653,49 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 }
 .header-buttons{float: right;}
 
+	/*TOP-HEADER START*/
+		.top-header{
+			position: relative;
+			background: #000;
+			float: left;
+			width: 960px;
+			height: 35px;
+		}
+		.top-header .store-language{
+			float: left;
+			width: 175px;
+			height: 35px;
+		}
+		.top-header img{float: left; padding-top: 1px;}
+		.top-header .facebook-header{
+			float: left;
+			padding: 8px 0 0 7px;
+		}
+		.top-header .top-name{
+			float: right;
+			height: 35px;
+			width: 150px;
+			display: block;
+		}
+		.top-header .top-name a{
+			display: block;
+			color: #fff;
+			background: #000;
+			height: 35px;
+		}
+		.top-header .top-name a:hover{
+			background: #fff;
+			color: #000;
+		}
+		.points-special-header{display: none;}
+		.my-account-links{
+			position: absolute;
+			left: -1000px;
+			padding-top: 7px;
+			margin-right: -10px;
+		}
+	/*TOP HEADER END*/
+
 	/*CHECKOUT-BUTTON START*/
 		.header-panel .checkout-link{
 			padding: 0;
@@ -12826,7 +12869,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 			background: #f5f5f5;
 			border: 1px solid #d9d9d9;
 			width: 121px;
-			float: right;
+			float: left;
 			z-index: 5;
 			border-right: none;
 			margin-top: 5px;
@@ -12845,11 +12888,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	float: right;
 	margin: 7px -8px 0 0;
 }
-.my-account-links{
-	float: right;
-	padding-top: 7px;
-	margin-right: -10px;
-}
+
 .my-account-links ul.links, .my-account-links ul.links li{display: block; float: right; }
 .header-panel .my-account-links li.last a{color: #b14e4e;}
 .header-panel .links li a{color: #8c8c8c; font-size: 11px;}
@@ -13029,6 +13068,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	height: 50px;
 }
 .login-oneall p{text-align: center;}
+
 
 
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/

@@ -4,6 +4,56 @@
 
 <div class="header-container">
     <div class="header">
+	
+		<div class="top-header">
+			<div class="store-language"><?php echo $this->getChildHtml('store_language') ?></div>
+			<img src="<?php echo $this->getSkinUrl();?>images/thline.jpg"/>
+			<div class="facebook-header"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('header-fb-like')->toHtml() ?></div>
+			<div class="help-link"><?php /* echo $this->getChildHtml('topLinks') */ ?></div>
+		    
+			<?php if (Mage::getSingleton('customer/session')->isLoggedIn()):?> 
+				
+				<div id="nav-invite"><a href="/index.php/rewardsref/customer/index/">Invite and earn</a></div>
+				<div class="tooltip">
+					<div class="nav-invite">
+					<p>Invite a friend</p>
+					<form action="<?php echo $this-> getBaseUrl(); ?>rewardsref/customer/invites/" method="post" id="form-validates">
+					<input type="hidden" value="Il1NwrpfsCuSmp03" name="form_key">
+					 <textarea type="hidden" name="message" style="display: none;" >I'm a Member of evogue, an invitation-only shopping club for everything luxury - at private sale prices. New Collections go live a few times each month - but are available only for a short time. Sign up now with this invitation!</textarea>
+					<input type="text" name="contacts"  id="recipient_list" value="Invitee's email address" onFocus=this.value="">
+					<button type="submit">SEND</button>
+					</form>
+					<img src="<?php echo $this->getSkinUrl();?>images/points.jpg"/ width="44" height="41">
+					<span>Earn &pound;15 (1500 points) for each referral</span>
+					</div>
+				</div>
+				<script>
+				jQuery(document).ready(function() {
+					jQuery("#nav-invite").tooltip({
+						offset: [21, 0],
+						position: 'bottom center',
+						relative: true,
+						effect: 'slide'
+						})
+					;});
+				</script>
+				
+		    <?php endif?>
+			
+			<?php /*WDCA CODE BEGIN*/ ?>
+			<?php echo $this->getChildHtml('rewardsHeader') ?>
+			<?php /*WDCA CODE END*/ ?>
+
+			<div class="my-account-links">
+				<?php echo $this->getChildHtml('accountLinks') ?>
+				<?php /*echo $this->getChildHtml('topLinks') */?>
+			</div>
+			
+			<div class="top-name">
+				<a href="#">First Last Name</a>
+			</div>
+
+		</div>
 		
 		<div class="branding">
         <?php if ($this->getIsHomePage()):?>
@@ -14,8 +64,6 @@
         </div>	         
 	
 		<div class="header-middle">
-			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('header-fb-like')->toHtml() ?>
-			<?php echo $this->getChildHtml('store_language') ?>
 			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('header-contact')->toHtml() ?>
 		</div>
 	
@@ -24,47 +72,7 @@
 				<div class="checkout-link"><?php echo $this->getChildHtml('checkoutLinks') ?></div>	
 				<?php echo $this->getChildHtml('topCart') ?>
 				<?php echo $this->getChildHtml('topSearch') ?>	
-				<div class="help-link"><?php echo $this->getChildHtml('topLinks') ?></div>
 			</div>
-			
-				<?php /*WDCA CODE BEGIN*/ ?>
-					<?php echo $this->getChildHtml('rewardsHeader') ?>
-					<?php /*WDCA CODE END*/ ?>
-							
-				  <?php if (Mage::getSingleton('customer/session')->isLoggedIn()):?> 
-						
-						<div id="nav-invite"><a href="/index.php/rewardsref/customer/index/">Invite and earn</a></div>
-						<div class="tooltip">
-							<div class="nav-invite">
-							<p>Invite a friend</p>
-							<form action="<?php echo $this-> getBaseUrl(); ?>rewardsref/customer/invites/" method="post" id="form-validates">
-							<input type="hidden" value="Il1NwrpfsCuSmp03" name="form_key">
-							 <textarea type="hidden" name="message" style="display: none;" >I'm a Member of evogue, an invitation-only shopping club for everything luxury - at private sale prices. New Collections go live a few times each month - but are available only for a short time. Sign up now with this invitation!</textarea>
-							<input type="text" name="contacts"  id="recipient_list" value="Invitee's email address" onFocus=this.value="">
-							<button type="submit">SEND</button>
-							</form>
-							<img src="<?php echo $this->getSkinUrl();?>images/points.jpg"/ width="44" height="41">
-							<span>Earn &pound;15 (1500 points) for each referral</span>
-							</div>
-						</div>
-						<script>
-						jQuery(document).ready(function() {
-							jQuery("#nav-invite").tooltip({
-								offset: [21, 0],
-								position: 'bottom center',
-								relative: true,
-								effect: 'slide'
-								})
-							;});
-						</script>
-						
-				  <?php endif?>
-
-			<div class="my-account-links">
-				<?php echo $this->getChildHtml('accountLinks') ?>
-				<?php /*echo $this->getChildHtml('topLinks') */?>
-			</div>
-			
 		</div>
         
 		 
