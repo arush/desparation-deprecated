@@ -12710,7 +12710,21 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 		.my-account-links ul.links, .my-account-links ul.links li{
 			display: block;
 		}
-
+		.login-header{
+			float: right;
+			font-family: Gotham-book;
+			font-size: 10px;
+			padding: 10px 0;
+		}
+		.login-header a{color: #fff;}
+		.top-header p{
+			float: right;
+			color: #fff;
+			font-family: Gotham-book;
+			font-size: 10px;
+			padding: 10px 0;
+			text-transform: uppercase;
+		}
 	/*TOP HEADER END*/
 
 	/*CHECKOUT-BUTTON START*/
@@ -12886,10 +12900,9 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	
 	/*INVITE LINK START*/
 		#nav-invite{
-			width: 121px;
 			float: right;
 			z-index: 5;
-			margin-top: 5px;
+			margin: 4px;
 		}
 		#nav-invite a {
 			font-family: Gotham-book, sans-serif;
