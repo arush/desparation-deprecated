@@ -37,6 +37,7 @@ class Arush_Oneall_Helper_Identifiers extends Mage_Core_Helper_Abstract {
 				$customer->setOnealluuid($profile['oneall_uuid']);
 				$customer->save();
 			}
+		}
 		catch (Exception $e) {
 			echo "Could not save: " . $e->getMessage() . "\n";
 		}
