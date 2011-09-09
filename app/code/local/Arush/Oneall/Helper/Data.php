@@ -126,7 +126,6 @@ if(isset($auth_info->user->identity->preferredUsername)) //twitter
 	}
 	
 	public function getUuid() {
-		$session = $this->_getSession();
 
 		$key = $this->getRequest()->getParam('ses');
 		$token = Mage::getSingleton('oneall/session')->getData($key);
@@ -136,7 +135,7 @@ if(isset($auth_info->user->identity->preferredUsername)) //twitter
 			return $auth_info->user->uuid;
 			}
 		else {
-			return false;
+			return 'rubbish';
 			}
 	}
 
