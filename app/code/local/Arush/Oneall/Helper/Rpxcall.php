@@ -103,7 +103,7 @@ try {
 
 		$activity->action = $activity_message;
 		$activity->url = $url;
-        
+
 		$activity_json = json_encode($activity);
 
         $postParams["activity"] = $activity_json;
@@ -229,6 +229,48 @@ try {
         }
 
     }
+
+	public function rpxLinkCall($connectionToken) {
+	
+		$oa_subdomain = Mage::getStoreConfig('oneall/options/apidomain');
+		$oa_application_public_key = $this->getOneallPublicKey();
+		$oa_application_private_key = $this->getOneallPrivateKey();
+		
+		$oa_application_domain = $oa_subdomain.'.api.oneall.com';	
+	
+		$token = $connectionToken;
+		$url = 'https://'.$oa_application_domain.'/connection/'.$token .'.json';
+	
+	
+	
+		$curl = curl_init();
+		curl_setopt($curl, CURLOPT_URL, 'https://'.$oa_application_domain.'/connection/'.$token .'.json');
+	
+		curl_setopt($curl, CURLOPT_HEADER, 0);
+		curl_setopt($curl, CURLOPT_USERPWD, $oa_application_public_key . ":" . $oa_application_private_key);
+		curl_setopt($curl, CURLOPT_TIMEOUT, 5);
+		curl_setopt($curl, CURLOPT_VERBOSE, 0);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 1);
+		curl_setopt($curl, CURLOPT_FAILONERROR, 0);
+	
+		//Error
+		if ( ($json = curl_exec($curl)) === false)
+		{
+			echo 'Curl error: ' . curl_error($curl);
+		}
+		//Success
+		else
+		{
+			//Close connection
+			curl_close($curl);
+			print_r(json_decode($json));
+		}
+		
+	}
+
+
+
 
 	public function getFirstName($auth_info) {
 		if (isset($auth_info->user->identity->name->givenName))

@@ -160,13 +160,13 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 
 		$key = $this->getRequest()->getParam('ses');
 		$token = Mage::getSingleton('oneall/session')->getData($key);
-		$auth_info = Mage::helper('oneall/rpxcall')->rpxAuthInfoCall($token);
+		$linkResponse = Mage::helper('oneall/rpxcall')->rpxLinkCall($token);
 
 		$customer = Mage::helper('oneall/identifiers')->get_customer(Mage::helper('oneall')->getSocialId($auth_info));
 
 		if ($customer===false) {
 			$customer_id = $session->getCustomer()->getId();
-			$profile = Mage::helper('oneall')->buildProfile($auth_info);
+			$profile = Mage::helper('oneall')->buildProfile($linkResponse);
 
 			Mage::helper('oneall/identifiers')
 					->save_identifier($customer_id, $profile);
