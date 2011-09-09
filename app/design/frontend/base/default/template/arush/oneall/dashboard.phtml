@@ -103,8 +103,8 @@ $providers = Mage::helper('oneall')->getRpxProviders();
 								/* If the uuid is not set, a new one will be created if the identity does not exist yet */
 								/* If the identity already exists, the corresponding user will be used and returned */
 								
-								<?php if ($this->getUuid()) {
-									echo 'uuid: "' . $this->getUuid() . '",';
+								<?php if (Mage::helper('oneall')->getUuid()) {
+									echo 'uuid: "' . Mage::helper('oneall')->getUuid() . '",';
 									} ?>
 								
 										
