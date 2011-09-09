@@ -98,7 +98,8 @@ class Arush_Oneall_Helper_Data extends Mage_Core_Helper_Abstract {
 	public function buildProfile($auth_info) {
 		$profile_name = false;
 
-		if(isset($auth_info->user->identity->preferredUsername)) //twitter
+		/*
+if(isset($auth_info->user->identity->preferredUsername)) //twitter
 			$profile_name = $auth_info->user->identity->preferredUsername;
 
 		else if(isset($auth_info->user->identity->emails->other))
@@ -111,6 +112,7 @@ class Arush_Oneall_Helper_Data extends Mage_Core_Helper_Abstract {
 			$profile_name = $auth_info->user->identity->name->formatted;
 		
 		else
+*/
 			$profile_name = $auth_info->user->identity->provider;
 
 		return array('provider' => $auth_info->user->identity->provider,
@@ -123,5 +125,65 @@ class Arush_Oneall_Helper_Data extends Mage_Core_Helper_Abstract {
 	    return $returnObject->user->identity->accounts[0]->userid;
 	}
 
+	public function getThumbnail($connectionToken) {
+		$result = "rpxCallUrl: no result yet";
+
+        try {
+			
+			
+			$OAdomain = $this->getOneallApiDomain();
+			$OAusername = $this->getOneallPublicKey();
+			$OApassword = $this->getOneallPrivateKey();
+			
+			$curl = curl_init();
+		        
+		    curl_setopt($curl, CURLOPT_URL, $OAdomain.'connections/'.$connectionToken.'.json');
+		    curl_setopt($curl, CURLOPT_HEADER, 0);
+ 			curl_setopt($curl, CURLOPT_USERPWD, $OAusername . ":" . $OApassword);
+		    curl_setopt($curl, CURLOPT_TIMEOUT, 5);
+		    curl_setopt($curl, CURLOPT_VERBOSE, 0);
+		    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 1);
+		    curl_setopt($curl, CURLOPT_FAILONERROR, 0);
+		 
+		 	$json = curl_exec($curl);
+		 	$info = curl_getinfo($curl);  
+  
+			$infoverbose = 'Took ' . $info['total_time'] . ' seconds for url ' . $info['url'] . ' with code ' . $info['http_code'];
+		    
+		    //Error
+		    if ($json === false)
+		    {
+		        echo 'Curl error: ' . curl_error($curl);
+		    }
+		    //Success
+		    else
+		    {
+		        //Close connection
+		        curl_close($curl);		
+	            try {
+	               // $result = json_decode($body);
+	               $result = json_decode($json);  //moved here from above
+	            }
+	            catch (Exception $e) {
+	                throw Mage::exception('Mage_Core', $e);
+	            }
+	
+	            if ($result) {
+	            	//magic happens here
+	                return $result->response->result->data->user->identity->thumbnailUrl;
+	            }
+	            else {
+	                throw Mage::exception('Mage_Core', $infoverbose);
+	            }
+            
+            }
+
+        }
+        catch (Exception $e) {
+            throw Mage::exception('Mage_Core', $e);
+        }		
+		
+	}
 
 }

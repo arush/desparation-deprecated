@@ -33,20 +33,12 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </enable>
-                        <apikey translate="label">
-                            <label>Oneall API key</label>
-                            <frontend_type>text</frontend_type>
-                            <comment><![CDATA[DELETE THIS FIELD <a href="http://www.arush.com/products/oneall/get-arush-oneall" target="_blank">Sign up here.</a>]]></comment>
-                            <sort_order>60</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>0</show_in_store>
-                        </apikey>
+                        
                         
                         <apidomain translate="label">
                             <label>Oneall API Site Domain</label>
                             <frontend_type>text</frontend_type>
-                            <comment><![CDATA[e.g. https://sitedomain.api.oneall.com/]]></comment>
+                            <comment><![CDATA[e.g. for https://sitedomain.api.oneall.com/ just enter: sitedomain]]></comment>
                             <sort_order>61</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>

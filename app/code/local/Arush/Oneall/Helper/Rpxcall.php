@@ -7,7 +7,13 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
 	}
 	
 	public function getOneallApiDomain() {
-		return Mage::getStoreConfig('oneall/options/apidomain');
+		$prefix = 'https://';
+		$domain = Mage::getStoreConfig('oneall/options/apidomain');
+		$suffix = '.api.oneall.com/';
+		
+		$apidomain = $prefix.$domain.$suffix;
+		
+		return $apidomain;
 	}
 	
 	public function getOneallPrivateKey() {
