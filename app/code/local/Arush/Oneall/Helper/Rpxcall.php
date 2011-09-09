@@ -26,7 +26,8 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
 	
 
 	public function rpxLookupSave() {
-		try {
+		/*
+try {
 			$lookup_rp = $this->rpxLookupRpCall();
 
 			Mage::getModel('core/config')
@@ -45,6 +46,7 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
 			Mage::getSingleton('adminhtml/session')->addWarning('Could not retrieve account info. Please try again');
 		}
 		
+*/
 		return false;
 	}
 
