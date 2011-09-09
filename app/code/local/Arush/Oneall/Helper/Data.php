@@ -124,6 +124,21 @@ if(isset($auth_info->user->identity->preferredUsername)) //twitter
 	public function getSocialId($returnObject) {
 	    return $returnObject->user->identity->accounts[0]->userid;
 	}
+	
+	public function getUuid() {
+		$session = $this->_getSession();
+
+		$key = $this->getRequest()->getParam('ses');
+		$token = Mage::getSingleton('oneall/session')->getData($key);
+		$auth_info = Mage::helper('oneall/rpxcall')->rpxAuthInfo($token);
+	
+		if($auth_info) {
+			return $auth_info->user->uuid;
+			}
+		else {
+			return false;
+			}
+	}
 
 	public function getThumbnail($connectionToken) {
 		$result = "rpxCallUrl: no result yet";

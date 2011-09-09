@@ -78,7 +78,7 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 	 */
 	public function token_url_addAction(){
 		$session = $this->_getSession();
-
+		
 		// Redirect if user isn't already authenticated
 		if (!$session->isLoggedIn()) {
 			$this->_redirect('customer/account/login');
@@ -96,6 +96,7 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 			// $_GET variable (Magento style)
 			$this->_redirect("arush-oneall/rpx/addidentifier", array("ses" => $key));
 		}
+		else { echo 'watt up';}
 	}
 
 	
@@ -160,7 +161,9 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 
 		$key = $this->getRequest()->getParam('ses');
 		$token = Mage::getSingleton('oneall/session')->getData($key);
-		$linkResponse = Mage::helper('oneall/rpxcall')->rpxLinkCall($token);
+		$auth_info = Mage::helper('oneall/rpxcall')->rpxAuthInfo($token);
+		$uuid = Mage::helper('oneall')->getUuid($token);
+		//$linkResponse = Mage::helper('oneall/rpxcall')->rpxLinkCall($token);
 
 		$customer = Mage::helper('oneall/identifiers')->get_customer(Mage::helper('oneall')->getSocialId($auth_info));
 
