@@ -33,10 +33,8 @@ class Arush_Oneall_Helper_Identifiers extends Mage_Core_Helper_Abstract {
 					->save();
 			
 			$customer_data = Mage::getModel('customer/customer')->load($customer_id);
-			//if (!$customer->getOnealluuid()) {
-				$customer_data->setOnealluuid($profile['oneall_uuid']);
-				//$customer_data->save();
-			//}
+			// below line just doesn't work, can't fathom why
+			$customer_data->setOnealluuid($profile['oneall_uuid']);
 		}
 		catch (Exception $e) {
 			echo "Could not save: " . $e->getMessage() . "\n";

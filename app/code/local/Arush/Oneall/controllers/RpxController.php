@@ -163,7 +163,9 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 		$token = Mage::getSingleton('oneall/session')->getData($key);
 		$auth_info = Mage::helper('oneall/rpxcall')->rpxAuthInfo($token);
 		//$uuid = Mage::helper('oneall')->getUuid();
-		//$linkResponse = Mage::helper('oneall/rpxcall')->rpxLinkCall($token);
+		
+		//add account to oneall
+		$linkResponse = Mage::helper('oneall/rpxcall')->rpxLinkCall($token);
 
 		$customer = Mage::helper('oneall/identifiers')->get_customer(Mage::helper('oneall')->getSocialId($auth_info));
 
