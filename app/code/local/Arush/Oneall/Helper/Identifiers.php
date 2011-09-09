@@ -35,7 +35,7 @@ class Arush_Oneall_Helper_Identifiers extends Mage_Core_Helper_Abstract {
 			$customer_data = Mage::getModel('customer/customer')->load($customer_id);
 			//if (!$customer->getOnealluuid()) {
 				$customer_data->setOnealluuid($profile['oneall_uuid']);
-				$customer_data->save();
+				//$customer_data->save();
 			//}
 		}
 		catch (Exception $e) {
