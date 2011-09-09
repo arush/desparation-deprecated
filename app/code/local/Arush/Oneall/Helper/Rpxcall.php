@@ -7,7 +7,13 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
 	}
 	
 	public function getOneallApiDomain() {
-		return Mage::getStoreConfig('oneall/options/apidomain');
+		$prefix = 'https://';
+		$domain = Mage::getStoreConfig('oneall/options/apidomain');
+		$suffix = '.api.oneall.com/';
+		
+		$apidomain = $prefix.$domain.$suffix;
+		
+		return $apidomain;
 	}
 	
 	public function getOneallPrivateKey() {
@@ -20,7 +26,8 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
 	
 
 	public function rpxLookupSave() {
-		try {
+		/*
+try {
 			$lookup_rp = $this->rpxLookupRpCall();
 
 			Mage::getModel('core/config')
@@ -39,15 +46,17 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
 			Mage::getSingleton('adminhtml/session')->addWarning('Could not retrieve account info. Please try again');
 		}
 		
+*/
 		return false;
 	}
 
 	/* replace this with Oneall api custom built call */
-    public function rpxLookupRpCall() {
+   /*
+ public function rpxLookupRpCall() {
         $version = Mage::getConfig()->getModuleConfig("Arush_Oneall")->version;
 
         $postParams = array();
-        $postParams["apiKey"] = $this->getOneallApiKey();
+        $postParams["apiKey"] = $this->getOneallApiDomain();
         $postParams["pluginName"] = "magento";
         $postParams["pluginVersion"] = $version;
 
@@ -62,7 +71,7 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
         return $result;
 
     }
-    
+*/
     public function rpxAuthInfoCall($token) {
 
         $postParams = array();
@@ -86,6 +95,7 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
     }
 
 
+
     public function rpxActivityCall($identifier, $activity_message, $url) {
 
         $postParams = array();
@@ -93,7 +103,7 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
 
 		$activity->action = $activity_message;
 		$activity->url = $url;
-        
+
 		$activity_json = json_encode($activity);
 
         $postParams["activity"] = $activity_json;
@@ -219,6 +229,48 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
         }
 
     }
+
+	public function rpxLinkCall($connectionToken) {
+	
+		$oa_subdomain = Mage::getStoreConfig('oneall/options/apidomain');
+		$oa_application_public_key = $this->getOneallPublicKey();
+		$oa_application_private_key = $this->getOneallPrivateKey();
+		
+		$oa_application_domain = $oa_subdomain.'.api.oneall.com';	
+	
+		$token = $connectionToken;
+		$url = 'https://'.$oa_application_domain.'/connection/'.$token .'.json';
+	
+	
+	
+		$curl = curl_init();
+		curl_setopt($curl, CURLOPT_URL, 'https://'.$oa_application_domain.'/connection/'.$token .'.json');
+	
+		curl_setopt($curl, CURLOPT_HEADER, 0);
+		curl_setopt($curl, CURLOPT_USERPWD, $oa_application_public_key . ":" . $oa_application_private_key);
+		curl_setopt($curl, CURLOPT_TIMEOUT, 5);
+		curl_setopt($curl, CURLOPT_VERBOSE, 0);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 1);
+		curl_setopt($curl, CURLOPT_FAILONERROR, 0);
+	
+		//Error
+		if ( ($json = curl_exec($curl)) === false)
+		{
+			echo 'Curl error: ' . curl_error($curl);
+		}
+		//Success
+		else
+		{
+			//Close connection
+			curl_close($curl);
+			print_r(json_decode($json));
+		}
+		
+	}
+
+
+
 
 	public function getFirstName($auth_info) {
 		if (isset($auth_info->user->identity->name->givenName))

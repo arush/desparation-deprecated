@@ -33,20 +33,12 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </enable>
-                        <apikey translate="label">
-                            <label>Oneall API key</label>
-                            <frontend_type>text</frontend_type>
-                            <comment><![CDATA[DELETE THIS FIELD <a href="http://www.arush.com/products/oneall/get-arush-oneall" target="_blank">Sign up here.</a>]]></comment>
-                            <sort_order>60</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>0</show_in_store>
-                        </apikey>
+                        
                         
                         <apidomain translate="label">
                             <label>Oneall API Site Domain</label>
                             <frontend_type>text</frontend_type>
-                            <comment><![CDATA[e.g. https://sitedomain.api.oneall.com/]]></comment>
+                            <comment><![CDATA[e.g. for https://sitedomain.api.oneall.com/ just enter: sitedomain]]></comment>
                             <sort_order>61</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -73,7 +65,8 @@
                                                 
                     </fields>
                 </options>
-				<accountdata translate="label">
+				<!--
+<accountdata translate="label">
                     <label>Account Info</label>
                     <frontend_type>text</frontend_type>
                     <frontend_model>oneall/accountdata</frontend_model>
@@ -82,6 +75,7 @@
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                 </accountdata>
+-->
                 <info translate="label">
                     <label>About</label>
                     <frontend_type>text</frontend_type>
@@ -90,75 +84,7 @@
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                </info>
-
-				<!-- Frame global uneditable config variables -->
-				<vars translate="label">
-					<label>Global Variables</label>
-					<frontend_type>text</frontend_type>
-					<sort_order>50</sort_order>
-					<show_in_default>0</show_in_default>
-					<show_in_website>0</show_in_website>
-					<show_in_store>0</show_in_store>
-					<fields>
-						<realm translate="label">
-                            <label>Realm</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>62</sort_order>
-                            <show_in_default>0</show_in_default>
-                            <show_in_website>0</show_in_website>
-                            <show_in_store>0</show_in_store>
-                        </realm>
-						<realmscheme translate="label">
-                            <label>Realm Scheme</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>63</sort_order>
-                            <show_in_default>0</show_in_default>
-                            <show_in_website>0</show_in_website>
-                            <show_in_store>0</show_in_store>
-                        </realmscheme>
-						<appid translate="label">
-                            <label>App Id</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>64</sort_order>
-                            <show_in_default>0</show_in_default>
-                            <show_in_website>0</show_in_website>
-                            <show_in_store>0</show_in_store>
-                        </appid>
-						<adminurl translate="label">
-                            <label>Admin Url</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>65</sort_order>
-                            <show_in_default>0</show_in_default>
-                            <show_in_website>0</show_in_website>
-                            <show_in_store>0</show_in_store>
-                        </adminurl>
-						<socialpub translate="label">
-                            <label>Social Pub</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>66</sort_order>
-                            <show_in_default>0</show_in_default>
-                            <show_in_website>0</show_in_website>
-                            <show_in_store>0</show_in_store>
-                        </socialpub>
-						<enabled_providers translate="label">
-                            <label>Enabled Providers</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>67</sort_order>
-                            <show_in_default>0</show_in_default>
-                            <show_in_website>0</show_in_website>
-                            <show_in_store>0</show_in_store>
-                        </enabled_providers>
-						<apikey translate="label">
-                            <label>Oneall API key</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>68</sort_order>
-                            <show_in_default>0</show_in_default>
-                            <show_in_website>0</show_in_website>
-                            <show_in_store>0</show_in_store>
-                        </apikey>
-					</fields>
-				</vars>
+                </info>				
             </groups>
         </oneall>
     </sections>

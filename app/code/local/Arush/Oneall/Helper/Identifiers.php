@@ -19,7 +19,10 @@ class Arush_Oneall_Helper_Identifiers extends Mage_Core_Helper_Abstract {
 			->getFirstItem();
 		if(!$customer->getId())
 			Mage::throwException('Invalid Customer ID');
-
+		
+		// below line just doesn't work, can't fathom why
+		$customer->setOnealluuid($profile['oneall_uuid']);
+		
 		/**
 		 * Make the save
 		 *
@@ -32,9 +35,7 @@ class Arush_Oneall_Helper_Identifiers extends Mage_Core_Helper_Abstract {
 					->setCustomerId($customer_id)
 					->save();
 			
-			$customerattrubute = Mage::getModel('customer/attribute')->loadById($customer_id);
-			$customerattrubute->setData('onealluuid', $profile['oneall_uuid']);
-			$customerattrubute->save();
+			
 		}
 		catch (Exception $e) {
 			echo "Could not save: " . $e->getMessage() . "\n";
