@@ -397,13 +397,13 @@ input.input-text, textarea {
 	transition: border-color 200ms ease-in;
 	transition: box-shadow 200ms ease-in;
 }
-input.input-text:focus, textarea:focus {
+/* input.input-text:focus, textarea:focus {
 	-moz-box-shadow: inset 0 0 5px #888;
 	-webkit-box-shadow: inset 0 0 5px #888;
 	box-shadow: inner 0 0 5px #888;
 	border-color: #b14e4e ! important;
 	color:#b14e4e ! important;
-}
+} */
 
 select {
   padding: 1px;
@@ -476,7 +476,7 @@ button.button {
   vertical-align: middle;
 	background: #b14e4e;
 }
-button.button:hover{
+button.button:hover, .account-login  button.button:hover{
 	-moz-box-shadow: 0pt 0px 2px #acacac;
 	-webkit-box-shadow: 0pt 0px 2px #acacac;
 	-khtml-box-shadow: 0pt 0px 2px #acacac;
@@ -521,8 +521,8 @@ a.button {
 }
 
 .button:active {
-  bottom: -1px;
-  right: -1px;
+  /* bottom: -1px;
+  right: -1px; */
   position: relative;
   z-index: 2;
 }
@@ -7480,18 +7480,18 @@ textarea {
   clear: both;
 }
 
-.account-login .new-users, .account-login .registered-users {
+/* .account-login .new-users, .account-login .registered-users {
   clear: both;
- /* background: url("../images/60_black.png") repeat scroll 0% 0% transparent; */
+ background: url("../images/60_black.png") repeat scroll 0% 0% transparent; 
   width: 340px;
-  /* padding: 0pt 20px 20px 0pt; */
+   padding: 0pt 20px 20px 0pt;
   *padding-bottom: 60px;
   margin-top: 50px;
-}
+}*/
 
 
 .account-login .registered-users p {
-  margin-bottom: 1.5em;
+  margin-bottom: 2.5em;
 }
 
 .account-login .spacer {
@@ -7509,7 +7509,7 @@ textarea {
 }
 
 .account-login .fieldset {
-  float: left;
+  /*float: left;*/
   /* margin: 50px 0pt 0pt; */
 }
 
@@ -7520,7 +7520,7 @@ textarea {
 .account-login .form-list label, .account-login .form-list span.label {
  font-family: HelveticaNeueLight;
  font-size: 14px;
- color: #ccc;
+ color: #444;
  font-weight: 100;
  padding-top: 0px;
  text-transform:lowercase;
@@ -7533,26 +7533,25 @@ textarea {
   font-weight: normal;
   width: 110px;
 }
-
+#register{
+	margin: 22px 0 27px;
+}
 .account-login .form-buttons .button {
   float: none;
 }
 
-.account-login .btn-only {
+.account-login .btn-only , .account-login .form-buttons .button{
   position: relative;
-  background: url("../images/sprites.gif") no-repeat scroll
-    -8px -4px transparent;
-  border: 1px solid rgb(207,
-    206, 196);
-  width: 210px;
-  height: 28px;
+  background: #b14e4e;
+  width: 212px;
+  height: 31px;
   margin: 0px 0px 0px
     90px;
   text-transform: uppercase;
   *right: 17px;
 }
 
-.customer-account-forgotpassword .form-buttons .button {
+/* .customer-account-forgotpassword .form-buttons .button {
   background: url("../images/sprites.gif") no-repeat scroll
     -8px -4px transparent;
   border: 1px solid rgb(207,
@@ -7562,7 +7561,7 @@ textarea {
   height: 28px;
   text-transform: uppercase;
   margin-bottom: 10px;
-}
+} */
 
 .account-login span.validation-error, div.validation-error, span.validation-passed,
 div.validation-passed {
@@ -7570,15 +7569,14 @@ div.validation-passed {
   background: none repeat scroll
     0% 0% transparent ! important;
 }
-
-.account-login .btn-only button.button span, .account-login .btn-only button.button span,
-.customer-account-forgotpassword .form-buttons .button span {
+.account-login .btn-only button.button span, 
+.customer-account-forgotpassword .form-buttons .button span, .account-login #forgotpass .form-buttons .button span  {
   /*padding: 2px 27px; */
-  color: rgb(0, 0, 0);
-  font-size: 16px;
-  font-weight: 100;
-  font-family: HelveticaNeueLight;
-  color: #444;
+  color: #fff;
+  font-size: 13px;
+  font-weight: normal;
+  font-family: Gotham-book;
+  line-height: 12px;
 }
 
 .account-login .btn-only a {
@@ -7589,7 +7587,7 @@ div.validation-passed {
   float: right;
   white-space: nowrap;
 }
-
+#panes img{margin-bottom: 30px;}
 .account-login .btn-only a:hover {
   text-decoration: underline;
 }
@@ -7598,10 +7596,8 @@ div.validation-passed {
   color: #444;
   padding: 5px;
   float: left;
-  background: none repeat scroll #dedede;
-  border-color: rgb(0, 0, 0)
-    rgb(51, 51, 51) rgb(51, 51,
-    51) rgb(0, 0, 0);
+  background: none repeat scroll #f5f5f5;
+  border-color: #d9d9d9;
   border-style: solid;
   border-width: 1px;
   width: 200px;
@@ -7611,26 +7607,25 @@ div.validation-passed {
 .account-login .gigya-content {margin-left: 17px;}
 
 .account-login #slider {
-  width: 340px;
   margin: 0 auto;
   position: relative;
 }
 
 .account-login #slider .scroll {
-  height: 200px;
+  height: 150px;
   overflow: auto;
   position: relative; /* fix for IE to respect overflow */
   clear: left;
-  background: #000;
+  background: none;
 }
 
 .account-login .login-normal {
-	height: 170px;
+	height: 80px;
 }
 
 .account-login .scrollContainer div.panel {
-  padding: 10px;
   width: 320px; /* change to 560px if not using JS to remove rh.scroll */
+  padding-bottom: 25px;
 }
 
 .account-login #slider .navigation a, a#become-member {
@@ -7654,23 +7649,23 @@ div.validation-passed {
 
 .account-login #forgotpass .password-message {
 	padding: 0 20px;
-	color: #eee;
+	color: #444;
 	font-size: 12px;
 	margin-bottom: 20px;
 }
 
 .account-login #forgotpass .form-list label {
-color: #ccc;
+color: #444;
 font-size: 14px ! important;
 font-weight: normal;
 font-family: HelveticaNeueLight;
-width: 67px;
+width: 75px;
 float: left;
 }
 
 .account-login #forgotpass .form-buttons {width:auto; margin-right: 25px; float: right;}
 
-.account-login #forgotpass .form-buttons .button {
+/* .account-login #forgotpass .form-buttons .button {
 background: url("../images/sprites.gif") no-repeat scroll
  -8px -4px transparent;
 border: 1px solid #CFCEC4;
@@ -7679,26 +7674,19 @@ width: 210px;
 height: 28px;
 text-transform: uppercase;
 
-}
+} */
 
-.account-login #forgotpass .form-buttons .button span {
- font-family: HelveticaNeueLight;
- font-size: 16px;
- color: #444;
- font-weight: 100;
- padding-top: 0px;
-}
 
 .account-login #forgotpass .forgotpass-back-link a {
 	float: right;
 	margin-right: 6px;
 	margin-top: 11px;
+	text-transform: lowercase;
 }
 .account-login #forgotpass .forgotpass-back-link a:hover {
 	text-decoration: underline;
 }
 
-.account-login #gigya-fieldset {margin:0; background-color:#000;}
 
 .account-login .gigya-group {
 	padding:12px;
@@ -7722,7 +7710,6 @@ text-transform: uppercase;
 .account-login #login .or, .account-login #register .or {border-top:1px solid #444;font-family:HelveticaNeueLight,Arial,sans-serif;text-align: center; margin:0 15px 25px 15px;}
 .account-login .or .or-text {margin-top:-10px;}
 
-.account-login #register p {padding:0 20px; color:#ddd;}
 
 .account-login .gigya-label p { 
  font-family: HelveticaNeueLight;
@@ -7736,7 +7723,9 @@ text-transform: uppercase;
 }
 
 .account-login .login-normal .form-buttons .button {
-    margin-left: 58px;
+    margin: 0px;
+	width: 212px;
+	height: 31px;
 }
 
 .account-login .panel #register {
@@ -7761,11 +7750,11 @@ text-transform: uppercase;
   width: 185px;
 }
 
-.account-login .form-list input:focus, .customer-account-forgotpassword .form-list input:focus
+/* .account-login .form-list input:focus, .customer-account-forgotpassword .form-list input:focus
  {
   border: 1px solid rgb(130,
     130, 118);
-}
+} */
 
 .account-login .fieldset .form-list {
   /* padding: 20px 0pt 0pt; */
@@ -8819,7 +8808,7 @@ font-size: 13px;
 }*/
 
 .customer-account-login .main {
-  min-height: 624px;
+  min-height: 595px;
 }
 
 
@@ -9760,13 +9749,6 @@ ul.timer li .title {
   margin-top: 10px;
   z-index: 99;
   clear: both;
-}
-
-
-
-.customer-account-login .col-main, /*.enterprise-invitation-customer-account-create .col-main,
-.customer-account-create .col-main, */.customer-account-forgotpassword .col-main {
-  padding: 38px;
 }
 
 .customer-account-create .main,
@@ -12655,7 +12637,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	z-index: 100;
 	position:absolute;
 }
-.header-middle{float: left; padding: 10px 30px;}
+.header-middle{float: left; padding: 10px 35px;}
 .header-contact {text-transform: uppercase;}
 .header-contact img{float: left; margin-bottom: -1px;}
 .header-contact img.visit{margin-top: -2px;}
@@ -12667,7 +12649,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
   z-index: 994;
   width: 385px;
   height: 100px;
-  padding: 10px 10px 0 0;
+  padding-top: 10px;
 }
 .header-buttons{float: right;}
 
@@ -13012,4 +12994,41 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	background: url('../images/header-bg.png') repeat-x #F4F4ED;
 	overflow: auto;
 }
+.customer-account-login .col-main, .customer-account-forgotpassword .col-main {
+	background: #fff;
+	margin-top: 20px;
+  	-moz-box-shadow: 0pt 0px 3px #acacac;
+	-webkit-box-shadow: 0pt 0px 3px #acacac;
+	-khtml-box-shadow: 0pt 0px 3px #acacac;
+	box-shadow: 0pt 0px 3px #acacac;
+	border: 1px solid #acacac\9;
+}
+
+.login-oneall, .registered-users{
+	padding: 40px 40px;
+	width: 400px;
+	height: 475px;
+	float: left;
+}
+.account-login h1{
+	font-family: ProximaNovaBold;
+	color: #b14e4e;
+	text-transform: uppercase;
+	letter-spacing: -0.05em;
+	font-size: 34px;
+	text-align: center;
+}
+.account-login p{
+	font-family: Gotham-Book;
+	text-transform: uppercase;
+}
+.account-login #gigya-fieldset {
+	margin: 50px auto;
+	background-color:#f5f5f5;
+	width: 200px;
+	height: 50px;
+}
+.login-oneall p{text-align: center;}
+
+
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/

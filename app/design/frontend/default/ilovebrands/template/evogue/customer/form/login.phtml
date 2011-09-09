@@ -43,12 +43,6 @@
 <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('login-bg')->toHtml() ?> 
 
 <div class="account-login<?php if (!$this->helper('customer')->isRegistrationAllowed()) echo ' login-only' ?>" />
-    <div class="logo">
-		<img src="<?php echo $this->getSkinUrl('images/logo-evogue.png'); ?>" alt="<?php echo $this->getLogoAlt() ?>" />
-    </div>
-	<!-- <div id="strapline" class="cufon">
-			<?php //echo $this->__('luxury brands. by invitation.'); ?>
-	</div> -->
 
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
         
@@ -62,39 +56,80 @@
 			</div> -->
 			<?php // endif; ?>
 			
+			<div class="login-oneall">
+				
+				<h1>Connect with 1-click</h1>
+			
+				<form action="<?php echo Mage::getUrl('oneall/rpx/loginpost') ?>" method="post" id="login-form">
+					<div class="fieldset" id="gigya-fieldset">
+						<div class="gigya-group">
+							<!--<div class="gigya-label"><p id="loginwith">login with</p><p id="connectwith">connect with</p></div>-->
+							<div class="gigya-block">
+								
+								<!-- The provider login will be embedded in this div //-->
+									<div id="oa_social_login_container"></div>
+									
+									<script type="text/javascript">
+									 oneall.api.plugins.social_login.build("oa_social_login_container",{
+									  providers : ["Facebook", "google", "twitter", "yahoo"],
+									  callback_uri: "http://www.ilovebrandsoutlet.com/index.php/arush-oneall/rpx/token_url/", 
+									  button_style: "icons"
+									});
+									</script>
+							</div>
+						</div>	
+					</div>
+				</form>
+			
+				<p>We never post to your profile without your consent</p>
+			
+			</div>
 		
 		
 			<div class="col-1 registered-users">
 			
+				<h1>Don't have a social account?</h1>
+								
+				<div id="register">
+					
+					<p>Register without a social account</p>
+				
+					<form action="<?php echo $this->getBaseUrl() .'customer/account/create/'?>" method="get" id="register-form">
+					<div class="fieldset">
+						<div class="login-normal">
+							<ul class="form-list">
+								
+								<li>
+									<label for="email" class="required"><?php echo $this->__('email') ?></label>
+									<div class="input-box">
+										<input name="email" value="<?php echo $this->htmlEscape($this->getUsername()) ?>" id="email" type="text" class="input-text required-entry" title="<?php echo $this->__('Email Address') ?>" />
+									</div>
+								</li>
+								
+							</ul>
+							<div class="buttons-set form-buttons btn-only">
+								<button type="submit" class="button" name="send" id="send3"><span><span class="cufon"><?php echo $this->__('Register') ?></span></span></button>
+							</div>
+													
+						</div>
+					</div> <!-- end fieldset -->
+					</form>
+												
+				</div>
+
 			<div id="panes">
 				
+				
+				<img src="<?php echo $this->getSkinUrl();?>images/login-line.jpg"/>
+				<p>Login without a social account</p>
+				
 				<div id="slider">
-  					<ul class="navigation">
+  					<?php /* ?><ul class="navigation">
     					<li><a id="signin-button" href="#login">Members sign in</a></li>
     					<li><a id="become-button" href="#register">Become a Member</a></li>
-  					</ul>
+  					</ul><?php */ ?>
 	  					<!-- a id="become-member" href="http://www.evogue.co.uk/editorial/?page_id=120">Become a Member</a -->
       			
-      				<form action="<?php echo Mage::getUrl('oneall/rpx/loginpost') ?>" method="post" id="login-form">
-						<div class="fieldset" id="gigya-fieldset">
-  							<div class="gigya-group">
-  								<div class="gigya-label"><p id="loginwith">login with</p><p id="connectwith">connect with</p></div>
-  								<div class="gigya-block">
-  									
-  									<!-- The provider login will be embedded in this div //-->
-										<div id="oa_social_login_container"></div>
-										
-										<script type="text/javascript">
-										 oneall.api.plugins.social_login.build("oa_social_login_container",{
-										  providers : ["Facebook", "google", "twitter", "yahoo"],
-										  callback_uri: "http://www.ilovebrandsoutlet.com/index.php/arush-oneall/rpx/token_url/", 
-										  button_style: "icons"
-										});
-										</script>
-  								</div>
-  							</div>	
-						</div>
-					</form>
 					
 				<!-- element with overflow applied -->
   					<div class="scroll">
@@ -103,9 +138,7 @@
       						<!-- our individual panels -->
       						      						
       						<div class="panel" id="login">
-      						
-      						<div class="or"><div class="or-text">or</div></div>
-      						
+      						      						
       						<form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="login-form">
       						<div class="fieldset">
       							<div class="login-normal">
@@ -137,34 +170,6 @@
       						</div> <!-- end panel -->
       						
       						
-      						<div class="panel" id="register">
-      							<div class="or"><div class="or-text">or</div></div>
-							
-							<form action="<?php echo $this->getBaseUrl() .'customer/account/create/'?>" method="get" id="register-form">
-      						<div class="fieldset">
-      							<div class="login-normal">
-									<ul class="form-list">
-										
-										<li>
-											<label for="email" class="required"><?php echo $this->__('email') ?></label>
-											<div class="input-box">
-												<input name="email" value="<?php echo $this->htmlEscape($this->getUsername()) ?>" id="email" type="text" class="input-text required-entry" title="<?php echo $this->__('Email Address') ?>" />
-											</div>
-										</li>
-										
-									</ul>
-									<div class="buttons-set form-buttons btn-only">
-										<button type="submit" class="button" name="send" id="send3"><span><span class="cufon"><?php echo $this->__('Register') ?></span></span></button>
-									</div>
-									
-									<div style="clear: both;"><!-- --></div>
-									
-									<!-- <a href="#forgotpass<?php // echo $this->getForgotPasswordUrl() ?>"><?php // echo $this->__('Forgot Your Password?') ?></a> -->
-								</div>
-      						</div> <!-- end fieldset -->
-      						</form>
-      						      							
-      						</div>
       						
       						<div class="panel" id="forgotpass">
       							<form action="<?php echo $this->getUrl('*/*/forgotpasswordpost') ?>" method="post" id="form-validate">
@@ -195,13 +200,15 @@
 			
 			</div> <!-- end panes -->
 			
+			
+			
 			</div> <!-- end col-1 registered-users -->
 			  
         
     
 
 	<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('home-text')->toHtml() ?>
-	<div id="content-links">
+	<?php /* ?><div id="content-links">
 		
 		<ul>
 			<li><a id="about-box" href = "javascript:void(0)" onclick = "document.getElementById('light1').style.visibility='visible';document.getElementById('fade').style.display='block'">photography</a></li>
@@ -209,7 +216,7 @@
 			<li><a id="privacy-box" href = "javascript:void(0)" onclick = "document.getElementById('light3').style.visibility='visible';document.getElementById('fade').style.display='block'">privacy policy</a></li>
 			<li>copyright 2011</li>
 		</ul>
-	</div>
+	</div><?php */ ?>
     <script type="text/javascript">
     //<![CDATA[
         var dataForm = new VarienForm('login-form', true);
