@@ -1,25 +1,64 @@
 <?php
+/**
+ * WDCA - Sweet Tooth Instore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the SWEET TOOTH (TM) INSTORE
+ * License, which extends the Open Software License (OSL 3.0).
+ * The Sweet Tooth Instore License is available at this URL: 
+ * http://www.sweettoothrewards.com/instore/sweet_tooth_instore_license.txt
+ * The Open Software License is available at this URL: 
+ * http://opensource.org/licenses/osl-3.0.php
+ * 
+ * DISCLAIMER
+ * 
+ * By adding to, editing, or in any way modifying this code, WDCA is 
+ * not held liable for any inconsistencies or abnormalities in the 
+ * behaviour of this code. 
+ * By adding to, editing, or in any way modifying this code, the Licensee
+ * terminates any agreement of support offered by WDCA, outlined in the 
+ * provided Sweet Tooth Instore License. 
+ * Upon discovery of modified code in the process of support, the Licensee 
+ * is still held accountable for any and all billable time WDCA spent 
+ * during the support process.
+ * WDCA does not guarantee compatibility with any other framework extension. 
+ * WDCA is not responsbile for any inconsistencies or abnormalities in the
+ * behaviour of this code if caused by other framework extension.
+ * If you did not receive a copy of the license, please send an email to 
+ * support@wdca.ca or call 1-888-699-WDCA(9322), so we can send you a copy 
+ * immediately.
+ * 
+ * @category   [TBT]
+ * @package    [TBT_Rewardsinstore]
+ * @copyright  Copyright (c) 2011 Sweet Tooth (http://www.sweettoothrewards.com)
+ * @license    http://www.sweettoothrewards.com/instore/sweet_tooth_instore_license.txt
+ */
 
+/**
+ * @category   TBT
+ * @package    TBT_Rewardsinstore
+ * @author     Sweet Tooth Instore Team <support@wdca.ca>
+ */
 class TBT_Rewardsinstore_Block_Manage_Storefront_Edit_Form extends Mage_Adminhtml_Block_Widget_Form
 {
-
     public function __construct()
     {
         parent::__construct();
         $this->setId('rewardsinstoreStorefrontForm');
         $this->_blockGroup = 'rewardsinstore';
     }
-
+    
     protected function _prepareForm()
     {
         $storefrontModel = Mage::registry('storefront_data');
-
+        
         $form = new Varien_Data_Form(array(
             'id'        => 'edit_form',
             'action'    => $this->getData('action'),
             'method'    => 'post'
         ));
-
+        
         if ($postData = Mage::registry('storefront_post_data')) {
             $storefrontModel->setData($postData['storefront']);
         }
@@ -27,7 +66,7 @@ class TBT_Rewardsinstore_Block_Manage_Storefront_Edit_Form extends Mage_Adminhtm
         $fieldset = $form->addFieldset('storefront_fieldset', array(
             'legend' => Mage::helper('rewardsinstore')->__('Storefront Information')
         ));
-
+        
         $websites = Mage::getModel('core/website')->getCollection()->toOptionArray();
         $fieldset->addField('storefront_website_id', 'select', array(
             'name'      => 'storefront[website_id]',
@@ -52,22 +91,26 @@ class TBT_Rewardsinstore_Block_Manage_Storefront_Edit_Form extends Mage_Adminhtm
             'required'  => false,
         ));
         
-        $fieldset->addField('storefront_code', 'hidden', array(
+        $showStorefrontCode = Mage::getStoreConfig('rewardsinstore/advanced/custom_storefront_code');
+        
+        $fieldset->addField('storefront_code', $showStorefrontCode ? 'text' : 'hidden', array(
                 'name'      => 'storefront[code]',
-                'label'     => Mage::helper('core')->__('URL Code'),
+                'label'     => Mage::helper('core')->__('Code (unique)'),
                 'value'     => $storefrontModel->getCode(),
-                'required'  => false,
+                'required'  => $showStorefrontCode ? true : false,
         ));
         
-        //$fieldset->addType('storefront_url', 'TBT_Rewardsinstore_Block_Form_Element_StorefrontUrl');
+        /* This used to show the storefront url but was quite confusing. May add in later if needed.
+        $fieldset->addType('storefront_url', 'TBT_Rewardsinstore_Block_Form_Element_StorefrontUrl');
         
         $fieldset->addField('storefront_url', 'hidden', array(
-                'name'      => 'storefront[code]',
+                'name'      => 'storefront[url]',
                 'label'     => Mage::helper('core')->__('Storefront URL'),
                 'value'     => $this->getUrlCode($storefrontModel->getId()),
                 'required'  => false,
         ));
-
+        */
+        
         $fieldset->addField('storefront_is_active', 'select', array(
             'name'      => 'storefront[is_active]',
             'label'     => Mage::helper('core')->__('Status'),
@@ -85,7 +128,7 @@ class TBT_Rewardsinstore_Block_Manage_Storefront_Edit_Form extends Mage_Adminhtm
             'no_span'   => true,
             'value'     => $storefrontModel->getId()
         ));
-
+        
         $form->addField('storefront_action', 'hidden', array(
             'name'      => 'storefront_action',
             'no_span'   => true,
@@ -111,7 +154,7 @@ class TBT_Rewardsinstore_Block_Manage_Storefront_Edit_Form extends Mage_Adminhtm
             'value'     => $storefrontModel->getCity(),
             'required'  => true,
         ));
-
+        
         $address_fieldset->addType('storefront_address_country', 'TBT_Rewardsinstore_Block_Form_Element_StorefrontCountry');
         
         $countryId = $storefrontModel->getCountryId();
@@ -163,11 +206,11 @@ class TBT_Rewardsinstore_Block_Manage_Storefront_Edit_Form extends Mage_Adminhtm
             'value'     => $storefrontModel->getTelephone(),
             'required'  => false,
         ));
-
+        
         $form->setAction($this->getUrl('*/*/save'));
         $form->setUseContainer(true);
         $this->setForm($form);
-
+        
         return parent::_prepareForm();
     }
     
@@ -183,8 +226,8 @@ class TBT_Rewardsinstore_Block_Manage_Storefront_Edit_Form extends Mage_Adminhtm
      *
      * @param string $id
      */
-    protected function getUrlCode($id) {
-        
+    protected function getUrlCode($id)
+    {
         if ($id) {
             return Mage::getModel('rewardsinstore/storefront')->load($id)->getCode();
         }

@@ -12,7 +12,7 @@ class TBT_Rewardsinstore_Model_Customer_Attribute_Source_Storefront extends Mage
         }
         return $this->_options;
     }
-
+    
     public function getOptionText($value)
     {
         if (!$value) {

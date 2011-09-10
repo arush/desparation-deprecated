@@ -16,7 +16,7 @@
                     <sort_order>10</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
-                    <fields>         
+                    <fields>
                         <notice translate="label">
                             <label>Extension Developed By WWW.WDCA.CA</label>
                             <frontend_type>text</frontend_type>
@@ -25,9 +25,37 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </notice>       
+                        </notice>
                     </fields>
                 </about>
+                <customer_signup translate="label">
+                    <label>Customer Signup</label>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <customer_group translate="label comment">
+                            <label>Customer Group</label>
+                            <comment>Customers signed up in-store will be in this customer group.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>customer/entity_group_collection</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </customer_group>
+                        <email_template translate="label">
+                            <label>E-mail template for new customers</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </email_template> 
+                    </fields>
+                </customer_signup>
                 <!-- Disabling for simplicity of initial release. Enable this configuration at a later date.
                 <general translate="label">
                     <label>General Settings</label>
@@ -75,24 +103,6 @@
                         </AfterSignup>
                     </fields>
                 </initial_transfer_statuses> -->
-                <email_templates translate="label">
-                    <label>Email Templates</label>
-                    <sort_order>70</sort_order>
-                    <show_in_default>1</show_in_default>
-                    <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>
-                    <fields>
-                        <welcome translate="label">
-                            <label>E-mail template for new customers</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_email_template</source_model>
-                            <sort_order>40</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </welcome> 
-                    </fields>
-                </email_templates>
                 <!-- <custom_attributes translate="label">
                     <label>Custom Attributes</label>
                     <sort_order>30</sort_order>
@@ -131,6 +141,25 @@
                     </fields>
                 </dev>
                 -->
+                <advanced translate="label">
+                    <label>Advanced</label>
+                    <sort_order>80</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <custom_storefront_code translate="label comment">
+                            <label>Manually set Storefront Codes</label>
+                            <comment>If yes, a new field will be available when creating a storefront which allows you to specify the storefront code (generated automatically by default)</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </custom_storefront_code>
+                    </fields>
+                </advanced>
                 <registration translate="label comment">
                     <label>Registration Information</label>
                     <comment><![CDATA[If you didn't install this module using CEM, this section is required.]]></comment>
@@ -149,7 +178,7 @@
                             <backend_model>rewardsinstore/system_config_backend_license</backend_model>
                         </license_key>
                         <subscribed_storefronts translate="label comment">
-                            <label>Storefront usage</label>                            
+                            <label>Storefront usage</label>
                             <frontend_type>label</frontend_type>
                             <frontend_model>rewardsinstore/system_config_subscribedstorefronts</frontend_model>
                             <sort_order>20</sort_order>

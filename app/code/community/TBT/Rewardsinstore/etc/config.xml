@@ -1,10 +1,9 @@
 <?xml version="1.0"?>
 
 <config>
-
     <modules>
         <TBT_Rewardsinstore>
-            <version>0.7.1.0</version>
+            <version>1.0.0.0</version>
         </TBT_Rewardsinstore>
     </modules>
     
@@ -17,13 +16,6 @@
                     <frontName>rewardsinstoreadmin</frontName>
                 </args>
             </rewardsinstoreadmin>
-            <adminhtml>
-                <args>
-                    <modules>
-                        <TBT_Rewardsinstore before="Mage_Adminhtml">TBT_Rewardsinstore_Adminhtml</TBT_Rewardsinstore>
-                    </modules>
-                </args>
-            </adminhtml>
         </routers>
     </admin>
     
@@ -86,7 +78,7 @@
                 </rewrite>
             </rewards>
         </models>
-    
+        
         <resources>
             <rewardsinstore_setup>
                 <setup>
@@ -112,11 +104,6 @@
             <rewardsinstore>
                 <class>TBT_Rewardsinstore_Block</class>
             </rewardsinstore>
-            <rewards>
-                <rewrite>
-                    <manage_promo_quote_distributions_grid>TBT_Rewardsinstore_Block_Rewards_Manage_Promo_Quote_Distributions_Grid</manage_promo_quote_distributions_grid>
-                </rewrite>
-            </rewards>
         </blocks>
         <helpers>
             <rewardsinstore>
@@ -169,15 +156,33 @@
                     </tbt_rewardsinstore_model_admin_session_observer>
                 </observers>
             </admin_session_user_login_success>
+            <customer_save_before>
+                <observers>
+                    <tbt_rewardsinstore_model_observer_customer_save_before>
+                        <type>singleton</type>
+                        <class>rewardsinstore/observer_customer</class>
+                        <method>beforeSave</method>
+                    </tbt_rewardsinstore_model_observer_customer_save_before>
+                </observers>
+            </customer_save_before>
+            <customer_save_after>
+                <observers>
+                    <tbt_rewardsinstore_model_observer_customer_save_after>
+                        <type>singleton</type>
+                        <class>rewardsinstore/observer_customer</class>
+                        <method>afterSave</method>
+                    </tbt_rewardsinstore_model_observer_customer_save_after>
+                </observers>
+            </customer_save_after>
         </events>
         
         <template>
             <email>
-                <rewardsinstore_email_templates_welcome translate="label" module="rewardsinstore">
+                <rewardsinstore_customer_signup_email_template translate="label" module="rewardsinstore">
                     <label>Sweet Tooth Instore - New Customer Welcome</label>
                     <file>rewardsinstore/account_new.html</file>
                     <type>html</type>
-                </rewardsinstore_email_templates_welcome>
+                </rewardsinstore_customer_signup_email_template>
             </email>
         </template>
     </global>
@@ -235,10 +240,15 @@
                                 <action>storefront</action>
                                 <sort_order>30</sort_order>
                             </webapp>
+                            <reports translate="title" module="rewardsinstore">
+                                <title>Reports</title>
+                                <sort_order>40</sort_order>
+                                <action>rewardsinstoreadmin/reports</action>
+                            </reports>
                             <config translate="title" module="rewardsinstore">
                                 <title>Configuration</title>
                                 <action>adminhtml/system_config/edit/section/rewardsinstore/</action>
-                                <sort_order>40</sort_order>
+                                <sort_order>50</sort_order>
                             </config>
                         </children>
                     </instore>
@@ -284,9 +294,11 @@
                 <!-- Reward purchases on Quotes and not Orders by default -->
                 <create_instore_orders>0</create_instore_orders>
             </general>
-            <email_templates>
-                <welcome>rewardsinstore_email_templates_welcome</welcome>
-            </email_templates>
+            <customer_signup>
+                <!-- Default customer group is Magento's General group -->
+                <customer_group>1</customer_group>
+                <email_template>rewardsinstore_customer_signup_email_template</email_template>
+            </customer_signup>
             <custom_attributes>
                 <!-- Subtotal only as default -->
                 <cartrule_attributes>1</cartrule_attributes>
@@ -321,6 +333,11 @@
                 <config>rewardsinstore/special_signup</config>
             </instore_signup>
         </special>
+        <reports>
+            <rewardsinstore>
+                <!-- TODO: each instore reference should have its own entry and an is_instore flag -->
+                <transfer_references>50,51</transfer_references>
+            </rewardsinstore>
+        </reports>
     </rewards>
-    
 </config>
