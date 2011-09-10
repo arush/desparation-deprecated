@@ -47,13 +47,13 @@
 	<div class="points-special-header">
     	<a href="/index.php/rewards/customer/"><?php $pointssummary = $this->getPointsSummary();
         $header_points_balance = substr_replace($pointssummary,"",-7);
-        echo $pointssummary; ?>
-<?php else: ?>	
+        echo $pointssummary; ?></a>
+	</div>
+<?php else: ?>
 	<div class="points-special-header" style="width: 60px;">
-		<a href="#">0 Points
+		<a href="#">0 Points</a>
+	</div>
 <?php endif; ?>
-		</a>
-	</div>	
 	
     <div class="tooltip">
         <div class="nav-points">

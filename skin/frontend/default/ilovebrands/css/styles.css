@@ -12667,7 +12667,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 			height: 35px;
 		}
 		.top-header img{float: left; padding-top: 1px;}
-		.top-header img.rt{float: right; padding-top: 1px;}
+		.top-header img.rt{float: right;}
 		.top-header .facebook-header{
 			float: left;
 			padding: 8px 0 0 7px;
@@ -12690,7 +12690,18 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 			background: #fff;
 			color: #000;
 		}
-		.points-special-header{display: none;}
+		.account-link{
+			float: right;
+			height: 35px;
+		}
+		.account-link a{
+			display: block;
+			padding: 11px 12px 9px;
+			color: #fff;
+			text-transform: uppercase;
+			font-family: Gotham-book;
+			font-size: 10px;
+		}
 		.my-account-links{
 			position: absolute;
 			background: #fff;
@@ -12699,7 +12710,21 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 		.my-account-links ul.links, .my-account-links ul.links li{
 			display: block;
 		}
-
+		.login-header{
+			float: right;
+			font-family: Gotham-book;
+			font-size: 10px;
+			padding: 10px 0;
+		}
+		.login-header a{color: #fff;}
+		.top-header p{
+			float: right;
+			color: #fff;
+			font-family: Gotham-book;
+			font-size: 10px;
+			padding: 10px 0;
+			text-transform: uppercase;
+		}
 	/*TOP HEADER END*/
 
 	/*CHECKOUT-BUTTON START*/
@@ -12853,41 +12878,40 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	/*SEARCH END*/
 	
 	/*POINTS START*/
-		.header .header-panel .points-special-header{
+		.header .points-special-header{
 			float: right;
-			clear: right;
-			border: 1px solid #d9d9d9;
-			background: #CFF8D3;
-			width: 118px;
-			margin-top: 5px;
+			background: #319E52;
+			width: 80px;
+			margin: 5px 10px;
+			-moz-border-radius: 2px;
+			-webkit-border-radius: 2px;
+			border-radius: 2px;
 		}
-		.header-panel .points-special-header a{
-			color: #388922;
-			line-height: 28px;
+		.points-special-header a{
+			color: #fff;
+			line-height: 25px;
 			display: block;
-			font-weight: bold;
 			text-align: center;
+			font-size: 10px;
+			text-transform: uppercase;
+			font-family: Gotham-book;
 		}
 	/*POINTS END*/
 	
 	/*INVITE LINK START*/
 		#nav-invite{
-			background: #f5f5f5;
-			border: 1px solid #d9d9d9;
-			width: 121px;
-			float: left;
+			float: right;
 			z-index: 5;
-			border-right: none;
-			margin-top: 5px;
+			margin: 4px;
 		}
 		#nav-invite a {
 			font-family: Gotham-book, sans-serif;
 			text-transform: uppercase;
-			color: #444;
+			color: #fff;
 			display: block;
 			line-height: 28px;
 			text-align: center;
-			font-size: 11px;
+			font-size: 10px;
 		}
 	/*INVITE LINK END*/
 .help-link{

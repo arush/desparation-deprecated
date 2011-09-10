@@ -29,7 +29,7 @@
 				<?php echo $this->getChildHtml('rewardsHeader') ?>
 				<?php /*WDCA CODE END*/ ?>
 
-				<div id="nav-invite"><a href="/index.php/rewardsref/customer/index/">Invite and earn</a></div>
+				<div id="nav-invite"><a href="/index.php/rewardsref/customer/index/">Invite and earn credit</a></div>
 				<div class="tooltip">
 					<div class="nav-invite">
 					<p>Invite a friend</p>
@@ -53,8 +53,22 @@
 						})
 					;});
 				</script>
+			
+			<?php else:?>
+			
+				<?php /*WDCA CODE BEGIN*/ ?>
+				<?php echo $this->getChildHtml('rewardsHeader') ?>
+				<?php /*WDCA CODE END*/ ?>
 				
-			<?php endif?>
+				<p>and start earning</p>	
+				
+				<div title="oneall" style="width: 150px; height: 35px; float: right;"></div>
+
+				<div class="login-header">
+					<?php echo $this->getChildHtml('accountLinks') ?>
+				</div>
+			
+			<?php endif;?>
 			
 		</div>
 		
