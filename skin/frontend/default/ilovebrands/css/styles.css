@@ -12637,7 +12637,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	z-index: 100;
 	position:absolute;
 }
-.header-middle{float: left; padding: 10px 35px;}
+.header-middle{float: left; padding: 20px 35px;}
 .header-contact {text-transform: uppercase;}
 .header-contact img{float: left; margin-bottom: -1px;}
 .header-contact img.visit{margin-top: -2px;}
@@ -12648,8 +12648,8 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
   float: left;
   z-index: 994;
   width: 385px;
-  height: 100px;
-  padding-top: 10px;
+  height: 87px;
+  padding-top: 23px;
 }
 .header-buttons{float: right;}
 
@@ -12667,7 +12667,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 			height: 35px;
 		}
 		.top-header img{float: left; padding-top: 1px;}
-		.top-header img.rt{float: right;}
+		.top-header img.rt{float: right; margin-left: 10px;}
 		.top-header .facebook-header{
 			float: left;
 			padding: 8px 0 0 7px;
@@ -12678,15 +12678,18 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 			width: 150px;
 			display: block;
 		}
-		.top-header .top-name a{
+		.top-header .top-name a.flname{
 			display: block;
 			color: #fff;
 			background: #000;
 			height: 35px;
 			line-height: 35px;
 			text-align: center;
+			font-family: Gotham-book;
+			font-size: 10px;
+			text-transform: uppercase;
 		}
-		.top-header .top-name a:hover{
+		.top-header .top-name a.flname:hover{
 			background: #fff;
 			color: #000;
 		}
@@ -12696,7 +12699,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 		}
 		.account-link a{
 			display: block;
-			padding: 11px 12px 9px;
+			margin: 11px 2px 9px 12px;
 			color: #fff;
 			text-transform: uppercase;
 			font-family: Gotham-book;
@@ -12706,10 +12709,38 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 			position: absolute;
 			background: #fff;
 			top: 35px; right: 0px;
+			padding: 5px;
+			display: none;
+			z-index: 1001;
+			-moz-box-shadow: 0pt 0px 3px #acacac;
+			-webkit-box-shadow: 0pt 0px 3px #acacac;
+			-khtml-box-shadow: 0pt 0px 3px #acacac;
+			box-shadow: 0pt 0px 3px #acacac;
+			border: 1px solid #acacac\9;
 		}
 		.my-account-links ul.links, .my-account-links ul.links li{
 			display: block;
+			float: right;
+			clear: right;
 		}
+		.my-account-links .invite{
+			border-bottom: 1px solid #e8e8e8;
+			border-top: 1px solid #e8e8e8;
+			margin: 10px 0;
+			padding: 17px 10px;
+		}
+		.my-account-links .invite a{
+			background: #319E52;
+			color: #fff;
+			padding: 7px 12px;
+			-moz-border-radius: 2px;
+			-webkit-border-radius: 2px;
+			border-radius: 2px;
+		}
+		.my-account-links .first{margin: 10px;}
+		.my-account-links .account{margin-right: 10px;}
+		.my-account-links .changepw{margin-right: 10px;}
+		.my-account-links .last{margin: 5px 10px 20px;}
 		.login-header{
 			float: right;
 			font-family: Gotham-book;
@@ -12882,7 +12913,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 			float: right;
 			background: #319E52;
 			width: 80px;
-			margin: 5px 10px;
+			margin: 5px 0 5px 10px;
 			-moz-border-radius: 2px;
 			-webkit-border-radius: 2px;
 			border-radius: 2px;

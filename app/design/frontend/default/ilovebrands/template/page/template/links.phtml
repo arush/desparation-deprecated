@@ -44,9 +44,9 @@
             
 			<?php echo $_link->getAParams() ?>><?php echo $_link->getLabel() ?>
             
-            <?php if ($_link->getLabel() == 'sign out'): ?>
+            <?php /* if ($_link->getLabel() == 'sign out'): ?>
             <span style="text-transform: none;"><?php echo $this->__(' (%s)', Mage::getSingleton('customer/session')->getCustomer()->getName()); ?></span>
-            <?php endif;?>
+            <?php endif; */?>
             
             </a><?php echo $_link->getAfterText() ?></li>
         <?php endif;?>
