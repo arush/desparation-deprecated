@@ -70,7 +70,7 @@
 				<script>
 				jQuery(document).ready(function() {
 					jQuery("#nav-invite").tooltip({
-						offset: [21, 0],
+						offset: [25, 0],
 						position: 'bottom center',
 						relative: true,
 						effect: 'slide'
@@ -85,9 +85,18 @@
 				<?php /*WDCA CODE END*/ ?>
 				
 				<p>and start earning</p>	
-				
-				<div title="oneall" style="width: 150px; height: 35px; float: right;"></div>
 
+				<!-- The provider login will be embedded in this div //-->
+				<div id="oa_social_login_container"></div>
+
+				<script type="text/javascript">
+				 oneall.api.plugins.social_login.build("oa_social_login_container",{
+				  providers : ["facebook", "google", "twitter", "yahoo"],
+				  callback_uri: "INSERT YOUR CALLBACK URI HERE", 
+				  button_style: "icons"
+				});
+				</script>				
+				
 				<div class="login-header">
 					<?php echo $this->getChildHtml('accountLinks') ?>
 				</div>
