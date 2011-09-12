@@ -29,7 +29,7 @@
                     <table7>
                         <type>singleton</type>
                         <class>Vdh_Customerurl_Model_Customer_Observer</class>
-                        <method>createUnique</method>
+                        <method>createUniqueFromEvent</method>
                     </table7>
                 </observers>
             </customer_save_before>		
@@ -38,7 +38,7 @@
                     <table7>
                         <type>singleton</type>
                         <class>Vdh_Customerurl_Model_Customer_Observer</class>
-                        <method>addRewrites</method>
+                        <method>addRewritesFromEvent</method>
                     </table7>
                 </observers>
             </customer_save_after>    
