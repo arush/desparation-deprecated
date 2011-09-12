@@ -1,11 +1,19 @@
 <?php
 class Vdh_Customerurl_Model_Customer_Observer {
 
-	public function addRewrites($observer) {
+	public function addRewritesFromEvent($observer) {
+		$customer = $observer->getEvent()->getCustomer();	
+		$this->addRewrites($customer);
+	}
+	
+	public function addRewritesFromId($customerId) {
+		$customer = Mage::getModel('customer/customer')->load($customerId);
+		$this->addRewrites($customer);
+	}	
 
+	public function addRewrites($customer) {
 
 		$helper = Mage::helper('customerurl');
-		$customer = $observer->getEvent()->getCustomer();
 		
 		$templates = $helper->getMappings();
 		foreach ($templates as $template) {
@@ -34,10 +42,22 @@ class Vdh_Customerurl_Model_Customer_Observer {
 		}
 	}
 	
-	public function createUnique($observer) {
+	public function createUniqueFromEvent($observer) {
 		$customer = $observer->getEvent()->getCustomer();
+		$this->createUnique($customer);
+	}
+	public function createUniqueFromId($customerId) {
+		$customer = Mage::getModel('customer/customer')->load($customerId);
+		$this->createUnique($customer);		
+	}
+	
+	public function createUnique($customer, $default = 'username') {
+	
 		if (!$customer->getCustomerurl()) {
 			$customer->setCustomerurl($customer->getFirstname());
+		}
+		if (!$customer->getCustomerurl()) {
+			$customer->setCustomerurl($default);
 		}
 		$otherCustomers = Mage::getModel('customer/customer')
 			->getCollection()
@@ -68,8 +88,7 @@ class Vdh_Customerurl_Model_Customer_Observer {
 				->getCollection()
 				->addAttributeToFilter('customerurl', $updatedUrl);						
 		}
-		$customer->setCustomerurl($updatedUrl);		
-
+		$customer->setCustomerurl($updatedUrl);			
 	}
 	
 }
