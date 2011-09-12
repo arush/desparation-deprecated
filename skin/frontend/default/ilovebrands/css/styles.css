@@ -10668,7 +10668,7 @@ button::-moz-focus-inner{border:0;padding:0;margin:0;}
 		
 	/*ACCOUNT LINKS START*/
 		.header-panel ul.links li{padding-right: 20px;}
-		.header .checkout-link, .header .links{text-transform: uppercase; font-size: 10px; font-family: Gotham-book, sans-serif;}
+		.header .checkout-link, .header .links{text-transform: uppercase; font-size: 12px; font-family: ProximaNovaBold, sans-serif;}
 		.ie7 .my-account-links ul.links {clear:both;}
 		.header .links .account{*position: absolute; *right: 225px;}
 	/*ACCOUNT LINKS END*/
@@ -10681,7 +10681,7 @@ button::-moz-focus-inner{border:0;padding:0;margin:0;}
 			height:191px;
 			width:300px;
 			color:#fff;
-			z-index: 100;
+			z-index: 1001;
 			margin-top: -10px;	
 		}
 		.nav-invite, .nav-points{
@@ -10690,8 +10690,8 @@ button::-moz-focus-inner{border:0;padding:0;margin:0;}
 			color: #292929;
 			padding: 41px 27px 15px;
 		}
-		.nav-invite p, .nav-points p{text-transform: uppercase; text-align:center; font-size: 15px; padding-bottom: 12px; font-family:Gotham-book, sans-serif; letter-spacing: -1px;}
-		.nav-points p{padding-bottom: 5px;}
+		.nav-invite p, .tooltip .nav-points p{text-transform: uppercase; text-align:center; font-size: 15px; padding: 0px; font-family:Gotham-book, sans-serif; letter-spacing: -1px; color: #292929; float: none;}
+		.tooltip .nav-points p{padding-bottom: 5px;}
 		.nav-invite form input{float: left; color: #929292;}
 		.nav-invite span{font-size: 11px; padding: 25px 0 0 10px; position: absolute;}
 		.nav-invite input{margin-right: 10px; width: 175px; *width: 170px; height: 24px; padding-left:5px; background: #e7e7e7; border: 1px solid #B2AEAE;}
@@ -12500,6 +12500,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 			font-family: 'ProximaNovaBold';
 			src: url('fonts/ProximaNovaBold.eot?') format('eot'), url('fonts/ProximaNovaBold.otf') format('opentype');
 		}
+
 	/*ADD PROXIMA NOVA FONT END*/
 .shop-woman, .shop-man {
 	float: left;
@@ -12625,19 +12626,20 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
   height: 192px;
 }
 .header {
-  background: #fff;
+  background: url("../images/eros2.png") no-repeat scroll 0 0 #FFFFFF;
   width: 960px;
-  height: 110px;
+  height: 147px;
 }
 .branding {
   float: left;
   position: relative;
+  margin-top: -3px;
 }
 .branding img.logo-back {
 	z-index: 100;
 	position:absolute;
 }
-.header-middle{float: left; padding: 20px 35px;}
+.header-middle{float: left; padding: 17px 32px;}
 .header-contact {text-transform: uppercase;}
 .header-contact img{float: left; margin-bottom: -1px;}
 .header-contact img.visit{margin-top: -2px;}
@@ -12649,17 +12651,17 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
   z-index: 994;
   width: 385px;
   height: 87px;
-  padding-top: 23px;
+  padding-top: 20px;
 }
 .header-buttons{float: right;}
 
 	/*TOP-HEADER START*/
 		.top-header{
 			position: relative;
-			background: #000;
+			background: url('../images/topheaderback.png') repeat-x;
 			float: left;
 			width: 960px;
-			height: 35px;
+			height: 38px;
 		}
 		.top-header .store-language{
 			float: left;
@@ -12675,22 +12677,22 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 		.top-header .top-name{
 			float: right;
 			height: 35px;
-			width: 150px;
+			padding: 0 10px;
 			display: block;
 		}
-		.top-header .top-name a.flname{
+		.top-header .light a.flname{color: #000;}
+		.top-header .top-name:hover{background: #fff;}
+		.top-name a.flname{
 			display: block;
-			color: #fff;
-			background: #000;
+			color: #ccc;
 			height: 35px;
-			line-height: 35px;
+			line-height: 38px;
 			text-align: center;
-			font-family: Gotham-book;
-			font-size: 10px;
+			font-family: ProximaNovaBold;
+			font-size: 12px;
 			text-transform: uppercase;
 		}
-		.top-header .top-name a.flname:hover{
-			background: #fff;
+ 		.top-header .top-name a.flname:hover{
 			color: #000;
 		}
 		.account-link{
@@ -12700,10 +12702,10 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 		.account-link a{
 			display: block;
 			margin: 11px 2px 9px 12px;
-			color: #fff;
+			color: #ccc;
 			text-transform: uppercase;
-			font-family: Gotham-book;
-			font-size: 10px;
+			font-family: ProximaNovaBold;
+			font-size: 12px;
 		}
 		.my-account-links{
 			position: absolute;
@@ -12729,6 +12731,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 			margin: 10px 0;
 			padding: 17px 10px;
 		}
+		.my-account-links a{color: #8c8c8c;}
 		.my-account-links .invite a{
 			background: #319E52;
 			color: #fff;
@@ -12747,14 +12750,22 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 			font-size: 10px;
 			padding: 10px 0;
 		}
-		.login-header a{color: #fff;}
+		.login-header a{color: #ccc;
+			font-family: ProximaNovaBold;
+			font-size: 12px;		
+		}
 		.top-header p{
 			float: right;
-			color: #fff;
-			font-family: Gotham-book;
-			font-size: 10px;
+			color: #ccc;
+			font-family: ProximaNovaBold;
+			font-size: 12px;
 			padding: 10px 0;
 			text-transform: uppercase;
+		}
+		.top-header #oa_social_login_container{
+			width: 150px;
+			height: 35px;
+			float: right;
 		}
 	/*TOP HEADER END*/
 
@@ -12800,7 +12811,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 		.top-cart #basket-items{
 			z-index: 5p;
 			border: 1px solid #d9d9d9;
-			background: #f5f5f5;
+			background: url('../images/cartbg.png');
 			float: right;
 			width: 121px;
 			border-right: none;
@@ -12912,7 +12923,6 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 		.header .points-special-header{
 			float: right;
 			background: #319E52;
-			width: 80px;
 			margin: 5px 0 5px 10px;
 			-moz-border-radius: 2px;
 			-webkit-border-radius: 2px;
@@ -12923,9 +12933,10 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 			line-height: 25px;
 			display: block;
 			text-align: center;
-			font-size: 10px;
+			font-size: 12px;
 			text-transform: uppercase;
-			font-family: Gotham-book;
+			font-family: ProximaNovaBold;
+			padding: 0 8px;
 		}
 	/*POINTS END*/
 	
@@ -12933,16 +12944,16 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 		#nav-invite{
 			float: right;
 			z-index: 5;
-			margin: 4px;
+			margin: 4px 4px 1px;
 		}
 		#nav-invite a {
-			font-family: Gotham-book, sans-serif;
+			font-family: ProximaNovaBold;
 			text-transform: uppercase;
-			color: #fff;
+			color: #ccc;
 			display: block;
-			line-height: 28px;
+			line-height: 30px;
 			text-align: center;
-			font-size: 10px;
+			font-size: 12px;
 		}
 	/*INVITE LINK END*/
 .help-link{
