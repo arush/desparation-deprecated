@@ -12667,7 +12667,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 			height: 35px;
 		}
 		.top-header img{float: left; padding-top: 1px;}
-		.top-header img.rt{float: right;}
+		.top-header img.rt{float: right; margin-left: 10px;}
 		.top-header .facebook-header{
 			float: left;
 			padding: 8px 0 0 7px;
@@ -12678,7 +12678,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 			width: 150px;
 			display: block;
 		}
-		.top-header .top-name a{
+		.top-header .top-name a.flname{
 			display: block;
 			color: #fff;
 			background: #000;
@@ -12696,7 +12696,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 		}
 		.account-link a{
 			display: block;
-			padding: 11px 12px 9px;
+			margin: 11px 2px 9px 12px;
 			color: #fff;
 			text-transform: uppercase;
 			font-family: Gotham-book;
@@ -12706,6 +12706,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 			position: absolute;
 			background: #fff;
 			top: 35px; right: 0px;
+			display: none;
 		}
 		.my-account-links ul.links, .my-account-links ul.links li{
 			display: block;
@@ -12882,7 +12883,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 			float: right;
 			background: #319E52;
 			width: 80px;
-			margin: 5px 10px;
+			margin: 5px 0 5px 10px;
 			-moz-border-radius: 2px;
 			-webkit-border-radius: 2px;
 			border-radius: 2px;

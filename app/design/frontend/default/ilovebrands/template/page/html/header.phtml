@@ -14,12 +14,30 @@
 			<?php if (Mage::getSingleton('customer/session')->isLoggedIn()):?> 
 				
 				<div class="top-name">
-					<a href="#">First Last Name</a>
+					<a class="flname" href="#">First Last Name</a>
+					<div class="my-account-links">
+						<?php echo $this->getChildHtml('accountLinks') ?>
+					</div>
 				</div>
-				
-				<div class="my-account-links">
-					<?php echo $this->getChildHtml('accountLinks') ?>
-				</div>
+			
+				<script>
+					jQuery(document).ready(function () { 
+		 
+						jQuery('.top-name').hover(
+							function () {
+								//show its submenu
+								jQuery('div', this).slideDown(100);
+					 
+							}, 
+							function () {
+								//hide its submenu
+								jQuery('div', this).slideUp(100);         
+							}
+						);
+						 
+					});
+				</script>
+
 				
 					<img class="rt" src="<?php echo $this->getSkinUrl();?>images/thline.jpg"/>
 				<div class="account-link"><a href="/customer/account/index/">My Account</a></div>
