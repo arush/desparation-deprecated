@@ -12,9 +12,9 @@
 			<?php /* echo $this->getChildHtml('topLinks') */ ?>
 		    
 			<?php if (Mage::getSingleton('customer/session')->isLoggedIn()):?> 
-				
 				<div class="top-name">
-					<a class="flname" href="#">First Last Name</a>
+					<?php $customerName = Mage::helper('customer')->getCustomerName(); ?> 
+					<a class="flname" href="#"><?php echo $customerName; ?></a>
 					<div class="my-account-links">
 						<?php echo $this->getChildHtml('accountLinks') ?>
 					</div>
@@ -34,7 +34,13 @@
 								jQuery('div', this).slideUp(100);         
 							}
 						);
-						 
+									jQuery('.top-name').hover(
+										function() {
+										  jQuery(this).addClass('light');
+											},
+										function() {
+										  jQuery(this).removeClass('light');
+									});
 					});
 				</script>
 
