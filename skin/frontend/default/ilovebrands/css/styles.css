@@ -7587,7 +7587,7 @@ div.validation-passed {
   float: right;
   white-space: nowrap;
 }
-#panes img{margin-bottom: 30px;}
+#panes img{margin: 30px 0;}
 .account-login .btn-only a:hover {
   text-decoration: underline;
 }
@@ -7626,6 +7626,7 @@ div.validation-passed {
 .account-login .scrollContainer div.panel {
   width: 320px; /* change to 560px if not using JS to remove rh.scroll */
   padding-bottom: 25px;
+  padding-left: 2px;
 }
 
 .account-login #slider .navigation a, a#become-member {
@@ -7689,7 +7690,6 @@ text-transform: uppercase;
 
 
 .account-login .gigya-group {
-	padding:12px;
 }
 
 .account-login .gigya-block { float:left;
@@ -7705,7 +7705,7 @@ text-transform: uppercase;
 
 .account-login #loginwith {position:absolute;right:0;top:10px;color:#eee;}
 .account-login #connectwith {position:absolute;right:0;top:10px;display:none;color:#eee;}
-.account-login #oa_social_login_container {margin-left:103px;width:212px;height:72px;}
+.account-login #oa_social_login_container {width:160px;height:60px;}
 
 .account-login #login .or, .account-login #register .or {border-top:1px solid #444;font-family:HelveticaNeueLight,Arial,sans-serif;text-align: center; margin:0 15px 25px 15px;}
 .account-login .or .or-text {margin-top:-10px;}
@@ -10614,6 +10614,12 @@ button::-moz-focus-inner{border:0;padding:0;margin:0;}
 #nav li.over a.level-top {
   position: relative;
   z-index: 2;
+	-moz-box-shadow: 0pt 0px 3px #acacac;
+	-webkit-box-shadow: 0pt 0px 3px #acacac;
+	-khtml-box-shadow: 0pt 0px 3px #acacac;
+	box-shadow: 0pt 0px 3px #acacac;
+	border: 1px solid #acacac\9;
+	background: #fff;
 }
 
 #nav div ul {
@@ -10639,10 +10645,6 @@ button::-moz-focus-inner{border:0;padding:0;margin:0;}
   padding-bottom: 0pt;
 }
 
-#nav ul.level1 li a:hover {
-  color: rgb(0, 0, 0);
-}
-
 #nav ul li a span {
 
 }
@@ -10654,7 +10656,7 @@ button::-moz-focus-inner{border:0;padding:0;margin:0;}
 #nav ul ul, #nav ul div {
   border: medium none;
   position: relative;
-  width: 245px;
+  width: 180px;
 }
 
 #nav li .shown-sub .shown-sub {
@@ -12623,17 +12625,18 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
   text-align: left;
   width: 960px;
   z-index: 100;
-  height: 192px;
+  height: 197px;
 }
 .header {
   background: url("../images/eros2.png") no-repeat scroll 0 0 #FFFFFF;
   width: 960px;
-  height: 147px;
+  height: 152px;
 }
 .branding {
   float: left;
   position: relative;
   margin-top: -3px;
+  margin-bottom: -2px;
 }
 .branding img.logo-back {
 	z-index: 100;
@@ -12650,33 +12653,37 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
   float: left;
   z-index: 994;
   width: 385px;
-  height: 87px;
+  height: 85px;
   padding-top: 20px;
 }
-.header-buttons{float: right;}
 
+.header-panel .help{
+	float: right;
+	margin: 14px;
+	font-family: Gotham-book; color: #8c8c8c; font-size: 11px; text-transform: uppercase;
+}
 	/*TOP-HEADER START*/
 		.top-header{
 			position: relative;
-			background: url('../images/topheaderback.png') repeat-x;
+			background: url('../images/black-header-back.png') repeat-x;
 			float: left;
 			width: 960px;
-			height: 38px;
+			height: 45px;
 		}
 		.top-header .store-language{
 			float: left;
 			width: 175px;
 			height: 35px;
 		}
-		.top-header img{float: left; padding-top: 1px;}
+		.top-header img{float: left; padding-top: 6px;}
 		.top-header img.rt{float: right; margin-left: 10px;}
 		.top-header .facebook-header{
 			float: left;
-			padding: 8px 0 0 7px;
+			padding: 10px 0 0 7px;
 		}
 		.top-header .top-name{
 			float: right;
-			height: 35px;
+			height: 40px;
 			padding: 0 10px;
 			display: block;
 		}
@@ -12685,13 +12692,16 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 		.top-name a.flname{
 			display: block;
 			color: #ccc;
-			height: 35px;
-			line-height: 38px;
+			height: 40px;
+			line-height: 41px;
 			text-align: center;
 			font-family: ProximaNovaBold;
 			font-size: 12px;
 			text-transform: uppercase;
+			float: left;
 		}
+		.top-header .grey, .top-header .light .black{display: block; padding: 16px 0 16px 7px;}
+		.top-header .black, .top-header .light .grey{display: none;}
  		.top-header .top-name a.flname:hover{
 			color: #000;
 		}
@@ -12701,7 +12711,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 		}
 		.account-link a{
 			display: block;
-			margin: 11px 2px 9px 12px;
+			margin: 13px 2px 10px 12px;
 			color: #ccc;
 			text-transform: uppercase;
 			font-family: ProximaNovaBold;
@@ -12710,7 +12720,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 		.my-account-links{
 			position: absolute;
 			background: #fff;
-			top: 35px; right: 0px;
+			top: 40px; right: 0px;
 			padding: 5px;
 			display: none;
 			z-index: 1001;
@@ -12746,27 +12756,29 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 		.my-account-links .last{margin: 5px 10px 20px;}
 		.login-header{
 			float: right;
-			font-family: Gotham-book;
-			font-size: 10px;
-			padding: 10px 0;
+			padding: 11px 0;
 		}
 		.login-header a{color: #ccc;
 			font-family: ProximaNovaBold;
-			font-size: 12px;		
+			font-size: 12px;
+			text-decoration: underline;
 		}
 		.top-header p{
 			float: right;
 			color: #ccc;
 			font-family: ProximaNovaBold;
 			font-size: 12px;
-			padding: 10px 0;
+			padding: 12px 0;
 			text-transform: uppercase;
 		}
-		.top-header #oa_social_login_container{
-			width: 150px;
-			height: 35px;
+		.top-header #oa_social_login_header{
+			width: 147px;
+			height: 37px;
 			float: right;
+			overflow: hidden;
+			padding: 1px 8px 1px 10px;
 		}
+		
 	/*TOP HEADER END*/
 
 	/*CHECKOUT-BUTTON START*/
@@ -12923,7 +12935,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 		.header .points-special-header{
 			float: right;
 			background: #319E52;
-			margin: 5px 0 5px 10px;
+			margin: 7px 0 7px 10px;
 			-moz-border-radius: 2px;
 			-webkit-border-radius: 2px;
 			border-radius: 2px;
@@ -12944,7 +12956,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 		#nav-invite{
 			float: right;
 			z-index: 5;
-			margin: 4px 4px 1px;
+			margin: 6px 4px 3px;
 		}
 		#nav-invite a {
 			font-family: ProximaNovaBold;
@@ -12987,7 +12999,6 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 		}
 		#nav li.level-top{
 			height: 47px;
-			background: url("../images/nav-bg.png") repeat-x;
 			width: 91px;
 			text-align: center;
 			float: left;
@@ -13005,12 +13016,6 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 			width: 91px;
 			display: block;
 			margin-top: 5px;
-		}
-		#nav a.level-top:hover, #nav a.over{
-			background: #fff;
-			-moz-box-shadow: 0pt 0px 2px #acacac;
-			-webkit-box-shadow: 0pt 0px 2px #acacac;
-			-khtml-box-shadow: 0pt 0px 2px #acacac;
 		}
 		#nav li.level0:hover, #nav li.over{
 		}
@@ -13030,15 +13035,14 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 		}
 		#nav ul.level0{
 			top: 45px;
-			width: 263px;
+			width: 600px;
 			background: #fff;
-			padding: 0 0 30px;
-			  -moz-box-shadow: 0pt 6px 10px
-				rgba(0, 0, 0, 0.2);
-			-webkit-box-shadow: 0pt 6px 10px
-				rgba(0, 0, 0, 0.2);
-			-khtml-box-shadow: 0pt 6px 10px
-				rgba(0, 0, 0, 0.2);
+			padding: 0 0 40px;
+			-moz-box-shadow: 0pt 0px 3px #acacac;
+			-webkit-box-shadow: 0pt 0px 3px #acacac;
+			-khtml-box-shadow: 0pt 0px 3px #acacac;
+			box-shadow: 0pt 0px 3px #acacac;
+			border: 1px solid #acacac\9;
 			  overflow: hidden;
 				center top rgb(163, 161, 122);
 			  border-width: 0pt 1px 1px;
@@ -13049,51 +13053,51 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 			  left: -10000px;
 			  z-index: 10000;
 		}
-		#nav li.last ul.level0{width: 789px;}
+		#nav li.last ul.level0{}
 		#nav ul li.level1{
 			float: none;
 		}
 		
 		#nav ul.level0 a{
-			font-size: 11px;
+			font-size: 10px;
 			font-weight: normal;
-			font-family: Gotham-book, sans-serif;
-			letter-spacing: -0.5px;
-			text-transform: uppercase;
+			font-family: Arial, sans-serif;
 			color: #92927f;
 			display: block;
 		}
-		#nav ul.level0 a:hover{letter-spacing: -0.5px; color: #000000;}
+		#nav ul.level0 a span:hover{color: #fff; background: #000;}
 		#nav ul.level0 li.first, #nav ul.level0 li.last, #nav li.level0 level1:hover, #nav li.level1.over, #nav li.level1 ul.level1 a:hover, #nav li.level1 ul.level1 li.over{background: none;}
 		#nav .level0 li.level1 {text-align: left;}
 		#nav li.level0 li.first a{padding: 30px 0 0 20px;}
 		#nav .level0 li.level1 a{padding: 15px 0 0 20px;}
 		#nav .level0 li.last a{padding: 15px 0 0 20px;}
-		#nav ul.level0 li.level1{padding: 0; width: 243px;}
+		#nav ul.level0 li.level1{padding: 0;}
 		#nav ul.level1 li a {
 		display: block;
-		font-size: 11px;
+		font-size: 10px;
 		line-height: 1.2;
 		padding: 5px 0px 5px 30px;
 		text-decoration: none ! important;
-		text-transform: uppercase;
 		color: #92927F;
 		}
 		#nav ul.level0  li.parent {
-			font-family: Gotham-book;
-			text-transform: uppercase;
+			font-family: Arial;
 			font-weight: bold;
-			color: #000;
-			font-size: 11px;
-			padding: 15px 0 0 20px;
+			color: #b14e4e;
+			font-size: 10px;
+			padding: 30px 0 0 20px;
 			float: left;
-			background: URL('../images/navdrop.png') repeat-x;
-		}
-		ul.level1 li.first{padding-top: 15px;}
-		#nav li.level0 li.level1 li.level2 a{
-			padding: 15px 0 0;
-		}
+			text-transform: uppercase;
 
+		}
+		#nav ul.level0  li.parent .level1{
+			text-transform: none;
+		}
+		ul.level1 li.first{}
+		#nav li.level0 li.level1 li.level2 a{
+			padding: 4px 0 0;
+		}
+		#nav li.level1 ul.level1 li.first{padding-top: 10px;}
 	/*NAV BAR DROP DOWN END*/
 	
 	
@@ -13117,7 +13121,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 .login-oneall, .registered-users{
 	padding: 40px 40px;
 	width: 400px;
-	height: 475px;
+	height: 450px;
 	float: left;
 }
 .account-login h1{
@@ -13133,12 +13137,15 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	text-transform: uppercase;
 }
 .account-login #gigya-fieldset {
-	margin: 50px auto;
-	background-color:#f5f5f5;
-	width: 200px;
+	margin: 30px auto 40px;
+	width: 155px;
 	height: 50px;
 }
 .login-oneall p{text-align: center;}
+#panes p{
+	text-align: left;
+	margin-bottom: 2.5em;
+}
 
 
 

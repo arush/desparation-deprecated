@@ -47,6 +47,8 @@
 					
 					<?php $customerName = Mage::helper('customer')->getCustomerName(); ?> 
 					<a class="flname" href="#"><?php echo $customerName; ?></a>
+					<img class="grey" src="<?php echo $this->getSkinUrl();?>images/arrowgrey.png" />
+					<img class="black" src="<?php echo $this->getSkinUrl();?>images/arrowblack.png" />
 					<div class="my-account-links">
 						<?php echo $this->getChildHtml('accountLinks') ?>
 					</div>
@@ -152,11 +154,10 @@
 		</div>
 	
 		<div class="header-panel">
-			<div class="header-buttons">
 				<div class="checkout-link"><?php echo $this->getChildHtml('checkoutLinks') ?></div>	
 				<?php echo $this->getChildHtml('topCart') ?>
-				<?php echo $this->getChildHtml('topSearch') ?>	
-			</div>
+				<?php echo $this->getChildHtml('topSearch') ?>
+				<a class="help" href="/help">help</a>				
 		</div>
 		 
 		<?php echo $this->getChildHtml('topMenu') ?>

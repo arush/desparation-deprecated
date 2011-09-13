@@ -58,7 +58,7 @@
 			
 			<div class="login-oneall">
 				
-				<h1>Connect with 1-click</h1>
+				<h1>Login or connect</h1>
 			
 				<form action="<?php echo Mage::getUrl('oneall/rpx/loginpost') ?>" method="post" id="login-form">
 					<div class="fieldset" id="gigya-fieldset">
@@ -82,6 +82,91 @@
 				</form>
 			
 				<p>We never post to your profile without your consent</p>
+			
+				<div id="panes">
+					
+					
+					<img src="<?php echo $this->getSkinUrl();?>images/login-line.jpg"/>
+					<p>Login without a social account</p>
+					
+					<div id="slider">
+						<?php /* ?><ul class="navigation">
+							<li><a id="signin-button" href="#login">Members sign in</a></li>
+							<li><a id="become-button" href="#register">Become a Member</a></li>
+						</ul><?php */ ?>
+							<!-- a id="become-member" href="http://www.evogue.co.uk/editorial/?page_id=120">Become a Member</a -->
+					
+						
+					<!-- element with overflow applied -->
+						<div class="scroll">
+							<!-- the element that will be scrolled during the effect -->
+							<div class="scrollContainer">
+								<!-- our individual panels -->
+															
+								<div class="panel" id="login">
+															
+								<form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="login-form">
+								<div class="fieldset">
+									<div class="login-normal">
+										<ul class="form-list">
+											<li>
+												<label for="email" class="required"><?php echo $this->__('email') ?></label>
+												<div class="input-box">
+													<input name="login[username]" value="<?php echo $this->htmlEscape($this->getUsername()) ?>" id="email" type="text" class="input-text required-entry validate-email" title="<?php echo $this->__('Email Address') ?>" />
+												</div>
+											</li>
+											<li>
+												<label for="pass" class="required"><?php echo $this->__('password') ?></label>
+												<div class="input-box">
+													<input name="login[password]" type="password" class="input-text required-entry validate-password" id="pass" title="<?php echo $this->__('Password') ?>" />
+												</div>
+											</li>
+										</ul>
+										<div class="buttons-set form-buttons btn-only">
+											<button type="submit" class="button" name="send" id="send2"><span><span class="cufon"><?php echo $this->__('Sign in') ?></span></span></button>
+											<p class="forgotpass-back-link"><a href="#forgotpass">Forgot your password?</a></p>
+										</div>
+										
+										<div style="clear: both;"><!-- --></div>
+										
+										<!-- <a href="#forgotpass<?php // echo $this->getForgotPasswordUrl() ?>"><?php // echo $this->__('Forgot Your Password?') ?></a> -->
+									</div>
+								</div> <!-- end fieldset -->
+								</form>
+								</div> <!-- end panel -->
+								
+								
+								
+								<div class="panel" id="forgotpass">
+									<form action="<?php echo $this->getUrl('*/*/forgotpasswordpost') ?>" method="post" id="form-validate">
+										<fieldset>
+											<div class="field set">
+												<div class="password-message"><?php echo $this->__('Please enter your email below and we\'ll send you a new password.') ?></div>
+													<ul class="form-list">
+														<li>
+															<label for="email_address" class="required"><?php echo $this->__('email') ?></label>
+															<div class="input-box">
+																<input type="text" name="email" alt="email" id="forgotpass_address" class="input-text required-entry validate-email" value="<?php echo $this->htmlEscape($this->getEmailValue()) ?>" />
+															</div>
+														</li>
+													</ul>
+													<div class="buttons-set form-buttons">
+														<button type="submit" name="submit" class="button" id="submit_btn" value="Send"><span><span class="cufon"><?php echo $this->__('Reset Password') ?></span></span></button>
+														<p class="forgotpass-back-link"><a href="#login">return to login</a></p>
+													<div style="clear: both;"><!-- --></div>
+												</div>
+											</div>
+										</fieldset>
+									</form>
+								</div>
+								
+							</div> <!-- end scrollContainer -->
+						</div> <!-- end scroll -->
+					</div> <!-- end slider -->
+				
+				</div> <!-- end panes -->
+			
+			
 			
 			</div>
 		
@@ -117,88 +202,6 @@
 												
 				</div>
 
-			<div id="panes">
-				
-				
-				<img src="<?php echo $this->getSkinUrl();?>images/login-line.jpg"/>
-				<p>Login without a social account</p>
-				
-				<div id="slider">
-  					<?php /* ?><ul class="navigation">
-    					<li><a id="signin-button" href="#login">Members sign in</a></li>
-    					<li><a id="become-button" href="#register">Become a Member</a></li>
-  					</ul><?php */ ?>
-	  					<!-- a id="become-member" href="http://www.evogue.co.uk/editorial/?page_id=120">Become a Member</a -->
-      			
-					
-				<!-- element with overflow applied -->
-  					<div class="scroll">
-    					<!-- the element that will be scrolled during the effect -->
-    					<div class="scrollContainer">
-      						<!-- our individual panels -->
-      						      						
-      						<div class="panel" id="login">
-      						      						
-      						<form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="login-form">
-      						<div class="fieldset">
-      							<div class="login-normal">
-									<ul class="form-list">
-										<li>
-											<label for="email" class="required"><?php echo $this->__('email') ?></label>
-											<div class="input-box">
-												<input name="login[username]" value="<?php echo $this->htmlEscape($this->getUsername()) ?>" id="email" type="text" class="input-text required-entry validate-email" title="<?php echo $this->__('Email Address') ?>" />
-											</div>
-										</li>
-										<li>
-											<label for="pass" class="required"><?php echo $this->__('password') ?></label>
-											<div class="input-box">
-												<input name="login[password]" type="password" class="input-text required-entry validate-password" id="pass" title="<?php echo $this->__('Password') ?>" />
-											</div>
-										</li>
-									</ul>
-									<div class="buttons-set form-buttons btn-only">
-										<button type="submit" class="button" name="send" id="send2"><span><span class="cufon"><?php echo $this->__('Sign in') ?></span></span></button>
-										<p class="forgotpass-back-link"><a href="#forgotpass">Forgot your password?</a></p>
-									</div>
-									
-									<div style="clear: both;"><!-- --></div>
-									
-									<!-- <a href="#forgotpass<?php // echo $this->getForgotPasswordUrl() ?>"><?php // echo $this->__('Forgot Your Password?') ?></a> -->
-								</div>
-      						</div> <!-- end fieldset -->
-      						</form>
-      						</div> <!-- end panel -->
-      						
-      						
-      						
-      						<div class="panel" id="forgotpass">
-      							<form action="<?php echo $this->getUrl('*/*/forgotpasswordpost') ?>" method="post" id="form-validate">
-      								<fieldset>
-									    <div class="field set">
-									        <div class="password-message"><?php echo $this->__('Please enter your email below and we\'ll send you a new password.') ?></div>
-										        <ul class="form-list">
-										            <li>
-										                <label for="email_address" class="required"><?php echo $this->__('email') ?></label>
-										                <div class="input-box">
-										                    <input type="text" name="email" alt="email" id="forgotpass_address" class="input-text required-entry validate-email" value="<?php echo $this->htmlEscape($this->getEmailValue()) ?>" />
-										                </div>
-										            </li>
-										        </ul>
-												<div class="buttons-set form-buttons">
-													<button type="submit" name="submit" class="button" id="submit_btn" value="Send"><span><span class="cufon"><?php echo $this->__('Reset Password') ?></span></span></button>
-													<p class="forgotpass-back-link"><a href="#login">return to login</a></p>
-												<div style="clear: both;"><!-- --></div>
-											</div>
-									    </div>
-									</fieldset>
-								</form>
-      						</div>
-      						
-    					</div> <!-- end scrollContainer -->
-  					</div> <!-- end scroll -->
-				</div> <!-- end slider -->
-			
-			</div> <!-- end panes -->
 			
 			
 			
