@@ -13,6 +13,38 @@
 		    
 			<?php if (Mage::getSingleton('customer/session')->isLoggedIn()):?> 
 				<div class="top-name">
+					
+					<!--oneall thumbnail -->
+					<?php // TODO put this in the module code
+					
+					$customerID = Mage::getSingleton('customer/session')->getId();
+					//check if user has a Facebook ID or twitter ID
+					$model = Mage::getModel('oneall/identifiers');
+					$collection = $model->getCollection()
+						->addFieldToFilter('customer_id',$customerID)
+						->addFieldToFilter('provider',array('in' => array('facebook','twitter')));
+					foreach($collection as $item) {
+					   if($item['provider'] === 'facebook') {
+			   				$facebookID = $item['identifier'];
+			   			}
+			   			else if($item['provider'] === 'twitter') {
+			   				$twitterID = $item['profile_name'];
+			   			};
+					   
+					}
+					
+					
+					if(isset($facebookID)) { ?>
+						<img width="30" height="30" src="http://graph.facebook.com/<?php echo $facebookID ?>/picture?type=square" />
+					<?php  } else if(isset($twitterID)) { ?>
+						<img width="30" height="30" src="http://api.twitter.com/1/users/profile_image?screen_name=<?php echo $twitterID ?>&size=normal" />
+					<?php
+					} 
+					?>
+					
+					<?php // Mage::helper('oneall')->getThumbnailUrl(); ?>
+					<!--oneall thumbnail -->
+					
 					<?php $customerName = Mage::helper('customer')->getCustomerName(); ?> 
 					<a class="flname" href="#"><?php echo $customerName; ?></a>
 					<div class="my-account-links">
@@ -70,7 +102,7 @@
 				<script>
 				jQuery(document).ready(function() {
 					jQuery("#nav-invite").tooltip({
-						offset: [21, 0],
+						offset: [25, 0],
 						position: 'bottom center',
 						relative: true,
 						effect: 'slide'
@@ -85,9 +117,20 @@
 				<?php /*WDCA CODE END*/ ?>
 				
 				<p>and start earning</p>	
-				
-				<div title="oneall" style="width: 150px; height: 35px; float: right;"></div>
 
+						<!-- The provider login will be embedded in this div //-->
+						
+						<div id="oa_social_login_header"></div>
+											
+						<script type="text/javascript">
+							 oneall.api.plugins.social_login.build("oa_social_login_header",{
+							  providers : ["Facebook", "google", "twitter", "yahoo"],
+							  callback_uri: "<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK); ?>arush-oneall/rpx/token_url/", 
+							  button_style: "icons"
+							});
+						</script>		
+						
+				
 				<div class="login-header">
 					<?php echo $this->getChildHtml('accountLinks') ?>
 				</div>

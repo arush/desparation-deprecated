@@ -3,10 +3,17 @@
 <layout version="0.1.0">
 	<!-- Load style on every page. This will be fixed later. -->
 	<default>
+		<!-- Scripts/Styles -->
+		
 		<reference name="head">
 			<block type="core/template"
 				name="arush_oneall_styles"
 				template="arush/oneall/styles.phtml"/>
+		</reference>
+		<reference name="head">
+			<block type="core/template"
+				name="arush_oneall_scripts"
+				template="arush/oneall/scripts.phtml"/>
 		</reference>
 	</default>
 
@@ -54,12 +61,7 @@
 
 	<!-- Customer Dashboard block -->
 	<customer_account_index>
-		<!-- Scripts/Styles -->
-		<reference name="before_body_end">
-			<block type="core/template"
-				name="arush_oneall_scripts"
-				template="arush/oneall/scripts.phtml"/>
-		</reference>
+		
 		<reference name="head">
 			<block type="core/template"
 				name="arush_oneall_styles"

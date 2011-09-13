@@ -232,28 +232,27 @@ try {
 
 	public function rpxLinkCall($connectionToken) {
 	
-		$oa_subdomain = Mage::getStoreConfig('oneall/options/apidomain');
-		$oa_application_public_key = $this->getOneallPublicKey();
-		$oa_application_private_key = $this->getOneallPrivateKey();
-		
-		$oa_application_domain = $oa_subdomain.'.api.oneall.com';	
+		$OAdomain = $this->getOneallApiDomain();
+		$OAusername = $this->getOneallPublicKey();
+		$OApassword = $this->getOneallPrivateKey();
 	
 		$token = $connectionToken;
-		$url = 'https://'.$oa_application_domain.'/connection/'.$token .'.json';
-	
-	
-	
+		
 		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_URL, 'https://'.$oa_application_domain.'/connection/'.$token .'.json');
+		curl_setopt($curl, CURLOPT_URL, $OAdomain.'connections/'.$token .'.json');
 	
 		curl_setopt($curl, CURLOPT_HEADER, 0);
-		curl_setopt($curl, CURLOPT_USERPWD, $oa_application_public_key . ":" . $oa_application_private_key);
+ 		curl_setopt($curl, CURLOPT_USERPWD, $OAusername . ":" . $OApassword);
 		curl_setopt($curl, CURLOPT_TIMEOUT, 5);
 		curl_setopt($curl, CURLOPT_VERBOSE, 0);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 1);
 		curl_setopt($curl, CURLOPT_FAILONERROR, 0);
 	
+		$json = curl_exec($curl);
+		$info = curl_getinfo($curl);
+		$infoverbose = 'Took ' . $info['total_time'] . ' seconds for url ' . $info['url'] . ' with code ' . $info['http_code'];
+
 		//Error
 		if ( ($json = curl_exec($curl)) === false)
 		{
@@ -264,7 +263,22 @@ try {
 		{
 			//Close connection
 			curl_close($curl);
-			print_r(json_decode($json));
+			try {
+	               // $result = json_decode($body);
+	               $result = json_decode($json);  //moved here from above
+	            }
+	            catch (Exception $e) {
+	                throw Mage::exception('Mage_Core', $e);
+	            }
+	
+	            if ($result) {
+	                return $result;
+	            }
+	            else {
+	                throw Mage::exception('Mage_Core', $infoverbose);
+	            }
+	            // end varien flow
+
 		}
 		
 	}
