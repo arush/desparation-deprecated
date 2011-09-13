@@ -89,17 +89,17 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 			
 			$token = $this->getRequest()->getPost('connection_token');
 			//testing echo
-			echo $token;
+			//echo $token;
 			
 			// Store token in session under random key
 			$key = Mage::helper('oneall')->rand_str(12);
 			Mage::getSingleton('oneall/session')->setData($key, $token);
 
-			// below commented out for testing purposes
+			
 			// Redirect user to $this->authAction method passing $key as ses
-			// $this->_redirect("arush-oneall/rpx/addidentifier", array("ses" => $key));
+			$this->_redirect("arush-oneall/rpx/addIdentifier", array("ses" => $key));
 		}
-		else { echo 'watt up';}
+		//else { echo 'watt up';}
 	}
 
 	
@@ -116,7 +116,7 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 			
 			$socialid = 'not yet defined';
 			
-			$customer = Mage::helper('oneall/identifiers')->get_customer(Mage::helper('oneall')->getSocialId($auth_info));
+			$customer = Mage::helper('oneall/identifiers')->get_customer(Mage::helper('oneall')->getAuthSocialId($auth_info));
 
 			if ($customer === false) {
 				$this->loadLayout();
@@ -164,17 +164,19 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 
 		$key = $this->getRequest()->getParam('ses');
 		$token = Mage::getSingleton('oneall/session')->getData($key);
-		$auth_info = Mage::helper('oneall/rpxcall')->rpxAuthInfo($token);
+		//$auth_info = Mage::helper('oneall/rpxcall')->rpxAuthInfoCall($token);
 		//$uuid = Mage::helper('oneall')->getUuid();
 		
 		//add account to oneall
 		$linkResponse = Mage::helper('oneall/rpxcall')->rpxLinkCall($token);
 
-		$customer = Mage::helper('oneall/identifiers')->get_customer(Mage::helper('oneall')->getSocialId($auth_info));
+		$socialID = Mage::helper('oneall')->getLinkSocialId($linkResponse);
 
+		$customer = Mage::helper('oneall/identifiers')->get_customer($socialID);
+				
 		if ($customer===false) {
 			$customer_id = $session->getCustomer()->getId();
-			$profile = Mage::helper('oneall')->buildProfile($linkResponse);
+			$profile = Mage::helper('oneall')->buildLinkProfile($linkResponse);
 
 			Mage::helper('oneall/identifiers')
 					->save_identifier($customer_id, $profile);
@@ -182,7 +184,7 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 			$session->addSuccess('New identity successfully added.');
 
 		} else {
-			$session->addWarning('Could not add identity. This account is already associated with a user.');
+			$session->addError('Could not add identity. This account is already linked to another user.');
 		}
 
 		$this->_redirect('customer/account');

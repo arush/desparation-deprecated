@@ -14,7 +14,9 @@
 			<?php if (Mage::getSingleton('customer/session')->isLoggedIn()):?> 
 				<div class="top-name">
 					
-					<?php 
+					<!--oneall thumbnail -->
+					<?php // TODO put this in the module code
+					
 					$customerID = Mage::getSingleton('customer/session')->getId();
 					//check if user has a Facebook ID or twitter ID
 					$model = Mage::getModel('oneall/identifiers');
@@ -26,22 +28,22 @@
 			   				$facebookID = $item['identifier'];
 			   			}
 			   			else if($item['provider'] === 'twitter') {
-			   				$twitterID = $item['identifier'];
+			   				$twitterID = $item['profile_name'];
 			   			};
 					   
-					  print_r($item->getData());
 					}
 					
-					//if ($collection['provider'] === 'facebook' ) {$facebookID = $collection['identifier'];}
-					//else if ($collection['provider'] === 'twitter' ) {$twitterID = $collection['identifier'];}
 					
-					if($facebookID) { ?>
+					if(isset($facebookID)) { ?>
 						<img width="30" height="30" src="http://graph.facebook.com/<?php echo $facebookID ?>/picture?type=square" />
-					
-					<?php  } else if($twitterID) { ?>
-						<img width="30" height="30" src="http://twitteravatar.appspot.com/users/avatar/mini?user_id=<?php echo $twitterID ?>" />
+					<?php  } else if(isset($twitterID)) { ?>
+						<img width="30" height="30" src="http://api.twitter.com/1/users/profile_image?screen_name=<?php echo $twitterID ?>&size=normal" />
 					<?php
-					} ?>
+					} 
+					?>
+					
+					<?php // Mage::helper('oneall')->getThumbnailUrl(); ?>
+					<!--oneall thumbnail -->
 					
 					<?php $customerName = Mage::helper('customer')->getCustomerName(); ?> 
 					<a class="flname" href="#"><?php echo $customerName; ?></a>

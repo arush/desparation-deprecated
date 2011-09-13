@@ -21,7 +21,7 @@
 								echo '<li style="clear:both;"><div class="rpx_icon_small rpx_'
 									. $identifier->getProvider()
 									. '_small"></div><span class="rpx_profile_label">'
-									. $identifier->getProfileName()
+									. $identifier->getProvider()
 									. ' <small>(<a href="'
 									. Mage::getUrl('oneall/rpx/removeid', array('identifier' => $identifier->getId()))
 									. '">remove</a>)</small></span></li>';
