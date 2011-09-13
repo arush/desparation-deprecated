@@ -87,7 +87,12 @@
     
 <!-- BEGIN ARUSH EDIT 2/11/10 get category event -->
 <?php $currentCategory = Mage::registry('current_category'); ?>
-<?php $_event = $currentCategory->getEvent(); ?>
+<?php if(isset($currentCategory->getEvent()) {
+		$_event = $currentCategory->getEvent();
+	} else {
+		$_event = false;
+	}
+} ?>
 <!-- END ARUSH EDIT 2/11/10 get category event -->
 
     <?php $_collectionSize = $_productCollection->count() ?>
@@ -133,7 +138,9 @@
                		
                <div class="out-of-stock-image">
                     
-                    <?php switch ($_event->getStatus()):
+                    <?php
+                    if($_event) {
+                     switch ($_event->getStatus()):
                         case 'upcoming': ?>
                             <a href="<?php echo $_product->getProductUrl() ?>"><img class="PREVIEWNOW-img" src="<?php echo $this->getSkinUrl(); ?>/images/PREVIEWNOW.png" alt="PREVIEW NOW"></a>
                            <!-- <p class="availability out-of-stock upcoming"><span><?php// echo $this->__('PREVIEW NOW') ?></span></p> -->
@@ -157,7 +164,23 @@
                         case 'closed': ?>
                             <a href="<?php echo $_product->getProductUrl() ?>"><img class="NOWCLOSED-img" src="<?php echo $this->getSkinUrl(); ?>/images/NOWCLOSED.png" alt="COLLECTION CLOSED"></a>
                         <?php break; ?>
-                    <?php endswitch; ?>
+                    <?php endswitch; 
+                    
+                    } else { ?>
+                    	<!-- <a href="<?php // echo $_product->getProductUrl() ?>"><img class="SOLDOUT-img" src="<?php // echo $this->getSkinUrl(); ?>/images/SOLDOUT.png" alt="SOLD OUT"></a> -->
+                        	<?php if ($this->helper('wishlist')->isAllow()):?>	
+									<div class="ProdImgRollover-static-wl">
+										<div class="list-soldout">SOLD OUT</div>
+										<div class="cat-view-now"><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Wishlist') ?></a></div>
+									</div>
+							<?php else:?>
+									<div class="ProdImgRollover-static">
+										<div class="list-soldout">SOLD OUT</div>
+									</div>
+								<!-- /a -->
+							<?php endif; ?>
+                    <?php }
+                    ?>
                </div>
 				
 						<?php endif; ?>
