@@ -87,12 +87,15 @@
     
 <!-- BEGIN ARUSH EDIT 2/11/10 get category event -->
 <?php $currentCategory = Mage::registry('current_category'); ?>
-<?php if(isset($currentCategory->getEvent()) {
+<?php 
+	$currentUrl = $this->helper('core/url')->getCurrentUrl();
+	$searchFind = strpos($currentUrl,'catalogsearch');
+	if($searchFind === false) {
 		$_event = $currentCategory->getEvent();
 	} else {
 		$_event = false;
 	}
-} ?>
+ ?>
 <!-- END ARUSH EDIT 2/11/10 get category event -->
 
     <?php $_collectionSize = $_productCollection->count() ?>
@@ -139,7 +142,8 @@
                <div class="out-of-stock-image">
                     
                     <?php
-                    if($_event) {
+                    
+					if($_event) {
                      switch ($_event->getStatus()):
                         case 'upcoming': ?>
                             <a href="<?php echo $_product->getProductUrl() ?>"><img class="PREVIEWNOW-img" src="<?php echo $this->getSkinUrl(); ?>/images/PREVIEWNOW.png" alt="PREVIEW NOW"></a>
@@ -166,7 +170,8 @@
                         <?php break; ?>
                     <?php endswitch; 
                     
-                    } else { ?>
+                    } else {
+ 					?>
                     	<!-- <a href="<?php // echo $_product->getProductUrl() ?>"><img class="SOLDOUT-img" src="<?php // echo $this->getSkinUrl(); ?>/images/SOLDOUT.png" alt="SOLD OUT"></a> -->
                         	<?php if ($this->helper('wishlist')->isAllow()):?>	
 									<div class="ProdImgRollover-static-wl">
