@@ -76,7 +76,7 @@ try {
 
         $postParams = array();
 
-        $postParams["oa_social_login_token"] = $token;
+        $postParams["connection_token"] = $token;
         // $postParams["apiKey"] = $this->getOneallApiKey();
 		$postParams["apidomain"] = $this->getOneallApiDomain();
 		$postParams["username"] = $this->getOneallPrivateKey();
@@ -159,25 +159,13 @@ try {
         try {
 			
 			
-            /* VARIEN METHOD
-            
-            $http = new Varien_Http_Client($url);
-            $http->setHeaders( array( "Accept-encoding" => "identity"  ) );
-            
-            // $http->setAuth($OAusername, $OApassword, 'basic');
-            
-			if($method=='POST')
-				$http->setParameterPost($postParams);
-            $response = $http->request($method);
-			*/
-			
 			$OAdomain = $this->getOneallApiDomain();
 			$OAusername = $this->getOneallPublicKey();
 			$OApassword = $this->getOneallPrivateKey();
 			
 			$curl = curl_init();
 		        
-		    curl_setopt($curl, CURLOPT_URL, $OAdomain.'user/social_login/lookup.json?token='.$postParams["oa_social_login_token"]);
+		    curl_setopt($curl, CURLOPT_URL, $OAdomain.'connections/'.$postParams["connection_token"].'.json');
 		    curl_setopt($curl, CURLOPT_HEADER, 0);
  			curl_setopt($curl, CURLOPT_USERPWD, $OAusername . ":" . $OApassword);
 		    curl_setopt($curl, CURLOPT_TIMEOUT, 5);
@@ -201,13 +189,9 @@ try {
 		    {
 		        //Close connection
 		        curl_close($curl);		
-				
-				// continue varien flow
-	            // $body = $response->getBody();
 	
 	            try {
-	               // $result = json_decode($body);
-	               $result = json_decode($json);  //moved here from above
+	               $result = json_decode($json);  
 	            }
 	            catch (Exception $e) {
 	                throw Mage::exception('Mage_Core', $e);
@@ -219,7 +203,6 @@ try {
 	            else {
 	                throw Mage::exception('Mage_Core', $infoverbose);
 	            }
-	            // end varien flow
             
             }
 
@@ -230,11 +213,10 @@ try {
 
     }
 
-	public function rpxLinkCall($connectionToken) {
+	/*
+public function rpxLinkCall($connectionToken) {
 	
-		$OAdomain = $this->getOneallApiDomain();
-		$OAusername = $this->getOneallPublicKey();
-		$OApassword = $this->getOneallPrivateKey();
+		
 	
 		$token = $connectionToken;
 		
@@ -282,18 +264,17 @@ try {
 		}
 		
 	}
-
-
+*/
 
 
 	public function getFirstName($auth_info) {
-		if (isset($auth_info->user->identity->name->givenName))
-			return $auth_info->user->identity->name->givenName;
+		if (isset($auth_info->response->result->data->user->identity->name->givenName))
+			return $auth_info->response->result->data->user->identity->name->givenName;
         
-        if (!isset($auth_info->user->identity->name->formatted))
+        if (!isset($auth_info->response->result->data->user->identity->name->formatted))
             return '';
 
-		$name = str_replace(",", "", $auth_info->user->identity->name->formatted);
+		$name = str_replace(",", "", $auth_info->response->result->data->user->identity->name->formatted);
 
         if (!$name)
             return '';
@@ -305,13 +286,13 @@ try {
 	}
 
 	public function getLastName($auth_info) {
-		if (isset($auth_info->user->identity->name->familyName))
-			return $auth_info->user->identity->name->familyName;
+		if (isset($auth_info->response->result->data->user->identity->name->familyName))
+			return $auth_info->response->result->data->user->identity->name->familyName;
         
-        if (!isset($auth_info->user->identity->name->formatted))
+        if (!isset($auth_info->response->result->data->user->identity->name->formatted))
             return '';
 
-		$name = str_replace(",", "", $auth_info->user->identity->name->formatted);
+		$name = str_replace(",", "", $auth_info->response->result->data->user->identity->name->formatted);
         
         if (!$name)
             return '';

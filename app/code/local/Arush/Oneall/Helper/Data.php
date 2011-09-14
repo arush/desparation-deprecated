@@ -97,21 +97,6 @@ class Arush_Oneall_Helper_Data extends Mage_Core_Helper_Abstract {
 
 	public function buildProfile($response) {
 		$provider = false;
-		$provider = $response->user->identity->provider;
-		
-		if($provider == 'twitter') {
-			$profile_name = $response->user->identity->preferredUsername;
-		}
-		else {$profile_name = $provider;}
-
-		return array('provider' => $provider,
-					'identifier' => $this->getAuthSocialId($response),
-					'profile_name' => $profile_name,
-					'oneall_uuid' => $response->user->uuid);
-	}
-	
-	public function buildLinkProfile($response) {
-		$provider = false;
 		$provider = $response->response->result->data->user->identity->provider;
 		
 		if($provider == 'twitter') {
@@ -120,20 +105,16 @@ class Arush_Oneall_Helper_Data extends Mage_Core_Helper_Abstract {
 		else {$profile_name = $provider;}
 
 		return array('provider' => $provider,
-					'identifier' => $this->getLinkSocialId($response),
+					'identifier' => $this->getSocialId($response),
 					'profile_name' => $profile_name,
-					'oneall_uuid' => $response->response->result->data->user->uuid);
+					'oneall_uuid' => $response->response->result->data->user->user_token);
 	}
+	
+	public function getSocialId($returnObject) {
 
-	
-	public function getAuthSocialId($returnObject) {
-	    return $returnObject->user->identity->accounts[0]->userid;
-	}
-	
-	public function getLinkSocialId($returnObject) {
 	    return $returnObject->response->result->data->user->identity->accounts[0]->userid;
 	}
-
+	
 	
 	
 	public function getThumbnailUrl() {
