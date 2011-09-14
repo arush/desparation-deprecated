@@ -110,9 +110,8 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 		$token = Mage::getSingleton('oneall/session')->getData($key);
 		$auth_info = Mage::helper('oneall/rpxcall')->rpxAuthInfoCall($token);
 		
-		// need to make a better if auth_info check here
-		
-		if(isset($auth_info) /*&& $auth_info->result->code ===1000*/) {
+
+		if(isset($auth_info) && $auth_info->response->result->status->code ===200) {
 			
 			$socialid = 'not yet defined';
 			
@@ -124,8 +123,8 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 				if($block !== false) {
 					$form_data = $block->getFormData();
 
-					if(isset($auth_info->user->identity->emails[0]->value)) {
-						$email = $auth_info->user->identity->emails[0]->value; }
+					if(isset($auth_info->response->result->data->user->identity->emails[0]->value)) {
+						$email = $auth_info->response->result->data->user->identity->emails[0]->value; }
 					/*else if(isset($auth_info->profile) && isset($auth_info->profile->email))
 						$email = $auth_info->profile->email; */
 					else {
@@ -153,7 +152,7 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 				$this->_loginPostRedirect();
 			}
 		} else {
-			$session->addWarning('Could not retrieve account info. Please try again.');
+			$session->addError('Could not retrieve account info. Please try again.');
 			$this->_redirect('customer/account/login');
 		
 		}
