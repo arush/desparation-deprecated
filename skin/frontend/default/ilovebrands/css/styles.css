@@ -9765,16 +9765,6 @@ ul.timer li .title {
  /* min-height: 1145px; */
 }
 
-.account-create .fieldset {
-  width: 324px;
-  position: absolute;
-  right: 67px;
-  top: 274px;
-  padding-top: 30px;
-  border-top: 1px solid #444;
-
-  
-}
 
 .oneall-register .account-create .fieldset {
 	border: none;
@@ -9829,14 +9819,8 @@ ul.timer li .title {
 }
 
 
-.account-create {
-  /*float: left;*/
-  min-height: 907px;
-}
-
 .oneall-register .account-create {
 	float: left;
-	min-height 20px;
 }
 
 .customer-account-create .col-main {
@@ -10038,18 +10022,6 @@ background: url(../images/bg-header.gif) no-repeat scroll left top transparent;
 	float: none;
 	clear: both;
 }
-
-
-.passwords-fields {
-  padding: 39px 0 15px 0;
-  border-top: 1px solid #444;
-  margin-top: 15px !important;
-}
-
-.account-create .passwords-fields {
-  margin-top: 0px !important;
-}
-
 .passwords-fields .field {
   padding: 0 0 35px;
 }
@@ -10258,7 +10230,7 @@ color: #555555;
 
 
 /*HIDE CERTAIN CUSTOMER ATTRIBUTE FIELDS BY FLO 14-03-2011 START*/
-label#source-label, input#source, label#invite-label, input#invite, label#gender_two-label, input#gender_two {
+label#source-label, input#source, label#invite-label, input#invite, label#gender_two-label, input#gender_two , label#customerurl-label, input#customerurl{
 	display: none;
 }
 /*HIDE CERTAIN CUSTOMER ATTRIBUTE FIELDS END*/
@@ -13016,10 +12988,10 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 		}
 		#nav a.level-top{
 			height: 40px;
-			line-height: 39px;
+			line-height: 40px;
 			float: none;
 			color: #444;
-			font-size: 10px;
+			font-size: 11px;
 			text-transform: uppercase;
 			font-family: Gotham-book, sans-serif;
 			width: 91px;
@@ -13083,7 +13055,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 		#nav ul.level0 li.level1{padding: 0;}
 		#nav ul.level1 li a {
 		display: block;
-		font-size: 10px;
+		font-size: 11px;
 		line-height: 1.2;
 		padding: 5px 0px 5px 30px;
 		text-decoration: none ! important;
@@ -13093,7 +13065,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 			font-family: Arial;
 			font-weight: bold;
 			color: #b14e4e;
-			font-size: 10px;
+			font-size: 11px;
 			padding: 30px 0 0 20px;
 			float: left;
 			text-transform: uppercase;
@@ -13117,7 +13089,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	background: url('../images/header-bg.png') repeat-x #F4F4ED;
 	overflow: auto;
 }
-.customer-account-login .col-main, .customer-account-forgotpassword .col-main {
+.customer-account-login .col-main, .customer-account-forgotpassword .col-main , .customer-account-create .col-main{
 	background: #fff;
 	margin-top: 20px;
   	-moz-box-shadow: 0pt 0px 3px #acacac;
@@ -13163,6 +13135,26 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	margin-bottom: 2.5em;
 }
 
+/* REGISTER PAGE START*/
+
+.account-create{
+	float: left;
+	width: 400px;
+	padding: 40px 20px;
+}
+.account-create p{
+	text-align: center;
+	padding: 20px 0;
+}
+.passwords-fields {
+  padding: 0 0 15px;
+}
+.account-create .passwords-fields {
+  margin-top: 0px !important;
+}
 
 
-/**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+/* REGISTER PAGE END*/
+
+
+/**//**//**//**//**//**//**//**//**//**//**//**//**//**/
