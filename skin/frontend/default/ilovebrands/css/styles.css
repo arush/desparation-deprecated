@@ -7517,7 +7517,7 @@ textarea {
   margin-bottom: 0.5em;
 }
 
-.account-login .form-list label, .account-login .form-list span.label {
+.account-login .form-list label, .account-login .form-list span.label, .account-create .form-list label, .account-create .form-list span.label  {
  font-family: HelveticaNeueLight;
  font-size: 14px;
  color: #444;
@@ -7570,7 +7570,7 @@ div.validation-passed {
     0% 0% transparent ! important;
 }
 .account-login .btn-only button.button span, 
-.customer-account-forgotpassword .form-buttons .button span, .account-login #forgotpass .form-buttons .button span  {
+.customer-account-forgotpassword .form-buttons .button span, .account-login #forgotpass .form-buttons .button span, .account-create .form-buttons .button.button span  {
   /*padding: 2px 27px; */
   color: #fff;
   font-size: 13px;
@@ -7592,7 +7592,8 @@ div.validation-passed {
   text-decoration: underline;
 }
 
-.account-login .form-list input.input-text {
+.account-login .form-list input.input-text, 
+.account-create .form-list select, .account-create .form-list input.input-text  {
   color: #444;
   padding: 5px;
   float: left;
@@ -7868,13 +7869,6 @@ text-transform: uppercase;
   width: 230px;
 }
 
-.account-create .form-list input:focus {
-  border: 1px solid rgb(130,
-    130, 118);
-}
-
-
-
 .account-create .form-list .control .input-box {
   margin-left: 113px ! important;
 }
@@ -7927,12 +7921,7 @@ text-transform: uppercase;
 
 
 
-.account-create .form-buttons .button.button span {
-  text-transform: uppercase;
-  font-weight: normal;
-  color: rgb(0, 0, 0);
-  font-size: 14px;
-}
+
 
 .account-create .page-title h1 {
   color: rgb(255, 255, 255);
@@ -9777,48 +9766,13 @@ ul.timer li .title {
 }
 
 
-.account-create .form-list select, .account-create .form-list input.input-text {
-  color: #444;
-  padding: 5px;
-  float: right;
-  background: none repeat scroll 0% 0% #e2e2df;
-  border-color: rgb(0, 0, 0) rgb(51, 51, 51) rgb(51, 51, 51) rgb(0, 0, 0);
-  border-style: solid;
-  border-width: 1px;
-  width: 218px;
-}
-
-.account-create .form-list label, .account-create .form-list span.label {
-  text-transform: lowercase;
-  color: #444;
-  font-size: 12px ! important;
-  font-weight: normal;
-  width: 79px;
-}
-
 .customer-account-create #form-validate p#policy-text, .enterprise-invitation-customer-account-create #form-validate p#policy-text
  {
+  font-size: 0.85em;
+  font-family: arial;
+  text-transform: none;
   float: left;
-  margin: 34px 19px 0pt 0pt;
-  border-top: 1px solid #444;
-  font-size: 0.75em;
-  padding-top: 18px;
-/*  padding: 0pt 20px 0pt
-    105px;*/
 }
-
-.account-create .form-buttons .button {
-  float: none;
-  background: url("../images/sprites.gif") no-repeat scroll -8px -4px transparent;
-  border: 1px solid rgb(207, 206, 196);
-  padding: 0px 29px;
-  height: 30px;
-  margin: 0;
-  text-transform: uppercase;
-  width: 323px;
-}
-
-
 .oneall-register .account-create {
 	float: left;
 }
@@ -13150,10 +13104,11 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
   padding: 0 0 15px;
 }
 .account-create .passwords-fields {
-  margin-top: 0px !important;
+  margin-top: -25px;
 }
+.account-create .form-buttons .button span{color: #fff;}
 
-
+.account-create .fieldset{margin: 0 0 16px 55px;}
 /* REGISTER PAGE END*/
 
 
