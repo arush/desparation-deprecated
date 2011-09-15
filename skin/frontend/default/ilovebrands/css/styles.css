@@ -669,12 +669,6 @@ p.required {
 .form-list .input-box {
   float: left;
 }
-
-.customer-account-create .form-list .input-box, .enterprise-invitation-customer-account-create .form-list .input-box
- {
-  width: 230px;
-}
-
 .form-list .input-box a {
   font-size: 11px;
   margin-top: 4px;
@@ -7526,6 +7520,7 @@ textarea {
  text-transform:lowercase;
   width: 75px;
 }
+.account-create .form-list label, .account-create .form-list span.label{width: 130px;}
 
 .customer-account-forgotpassword .form-list label {
   color: rgb(134, 134, 134);
@@ -8861,9 +8856,8 @@ font-size: 13px;
   float: right;
 }
 
-.customer-account-create .form-buttons, .enterprise-invitation-customer-account-create .form-buttons
- {
-  width: 344px;
+.customer-account-create .form-buttons, .enterprise-invitation-customer-account-create .form-buttons {
+  width: 212px;
 }
 
 .customer-account-forgotpassword p.required {
@@ -9764,27 +9758,12 @@ ul.timer li .title {
 	right:0;
 	top:0;
 }
-
-
-.customer-account-create #form-validate p#policy-text, .enterprise-invitation-customer-account-create #form-validate p#policy-text
- {
-  font-size: 0.85em;
-  font-family: arial;
-  text-transform: none;
-  float: left;
-}
 .oneall-register .account-create {
 	float: left;
 }
 
 .customer-account-create .col-main {
   padding: 0;
-}
-
-.customer-account-create #form-validate p, .enterprise-invitation-customer-account-create #form-validate p
- {
-  font-size: 0.92em;
-  /* padding-left: 135px; */
 }
 
 .account-create .logo {
@@ -13089,27 +13068,45 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	margin-bottom: 2.5em;
 }
 
+
 /* REGISTER PAGE START*/
+	.account-create{
+		float: left;
+		width: 400px;
+		padding: 40px 20px;
+	}
+	.account-create p{
+		text-align: center;
+		padding: 20px 0;
+	}
+	.passwords-fields {
+	  padding: 0 0 15px;
+	}
+	.account-create .passwords-fields {
+	  margin-top: -25px;
+	}
+	.account-create .form-buttons .button span{color: #fff;}
+	.account-create .fieldset{margin: 0 0 16px;}
+	.customer-account-create .form-list .input-box, .enterprise-invitation-customer-account-create .form-list .input-box {
+		width: 185px;
+	}
+	.account-create .form-buttons .button{
+		margin: 0 0 0 144px;
+	}
+	.customer-account-create #form-validate p#policy-text, .enterprise-invitation-customer-account-create #form-validate p#policy-text {
+		font-size: 0.75em;
+		font-family: arial;
+		text-transform: none;
+		float: left;
+		margin-left: 140px;
+		width: 218px;
+	}
 
-.account-create{
-	float: left;
-	width: 400px;
-	padding: 40px 20px;
-}
-.account-create p{
-	text-align: center;
-	padding: 20px 0;
-}
-.passwords-fields {
-  padding: 0 0 15px;
-}
-.account-create .passwords-fields {
-  margin-top: -25px;
-}
-.account-create .form-buttons .button span{color: #fff;}
-
-.account-create .fieldset{margin: 0 0 16px 55px;}
 /* REGISTER PAGE END*/
 
 
+.product-collateral .details-content ul {
+	list-style-image: url("../images/listarrow2.png");
+	padding-left: 20px;
+}
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**/

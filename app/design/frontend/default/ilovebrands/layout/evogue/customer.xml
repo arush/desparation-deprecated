@@ -115,11 +115,14 @@ New customer registration
             <action method="setTemplate"><template>page/1column.phtml</template></action>
         </reference>
 		<reference name="head">
-			<action method="addJs"><script>jquery/jquery.carouFredSel-2.5.2-packed.js</script></action>
 			<action method="addJs"><script>jquery/jScrollPane.js</script></action>
 			<action method="addJs"><script>jquery/jquery.em.js</script></action>
 			<action method="addJs"><script>jquery/jquery.mousewheel.js</script></action>
-			<action method="addCss"><stylesheet>css/jScrollPane.css</stylesheet></action>	
+			<action method="addJs"><script>jquery/jquery.localscroll-1.2.7-min.js</script></action>
+			<action method="addJs"><script>jquery/jquery.scrollTo-1.4.2-min.js</script></action>
+			<action method="addJs"><script>jquery/jquery.serialScroll-1.2.2-min.js</script></action>
+			<action method="addJs"><script>jquery/coda-slider.js</script></action>
+			<action method="addCss"><stylesheet>css/jScrollPane.css</stylesheet></action>
 		</reference>
 	
 	<block type="page/html_wrapper" name="customer.form.register.fields.before" translate="label">
