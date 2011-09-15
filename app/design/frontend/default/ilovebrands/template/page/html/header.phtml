@@ -35,9 +35,9 @@
 					
 					
 					if(isset($facebookID)) { ?>
-						<img width="30" height="30" src="http://graph.facebook.com/<?php echo $facebookID ?>/picture?type=square" />
+						<img class="oaimg" width="30" height="30" src="http://graph.facebook.com/<?php echo $facebookID ?>/picture?type=square" />
 					<?php  } else if(isset($twitterID)) { ?>
-						<img width="30" height="30" src="http://api.twitter.com/1/users/profile_image?screen_name=<?php echo $twitterID ?>&size=normal" />
+						<img class="oaimg" width="30" height="30" src="http://api.twitter.com/1/users/profile_image?screen_name=<?php echo $twitterID ?>&size=normal" />
 					<?php
 					} 
 					?>
@@ -132,7 +132,7 @@
 							});
 						</script>		
 						
-				
+				<div class="connect"> or connect</div>
 				<div class="login-header">
 					<?php echo $this->getChildHtml('accountLinks') ?>
 				</div>

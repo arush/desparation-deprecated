@@ -9373,9 +9373,9 @@ font-size: 13px;
 }
 
 .customer-account-login #bg, .customer-account-login #bg table,
-.customer-account-login #bg td, .customer-account-create,
+.customer-account-login #bg td, 
 .customer-account-create #bg, .customer-account-create #bg table, .customer-account-create #bg td,
-.customer-account-create .wrapper, .customer-account-forgotpassword, .customer-account-forgotpassword #bg,
+.customer-account-forgotpassword, .customer-account-forgotpassword #bg,
 .customer-account-forgotpassword #bg table, .customer-account-forgotpassword #bg td,
 .customer-account-forgotpassword .wrapper, .enterprise-invitation-customer-account-create,
 .enterprise-invitation-customer-account-create #bg, .enterprise-invitation-customer-account-create #bg table,
@@ -12758,10 +12758,18 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 			float: right;
 			padding: 11px 0;
 		}
-		.login-header a{color: #ccc;
+		.login-header a{
+			color: #ccc;
 			font-family: ProximaNovaBold;
 			font-size: 12px;
 			text-decoration: underline;
+		}
+		.top-header .connect{
+			font-family: ProximaNovaBold;
+			float: right;
+			color: #ccc;
+			padding: 13px 0 11px 3px;
+			text-transform: uppercase;
 		}
 		.top-header p{
 			float: right;
@@ -12772,13 +12780,14 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 			text-transform: uppercase;
 		}
 		.top-header #oa_social_login_header{
-			width: 147px;
+			width: 150px;
 			height: 37px;
 			float: right;
 			overflow: hidden;
-			padding: 1px 8px 1px 10px;
+			padding: 1px 5px 1px 10px;
 		}
-		
+		.account-login img{float: left;}
+		.top-header .oaimg{padding: 5px 7px 5px 0;}
 	/*TOP HEADER END*/
 
 	/*CHECKOUT-BUTTON START*/
@@ -13124,6 +13133,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	height: 450px;
 	float: left;
 }
+.account-login .registered-users{padding: 40px 20px;}
 .account-login h1{
 	font-family: ProximaNovaBold;
 	color: #b14e4e;
@@ -13141,7 +13151,13 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	width: 155px;
 	height: 50px;
 }
-.login-oneall p{text-align: center;}
+.login-oneall p{
+	text-align: center;
+	color: #bbb;
+	font-family: arial;
+	padding: 0 60px;
+	text-transform: none;
+}
 #panes p{
 	text-align: left;
 	margin-bottom: 2.5em;
