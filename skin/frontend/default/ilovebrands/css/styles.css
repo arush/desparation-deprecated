@@ -13110,4 +13110,62 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	list-style-image: url("../images/listarrow2.png");
 	padding-left: 20px;
 }
+
+/* LANGUAGE CHOOSER START */
+.form-language{
+	font-family: ProximaNovaBold;
+	font-size: 12px;
+	height: 40px;
+	padding-right: 10px;
+}
+#select-language{
+	color: #ccc;
+	height: 40px;
+	width: 140px;
+	margin-right: 10px;
+	text-transform: uppercase;
+	line-height: 42px;
+	background-image: url('../images/arrowgrey.png');
+    background-repeat: no-repeat;
+    background-position: 90% center;
+	display: block;
+	padding-left: 10px;
+}
+.store-language:hover{
+	background: #fff;
+}
+.form-language:hover #select-language  {
+	background-image: url('../images/arrowblack.png');
+	color: #4a4a4a;
+}
+.language-dropdown{
+	display: none;
+	background: #fff;
+	-moz-box-shadow: 0pt 0px 3px #acacac;
+	-webkit-box-shadow: 0pt 0px 3px #acacac;
+	-khtml-box-shadow: 0pt 0px 3px #acacac;
+	box-shadow: 0pt 0px 3px #acacac;
+	border: 1px solid #acacac\9;
+	position: absolute;
+	z-index: 1;
+	width: 150px;
+}
+.form-language:hover .language-dropdown{
+	display: block;
+}
+.language-dropdown li{
+	border-bottom: 1px solid #dadada;
+	padding: 10px;
+}
+.language-dropdown li a{
+	display: block;
+}
+.ilovebrands_english{background: url("../images/flags_sprite.gif") no-repeat scroll 102px 6px transparent;}
+.ilovebrands_ger{background: url("../images/flags_sprite.gif") no-repeat scroll 102px -239px transparent;}
+.ilovebrands_tur{background: url("../images/flags_sprite.gif") no-repeat scroll 102px -158px transparent;}
+.language-dropdown .ilovebrands_english{background: url("../images/flags_sprite.gif") no-repeat scroll 122px 4px transparent;}
+.language-dropdown .ilovebrands_ger{background: url("../images/flags_sprite.gif") no-repeat scroll 122px -241px transparent;}
+.language-dropdown .ilovebrands_tur{background: url("../images/flags_sprite.gif") no-repeat scroll 122px -160px transparent;}
+/* LANGUAGE CHOOSER END */
+
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**/

@@ -31,22 +31,22 @@
  * @see Mage_Page_Block_Switch
  */
 ?>
+<?php $storename = Mage::app()->getStore()->getName(); ?>
+<?php $storecode = Mage::app()->getStore()->getCode(); ?>
+
 <?php if(count($this->getStores())>1): ?>
-<div class="form-language">
-    <select name="language" id="select-language" title="<?php echo $this->__('Language') ?>" onchange="window.location.href=this.value">
-    <?php foreach ($this->getStores() as $_lang): ?>
-        <?php $_selected = ($_lang->getId() == $this->getCurrentStoreId()) ? ' selected="selected"' : '' ?>
-        <option class="<?php echo $this->htmlEscape($_lang->getName()) ?>" value="<?php echo $_lang->getCurrentUrl() ?>"<?php echo $_selected ?>><?php echo $this->htmlEscape($_lang->getName()) ?></option>
-    <?php endforeach; ?>
-    </select>
+<div class="form-language <?php echo $storecode; ?>">
+    <a href="#" id="select-language" ><?php echo $storename; ?></a>
+	<div class="language-dropdown">
+		<ul>
+		<?php foreach ($this->getStores() as $_lang): ?>
+			<?php $_selected = ($_lang->getId() == $this->getCurrentStoreId()) ? ' selected="selected"' : '' ?>
+			<li class="<?php echo $this->htmlEscape($_lang->getCode()) ?>">
+			<a href="<?php echo $_lang->getCurrentUrl() ?>" ><?php echo $this->htmlEscape($_lang->getName()) ?></a>
+			</li>
+		<?php endforeach; ?>
+		</ul>
+	</div>
 </div>
 <?php endif; ?>
 
-<script>
-jQuery('#select-language').dropkick({
-//	change: function (value, label){
-//		jQuery(this).dropkick(value);
-//	}
-});
-
-</script>
