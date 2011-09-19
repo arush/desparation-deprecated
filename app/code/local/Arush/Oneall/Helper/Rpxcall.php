@@ -191,6 +191,8 @@ try {
 		        curl_close($curl);		
 	
 	            try {
+	               // if you're debugging, this is where you can see the json string
+	               //print_r($json);
 	               $result = json_decode($json);  
 	            }
 	            catch (Exception $e) {
@@ -302,6 +304,33 @@ public function rpxLinkCall($connectionToken) {
 
 		$lName = isset($split[$key]) ? $split[$key] : '';
 		return $lName;
+	}
+	
+	public function getGender($auth_info) {
+		if (isset($auth_info->response->result->data->user->identity->gender)) {
+			$gender = $auth_info->response->result->data->user->identity->gender;
+			
+			//standardise
+			$gender = strtolower($gender);
+			if($gender === 'male') {
+				$gender = 1;
+			}
+			else if($gender === 'female') {
+				$gender === 2;			
+			}
+			else {
+				// if any other gender is important to you, you're a bigger man than I. Insert attribute admin value here
+				$gender = '';
+			}			
+			return $gender;
+
+		}
+        
+        if (!isset($auth_info->response->result->data->user->identity->gender))
+            $gender = '';
+		
+		
+		
 	}
 
 }

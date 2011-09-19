@@ -111,8 +111,13 @@ class Arush_Oneall_Helper_Data extends Mage_Core_Helper_Abstract {
 	}
 	
 	public function getSocialId($returnObject) {
-
-	    return $returnObject->response->result->data->user->identity->accounts[0]->userid;
+		if(isset($returnObject->response->result->data->user->identity->accounts[0]->userid)) {
+	    	return $returnObject->response->result->data->user->identity->accounts[0]->userid;
+	    	}
+	    	//currently only yahoo:
+	    	else if(isset($returnObject->response->result->data->user->identity->id)) {
+	    		return $returnObject->response->result->data->user->identity->id;
+	    	}
 	}
 	
 	

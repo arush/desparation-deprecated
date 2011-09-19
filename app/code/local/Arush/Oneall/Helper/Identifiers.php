@@ -19,9 +19,10 @@ class Arush_Oneall_Helper_Identifiers extends Mage_Core_Helper_Abstract {
 			->getFirstItem();
 		if(!$customer->getId())
 			Mage::throwException('Invalid Customer ID');
+		// below line just doesn't work, can't understand why
+		//	$customer->setOnealluuid($profile['oneall_uuid'])
+		//		->save();
 		
-		// below line just doesn't work, can't fathom why
-		$customer->setOnealluuid($profile['oneall_uuid']);
 		
 		/**
 		 * Make the save

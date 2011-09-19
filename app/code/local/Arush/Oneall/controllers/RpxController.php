@@ -133,10 +133,12 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 
 					$firstName = Mage::helper('oneall/rpxcall')->getFirstName($auth_info);
 					$lastName = Mage::helper('oneall/rpxcall')->getLastName($auth_info);
-
+					$gender = Mage::helper('oneall/rpxcall')->getGender($auth_info);
+					
 					$form_data->setEmail($email);
 					$form_data->setFirstname($firstName);
 					$form_data->setLastname($lastName);
+					$form_data->setGender($gender);
 				}
 				$profile = Mage::helper('oneall')->buildProfile($auth_info);
 				Mage::getSingleton('oneall/session')->setIdentifier($profile);
