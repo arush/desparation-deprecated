@@ -13222,7 +13222,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	}
 	.popup-form div{
 		float: left;
-		width: 365px;
+		width: 364px;
 		height: 65px;
 	}
 	.popup-form label, .popup-form input, .popup-form select{float: left; clear: left;}
@@ -13254,6 +13254,60 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	}
 
 	/* COMPLETE CUSTOMER DETAILS END */
+	
+	/* GETTING STARTED START */
+	.gettingstarted .popup-top{
+		padding: 20px 30px 10px;
+	}
+	.gettingstarted h1{padding: none;}
+	.popup-form img{float: left;}
+	.popup-form h2{
+		font-family: ProximaNovaBold;
+		text-transform: uppercase;
+		color: #b14e4e;
+		text-align: center;
+		font-size: 20px;
+	}
+	.popup-form a{
+		color: #b14e4e;
+		float: right;
+		text-decoration: underline;
+	}
+	.gettingstarted .popup-form{padding: 0 30px;}
+	.gettingstarted .popup-form div {
+		width: 334px;
+		height: 55px;
+	}
+	.gettingstarted .left{padding-right: 30px;}
+	.gettingstarted .popup-form .right{
+		padding: 0 15px 0 45px;
+		width: 304px;
+	}
+	.gettingstarted .popup-form input{
+		margin-left: 30px;
+		width: 225px;
+		padding: 5px;
+		font-size: 14px;
+	}
+	.gettingstarted .popup-form .submit input{
+		width: 236px;
+		margin-top: 0;
+	}
+	.gettingstarted .right form{
+		display: block;
+		padding-top: 35px;
+	}
+	.gettingstarted .right label{margin-left: 30px;}
+	.gettingstarted #gigya-fieldset{
+		width: 175px;
+		padding: 75px 0 0 95px;
+	}
+	.gettingstarted .left p{
+		color: #bbb;
+		float: left;
+		padding: 25px 0 0 35px;
+	}
+	/* GETTING STARTED END */
 
 /* VDH-POPUP END*/
 
