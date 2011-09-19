@@ -220,19 +220,16 @@
 							</div>-->
 							
 							<!-- Oneall -->  
-							<?php
-								$password = md5('Arush_Oneall_' .  Mage::helper('oneall')->rand_str(12));
-							?>
 							
 							<label for="password" class="required"><em>*</em><?php echo $this->__('Choose a password') ?></label>
 							<div class="input-box">
-								<input type="password" name="password" id="password" title="<?php echo $this->__('Choose a password') ?>" class="input-text required-entry validate-password" value="<?php echo $password; ?>"/>
+								<input type="password" name="password" id="password" title="<?php echo $this->__('Choose a password') ?>" class="input-text required-entry validate-password" />
 							</div>
 						</div>
 						<div class="field">
 							<label for="confirmation" class="required"><em>*</em><?php echo $this->__('Confirm Password') ?></label>
 							<div class="input-box">
-								<input type="password" name="confirmation" title="<?php echo $this->__('Confirm Password') ?>" id="confirmation" class="input-text required-entry validate-cpassword" value="<?php echo $password; ?>"/>
+								<input type="password" name="confirmation" title="<?php echo $this->__('Confirm Password') ?>" id="confirmation" class="input-text required-entry validate-cpassword" />
 							</div>
 							<!-- End Oneall -->
 						</div>
