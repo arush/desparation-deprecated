@@ -13159,12 +13159,104 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 .language-dropdown li a{
 	display: block;
 }
-.ilovebrands_english{background: url("../images/flags_sprite.gif") no-repeat scroll 102px 6px transparent;}
-.ilovebrands_ger{background: url("../images/flags_sprite.gif") no-repeat scroll 102px -239px transparent;}
-.ilovebrands_tur{background: url("../images/flags_sprite.gif") no-repeat scroll 102px -158px transparent;}
-.language-dropdown .ilovebrands_english{background: url("../images/flags_sprite.gif") no-repeat scroll 122px 4px transparent;}
-.language-dropdown .ilovebrands_ger{background: url("../images/flags_sprite.gif") no-repeat scroll 122px -241px transparent;}
-.language-dropdown .ilovebrands_tur{background: url("../images/flags_sprite.gif") no-repeat scroll 122px -160px transparent;}
+	/* LANGUAGE DROPDOWN FLAG POSITIONS START */
+	.ilovebrands_english{background: url("../images/flags_sprite.gif") no-repeat scroll 102px 6px transparent;}
+	.ilovebrands_ger{background: url("../images/flags_sprite.gif") no-repeat scroll 102px -239px transparent;}
+	.ilovebrands_tur{background: url("../images/flags_sprite.gif") no-repeat scroll 102px -158px transparent;}
+	.language-dropdown .ilovebrands_english{background: url("../images/flags_sprite.gif") no-repeat scroll 122px 4px transparent;}
+	.language-dropdown .ilovebrands_ger{background: url("../images/flags_sprite.gif") no-repeat scroll 122px -241px transparent;}
+	.language-dropdown .ilovebrands_tur{background: url("../images/flags_sprite.gif") no-repeat scroll 122px -160px transparent;}
+	/* LANGUAGE DROPDOWN FLAG POSITIONS END */
+
 /* LANGUAGE CHOOSER END */
 
-/**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+/* VDH-POPUP START */
+
+.vdh.content{
+	color: #444;
+}
+
+	/* COMPLETE CUSTOMER DETAILS START */
+	
+	.popup-top{
+		height: 50px;
+		padding: 30px 30px 0;
+	}
+	.popup-top img, .popup-top h1 {float: left;}
+	.popup-top img{padding-right: 20px;}
+	.popup-top h1{
+		font-family: HelveticaNeueLight;
+		font-size: 21px;
+		padding-top: 10px;
+	}
+	.popup-top div{float: right;}
+	.popup-points{
+		background: #319E52;
+		margin: 7px 0 7px 10px;
+		-moz-border-radius: 2px;
+		-webkit-border-radius: 2px;
+		border-radius: 2px;
+		color: #fff;
+		line-height: 20px;
+		display: block;
+		text-align: center;
+		font-size: 16px;
+		text-transform: uppercase;
+		font-family: ProximaNovaBold;
+		padding: 7px 12px;
+	}
+	.popup-top .earn{
+		color: #319E52;
+		font-family: ProximaNovaBold;
+		font-size: 16px;
+		text-transform: uppercase;
+		padding: 14px 0;
+	}
+	.popup-form{
+		height: 225px;
+		padding: 30px;
+	}
+	.popup-form  .left, .popup-form .right{
+		height: auto;
+	}
+	.popup-form div{
+		float: left;
+		width: 365px;
+		height: 65px;
+	}
+	.popup-form label, .popup-form input, .popup-form select{float: left; clear: left;}
+	.popup-form input, .popup-form select{
+		background: #f5f5f5;
+		border: 1px solid #d9d9d9;
+		padding: 8px;
+		width: 275px;
+		font-size: 15px;
+	}
+	.popup-form select{
+		width: 291px;
+	}
+	.popup-form .submit input {
+		background: #b14e4e;
+		color: #fff;
+		text-transform: uppercase;
+		font-family: Gotham-book;
+		font-size: 14px;
+		width: 291px;
+		margin-top: 15px;
+	}
+	.popup-form .submit input:hover{
+		cursor: pointer;
+		-moz-box-shadow: 0pt 0px 2px #acacac;
+		-webkit-box-shadow: 0pt 0px 2px #acacac;
+		-khtml-box-shadow: 0pt 0px 2px #acacac;
+		background: url('../images/button-rollover.png');
+	}
+
+	/* COMPLETE CUSTOMER DETAILS END */
+
+/* VDH-POPUP END*/
+
+
+
+/**//**//**//**//**//**//**//**/
