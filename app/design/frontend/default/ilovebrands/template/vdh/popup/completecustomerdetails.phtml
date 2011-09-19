@@ -1,5 +1,9 @@
 <?php
 $customer = Mage::getSingleton('customer/session')->getCustomer();
+$email = $customer->getEmail();
+$firstname = $customer->getFirstname();
+$lastname= $customer->getLastname();
+$gender= $customer->getGender();
 if ($this->getDob()) {
 	$customer->setDob($this->getDob());
 	$customer->save();
@@ -43,13 +47,13 @@ if (!$customer->getDob() && !$this->getDob()):
 	<form name="customer_details" action="/popup/form/page/index/completecustomerdetails">
 		<div class="left">
 			<div class="firstname">
-				<label><?php echo $this->__('Firstname'); ?></label><input type="text" name="firstname" value="" />
+				<label><?php echo $this->__('Firstname'); ?></label><input type="text" name="firstname" value="<?php echo $firstname ?>" />
 			</div>
 			<div class="lastname">
-				<label><?php echo $this->__('Lastname'); ?></label><input type="text" name="lastname" value="" />
+				<label><?php echo $this->__('Lastname'); ?></label><input type="text" name="lastname" value="<?php echo $gender ?>" />
 			</div>
 			<div class="email">
-				<label><?php echo $this->__('Email'); ?></label><input type="text" name="email" value="" />
+				<label><?php echo $this->__('Email'); ?></label><input type="text" name="email" value="<?php echo $email ?>" />
 			</div>
 		</div>
 		<div class="right">

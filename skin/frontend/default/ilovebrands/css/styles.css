@@ -13067,7 +13067,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 /* REGISTER PAGE START*/
 	.account-create{
 		float: left;
-		width: 400px;
+		width: 435px;
 		padding: 40px 20px;
 	}
 	.account-create p{
@@ -13108,27 +13108,25 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 /* LANGUAGE CHOOSER START */
 .top-header .store-language{
 	float: left;
-	width: 150px;
 	height: 40px;
 }
 .form-language{
 	font-family: ProximaNovaBold;
 	font-size: 12px;
 	height: 40px;
-	padding-right: 10px;
 }
 #select-language{
 	color: #ccc;
 	height: 40px;
-	width: 140px;
 	margin-right: 10px;
 	text-transform: uppercase;
 	line-height: 42px;
 	background-image: url('../images/arrowgrey.png');
     background-repeat: no-repeat;
-    background-position: 90% center;
+    background-position: 100% center;
 	display: block;
 	padding-left: 10px;
+	padding-right: 40px;
 }
 .store-language:hover{
 	background: #fff;
@@ -13161,8 +13159,8 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 }
 	/* LANGUAGE DROPDOWN FLAG POSITIONS START */
 	.ilovebrands_english{background: url("../images/flags_sprite.gif") no-repeat scroll 102px 6px transparent;}
-	.ilovebrands_ger{background: url("../images/flags_sprite.gif") no-repeat scroll 102px -239px transparent;}
-	.ilovebrands_tur{background: url("../images/flags_sprite.gif") no-repeat scroll 102px -158px transparent;}
+	.ilovebrands_ger{background: url("../images/flags_sprite.gif") no-repeat scroll 66px -239px transparent;}
+	.ilovebrands_tur{background: url("../images/flags_sprite.gif") no-repeat scroll 58px -158px transparent;}
 	.language-dropdown .ilovebrands_english{background: url("../images/flags_sprite.gif") no-repeat scroll 122px 4px transparent;}
 	.language-dropdown .ilovebrands_ger{background: url("../images/flags_sprite.gif") no-repeat scroll 122px -241px transparent;}
 	.language-dropdown .ilovebrands_tur{background: url("../images/flags_sprite.gif") no-repeat scroll 122px -160px transparent;}
