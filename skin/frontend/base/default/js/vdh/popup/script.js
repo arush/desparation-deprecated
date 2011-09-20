@@ -22,7 +22,7 @@ vdh.queue = {
 	},
 	
 	iterate: function() {
-		form = this.queue.pop();
+		var form = this.queue.pop();
 		if (form) {
 
 			$$('.vdh.overlay').each(function(obj){
@@ -33,7 +33,7 @@ vdh.queue = {
 				}
 			});		
 
-			var ajax = form.request({
+			var ajax = $(form).request({
 				onSuccess: function(transport) {
 					vdh.queue.sending = false;
 					if (transport.responseText == '') {
