@@ -13,8 +13,8 @@ vdh.windowSize = function(w) {
 vdh.queue = {
 	queue: [],
 	sending: false,
-	send: function(url) {
-		this.queue.push(url);
+	send: function(form) {
+		this.queue.push(form);
 		if (!this.sending) {
 			this.sending = true;
 			this.iterate();			
@@ -22,8 +22,8 @@ vdh.queue = {
 	},
 	
 	iterate: function() {
-		url = this.queue.pop();
-		if (url) {
+		form = this.queue.pop();
+		if (form) {
 
 			$$('.vdh.overlay').each(function(obj){
 			
@@ -32,10 +32,8 @@ vdh.queue = {
 				
 				}
 			});		
-		
-			var ajax = new Ajax.Request(
-				url, {
-				method: 'post',
+
+			var ajax = form.request({
 				onSuccess: function(transport) {
 					vdh.queue.sending = false;
 					if (transport.responseText == '') {
@@ -60,7 +58,6 @@ vdh.queue = {
 							});
 						}
 					} else {
-
 						$$('.vdh.content').each(function(obj){
 							obj.setStyle({display: 'block'});
 							obj.innerHTML = '<a class="vdh close"><span>close</span></a>';		
@@ -82,9 +79,11 @@ vdh.queue = {
 							vdh.closeListener();							
 						});
 					}
+					vdh.count();
 					vdh.queue.iterate();
 				}
 			});
+
 		}
 	}
 };
@@ -92,12 +91,14 @@ vdh.formListener = function() {
 	$$('.vdh.content form').each(function(obj){
 		Event.observe(obj, 'submit', function(e){
 			e.stop();
+			
+			
 			var postData = '';
 			for (var i = 0; i < this.elements.length; i++) {
 				if (postData != '') { postData += '/'; }
 				postData += this.elements[i].name + '/' + this.elements[i].value;
 			}
-			vdh.queue.send(this.action + '/' + postData);
+			vdh.queue.send(this);
 				
 		});
 	});	
@@ -140,7 +141,9 @@ vdh.popup = function(suppress) {
 				if (request.transport.responseText != '') {
 					vdh.popupCount++;				
 				}
-
+				if (popupCount > 0) {
+					$('popupMessages').setStyle({ display: 'block' });
+				}
 				$('popupCounter').innerHTML = vdh.popupCount;
 				
 				return;
@@ -150,13 +153,6 @@ vdh.popup = function(suppress) {
 	});
 	if (suppress) { return; }
 	
-/*
-	if (vdh.popupCount == 0) {
-		return;
-	}
-
-
-*/
 	document.body.insert('<div class="vdh overlay loading"></div>');
 	document.body.insert('<div class="vdh content"><a class="vdh close"><span>close</span></a></div>');	
 	document.body.setStyle({ overflow: 'hidden' });

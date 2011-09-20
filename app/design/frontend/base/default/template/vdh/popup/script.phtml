@@ -9,8 +9,13 @@ vdh.urls = new Array();
 vdh.urls[<?php echo $i; $i++ ?>] = { url: '<?php echo $url; ?>', loaded: false };
 <?php endforeach;?>
 vdh.count();
-<?php if (Mage::getModel('core/cookie')->get('suppress_popup')): ?>
+<?php if (Mage::getModel('core/cookie')->get('suppress_popup') || Mage::getSingleton('customer/session')->isLoggedIn()): ?>
 	vdh.popup(true);
+<?php elseif (!Mage::getSingleton('customer/session')->isLoggedIn()): ?>
+	function delayPopup() {
+		vdh.popup(false);	
+	}
+	setTimeout('delayPopup', <?php $helper->getDelay(); ?>);
 <?php else: ?>
 	vdh.popup(false);
 <?php endif; ?>
