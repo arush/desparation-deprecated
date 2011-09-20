@@ -40,3 +40,7 @@ a.vdh.close {
 	cursor: pointer;
 	background: url("../../../images/vdh/popup/close.png");
 }
+
+#popupMessages {
+	display: none;
+}
