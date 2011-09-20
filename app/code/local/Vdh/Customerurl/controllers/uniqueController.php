@@ -45,7 +45,19 @@ class Vdh_Customerurl_UniqueController extends Mage_Core_Controller_Front_Action
 			
 		}
 		
+	}
+	
+	public function apiAction() {
+
+		$client = new SoapClient('http://evogue.macpot.pro/index.php/api/soap/?wsdl');		
+		$sessionId = $client->login('customerurl', 'cust0m3r');
+
+		$customerId = 80; //Dummy Customer id
+		$defaultUsername = 'user'; // Used when firstname isn't available
+		$test = $client->call($sessionId, 'customerurl.addRewrites', $customerId);
+		$test = $client->call($sessionId, 'customerurl.createUnique', array($customerId, $defaultUsername));		
+		print_r($test);
 		
-		
+				
 	}
 }

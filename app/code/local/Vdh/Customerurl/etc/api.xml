@@ -11,26 +11,16 @@
                     	<acl>customerurl/createunique</acl>
                         <title>Create Unique Url</title>
                         <method>createUniqueFromId</method>
-                        <arguments>array</arguments>
                     </createUnique>
                     <addRewrites translate="title" module="customerurl">
                     	<acl>customerurl/addrewrites</acl>                    
                         <title>Add Rewrites</title>
                         <method>addRewritesFromId</method>
-                        <arguments>array</arguments>                        
                     </addRewrites>
                     
                 </methods>
             </customerurl>
         </resources>
-        <resources_alias>
-            <customerUrl>customerurl</customerUrl>
-        </resources_alias>
-        <v2>
-            <resources_function_prefix>
-                <customerUrl>customerUrl</customerUrl>
-            </resources_function_prefix>
-        </v2>
         <acl>
             <resources>
                 <customerurl translate="title" module="customerurl">
