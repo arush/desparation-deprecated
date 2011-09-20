@@ -13,7 +13,12 @@ vdh.count();
 	vdh.popup(true);
 <?php elseif (!Mage::getSingleton('customer/session')->isLoggedIn()): ?>
 	function delayPopup() {
-		vdh.popup(false);	
+		if (vdh.count()) {
+			vdh.popup(false);			
+		} else {
+			vdh.popup(true);			
+		}
+
 	}
 	setTimeout('delayPopup', <?php $helper->getDelay(); ?>);
 <?php else: ?>
