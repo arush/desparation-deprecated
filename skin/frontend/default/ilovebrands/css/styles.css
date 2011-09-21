@@ -13318,6 +13318,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 /* CART DROPDOWN END */
 
 .catalogsearch-result-index .sorter .sort-by, .catalogsearch-result-index .pager .limiter{color: #404040;}
-
+.catalogsearch-result-index .col-main{height: 97px;}
+.catalogsearch-result-index .left-layered-nav{margin: 34px 10px 0 0;}
 
 /**//**//**//**//**//**//**//**/
