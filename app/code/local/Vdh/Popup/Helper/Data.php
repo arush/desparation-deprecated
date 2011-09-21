@@ -20,6 +20,6 @@ class Vdh_Popup_Helper_Data extends Mage_Core_Helper_Abstract {
 	}
 	
 	public function getDelay() {
-		return Mage::getStoreConfig('popup/general/delay') * 1000;
+		return (int)Mage::getStoreConfig('popup/general/delay') * 1000;
 	}
 }

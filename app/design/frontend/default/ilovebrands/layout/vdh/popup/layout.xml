@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <layout version="0.1.0">
     <default>
-        <!--
         <reference name="head">
              <action method="addItem"><type>skin_js</type><name>js/vdh/popup/script.js</name></action>
             <action method="addCss"><stylesheet>css/vdh/popup/style.css</stylesheet></action> 
@@ -12,7 +11,7 @@
 		</reference>        
 		<reference name="before_body_end">			
 				<block type="core/template" name="popup" template="vdh/popup/script.phtml"/>			
-		</reference> -->
+		</reference> 
 
     </default>
     
@@ -36,10 +35,12 @@
 		<remove name="popup_header" />
     </popup_form_page>
     
+<!--
    <customer_account_login>
         <remove name="popup" />
         <remove name="popup_header" />
     </customer_account_login>
+-->
  
  	<customer_account_create>
         <remove name="popup" />
