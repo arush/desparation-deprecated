@@ -7,7 +7,13 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
 	}
 	
 	public function getOneallApiDomain() {
-		return Mage::getStoreConfig('oneall/options/apidomain');
+		$prefix = 'https://';
+		$domain = Mage::getStoreConfig('oneall/options/apidomain');
+		$suffix = '.api.oneall.com/';
+		
+		$apidomain = $prefix.$domain.$suffix;
+		
+		return $apidomain;
 	}
 	
 	public function getOneallPrivateKey() {
@@ -20,7 +26,8 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
 	
 
 	public function rpxLookupSave() {
-		try {
+		/*
+try {
 			$lookup_rp = $this->rpxLookupRpCall();
 
 			Mage::getModel('core/config')
@@ -39,15 +46,17 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
 			Mage::getSingleton('adminhtml/session')->addWarning('Could not retrieve account info. Please try again');
 		}
 		
+*/
 		return false;
 	}
 
 	/* replace this with Oneall api custom built call */
-    public function rpxLookupRpCall() {
+   /*
+ public function rpxLookupRpCall() {
         $version = Mage::getConfig()->getModuleConfig("Arush_Oneall")->version;
 
         $postParams = array();
-        $postParams["apiKey"] = $this->getOneallApiKey();
+        $postParams["apiKey"] = $this->getOneallApiDomain();
         $postParams["pluginName"] = "magento";
         $postParams["pluginVersion"] = $version;
 
@@ -62,12 +71,12 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
         return $result;
 
     }
-    
+*/
     public function rpxAuthInfoCall($token) {
 
         $postParams = array();
 
-        $postParams["oa_social_login_token"] = $token;
+        $postParams["connection_token"] = $token;
         // $postParams["apiKey"] = $this->getOneallApiKey();
 		$postParams["apidomain"] = $this->getOneallApiDomain();
 		$postParams["username"] = $this->getOneallPrivateKey();
@@ -86,6 +95,7 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
     }
 
 
+
     public function rpxActivityCall($identifier, $activity_message, $url) {
 
         $postParams = array();
@@ -93,7 +103,7 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
 
 		$activity->action = $activity_message;
 		$activity->url = $url;
-        
+
 		$activity_json = json_encode($activity);
 
         $postParams["activity"] = $activity_json;
@@ -149,25 +159,13 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
         try {
 			
 			
-            /* VARIEN METHOD
-            
-            $http = new Varien_Http_Client($url);
-            $http->setHeaders( array( "Accept-encoding" => "identity"  ) );
-            
-            // $http->setAuth($OAusername, $OApassword, 'basic');
-            
-			if($method=='POST')
-				$http->setParameterPost($postParams);
-            $response = $http->request($method);
-			*/
-			
 			$OAdomain = $this->getOneallApiDomain();
 			$OAusername = $this->getOneallPublicKey();
 			$OApassword = $this->getOneallPrivateKey();
 			
 			$curl = curl_init();
 		        
-		    curl_setopt($curl, CURLOPT_URL, $OAdomain.'user/social_login/lookup.json?token='.$postParams["oa_social_login_token"]);
+		    curl_setopt($curl, CURLOPT_URL, $OAdomain.'connections/'.$postParams["connection_token"].'.json');
 		    curl_setopt($curl, CURLOPT_HEADER, 0);
  			curl_setopt($curl, CURLOPT_USERPWD, $OAusername . ":" . $OApassword);
 		    curl_setopt($curl, CURLOPT_TIMEOUT, 5);
@@ -191,11 +189,65 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
 		    {
 		        //Close connection
 		        curl_close($curl);		
-				
-				// continue varien flow
-	            // $body = $response->getBody();
 	
 	            try {
+	               // if you're debugging, this is where you can see the json string
+	               //print_r($json);
+	               $result = json_decode($json);  
+	            }
+	            catch (Exception $e) {
+	                throw Mage::exception('Mage_Core', $e);
+	            }
+	
+	            if ($result) {
+	                return $result;
+	            }
+	            else {
+	                throw Mage::exception('Mage_Core', $infoverbose);
+	            }
+            
+            }
+
+        }
+        catch (Exception $e) {
+            throw Mage::exception('Mage_Core', $e);
+        }
+
+    }
+
+	/*
+public function rpxLinkCall($connectionToken) {
+	
+		
+	
+		$token = $connectionToken;
+		
+		$curl = curl_init();
+		curl_setopt($curl, CURLOPT_URL, $OAdomain.'connections/'.$token .'.json');
+	
+		curl_setopt($curl, CURLOPT_HEADER, 0);
+ 		curl_setopt($curl, CURLOPT_USERPWD, $OAusername . ":" . $OApassword);
+		curl_setopt($curl, CURLOPT_TIMEOUT, 5);
+		curl_setopt($curl, CURLOPT_VERBOSE, 0);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 1);
+		curl_setopt($curl, CURLOPT_FAILONERROR, 0);
+	
+		$json = curl_exec($curl);
+		$info = curl_getinfo($curl);
+		$infoverbose = 'Took ' . $info['total_time'] . ' seconds for url ' . $info['url'] . ' with code ' . $info['http_code'];
+
+		//Error
+		if ( ($json = curl_exec($curl)) === false)
+		{
+			echo 'Curl error: ' . curl_error($curl);
+		}
+		//Success
+		else
+		{
+			//Close connection
+			curl_close($curl);
+			try {
 	               // $result = json_decode($body);
 	               $result = json_decode($json);  //moved here from above
 	            }
@@ -210,24 +262,21 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
 	                throw Mage::exception('Mage_Core', $infoverbose);
 	            }
 	            // end varien flow
-            
-            }
 
-        }
-        catch (Exception $e) {
-            throw Mage::exception('Mage_Core', $e);
-        }
+		}
+		
+	}
+*/
 
-    }
 
 	public function getFirstName($auth_info) {
-		if (isset($auth_info->user->identity->name->givenName))
-			return $auth_info->user->identity->name->givenName;
+		if (isset($auth_info->response->result->data->user->identity->name->givenName))
+			return $auth_info->response->result->data->user->identity->name->givenName;
         
-        if (!isset($auth_info->user->identity->name->formatted))
+        if (!isset($auth_info->response->result->data->user->identity->name->formatted))
             return '';
 
-		$name = str_replace(",", "", $auth_info->user->identity->name->formatted);
+		$name = str_replace(",", "", $auth_info->response->result->data->user->identity->name->formatted);
 
         if (!$name)
             return '';
@@ -239,13 +288,13 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
 	}
 
 	public function getLastName($auth_info) {
-		if (isset($auth_info->user->identity->name->familyName))
-			return $auth_info->user->identity->name->familyName;
+		if (isset($auth_info->response->result->data->user->identity->name->familyName))
+			return $auth_info->response->result->data->user->identity->name->familyName;
         
-        if (!isset($auth_info->user->identity->name->formatted))
+        if (!isset($auth_info->response->result->data->user->identity->name->formatted))
             return '';
 
-		$name = str_replace(",", "", $auth_info->user->identity->name->formatted);
+		$name = str_replace(",", "", $auth_info->response->result->data->user->identity->name->formatted);
         
         if (!$name)
             return '';
@@ -255,6 +304,33 @@ class Arush_Oneall_Helper_Rpxcall extends Mage_Core_Helper_Abstract {
 
 		$lName = isset($split[$key]) ? $split[$key] : '';
 		return $lName;
+	}
+	
+	public function getGender($auth_info) {
+		if (isset($auth_info->response->result->data->user->identity->gender)) {
+			$gender = $auth_info->response->result->data->user->identity->gender;
+			
+			//standardise
+			$gender = strtolower($gender);
+			if($gender === 'male') {
+				$gender = 1;
+			}
+			else if($gender === 'female') {
+				$gender === 2;			
+			}
+			else {
+				// if any other gender is important to you, you're a bigger man than I. Insert attribute admin value here
+				$gender = '';
+			}			
+			return $gender;
+
+		}
+        
+        if (!isset($auth_info->response->result->data->user->identity->gender))
+            $gender = '';
+		
+		
+		
 	}
 
 }

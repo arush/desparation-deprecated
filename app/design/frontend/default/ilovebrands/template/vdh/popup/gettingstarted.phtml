@@ -5,9 +5,54 @@ if ($this->getSuppressPopup() == '1') {
 if (Mage::getSingleton('customer/session')->getCustomer() && !Mage::getModel('core/cookie')->get('getting_started')):
 	Mage::getModel('core/cookie')->set('getting_started', true);
 ?>
-<form name="getting_started" action="/popup/form/page/index/gettingstarted">
-	<p>Welcome to Evogue, where shopping is more than just a dream...</p>
-	<input type="checkbox" name="suppress_popup" value="1" <?php if (Mage::getModel('core/cookie')->get('suppress_popup')) { echo 'checked="checked"'; } ?>/>
-	<input type="submit" name="next" value="next" />
-</form>
+<div class="gettingstarted">
+	<div class="popup-top">
+		<h1>Become a member, start earning points and shop for FREE!</h1>
+	</div>
+	<div class="popup-form">
+		<div class="left">
+			<h2>Connect via social account</h2>
+			<form action="<?php echo Mage::getUrl('oneall/rpx/loginpost') ?>" method="post" id="login-form">
+				<div class="fieldset" id="gigya-fieldset">
+					<div class="gigya-group">
+						<!--<div class="gigya-label"><p id="loginwith">login with</p><p id="connectwith">connect with</p></div>-->
+						<div class="gigya-block">
+							
+							<!-- The provider login will be embedded in this div //-->
+								<div id="oa_social_login_container"></div>
+								
+								<script type="text/javascript">
+								 oneall.api.plugins.social_login.build("oa_social_login_container",{
+								  providers : ["Facebook", "google", "twitter", "yahoo"],
+								  callback_uri: "<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK); ?>arush-oneall/rpx/token_url/", 
+								  button_style: "icons"
+								});
+								</script>
+						</div>
+					</div>	
+				</div>
+			</form>
+			<p>We never post to your profile without your consent</p>
+		</div>
+		<img src="<?php echo $this->getSkinUrl();?>images/popupline.png"/>
+		<div class="right">
+			<h2>Register without social account</h2>
+			<a href="/customer/account/login">Already a member?</a>
+			<form name="getting_started" action="/popup/form/page/index/gettingstarted">
+				<div class="firstname">
+					<label><?php echo $this->__('Firstname'); ?></label><input type="text" name="firstname" value="" />
+				</div>
+				<div class="lastname">
+					<label><?php echo $this->__('Lastname'); ?></label><input type="text" name="lastname" value="" />
+				</div>
+				<div class="email">
+					<label><?php echo $this->__('Email'); ?></label><input type="text" name="email" value="" />
+				</div>
+				<div class="submit">	
+					<input type="submit" name="submit" value="submit" />
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 <?php endif; ?>

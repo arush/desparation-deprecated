@@ -27,29 +27,17 @@
 <div class="footer">
 	<div class="footer-container">		
 		<div class="footer-content">
-			<?php //echo $this->getChildHtml() ?>
-			<div id="social-links">
-			<p id="back-to-top"><a href="#top"><strong>Back to top</strong></a></p>
-			<script type="text/javascript">
-			$j = jQuery.noConflict();
-			$j(document).ready(function() {   
-				$j('a[href=#top]').click(function(){
-					$j('html, body').animate({scrollTop:0}, 'slow');
-					return false;
-				});
-			});
-			</script>
-			
-			<div id="twitter"><a href="http://twitter.com/evogueSocial" class="icon" target="_blank"><span>twitter</span></a></div>
-			<!-- facebook -->
-			<div id="facebook"><a href="http://www.facebook.com/evogueSocial" class="icon" target="_blank"><span>facebook</span></a></div>
-			</div>
 			<div id="footer-links">
 				<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-service')->toHtml() ?>
 				<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-shop')->toHtml() ?>
-				<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-company')->toHtml() ?>				
-				<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-account')->toHtml() ?>
-				<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-events')->toHtml() ?>				
+				<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-help')->toHtml() ?>				
+				<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-events')->toHtml() ?>
+				<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-company')->toHtml() ?>
+			</div>
+			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-right')->toHtml() ?>
+			<div id="footer-bottom">
+				<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-copy')->toHtml() ?>
+				<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-cards')->toHtml() ?>						
 			</div>
 		</div>
 	</div>

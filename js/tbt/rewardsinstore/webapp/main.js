@@ -1,6 +1,52 @@
+/**
+ * WDCA - Sweet Tooth Instore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the SWEET TOOTH (TM) INSTORE
+ * License, which extends the Open Software License (OSL 3.0).
+ * The Sweet Tooth Instore License is available at this URL: 
+ * http://www.sweettoothrewards.com/instore/sweet_tooth_instore_license.txt
+ * The Open Software License is available at this URL: 
+ * http://opensource.org/licenses/osl-3.0.php
+ * 
+ * DISCLAIMER
+ * 
+ * By adding to, editing, or in any way modifying this code, WDCA is 
+ * not held liable for any inconsistencies or abnormalities in the 
+ * behaviour of this code. 
+ * By adding to, editing, or in any way modifying this code, the Licensee
+ * terminates any agreement of support offered by WDCA, outlined in the 
+ * provided Sweet Tooth Instore License. 
+ * Upon discovery of modified code in the process of support, the Licensee 
+ * is still held accountable for any and all billable time WDCA spent 
+ * during the support process.
+ * WDCA does not guarantee compatibility with any other framework extension. 
+ * WDCA is not responsbile for any inconsistencies or abnormalities in the
+ * behaviour of this code if caused by other framework extension.
+ * If you did not receive a copy of the license, please send an email to 
+ * support@wdca.ca or call 1-888-699-WDCA(9322), so we can send you a copy 
+ * immediately.
+ * 
+ * @category   [TBT]
+ * @package    [TBT_Rewardsinstore]
+ * @copyright  Copyright (c) 2011 Sweet Tooth (http://www.sweettoothrewards.com)
+ * @license    http://www.sweettoothrewards.com/instore/sweet_tooth_instore_license.txt
+ */
 
 var customerPoints;
 var customerEmail = "";
+
+$.fn.rewardsinstore = function(){};
+$.fn.rewardsinstore.keyup = function(e) {
+    var lengthBefore = this.value.length;
+    $.fn.rewardsinstore.keyup.parent.call(this, e);
+    var lengthAfter = this.value.length;
+    
+    this.selectionStart += lengthAfter - lengthBefore;
+};
+$.fn.rewardsinstore.keyup.parent = $.fn.numeric.keyup;
+$.fn.numeric.keyup = $.fn.rewardsinstore.keyup;
 
 function main_onLoad()
 {
@@ -50,7 +96,7 @@ function main_onLoad()
                 if (response.success) {
                     results = $.map(response.customers, function(item) {
                         return {
-                            label: item.name +" <span style='color:gainsboro; font-size:small; margin-left:10px;'>"+ item.email +"</span>",
+                            label: item.name +" <span style='font-size:small; margin-left:10px;'>"+ item.email +"</span>",
                             value: item.name,
                             name: item.name,
                             loyaltyNum: 123456,
@@ -94,8 +140,7 @@ function main_onLoad()
         open: function(event, ui) {
             $('.ui-autocomplete').css('marginLeft', 20)
                 .css('width', "-=40px");
-            $('.ui-autocomplete').children().last().css('background', "#F1FAE8");
-            $('.ui-autocomplete').children().last().css('border-top', "1px solid #EAEAEA");
+            $('.ui-autocomplete').children().last().addClass('ui-menu-lastitem');
         }
     });
     
@@ -161,7 +206,7 @@ function main_onLoad()
                 
                 var results = $.map(matches, function(item) {
                     return {
-                        label: item.name +" <span style='color:gainsboro; font-size:small; margin-left:10px;'>"+ item.address +"</span>",
+                        label: item.name +" <span style='font-size:small; margin-left:10px;'>"+ item.address +"</span>",
                         value: item.name,
                         id: item.id,
                         code: item.code
@@ -193,6 +238,7 @@ function main_onLoad()
                         storefrontId = ui.item.id;
                         storefrontName = response.storefrontName;
                         
+                        $('.ui-autocomplete').html("");
                         animateTopBar();
                     } else {
                         alert(response.errorMsg);
@@ -258,13 +304,30 @@ function clearRewardArea()
     $('.rewardInput').focus().val("").blur();
 }
 
-function enableCreateArea(callback)
+function enableCreateArea(isAnimated, callback)
 {
-    callback = callback ? callback : function() { };
+    if (!callback) {
+        if (typeof(isAnimatd) == 'function') {
+            callback = isAnimated;
+            isAnimated = true;
+        } else {
+            callback = function() { };
+        }
+    }
+    
+    if (isAnimated == undefined) {
+        isAnimated = true;
+    }
     
     $('.createInput').removeAttr('disabled');
     $('#createCustomer').removeAttr('disabled');
-    $('.createBg').animate({opacity: 1}, callback);
+    
+    if (isAnimated) {
+        $('.createBg').animate({opacity: 1}, callback);
+    } else {
+        $('.createBg').css('opacity', 1);
+        callback();
+    }
 }
 
 function disableCreateArea(callback)
@@ -345,11 +408,12 @@ function closeCreate()
     pageState = "main";
 }
 
-function openCustomer(customer, transfers)
+function openCustomer(customer, transfers, totalPoints)
 {
     hideError();
     
     transfers = transfers || [];
+    totalPoints = totalPoints || 0;
     
     $('.infoCustomer').show();
     
@@ -374,7 +438,7 @@ function openCustomer(customer, transfers)
             left: -$('.infoCustomer').outerWidth() * 2
         }, function() {
             if (transfers.length > 0) {
-                showTransfers(transfers);
+                showTransfers(transfers, totalPoints);
             }
         });
     } else if (pageState == "main") {
@@ -382,7 +446,7 @@ function openCustomer(customer, transfers)
             left: -$('.infoCustomer').outerWidth()
         }, function() {
             if (transfers.length > 0) {
-                showTransfers(transfers);
+                showTransfers(transfers, totalPoints);
             }
         });
     }
@@ -406,15 +470,11 @@ function closeCustomer()
     $('#newSearch').attr('disabled', "disabled")
         .animate({opacity: 0.3});
     
-    $('.selectCustomer').css('opacity', 1).animate({
-        left: 0
+    $('.selectCustomer').css('opacity', 1).animate({left: 0});
+    $('.infoCustomer').show().animate({left: 0}, function() {
+        $('.rewarded').css('opacity', 0).css('top', 15);
     });
-    $('.infoCustomer').show().animate({
-        left: 0
-    });
-    $('.customerArea').animate({
-        height: $('.selectCustomer').outerHeight()
-    });
+    $('.customerArea').animate({ height: $('.selectCustomer').outerHeight() });
     
     disableRewardArea();
     $('#searchBox').focus();
@@ -465,11 +525,11 @@ function doCreate()
             customer.points = 0;
             
             clearCreateArea();
-            enableCreateArea();
+            enableCreateArea(false);
             $('#loader').css('opacity', 0);
             
             $('#rewardMessage').text("Points added for signing up!");
-            openCustomer(customer, response.transfers);
+            openCustomer(customer, response.transfers, response.points);
         } else {
             showError(response.errorMsg);
             
@@ -501,6 +561,11 @@ function doReward()
     }
     
     disableRewardArea();
+    if (parseInt($('.rewarded').css('top')) == 0) {
+        $('.rewarded').animate({opacity: 0, top: -15}, 500, function() {
+            $('.rewarded').css('top', 15);
+        });
+    }
     $('#loader').css('top', ($('#reward').innerHeight() - $('#loader').outerHeight()) / 2 + $('#reward').offset().top)
         .css('left', $('#reward').offset().left + $('#reward').innerWidth() - $('#loader').outerWidth() - 30)
         .css('opacity', 0.6);
@@ -513,12 +578,12 @@ function doReward()
         if (response.success) {
             if (response.transfers.length > 0) {
                 $('#rewardMessage').text("Points added for purchase!");
-                showTransfers(response.transfers);
+                showTransfers(response.transfers, response.points);
                 // TODO: display the total points someplace?
             } else {
                 $('#rewardedValue').text("");
                 $('#rewardMessage').text("No points earned on this order.");
-                showTransferMessage();
+                showTransferMessage(true);
             }
             $('#newSearch').focus();
         } else {
@@ -550,8 +615,10 @@ function selectCustomer(name, email, loyaltyNum, points)
     customerPoints.setValue(parseInt(points));
 }
 
-function showTransfers(transfers)
+function showTransfers(transfers, transferSum, totalCount)
 {
+    totalCount = totalCount || 0;
+    
     var transfer = transfers.shift();
     
     var totalPoints = parseInt(customerPoints.getValue()) + parseInt(transfer.points);
@@ -559,22 +626,29 @@ function showTransfers(transfers)
     customerPoints.incrementTo(totalPoints, totalTime, 51);
     
     $('#rewardedValue').text("+" + transfer.points);
-    showTransferMessage(function() {
+    var isPersistent = (transfers.length == 0 && totalCount == 0);
+    showTransferMessage(isPersistent, function() {
         if (transfers.length > 0) {
-            showTransfers(transfers);
+            showTransfers(transfers, transferSum, totalCount + 1);
+        } else if (totalCount > 0) {
+            $('#rewardedValue').html("<span style='font-size:larger;'>" + transferSum + " Total </span>");
+            showTransferMessage(true);
         }
     });
 }
 
-function showTransferMessage(callback)
+function showTransferMessage(isPersistent, callback)
 {
+    callback = callback || function() { };
     $('.rewarded').animate({opacity: 1, top: 0}, 500, function() {
-        $('.rewarded').delay(1500).animate({opacity: 0, top: -15}, 500, function() {
-            $('.rewarded').css('top', 15);
-            if (callback != undefined) {
+        if (!isPersistent) {
+            $('.rewarded').delay(1500).animate({opacity: 0, top: -15}, 500, function() {
+                $('.rewarded').css('top', 15);
                 callback();
-            }
-        });
+            });
+        } else {
+            callback();
+        }
     });
 }
 

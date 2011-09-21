@@ -1,32 +1,78 @@
 <?php
+/**
+ * WDCA - Sweet Tooth Instore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the SWEET TOOTH (TM) INSTORE
+ * License, which extends the Open Software License (OSL 3.0).
+ * The Sweet Tooth Instore License is available at this URL: 
+ * http://www.sweettoothrewards.com/instore/sweet_tooth_instore_license.txt
+ * The Open Software License is available at this URL: 
+ * http://opensource.org/licenses/osl-3.0.php
+ * 
+ * DISCLAIMER
+ * 
+ * By adding to, editing, or in any way modifying this code, WDCA is 
+ * not held liable for any inconsistencies or abnormalities in the 
+ * behaviour of this code. 
+ * By adding to, editing, or in any way modifying this code, the Licensee
+ * terminates any agreement of support offered by WDCA, outlined in the 
+ * provided Sweet Tooth Instore License. 
+ * Upon discovery of modified code in the process of support, the Licensee 
+ * is still held accountable for any and all billable time WDCA spent 
+ * during the support process.
+ * WDCA does not guarantee compatibility with any other framework extension. 
+ * WDCA is not responsbile for any inconsistencies or abnormalities in the
+ * behaviour of this code if caused by other framework extension.
+ * If you did not receive a copy of the license, please send an email to 
+ * support@wdca.ca or call 1-888-699-WDCA(9322), so we can send you a copy 
+ * immediately.
+ * 
+ * @category   [TBT]
+ * @package    [TBT_Rewardsinstore]
+ * @copyright  Copyright (c) 2011 Sweet Tooth (http://www.sweettoothrewards.com)
+ * @license    http://www.sweettoothrewards.com/instore/sweet_tooth_instore_license.txt
+ */
 
-require_once ('app/code/community/TBT/Rewardsinstore/controllers/RewardsinstoreController.php');
-class TBT_Rewardsinstore_Webapp_AjaxController extends TBT_Rewardsinstore_RewardsinstoreController
+/**
+ * The entrance point for all AJAX requests from the Instore webapp
+ *
+ * @category   TBT
+ * @package    TBT_Rewardsinstore
+ * @author     Sweet Tooth Instore Team <support@wdca.ca>
+ */
+require_once ('app/code/community/TBT/Rewardsinstore/controllers/LoyaltyController.php');
+class TBT_Rewardsinstore_Webapp_AjaxController extends TBT_Rewardsinstore_LoyaltyController
 {
-
     protected function _construct()
     {
         parent::_construct();
         $this->_usedModuleName = "rewardsinstore";
-        
-        //if (Mage::getSingleton('admin/session')->isLoggedIn() && !$this->getRequest()->has('key')) {
-        //    $this->_redirect('*/*');
-        //}
     }
     
     /**
      * Acl permissions
      */
-    protected function _isAllowed() {
-        return Mage::getSingleton('admin/session')->isAllowed('rewards/instore');
+    protected function _isAllowed()
+    {
+        return Mage::getSingleton('admin/session')->isAllowed('rewards/instore/webapp');
     }
     
     public function preDispatch()
     {
+        $loginData = $this->getRequest()->getPost('login');
+        $username = $loginData['username'];
+        
         parent::preDispatch();
         
         if (!Mage::getSingleton('admin/session')->isLoggedIn()) {
-            $this->_redirect('rewardsinstore/webapp/login');
+            $loginData = $this->getRequest()->getPost('login');
+            Mage::dispatchEvent('rewardsinstore_storefront_login_failure', array(
+                'username' => $username,
+                'storefront_id' => $this->getRequest()->get('storefront_id')
+            ));
+            $this->_redirect('rewardsinstore/index/login');
         }
         
         return $this;
@@ -36,7 +82,7 @@ class TBT_Rewardsinstore_Webapp_AjaxController extends TBT_Rewardsinstore_Reward
     {
         $this->logout();
         $this->_redirectUrl($this->getRequest()->getHeader('Referer'));
-        return;
+        return $this;
     }
     
     public function mainAction()
@@ -44,12 +90,6 @@ class TBT_Rewardsinstore_Webapp_AjaxController extends TBT_Rewardsinstore_Reward
         if ($this->getRequest()->has('storefront_id')) {
             $this->setStorefront($this->getRequest()->get('storefront_id'));
         }
-        
-//        Mage::getSingleton('admin/session')->getCookie()->set(
-//        	'rewardsinstore-key',
-//            $this->getRequest()->get('key')
-//            //,set period here so it automatically dies
-//        );
         
         $this->loadLayout();
         $this->renderLayout();
@@ -63,12 +103,14 @@ class TBT_Rewardsinstore_Webapp_AjaxController extends TBT_Rewardsinstore_Reward
         
         if ($this->getRequest()->has('term') && ($text = $this->getRequest()->getQuery('term'))) {
             try {
+                $text = str_replace(" ", "%", $text);
+                $storefront = Mage::getModel('rewardsinstore/storefront')->load(Mage::getSingleton('admin/session')->getStorefrontId());
                 $customers = Mage::getModel('rewards/customer')->getCollection()
                     ->addNameToSelect()
+                    ->addFieldToFilter('website_id', array('eq' => $storefront->getWebsiteId()))
                     ->addAttributeToFilter(array(
                         array('attribute' => 'name', 'like' => "%{$text}%"),
                         array('attribute' => 'email', 'like' => "%{$text}%")))
-                        //array('attribute' => 'telephone', 'like' => "%{$text}%")))
                     ->setPageSize(5);
                 
                 foreach ($customers as $customer) {
@@ -136,7 +178,7 @@ class TBT_Rewardsinstore_Webapp_AjaxController extends TBT_Rewardsinstore_Reward
             'subtotal' => $subtotal
         );
         
-        $passwd = Mage::helper('rewardsinstore')->retrieveCustomerData($customer->getId());
+        $passwd = Mage::helper('rewardsinstore/customer')->retrieveCustomerData($customer->getId());
         $customer->setPassword($passwd);
         
         $rewardsCustomer = Mage::helper('rewardsinstore/customer')->getRewardsCustomer($customer);
@@ -178,6 +220,7 @@ class TBT_Rewardsinstore_Webapp_AjaxController extends TBT_Rewardsinstore_Reward
             $storefront = Mage::getModel('rewardsinstore/storefront')->load($storefrontId);
             $website = Mage::getModel('core/website')->load($storefront->getWebsiteId());
             $store = $website->getDefaultStore();
+            $group_id = Mage::getStoreConfig('rewardsinstore/customer_signup/customer_group');
             
             $customer = Mage::getModel('customer/customer');
             $customer->setWebsiteId($website->getId())
@@ -187,7 +230,9 @@ class TBT_Rewardsinstore_Webapp_AjaxController extends TBT_Rewardsinstore_Reward
                 ->setFirstname($firstName)
                 ->setLastname($lastName)
                 ->setEmail($email)
+                ->setGroupId($group_id)
                 ->setPassword($customer->generatePassword(8))
+                ->setRewardsinstoreCreationSource('webapp')
                 ->save();
             
             if (!$customer->getId()) {
@@ -200,7 +245,7 @@ class TBT_Rewardsinstore_Webapp_AjaxController extends TBT_Rewardsinstore_Reward
                 return $this;
             }
             
-            Mage::helper('rewardsinstore')->stashCustomerData($customer);
+            Mage::helper('rewardsinstore/customer')->stashCustomerData($customer);
             
             $transfers = Mage::helper('rewardsinstore/transfer')->getInstoreSignupTransfers($customer->getId());
             $result = $this->createAjaxResultFromTransfers($transfers);
@@ -233,6 +278,10 @@ class TBT_Rewardsinstore_Webapp_AjaxController extends TBT_Rewardsinstore_Reward
                     return $this;
             }
             
+            Mage::dispatchEvent('rewardsinstore_storefront_login', array(
+                'storefront_id' => $this->getRequest()->get('storefrontId')
+            ));
+            
             $this->getResponse()->setBody(Zend_Json::encode(array(
                 'success' => 1,
                 'storefrontName' => $storefront->getName()
@@ -251,7 +300,7 @@ class TBT_Rewardsinstore_Webapp_AjaxController extends TBT_Rewardsinstore_Reward
     public function keepAliveAction()
     {
         Mage::getSingleton('admin/session')->getCookie()->set(
-        	'rewardsinstore-key',
+            'rewardsinstore-key',
             Mage::getModel('adminhtml/url')->getSecretKey("webapp_ajax", "main")
         );
         
@@ -261,7 +310,7 @@ class TBT_Rewardsinstore_Webapp_AjaxController extends TBT_Rewardsinstore_Reward
     protected function setStorefront($storefrontId)
     {
         $storefront = Mage::getModel('rewardsinstore/storefront')->load($storefrontId);
-        if ($storefront->getId() == $storefrontId) {
+        if ($storefront->getId()) {
             Mage::getSingleton('admin/session')->setStorefrontId($storefrontId);
             return $storefront;
         }
@@ -269,69 +318,22 @@ class TBT_Rewardsinstore_Webapp_AjaxController extends TBT_Rewardsinstore_Reward
         return null;
     }
     
-    protected function createAjaxResultFromTransfers($transfers) {
+    protected function createAjaxResultFromTransfers($transfers)
+    {
+        // Initialize result structure
+        $result = array(
+            'transfers' => array(),
+            'points' => 0
+        );
         
-            // Initialize result structure
-            $result = array(
-                'transfers' => array(),
-                'points' => 0
-            );
+        foreach ($transfers as $transfer) {
+            array_push($result['transfers'],
+                Mage::helper('rewardsinstore/transfer')->getTransferSummary($transfer));
             
-            foreach ($transfers as $transfer) {
-                array_push($result['transfers'],
-                    Mage::helper('rewardsinstore/transfer')->getTransferSummary($transfer));
-                
-                $result['points'] += $transfer->getQuantity();
-            }
-            return $result;
-    }
-    
-    /**
-     * TODO: We should be able to get all the information required for the email
-     * from the customer model, and config values for templates, etc.
-     *
-     * This should probably be moved into a helper class
-     */
-    protected function sendCustomerWelcomeEmailSimple($customer) {
-        
-        return $this;
-        
-        // TODO: return if customer has already been sent a welcome email
-        
-        // TODO: get storefront, storeview, points, etc from customer model
-        
-        // TODO: get email template from config
-        
-        // TODO: call sendCustomerWelcomeEmail(...) with appropriate params
-        
-        // TODO: Replace this block with the above (emailing disabled on order for now)
-        if ($rewardsCustomer->getUsablePointsBalance(1) == 0) {
-            $store = Mage::getModel('core/website')->load($storefront->getWebsiteId())->getDefaultStore();
-            if ($result['points'] > 0) {
-                $this->sendCustomerWelcomeEmail($customer, $result['points'], $store->getId(),
-                    'rewardsinstore/create_account/email_template',
-                    'rewardsinstore/create_account/email_identity'
-                );
-            } else {
-                // TODO: cover this case
-            }
+            $result['points'] += $transfer->getQuantity();
         }
         
-    }
-    
-    protected function sendCustomerWelcomeEmail($customer, $points, $storeId, $emailTemplate, $emailIdentity)
-    {
-        $translate = Mage::getSingleton('core/translate');
-        $translate->setTranslateInline(false);
-        Mage::getModel('core/email_template')
-            ->setDesignConfig(array('area'=>'frontend', 'store'=> $storeId))
-            ->sendTransactional(
-                Mage::getStoreConfig($emailTemplate, $storeId),
-                Mage::getStoreConfig($emailIdentity, $storeId),
-                $customer->getEmail(),
-                $customer->getName(),
-                array('customer' => $customer, 'back_url' => "", 'points' => $points));
-        $translate->setTranslateInline(true);
+        return $result;
     }
     
     protected function logout()

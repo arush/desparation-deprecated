@@ -95,33 +95,35 @@ class Arush_Oneall_Helper_Data extends Mage_Core_Helper_Abstract {
 			return false;
 	}
 
-	public function buildProfile($auth_info) {
-		$profile_name = false;
-
-		if(isset($auth_info->user->identity->preferredUsername)) //twitter
-			$profile_name = $auth_info->user->identity->preferredUsername;
-
-		else if(isset($auth_info->user->identity->emails->other))
-			$profile_name = $auth_info->user->identity->emails[0]->value;
+	public function buildProfile($response) {
+		$provider = false;
+		$provider = $response->response->result->data->user->identity->provider;
 		
-		else if(isset($auth_info->user->identity->displayName))
-			$profile_name = $auth_info->user->identity->displayName;
-		
-		else if(isset($auth_info->profile->name->formatted))
-			$profile_name = $auth_info->user->identity->name->formatted;
-		
-		else
-			$profile_name = $auth_info->user->identity->provider;
+		if($provider == 'twitter') {
+			$profile_name = $response->response->result->data->user->identity->preferredUsername;
+		}
+		else {$profile_name = $provider;}
 
-		return array('provider' => $auth_info->user->identity->provider,
-					'identifier' => $this->getSocialId($auth_info),
+		return array('provider' => $provider,
+					'identifier' => $this->getSocialId($response),
 					'profile_name' => $profile_name,
-					'oneall_uuid' => $auth_info->user->uuid);
+					'oneall_uuid' => $response->response->result->data->user->user_token);
 	}
 	
 	public function getSocialId($returnObject) {
-	    return $returnObject->user->identity->accounts[0]->userid;
+		if(isset($returnObject->response->result->data->user->identity->accounts[0]->userid)) {
+	    	return $returnObject->response->result->data->user->identity->accounts[0]->userid;
+	    	}
+	    	//currently only yahoo:
+	    	else if(isset($returnObject->response->result->data->user->identity->id)) {
+	    		return $returnObject->response->result->data->user->identity->id;
+	    	}
 	}
-
+	
+	
+	
+	public function getThumbnailUrl() {
+				
+	}
 
 }
