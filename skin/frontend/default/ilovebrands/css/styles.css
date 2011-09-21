@@ -12242,7 +12242,6 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	font-size:18px;
 	height: 41px;
 	padding-top: 5px;
-	display: none;
 	-moz-box-shadow: 0pt 0px 8px #acacac;
 	-webkit-box-shadow: 0pt 0px 8px #acacac;
 	-khtml-box-shadow: 0pt 0px 8px #acacac;
@@ -13316,5 +13315,9 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 }
 
 /* CART DROPDOWN END */
+
+.catalogsearch-result-index .sorter .sort-by, .catalogsearch-result-index .pager .limiter{color: #404040;}
+.catalogsearch-result-index .col-main{height: 97px;}
+.catalogsearch-result-index .left-layered-nav{margin: 34px 10px 0 0;}
 
 /**//**//**//**//**//**//**//**/
