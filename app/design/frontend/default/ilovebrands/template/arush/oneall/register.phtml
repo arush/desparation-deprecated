@@ -1,8 +1,5 @@
 <div class="oneall-register">
 <div class="account-create">
-    <div class="page-title">
-        <h1><?php echo $this->__('Create an Account') ?></h1>
-    </div>
     <?php echo $this->getChildHtml('form_fields_before')?>
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
     <form action="<?php echo Mage::getUrl('arush-oneall/rpx/createPost') ?>" method="post" id="form-validate" enctype="multipart/form-data">
