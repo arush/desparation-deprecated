@@ -129,7 +129,6 @@ vdh.trim = function(stringToTrim) {
 	return stringToTrim.replace(/^\s+|\s+$/g,"");
 }
 vdh.popup = function(suppress) {
-
 	document.observe('dom:loaded', function(){
 		Event.observe($('popupButton'), 'click', function(){
 			if (vdh.popupCount > 0) {
@@ -139,23 +138,6 @@ vdh.popup = function(suppress) {
 		});
 	});
 
-	Ajax.Responders.register({
-
-		onComplete: function(request) {
-			if (request.url.indexOf('popup/count') >= 0) {
-				if (request.transport.responseText != '') {
-					vdh.popupCount++;				
-				}
-				if (popupCount > 0) {
-					$('popupMessages').setStyle({ display: 'block' });
-				}
-				$('popupCounter').innerHTML = vdh.popupCount;
-
-				return;
-			}
-
-		}
-	});
 	if (suppress) { return; }
 
 	document.body.insert('<div class="vdh overlay loading"></div>');
@@ -202,3 +184,21 @@ vdh.count = function() {
 
 }
 vdh.popupCount = 0;
+
+Ajax.Responders.register({
+
+	onComplete: function(request) {
+		if (request.url.indexOf('popup/count') >= 0) {
+			if (request.transport.responseText != '') {
+				vdh.popupCount++;				
+			}
+			if (popupCount > 0) {
+				$('popupMessages').setStyle({ display: 'block' });
+			}
+			$('popupCounter').innerHTML = vdh.popupCount;
+
+			return;
+		}
+
+	}
+});
