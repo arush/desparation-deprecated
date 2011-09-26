@@ -44,4 +44,24 @@ a.vdh.close {
 /*
 #popupMessages {
 	display: none;
+<<<<<<< HEAD
 }*/
+=======
+	cursor: pointer;
+
+	background: #FEEFB3 url(../images/message-bg.png) repeat-x 0 0;
+	color: #9F6000;
+	font-family: Gotham-light,Arial;
+	font-size: 18px;
+	height: 41px;
+	padding-top: 5px;
+	-moz-box-shadow: 0pt 0px 8px #ACACAC;
+	-webkit-box-shadow: 0pt 0px 8px #ACACAC;
+	-khtml-box-shadow: 0pt 0px 8px #ACACAC;
+	box-shadow: 0pt 0px 8px #ACACAC;	
+	
+}
+#popupCounter {
+	font-weight: bold;
+}
+>>>>>>> Final tweaks

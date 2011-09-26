@@ -20,7 +20,7 @@ vdh.count();
 		}
 
 	}
-	setTimeout('delayPopup', <?php echo $helper->getDelay(); ?>);
+	setTimeout('delayPopup()', <?php echo $helper->getDelay(); ?>);
 <?php else: ?>
 	vdh.popup(false);
 <?php endif; ?>
