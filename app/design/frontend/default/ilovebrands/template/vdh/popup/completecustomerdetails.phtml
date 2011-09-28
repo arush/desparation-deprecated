@@ -13,7 +13,7 @@ if ($this->getDob()) {
 	$customer->save();
 }
 //Only render if the Customer's DOB is not set and we have not yet submitted this form
-if (!$customer->getDob() && !$this->getDob()):
+if (!$customer->getDob() && !$this->getDob() && $customer->getId()):
 ?>
 <div class="popup-top">
 
@@ -79,7 +79,6 @@ if (!$customer->getDob() && !$this->getDob()):
 			<div class="submit">	
 				<input type="submit" name="submit" value="submit" />
 			</div>
-			<input type="checkbox" name="suppress_popup" value="1"<?php if (Mage::getModel('core/cookie')->get('suppress_popup')) { echo ' checked="checked"'; }?> />
 		</div>
 	</form>
 </div>

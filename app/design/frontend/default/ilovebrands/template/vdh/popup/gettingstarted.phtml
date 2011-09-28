@@ -2,8 +2,10 @@
 if ($this->getSuppressPopup() == '1') {
 	Mage::getModel('core/cookie')->set('suppress_popup', true);
 }
-if (!Mage::getModel('core/cookie')->get('getting_started')):
+if ($this->getSubmit()) {
 	Mage::getModel('core/cookie')->set('getting_started', true);
+}
+if (!Mage::getModel('core/cookie')->get('getting_started')):
 ?>
 <div class="gettingstarted">
 	<div class="popup-top">
