@@ -175,6 +175,8 @@ vdh.count = function() {
 			$('popupCounter').innerHTML = vdh.popupCount;				
 			if (vdh.popupCount > 0 && vdh.loggedIn) {
 				$('popupMessages').setStyle({ display: 'block' });
+			} else {
+				$('popupMessages').setStyle({ display: 'none' });			
 			}
 		}
 	});
