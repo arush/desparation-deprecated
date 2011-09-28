@@ -12848,7 +12848,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 		}
 		#nav ul.level0{
 			top: 45px;
-			width: 600px;
+			width: 200px;
 			background: #fff;
 			padding: 0 0 40px;
 			-moz-box-shadow: 0pt 0px 3px #acacac;
@@ -12887,7 +12887,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 		#nav ul.level0 li.level1{padding: 0;}
 		#nav ul.level1 li a {
 		display: block;
-		font-size: 11px;
+		font-size: 12px;
 		line-height: 1.2;
 		padding: 5px 0px 5px 30px;
 		text-decoration: none ! important;
