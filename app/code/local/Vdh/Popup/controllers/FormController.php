@@ -6,7 +6,7 @@ class Vdh_Popup_FormController extends Mage_Core_Controller_Front_Action {
 		foreach(Mage::helper('popup')->getUrls() as $url) {
 	
 			$c = curl_init();
-			curl_setopt($c, CURLOPT_URL, Mage::getBaseUrl() . $url . '?SID=' . session_id());
+			curl_setopt($c, CURLOPT_URL, Mage::getBaseUrl() . $url . '?SID=' . Mage::getModel("core/session")->getEncryptedSessionId());
 			curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);			
 			curl_setopt($c, CURLOPT_HEADER, true);
 			curl_setopt($c, CURLOPT_NOBODY, true);
