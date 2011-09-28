@@ -174,7 +174,8 @@ vdh.count = function() {
 		onSuccess: function(transport) {
 			vdh.popupCount = transport.responseText;
 			$('popupCounter').innerHTML = vdh.popupCount;				
-			if (vdh.popupCount > 0 && vdh.loggedIn) {
+//			if (vdh.popupCount > 0 && vdh.loggedIn) {
+			if (vdh.popupCount > 0) {
 				$('popupMessages').setStyle({ display: 'block' });
 			}
 			
