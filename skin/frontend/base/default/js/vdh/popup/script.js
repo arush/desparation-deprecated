@@ -168,8 +168,8 @@ vdh.popup = function(suppress) {
 
 }
 vdh.count = function() {
-	var ajax = new Ajax.Request(
-		'/popup/form/count', 
+	var ajax = new Ajax.Request('/popup/form/count', {
+		method: 'post',
 		onSuccess: function(transport) {
 			vdh.popupCount = transport.responseText;
 			$('popupCounter').innerHTML = vdh.popupCount;				
@@ -177,7 +177,7 @@ vdh.count = function() {
 				$('popupMessages').setStyle({ display: 'block' });
 			}
 		}
-	);
+	});
 
 }
 vdh.popupCount = 0;
