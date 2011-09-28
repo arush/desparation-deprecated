@@ -41,12 +41,9 @@ a.vdh.close {
 	background: url("../../../images/vdh/popup/close.png");
 }
 
-/*
+
 #popupMessages {
 	display: none;
-<<<<<<< HEAD
-}*/
-=======
 	cursor: pointer;
 
 	background: #FEEFB3 url(../images/message-bg.png) repeat-x 0 0;
@@ -64,4 +61,3 @@ a.vdh.close {
 #popupCounter {
 	font-weight: bold;
 }
->>>>>>> Final tweaks
