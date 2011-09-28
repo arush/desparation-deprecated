@@ -9,7 +9,6 @@ class Vdh_Popup_FormController extends Mage_Core_Controller_Front_Action {
 			curl_setopt($c, CURLOPT_HEADER, true);
 			curl_setopt($c, CURLOPT_NOBODY, true);
 			curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($c, CURLOPT_FOLLOWLOCATION, $this->curlFollowLocation);
 			curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
 			curl_exec($c);
 			$httpcode = curl_getinfo($c, CURLINFO_HTTP_CODE);
