@@ -5,7 +5,7 @@ if ($this->getSuppressPopup() == '1') {
 if ($this->getSubmit()) {
 	Mage::getModel('core/cookie')->set('getting_started', true);
 }
-if (!Mage::getModel('core/cookie')->get('getting_started')):
+if (!Mage::getModel('core/cookie')->get('getting_started') && !Mage::getSingleton('customer/session')->isLoggedIn()):
 ?>
 <div class="gettingstarted">
 	<div class="popup-top">
