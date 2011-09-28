@@ -3,7 +3,7 @@ class Vdh_Popup_FormController extends Mage_Core_Controller_Front_Action {
 
 	public function countAction() {
 		$count = 0;	
-		foreach($helper->getUrls() as $url) {
+		foreach(Mage::helper('popup')->getUrls() as $url) {
 			$c = curl_init();
 			curl_setopt($c, CURLOPT_URL, $url);
 			curl_setopt($c, CURLOPT_HEADER, true);
