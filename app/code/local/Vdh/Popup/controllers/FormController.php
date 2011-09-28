@@ -16,7 +16,6 @@ class Vdh_Popup_FormController extends Mage_Core_Controller_Front_Action {
 			$httpcode = curl_getinfo($c, CURLINFO_HTTP_CODE);
 			$size = curl_getinfo($c, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
 			curl_close($c);
-			print_r($httpcode . ' - ' . $size . ' - ' .Mage::getBaseUrl() . $url);			
 			if ($httpcode == 200 && $size > 0) {
 				$count++;
 			}
