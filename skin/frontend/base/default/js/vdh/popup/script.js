@@ -170,15 +170,12 @@ vdh.popup = function(suppress) {
 vdh.count = function() {
 	var ajax = new Ajax.Request(
 		'/popup/form/count', 
-		{ method: 'post' },
 		onSuccess: function(transport) {
 			vdh.popupCount = transport.responseText;
 			$('popupCounter').innerHTML = vdh.popupCount;				
-//			if (vdh.popupCount > 0 && vdh.loggedIn) {
-			if (vdh.popupCount > 0) {
+			if (vdh.popupCount > 0 && vdh.loggedIn) {
 				$('popupMessages').setStyle({ display: 'block' });
 			}
-			
 		}
 	);
 
