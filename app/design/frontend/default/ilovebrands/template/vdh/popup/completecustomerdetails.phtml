@@ -2,7 +2,6 @@
 if ($this->getSuppressPopup() == '1') {
 	Mage::getModel('core/cookie')->set('suppress_popup', true);
 }
-
 $customer = Mage::getSingleton('customer/session')->getCustomer();
 $email = $customer->getEmail();
 $firstname = $customer->getFirstname();
