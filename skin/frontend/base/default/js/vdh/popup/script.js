@@ -168,12 +168,18 @@ vdh.popup = function(suppress) {
 
 }
 vdh.count = function() {
-	vdh.popupCount = 0;
-	for(var i = 0; i < vdh.urls.length; i++) {
-		var ajax = new Ajax.Request(
-			vdh.urls[i].url + '/popup/count', { method: 'post' }
-		);
-	}
+	var ajax = new Ajax.Request(
+		'/popup/form/count', 
+		{ method: 'post' },
+		onSuccess: function(transport) {
+			vdh.popupCount = transport.responseText;
+			$('popupCounter').innerHTML = vdh.popupCount;				
+			if (vdh.popupCount > 0 && vdh.loggedIn) {
+				$('popupMessages').setStyle({ display: 'block' });
+			}
+			
+		}
+	);
 
 }
 vdh.popupCount = 0;
@@ -186,23 +192,4 @@ document.observe('dom:loaded', function(){
 		}
 
 	});
-});
-
-
-Ajax.Responders.register({
-
-	onComplete: function(request) {
-		if (request.url.indexOf('popup/count') >= 0) {
-			if (request.transport.responseText != '') {
-				vdh.popupCount++;				
-			}
-			if (vdh.popupCount > 0 && vdh.loggedIn) {
-				$('popupMessages').setStyle({ display: 'block' });
-			}
-			$('popupCounter').innerHTML = vdh.popupCount;
-
-			return;
-		}
-
-	}
 });
