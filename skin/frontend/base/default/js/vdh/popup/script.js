@@ -196,7 +196,7 @@ Ajax.Responders.register({
 			if (request.transport.responseText != '') {
 				vdh.popupCount++;				
 			}
-			if (vdh.popupCount > 0) {
+			if (vdh.popupCount > 0 && vdh.loggedIn) {
 				$('popupMessages').setStyle({ display: 'block' });
 			}
 			$('popupCounter').innerHTML = vdh.popupCount;
