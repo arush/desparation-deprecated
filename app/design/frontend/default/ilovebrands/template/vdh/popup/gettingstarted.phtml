@@ -2,7 +2,7 @@
 if ($this->getSuppressPopup() == '1') {
 	Mage::getModel('core/cookie')->set('suppress_popup', true);
 }
-if (Mage::getSingleton('customer/session')->getCustomer() && !Mage::getModel('core/cookie')->get('getting_started')):
+if (!Mage::getModel('core/cookie')->get('getting_started')):
 	Mage::getModel('core/cookie')->set('getting_started', true);
 ?>
 <div class="gettingstarted">
@@ -48,6 +48,11 @@ if (Mage::getSingleton('customer/session')->getCustomer() && !Mage::getModel('co
 				<div class="email">
 					<label><?php echo $this->__('Email'); ?></label><input type="text" name="email" value="" />
 				</div>
+				<div class="suppress">
+					<input type="checkbox" name="suppress_popup" value="1"<?php if (Mage::getModel('core/cookie')->get('suppress_popup')) { echo ' checked="checked"'; }?> />
+					<label><?php echo $this->__('Suppress popups in the future');?></label>
+				</div>
+				
 				<div class="submit">	
 					<input type="submit" name="submit" value="submit" />
 				</div>
