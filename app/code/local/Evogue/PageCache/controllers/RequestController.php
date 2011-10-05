@@ -32,7 +32,8 @@ class Evogue_PageCache_RequestController extends Mage_Core_Controller_Front_Acti
             $sessionInfo[Evogue_PageCache_Model_Cookie::COOKIE_CUSTOMER] = $cookieInfo;
             $sessionInfo[Evogue_PageCache_Model_Cookie::COOKIE_CUSTOMER_GROUP] = $cookieInfo;
             $sessionInfo = serialize($sessionInfo);
-            Mage::app()->saveCache($sessionInfo, $cacheId, array(Evogue_PageCache_Model_Cookie::CACHE_TAG));
+            Mage::app()->saveCache($sessionInfo, $cacheId, array(Evogue_PageCache_Model_Processor::CACHE_TAG));
+            
         }
     }
 }
