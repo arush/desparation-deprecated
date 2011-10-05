@@ -1,4 +1,17 @@
+
+
 <?php
+/*
+<script type="text/javascript">
+//<![CDATA[
+
+function setGenderTwo(gender) {
+	document.getElementById('gender_two').value = gender.value;
+}
+//]]>
+</script>
+*/
+
 if ($this->getSuppressPopup() == '1') {
 	Mage::getModel('core/cookie')->set('suppress_popup', true);
 }
@@ -71,9 +84,12 @@ if (!$customer->getDob() && !$this->getDob() && $customer->getId()):
 					<option value="2">Female</option>
 				</select>
 			</div>
-			<div class="suppress">
-				<input type="checkbox" name="suppress_popup" value="1"<?php if (Mage::getModel('core/cookie')->get('suppress_popup')) { echo ' checked="checked"'; }?> />
-				<label><?php echo $this->__('Suppress popups in the future');?></label>		
+			<div style="display:none;" class="gender">
+				<select id="gender_two" name="gender">
+					<option value=""></option>
+					<option value="1">Male</option>
+					<option value="2">Female</option>
+				</select>
 			</div>
 			<div class="submit">	
 				<input type="submit" name="submit" value="submit" />

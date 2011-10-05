@@ -20,7 +20,7 @@
 		<remove name="popup_header" />
     
     	<reference name="root">
-            <action method="setTemplate"><template>page/empty.phtml</template></action>
+         	<action method="setTemplate"><template>page/empty.phtml</template></action>
     	</reference>
     </popup_index_index>
 
@@ -35,12 +35,11 @@
 		<remove name="popup_header" />
     </popup_form_page>
     
-<!--
+
    <customer_account_login>
         <remove name="popup" />
         <remove name="popup_header" />
     </customer_account_login>
--->
  
  	<customer_account_create>
         <remove name="popup" />

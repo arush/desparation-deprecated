@@ -1,4 +1,4 @@
-* {
+  * {
   margin: 0pt;
   padding: 0pt;
 }
@@ -7606,7 +7606,7 @@ text-transform: uppercase;
 
 .account-login #loginwith {position:absolute;right:0;top:10px;color:#eee;}
 .account-login #connectwith {position:absolute;right:0;top:10px;display:none;color:#eee;}
-.account-login #oa_social_login_container {width:160px;height:60px;}
+.account-login #oa_social_login_container {width:260px;height:135px;}
 
 .account-login #login .or, .account-login #register .or {border-top:1px solid #444;font-family:HelveticaNeueLight,Arial,sans-serif;text-align: center; margin:0 15px 25px 15px;}
 .account-login .or .or-text {margin-top:-10px;}
@@ -12577,11 +12577,11 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 			text-transform: uppercase;
 		}
 		.top-header #oa_social_login_header{
-			width: 150px;
+			width: 440px;
 			height: 37px;
 			float: right;
 			overflow: hidden;
-			padding: 1px 5px 1px 10px;
+			padding: 0px 5px 1px 1px;
 		}
 		.account-login img{float: left;}
 		.top-header .oaimg{padding: 5px 7px 5px 0;}
@@ -12919,7 +12919,9 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	
 /* FLO HEADER END*/
 
-
+.customer-account-login .account-login {
+	height: 607px;
+}
 .customer-account-login .wrapper{
 	background: url('../images/header-bg.png') repeat-x #F4F4ED;
 	overflow: auto;
@@ -12955,20 +12957,30 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 }
 .account-login #gigya-fieldset {
 	margin: 30px auto 40px;
-	width: 155px;
-	height: 50px;
+	width: 204px;
+	height: 135px;
 }
 .login-oneall p{
 	text-align: center;
 	color: #bbb;
-	font-family: arial;
 	padding: 0 60px;
 	text-transform: none;
 }
 #panes p{
 	text-align: left;
 	margin-bottom: 2.5em;
+	text-transform: uppercase;
+	color: #444;
 }
+.registered-users #register {
+	margin:148px 0 33px 55px;
+}
+
+.account-login .divider {
+		padding: 20px 0;
+		width:1px;
+		height: 450px;
+	}
 
 
 /* REGISTER PAGE START*/
@@ -12981,6 +12993,15 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 		text-align: center;
 		padding: 20px 0;
 	}
+	.customer-account-create .account-login{
+		height:500px;
+	}
+	
+	.account-create .login-oneall{
+		height: 500px;
+	}
+
+	
 	.passwords-fields {
 	  padding: 0 0 15px;
 	}
@@ -13002,6 +13023,10 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 		float: left;
 		margin-left: 140px;
 		width: 218px;
+	}
+	.account-create .divider {
+		width:1px;
+		height: 200px;
 	}
 
 /* REGISTER PAGE END*/
@@ -13161,9 +13186,13 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	/* COMPLETE CUSTOMER DETAILS END */
 	
 	/* GETTING STARTED START */
-	.gettingstarted .popup-top{
-		padding: 20px 30px 10px;
+	.gettingstarted .popup-top, .gettingstarted .popup-bottom{
+		padding: 14px 30px 10px;
 	}
+	.gettingstarted .popup-bottom {
+		text-align:right;
+	}
+	
 	.gettingstarted h1{padding: none;}
 	.popup-form img{float: left;}
 	.popup-form h2{
@@ -13178,12 +13207,16 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 		float: right;
 		text-decoration: underline;
 	}
-	.gettingstarted .popup-form{padding: 0 30px;}
 	.gettingstarted .popup-form div {
 		width: 334px;
 		height: 55px;
 	}
 	.gettingstarted .left{padding-right: 30px;}
+	
+	.gettingstarted .popup-form{
+		height: 267px;
+		padding: 0 30px;
+	}
 	.gettingstarted .popup-form .right{
 		padding: 0 15px 0 45px;
 		width: 304px;
@@ -13205,13 +13238,22 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	.gettingstarted .right label{margin-left: 30px;}
 	.gettingstarted #gigya-fieldset{
 		width: 175px;
-		padding: 75px 0 0 95px;
+		padding: 33px 0 0 67px;
 	}
 	.gettingstarted .left p{
 		color: #bbb;
 		float: left;
-		padding: 25px 0 0 35px;
+		padding: 115px 0 0 35px;
 	}
+	.gettingstarted .buttonAsLink{
+		background:none;
+		border:0;
+		font-size:13px;
+		color: #B14E4E;
+		text-decoration: underline;
+	}
+	.gettingstarted .divider{height:244px;width:1px;}
+	
 	/* GETTING STARTED END */
 
 /* VDH-POPUP END*/

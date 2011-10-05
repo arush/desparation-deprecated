@@ -68,14 +68,15 @@
 								
 								<!-- The provider login will be embedded in this div //-->
 									<div id="oa_social_login_container"></div>
-									
+								
 									<script type="text/javascript">
-									 oneall.api.plugins.social_login.build("oa_social_login_container",{
-									  providers : ["Facebook", "google", "twitter", "yahoo"],
-									  callback_uri: "<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK); ?>arush-oneall/rpx/token_url/", 
-									  button_style: "icons"
-									});
+										 oneall.api.plugins.social_login.build("oa_social_login_container", {
+										  'providers' :  ['facebook', 'google', 'twitter', 'yahoo'], 
+										  'callback_uri': '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK); ?>arush-oneall/rpx/token_url/',
+										  'css_theme_uri': 'https://cdn.oneall.com/css/api/socialize/themes/connect_vertical.css'
+										 });
 									</script>
+									
 							</div>
 						</div>	
 					</div>
@@ -170,7 +171,7 @@
 			
 			</div>
 		
-			<img src="<?php echo $this->getSkinUrl();?>images/login-line.png"/>
+			<img class="divider" src="<?php echo $this->getSkinUrl();?>images/login-line.png"/>
 		
 			<div class="col-1 registered-users">
 			
@@ -227,32 +228,6 @@
     //]]>
     </script>
     
-    <script type="text/javascript">
-    	// bind the navigation clicks to update the selected nab:
-jQuery('#become-button').click(timedswitch);
-
-function timedswitch() {
-	setTimeout("switcher()",700);
-}
-
-function switcher() {
-	jQuery('#loginwith').fadeOut(1000,"swing");
-	jQuery('#connectwith').fadeIn(1000,"swing");
-}
-
-jQuery('#signin-button').click(timedswitchback);
-
-function timedswitchback() {
-	setTimeout("switchback()",700);
-}
-
-function switchback() {
-	jQuery('#connectwith')
-        .fadeOut(1000,"swing");
-  	jQuery('#loginwith') 
-        .fadeIn(1000,"swing");
-}
-    </script>
-    
+  
             
 </div>
