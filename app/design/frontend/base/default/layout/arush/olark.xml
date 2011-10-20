@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<layout>
+    <default>
+        <reference name="before_body_end">
+            <block type="core/template" name="arush_olark_code_snippet" as="olark.code.snippet" template="arush/olark/code.phtml"/>
+            <block type="core/template" name="arush_olark_name_email" as="olark.name" template="arush/olark/name.phtml"/>
+        </reference>
+    </default>
+    
+    <checkout_onepage_index>
+    	<reference name="olark.name">
+            <block type="core/template" name="arush_olark_payment_page" as="olark.payment.page" template="arush/olark/paymentpage.phtml"/>
+    	</reference>
+    </checkout_onepage_index>
+</layout>

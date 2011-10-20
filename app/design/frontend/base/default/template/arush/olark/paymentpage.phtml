@@ -1,0 +1,8 @@
+<?php if(getOlarkOn() && getOlarkPaymentpage()) { ?>
+<script type="text/javascript">
+olark('api.chat.updateVisitorStatus', {
+    snippet: "on checkout page"
+});
+</script>
+
+<?php } ?>
