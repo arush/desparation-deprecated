@@ -24,9 +24,13 @@ class Arush_Olark_Block_Chat extends Mage_Core_Block_Template
           return (boolean)Mage::getStoreConfig('olark/chat/olark_name');
       }
 
-    public function getOlarkPaymentpage()
+    public function getOlarkHesitation()
       {        
-          return (boolean)Mage::getStoreConfig('olark/chat/olark_paymentpage');
+          return (boolean)Mage::getStoreConfig('olark/chat/olark_hesitation');
+      }
+    public function getOlarkMillisecs()
+      {        
+          return (string)Mage::getStoreConfig('olark/chat/olark_millisecs');
       }
 
 }
