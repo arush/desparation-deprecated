@@ -31,7 +31,7 @@
  * 
  * @category   [TBT]
  * @package    [TBT_Rewards]
- * @copyright  Copyright (c) 2009 Web Development Canada (http://www.wdca.ca)
+ * @copyright  Copyright © 2009 Web Development Canada (http://www.wdca.ca)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
 */
 
@@ -43,34 +43,32 @@
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
 ?>
-<?php if($this->getPointsSummary() != ""): ?>
+<?php
+
+$pointssummary = $this->getPointsSummary();
+$header_points_balance = (int)substr_replace($pointssummary,"",-7);
+?>
 	<div class="points-special-header">
-    	<a href="/index.php/rewards/customer/"><?php $pointssummary = $this->getPointsSummary();
-        $header_points_balance = substr_replace($pointssummary,"",-7);
-        echo $pointssummary; ?></a>
+		<a href="/index.php/rewards/customer/">
+			<span><?php echo $this->__("My points"); ?></span><div id="flip-counter" class="flip-counter"></div>
+		</a>
+		<?php if($this->getPointsSummary() != ""): ?>
+		<?php
+		if (!Mage::getSingleton('customer/session')->getPointsLoaded()) {
+			Mage::getSingleton('customer/session')->setPointsLoaded('1');
+			$startValue = (int)$header_points_balance-($header_points_balance/8);
+		} else {
+			$startValue = $header_points_balance;		
+		}		
+		?>
+		<script type="text/javascript">
+			document.observe('dom:loaded', function(){
+				var myCounter = new flipCounter('flip-counter', {value:<?php echo $startValue; ?>, inc:3, pace:30, tFH: 15, bFH: 24, fW: 20, bOffset: 150});
+					myCounter.incrementTo(<?php echo $header_points_balance; ?>);				
+			});	
+		</script>
+		<?php endif; ?>
+		
 	</div>
-<?php else: ?>
-	<div class="points-special-header" style="width: 60px;">
-		<a href="#">0 Points</a>
-	</div>
-<?php endif; ?>
 	
-    <div class="tooltip">
-        <div class="nav-points">
-        <p>Spend points instead of cash</p>
-        <img src="<?php echo $this->getSkinUrl();?>images/points.jpg"/ width="44" height="41">
-        <span class="nav-earn">Earn points wherever<br/>you see this logo</span>
-        <span class="nav-spend">Spend points at checkout for big savings</span>
-        <div><span class="nav-expl">&pound;10-off costs 1000 points</span><a href="/index.php/rewards/customer">View my points</a></div>
-        </div>
-    </div>
-    <script>// What is $(document).ready ? See: http://flowplayer.org/tools/documentation/basics.html#document_ready
-    jQuery(document).ready(function() {
-        jQuery(".points-special-header").tooltip({
-            offset: [25, 12],
-			position: 'bottom center',
-			relative: true,
-            effect: 'slide'
-            })
-        ;});
-    </script>
+

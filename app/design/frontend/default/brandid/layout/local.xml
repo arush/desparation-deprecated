@@ -1,10 +1,25 @@
 <?xml version="1.0"?>
 <layout version="0.1.0">
+    
     <default>
     	<reference name="head">
     		<block type="page/html_head" name="storerestriction" as="storerestriction" template="storerestriction/head.phtml" />
+    		<block type="page/html_head" name="typekit" template="brandid/typekit.phtml" />
+            <action method="addCss"><stylesheet>css/brandid.css</stylesheet></action>
+            <action method="addCss"><stylesheet>fonts/fonts.css</stylesheet></action>            
+			<action method="addItem"><type>skin_js</type><name>js/brandid.js</name></action>    
+			<action method="addItem"><type>skin_js</type><name>js/flipcounter.min.js</name></action>    		
+					
     	</reference>
+    	
+		<reference name="header">
+			<block type="cms/block" name="catalogLinks">
+				<action method="setBlockId"><block_id>catalogLinks</block_id></action>
+			</block>		
+		</reference>
+
     </default>
+    
     <customer_account_login>
         <remove name="storerestriction"/>       
     </customer_account_login>

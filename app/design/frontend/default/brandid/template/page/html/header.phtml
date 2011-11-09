@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 ?>
 
@@ -7,7 +7,6 @@
 	
 		<div class="top-header">
 			<div class="store-language"><?php echo $this->getChildHtml('store_language') ?></div>
-			<img src="<?php echo $this->getSkinUrl();?>images/thline.jpg"/>
 			<div class="facebook-header"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('header-fb-like')->toHtml() ?></div>
 			<?php /* echo $this->getChildHtml('topLinks') */ ?>
 		    
@@ -45,30 +44,38 @@
 					<?php // Mage::helper('oneall')->getThumbnailUrl(); ?>
 					<!--oneall thumbnail -->
 					
-					<?php $customerName = Mage::helper('customer')->getCustomerName(); ?> 
-					<a class="flname" href="#"><?php echo $customerName; ?></a>
-					<img class="grey" src="<?php echo $this->getSkinUrl();?>images/arrowgrey.png" />
-					<img class="black" src="<?php echo $this->getSkinUrl();?>images/arrowblack.png" />
-					<div class="my-account-links">
-						<?php echo $this->getChildHtml('accountLinks') ?>
-					</div>
+
+
 				</div>
 			
+
+
+				
+				<div class="account-link">
+					<a class="header-link" href="/customer/account/index/">My Account</a>
+					<?php $customerName = Mage::helper('customer')->getCustomerName(); ?> 						
+					<a class="flname" href="#"><?php echo $customerName; ?></a>						
+					<div class="my-account-links">
+						<?php echo $this->getChildHtml('accountLinks') ?>
+					</div>					
+				
+				</div>
+				
 				<script>
 					jQuery(document).ready(function () { 
 		 
-						jQuery('.top-name').hover(
+						jQuery('.account-link').hover(
 							function () {
 								//show its submenu
-								jQuery('div', this).slideDown(100);
+								jQuery('.my-account-links').slideDown(100);
 					 
 							}, 
 							function () {
 								//hide its submenu
-								jQuery('div', this).slideUp(100);         
+								jQuery('.my-account-links').slideUp(100);         
 							}
 						);
-									jQuery('.top-name').hover(
+									jQuery('.account-link').hover(
 										function() {
 										  jQuery(this).addClass('light');
 											},
@@ -76,41 +83,16 @@
 										  jQuery(this).removeClass('light');
 									});
 					});
-				</script>
+				</script>				
 
+				<div id="nav-invite">
 				
-					<img class="rt" src="<?php echo $this->getSkinUrl();?>images/thline.jpg"/>
-				<div class="account-link"><a href="/customer/account/index/">My Account</a></div>
-					<img class="rt" src="<?php echo $this->getSkinUrl();?>images/thline.jpg"/>
-					
+					<a class="header-link" href="/index.php/rewardsref/customer/index/">Invite and earn credit</a>
 				<?php /*WDCA CODE BEGIN*/ ?>
 				<?php echo $this->getChildHtml('rewardsHeader') ?>
-				<?php /*WDCA CODE END*/ ?>
-
-				<div id="nav-invite"><a href="/index.php/rewardsref/customer/index/">Invite and earn credit</a></div>
-				<div class="tooltip">
-					<div class="nav-invite">
-					<p>Invite a friend</p>
-					<form action="<?php echo $this-> getBaseUrl(); ?>rewardsref/customer/invites/" method="post" id="form-validates">
-					<input type="hidden" value="Il1NwrpfsCuSmp03" name="form_key">
-					 <textarea type="hidden" name="message" style="display: none;" >I'm a Member of evogue, an invitation-only shopping club for everything luxury - at private sale prices. New Collections go live a few times each month - but are available only for a short time. Sign up now with this invitation!</textarea>
-					<input type="text" name="contacts"  id="recipient_list" value="Invitee's email address" onFocus=this.value="">
-					<button type="submit">SEND</button>
-					</form>
-					<img src="<?php echo $this->getSkinUrl();?>images/points.jpg"/ width="44" height="41">
-					<span>Earn &pound;15 (1500 points) for each referral</span>
-					</div>
+				<?php /*WDCA CODE END*/ ?>					
+				
 				</div>
-				<script>
-				jQuery(document).ready(function() {
-					jQuery("#nav-invite").tooltip({
-						offset: [25, 0],
-						position: 'bottom center',
-						relative: true,
-						effect: 'slide'
-						})
-					;});
-				</script>
 			
 			<?php else:?>
 			
@@ -138,16 +120,19 @@
 				</div>
 			
 			<?php endif;?>
+			<div class="catalogLinks"><?php echo $this->getChildHtml('catalogLinks') ?></div>
 			
-		</div>
-		
 		<div class="branding">
         <?php if ($this->getIsHomePage()):?>
             <h1 class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
             <?php else:?>
             <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
         <?php endif?>
-        </div>	         
+        </div>	   			
+			
+		</div>
+		
+      
 	
 		<div class="header-middle">
 			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('header-contact')->toHtml() ?>
