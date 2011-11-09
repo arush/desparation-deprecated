@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Vdh_Randomquote>
+            <version>0.1.0</version>
+        </Vdh_Randomquote>
+    </modules>
+    <global>
+        <helpers>
+        	<randomquote>
+        		<class>Vdh_Randomquote_Helper</class>
+        	</randomquote>
+        </helpers>
+        <blocks>
+            <randomquote>
+            	<class>Vdh_Randomquote_Block</class>
+            </randomquote>
+        </blocks>            
+  		<models>
+            <randomquote>
+                <class>Vdh_Randomquote_Model</class>
+            </randomquote>
+        </models>          
+    </global> 
+</config>
