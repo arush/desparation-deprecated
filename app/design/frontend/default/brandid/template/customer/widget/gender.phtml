@@ -32,7 +32,7 @@ function setGenderTwo(gender) {
 }
 //]]>
 </script>
-<label for="<?php echo $this->getFieldId('gender')?>"<?php if ($this->isRequired()) echo ' class="required"' ?>><?php if ($this->isRequired()) echo '<em>*</em>' ?><?php echo $this->__('Gender') ?></label>
+<label for="<?php echo $this->getFieldId('gender')?>"<?php if ($this->isRequired()) echo ' class="required"' ?>><span class="black-title-small"><?php if ($this->isRequired()) echo '<em>*</em>' ?><?php echo $this->__('Gender') ?></span></label>
 <div class="input-box" id="gender-input-box">
     <select id="<?php echo $this->getFieldId('gender')?>" name="<?php echo $this->getFieldName('gender')?>" onchange="setGenderTwo(this);"<?php if ($this->isRequired()):?> class="validate-select"<?php endif; ?> <?php echo $this->getFieldParams() ?>>
         <?php $options = Mage::getResourceSingleton('customer/customer')->getAttribute('gender')->getSource()->getAllOptions();?>

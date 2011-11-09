@@ -68,11 +68,11 @@
 				template="arush/oneall/styles.phtml"/>
 		</reference>
 
-		<reference name="content">
+		<!--reference name="content">
 			<block type="core/template"
             name="arush_oneall_dashboard"
 			after="-"
             template="arush/oneall/dashboard.phtml"/>
-		</reference>
+		</reference-->
 	</customer_account_index>
 </layout>

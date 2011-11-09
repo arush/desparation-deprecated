@@ -32,7 +32,7 @@
  */
 /* @var $this Enterprise_Customer_Block_Form_Renderer_Text */
 ?>
-<label id="<?php echo $this->getHtmlId()?>-label" for="<?php echo $this->getHtmlId()?>"<?php if ($this->isRequired()) echo ' class="required"' ?>><?php if ($this->isRequired()) echo '<em>*</em>' ?><?php echo $this->getLabel() ?></label>
+<label id="<?php echo $this->getHtmlId()?>-label" for="<?php echo $this->getHtmlId()?>"<?php if ($this->isRequired()) echo ' class="required"' ?>><span class="black-title-small"><?php if ($this->isRequired()) echo '<em>*</em>' ?><?php echo $this->getLabel() ?></span></label>
 <div class="input-box">
     <input type="text" id="<?php echo $this->getHtmlId()?>" name="<?php echo $this->getFieldName()?>" value="<?php echo $this->getEscapedValue() ?>" class="input-text<?php echo $this->getHtmlClass(); ?>" />
 </div>

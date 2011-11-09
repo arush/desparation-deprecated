@@ -1,6 +1,6 @@
 <div class="account-edit">
-<div class="page-title">
-    <h4><?php echo $this->__('Edit Account Information') ?></h4>
+<div class="page-title black-title-bar">
+    <?php echo $this->__('Edit Account Information') ?>
 </div>
 <div class="account-information-page">
 <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
@@ -15,13 +15,13 @@
 	</style>
 	<![endif]-->
     <?php echo $this->getBlockHtml('formkey')?>
-    <h4 class="legend"><?php echo $this->__('Account Information') ?></h4>
+    <span class="black-title-med"><?php echo $this->__('Account Information') ?></span>
     <ul class="form-list">
         <li class="fields">
             <?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getCustomer())->toHtml() ?>
         </li>
         <li>
-            <label for="email" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
+            <label for="email" class="required"><span class="black-title-small"><em>*</em><?php echo $this->__('Email Address') ?></span></label>
             <div class="input-box">
                 <input type="text" name="email" id="email" value="<?php echo $this->htmlEscape($this->getCustomer()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text required-entry validate-email" />
             </div>
@@ -55,11 +55,11 @@
     <?php echo $userDefinedAttributes->setEntity($this->getCustomer())->toHtml(); ?>
 <?php endif;?>
 <div class="fieldset" style="display:none;">
-    <h4 class="legend"><?php echo $this->__('Change Password') ?></h4>
+    <span class="black-title-med"><?php echo $this->__('Change Password') ?></span>
     <ul class="form-list">
         <li class="fields">
             <div class="field">
-                <label for="current_password"><?php echo $this->__('Current Password') ?></label>
+                <label for="current_password"><span class="black-title-small"><?php echo $this->__('Current Password') ?></span></label>
                 <div class="input-box">
                     <input type="password" class="input-text" name="current_password" id="current_password" />
                 </div>
@@ -67,13 +67,13 @@
         </li>
         <li class="fields">
             <div class="field">
-                <label for="password"><?php echo $this->__('New Password') ?></label>
+                <label for="password"><span class="black-title-small"><?php echo $this->__('New Password') ?></span></label>
                 <div class="input-box">
                     <input type="password" class="input-text validate-password" name="password" id="password" />
                 </div>
             </div>
             <div class="field">
-                <label for="confirmation"><?php echo $this->__('Confirm New Password') ?></label>
+                <label for="confirmation"><span class="black-title-small"><?php echo $this->__('Confirm New Password') ?></span></label>
                 <div class="input-box">
                     <input type="password" class="input-text validate-cpassword" name="confirmation" id="confirmation" />
                 </div>

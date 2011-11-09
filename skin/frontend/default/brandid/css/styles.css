@@ -378,7 +378,7 @@ ul, ol {
 }
 
 input, select, textarea, button {
-  font: 12px Arial,Helvetica,sans-serif;
+  font: 16px ProximaNovaLight,Helvetica,sans-serif;
   vertical-align: middle;
   color: rgb(68, 68, 68);
 }
@@ -590,7 +590,7 @@ span.validation-error, div.validation-error {
 }
 
 .required em {
-  color: rgb(112, 112, 112);
+  color: #d2002b;
   margin-right: 4px;
 }
 
@@ -834,7 +834,7 @@ ul.add-row .btn-remove, .form-list li.add-row .btn-remove {
  {
   display: inline;
   float: left;
-  width: 64px;
+  width: 70px;
   padding-right: 6px ! important;
   background: none repeat scroll
     0% 0% transparent ! important;
@@ -846,7 +846,7 @@ ul.add-row .btn-remove, .form-list li.add-row .btn-remove {
 }
 
 .form-list .customer-dob .dob-year {
-  width: 70px;
+  width: 85px;
 }
 
 .form-list .customer-dob .dob-day .validation-advice, .form-list .customer-dob .dob-month .validation-advice,
@@ -884,6 +884,7 @@ ul.add-row .btn-remove, .form-list li.add-row .btn-remove {
 .customer-account-edit .form-list li.fields .field .input-box select  { *float: left; *margin-left: 90px; }
 .form-list li.fields .field .input-box select {
   float: right;
+  margin: 10px 0;
 }
 
 
@@ -7243,7 +7244,7 @@ textarea {
   border-width: 1px;
   color: rgb(134, 134, 134);
   float: left;
-  padding: 5px;
+  padding: 10px;
 }
 
 #product_sendtofriend_form .input-text, .product-gift-card .input-text {
@@ -7257,17 +7258,17 @@ textarea {
 
 .my-account .form-list .customer-dob .dob-day input.input-text {
   float: right;
-  width: 27px;
+  width: 43px;
 }
 
 .my-account .form-list .customer-dob .dob-month input.input-text {
   float: right;
-  width: 27px ! important;
+  width: 43px ! important;
 }
 
 .my-account .form-list .customer-dob .dob-year input.input-text {
   float: right;
-  width: 30px ! important;
+  width: 58px ! important;
 }
 
 .my-account .form-list .customer-dob .dob-day label {
@@ -7289,8 +7290,8 @@ textarea {
 }
 
 .my-account .form-list label, .account-create .form-list span.label {
-  padding: 2px 15px 0pt
-    0pt;
+  padding: 2px 15px 0 0;
+  margin-top:8px;
 }
 
 .my-account .button.button {
@@ -11132,7 +11133,7 @@ a.cat-view-now {
 .my-account .share-wishlist .form-buttons{width: 675px;}
 	/*DASHBOARD START*/
 	.dashboard, .st-dashboard{
-		background: #fff;
+		background: #cfcfcf;
 		color: #555555;
 		width: 700px;
 		-moz-box-shadow: 0pt 0px 2px #acacac;
@@ -12387,6 +12388,10 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	float: left;
 }
 
+.absolute-foot .footer-block {
+	margin-top: 10px;
+}
+
 .footer-block.footer-joinus {margin-left:252px;}
 .footer-block.footer-joinus a {
 	color:#eee;
@@ -12430,6 +12435,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	width:36px;
 	height:50px;
 	margin-left:10px;
+	margin-bottom: 10px;
 	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAyCAYAAAA0j3keAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MDIzRUMyMzAwMzJEMTFFMTk4NkREODQzRTkxRTFBRjMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RTgwNkEzQjQwMzJEMTFFMTk4NkREODQzRTkxRTFBRjMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDowMjNFQzIyRTAzMkQxMUUxOTg2REQ4NDNFOTFFMUFGMyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDowMjNFQzIyRjAzMkQxMUUxOTg2REQ4NDNFOTFFMUFGMyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PllZUt4AAAR3SURBVHjazFlba9RAFM5kk+5uL15rdbUURXxRFFREFH1Sf4C/1gf1RRBFELEg6IsXqlhta+9NdjfJeEa+wcPpTHZ2WWgHPtKkmck355z5zplZpbWOWLtDOE/4QnhNWCDcJewSXhAeEtJof3tKuEroEHYITwgF4QFhDv2fEx4RWoRXhG+OcaJE3DfRYQL3itAmGNYx4Ujkbgn6WVwhbGFCEes/hbGTqGYg3ipcO5hNmw2YE54RJgm3CQ3CO8I6YQPkbbvGxuLjVmy8IEK2TQIRs5RxwRKseAuEfhBW8E6Ma8YmksNishU+QrHn+SbhA+G7ZxLKMSE7608gaeLmvWd8E6eX4drTdRZq4LpGeIMYmBckFHtPOfr20Lfl+J+9XgRM+0j45SO0hZjYwX2J+1zEwSr69lnfDXzQPPuNZ/Pon2GsNbhcfvN/bIhlb2etxX004jP5XDncpwcROtBmCJ1gvj3oVhhCj+mPY4eE0HKMgD0sLTcrpTsuc4/YL2Z62B0XoRJi6ltJvlYhv9ms0IshZAfZeLbIkjHFkBrSMrwfJ7RnCO2NaZZxXRb3VBUy/fyzUObptE1YDJx9idShA8lfZ7kuZiRz6zJXMFbISTqQ0HagdRoiUSu2SruWUOEoTVNUd8UAQoohxEJNkLJVpB3bJOXCZuy+g1AiAk7BapXHQnoE3VGCUJlgsL7HtBPQKcU0Y9pDqB3gXo26PMZ4/F3DoUrwjzpCmn3UJOIbno9tBMabZlbm7/Z4gdav8Td3WVYT1OWQSq2lBvEl59OiFrOQwizGWUDtI5QMINQUBHoeKzQwVgjZ0pc2OCGfKybYx2O49q1jt1INIYyXUH9Jl+2GWCgV1qiwNZK19DDCeEFM0rZuiIVSz+obVRhjjKkdKakfssps53KAUocKY+yJtdJFqHTMvo3Ti2rAci5ZOpAykXuCn1vISajyELoXWE7IoE6xAL6KRdJw1EJdSajAknbFTMYspFnSDSGZOVatTVc8oHMbFtxCOXKVbO+wdW6AuNke33SorhYaVTnK45ZnheWuvX1eU7/0WXBnQxT+hYeQM21EvocecVRsRYUWYWWN0KpBhEK0yG4sV4U7GkCKdzIcsfQchLRPFENdNiESrOn8EuY35cgpwlHCH2AFRzC9mskpV+khCfVqEqxyiGGOI74lzHY9wJWpmNy+bzvN5tAizcSTk0rER0Lq6WCX+Sw0S7iPHcg6tsw9UR/7cpmJq+OAUfwZpmlcpb3LvnKUFjEGm2P7tXUcz62gX5+RmUJcnQSRabaJLB27jaIuqIsAFZ4BFvC+IbiM6ywINJk4unYqfOeR8+SeiPTfDUwLvL91yRazQOGpoX3xU7kIWV/OjHgc0xepQxJIAPnTQlfOcByHTtIKipFIRZavPeiShBYRC50RLKXYxxPHzlcSN98xP018DjkWTqG+ZwnnUJS3AjZ/dae5GZR8CWll05UXQ8+pDZkzsJxd0iH10Br06yeuA48PRzk4VyyHdaBPDRYPyyCwgipyqPZXgAEAw6J7BBUibocAAAAASUVORK5CYII=);
 	
 }
@@ -13482,16 +13488,9 @@ float:right;}
 
 /* BRANDiD black title */
 
-.black-title-med {
-	font-family: 'ProximaNovaBold';
-	letter-spacing: -1px;
-	padding: 7px 12px;
-	color: white;
-	background-color:#000000;
-	font-size: 22px;
-}
 
-.black-title-bar {
+
+.black-title-small, .black-title-med, .black-title-bar {
 	font-family: ProximaNovaBold,sans-serif;
 	letter-spacing: -1px;
 	padding-left:5px;
@@ -13499,5 +13498,21 @@ float:right;}
 	background-color:#000000 !important;
 	font-size: 22px !important;
 	text-transform: uppercase;
+	
+}
+
+.black-title-med {
+	padding: 7px 12px;
+}
+.black-title-small {
+	font-size: 16px !important;
+	padding: 11px 12px;
+}
+
+.my-account .address-edit .small-spacer {
+	clear: both;
+	height:20px;
+	width: 1px;
+	display:block;
 	
 }

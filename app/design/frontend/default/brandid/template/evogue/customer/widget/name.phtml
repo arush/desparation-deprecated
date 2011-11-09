@@ -49,7 +49,7 @@ For checkout/onepage/shipping.phtml:
 <div class="<?php echo $this->getContainerClassName()?>">
 <?php if ($this->showPrefix()): ?>
     <div class="field name-prefix">
-        <label for="<?php echo $this->getFieldId('prefix')?>"<?php if ($this->isPrefixRequired()) echo ' class="required"' ?>><?php if ($this->isPrefixRequired()) echo '<em>*</em>' ?><?php echo $this->__('Prefix') ?></label>
+        <label for="<?php echo $this->getFieldId('prefix')?>"<?php if ($this->isPrefixRequired()) echo ' class="required"' ?>><span class="black-title-small"><?php if ($this->isPrefixRequired()) echo '<em>*</em>' ?><?php echo $this->__('Prefix') ?></span></label>
         <div class="input-box">
             <?php if ($this->getPrefixOptions()===false): ?>
                 <input type="text" id="<?php echo $this->getFieldId('prefix')?>" name="<?php echo $this->getFieldName('prefix')?>" value="<?php echo $this->htmlEscape($this->getObject()->getPrefix()) ?>" title="<?php echo $this->__('Prefix') ?>" class="input-text<?php if ($this->isPrefixRequired()):?> required-entry<?php endif; ?>" <?php echo $this->getFieldParams() ?> />
@@ -64,7 +64,7 @@ For checkout/onepage/shipping.phtml:
     </div>
 <?php endif; ?>
     <div class="field name-firstname">
-        <label for="<?php echo $this->getFieldId('firstname')?>" class="required"><em>*</em><?php echo $this->__('First Name') ?></label>
+        <label for="<?php echo $this->getFieldId('firstname')?>" class="required"><span class="black-title-small"><em>*</em><?php echo $this->__('First Name') ?></span></label>
         <div class="input-box">
             <input type="text" id="<?php echo $this->getFieldId('firstname')?>" name="<?php echo $this->getFieldName('firstname')?>"
 <?php /*?>value edited by flo<?php */?>            
@@ -83,14 +83,14 @@ For checkout/onepage/shipping.phtml:
     </div>
 <?php if ($this->showMiddlename()): ?>
     <div class="field name-middlename">
-        <label for="<?php echo $this->getFieldId('middlename')?>"><?php echo $this->__('M.I.') ?></label>
+        <label for="<?php echo $this->getFieldId('middlename')?>"><span class="black-title-small"><?php echo $this->__('M.I.') ?></span></label>
         <div class="input-box">
             <input type="text" id="<?php echo $this->getFieldId('middlename')?>" name="<?php echo $this->getFieldName('middlename')?>" value="<?php echo $this->htmlEscape($this->getObject()->getMiddlename()) ?>" title="<?php echo $this->__('M.I.') ?>" class="input-text" <?php echo $this->getFieldParams() ?> />
         </div>
     </div>
 <?php endif; ?>
     <div class="field name-lastname">
-        <label for="<?php echo $this->getFieldId('lastname')?>" class="required"><em>*</em><?php echo $this->__('Last Name') ?></label>
+        <label for="<?php echo $this->getFieldId('lastname')?>" class="required"><span class="black-title-small"><em>*</em><?php echo $this->__('Last Name') ?></span></label>
         <div class="input-box">
             <input type="text" id="<?php echo $this->getFieldId('lastname')?>" name="<?php echo $this->getFieldName('lastname')?>"
 <?php /*?>value edited by flo<?php */?>
@@ -108,7 +108,7 @@ For checkout/onepage/shipping.phtml:
     </div>
 <?php if ($this->showSuffix()): ?>
     <div class="field name-suffix">
-        <label for="<?php echo $this->getFieldId('suffix')?>"<?php if ($this->isSuffixRequired()) echo ' class="required"' ?>><?php if ($this->isSuffixRequired()) echo '<em>*</em>' ?><?php echo $this->__('Suffix') ?></label>
+        <label for="<?php echo $this->getFieldId('suffix')?>"<?php if ($this->isSuffixRequired()) echo ' class="required"' ?>><span class="black-title-small"><?php if ($this->isSuffixRequired()) echo '<em>*</em>' ?><?php echo $this->__('Suffix') ?></span></label>
         <div class="input-box">
         <?php if ($this->getSuffixOptions()===false): ?>
             <input type="text" id="<?php echo $this->getFieldId('suffix')?>" name="<?php echo $this->getFieldName('suffix')?>" value="<?php echo $this->htmlEscape($this->getObject()->getSuffix()) ?>" title="<?php echo $this->__('Suffix') ?>" class="input-text<?php if ($this->isSuffixRequired()):?> required-entry<?php endif; ?>" <?php echo $this->getFieldParams() ?> />
