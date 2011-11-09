@@ -52,10 +52,11 @@
     </div>
 <?php else:?>
     <div id="basket-items" class="block-title<?php if(!$_cartQty) { echo (' no-items'); } ?>">
+    	<span class="label"><?php echo $this->__('My basket'); ?></label><br />
 		<?php if ($_cartQty > 0): ?>
-		    <div id="basket-img"><img src="<?php echo $this->getSkinUrl('images/basket.gif'); ?>" /></div><?php $_myCart = $this->__('%s items', $_cartQty) ?>
+			<?php $_myCart = $this->__('%s items', $_cartQty) ?>
 		<?php else: ?>
-		    <div id="basket-img"><img src="<?php echo $this->getSkinUrl('images/basket.gif'); ?>" /></div><?php $_myCart = $this->__('0 items') ?>
+			<?php $_myCart = $this->__('0 items') ?>
 		<?php endif ?>
         <strong id="cartHeader"><?php echo $_myCart ?></strong>
     </div>

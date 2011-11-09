@@ -29,5 +29,10 @@
     <customer_account_forgotpassword>
         <remove name="storerestriction"/>       
     </customer_account_forgotpassword>    
-   
+    
+    <rewardsref_customer_index>
+    	<reference name="head">
+			<action method="setTitle"><title>BRANDiD | Invite and Earn</title></action>
+    	</reference>
+    </rewardsref_customer_index>   
 </layout>

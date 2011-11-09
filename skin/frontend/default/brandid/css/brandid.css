@@ -14,16 +14,21 @@ body {
 	float: left;
 }
 .top-header a.header-link
-,.top-header .catalogLinks a {
+,.top-header .catalogLinks a
+, .top-cart #basket-items {
 	display: block;
 	height: 80px;
+	border: 0px;
 	border-top: solid 7px #cfcfcf;	
 	margin-top: -7px;
 	padding-top: 20px;	
 	padding-left: 40px;	
+	font-family: 'ProximaNovaBold';
+	text-transform: uppercase;
 	color: #000;
 	line-height: normal;
 	text-align: right;
+	background: transparent;
 }
 
 .top-header a.header-link:hover
@@ -95,18 +100,33 @@ body {
 }
 .points-special-header span
 , .top-header .widget-category-link span.title
-, a.flname 
- {
+, a.flname
+	 {
 	padding: 7px 7px 0 0;
 	display: block;
 	float: left;
 	color: #595959;
-	font-family: ProximaNovaLight;
+	font-family: 'ProximaNovaLight';
+	font-weight: normal;
 	font-size: 12px;
 	text-transform: none;
 }
 .top-header .widget-category-link span.title {
 	padding: 7px 0 0 0;
+}
+
+.top-cart #basket-items {
+	width: auto;
+}
+
+
+.top-cart .block-title strong {
+	padding: 7px 7px 0 0;
+	color: #595959;
+	font-family: 'ProximaNovaLight';
+	font-weight: normal;
+	text-transform: none;	
+
 }
 
 .points-special-header .flip-counter {
@@ -135,9 +155,80 @@ body {
 }
 .account-link {
 	text-align: right;
+	
 }
+.top-header a.header-link {
+    height: auto;
+    margin: -7px 0 0 0;
+}
+
 a.flname {
 	margin: 0;
-	padding: 0;
+	padding: 5px 0 0 0;
 	float: right;
+}
+
+
+.top-cart #basket-items span {
+	text-align: right;
+}
+
+
+.header, .header-container {
+	height: auto;
+}
+
+.breadcrumbs {
+	clear: both;
+	width: 100%;
+	
+	height: 30px;;	
+	background: #cfcfcf;
+	padding: 0px;
+	
+}
+.breadcrumbs ul {
+	padding: 8px 0;
+}
+.breadcrumbs li, .breadcrumbs li a {
+	color: #595959;
+	font-family: 'ProximaNovaRegular';
+}
+
+.breadcrumbs .center {
+	display: block;
+    margin: 0 auto;
+    text-align: left;
+    width: 972px;
+}
+
+
+.title-block {
+	background: #d2002b url('../images/red-gradient-top.png') repeat-x 0% 0%;
+	padding-top: 18px;
+	text-align: left;
+}
+
+.title-block-inner {
+ 	background: url('../images/red-gradient-bottom.png') repeat-x 0% 100%; 
+	min-height: 64px;
+	padding-bottom: 24px;
+}
+
+
+.title-block .title {
+	font-family: 'ProximaNovaBold';
+	font-size: 50px;
+	color: #fff;
+	background: #000;
+	text-transform: uppercase;
+	padding-right: 20px;
+	width: 50%;
+}
+
+.title-block .title span { 
+	display: block;
+	width: 480px;
+	position: relative;
+	margin-left: auto;
 }

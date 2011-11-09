@@ -2,6 +2,30 @@
 
 ?>
 
+<?php if (!Mage::getSingleton('customer/session')->isLoggedIn()):?>
+<?php /*WDCA CODE BEGIN*/ ?>
+	<?php echo $this->getChildHtml('rewardsHeader') ?>
+	<?php /*WDCA CODE END*/ ?>
+	
+	<p>and start earning</p>	
+	
+			<!-- The provider login will be embedded in this div //-->
+			
+			<div id="oa_social_login_header"></div>
+								
+			<script type="text/javascript">
+				 oneall.api.plugins.social_login.build("oa_social_login_header", {
+				  'providers' :  ['facebook', 'google', 'twitter', 'yahoo'], 
+				  'callback_uri': '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK); ?>arush-oneall/rpx/token_url/',
+				  'css_theme_uri': 'https://cdn.oneall.com/css/api/socialize/themes/connect_horizontal_small.css'
+				 });
+				</script>	
+			
+	<div class="connect"> or </div>
+	<div class="login-header">
+		<?php echo $this->getChildHtml('accountLinks') ?>
+	</div>
+<?php endif; ?>
 <div class="header-container">
     <div class="header">
 	
@@ -10,7 +34,6 @@
 			<div class="facebook-header"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('header-fb-like')->toHtml() ?></div>
 			<?php /* echo $this->getChildHtml('topLinks') */ ?>
 		    
-			<?php if (Mage::getSingleton('customer/session')->isLoggedIn()):?> 
 				<div class="top-name">
 					
 					<!--oneall thumbnail -->
@@ -83,7 +106,9 @@
 										  jQuery(this).removeClass('light');
 									});
 					});
-				</script>				
+				</script>
+					
+				<?php echo $this->getChildHtml('topCart') ?>
 
 				<div id="nav-invite">
 				
@@ -93,33 +118,6 @@
 				<?php /*WDCA CODE END*/ ?>					
 				
 				</div>
-			
-			<?php else:?>
-			
-				<?php /*WDCA CODE BEGIN*/ ?>
-				<?php echo $this->getChildHtml('rewardsHeader') ?>
-				<?php /*WDCA CODE END*/ ?>
-				
-				<p>and start earning</p>	
-
-						<!-- The provider login will be embedded in this div //-->
-						
-						<div id="oa_social_login_header"></div>
-											
-						<script type="text/javascript">
-							 oneall.api.plugins.social_login.build("oa_social_login_header", {
-							  'providers' :  ['facebook', 'google', 'twitter', 'yahoo'], 
-							  'callback_uri': '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK); ?>arush-oneall/rpx/token_url/',
-							  'css_theme_uri': 'https://cdn.oneall.com/css/api/socialize/themes/connect_horizontal_small.css'
-							 });
-							</script>	
-						
-				<div class="connect"> or </div>
-				<div class="login-header">
-					<?php echo $this->getChildHtml('accountLinks') ?>
-				</div>
-			
-			<?php endif;?>
 			<div class="catalogLinks"><?php echo $this->getChildHtml('catalogLinks') ?></div>
 			
 		<div class="branding">
@@ -130,24 +128,18 @@
         <?php endif?>
         </div>	   			
 			
-		</div>
-		
-      
-	
-		<div class="header-middle">
-			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('header-contact')->toHtml() ?>
-		</div>
-	
-		<div class="header-panel">
-				<div class="checkout-link"><?php echo $this->getChildHtml('checkoutLinks') ?></div>	
-				<?php echo $this->getChildHtml('topCart') ?>
-				<?php echo $this->getChildHtml('topSearch') ?>
-				<a class="help" href="/help">help</a>				
-		</div>
+		</div>	
 		 
-		<?php echo $this->getChildHtml('topMenu') ?>
+		<?php //echo $this->getChildHtml('topMenu') ?>
     </div>
     
     
+</div>
+<div class="title-block">
+	<div class="title-block-inner">
+		<div class="title">
+			<span><?php echo Mage::getSingleton('mage_page_block_html_head')->getPageTitle(); ?></span>
+		</div>
+	</div>
 </div>
 
