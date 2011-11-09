@@ -220,15 +220,32 @@ a.flname {
 	font-family: 'ProximaNovaBold';
 	font-size: 50px;
 	color: #fff;
-	background: #000;
 	text-transform: uppercase;
-	padding-right: 20px;
-	width: 50%;
+	width: 50%;	
 }
 
 .title-block .title span { 
 	display: block;
-	width: 480px;
+	margin: 0 auto;
+	width: 972px;
 	position: relative;
-	margin-left: auto;
+	
+}
+
+.footer-links {
+	font-family: 'ProximaNovaLight';
+	font-size: 14px;
+	color: #595959;
+}
+
+.footer-block {
+	padding: 10px;
+	float:left;
+}
+
+.footer-cms-block-title {
+	padding: 5px;
+	font-family: 'ProximaNovaBold';
+	color: white;
+	
 }
