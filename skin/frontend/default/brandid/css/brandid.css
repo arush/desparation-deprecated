@@ -243,9 +243,18 @@ a.flname {
 	float:left;
 }
 
+.footer-block-left-line {
+	border-right: 1px solid #595959;
+}
+
 .footer-cms-block-title {
-	padding: 5px;
+	padding: 10px;
 	font-family: 'ProximaNovaBold';
 	color: white;
+	background-color:#000000;
+}
+
+.footer-all-link {
+	padding: 10px;
 	
 }
