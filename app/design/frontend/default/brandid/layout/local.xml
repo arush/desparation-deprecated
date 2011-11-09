@@ -4,7 +4,7 @@
     <default>
     	<reference name="head">
     		<block type="page/html_head" name="storerestriction" as="storerestriction" template="storerestriction/head.phtml" />
-    		<block type="page/html_head" name="typekit" template="brandid/typekit.phtml" />
+    		<block type="page/html_head" name="typekit" template="typekit.phtml" />
             <action method="addCss"><stylesheet>css/brandid.css</stylesheet></action>
             <action method="addCss"><stylesheet>fonts/fonts.css</stylesheet></action>            
 			<action method="addItem"><type>skin_js</type><name>js/brandid.js</name></action>    
