@@ -28,17 +28,11 @@
 	<div class="footer-container">		
 		<div class="footer-content">
 			<div id="footer-links">
-				<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-service')->toHtml() ?>
-				<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-shop')->toHtml() ?>
-				<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-help')->toHtml() ?>				
-				<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-events')->toHtml() ?>
-				<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-company')->toHtml() ?>
+				<div class="footer-block footer-block-left-line"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-cms-block')->toHtml() ?></div>
+				<div class="footer-block"<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-all-links')->toHtml() ?></div>
+				<div class="footer-block"<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('brandid-copyright')->toHtml() ?></div>
 			</div>
-			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-right')->toHtml() ?>
-			<div id="footer-bottom">
-				<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-copy')->toHtml() ?>
-				<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-cards')->toHtml() ?>						
-			</div>
+			<div style="clear:both;"></div>
 		</div>
 	</div>
 </div>

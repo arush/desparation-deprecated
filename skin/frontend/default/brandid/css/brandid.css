@@ -231,21 +231,3 @@ a.flname {
 	position: relative;
 	
 }
-
-.footer-links {
-	font-family: 'ProximaNovaLight';
-	font-size: 14px;
-	color: #595959;
-}
-
-.footer-block {
-	padding: 10px;
-	float:left;
-}
-
-.footer-cms-block-title {
-	padding: 5px;
-	font-family: 'ProximaNovaBold';
-	color: white;
-	
-}

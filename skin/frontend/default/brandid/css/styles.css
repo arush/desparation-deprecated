@@ -12356,7 +12356,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 
 /* FLO FOOTER START 7.9.2011*/
 .footer {
-  background: none repeat scroll #fff;
+  background: none repeat scroll #CFCFCF;
   min-width: 980px;
   min-height: 230px;
   	-moz-box-shadow:  0pt 0px 3px #acacac;
@@ -12383,10 +12383,11 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 .footer-content {
   float: left;
   width: 960px;
-  text-transform: uppercase;
+	font-family: 'ProximaNovaLight';
+	font-size: 14px;
 }
 .footer-content a {
-  color: rgb(183, 183, 183);
+  color: #595959;
 }
 .footer-content #social-links {
   float: left;
@@ -12396,9 +12397,20 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 }
 .footer-content #footer-links {
   float: left;
-  width: 660px;
+  width: 972px;
   padding-bottom: 10px;
 }
+
+#footer-links a {
+	font-family: 'ProximaNovaLight';
+	font-size: 14px;
+	color: #595959;
+}
+#footer-links a:hover {
+text-decoration:underline;
+color:#fff;
+}
+
 #footer-links .link-column {
   float: left;
   width: 132px;
@@ -12413,10 +12425,36 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 }
 #footer-links .link-column ul li {
 }
-#footer-links a:hover {
-}
+
+
+/*ARUSH BRANDID EDIT 09-11-11 */
 .footer-right{width: 300px; float: right;}
 .footer-cards{padding-top: 10px;}
+
+.footer-block {
+	padding: 10px;
+	float:left;
+}
+
+.footer-block-left-line {
+	border-right: 1px solid #595959;
+}
+
+.footer-cms-block-title {
+	padding: 10px 15px;
+	font-family: 'ProximaNovaBold';
+	color: white;
+	background-color:#000000;
+	font-size: 24px;
+}
+
+.footer-all-link {
+	padding: 10px;
+	
+}
+/*ARUSH END EDIT 09-11-11 */
+
+
 /* FLO FOOTER END*/
 
 /* FLO HEADER START 7.9.2011*/
@@ -13366,3 +13404,13 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 .catalogsearch-result-index .left-layered-nav{margin: 34px 10px 0 0;}
 
 /**//**//**//**//**//**//**//**/
+
+/* ARUSH UX NICETIES */
+::selection {
+        background: #000;
+        }
+::-moz-selection {
+        background: #000;
+}
+
+/* END ARUSH UX NICETIES */
