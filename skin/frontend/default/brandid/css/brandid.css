@@ -23,9 +23,11 @@ body {
 	margin-top: -7px;
 	padding-top: 20px;	
 	padding-left: 40px;	
-	font-family: 'ProximaNovaBold';
+	font-family: ff-enzo-web,ProximaNovaBold;
 	text-transform: uppercase;
 	color: #000;
+	font-size: 15px;
+	font-weight:100;
 	line-height: normal;
 	text-align: right;
 	background: transparent;

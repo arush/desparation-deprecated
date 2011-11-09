@@ -1,7 +1,7 @@
 
 
 <?php if($this->showHistory()): ?>
-<div class="referral-history"><h4 class="legend"><?php echo $this->__("Referrals"); ?></h4></div>
+<div class="referral-history black-title-bar"><?php echo $this->__("Referrals"); ?></div>
 <div class="referral-history-box">
 	<?php $_referred = $this->getReferred();?>
     <?php if($_referred->getSize()): ?>

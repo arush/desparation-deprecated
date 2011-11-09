@@ -414,11 +414,8 @@
 	float: left;
 }
 .mypoints-page h4{
-	color: #2e2e2e;
-	font-weight: normal;
-	font-size: 15px;
-	font-family: HelveticaNeueLight;
-}
+	
+	}
 .mypoints-page .mypoints-summary .usable-points{
 	background: #ffffff;
 	padding: 20px;
@@ -489,6 +486,17 @@
 	border-bottom: 1px solid #E6E6E6;
 	padding: 10px 15px;
 }
+
+/*.mypoints-transfers-header {
+	font-family: ProximaNovaBold,sans-serif;
+	letter-spacing: -1px;
+	padding-left:15px;
+	color: white  !important;
+	background-color:#000000 !important;
+	font-size: 22px !important;
+	text-transform: uppercase;
+}*/
+
 .redeem_section select option{padding: 0;}
 .redeem_section select{
 	padding: 5px;

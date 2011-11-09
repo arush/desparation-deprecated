@@ -22,8 +22,8 @@
 <div class="account-box ad-reviews mypoints-summary">
     <p>
     
-      <div class="head">
-		    <h4><?php echo $this->__('Points Summary'); ?></h4>
+      <div class="head black-title-bar">
+		    <?php echo $this->__('Points Summary'); ?>
 	    </div>
 	    <div class="usable-points"><?php echo $this->__('There are %s in this account.', $this->getCustomerPointsSummary()); ?></div>
 	    <?php if($this->hasPendingPoints()): ?>

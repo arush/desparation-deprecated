@@ -19,7 +19,7 @@ font-weight: bold;margin-top: -33px;padding: 0 8px;}*/
 .send-now-box .secure{color: #848484; font-weight: bold; margin: 85px 22px 0 139px;}
 
 .referrals h4.legend{color:#2e2e2e; font-family: HelveticaNeueLight; font-size: 15px; font-weight: normal;}
-.referrals label{color:#464646;}
+.referrals label{color:#444444;}
 .send-now-box-right textarea{background: #eaeaea; color: #4a4a4a; border: 1px solid #a1a1a1;}
 input#referral_url{padding: 10px 10px 11px 10px; background: #eaeaea; color: #4a4a4a; border: 1px solid #a1a1a1;}
 .referral-history{padding: 20px 0 10px 0;}
@@ -28,12 +28,12 @@ input#referral_url{padding: 10px 10px 11px 10px; background: #eaeaea; color: #4a
 #referred-friends-table{border: none;}
 #referred-friends-table tr.odd{background: #f1f1f1 ! important; color: #555555; border: none;}
 #referred-friends-table tr.even{background: #e3e3e3; color: #555555; border: none;}
-.referral-history-box .pager{padding: 0; margin: -48px 0 0 0;}
+.referral-history-box .pager{padding: 0; margin: -56px 0 0 0;}
 .referral-history-box .pager .amount{display: none;}
-.referral-history-box .pager .limiter {color: #555555;}
-.referral-history-box .pager .limiter label{padding-right: 15px;}
+.referral-history-box .pager .limiter {color: #EEEEEE;}
+.referral-history-box .pager .limiter label{padding-right: 15px; color:#eee;}
 .referral-history-box .pager .limiter select{float: left; margin-right: 5px;}
-.referral-history-box .pager .pages, .referral-history-box .pager .pages a{color: #555555}
+.referral-history-box .pager .pages, .referral-history-box .pager .pages a{color: #eeeeee}
 .referral-history-box p {color: #555555;}
 
 .referral-preferences {padding: 20px 0 10px 0;}
@@ -76,7 +76,6 @@ input#referral_url{margin-right: 20px;}
 	font-weight: bold;
 }
 .send-now {
-	font-weight: bold;
 	padding-bottom: 10px;
 }
 .send-now-box {
@@ -100,7 +99,6 @@ input#referral_url{margin-right: 20px;}
 .send-now-box-middle{float: left; width: 1px;}
 .send-now-box-left .send-header-left{margin: 11px 0 0 14px;}
 .share-invitation-link {
-	font-weight: bold;
 	padding-top: 20px;
 	padding-bottom: 10px;
 }
