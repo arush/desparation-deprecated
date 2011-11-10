@@ -410,8 +410,8 @@ input.input-text, textarea {
 	-moz-box-shadow: inset 0 0 5px #888;
 	-webkit-box-shadow: inset 0 0 5px #888;
 	box-shadow: inner 0 0 5px #888;
-	border-color: #b14e4e ! important;
-	color:#b14e4e ! important;
+	border-color: #d2002b ! important;
+	color:#d2002b ! important;
 } */
 
 select {
@@ -471,10 +471,6 @@ button.button::-moz-focus-inner {
 }
 
 button.button {
-
-}
-
-button.button {
   border: 0pt none;
   padding: 0pt;
   margin: 0pt;
@@ -483,13 +479,14 @@ button.button {
   overflow: visible;
   cursor: pointer;
   vertical-align: middle;
-	background: #b14e4e;
+	background: #d2002b;
+	color:#FFF;
 }
 button.button:hover, .account-login  button.button:hover{
 	-moz-box-shadow: 0pt 0px 2px #acacac;
 	-webkit-box-shadow: 0pt 0px 2px #acacac;
 	-khtml-box-shadow: 0pt 0px 2px #acacac;
-	background: url('../images/button-rollover.png');
+	background-color:#000;
 }
 .registered-users button.button{background: transparent;}
 .registered-users button.button:rollover{background: transparent;}
@@ -504,7 +501,7 @@ a.button, button.button span {
   cursor: pointer;
   background-position: 0pt 0pt;
   display: inline-block;
-  color: rgb(199, 54, 21);
+  color: #fff;
   height: 21px;
   text-decoration: none;
 }
@@ -512,13 +509,12 @@ a.button, button.button span {
 a.button span, button.button span span {
   padding: 5px 15px 1px
     5px;
-  color: rgb(199, 54, 21);
+  color: #FFF;
   background-position: 100% 0pt;
   display: inline-block;
   white-space: nowrap;
   text-transform: uppercase;
-  font: bold 11px/20px Arial,Helvetica,sans-serif;
-  height: 20px;
+  font: 11px/20px ProximaNovaBold;
 }
 
 a.button {
@@ -1057,10 +1053,10 @@ p.error-msg {
 .messages li.error-msg {
   border-color: #ffe8e8;
   background: url("../images/error.png") no-repeat scroll 0 0 #ffe8e8;
-  color: #b14e4e;
+  color: #d2002b;
   font-family: Gotham-book;
 }
-.messages li.error-msg span{color: #b14e4e;}
+.messages li.error-msg span{color: #d2002b;}
 .messages li.error-msg a {
   color: rgb(217, 26, 0);
 }
@@ -2708,9 +2704,6 @@ ul.disc li {
   color: rgb(193, 193, 193);
 }
 
-.info-box .box-content a {
-  color: rgb(253, 252, 229);
-}
 
 .info-box .box-content a:hover {
   text-decoration: underline;
@@ -6032,12 +6025,12 @@ ul.cms-menu.type-square ul {
 }
 
 .cart-empty a {
-  color: #b14e4e;
+  color: #d2002b;
   text-decoration: underline;
 }
 
 .cart-empty a:hover {
-  color: #b14e4e;
+  color: #d2002b;
   text-decoration: none;
 }
 
@@ -6968,7 +6961,7 @@ textarea {
   border: 5px solid rgb(243,
     182, 111);
   font-size: 12px;
-  color: #B14E4E;
+  color: #d2002b;
   font-weight: bold;
   background: none repeat scroll
     0% 0% rgb(255, 255, 255);
@@ -7307,7 +7300,7 @@ textarea {
   line-height: 20px;
   padding: 0;
 }
-.my-account .address-book .button.button{background: none; color: #b14e4e;}
+.my-account .address-book .button.button{background: none; color: #d2002b;}
 .my-account .address-book .button.button:hover{
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
@@ -7316,7 +7309,7 @@ textarea {
 }
 .my-account .address-book .button.button span{
 	text-transform: uppercase;
-	color: #b14e4e;
+	color: #d2002b;
 }
 
 .my-account p.required {
@@ -7453,7 +7446,7 @@ textarea {
 
 .account-login .btn-only , .account-login .form-buttons .button{
   position: relative;
-  background: #b14e4e;
+  background: #d2002b;
   width: 212px;
   height: 31px;
   margin: 0px 0px 0px
@@ -7492,7 +7485,7 @@ div.validation-passed {
 
 .account-login .btn-only a {
   text-decoration: none;
-	color: #B14E4E;
+	color: #d2002b;
   text-transform: lowercase;
   margin-top: 20px;
   float: right;
@@ -8023,7 +8016,7 @@ text-transform: uppercase;
 }
 
 .addresses-list .col-2 li .actions a {
-  color: #B14E4E;
+  color: #d2002b;
 }
 
 .addresses-list .col-2 li address {
@@ -8045,7 +8038,7 @@ text-transform: uppercase;
 }
 
 .order-page .col2-set {
-  padding-bottom: 20px;
+  padding: 20px;
   clear: both;
 }
 
@@ -8102,8 +8095,7 @@ text-transform: uppercase;
 }
 
 .order-info dt {
-  padding: 6px 20px 0pt
-    10px;
+  padding: 13px 20px 0pt 20px;
   color: rgb(108, 108, 108);
   float: left;
 }
@@ -8124,8 +8116,7 @@ text-transform: uppercase;
   background: url("../images/bkg_collateral-tabs.gif") no-repeat scroll
     0pt -39px rgb(222, 222, 222);
   color: rgb(34, 34, 34);
-  padding: 0pt 0pt 0pt
-    17px;
+  padding:12px 0 12px 20px;
   font-size: 12px;
   *display:inline; 
 }
@@ -8138,8 +8129,8 @@ text-transform: uppercase;
     0pt;
   line-height: 24px;
   float: left;
-  font-family: HelveticaNeueLight;
-font-size: 13px;
+  font-family: ProximaNovaLight;
+font-size: 16px;
 }
 
 .order-info li.current {
@@ -9426,7 +9417,7 @@ font-size: 13px;
   color: rgb(193, 193, 193);
 }
 
-.order-page a, .order-details a {
+.order-info .order-page a, .order-info .order-details a {
   color: rgb(108, 108, 108);
 }
 
@@ -10013,7 +10004,7 @@ color: #555555;
   margin-top: 5px;
 }
 #checkout-step-login .forgotpassword-checkout a{
-  color: #b14e4e;
+  color: #d2002b;
 }
 #checkout-step-login .col-1 li{
   *width:223px;
@@ -10330,10 +10321,6 @@ dl.sp-methods li#serversecure{padding-top: 0;}
 
 /*BILLING INFORMATION START*/
 #co-billing-form fieldset{background: #ffffff; padding: 20px; margin-bottom: 20px;
-	-moz-box-shadow: 0pt 0px 2px #acacac;
-	-webkit-box-shadow: 0pt 0px 2px #acacac;
-	-khtml-box-shadow: 0pt 0px 2px #acacac;
-	box-shadow: 0pt 0px 2px #acacac;
 	border: 1px solid #acacac\9;
 }
 .opc .step #co-billing-form .form-list label{color: #555555;}
@@ -10511,7 +10498,7 @@ button::-moz-focus-inner{border:0;padding:0;margin:0;}
 		.nav-invite form input{float: left; color: #929292;}
 		.nav-invite span{font-size: 11px; padding: 25px 0 0 10px; position: absolute;}
 		.nav-invite input{margin-right: 10px; width: 175px; *width: 170px; height: 24px; padding-left:5px; background: #e7e7e7; border: 1px solid #B2AEAE;}
-		.nav-invite button{height: 26px; border: 1px solid #B2AEAE; color:#dedede; float: left; padding: 0 5px; font-family: Gotham-book, sans-serif; cursor: pointer; background-color:#B14E4E;}
+		.nav-invite button{height: 26px; border: 1px solid #B2AEAE; color:#dedede; float: left; padding: 0 5px; font-family: Gotham-book, sans-serif; cursor: pointer; background-color:#d2002b;}
 		.nav-invite button:hover{color: #000000; background: url("../images/sprites.png") no-repeat scroll -749px -103px transparent;}
 		.nav-invite img{padding-top: 15px; }
 		
@@ -10654,7 +10641,7 @@ font-size: 20px; }
 }
 .products-grid .product-brand .discount{
 	line-height: 13px;
-	color: #b14e4e;
+	color: #d2002b;
 }
 .products-grid .product-name{
 	height: 31px;
@@ -10690,7 +10677,7 @@ font-size: 20px; }
 }
 .product-main-info .special-price .price-label{display: none;}
 .products-grid .price-box .special-price .price, .special-price .price-label{
-	color: #B14E4E;
+	color: #d2002b;
 	font-size: 15px;
 	font-weight: bold;
 }
@@ -10720,7 +10707,7 @@ a.cat-view-now {
 }
 .products-grid li.item .price-discount{
 	top: 23px; left: 10px;
-	color: #B14E4E;
+	color: #d2002b;
 	position: absolute;
 	font-family: Gotham-Book;
 }
@@ -10802,7 +10789,7 @@ a.cat-view-now {
 }
 .only-left{
 	position: absolute;
-	color: #b14e4e;
+	color: #d2002b;
 	font-size: 12px;
 	padding: 59px 0 0 171px;
 	font-family: Gotham-book;
@@ -11006,13 +10993,13 @@ a.cat-view-now {
 	float: left;
 	clear: right;
 	width: 270px;
-	background: #b14e4e;
+	background: #d2002b;
 }
 .product-view .product-shop .price-box .special-price .price-label, .product-view .product-shop .price-box .special-price .price{
 	font-size: 17px; color: #fff; padding-left: 5px; font-weight: normal;
 }
 .product-shop .price-discount {
-  color: #B14E4E;
+  color: #d2002b;
   position: absolute;
   right: 17px; top: 18px;
   font-family: Gotham-Book;
@@ -11023,7 +11010,7 @@ a.cat-view-now {
 	font-family: Gotham-book;
 }
 .product-view .product-options-bottom .add-to-cart button.button, .product-view .add-to-box button.button{
-	background: #b14e4e;
+	background: #d2002b;
 	height: 33px;
 	font-family: Gotham-book;
 }
@@ -11091,7 +11078,7 @@ a.cat-view-now {
 }
 .my-account .page-title h4, .rewards-sidebar .page-title h4{
 	color: #2e2e2e;
-	font-family: HelveticaNeueLight;
+	font-family: ProximaNovaLight;
 	font-size: 15px;
 	font-weight: normal;
 }
@@ -11108,11 +11095,19 @@ a.cat-view-now {
 	margin: 0;
 	padding: 0;
 }
-.my-account .info-box a{color: #b14e4e;}
 .my-account table.data-table th {
 	color: #555555;
 }
-.my-account table.data-table td a{color: #b14e4e;}
+.my-account table.data-table td a{
+	color: #d2002b;
+	-webkit-transition: color 200ms ease-in;
+	-moz-transition: color 200ms ease-in;
+	-o-transition: color 200ms ease-in;
+	transition: color 200ms ease-in;
+
+}
+.my-account table.data-table td a:hover{color: #000;}
+
 .my-account table.data-table tr.odd{
 	background: #F1F1F1 ! important;
 	color: #555555;
@@ -11132,14 +11127,16 @@ a.cat-view-now {
 }
 .my-account .share-wishlist .form-buttons{width: 675px;}
 	/*DASHBOARD START*/
+	
+	.customer-account-index .main.col2-right-layout .col-main{
+	width:560px;
+	}
+	
+	
 	.dashboard, .st-dashboard{
 		background: #cfcfcf;
 		color: #555555;
-		width: 700px;
-		-moz-box-shadow: 0pt 0px 2px #acacac;
-		-webkit-box-shadow: 0pt 0px 2px #acacac;
-		-khtml-box-shadow: 0pt 0px 2px #acacac;
-		box-shadow: 0pt 0px 2px #acacac;
+		width: 560px;
 		border: 1px solid #acacac\9;
 		position: relative;
 		float: left;
@@ -11148,31 +11145,27 @@ a.cat-view-now {
 	.rewards-sidebar {
 		background: #fff;
 		color: #555555;
-		width: 234px;
-		-moz-box-shadow: 0pt 0px 2px #acacac;
-		-webkit-box-shadow: 0pt 0px 2px #acacac;
-		-khtml-box-shadow: 0pt 0px 2px #acacac;
-		box-shadow: 0pt 0px 2px #acacac;
+		width: 380px;
 		border: 1px solid #acacac\9;
 		margin-top: 20px;
 	}
 	
 	.st-dashboard .mypoints-summary .usable-points, .st-dashboard .mypoints-summary .msg {padding: 15px 15px 0;}
-	.st-dashboard .mypoints-summary a{color: #b14e4e; display: block; margin: 15px; text-transform: uppercase; font-family: Gotham-book;}
+	.st-dashboard .mypoints-summary a{color: #d2002b; display: block; margin: 15px; text-transform: uppercase; font-family: Gotham-book;}
 	.st-dashboard .mypoints-summary a:hover{text-decoration: underline;}
 	.st-dashboard h4{font-family: HelveticaNeueLight; font-size: 15px; font-weight: normal; color: #2e2e2e;}
 	.st-dashboard{margin-left: 20px;}
 	.dashboard .edit{position: absolute;top: 0;right: 0;padding: 10px 15px;}
 	.dashboard .edit a:hover{text-decoration: underline;}
-	.dashboard .info-box{position: inherit;}
+	.dashboard .info-box{position: inherit; background-color:white;}
 	.dashboard .box-content a{line-height: 30px;}
+	.dashboard p.box-content{padding:25px;}
 	.dashboard .account-information .sub-title{border-bottom: none; padding: 0; margin: 0; font-size: 15px; font-family: HelveticaNeueLight;}
 	.dashboard .account-information{padding: 10px 15px; border-bottom: 1px solid #e6e6e6;}
-	.dashboard .col2-set{padding: 5px 15px 20px;}
+	.dashboard .col2-set{background-color:white;padding: 25px;margin-bottom:25px;}
 	.customer-account-index .my-account .dashboard h2, .dashboard h4.sub-title, .my-account .info-box .box-title{
 		color: #2e2e2e;
 	}
-	.my-account .dashboard a, .my-account .dashboard .recent-orders .data-table a, .my-account .dashboard .recent-orders .table-caption a{color: #b14e4e; font-family: Gotham-book; text-transform: uppercase;}
 	.my-account .dashboard .points-summary-emphasize{color: #000;}
 	.my-account .page-title a {font-size:11px;}
 	
@@ -11182,7 +11175,7 @@ a.cat-view-now {
 	.points-summary-emphasize{font-family: arial; color:#567B55; font-weight: bold; }
 	
 	.rewards-sidebar .block-content a{
-		color: #B14E4E;
+		color: #d2002b;
 		font-family: Gotham-book;
 		text-transform: uppercase;
 		font-size: 11px;
@@ -11276,10 +11269,6 @@ a.cat-view-now {
 	/*MY ORDERS START*/
 	.order-account, .order-page, .order-details{
 		background: #fff;
-		-moz-box-shadow: 0pt 0px 2px #acacac;
-		-webkit-box-shadow: 0pt 0px 2px #acacac;
-		-khtml-box-shadow: 0pt 0px 2px #acacac;
-		box-shadow: 0pt 0px 2px #acacac;
 		border: 1px solid #acacac\9;
 		width: 100%;
 		float: left;
@@ -11303,9 +11292,11 @@ a.cat-view-now {
 		font-size: 13px;
 		font-weight: bold;
 	}
-	.my-account .info-box .box-content{
-		color: #555555;
-		width: 290px;
+	.my-account .info-box .box-content, .my-account .info-box{
+		color: #595959;
+		font-family: ProximaNovaLight;
+		font-size: 14px;
+
 	}
 	.my-account .order-info li.current{
 		background: #fff;
@@ -11365,7 +11356,7 @@ a.cat-view-now {
 }
 .col2-left-layout .col-main h1, .col2-left-layout .col-main h2{color: #2e2e2e;}
 .col2-left-layout .col-main p, .col2-left-layout .col-main li{color: #444444;}
-.col2-left-layout .col-main a, .col2-left-layout .col-main span{color: #B14E4E;}
+.col2-left-layout .col-main a, .col2-left-layout .col-main span{color: #d2002b;}
 .col2-left-layout .col-main a:hover{text-decoration: underline;}
 .col2-left-layout .col-main span.back-to-top{font-size: x-small;}
 .col2-left-layout .col-main span.policy-by{font-size: xx-small; color: #444;}
@@ -11388,10 +11379,6 @@ a.cat-view-now {
 .sidebar {
   background: #FFF;
   font-size: 12px;
-	-moz-box-shadow: 0pt 0px 2px #acacac;
-	-webkit-box-shadow: 0pt 0px 2px #acacac;
-	-khtml-box-shadow: 0pt 0px 2px #acacac;
-	box-shadow: 0pt 0px 2px #acacac;
 	border: 1px solid #acacac\9;
 }
 .sidebar .block .block-content{border-top: none;}
@@ -11412,7 +11399,7 @@ a.cat-view-now {
   padding: 5px 13px 4px;
 }
 .sidebar .block-account li a:hover {
-  color: #B14E4E;
+  color: #d2002b;
   text-decoration: none;
 }
 .sidebar .block-account li.current {
@@ -11540,7 +11527,7 @@ a.cat-view-now {
   background: none;
   border: medium none;
   text-transform: uppercase;
-  color: #b14e4e;
+  color: #d2002b;
   text-decoration: none;
   font-weight: normal;
   padding: 5px;
@@ -11635,7 +11622,7 @@ a.cat-view-now {
   margin: 0 0 5px;
 }
 .cart-collaterals a{
-	color: #b14e4e;
+	color: #d2002b;
 }
 .cart .shipping p {
   color: #000;
@@ -11784,7 +11771,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 .opc .buttons-set p.required { margin:0; padding:0 0 10px; }
 .opc .buttons-set .back-link { display:none; }
 .opc .buttons-set .please-wait { position:absolute; z-index:99; top:30%; left:60%; margin:-80px 0 0 -146px; border:5px solid #f3b66f; font-size:12px; background:#fff; padding:30px; white-space:nowrap; border:1px solid #c0c0c0; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px; -moz-box-shadow:1px 1px 2px rgba(0,0,0,0.2); -webkit-box-shadow:0 0 50px rgba(0,0,0,0.2); box-shadow:0 0 50px rgba(0,0,0,0.2); }
-.opc .buttons-set a { color:#b14e4e; }
+.opc .buttons-set a { color:#d2002b; }
 .opc .ul { list-style:disc outside; padding-left:18px; }
 .opc li.section { display:inline; }
 .opc .step-title,.opc .allow .step-title { border-color:#FBFAF6; }
@@ -11792,11 +11779,11 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 .opc .step-title .number,.opc .allow .step-title .number,.opc .active .step-title .number { float:none; display:block; margin:0 auto; margin-bottom:10px; }
 .opc .step-title a { display:none; }
 .opc .step-title .number { background:#b4b4b4; color:#fff; width:30px; height:30px; line-height:30px; -moz-border-radius:20px; -webkit-border-radius:20px; border-radius:20px; margin-bottom:10px; padding:0; border:0; position:relative; z-index:1; }
-.opc .step-title h2 { font-size:12px; color:#b4b4b4; clear:both; margin-bottom:10px; font-family: gotham-light;}
+.opc .step-title h2 { font-size:13px; color:#b4b4b4; clear:both; margin-bottom:10px; font-family: ProximaNovaBold;}
 .opc .allow .step-title .number { background:#3d3d3d; border-color:#fff; color:#fff; }
 .opc .allow .step-title h2 { color:#3d3d3d; }
-.opc .active .step-title .number { background:#b14e4e; border-color:#fff; color:#fff; }
-.opc .active .step-title h2 { color:#b14e4e; }
+.opc .active .step-title .number { background:#d2002b; border-color:#fff; color:#fff; }
+.opc .active .step-title h2 { color:#d2002b; }
 .opc .step-title,.opc .allow .step-title,.opc .active .step-title { position:relative; text-align:center; border:none; background:none; padding:0; overflow:hidden!important; height:80px; display:inline-block; vertical-align:top; }
 .opc .step-title,.opc .allow .step-title,.opc .active .step-title { *display:block; *float:left; } 
 .opc .step-title h2,.opc .allow .step-title h2,.opc .active .step-title h2 { width:100%; text-align:center; }
@@ -11855,13 +11842,15 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 
 /* CHECKOUT SKINNING FLO START */
 
+
+
 .opc .step .form-list label {
   color: rgb(134, 134, 134);
   font-size: 14px ! important;
   font-weight: normal;
   text-transform: lowercase;
 }
-#checkoutSteps button span{color: #fff; padding: 13px 38px; font-family: Gotham-book;}
+#checkoutSteps button span{color: #fff; padding: 13px 38px; font-family: ProximaNovaBold;}
 #checkoutSteps button span span{padding: 0;}
 #checkoutSteps .form-buttons{width: 657px;}
 #checkoutSteps p.required{width: 605px;}
@@ -11885,7 +11874,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	box-shadow: 0pt 0px 2px #acacac;
 	border: 1px solid #acacac\9;
 }
-.payment-box a{color: #b14e4e; font-weight: normal;}
+.payment-box a{color: #d2002b; font-weight: normal;}
 #checkout-review-table td{padding: 10px 10px 5px;}
 .checkout-onepage-success .col-main{
 	width: 919px;
@@ -11908,11 +11897,17 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 
 /* RIGHT BAR START */
 
-.col2-right-layout .col-right{background: none;
-	-moz-box-shadow: none;
-	-webkit-box-shadow: none;
-	-khtml-box-shadow: none;
-	width: 234px;
+
+/* for checkout */
+.checkout-onepage-index .col2-right-layout .col-right{background: none;
+	
+	width: 224px;
+}
+
+
+.customer-account-index .col2-right-layout .col-right{background: none;
+	
+	width: 380px;
 }
 
 #checkout-progress-wrapper{
@@ -11922,24 +11917,22 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	position: relative;
 }
 .opc-block-progress div div{
-	-moz-box-shadow: 0pt 0px 3px #acacac;
-	-webkit-box-shadow: 0pt 0px 3px #acacac;
-	-khtml-box-shadow: 0pt 0px 3px #acacac;
-	box-shadow: 0pt 0px 3px #acacac;
 	border: 1px solid #acacac\9;
 	background: #fff;
 	margin-bottom: 5px;
 }
 .opc-block-progress div div dt{
-	font-family: Gotham-light;
-	padding: 13px 5px 13px 13px;
-	border-bottom: 1px solid #e6e6e6;
-	color: #2e2e2e;
+	background-color:#000;
+	font-family: ProximaNovaBold;
+	letter-spacing: -1px;
+	padding: 10px;
+	font-size:18px;
+	color:white;
 	text-transform: uppercase;
 }
 .opc-block-progress div div a{
 	float: right;
-	color: #b14e4e;
+	color: #d2002b;
 	padding-right: 10px;
 }
 .opc-block-progress div div dd{
@@ -11950,7 +11943,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	border-bottom: none;
 	position: absolute;
 	top: -33px;
-	font-family: HelveticaNeueLight;
+	font-family: ProximaNovaLight;
 	padding: 0;
 }
 #checkout-progress-wrapper .block-content, #checkout-progress-wrapper .block-content p{padding: 0;}
@@ -11962,9 +11955,6 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 .col1-layout h1, .col1-layout h2{color: #2e2e2e;}
 .notfound404{
 	background: #fff;
-	-moz-box-shadow: 0pt 0px 2px #acacac;
-	-webkit-box-shadow: 0pt 0px 2px #acacac;
-	-khtml-box-shadow: 0pt 0px 2px #acacac;
 	box-shadow: 0pt 0px 2px #acacac;
 	border: 1px solid #acacac\9;
 	margin-top: 20px;
@@ -11975,10 +11965,6 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 /* WISHLIST SKIN START */
 .my-wishlist{
 	background: #fff;
-	-moz-box-shadow: 0pt 0px 2px #acacac;
-	-webkit-box-shadow: 0pt 0px 2px #acacac;
-	-khtml-box-shadow: 0pt 0px 2px #acacac;
-	box-shadow: 0pt 0px 2px #acacac;
 	border: 1px solid #acacac\9;
 	padding: 10px 0 50px;
 }
@@ -12003,10 +11989,6 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 #wishlist-view-form .buttons-set2{margin: 5px 14px 0 0;}
 #wishlist-view-form button{margin-left: 10px;}
 .share-wishlist{background: #fff; 
-	-moz-box-shadow: 0pt 0px 2px #acacac;
-	-webkit-box-shadow: 0pt 0px 2px #acacac;
-	-khtml-box-shadow: 0pt 0px 2px #acacac;
-	box-shadow: 0pt 0px 2px #acacac;
 	border: 1px solid #acacac\9;
 }
 .share-wishlist form{display: block; padding: 20px;}
@@ -12024,10 +12006,6 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 #last-viewed, #related-items, #upsell {
   width: 448px;
   background: #fff;
-	-moz-box-shadow: 0pt 0px 2px #acacac;
-	-webkit-box-shadow: 0pt 0px 2px #acacac;
-	-khtml-box-shadow: 0pt 0px 2px #acacac;
-	box-shadow: 0pt 0px 2px #acacac;
 	border: 1px solid #acacac\9;
 	margin-bottom: 20px;
 	position: relative;
@@ -12099,11 +12077,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 .cart .crosssell .even{background: #e3e3e3;}
 .cart .crosssell .product-image {
   float: left;
-  	-moz-box-shadow: 0pt 0px 2px #acacac;
-	-webkit-box-shadow: 0pt 0px 2px #acacac;
-	-khtml-box-shadow: 0pt 0px 2px #acacac;
-	box-shadow: 0pt 0px 2px #acacac;
-	border: 1px solid #acacac\9;
+  	border: 1px solid #acacac\9;
 	margin-right: 10px;
 }
 .cart .crosssell .product-name{padding: 10px 0;}
@@ -12156,7 +12130,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	#wishlist-view-form .buttons-set{*padding-bottom: 40px;}
 	.my-account #country{*margin-right: -18px;}
 	.my-account #gender-input-box #gender{*margin-right: -18px;}
-	.dashboard .info-box{*position: static;}
+	.dashboard .info-box{*position: static; margin-bottom:20px;}
 /*
 --> CART */
 	.checkout-cart-index .main{*margin-top: 20px;}
@@ -12376,6 +12350,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
   width: 972px;
   z-index: 1;
   padding-top: 20px;
+  padding-bottom: 16px;
 }
 
 .absolute-foot {
@@ -12626,10 +12601,6 @@ float:right;}
 			padding: 5px;
 			display: none;
 			z-index: 1001;
-			-moz-box-shadow: 0pt 0px 3px #acacac;
-			-webkit-box-shadow: 0pt 0px 3px #acacac;
-			-khtml-box-shadow: 0pt 0px 3px #acacac;
-			box-shadow: 0pt 0px 3px #acacac;
 			border: 1px solid #acacac\9;
 		}
 		.my-account-links ul.links, .my-account-links ul.links li{
@@ -12690,7 +12661,7 @@ float:right;}
 			padding: 0px 5px 1px 1px;
 		}
 		.account-login img{float: left;}
-		.top-header .oaimg{padding: 5px 7px 5px 0;}
+		.top-header .oaimg{padding: 15px 0px 15px 6px;}
 	/*TOP HEADER END*/
 
 	/*CHECKOUT-BUTTON START*/
@@ -12714,7 +12685,7 @@ float:right;}
 			display: block;
 			text-transform: uppercase;
 			color: #fff;
-			background: #B14E4E;
+			background: #d2002b;
 			border: 1px solid #d9d9d9;
 		}
 		.checkout-link li {
@@ -12731,6 +12702,8 @@ float:right;}
 			float: right;
 			position: relative;
 			z-index: 1000;
+			width:111px;
+			padding-left:10px;
 		}
 		.top-cart #basket-items{
 			z-index: 5p;
@@ -12878,13 +12851,14 @@ float:right;}
 			margin: 6px 4px 3px;
 		}
 		#nav-invite a {
-			font-family: ProximaNovaBold;
+			font-family: ff-enzo-web, proximanovabold, sans-serif;
 			text-transform: uppercase;
 			color: #ccc;
+			font-weight:900;
 			display: block;
 			line-height: 30px;
 			text-align: center;
-			font-size: 12px;
+			font-size: 15px;
 		}
 	/*INVITE LINK END*/
 .help-link{
@@ -12892,7 +12866,7 @@ float:right;}
 	margin: 7px -8px 0 0;
 }
 
-.header-panel .my-account-links li.last a{color: #b14e4e;}
+.header-panel .my-account-links li.last a{color: #d2002b;}
 .header-panel .links li a{color: #8c8c8c; font-size: 11px;}
 
 /*NAV BAR NEW 2011-05-30 BY FLO START*/
@@ -12937,7 +12911,7 @@ float:right;}
 			margin-top: 5px;
 		}
 		
-		#nav .first a.level-top, #nav .last a.level-top {color:#B14E4E;}
+		#nav .first a.level-top, #nav .last a.level-top {color:#d2002b;}
 		
 		#nav li.level0:hover, #nav li.over{
 		}
@@ -13005,7 +12979,7 @@ float:right;}
 		#nav ul.level0  li.parent {
 			font-family: Arial;
 			font-weight: bold;
-			color: #b14e4e;
+			color: #d2002b;
 			font-size: 11px;
 			padding: 30px 0 0 20px;
 			float: left;
@@ -13051,7 +13025,7 @@ float:right;}
 .account-login .registered-users{padding: 40px 20px; width: 435px;}
 .account-login h1{
 	font-family: ProximaNovaBold;
-	color: #b14e4e;
+	color: #d2002b;
 	text-transform: uppercase;
 	letter-spacing: -0.05em;
 	font-size: 34px;
@@ -13273,7 +13247,7 @@ float:right;}
 		width: 291px;
 	}
 	.popup-form .submit input {
-		background: #b14e4e;
+		background: #d2002b;
 		color: #fff;
 		text-transform: uppercase;
 		font-family: Gotham-book;
@@ -13304,12 +13278,12 @@ float:right;}
 	.popup-form h2{
 		font-family: ProximaNovaBold;
 		text-transform: uppercase;
-		color: #b14e4e;
+		color: #d2002b;
 		text-align: center;
 		font-size: 20px;
 	}
 	.popup-form a{
-		color: #b14e4e;
+		color: #d2002b;
 		float: right;
 		text-decoration: underline;
 	}
@@ -13355,7 +13329,7 @@ float:right;}
 		background:none;
 		border:0;
 		font-size:13px;
-		color: #B14E4E;
+		color: #d2002b;
 		text-decoration: underline;
 	}
 	.gettingstarted .divider{height:244px;width:1px;}
@@ -13420,10 +13394,10 @@ float:right;}
 }
 .top-cart .block-content .truncated a.details {
   float: right;
-  color: #b14e4e;
+  color: #d2002b;
 }
 .mini-products-list .product-details .btn-remove {
-  color: #b14e4e;
+  color: #d2002b;
   float: right;
   clear: both;
   font-size: 11px;
@@ -13501,18 +13475,91 @@ float:right;}
 	
 }
 
+.my-account .order-page .black-title-bar, .my-account .order-account .black-title-bar, .my-account .order-details .black-title-bar, .my-account .dashboard .black-title-bar {
+	padding: 10px;
+}
+
 .black-title-med {
 	padding: 7px 12px;
 }
+
+.shipment
+
 .black-title-small {
 	font-size: 16px !important;
 	padding: 11px 12px;
 }
 
-.my-account .address-edit .small-spacer {
+
+a.red-title-button {
+
+	text-transform: uppercase;
+	padding: 7px;
+	color: white;
+	font-size: 11px;
+	font-family: ProximaNovaBold;
+	background-color: #d2002b;
+	float: right;
+}
+
+a.red-title-med-button {
+
+	text-transform: uppercase;
+	padding: 6px;
+	color: white;
+	font-size: 11px;
+	font-family: ProximaNovaBold;
+	background-color: #d2002b;
+}
+
+
+
+.my-account .small-spacer {
 	clear: both;
 	height:20px;
 	width: 1px;
 	display:block;
 	
 }
+
+.my-account .recurring-profiles, .my-account .whitebox {
+background-color: white;
+padding: 27px;
+margin-bottom: 15px;
+}
+
+.recurring-profile-orders {
+	clear:both;
+	display:block;
+	padding: 27px;
+}
+
+.recurring-profile-orders .info-box {
+	padding: 20px;
+}
+
+.my-account .recurring-view.whitebox {
+	text-align: center;
+	
+}
+
+.recurring-view-box-content {
+	color: #595959;
+	margin-top: 15px;
+}
+.recurring-view-box-content .info-table {
+	width: 100%;
+}
+
+.recurring-view-buttons-set {
+	clear:both;
+	margin: 15px 0 15px 20px;
+}
+
+
+.col2-set.order-info-box .info-box {
+	padding:27px;
+		
+
+}
+

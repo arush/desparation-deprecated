@@ -34,15 +34,14 @@
 }
 </style>
 <![endif]-->
-<div class="page-title">
-<h4><?php echo $this->__('Address Book') ?> <span class="separator">|</span> <a href="<?php echo $this->getAddressBookUrl() ?>"><?php echo $this->__('Manage Addresses') ?></a>
-</h4>
+<div class="black-title-bar">
+<?php echo $this->__('Address Book') ?> <a class="red-title-button" href="<?php echo $this->getAddressBookUrl() ?>"><?php echo $this->__('Manage Addresses') ?></a>
 </div>
 
 <div id="address-book" class="col2-set">
     <div class="col-1">
         <div class="info-box">
-            <h3 class="box-title"><?php echo $this->__('Default Billing Address') ?> <span class="separator">|</span> <a href="<?php echo $this->getPrimaryBillingAddressEditUrl() ?>"><?php echo $this->__('Edit Address') ?></a></h3>
+            <span class="black-title-med"><?php echo $this->__('Default Billing') ?> <a class="red-title-med-button" href="<?php echo $this->getPrimaryBillingAddressEditUrl() ?>"><?php echo $this->__('Edit') ?></a></span>
             <address class="box-content">
                 <?php echo $this->getPrimaryBillingAddressHtml() ?>
             </address>
@@ -50,7 +49,7 @@
     </div>
     <div class="col-2">
         <div class="info-box">
-            <h3 class="box-title"><?php echo $this->__('Default Shipping Address') ?> <span class="separator">|</span> <a href="<?php echo $this->getPrimaryShippingAddressEditUrl() ?>"><?php echo $this->__('Edit Address') ?></a></h3>
+            <span class="black-title-med"><?php echo $this->__('Default Shipping') ?> <a class="red-title-med-button" href="<?php echo $this->getPrimaryShippingAddressEditUrl() ?>"><?php echo $this->__('Edit') ?></a></span>
             <address class="box-content">
                 <?php echo $this->getPrimaryShippingAddressHtml() ?>
             </address>

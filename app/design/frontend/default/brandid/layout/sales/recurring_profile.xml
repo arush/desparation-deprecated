@@ -29,14 +29,14 @@
 <layout version="0.1.0">
 	<customer_account>
         <reference name="customer_account_navigation" >
-            <action method="addLink" translate="label"><name>recurring_profiles</name><path>sales/recurring_profile/</path><label>Recurring Profiles</label></action>
+            <action method="addLink" translate="label"><name>recurring_profiles</name><path>sales/recurring_profile/</path><label>My Plans</label></action>
         </reference>
     </customer_account>
 
     <sales_recurring_profile_index>
         <update handle="customer_account"/>
         <reference name="root">
-            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
         </reference>
         <reference name="my.account.wrapper">
             <block type="sales/recurring_profiles" name="sales.recurring.profiles" template="sales/recurring/profiles.phtml">
@@ -51,7 +51,7 @@
 
     <sales_recurring_profile_view__tabs>
         <reference name="root">
-            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
         </reference>
         <reference name="my.account.wrapper">
             <block type="sales/recurring_profile_view" name="sales.recurring.profile.view" template="sales/recurring/profile/view.phtml">

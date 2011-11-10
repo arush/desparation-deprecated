@@ -25,11 +25,11 @@
  */
 ?>
 <?php  $_order = $this->getOrder() ?>
-<p class="order-links"><a href="<?php echo $this->getPrintAllCreditmemosUrl($_order) ?>" onclick="this.target='_blank'"><?php echo $this->__('Print All Refunds') ?></a></p>
+<p class="order-links"><a class="red-title-button" href="<?php echo $this->getPrintAllCreditmemosUrl($_order) ?>" onclick="this.target='_blank'"><?php echo $this->__('Print All Refunds') ?></a></p>
 <?php foreach ($_order->getCreditmemosCollection() as $_creditmemo): ?>
 
-<h4 class="sub-title"><?php echo $this->__('Refund #') ?><?php echo $_creditmemo->getIncrementId(); ?> <span class="separator">|</span> <a href="<?php echo $this->getPrintCreditmemoUrl($_creditmemo) ?>" onclick="this.target='_blank'"><?php echo $this->__('Print Refund') ?></a></h4>
-<h4 class="table-caption"><?php echo $this->__('Items Refunded') ?></h4>
+<span class="black-title-med"><?php echo $this->__('Refund #') ?><?php echo $_creditmemo->getIncrementId(); ?> <span class="separator">|</span> <a class="red-title-med-button" href="<?php echo $this->getPrintCreditmemoUrl($_creditmemo) ?>" onclick="this.target='_blank'"><?php echo $this->__('Print Refund') ?></a></span>
+<div class="black-title-bar"><?php echo $this->__('Items Refunded') ?></div>
 <table class="data-table" id="my-refund-table-<?php echo $_creditmemo->getId(); ?>">
     <col />
     <col width="20%" />

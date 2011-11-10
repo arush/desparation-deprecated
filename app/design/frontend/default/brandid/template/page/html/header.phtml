@@ -3,16 +3,11 @@
 ?>
 
 <?php if (!Mage::getSingleton('customer/session')->isLoggedIn()):?>
-<?php /*WDCA CODE BEGIN*/ ?>
-	<?php echo $this->getChildHtml('rewardsHeader') ?>
-	<?php /*WDCA CODE END*/ ?>
-	
-	<p>and start earning</p>	
-	
+
+	<?php if (!Mage::getSingleton('customer/session')->isLoggedIn()) { ?>	
 			<!-- The provider login will be embedded in this div //-->
-			
+
 			<div id="oa_social_login_header"></div>
-								
 			<script type="text/javascript">
 				 oneall.api.plugins.social_login.build("oa_social_login_header", {
 				  'providers' :  ['facebook', 'google', 'twitter', 'yahoo'], 
@@ -20,7 +15,7 @@
 				  'css_theme_uri': 'https://cdn.oneall.com/css/api/socialize/themes/connect_horizontal_small.css'
 				 });
 				</script>	
-			
+			<?php }; ?>
 	<div class="connect"> or </div>
 	<div class="login-header">
 		<?php echo $this->getChildHtml('accountLinks') ?>
@@ -30,10 +25,11 @@
     <div class="header">
 	
 		<div class="top-header">
-			<div class="store-language"><?php echo $this->getChildHtml('store_language') ?></div>
-			<div class="facebook-header"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('header-fb-like')->toHtml() ?></div>
+			<!-- div class="store-language"><?php // echo $this->getChildHtml('store_language') ?></div-->
+			<!-- div class="facebook-header"><?php // echo $this->getLayout()->createBlock('cms/block')->setBlockId('header-fb-like')->toHtml() ?></div-->
 			<?php /* echo $this->getChildHtml('topLinks') */ ?>
 		    
+			<?php if (Mage::getSingleton('customer/session')->isLoggedIn()) {?>
 				<div class="top-name">
 					
 					<!--oneall thumbnail -->
@@ -57,9 +53,9 @@
 					
 					
 					if(isset($facebookID)) { ?>
-						<img class="oaimg" width="30" height="30" src="http://graph.facebook.com/<?php echo $facebookID ?>/picture?type=square" />
+						<img class="oaimg" width="50" height="50" src="http://graph.facebook.com/<?php echo $facebookID ?>/picture?type=square" />
 					<?php  } else if(isset($twitterID)) { ?>
-						<img class="oaimg" width="30" height="30" src="http://api.twitter.com/1/users/profile_image?screen_name=<?php echo $twitterID ?>&size=normal" />
+						<img class="oaimg" width="50" height="50" src="http://api.twitter.com/1/users/profile_image?screen_name=<?php echo $twitterID ?>&size=normal" />
 					<?php
 					} 
 					?>
@@ -70,14 +66,15 @@
 
 
 				</div>
-			
 
-
-				
 				<div class="account-link">
 					<a class="header-link" href="/customer/account/index/">My Account</a>
-					<?php $customerName = Mage::helper('customer')->getCustomerName(); ?> 						
-					<a class="flname" href="#"><?php echo $customerName; ?></a>						
+					<?php $customerName = Mage::helper('customer')->getCustomerName(); 
+						$names = explode(" ",$customerName, 2);
+						$firstname = $names[0];
+					
+					?> 						
+					<a class="flname" href="#">Hi <?php echo $firstname; ?></a>						
 					<div class="my-account-links">
 						<?php echo $this->getChildHtml('accountLinks') ?>
 					</div>					
@@ -107,17 +104,21 @@
 									});
 					});
 				</script>
-					
+			<?php }; ?>
+	
 				<?php echo $this->getChildHtml('topCart') ?>
 
+			<?php if (Mage::getSingleton('customer/session')->isLoggedIn()) { ?>
 				<div id="nav-invite">
 				
-					<a class="header-link" href="/index.php/rewardsref/customer/index/">Invite and earn credit</a>
+					<a class="header-link" href="/index.php/rewardsref/customer/index/">Invite and earn</a>
 				<?php /*WDCA CODE BEGIN*/ ?>
 				<?php echo $this->getChildHtml('rewardsHeader') ?>
 				<?php /*WDCA CODE END*/ ?>					
 				
 				</div>
+			<?php }; ?>
+
 			<div class="catalogLinks"><?php echo $this->getChildHtml('catalogLinks') ?></div>
 			
 		<div class="branding">

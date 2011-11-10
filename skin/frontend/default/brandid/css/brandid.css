@@ -22,15 +22,15 @@ body {
 	border-top: solid 7px #cfcfcf;	
 	margin-top: -7px;
 	padding-top: 20px;	
-	padding-left: 40px;	
 	font-family: ff-enzo-web,ProximaNovaBold;
 	text-transform: uppercase;
 	color: #000;
 	font-size: 15px;
-	font-weight:100;
+	font-weight:900;
 	line-height: normal;
 	text-align: right;
 	background: transparent;
+	width: 120px;
 }
 
 .top-header a.header-link:hover
@@ -43,8 +43,13 @@ body {
 	border-top: solid 7px #000;	
 }
 
+#nav-invite a.header-link {
+
+padding-left:38px;
+}
 
 
+.top-header .account-link a.header-link {padding-right:56px;}
 
 
 /* Counter styling */
@@ -106,7 +111,7 @@ body {
 	 {
 	padding: 7px 7px 0 0;
 	display: block;
-	float: left;
+	float: right;
 	color: #595959;
 	font-family: 'ProximaNovaLight';
 	font-weight: normal;
@@ -157,11 +162,17 @@ body {
 }
 .account-link {
 	text-align: right;
+	width:120px;
+	padding-left:10px;
 	
 }
 .top-header a.header-link {
     height: auto;
     margin: -7px 0 0 0;
+}
+
+.top-header .catalogLinks a {
+	width:130px;
 }
 
 a.flname {

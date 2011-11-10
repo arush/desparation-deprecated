@@ -26,13 +26,13 @@
 ?>
 <?php  $_order = $this->getOrder() ?>
 <div class="order-page">
-<div class="page-title title-buttons">
-    <h4><?php echo $this->__('Order #%s - %s', $_order->getRealOrderId(), $_order->getStatusLabel()) ?></h4>
+<div class="black-title-bar">
+    <?php echo $this->__('Order #%s - %s', $_order->getRealOrderId(), $_order->getStatusLabel()) ?>
     <?php if ($this->helper('sales/reorder')->canReorder($_order)) : ?>
         <a href="<?php echo $this->getReorderUrl($_order) ?>"><?php echo $this->__('Reorder') ?></a>
         <span class="separator">|</span>
     <?php endif ?>
-    <a href="<?php echo $this->getPrintUrl($_order) ?>" onclick="this.target='_blank';"><?php echo $this->__('Print Order') ?></a>
+    <a class="red-title-button" href="<?php echo $this->getPrintUrl($_order) ?>" onclick="this.target='_blank';"><?php echo $this->__('Print Order') ?></a>
     <?php if($this->helper('rss/order')->isStatusNotificationAllow()): ?>
         <span class="separator">|</span>
         <a href="<?php echo $this->helper('rss/order')->getStatusHistoryRssUrl($_order) ?>" class="link-rss f-none"><?php echo $this->__('Subscribe to Order Status') ?></a>
@@ -61,13 +61,13 @@
 <div class="col2-set">
     <div class="col-1">
         <div class="info-box">
-            <h4 class="box-title"><?php echo $this->__('Shipping Address') ?></h4>
+            <div class="black-title-bar"><?php echo $this->__('Shipping Address') ?></div>
             <address class="box-content"><?php echo $_order->getShippingAddress()->format('html') ?></address>
         </div>
     </div>
     <div class="col-2">
         <div class="info-box">
-            <h4 class="box-title"><?php echo $this->__('Shipping Method') ?><?php /* | <a href="#"><?php echo $this->__('Track Order') ?></a>*/ ?></h4>
+            <div class="black-title-bar"><?php echo $this->__('Shipping Method') ?><?php /* | <a href="#"><?php echo $this->__('Track Order') ?></a>*/ ?></div>
             <div class="box-content">
         <?php if ($_order->getShippingDescription()): ?>
             <?php echo $_order->getShippingDescription() ?>
@@ -82,13 +82,13 @@
 <div class="col2-set">
     <div class="col-1">
         <div class="info-box">
-            <h4 class="box-title"><?php echo $this->__('Billing Address') ?></h4>
+            <div class="black-title-bar"><?php echo $this->__('Billing Address') ?></div>
             <address class="box-content"><?php echo $_order->getBillingAddress()->format('html') ?></address>
         </div>
     </div>
     <div class="col-2">
         <div class="info-box">
-            <h4 class="box-title"><?php echo $this->__('Payment Method') ?></h4>
+            <div class="black-title-bar"><?php echo $this->__('Payment Method') ?></div>
             <div class="box-content"><?php echo $this->getPaymentInfoHtml() ?></div>
         </div>
     </div>

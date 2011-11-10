@@ -16,6 +16,7 @@
 	<![endif]-->
     <?php echo $this->getBlockHtml('formkey')?>
     <span class="black-title-med"><?php echo $this->__('Account Information') ?></span>
+    <div class="small-spacer"></div>
     <ul class="form-list">
         <li class="fields">
             <?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getCustomer())->toHtml() ?>

@@ -477,9 +477,6 @@
 
 .mypoints-page .account-box, .mypoints-transfers-earnings, .mypoints-transfers-spendings{
 	background: #fff;
-	-moz-box-shadow: 0pt 0px 2px #acacac;
-	-webkit-box-shadow: 0pt 0px 2px #acacac;
-	-khtml-box-shadow: 0pt 0px 2px #acacac;
 	margin-bottom: 15px;
 }
 .head-alt2, .mypoints-transfers-header{
