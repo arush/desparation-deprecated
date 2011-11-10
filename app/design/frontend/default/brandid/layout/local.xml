@@ -34,5 +34,8 @@
     	<reference name="head">
 			<action method="setTitle"><title>BRANDiD | Invite and Earn</title></action>
     	</reference>
+    	<reference name="breadcrumbs.container">
+    		<remove name="customer_account_navigation" />
+    	</reference>
     </rewardsref_customer_index>   
 </layout>

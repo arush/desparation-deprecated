@@ -242,5 +242,129 @@ a.flname {
 	margin: 0 auto;
 	width: 972px;
 	position: relative;
+}
+
+.urlcode-input-box .edit {
+	position: relative;
+	margin-right: 0px;
+	background: #d2002b;
+	color: #fff;
+	text-transform: uppercase;
+	font-family: 'ProximaNovaSemiBold';	
+	font-size: 11px;
+	border: 0px;
+	padding: 7px 9px;
+	cursor: pointer;
 	
+}
+input#referral_url {
+	width: auto;
+	display: inline;
+	border: 0px !important;
+	background: transparent !important;
+	padding: 0 !important;
+	
+}
+
+.my_referrals-urlcode_group div.urlcode-input-box {
+    float: none !important;
+    border: solid 1px #b0b0b0 !important;
+    padding: 6px !important;
+    width: 418px;
+}
+/* Invite page styles */
+.invite-options:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.invite-options {
+	display: inline-block;
+	margin: 25px 0 0 15px	
+}
+ 
+html[xmlns] .invite-options {
+	display: block;
+}
+ 
+* html .invite-options {
+	height: 1%;
+}
+
+.invite-options h3 {
+	font-family: 'ProximaNovaLight';
+	font-size: 18px;
+	font-weight: 200;
+}
+
+.invite-options ul li {
+	display: block;
+	float: left;
+	width: 134px;
+	height: 52px;
+	margin-right: 10px;
+	background: #cfcfcf;
+	cursor: pointer;
+}
+
+.invite-options ul li.selected {
+	background: #595959;
+}
+
+.invite-options ul li input {
+	display: none;
+}
+
+.send-now-box {
+	height: auto !important;
+}
+
+.send-now-box-left, .send-now-box-right {
+	height: auto !important;
+}
+
+/* Random Quote */
+
+#randomQuotePreview {
+	margin: 20px;
+}
+
+.random-quote span {
+	display: block;
+	font-family: 'pt-serif-caption';	
+	
+}
+.random-quote .apostrophe {
+	font-size: 74px;
+	font-family: 'Times New Roman';
+	font-weight: normal;
+	font-style: italic;
+	color: #df778c;
+	position: absolute;
+	margin: -23px 0 0 -20px;
+	letter-spacing: -6px;
+}
+.random-quote .quote {
+	background: #eee;
+	padding: 30px 40px;
+	color: #444;
+	font-size: 15px;
+}
+.random-quote .author {
+	padding-left: 70px;
+	padding-top: 10px;
+	color: #000;
+	font-size: 10px;
+}	
+.random-quote .caption {
+	padding-left: 70px;
+	padding-top: 5px;		
+	color: #000;
+	font-size: 8px;	
+	font-family: 'pt-serif-caption';	
+	font-style: italic;
 }

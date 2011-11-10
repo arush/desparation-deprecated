@@ -9,8 +9,10 @@
         <li>
             <div class="urlcode-input-box">
                 <?php /*?><label for="referral_url"><?php echo $this->__('Your Referral URL') ?></label><br /><?php */?>
-                <input style="width: 625px;" type="text" readonly name="referral_url" value="<?php echo $this->getReferralUrl(); ?>" 
-                    title="<?php echo $this->__('Your Referral URL') ?>" class="input-text" id="referral_url" />
+                <span><?php echo Mage::getBaseUrl();?></span><input type="text" name="referral_url" value="<?php echo Mage::getSingleton('customer/session')->getCustomerurl(); ?>" 
+                    title="<?php echo $this->__('Your Referral URL') ?>" class="input-text" id="referral_url" readonly="readonly" />
+	            <button class="edit"><span><?php echo $this->__('Edit'); ?></span></button>
+                    
             </div>
             <?php /*?><div id="copy-link"><img src=<?php echo $this->getSkinUrl(); ?>/images/copylink.png width="161" height="38" /></div><?php */?>
             <?php /*?>Once this div is included into the template file, delete the inline style width for the id="referral_url"<?php */?>
@@ -49,3 +51,17 @@
 </div>
 <?php endif; ?>
 <!-- @nelkaake Added on Saturday June 26, 2010: END referral code/url/email fieldset -->
+
+<script type="text/javascript">
+	Event.observe($$('.urlcode-input-box button.edit')[0], 'click', function(){
+		if ($('referral_url').readAttribute('readonly')) {
+
+			this.select('span')[0].innerHTML = 'save';
+			$('referral_url').removeAttribute('readonly');
+		} else {
+			$('referral_url').setAttribute('readonly', 'readonly');	
+			this.select('span')[0].innerHTML = 'edit';			
+		
+		}
+	});
+</script>

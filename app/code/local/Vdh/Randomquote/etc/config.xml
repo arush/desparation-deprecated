@@ -22,4 +22,15 @@
             </randomquote>
         </models>          
     </global> 
+    <frontend>
+        <routers>
+            <randomquote>
+                <use>standard</use>
+                <args>
+                    <module>Vdh_Randomquote</module>
+                    <frontName>randomquote</frontName>
+                </args>
+            </randomquote>
+        </routers>      
+    </frontend>      
 </config>
