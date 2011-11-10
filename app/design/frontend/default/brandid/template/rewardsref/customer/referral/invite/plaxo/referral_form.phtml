@@ -14,7 +14,24 @@
             <input type="hidden" value="Il1NwrpfsCuSmp03" name="form_key"/>
 
                		<div class="send-now-box-left">
-                    	<div class="send-header-left"><img src="<?php echo $this->getSkinUrl(); ?>images/sendinvitationsleft.png" width="301" height="44" /></div>
+               		
+               			<div id="inviteStyle" class="invite-options">
+               				<h3><?php echo $this->__('Choose an invitation style'); ?></h3>
+               				<ul>
+               					<li class="selected"><input type="radio" name="invite_style" value="0" checked="checked" /></li>
+               					<li><input type="radio" name="invite_style" value="1" /></li>
+               					<li><input type="radio" name="invite_style" value="2" /></li>
+               				</ul>
+               			</div>
+               			
+               			<div id="inviteQuote" class="invite-options">
+	           				<h3><?php echo $this->__('Choose inspirational quote'); ?></h3>
+               				<ul>
+               					<li class="selected"><input type="radio" name="invite_quote" value="0" checked="checked" /></li>
+               					<li><input type="radio" name="invite_quote" value="1" /></li>
+               					<li><input type="radio" name="invite_quote" value="2" /></li>
+               				</ul>
+               			</div>
                         <div class="plaxo"><?php echo $this->getChildHtml('plaxo_contact_chooser'); ?></div>
                         <div class="providers"><img src="<?php echo $this->getSkinUrl(); ?>images/emailproviders.png" width="122" height="193" /></div>
                         <div class="secure-image"><img src="<?php echo $this->getSkinUrl(); ?>images/secure.png" width="75" height="27" /></div>
@@ -43,6 +60,16 @@
    
     <script type="text/javascript">
         var dataForm = new VarienForm('form-validate', true);
+        
+        $$('.invite-options ul li').each(function(obj){
+        	Event.observe(obj, 'click', function(){
+	        	this.up().select('li').each(function(obj){
+		        	obj.removeClassName('selected');		        	
+	        	});
+	        	this.addClassName('selected');
+        		this.select('input')[0].checked = 'checked';
+        	})
+        });
     </script>
 
 

@@ -231,5 +231,53 @@ a.flname {
 	margin: 0 auto;
 	width: 972px;
 	position: relative;
-	
+}
+
+
+
+/* Invite page styles */
+.invite-options:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.invite-options {
+	display: inline-block;
+	margin: 25px 0 0 15px	
+}
+ 
+html[xmlns] .invite-options {
+	display: block;
+}
+ 
+* html .invite-options {
+	height: 1%;
+}
+
+.invite-options h3 {
+	font-family: 'ProximaNovaLight';
+	font-size: 18px;
+	font-weight: 200;
+}
+
+.invite-options ul li {
+	display: block;
+	float: left;
+	width: 134px;
+	height: 52px;
+	margin-right: 10px;
+	background: #cfcfcf;
+	cursor: pointer;
+}
+
+.invite-options ul li.selected {
+	background: #595959;
+}
+
+.invite-options ul li input {
+	display: none;
 }

@@ -5,7 +5,7 @@ class Vdh_Randomquote_Model_Randomquote extends Varien_Object {
 	
 		$helper = Mage::helper('randomquote');
 	
-		$quotes = unserialize($helper->getQuotes());
+		$quotes = $helper->getQuotes();
 	
 		if ($position === false || $position >= sizeof($quotes)) {
 			$random = rand(0, sizeof($quotes)-1);
@@ -13,6 +13,7 @@ class Vdh_Randomquote_Model_Randomquote extends Varien_Object {
 		} else {
 			$quote = $quotes[$position];
 		}
+		$this->setData($quote);
 		return $this;
 	}
-}	
+}		
