@@ -15,5 +15,4 @@ class Vdh_Randomquote_Model_Randomquote extends Varien_Object {
 		}
 		return $this;
 	}
-
-}
+}	
