@@ -250,7 +250,7 @@
 .points-prediction .as_low_as
 {
 	width: 100%;
-	font-family: Gotham-book;
+	font-family: ProximaNovaLight;
 }
 .points-prediction .earnable
 {
@@ -336,20 +336,20 @@
 /*FLO ADDED BEGGINNING - april*/
 
 /*SHOPPING CART START*/
-#shopping-cart-table .item-points-header-redeemed, #shopping-cart-table .item-points-header-earned{color: #494949; font-family: Gotham-book;}
+#shopping-cart-table .item-points-header-redeemed, #shopping-cart-table .item-points-header-earned{color: #494949; font-family: ProximaNovaLight;}
 .cart-earned{margin-bottom: 10px;}
 .points-amount{*white-space:nowrap; *text-align: left;}
 .cart .totals table .cart-points-total_spent{
 	padding-top: 5px;
-	color: #B14E4E;
-	font-family: Gotham-book;
+	color: #d2002b;
+	font-family: ProximaNovaLight;
 	
 }
 .cart .totals table .cart-points-spending_warnings{background: #fff;}
 .cart .totals table .cart-points-total_earned{
 	padding-top: 5px;
 	color: #8cd28b;
-	font-family: Gotham-book;
+	font-family: ProximaNovaLight;
 }
 .item-points-list-earned li span{
 	color: #fff;

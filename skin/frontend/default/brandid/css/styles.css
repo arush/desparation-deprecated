@@ -944,7 +944,7 @@ a.back-link {
 #continue-shopping-button {
   background: url("../images/sprites.png") no-repeat scroll -765px -246px transparent;
 }
-#continue-shopping-button span{color: #fff; font-family: Gotham-book; font-weight: normal; padding: 5px; height: auto;}
+#continue-shopping-button span{color: #fff; font-family: ProximaNovaLight; font-weight: normal; padding: 5px; height: auto;}
 #continue-shopping-button span span{padding: 0;}
 .col3-layout .form-buttons p.back-link, .col3-layout .form-list label {
   width: 150px;
@@ -1037,8 +1037,7 @@ a.back-link {
 
 .messages li.error-msg, .messages li.success-msg, .messages li.note-msg, .messages li.notice-msg
  {
-  border-style: solid ! important;
-  border-width: 1px ! important;
+
   font-size: 12px ! important;
 }
 
@@ -1054,7 +1053,7 @@ p.error-msg {
   border-color: #ffe8e8;
   background: url("../images/error.png") no-repeat scroll 0 0 #ffe8e8;
   color: #d2002b;
-  font-family: Gotham-book;
+  font-family: ProximaNovaLight;
 }
 .messages li.error-msg span{color: #d2002b;}
 .messages li.error-msg a {
@@ -1076,7 +1075,7 @@ p.error-msg {
   background: url("../images/success.png") no-repeat scroll 0 0 #d2f2d2;
   border: 1px solid #d2f2d2;
   color: #467c46;
-  font-family: Gotham-book;
+  font-family: ProximaNovaLight;
 }
 .messages li.success-msg span{color: #467c46;}
 .messages li.success-msg a {
@@ -1092,7 +1091,7 @@ p.error-msg {
   background: none repeat scroll 0% 0% #FEEFB3;
   /*border: 1px solid #9F6000;*/
   color: #9F6000;
-  font-family: Gotham-book;
+  font-family: ProximaNovaLight;
 }
 
 .messages li.note-msg a, .messages li.notice-msg a {
@@ -7291,7 +7290,7 @@ textarea {
   width: 194px;
   text-align: center;
   font-size: 13px;
-  font-family: Gotham-book;
+  font-family: ProximaNovaLight;
 }
 
 .my-account .button.button span {
@@ -7421,7 +7420,7 @@ textarea {
 }
 
 .account-login .form-list label, .account-login .form-list span.label, .account-create .form-list label, .account-create .form-list span.label  {
- font-family: HelveticaNeueLight;
+ font-family: ProximaNovaLight;
  font-size: 14px;
  color: #444;
  font-weight: 100;
@@ -7479,7 +7478,7 @@ div.validation-passed {
   color: #fff;
   font-size: 13px;
   font-weight: normal;
-  font-family: Gotham-book;
+  font-family: ProximaNovaLight;
   line-height: 12px;
 }
 
@@ -7538,7 +7537,7 @@ div.validation-passed {
 	padding: 16px;
 	float: left;
     color: #C1C1C1;
-	font-family: HelveticaNeueLight, Arial;
+	font-family: ProximaNovaLight, Arial;
 	font-size: 17px;
 	text-transform: lowercase;
     margin: 0 !important;
@@ -7564,7 +7563,7 @@ div.validation-passed {
 color: #444;
 font-size: 14px ! important;
 font-weight: normal;
-font-family: HelveticaNeueLight;
+font-family: ProximaNovaLight;
 width: 75px;
 float: left;
 }
@@ -7612,12 +7611,12 @@ text-transform: uppercase;
 .account-login #connectwith {position:absolute;right:0;top:10px;display:none;color:#eee;}
 .account-login #oa_social_login_container {width:260px;height:135px;}
 
-.account-login #login .or, .account-login #register .or {border-top:1px solid #444;font-family:HelveticaNeueLight,Arial,sans-serif;text-align: center; margin:0 15px 25px 15px;}
+.account-login #login .or, .account-login #register .or {border-top:1px solid #444;font-family:ProximaNovaLight,Arial,sans-serif;text-align: center; margin:0 15px 25px 15px;}
 .account-login .or .or-text {margin-top:-10px;}
 
 
 .account-login .gigya-label p { 
- font-family: HelveticaNeueLight;
+ font-family: ProximaNovaLight;
  font-size: 14px;
  color: #ccc;
  font-weight: 100;
@@ -9982,7 +9981,7 @@ color: #555555;
   color: #2f2f2f;
   font-weight: normal;
   margin: 0pt 0pt 15px;
-  font-family: HelveticaNeueLight;
+  font-family: ProximaNovaLight;
 }
 #checkout-step-login .form-list label, #checkout-step-login .form-list .label {
   text-align: left;
@@ -10493,12 +10492,12 @@ button::-moz-focus-inner{border:0;padding:0;margin:0;}
 			color: #292929;
 			padding: 41px 27px 15px;
 		}
-		.nav-invite p, .tooltip .nav-points p{text-transform: uppercase; text-align:center; font-size: 15px; padding: 0px; font-family:Gotham-book, sans-serif; letter-spacing: -1px; color: #292929; float: none;}
+		.nav-invite p, .tooltip .nav-points p{text-transform: uppercase; text-align:center; font-size: 15px; padding: 0px; font-family:ProximaNovaLight, sans-serif; letter-spacing: -1px; color: #292929; float: none;}
 		.tooltip .nav-points p{padding-bottom: 5px;}
 		.nav-invite form input{float: left; color: #929292;}
 		.nav-invite span{font-size: 11px; padding: 25px 0 0 10px; position: absolute;}
 		.nav-invite input{margin-right: 10px; width: 175px; *width: 170px; height: 24px; padding-left:5px; background: #e7e7e7; border: 1px solid #B2AEAE;}
-		.nav-invite button{height: 26px; border: 1px solid #B2AEAE; color:#dedede; float: left; padding: 0 5px; font-family: Gotham-book, sans-serif; cursor: pointer; background-color:#d2002b;}
+		.nav-invite button{height: 26px; border: 1px solid #B2AEAE; color:#dedede; float: left; padding: 0 5px; font-family: ProximaNovaLight, sans-serif; cursor: pointer; background-color:#d2002b;}
 		.nav-invite button:hover{color: #000000; background: url("../images/sprites.png") no-repeat scroll -749px -103px transparent;}
 		.nav-invite img{padding-top: 15px; }
 		
@@ -10524,21 +10523,21 @@ button::-moz-focus-inner{border:0;padding:0;margin:0;}
 			src: url('fonts/HelveticaNeueBold.eot?') format('eot'), url('fonts/HelveticaNeueBold.ttf') format('truetype');
 		}
 		@font-face{
-			font-family: 'HelveticaNeueLight';
-			src: url('fonts/HelveticaNeueLight.eot?') format('eot'), url('fonts/HelveticaNeueLight.ttf') format('truetype');
+			font-family: 'ProximaNovaLight';
+			src: url('fonts/ProximaNovaLight.eot?') format('eot'), url('fonts/ProximaNovaLight.ttf') format('truetype');
 		}
 		
 	/*ADD HELVETICA NEUE BOLD FONT END*/
 
 
 /*REPLACE CUFON START*/
-h1.cufon, h2.cufon, h3.cufon, h4.cufon, h5.cufon, h6.cufon, p.cufon, span.cufon, div.cufon, div.content-menu a, #content-menu li a, .availability.out-of-stock, .product-view .product-name h1, .page-title h1{font-family: HelveticaNeueLight; font-weight: normal;}
+h1.cufon, h2.cufon, h3.cufon, h4.cufon, h5.cufon, h6.cufon, p.cufon, span.cufon, div.cufon, div.content-menu a, #content-menu li a, .availability.out-of-stock, .product-view .product-name h1, .page-title h1{font-family: ProximaNovaBold;letter-spacing: -1px;color:white; padding:10px;background-color:black;text-transform:uppercase;}
 /*.page-title h1, .page-title h2{font-size: 22px;
 letter-spacing: -1px;font: 22px/27px Gotham-light;}
 .product-view .product-name h1 { letter-spacing: -1px;
 font-size: 20px; }
 #filter-bar div.block-title span.cufon { color: #EAEAEA; letter-spacing: -1px;}*/
-.page-title .page-title-content h1{font-family: HelveticaNeueLight, sans-serif;}
+.page-title .page-title-content h1{font-family: ProximaNovaLight, sans-serif;}
 /*REPLACE CUFON END*/
 
 
@@ -10663,7 +10662,7 @@ font-size: 20px; }
 	width: 246px;
 	height: 34px;
 	padding: 0;
-	font-family: Gotham-book;
+	font-family: ProximaNovaLight;
 }
 .category-products .old-price, .products-grid .price-box .special-price{
 	width: 130px;
@@ -10690,7 +10689,7 @@ font-size: 20px; }
 	width: 100px;
 	background: url("../images/sprites.png") repeat scroll -650px -47px transparent;
 	display: block;
-	font-family: Gotham-book;
+	font-family: ProximaNovaLight;
 	color: #5b5757;
 	font-size: 12px;
 	text-transform: uppercase;
@@ -10709,7 +10708,7 @@ a.cat-view-now {
 	top: 23px; left: 10px;
 	color: #d2002b;
 	position: absolute;
-	font-family: Gotham-Book;
+	font-family: ProximaNovaLight;
 }
 /*CATEGORY GRID PRODUCT IMAGE ROLLOVER 2011-05-24 BY FLO START*/
 .ProdImgRollover{
@@ -10751,7 +10750,7 @@ a.cat-view-now {
 	text-align: center;
 	line-height: 90px;
 	font-size: 17px;
-	font-family: Gotham-book;
+	font-family: ProximaNovaLight;
 	display: block\9;
 	background: URL('../images/grid_rollover.png')\9;
 }
@@ -10792,7 +10791,7 @@ a.cat-view-now {
 	color: #d2002b;
 	font-size: 12px;
 	padding: 59px 0 0 171px;
-	font-family: Gotham-book;
+	font-family: ProximaNovaLight;
 }
 
 /*CATEGORY GRID PRODUCT IMAGE ROLLOVER 2011-05-24 BY FLO END*/
@@ -10816,7 +10815,7 @@ a.cat-view-now {
 
 .left-layered-nav .block .block-title{
 	padding: 13px 17px 9px;
-	font-family: Gotham-book;
+	font-family: ProximaNovaLight;
 	color: #404040;
 	text-transform: uppercase;
 	font-size: 15px;
@@ -10980,7 +10979,7 @@ a.cat-view-now {
 .product-shop .price-box{
 	padding: 0 0 13px 13px;
 	border-bottom: 1px solid #acacac;
-	font-family: Gotham-Book;
+	font-family: ProximaNovaLight;
 	float: left;
 	background: #fff;
 }
@@ -11002,17 +11001,17 @@ a.cat-view-now {
   color: #d2002b;
   position: absolute;
   right: 17px; top: 18px;
-  font-family: Gotham-Book;
+  font-family: ProximaNovaLight;
 }
 
 .product-view .product-shop .add-to-links, .product-view .add-to-box .add-to-links{
 	height: 33px;
-	font-family: Gotham-book;
+	font-family: ProximaNovaLight;
 }
 .product-view .product-options-bottom .add-to-cart button.button, .product-view .add-to-box button.button{
 	background: #d2002b;
 	height: 33px;
-	font-family: Gotham-book;
+	font-family: ProximaNovaLight;
 }
 .product-view button.button span{color: #fff; font-size: 11px; line-height: 24px;}
 .product-view .product-options-bottom .add-to-cart button.button:hover, .product-view .add-to-box button.button:hover{
@@ -11059,7 +11058,7 @@ a.cat-view-now {
 	float: left;
 	width: 120px;
 	text-align: center;
-	font-family: Gotham-book;
+	font-family: ProximaNovaLight;
 	font-size: 11px;
 	text-transform: uppercase;
 	line-height: 43px;
@@ -11151,16 +11150,16 @@ a.cat-view-now {
 	}
 	
 	.st-dashboard .mypoints-summary .usable-points, .st-dashboard .mypoints-summary .msg {padding: 15px 15px 0;}
-	.st-dashboard .mypoints-summary a{color: #d2002b; display: block; margin: 15px; text-transform: uppercase; font-family: Gotham-book;}
+	.st-dashboard .mypoints-summary a{color: #d2002b; display: block; margin: 15px; text-transform: uppercase; font-family: ProximaNovaLight;}
 	.st-dashboard .mypoints-summary a:hover{text-decoration: underline;}
-	.st-dashboard h4{font-family: HelveticaNeueLight; font-size: 15px; font-weight: normal; color: #2e2e2e;}
+	.st-dashboard h4{font-family: ProximaNovaLight; font-size: 15px; font-weight: normal; color: #2e2e2e;}
 	.st-dashboard{margin-left: 20px;}
 	.dashboard .edit{position: absolute;top: 0;right: 0;padding: 10px 15px;}
 	.dashboard .edit a:hover{text-decoration: underline;}
 	.dashboard .info-box{position: inherit; background-color:white;}
 	.dashboard .box-content a{line-height: 30px;}
 	.dashboard p.box-content{padding:25px;}
-	.dashboard .account-information .sub-title{border-bottom: none; padding: 0; margin: 0; font-size: 15px; font-family: HelveticaNeueLight;}
+	.dashboard .account-information .sub-title{border-bottom: none; padding: 0; margin: 0; font-size: 15px; font-family: ProximaNovaLight;}
 	.dashboard .account-information{padding: 10px 15px; border-bottom: 1px solid #e6e6e6;}
 	.dashboard .col2-set{background-color:white;padding: 25px;margin-bottom:25px;}
 	.customer-account-index .my-account .dashboard h2, .dashboard h4.sub-title, .my-account .info-box .box-title{
@@ -11176,7 +11175,7 @@ a.cat-view-now {
 	
 	.rewards-sidebar .block-content a{
 		color: #d2002b;
-		font-family: Gotham-book;
+		font-family: ProximaNovaLight;
 		text-transform: uppercase;
 		font-size: 11px;
 	}
@@ -11392,7 +11391,7 @@ a.cat-view-now {
   padding-bottom: 1px;
 }
 .sidebar .block-account li a {
-	font-family: HelveticaNeueLight;
+	font-family: ProximaNovaLight;
   color: rgb(51, 51, 51);
   text-decoration: none;
   display: block;
@@ -11466,12 +11465,11 @@ a.cat-view-now {
 .cart-table thead {
   font-size: 14px;
 }
-#cart-title-buttons h1{color: #434343;}
 .cart .title-buttons {
   padding: 20px 20px 0;
 }
 #shopping-cart-table th{
-	font-family: Gotham-light;
+	font-family: ProximaNovaLight;
 	letter-spacing: -0.5px;
 	color: #6f6f6f;
 }
@@ -11489,7 +11487,7 @@ a.cat-view-now {
 #shopping-cart-table .product-name a {
   color: #494949;
   text-decoration: none;
-  font-family: Gotham-book;
+  font-family: ProximaNovaLight;
 }
 
 #shopping-cart-table .product-name a:hover {
@@ -11508,11 +11506,13 @@ a.cat-view-now {
     0pt 0pt transparent;
   border: medium none;
   color: #fff;
-  font-family: Gotham-book;
+  font-family: ProximaNovaBold;
   font-weight: normal;
   padding: 13px 38px;
   text-decoration: none;
   text-transform: uppercase;
+  font-size:18px;
+  letter-spacing: -1px;
 }
 
 #shopping-cart-table .last button.button{
@@ -11531,7 +11531,7 @@ a.cat-view-now {
   text-decoration: none;
   font-weight: normal;
   padding: 5px;
-  font-family: Gotham-book;
+  font-family: ;
 }
 .cart-table .btn-continue:hover span, .cart-table .btn-update:hover  span{
 	text-decoration: underline;
@@ -11541,25 +11541,27 @@ a.cat-view-now {
   width: 259px;
 }
 .cart .totals .checkout-types .btn-proceed-checkout span {
-  font-size: 14px;
+  font-size: 18px;
   background: none repeat scroll
     0pt 0pt transparent;
   border: medium none;
   color: #fff;
   font-weight: normal;
+  letter-spacing: -1;
   padding: 10px 25px;
   text-decoration: none;
   text-transform: uppercase;
-  font-family: Gotham-book;
+  font-family: ProximaNovaBold;
 }
 .cart .totals .checkout-types .btn-proceed-checkout span span{padding: 0;}
 .cart .totals {
   float: right;
   width: 275px;
   padding: 40px 15px 0pt;
-  font-size: 14px;
+  letter-spacing: -1px;
+  font-size: 16px;
   color: #2f2f2f;
-  font-family: Gotham-book;
+  font-family: ProximaNovaBold;
   text-transform: uppercase;
 }
 .cart .totals .cart-points-total_item_discounts{color: #df4444;}
@@ -11610,15 +11612,18 @@ a.cat-view-now {
 .cart .deals {
   color: #000;
   float: left;
-  width: 250px;
+  width: 280px;
   display: inline;
   padding: 0 0 0 30px;
   font-size: 12px;
 }
 .cart .cart-collaterals h2 {
-  color: #2f2f2f;
-  font-family: HelveticaNeueLight;
-  font-weight: normal;
+  color: #FFF;
+  font-family: ProximaNovaBold;
+	padding:10px;
+	letter-spacing: -1px;
+	text-transform: uppercase;
+	background-color:black;	
   margin: 0 0 5px;
 }
 .cart-collaterals a{
@@ -11644,11 +11649,20 @@ a.cat-view-now {
 	width: 211px;
 }
 .cart .deals button.button {
-  background: #757575;
+  background: #000;
 	float: left;
 	margin-right: 7px;
-	border: 1px solid #969696;
+	-webkit-transition: background 200ms ease-in;
+-moz-transition: background 200ms ease-in;
+-o-transition: background 200ms ease-in;
+transition: background 200ms ease-in;
 }
+
+.cart .deals button.button:hover {
+  background: #d2002b;
+}
+
+
 
 .cart .deals button.button span {
   background: none;
@@ -11657,7 +11671,7 @@ a.cat-view-now {
   padding: 2px 5px 0pt;
   text-decoration: none;
   text-transform: uppercase;
-  font-family: Gotham-book;
+  font-family: ProximaNovaLight;
 }
 
 .cart .deals button.button span span {
@@ -11754,8 +11768,16 @@ a.cat-view-now {
 /* ==================== Improved One Page Checkout with progressbar  ===================== */
 .block-progress .block-title { background:none; margin:0 0 34px; padding:0; }
 .checkout-onepage-index .col-main { padding:0; border:0; }
-.checkout-onepage-index .page-title { padding-right:40px; width:auto; padding: 15px 5px; margin-bottom: 0;}
+.checkout-onepage-index .page-title {
+ 	padding-right:40px;
+ 	width:auto;
+ 	padding: 10px;
+ 	margin-top: 20px;
+ 	margin-bottom: 0;
+ 
+ }
 .checkout-onepage-index .page-title h1 { background:none; padding:0;  color: #434343;}
+
 #checkoutSteps .step{width: 675px;}
 .opc { position:relative; overflow:hidden; height:970px; padding-top:20px; text-align:center; border: none; background:#f3f3f3;
 	-moz-box-shadow: 0pt 0px 2px #acacac;
@@ -11952,7 +11974,6 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 /* CHECKOUT SKINNING FLO END */
 
 /* 404 PAGE START */
-.col1-layout h1, .col1-layout h2{color: #2e2e2e;}
 .notfound404{
 	background: #fff;
 	box-shadow: 0pt 0px 2px #acacac;
@@ -11974,7 +11995,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 #wishlist-table .price-discount{display: none;}
 .my-wishlist .wish-prod-name{width: 150px;}
 #wishlist-table th{font-family: Gotham-light; letter-spacing: -0.5px; font-size: 14px; color: #6f6f6f;}
-#wishlist-table h2 a{font-family: Gotham-book; color: #494949; text-decoration: none;}
+#wishlist-table h2 a{font-family: ProximaNovaLight; color: #494949; text-decoration: none;}
 #wishlist-table h2 a:hover{text-decoration: underline;}
 #wishlist-table span{font-weight: normal; font-size: 12px; color: #555555;}
 #wishlist-table .special-price span{font-weight: bold;}
@@ -11984,7 +12005,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 #wishlist-table .availability{display: block; padding-top: 5px;}
 #wishlist-table td.last{text-align: center;}
 #wishlist-table button, #wishlist-view-form button, .share-wishlist #form-validate button{height: 30px; margin-top: 5px;}
-#wishlist-table button span, #wishlist-view-form button span, .share-wishlist #form-validate button span{color: #fff; font-family: Gotham-book; padding: 1px 3px;}
+#wishlist-table button span, #wishlist-view-form button span, .share-wishlist #form-validate button span{color: #fff; font-family: ProximaNovaLight; padding: 1px 3px;}
 .my-wishlist .page-title{border-bottom: none;}
 #wishlist-view-form .buttons-set2{margin: 5px 14px 0 0;}
 #wishlist-view-form button{margin-left: 10px;}
@@ -12067,7 +12088,6 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 }
 .cart .crosssell h2 {
   font-size: 18px;
-  color: #2f2f2f;
 }
 .cart .crosssell .item {
   padding: 10px;
@@ -12084,7 +12104,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 .cart .crosssell .price-box{padding: 0 0 10px;}
 .cart .crosssell .product-name a{
 	color: #494949;
-	font-family: Gotham-book;
+	font-family: ProximaNovaLight;
 	font-weight: normal;
 }
 .cart .crosssell .price{
@@ -12093,12 +12113,18 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 }
 .cart .crosssell .old-price, .cart .crosssell .price-label, .cart .crosssell .price-discount{display: none;}
 .cart .crosssell button.button{
-	background: #757575;
-	border: 1px solid #969696;
+	background: #000;
+	-webkit-transition: background 200ms ease-in;
+-moz-transition: background 200ms ease-in;
+-o-transition: background 200ms ease-in;
+transition: background 200ms ease-in;
+}
+.cart .crosssell button.button:hover{
+	background: #d2002b;
 }
 .cart .crosssell .button span{
 	color: #fff;
-	font-family: Gotham-book;
+	font-family: ProximaNovaLight;
 	padding: 2px 5px 0;
 	font-weight: normal;
 }
@@ -12107,7 +12133,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 
 /* TBT REWARDS CART SLIDER */
 .rewards-box-spend-minicart {border-bottom: 1px solid #ccc;}
-.rewards-box-spend-minicart .box-content {margin-bottom: 22px;color: #AAA;}
+.rewards-box-spend-minicart .box-content {margin-bottom: 22px;color: #595959;}
 .rewards-box-spend-minicart label {color: #1a1a1a;}
 /* TBT REWARDS CART SLIDER END */
 
@@ -12160,7 +12186,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 
 /* slider root element */
 .rangeinput .slider { 
-	background:#3C72E6 url(../../../img/gradient/h30.png) repeat-x 0 0; 
+	background:#595959 url(../../../img/gradient/h30.png) repeat-x 0 0; 
 	height:9px; 
 	position:relative; 
 	cursor:pointer;
@@ -12168,7 +12194,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 	width:267px;
 	float:left; 
 	clear:right;
-	margin-top:10px;
+	margin-top:20px;
 	-moz-border-radius:3px; 
 	-webkit-border-radius:3px; 
 	-moz-box-shadow:inset 0 0 8px #000;
@@ -12184,7 +12210,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 
 /* drag handle */
 .rangeinput .handle { 
-	background:#fff url(../../../img/gradient/h30.png) repeat-x 0 0; 
+	background:#d2002b url(../../../img/gradient/h30.png) repeat-x 0 0; 
 	height:28px;
 	width:28px;
 	top:-12px;
@@ -12313,7 +12339,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 }
 .hp-cms img.line{float: right; padding: 15px 0;}
 .hp-cms img, .hp-cms p{float: left;}
-.hp-cms p{text-transform: uppercase; text-align: center; font-family: Gotham-book; color: #8c8c8c; font-size: 13px;}
+.hp-cms p{text-transform: uppercase; text-align: center; font-family: ProximaNovaLight; color: #8c8c8c; font-size: 13px;}
 .hp-cms1-1,.hp-cms1-2,.hp-cms1-3{float: left; width: 319px; height: 159px;}
 .hp-cms2-1,.hp-cms2-2{float: left; width: 479px; height: 159px;}
 .hp-cms1-1 img{padding: 15px 25px 9px;} .hp-cms1-1 p{padding: 35px 20px 0;} .hp-cms1-1 .app{padding: 10px;}
@@ -12321,7 +12347,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 .hp-cms1-3 img{padding: 23px 20px 9px;} .hp-cms1-3 p{padding: 55px 15px 0;}
 .hp-cms2-1 .big{color: #ac2323; font-size: 42px; margin-bottom: -10px; padding-top: 9px;}
 .hp-cms2-1 p{color: #5d5d5d; font-size: 29px; float: none; font-family: ProximaNovaBold; letter-spacing: -0.05em;}
-.hp-cms2-1 a{color: #8c8c8c; font-family: Gotham-book; font-size: 12px; text-transform: uppercase; text-align: center; display: block; margin-top: 5px;}
+.hp-cms2-1 a{color: #8c8c8c; font-family: ProximaNovaLight; font-size: 12px; text-transform: uppercase; text-align: center; display: block; margin-top: 5px;}
 .hp-cms2-2 p{float: none; margin: auto; padding: 10px 0;}
 .hp-cms2-2 a{
 	-moz-box-shadow: inset 0pt 0px 4px #acacac;
@@ -12437,7 +12463,7 @@ color:#d2002b;
 }
 #footer-links .link-column h4 {
   color: #444;
-  font-family: Gotham-book;
+  font-family: ProximaNovaLight;
   font-weight: bold;
   padding-bottom: 10px;
 }
@@ -12542,7 +12568,7 @@ float:right;}
 .header-panel .help{
 	float: right;
 	margin: 14px;
-	font-family: Gotham-book; color: #8c8c8c; font-size: 11px; text-transform: uppercase;
+	font-family: ProximaNovaLight; color: #8c8c8c; font-size: 11px; text-transform: uppercase;
 }
 	/*TOP-HEADER START*/
 		.top-header{
@@ -12681,7 +12707,7 @@ float:right;}
 		.header-panel .checkout-link li a.top-link-checkout{
 			padding: 0;
 			font-size: 11px;
-			font-family: Gotham-book, sans-serif;
+			font-family: ProximaNovaLight, sans-serif;
 			display: block;
 			text-transform: uppercase;
 			color: #fff;
@@ -12716,7 +12742,7 @@ float:right;}
 		.top-cart .block-title strong{
 			letter-spacing: -1px;
 			font-size: 11px;
-			font-family: Gotham-book;
+			font-family: ProximaNovaLight;
 			line-height: 28px;
 			color: #444;
 			padding-left: 40px;
@@ -12873,8 +12899,8 @@ float:right;}
 
 	/*ADD GOTHAM FONT START*/
 		@font-face{
-			font-family: 'Gotham-book';
-			src: url('fonts/Gotham-Book.eot?') format('eot'), url('fonts/Gotham-Book.otf') format('opentype');
+			font-family: 'ProximaNovaLight';
+			src: url('fonts/ProximaNovaLight.eot?') format('eot'), url('fonts/ProximaNovaLight.otf') format('opentype');
 		}
 				@font-face{
 			font-family: 'Gotham-light';
@@ -12905,7 +12931,7 @@ float:right;}
 			color: #444;
 			font-size: 11px;
 			text-transform: uppercase;
-			font-family: Gotham-book, sans-serif;
+			font-family: ProximaNovaLight, sans-serif;
 			width: 119px;
 			display: block;
 			margin-top: 5px;
@@ -13032,7 +13058,7 @@ float:right;}
 	text-align: center;
 }
 .account-login p{
-	font-family: Gotham-Book;
+	font-family: ProximaNovaLight;
 	text-transform: uppercase;
 }
 .account-login #gigya-fieldset {
@@ -13196,7 +13222,7 @@ float:right;}
 	.popup-top img, .popup-top h1 {float: left;}
 	.popup-top img{padding-right: 20px;}
 	.popup-top h1{
-		font-family: HelveticaNeueLight;
+		font-family: ProximaNovaLight;
 		font-size: 21px;
 		padding-top: 10px;
 	}
@@ -13250,7 +13276,7 @@ float:right;}
 		background: #d2002b;
 		color: #fff;
 		text-transform: uppercase;
-		font-family: Gotham-book;
+		font-family: ProximaNovaLight;
 		font-size: 14px;
 		width: 291px;
 		margin-top: 15px;
@@ -13380,7 +13406,7 @@ float:right;}
 .top-cart .actions button.button span, .top-cart .actions button.button span span {
   background-repeat: no-repeat;
   color: white;
-  font-family: Gotham-book;
+  font-family: ProximaNovaLight;
   font-size: 11px;
   text-transform: uppercase;
   margin-bottom: 8px;
@@ -13479,6 +13505,12 @@ float:right;}
 	padding: 10px;
 }
 
+.checkout-onepage-index .black-title-med {
+	margin: 20px 0px;
+	
+
+}
+
 .black-title-med {
 	padding: 7px 12px;
 }
@@ -13562,4 +13594,6 @@ margin-bottom: 15px;
 		
 
 }
+
+
 
