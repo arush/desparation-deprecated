@@ -53,12 +53,14 @@
 <!-- @nelkaake Added on Saturday June 26, 2010: END referral code/url/email fieldset -->
 
 <script type="text/javascript">
-	Event.observe($$('.urlcode-input-box button.edit')[0], 'click', function(obj){
-		console.log($('referral_url').readAttribute('readonly'));
+	Event.observe($$('.urlcode-input-box button.edit')[0], 'click', function(){
 		if ($('referral_url').readAttribute('readonly')) {
+
+			this.select('span')[0].innerHTML = 'save';
 			$('referral_url').removeAttribute('readonly');
 		} else {
 			$('referral_url').setAttribute('readonly', 'readonly');	
+			this.select('span')[0].innerHTML = 'edit';			
 		
 		}
 	});
