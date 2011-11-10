@@ -360,7 +360,7 @@
 .item-points-list-redeemed .cart-spent{
 	color: #fff;
 	padding: 3px 5px;
-	background: #b14e4e;
+	background: #d2002b;
 }
 .item-points-list-redeemed li, #shopping-cart-table .item-points-list-redeemed .price{color: #8e8e8e;}
 /*SHOPPING CART END*/
@@ -403,7 +403,7 @@
 	padding: 1px 3px;
 }
 .points-prediction span.as-low, .points-prediction span.price{
-	background: #b14e4e;
+	background: #d2002b;
 }
 /*CATEGORY PAGE END*/
 
