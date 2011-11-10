@@ -1,6 +1,6 @@
 <?php
 
-class Vdh_Randomquote_Block_System_Config_Form_Field_Array_Mapping extends Mage_Adminhtml_Block_System_Config_Form_Field_Array_Abstract {
+class Vdh_Randomquote_Block_System_Config_Form_Field_Array_Quote extends Mage_Adminhtml_Block_System_Config_Form_Field_Array_Abstract {
     public function __construct() {
         $this->addColumn('quote', 
 			array(

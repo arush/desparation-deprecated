@@ -281,3 +281,53 @@ html[xmlns] .invite-options {
 .invite-options ul li input {
 	display: none;
 }
+
+.send-now-box {
+	height: auto !important;
+}
+
+.send-now-box-left, .send-now-box-right {
+	height: auto !important;
+}
+
+/* Random Quote */
+
+#randomQuotePreview {
+	margin: 20px;
+}
+
+.random-quote span {
+	display: block;
+	font-family: 'pt-serif-caption';	
+	
+}
+.random-quote .apostrophe {
+	font-size: 74px;
+	font-family: 'Times New Roman';
+	font-weight: normal;
+	font-style: italic;
+	color: #df778c;
+	position: absolute;
+	margin: -23px 0 0 -20px;
+	letter-spacing: -6px;
+}
+.random-quote .quote {
+	background: #eee;
+	padding: 30px 40px;
+	color: #444;
+	font-size: 15px;
+}
+.random-quote .author {
+	padding-left: 70px;
+	padding-top: 10px;
+	color: #000;
+	font-size: 10px;
+}	
+.random-quote .caption {
+	padding-left: 70px;
+	padding-top: 5px;		
+	color: #000;
+	font-size: 8px;	
+	font-family: 'pt-serif-caption';	
+	font-style: italic;
+}

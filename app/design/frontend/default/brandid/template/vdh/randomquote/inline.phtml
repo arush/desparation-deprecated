@@ -1,1 +1,7 @@
-<?php print_r($this->getQuote());?>
+<?php $_quote = $this->getQuote(); ?>
+<div class="random-quote">
+	<span class="apostrophe">"</span>
+	<span class="quote"><?php echo $this->__($_quote['quote']);?></span>
+	<span class="author"><?php echo $this->__($_quote['author']);?></span>
+	<span class="caption"><?php echo $this->__($_quote['caption']);?></span>
+</div>
