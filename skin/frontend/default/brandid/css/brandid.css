@@ -233,8 +233,31 @@ a.flname {
 	position: relative;
 }
 
+.urlcode-input-box .edit {
+	position: relative;
+	margin-left: -72px;
+	background: #d2002b;
+	color: #fff;
+	text-transform: uppercase;
+	font-family: 'ProximaNovaSemiBold';	
+	font-size: 11px;
+	border: 0px;
+	padding: 7px 9px;
+	cursor: pointer;
+	
+}
+input#referral_url {
+	width: auto;
+	display: inline;
+	border: 0px !important;
+	background: transparent !important;
+	padding: 0 !important;
+	
+}
 
-
+.my_referrals-urlcode_group div.urlcode-input-box {
+    float: none !important;
+}
 /* Invite page styles */
 .invite-options:after {
 	content: ".";
