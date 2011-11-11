@@ -12,13 +12,12 @@ class Vdh_Randomquote_Model_Email_Template extends Mage_Core_Model_Email_Templat
 		$inviteStyle = Mage::getModel('randomquote/style')->load($params['invite_style']);
 		$randomQuote = Mage::getModel('randomquote/quote')->load($params['invite_quote']);	
 		$newVars = $vars;
-		$newVars['referral']->setData(
-			array_merge(
-				$newVars['referral']->getData(),
-				array("referral_url"=>$inviteStyle->getData('referral_url')),
-				$randomQuote->getData()
-			)
+		$newVars =  array_merge(
+			$newVars,
+			array("referral_url"=>Mage::getModel('customer/customer')->load(Mage::getSingleton('customer/session')->getId())->getCustomerurl()),
+			$randomQuote->getData()
 		);
+		
     	parent::sendTransactional($templateId, $sender, $email, $name, $newVars, $storeId);
     }
     	
