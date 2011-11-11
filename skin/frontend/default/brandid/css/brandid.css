@@ -262,7 +262,7 @@ input#referral_url {
 	width: auto;
 	display: inline;
 	border: 0px !important;
-	background: transparent !important;
+	background: #fff;
 	padding: 0 !important;
 	
 }

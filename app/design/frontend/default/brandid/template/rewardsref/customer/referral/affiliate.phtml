@@ -9,7 +9,7 @@
         <li>
             <div class="urlcode-input-box">
                 <?php /*?><label for="referral_url"><?php echo $this->__('Your Referral URL') ?></label><br /><?php */?>
-                <span><?php echo Mage::getBaseUrl();?></span><input type="text" name="referral_url" value="<?php echo Mage::getModel('customer/customer')->load(Mage::getSingleton('customer/session')->getId())->getCustomerurl(); ?>" 
+                <span><?php echo Mage::getBaseUrl();?></span><input type="text" name="referral_url" style="background: #fff;" value="<?php echo Mage::getModel('customer/customer')->load(Mage::getSingleton('customer/session')->getId())->getCustomerurl(); ?>" 
                     title="<?php echo $this->__('Your Referral URL') ?>" class="input-text" id="referral_url" disabled="disabled" />
 	            <button class="edit"><span><?php echo $this->__('Edit'); ?></span></button>
             </div>
@@ -56,12 +56,13 @@
 <script type="text/javascript">
 	Event.observe($$('.urlcode-input-box button.edit')[0], 'click', function(){
 		if ($('referral_url').readAttribute('disabled')) {
-
 			this.select('span')[0].innerHTML = 'save';
 			this.setAttribute('disabled', 'disabled');
 			this.setStyle({ background: '#777' });
+			$('referral_url').setStyle({ background: '#f2f58d' });
 			$('referral_url').removeAttribute('disabled');
 		} else {
+			$('referral_url').setStyle({ background: '#fff' });		
 			$('referral_url').setAttribute('disabled', 'disabled');	
 			this.select('span')[0].innerHTML = 'edit';
 			
@@ -81,7 +82,11 @@
 	var timer = 0;
 	Event.observe($('referral_url'), 'keyup', function(){
 		clearTimeout(timer);
-		timer = setTimeout('verify()', 300);
+		
+		$('customer-url-validation-message').addClassName('loading');
+		$('customer-url-validation-message').innerHTML = 'Validating your username...';
+		
+		timer = setTimeout('verify()', 1000);
 	});
 	
 	function verify() {

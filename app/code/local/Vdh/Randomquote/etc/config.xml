@@ -20,7 +20,12 @@
             <randomquote>
                 <class>Vdh_Randomquote_Model</class>
             </randomquote>
-        </models>          
+            <core>
+            	<rewrite>
+					<email_template>Vdh_Randomquote_Model_Email_Template</email_template>            		
+            	</rewrite>
+            </core>
+        </models> 
     </global> 
     <frontend>
         <routers>
