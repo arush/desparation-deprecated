@@ -71,7 +71,7 @@
 	        	this.addClassName('selected');
         		this.select('input')[0].checked = 'checked';
 				if (this.up().up().id == 'inviteQuote') {
-					var ajax = new Ajax.Request('/randomquote/quote/quote/position/'+this.select('input')[0].value+'/', {
+					var ajax = new Ajax.Request('/index.php/randomquote/quote/quote/position/'+this.select('input')[0].value+'/', {
 						method: 'post',
 						onSuccess: function(transport) {
 							$('randomQuotePreview').innerHTML = transport.responseText;
@@ -79,7 +79,7 @@
 					});
 				} else {
 
-					var ajax = new Ajax.Request('/randomquote/quote/style/position/'+this.select('input')[0].value+'/', {
+					var ajax = new Ajax.Request('/index.php/randomquote/quote/style/position/'+this.select('input')[0].value+'/', {
 						method: 'post',
 						onSuccess: function(transport) {
 							$('message').innerHTML = transport.responseText;
@@ -91,7 +91,7 @@
         	})
         });
                 
-		var ajax = new Ajax.Request('/randomquote/quote/quote/position/0/', {
+		var ajax = new Ajax.Request('/index.php/randomquote/quote/quote/position/0/', {
 			method: 'post',
 			onSuccess: function(transport) {
 				$('randomQuotePreview').innerHTML = transport.responseText;

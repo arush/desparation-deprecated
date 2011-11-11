@@ -69,7 +69,7 @@
 			this.removeAttribute('disabled');
 			this.setStyle({ background: '#d2002b' });			
 			
-			var ajax = new Ajax.Request('/customerurl/unique/save',{
+			var ajax = new Ajax.Request('/index.php/customerurl/unique/save',{
 				method: 'post',
 				parameters: { customerurl: $('referral_url').value }, 
 				onSuccess: function(transport) {
@@ -97,7 +97,7 @@
 		$('customer-url-validation-message').addClassName('loading');
 		$('customer-url-validation-message').innerHTML = 'Validating your username...';
 		
-		var ajax = new Ajax.Request('/customerurl/unique/verify',{
+		var ajax = new Ajax.Request('/index.php/customerurl/unique/verify',{
 			method: 'post',
 			parameters: { customerurl: $('referral_url').value }, 
 			onSuccess: function(transport) {
