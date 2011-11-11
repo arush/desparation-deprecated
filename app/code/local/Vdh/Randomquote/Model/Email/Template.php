@@ -5,7 +5,7 @@ class Vdh_Randomquote_Model_Email_Template extends Mage_Core_Model_Email_Templat
     
 		$params = Mage::app()->getFrontController()->getRequest()->getParams();
 
-		if (!array_key_exists($params['invite_style']) || array_key_exists($params['invite_quote'])) {
+		if (!array_key_exists($params, 'invite_style') || array_key_exists($params, 'invite_quote')) {
 	    	parent::sendTransactional($templateId, $sender, $email, $name, $vars, $storeId);
 		}
 				
