@@ -9,11 +9,12 @@
         <li>
             <div class="urlcode-input-box">
                 <?php /*?><label for="referral_url"><?php echo $this->__('Your Referral URL') ?></label><br /><?php */?>
-                <span><?php echo Mage::getBaseUrl();?></span><input type="text" name="referral_url" value="<?php echo Mage::getSingleton('customer/session')->getCustomerurl(); ?>" 
-                    title="<?php echo $this->__('Your Referral URL') ?>" class="input-text" id="referral_url" readonly="readonly" />
+                <span><?php echo Mage::getBaseUrl();?></span><input type="text" name="referral_url" value="<?php echo Mage::getModel('customer/customer')->load(Mage::getSingleton('customer/session')->getId())->getCustomerurl(); ?>" 
+                    title="<?php echo $this->__('Your Referral URL') ?>" class="input-text" id="referral_url" disabled="disabled" />
 	            <button class="edit"><span><?php echo $this->__('Edit'); ?></span></button>
-                    
             </div>
+	            <span id="customer-url-validation-message"></span>
+            
             <?php /*?><div id="copy-link"><img src=<?php echo $this->getSkinUrl(); ?>/images/copylink.png width="161" height="38" /></div><?php */?>
             <?php /*?>Once this div is included into the template file, delete the inline style width for the id="referral_url"<?php */?>
         </li>
@@ -54,14 +55,61 @@
 
 <script type="text/javascript">
 	Event.observe($$('.urlcode-input-box button.edit')[0], 'click', function(){
-		if ($('referral_url').readAttribute('readonly')) {
+		if ($('referral_url').readAttribute('disabled')) {
 
 			this.select('span')[0].innerHTML = 'save';
-			$('referral_url').removeAttribute('readonly');
+			this.setAttribute('disabled', 'disabled');
+			this.setStyle({ background: '#777' });
+			$('referral_url').removeAttribute('disabled');
 		} else {
-			$('referral_url').setAttribute('readonly', 'readonly');	
-			this.select('span')[0].innerHTML = 'edit';			
-		
+			$('referral_url').setAttribute('disabled', 'disabled');	
+			this.select('span')[0].innerHTML = 'edit';
+			
+			this.removeAttribute('disabled');
+			this.setStyle({ background: '#d2002b' });			
+			
+			var ajax = new Ajax.Request('/customerurl/unique/save',{
+				method: 'post',
+				parameters: { customerurl: $('referral_url').value }, 
+				onSuccess: function(transport) {
+					console.log(transport.responseText);
+				}
+			});
 		}
 	});
+	
+	var timer = 0;
+	Event.observe($('referral_url'), 'keyup', function(){
+		clearTimeout(timer);
+		timer = setTimeout('verify()', 300);
+	});
+	
+	function verify() {
+	
+		$$('.urlcode-input-box button.edit')[0].setAttribute('disabled', 'disabled');
+		$$('.urlcode-input-box button.edit')[0].setStyle({ background: '#777' });			
+		
+		$('customer-url-validation-message').addClassName('loading');
+		$('customer-url-validation-message').innerHTML = 'Validating your username...';
+		
+		var ajax = new Ajax.Request('/customerurl/unique/verify',{
+			method: 'post',
+			parameters: { customerurl: $('referral_url').value }, 
+			onSuccess: function(transport) {
+				var response = eval('new Object(' + transport.responseText + ')');
+				$('customer-url-validation-message').removeClassName('loading');
+				
+				if (response.success == 1) {
+					$('customer-url-validation-message').innerHTML = 'Username is available';
+					
+					$$('.urlcode-input-box button.edit')[0].removeAttribute('disabled');
+					$$('.urlcode-input-box button.edit')[0].setStyle({ background: '#d2002b' });			
+					
+				} else {
+					$('customer-url-validation-message').innerHTML = 'Username already taken.';				
+				}
+			}
+		});
+	
+	}
 </script>

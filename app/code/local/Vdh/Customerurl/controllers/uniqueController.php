@@ -2,16 +2,41 @@
 class Vdh_Customerurl_UniqueController extends Mage_Core_Controller_Front_Action {
 
 	public function verifyAction() {
-		$customer = Mage::getModel('customer/customer')->load(1);
-		$customer->setCustomerurl('psychocrackpot');
-		$customer->setEmail('steve@vdh.za.net');		
-		$customer->save();
-		
-		$customer = Mage::getModel('customer/customer')->load(1);
-				
+		$customer = Mage::getModel('customer/customer')->load(Mage::getSingleton('customer/session')->getId());
+		$customerUrl = $this->getRequest()->getParam('customerurl');
+
+
+		$otherCustomers = Mage::getModel('customer/customer')
+			->getCollection()
+			->addAttributeToFilter('customerurl', $customerUrl)
+			->addAttributeToFilter('entity_id', array('neq' => $customer->getId()));	
+			
+		if ($otherCustomers->count() == 0) {
+			print_r(json_encode(array('success' => 1)));
+		} else {
+			print_r(json_encode(array('success' => 0)));		
+		}
 	}
 	
-	
+	public function saveAction() {
+		$customer = Mage::getModel('customer/customer')->load(Mage::getSingleton('customer/session')->getId());
+		$customerUrl = $this->getRequest()->getParam('customerurl');
+
+
+		$otherCustomers = Mage::getModel('customer/customer')
+			->getCollection()
+			->addAttributeToFilter('customerurl', $customerUrl)
+			->addAttributeToFilter('entity_id', array('neq' => $customer->getId()));	
+			
+		if ($otherCustomers->count() == 0) {
+			$customer->setCustomerurl($customerUrl);
+			$customer->save();
+			Mage::getModel('customerurl/customer')->addRewrites($customer);
+			print_r(json_encode(array('success' => 1)));
+		} else {
+			print_r(json_encode(array('success' => 0)));		
+		}
+	}
 	
 	public function createAction() {
 

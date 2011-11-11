@@ -369,3 +369,11 @@ html[xmlns] .invite-options {
 	font-family: 'pt-serif-caption';	
 	font-style: italic;
 }
+
+
+#customer-url-validation-message {
+	padding-left: 20px;
+}
+#customer-url-validation-message.loading {
+	background: url('../images/ajax-loader.gif') no-repeat 0% 50%;
+}
