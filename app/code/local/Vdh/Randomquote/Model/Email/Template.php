@@ -15,7 +15,7 @@ class Vdh_Randomquote_Model_Email_Template extends Mage_Core_Model_Email_Templat
 		$newVars['referral']->setData(
 			array_merge(
 				$newVars['referral']->getData(),
-				array("text"=>$inviteStyle->getData('text')),
+				array("referral_url"=>$inviteStyle->getData('referral_url')),
 				$randomQuote->getData()
 			)
 		);
