@@ -2,25 +2,7 @@
 
 ?>
 
-<?php if (!Mage::getSingleton('customer/session')->isLoggedIn()):?>
 
-	<?php if (!Mage::getSingleton('customer/session')->isLoggedIn()) { ?>	
-			<!-- The provider login will be embedded in this div //-->
-
-			<div id="oa_social_login_header"></div>
-			<script type="text/javascript">
-				 oneall.api.plugins.social_login.build("oa_social_login_header", {
-				  'providers' :  ['facebook', 'google', 'twitter', 'yahoo'], 
-				  'callback_uri': '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK); ?>arush-oneall/rpx/token_url/',
-				  'css_theme_uri': 'https://cdn.oneall.com/css/api/socialize/themes/connect_horizontal_small.css'
-				 });
-				</script>	
-			<?php }; ?>
-	<div class="connect"> or </div>
-	<div class="login-header">
-		<?php echo $this->getChildHtml('accountLinks') ?>
-	</div>
-<?php endif; ?>
 <div class="header-container">
     <div class="header">
 	
@@ -121,6 +103,31 @@
 
 			<div class="catalogLinks"><?php echo $this->getChildHtml('catalogLinks') ?></div>
 			
+			<?php if (!Mage::getSingleton('customer/session')->isLoggedIn()):?>
+				<div class="not-logged-in-header">
+					<div class="login-register-header">
+						<div class="login-header">
+							<?php echo $this->getChildHtml('accountLinks') ?>
+						</div>
+						<div class="register-header">
+							<a href="customer/account/create">Register</a>
+						</div>
+					</div>				
+
+						<!-- The provider login will be embedded in this div //-->
+						<div class="connect">or connect</div>
+						<div id="oa_social_login_header"></div>
+						<script type="text/javascript">
+							 oneall.api.plugins.social_login.build("oa_social_login_header", {
+							  'providers' :  ['facebook', 'google', 'twitter', 'yahoo'], 
+							  'callback_uri': '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK); ?>arush-oneall/rpx/token_url/',
+							  'css_theme_uri': '<?php echo $this->getSkinUrl(); ?>css/styles.css'
+							 });
+						</script>	
+				</div>
+				
+			<?php endif; ?>
+
 		<div class="branding">
         <?php if ($this->getIsHomePage()):?>
             <h1 class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
