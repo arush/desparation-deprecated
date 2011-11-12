@@ -9,12 +9,14 @@
 
 <div class="referrals">
 
-<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
-
-<div class="refer-form">
-<?php echo $this->getChildHtml('refer_form'); ?></div>
-<div class="affiliate"><?php echo $this->getChildHtml('affiliate'); ?></div>
-<div class="history"><?php echo $this->getChildHtml('history'); ?></div>
-<div class="preferences"><?php echo $this->getChildHtml('preferences'); ?></div>
-
+	<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+	
+	<div class="affiliate"><?php echo $this->getChildHtml('affiliate'); ?></div>
+	
+	<div class="refer-form">
+		<?php echo $this->getChildHtml('refer_form'); ?>
+	</div>
+	<div class="history"><?php echo $this->getChildHtml('history'); ?></div>
+	<div class="preferences"><?php echo $this->getChildHtml('preferences'); ?></div>
+	
 </div>
