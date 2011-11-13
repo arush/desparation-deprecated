@@ -33,6 +33,11 @@
     <rewardsref_customer_index>
     	<reference name="head">
 			<action method="setTitle"><title>BRANDiD | Invite and Earn</title></action>
+			<block type="core/text" name="mystuff.js">
+				<action method="setText">
+					<text><![CDATA[<script type="text/javascript" src="http://platform.twitter.com/anywhere.js?id=rFclPwPvwaz6yJkaMVLbXQ&v=1"></script>]]></text>
+				</action>
+			</block> 
     	</reference>
     	<reference name="breadcrumbs.container">
     		<remove name="customer_account_navigation" />

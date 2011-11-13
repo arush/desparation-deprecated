@@ -16,7 +16,7 @@
                		<div class="send-now-box-left">
                		
                			<div id="inviteStyle" class="invite-options">
-               				<h3><?php echo $this->__('Choose an invitation style'); ?></h3>
+               				<h3><?php echo $this->__('Choose invitation style'); ?></h3>
                				<ul>
                					<li class="selected"><input type="radio" name="invite_style" value="0" checked="checked" /></li>
                					<li><input type="radio" name="invite_style" value="1" /></li>
@@ -25,7 +25,7 @@
                			</div>
                			
                			<div id="inviteQuote" class="invite-options">
-	           				<h3><?php echo $this->__('Choose inspirational quote'); ?></h3>
+	           				<h3><?php echo $this->__('Choose motivational quote'); ?></h3>
                				<ul>
                					<li class="selected"><input type="radio" name="invite_quote" value="0" checked="checked" /></li>
                					<li><input type="radio" name="invite_quote" value="1" /></li>
@@ -33,30 +33,45 @@
                				</ul>
                			</div>
                         <div class="plaxo"><?php echo $this->getChildHtml('plaxo_contact_chooser'); ?></div>
-                        <div class="providers"><img src="<?php echo $this->getSkinUrl(); ?>images/emailproviders.png" width="122" height="193" /></div>
-                        <div class="secure-image"><img src="<?php echo $this->getSkinUrl(); ?>images/secure.png" width="75" height="27" /></div>
-                        <div class="secure">You will be asked to enter your email address and password, but don't worry, it is made over a secure connection, and your password is never stored.</div>
+                        <img class="secure-image" src="<?php echo $this->getSkinUrl(); ?>images/secure.png" width="75" height="27" />
+                        <span class="secure-note">We never store your password</span>
+
+                        <div class="providers">
+                        	<div class="gmail provider-logos"></div>
+                        	<div class="yahoo provider-logos"></div>
+                        	<div class="ms provider-logos"></div>
+                        	<div class="aol provider-logos"></div>
+                        </div>
+                                                
                         <div class="send-addresses">
                             <label><?php echo $this->__('To:') ?></label><br/>
-                            <textarea name="contacts" id="recipient_list" style="width:418px;" rows="4" cols="80" ></textarea>
+                            <textarea name="contacts" id="recipient_list" style="width:406px;" rows="4" cols="80" ></textarea>
                         </div>
+                   	<div class="button-set" style="margin-top:0px">
+                        <!--<a href="<?php echo $this->getBackUrl() ?>" class="left">&laquo; <?php echo $this->__('Back') ?></a>-->
+                        <button class="form-button rewardsref-button sendinvitations" type="submit">Send invitations</button>
+		            </div>
                         
                     </div>
-                    <div class="send-now-box-middle"><img src="<?php echo $this->getSkinUrl(); ?>images/line.png" width="1" height="331" /></div>
+
                     <div class="send-now-box-right">
-                        <div class="send-message">
-                            <label><?php echo $this->__('Message:') ?> </label><br/>
-                            <textarea name="message" id="message" class="required-entry textarea" style="width:418px;" rows="6" cols="80" title="<?php echo $this->__('Short Message') ?>"  >I'm a Member of evogue, an invitation-only shopping club for everything luxury - at private sale prices. New Collections go live a few times each month - but are available only for a short time. Sign up now with this invitation!</textarea>
-                        </div>
-                        
-                        <div id="randomQuotePreview"></div>
-                        <div class="button-set" style="margin-top:0px">
-                            <!--<a href="<?php echo $this->getBackUrl() ?>" class="left">&laquo; <?php echo $this->__('Back') ?></a>-->
-                            <button class="form-button rewardsref-button sendinvitations" type="submit">Send invitations</button>
-                        </div>                                              
+						<div class="black-title-bar">Intervention email preview</div>
+						<div class="intervention-box">
+						<div class="email-logo">
+							<img class="intervention-logo" src="<?php echo $this->getSkinUrl() ?>images/logo.png" alt="BRANDiD email logo" />
+						</div>
+	                        <div class="send-message">
+	                            <textarea name="message" id="message" class="required-entry textarea" style="width:396px;" rows="6" cols="80" title="<?php echo $this->__('Short Message') ?>"  >I'm a Member of evogue, an invitation-only shopping club for everything luxury - at private sale prices. New Collections go live a few times each month - but are available only for a short time. Sign up now with this invitation!</textarea>
+	                        </div>
+	                        
+	                        <div id="randomQuotePreview"></div>
+
+	                           
+	                    </div>                                           
 					</div>
                
         </fieldset>
+   
     </form>
    </div>
    
@@ -74,7 +89,14 @@
 					var ajax = new Ajax.Request('/index.php/randomquote/quote/quote/position/'+this.select('input')[0].value+'/', {
 						method: 'post',
 						onSuccess: function(transport) {
+							
 							$('randomQuotePreview').innerHTML = transport.responseText;
+
+							jQuery('.send-now-box .quote').css("background-color","#FFFBCC");
+							jQuery('.send-now-box .quote').animate({ backgroundColor: '#eaeaea'}, 2000);
+							jQuery('.send-now-box .quote-triangle').css(borderTopColor,"#FFFBCC");
+							jQuery('.send-now-box .quote-triangle').animate({ borderTopColor: '#eaeaea'}, 2000);
+
 						}
 					});
 				} else {
@@ -83,6 +105,8 @@
 						method: 'post',
 						onSuccess: function(transport) {
 							$('message').innerHTML = transport.responseText;
+							jQuery('#message').css("background-color","#FFFBCC");
+							jQuery('#message').animate({ "background-color": '#fff' }, 2000);
 						}
 					});
 				
@@ -95,6 +119,10 @@
 			method: 'post',
 			onSuccess: function(transport) {
 				$('randomQuotePreview').innerHTML = transport.responseText;
+				jQuery('.send-now-box .quote').css("background-color","#FFFBCC");
+				jQuery('.send-now-box .quote').animate({ backgroundColor: '#eaeaea'}, 2000);
+				jQuery('.send-now-box .quote-triangle').css(borderTopColor,"#FFFBCC");
+				jQuery('.send-now-box .quote-triangle').animate({ borderTopColor: '#eaeaea'}, 2000);
 			}
 		});
     </script>

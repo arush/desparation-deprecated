@@ -2,31 +2,101 @@
 <!-- @nelkaake Added on Saturday June 26, 2010: BEGIN referral code/url/email fieldset -->
 <div class="share-invitation-link black-title-bar"><?php echo $this->__('Share your personal invitation link'); ?></div>
 	<div class="share-invitation-link-box">
+        <?php if($this->showReferralUrl()): ?>
+
 		<div class="invitation-link">
-		
-		        <?php if($this->showReferralUrl()): ?>
-		            <div class="urlcode-input-box">
-		                <span><?php echo Mage::getBaseUrl();?></span><input type="text" name="referral_url" style="background: #fff;" value="<?php echo Mage::getModel('customer/customer')->load(Mage::getSingleton('customer/session')->getId())->getCustomerurl(); ?>" 
-		                    title="<?php echo $this->__('Your Referral URL') ?>" class="input-text" id="referral_url" disabled="disabled" />
-			            <button class="edit"><span><?php echo $this->__('Edit'); ?></span></button>
-		            </div>
-			            <span id="customer-url-validation-message"></span>
-		            
-		        <?php endif; ?>
-		        
+            <div class="invitation-instructions">
+            	You will be credited for anyone using your link to signup
+            </div>
+            <div class="urlcode-input-box">
+                <span><?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);?></span><input type="text" name="referral_url" style="background: #eaeaea;" value="<?php echo Mage::getModel('customer/customer')->load(Mage::getSingleton('customer/session')->getId())->getCustomerurl(); ?>" 
+                    title="<?php echo $this->__('Your Referral URL') ?>" class="input-text" id="referral_url" disabled="disabled" />
+	            <button class="edit"><span><?php echo $this->__('Edit'); ?></span></button>
+            </div>
+			<span id="customer-url-validation-message"></span>        
+
 		</div>
+
+		<?php endif; ?>
+
 	    <div class="social-share">
 	        <div class="social-share-images">
 	        <?php /*?><a href="http://www.facebook.com/sharer.php?u=<?php echo $this->getReferralUrl(); ?>" target="_blank"><img class="facebook" src="<?php echo $this-> getSkinUrl(); ?>images/facebook.png" width="48" height="48" title="post this on facebook"/></a><?php */?>
 	        
-	        <div class="t-trans" href"#"></div>
-	        <div class="f-trans" href"#"></div>
+	        <div class="facebok-share">
+		        <div class="f-trans"><a style="display:block;" href"#"></a></div>
+				<div class="f-text">on Facebook</div>
+	        </div>
+	        
+	        <div class="twitter-share">
+	        	<div class="t-trans" style="display:block;"></div>
+				<div class="t-text">on Twitter</div>
+	        	<div class="t-hover" style="display:none;">
+		        	<div id="tbox-triangle"></div><div class="t-box-wrapper"><div id="tbox"></div><span id="follow-placeholder"></span></div>
+	        	</div>
+					
+					<script type="text/javascript">
+						var $j = jQuery.noConflict();
+					    
+				    	$j(document).ready(function () {
+							 $j(".t-trans").hover(
+									function () {
 
-	        <a target="_blank" href="http://twitter.com/home?status=Sign up for evogue with this link: <?php echo $this->getReferralUrl(); ?>"><img class="twitter" src="<?php echo $this-> getSkinUrl(); ?>images/twitter.png" width="48" height="48" title="post this on twitter" /></a>
-	        <a href="mailto:?subject=Sign up for evogue &body=I'm a Member of evogue, an invitation-only shopping club for everything luxury - at private sale prices. New Collections go live a few times each month - but are available only for a short time. Sign up now with this link: <?php echo $this->getReferralUrl(); ?>" target="_blank"><img class="email" src="<?php echo $this-> getSkinUrl(); ?>images/email.png" width="48" height="48" title="email to friend" /></a></div>
+										//show its submenu
+										jQuery('.t-hover').show();
+							 			jQuery('.t-trans').animate({backgroundColor: '#46c8f4'}, 300);
+									},
+									function () {
+										//hide its submenu
+										jQuery('.t-hover').hide();
+										jQuery('.t-trans').animate({backgroundColor: '#595959'}, 300);         
+         
+									}
+								);
+								
+								$j(".t-hover").hover(
+									function () {
+
+										//show its submenu
+										jQuery('.t-hover').show();
+							 			jQuery('.t-trans').animate({backgroundColor: '#46c8f4'}, 300);
+									}, 
+									function () {
+										//hide its submenu
+										jQuery('.t-hover').hide();
+										jQuery('.t-trans').animate({backgroundColor: '#595959'}, 300);         
+									}
+								);
+						});
+						
+					</script>
+					
+					<script type="text/javascript">
+					 
+					  twttr.anywhere(function (T) {
+					 
+					    T("#tbox").tweetBox({
+						  label: "Tweet this:",
+					      height: 60,
+					      width: 400,
+					      defaultContent: "MAN UP AND JOIN THE REVOLUTION @getbrandid INVITE LINK: <?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);?><?php echo Mage::getModel('customer/customer')->load(Mage::getSingleton('customer/session')->getId())->getCustomerurl(); ?>"
+					    });
+					 
+					  });
+					 
+					</script>
+				  <script type="text/javascript">
+				 
+				    twttr.anywhere(function (T) {
+				      T("#follow-placeholder").followButton('getbrandid');
+				    });
+				 
+				  </script>
+	        </div>
 	    </div>
 	</div>
 <?php }?>
+
 <!-- @nelkaake Added on Saturday June 26, 2010: END referral code/url/email fieldset -->
 
 <script type="text/javascript">
@@ -35,10 +105,14 @@
 			this.select('span')[0].innerHTML = 'save';
 			this.setAttribute('disabled', 'disabled');
 			this.setStyle({ background: '#777' });
-			$('referral_url').setStyle({ background: '#f2f58d' });
+			$('referral_url').setStyle({ background: '#FFFBCC' });
 			$('referral_url').removeAttribute('disabled');
 		} else {
-			$('referral_url').setStyle({ background: '#fff' });		
+			jQuery('.urlcode-input-box').css("background-color","#FFFBCC");
+			jQuery('#referral_url').animate({ backgroundColor: '#eaeaea' }, 2000);
+			jQuery('.urlcode-input-box').animate({ backgroundColor: '#eaeaea' }, 2000);		
+			jQuery('#customer-url-validation-message').empty();		
+
 			$('referral_url').setAttribute('disabled', 'disabled');	
 			this.select('span')[0].innerHTML = 'edit';
 			

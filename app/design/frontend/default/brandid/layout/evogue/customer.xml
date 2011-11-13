@@ -160,7 +160,6 @@ New customer registration
             <action method="setHeaderTitle" translate="title" module="customer"><title>Password forgotten</title></action>
         </reference>
 		<reference name="head">
-			<action method="addJs"><script>jquery/jScrollPane.js</script></action>
 			<action method="addJs"><script>jquery/jquery.em.js</script></action>
 			<action method="addJs"><script>jquery/jquery.mousewheel.js</script></action>
 			<action method="addCss"><stylesheet>css/jScrollPane.css</stylesheet></action>
