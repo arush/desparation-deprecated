@@ -2,6 +2,200 @@ body {
 	background: #cfcfcf;
 }
 
+/*TOP-HEADER START*/
+.top-header{
+	position: relative;
+	background: url('../images/black-header-back.png') repeat-x;
+	float: left;
+	width: 960px;
+	height: 45px;
+}
+.top-header img{float: left; padding-top: 6px;}
+.top-header img.rt{float: right; margin-left: 10px;}
+.top-header .facebook-header{
+	float: left;
+	padding: 10px 0 0 7px;
+}
+.top-header .top-name{
+	float: right;
+	height: 40px;
+	padding: 0 10px;
+	display: block;
+}
+.top-header .light a.flname{color: #000;}
+.top-header .top-name:hover{background: #fff;}
+.top-name a.flname{
+	display: block;
+	color: #ccc;
+	height: 40px;
+	line-height: 41px;
+	text-align: center;
+	font-family: ProximaNovaLight;
+	font-size: 12px;
+	text-transform: uppercase;
+	float: left;
+}
+.top-header .grey, .top-header .light .black{display: block; padding: 16px 0 16px 7px;}
+.top-header .black, .top-header .light .grey{display: none;}
+	.top-header .top-name a.flname:hover{
+	color: #000;
+}
+.account-link{
+	float: right;
+	height: 35px;
+}
+.account-link:hover{
+	float: right;
+	height: 35px;
+
+}
+.account-link a{
+	display: block;
+	text-transform: uppercase;
+	font-family: ProximaNovaLight;
+	font-size: 14px;
+}
+
+.my-account-links .account-link a {
+	border-bottom: 1px solid #aaa;
+	margin-bottom:10px;
+	padding: 10px 30px;
+}
+
+.my-account-links .account-link a:hover {
+	border-bottom: 1px solid #aaa;
+	margin-bottom:10px;
+	background-color:#595959;
+}
+
+.my-account-links{
+	position: absolute;
+	background: white;
+	top: 75px; right: 0px;
+	padding: 5px;
+	display: none;
+	z-index: 1001;
+	border: 7px solid #d2002b;
+}
+.my-account-links ul.links, .my-account-links ul.links li{
+	display: block;
+	float: right;
+	clear: right;
+}
+.my-account-links .invite{
+	border-bottom: 1px solid #e8e8e8;
+	border-top: 1px solid #e8e8e8;
+	margin: 10px 0;
+	padding: 17px 10px;
+}
+.my-account-links a{
+	color: #595959;
+	width: 200px;
+	height: 33px;
+	padding-top: 13px;
+	padding-right: 15px;
+	-webkit-transition: background-color 200ms ease-in;
+	-moz-transition: background-color 200ms ease-in;
+	-o-transition: background-color 200ms ease-in;
+	transition: background-color 200ms ease-in;
+}
+.my-account-links a:hover{
+	background-color:#eaeaea;
+}
+
+.my-account-links .last{margin-bottom:10px;}
+
+.my-account-triangle, .topcart-triangle {
+	border-color: transparent transparent #d2002b transparent;
+	border-style: solid;
+	border-width: 0 14px 14px;
+	height: 0;
+	width: 0;
+	z-index: 0;
+	margin: -25px 0 17px 188px;
+}
+
+.topcart-triangle {
+	margin: -21px 0 5px 233px;
+}
+
+
+.login-header{
+	padding: 11px 0;
+}
+.login-header a, .register-header a{
+	font-family: ProximaNovaBold,sans-serif;
+	font-size: 16px;
+	color: white;
+	background-color: black;
+	padding: 7px;
+	text-transform: uppercase;
+	letter-spacing: -1px;
+	-webkit-transition: background-color 200ms ease-in;
+	-moz-transition: background-color 200ms ease-in;
+	-o-transition: background-color 200ms ease-in;
+	transition: background-color 200ms ease-in;
+
+}
+
+.login-header a:hover, .register-header a:hover{
+	background-color: #d2002b;
+}
+
+.login-header {
+	margin-bottom: 3px;
+}
+.top-header .register-header, .top-header .login-header {
+	text-align: right;
+
+}
+
+
+.not-logged-in-header {
+	float:right;
+}
+				
+.login-register-header {
+	width: 80px;
+	float:left;
+	
+}
+
+.top-header .connect{
+	font-family: ProximaNovaBold;
+	color: black;
+	padding: 32px 0;
+	text-transform: uppercase;
+	font-size: 14px;
+	letter-spacing: -1px;
+	width:88px;
+	float: left;
+	padding-left:11px;
+}
+.top-header p{
+	float: right;
+	color: #ccc;
+	font-family: ProximaNovaBold;
+	font-size: 12px;
+	padding: 12px 0;
+	text-transform: uppercase;
+}
+
+.top-cart p {float:none;}
+
+
+.top-header #oa_social_login_header{
+	width: 190px;
+	height: 41px;
+	overflow: hidden;
+	padding-top: 18px;
+	padding-left: 10px;
+	float: left;
+}
+.account-login img{float: left;}
+.top-header .oaimg{padding: 15px 0px 15px 6px;}
+
+
 .top-header {
 	background: #fff;
 	height: 80px; 
@@ -49,7 +243,7 @@ padding-left:38px;
 }
 
 
-.top-header .account-link a.header-link {padding-right:56px;}
+.top-header .account-link a.header-link {padding-right:56px;padding-bottom: 45px;}
 
 
 /* Counter styling */
@@ -105,6 +299,7 @@ padding-left:38px;
 	width: 100%;
 	margin: 0px;
 }
+
 .points-special-header span
 , .top-header .widget-category-link span.title
 , a.flname
@@ -176,7 +371,7 @@ padding-left:38px;
 }
 
 a.flname {
-	margin: 0;
+	margin: -45px 0 0 0;
 	padding: 5px 0 0 0;
 	float: right;
 }
@@ -190,6 +385,10 @@ a.flname {
 .header, .header-container {
 	height: auto;
 }
+
+/*TOP HEADER END*/
+
+
 
 .breadcrumbs {
 	clear: both;
@@ -767,7 +966,7 @@ height:41px;
 
 .t-box-wrapper {
 	background-color:white;
-	border: 16px solid #d2002b;
+	border: 8px solid #d2002b;
 	padding:32px;
 	width:400px;
 	margin-bottom: 10px;

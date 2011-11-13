@@ -43,6 +43,7 @@
 </style>
 <![endif]-->
 <div class="top-cart">
+
 <?php $_cartQty = $this->getSummaryCount() ?>
 <?php if ($this->getIsLinkMode() || !$this->getIsNeedToDisplaySideBar()):?>
     <div id="basket-items" class="block-title no-items">
@@ -61,6 +62,8 @@
         <strong id="cartHeader"><?php echo $_myCart ?></strong>
     </div>
     <div id="topCartContent" class="block-content" style="display:none">
+        <div class="topcart-triangle"></div>
+
         <div class="inner-wrapper"><?php // extra div to smooth slideUp and slideDown ?>
         <?php $_items = $this->getRecentItems() ?>
         <?php if(count($_items)): ?>

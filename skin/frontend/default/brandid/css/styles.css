@@ -2957,12 +2957,22 @@ ul.disc li {
 
 .top-cart .actions a {
   padding: 5px 0pt 0pt;
-  color: rgb(253, 252, 229);
+  color: #000;
   float: left;
   line-height: 23px;
+  -webkit-transition: color 200ms ease-in;
+	-moz-transition: color 200ms ease-in;
+	-o-transition: color 200ms ease-in;
+	transition: color 200ms ease-in;
+	
+	-webkit-transition: text-decoration 200ms ease-in;
+	-moz-transition: text-decoration 200ms ease-in;
+	-o-transition: text-decoration 200ms ease-in;
+	transition: text-decoration 200ms ease-in;
 }
 
 .top-cart .actions a:hover {
+	color: #d2002b;
   text-decoration: underline;
 }
 
@@ -10465,7 +10475,7 @@ button::-moz-focus-inner{border:0;padding:0;margin:0;}
 		
 	/*ACCOUNT LINKS START*/
 		.header-panel ul.links li{padding-right: 20px;}
-		.header .checkout-link, .header .links{text-transform: uppercase; font-size: 12px; font-family: ProximaNovaBold, sans-serif;}
+		.header .checkout-link, .header .links{text-transform: uppercase; font-size: 12px; font-family: ProximaNovaLight, sans-serif;}
 		.ie7 .my-account-links ul.links {clear:both;}
 		.header .links .account{*position: absolute; *right: 225px;}
 	/*ACCOUNT LINKS END*/
@@ -11348,7 +11358,7 @@ a.cat-view-now {
 	background: #fff;
 	padding: 20px;
 }
-.col2-left-layout .col-main h1, .col2-left-layout .col-main h2{color: #2e2e2e;}
+.col2-left-layout .col-main h1, .col2-left-layout .col-main h2{color: #fff;}
 .col2-left-layout .col-main p, .col2-left-layout .col-main li{color: #444444;}
 .col2-left-layout .col-main a, .col2-left-layout .col-main span{color: #d2002b;}
 .col2-left-layout .col-main a:hover{text-decoration: underline;}
@@ -12565,160 +12575,7 @@ float:right;}
 	margin: 14px;
 	font-family: ProximaNovaLight; color: #8c8c8c; font-size: 11px; text-transform: uppercase;
 }
-	/*TOP-HEADER START*/
-		.top-header{
-			position: relative;
-			background: url('../images/black-header-back.png') repeat-x;
-			float: left;
-			width: 960px;
-			height: 45px;
-		}
-		.top-header img{float: left; padding-top: 6px;}
-		.top-header img.rt{float: right; margin-left: 10px;}
-		.top-header .facebook-header{
-			float: left;
-			padding: 10px 0 0 7px;
-		}
-		.top-header .top-name{
-			float: right;
-			height: 40px;
-			padding: 0 10px;
-			display: block;
-		}
-		.top-header .light a.flname{color: #000;}
-		.top-header .top-name:hover{background: #fff;}
-		.top-name a.flname{
-			display: block;
-			color: #ccc;
-			height: 40px;
-			line-height: 41px;
-			text-align: center;
-			font-family: ProximaNovaBold;
-			font-size: 12px;
-			text-transform: uppercase;
-			float: left;
-		}
-		.top-header .grey, .top-header .light .black{display: block; padding: 16px 0 16px 7px;}
-		.top-header .black, .top-header .light .grey{display: none;}
- 		.top-header .top-name a.flname:hover{
-			color: #000;
-		}
-		.account-link{
-			float: right;
-			height: 35px;
-		}
-		.account-link a{
-			display: block;
-			margin: 13px 2px 10px 12px;
-			color: #ccc;
-			text-transform: uppercase;
-			font-family: ProximaNovaBold;
-			font-size: 12px;
-		}
-		.my-account-links{
-			position: absolute;
-			background: #fff;
-			top: 40px; right: 0px;
-			padding: 5px;
-			display: none;
-			z-index: 1001;
-			border: 1px solid #acacac\9;
-		}
-		.my-account-links ul.links, .my-account-links ul.links li{
-			display: block;
-			float: right;
-			clear: right;
-		}
-		.my-account-links .invite{
-			border-bottom: 1px solid #e8e8e8;
-			border-top: 1px solid #e8e8e8;
-			margin: 10px 0;
-			padding: 17px 10px;
-		}
-		.my-account-links a{color: #8c8c8c;}
-		.my-account-links .invite a{
-			background: #319E52;
-			color: #fff;
-			padding: 7px 12px;
-			-moz-border-radius: 2px;
-			-webkit-border-radius: 2px;
-			border-radius: 2px;
-		}
-		.my-account-links .first{margin: 10px;}
-		.my-account-links .account{margin-right: 10px;}
-		.my-account-links .changepw{margin-right: 10px;}
-		.my-account-links .last{margin: 5px 10px 20px;}
-		.login-header{
-			padding: 11px 0;
-		}
-		.login-header a, .register-header a{
-			font-family: ProximaNovaBold,sans-serif;
-			font-size: 16px;
-			color: white;
-			background-color: black;
-			padding: 7px;
-			text-transform: uppercase;
-			letter-spacing: -1px;
-			-webkit-transition: background-color 200ms ease-in;
-			-moz-transition: background-color 200ms ease-in;
-			-o-transition: background-color 200ms ease-in;
-			transition: background-color 200ms ease-in;
 
-		}
-		
-		.login-header a:hover, .register-header a:hover{
-			background-color: #d2002b;
-		}
-		
-		.login-header {
-			margin-bottom: 3px;
-		}
-		.top-header .register-header, .top-header .login-header {
-			text-align: right;
-
-		}
-		
-
-		.not-logged-in-header {
-			float:right;
-		}
-						
-		.login-register-header {
-			width: 80px;
-			float:left;
-			
-		}
-		
-		.top-header .connect{
-			font-family: ProximaNovaBold;
-			color: black;
-			padding: 32px 0;
-			text-transform: uppercase;
-			font-size: 14px;
-			letter-spacing: -1px;
-			width:88px;
-			float: left;
-			padding-left:11px;
-		}
-		.top-header p{
-			float: right;
-			color: #ccc;
-			font-family: ProximaNovaBold;
-			font-size: 12px;
-			padding: 12px 0;
-			text-transform: uppercase;
-		}
-		.top-header #oa_social_login_header{
-			width: 190px;
-			height: 41px;
-			overflow: hidden;
-			padding-top: 18px;
-			padding-left: 10px;
-			float: left;
-		}
-		.account-login img{float: left;}
-		.top-header .oaimg{padding: 15px 0px 15px 6px;}
-	/*TOP HEADER END*/
 
 	/*CHECKOUT-BUTTON START*/
 		.header-panel .checkout-link{
@@ -12779,10 +12636,6 @@ float:right;}
 		}
 		.top-cart img{
 			margin: 8px 0 0  15px;
-			-moz-box-shadow: 0pt 0px 3px #acacac;
-			-webkit-box-shadow: 0pt 0px 3px #acacac;
-			-khtml-box-shadow: 0pt 0px 3px #acacac;
-			box-shadow: 0pt 0px 3px #acacac;
 			border: 1px solid #acacac\9;
 		}
 		#basket-img{
@@ -13397,14 +13250,10 @@ float:right;}
 /* CART DROPDOWN START */
 
 .top-cart .block-content {
-	-moz-box-shadow: 0pt 0px 3px #acacac;
-	-webkit-box-shadow: 0pt 0px 3px #acacac;
-	-khtml-box-shadow: 0pt 0px 3px #acacac;
-	box-shadow: 0pt 0px 3px #acacac;
-	border: 1px solid #acacac\9;
+	border: 8px solid #d2002b;
 	position: absolute;
-	right: -73px;
-	top: 32px;
+	right: -10px;
+	top: 75px;
 	width: 267px;
 	min-height: 110px;
 	background: none repeat scroll #fff;
@@ -13415,7 +13264,7 @@ float:right;}
     color: #444;
     text-transform: lowercase;
     line-height: 12px;
-    padding: 20px 10px;
+    padding: 20px 55px;
 }
 .top-cart .inner-wrapper .mini-products-list li.item {
   /* border-bottom: 1px solid #d9d9d9;
@@ -13430,7 +13279,8 @@ float:right;}
   /* margin-right: -50px; */
 }
 .mini-products-list .product-details {
-  margin-left: 75px;
+  margin: 0 0 8px 75px;
+  
   color: #444;
 }
 .top-cart .actions button.button span, .top-cart .actions button.button span span {
@@ -13446,7 +13296,8 @@ float:right;}
 .top-cart .block-content .item .product-name a {
   font-size: 11px;
   text-decoration: none;
-  color: #444;
+  font-family: Arial,helvetica,sans-serif;
+  color: #d2002b;
 }
 .top-cart .block-content .truncated a.details {
   float: right;
