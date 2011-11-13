@@ -262,7 +262,6 @@ class Mage_Core_Model_Email_Template extends Mage_Core_Model_Template
         if(!$this->_preprocessFlag) {
             $variables['this'] = $this;
         }
-
         if(isset($variables['subscriber']) && ($variables['subscriber'] instanceof Mage_Newsletter_Model_Subscriber)) {
             $processor->setStoreId($variables['subscriber']->getStoreId());
         }
