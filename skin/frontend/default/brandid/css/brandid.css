@@ -435,6 +435,13 @@ html[xmlns] .invite-options {
 	margin: 5px 0;
 }
 
+.providers .many-more {
+	display:block;
+	clear: both;
+	float:right;
+}
+
+
 .secure-image {
 	
 	margin: 0 15px 0 84px;
