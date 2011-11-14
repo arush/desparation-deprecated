@@ -1,9 +1,16 @@
 <!-- The plugin will be embedded into this div //-->
+
+<div class="social-link info-box">
+<div class="black-title-bar">Connect your social accounts</div>
 <div id="social_link_container"></div>
 <script type="text/javascript">
  oneall.api.plugins.social_link.build("social_link_container", {
-  'providers' :  ['facebook', 'google', 'hyves', 'linkedin', 'openid', 'twitter', 'vkontakte', 'wordpress', 'yahoo'], 
+  'providers' :  ['facebook', 'google', 'linkedin','twitter', 'yahoo'], 
   'user_token': '<?php echo Mage::getSingleton('customer/session')->getOneallUserToken(); ?>',
+  'css_theme_uri': 'https://oneallcdn.com/css/api/socialize/themes/link.css',
+  'grid_size_x': '2',
   'callback_uri': '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK); ?>arush-oneall/rpx/token_url_add/'
  });
 </script>
+
+</div>

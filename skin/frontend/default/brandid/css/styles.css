@@ -7172,10 +7172,25 @@ background: none repeat scroll 0 0 #F1F1F1;
 .checkout-onepage-success .col-main a {
   color: rgb(193, 193, 193);
   text-decoration: underline;
+  
+  -webkit-transition: color 200ms ease-in;
+-moz-transition: color 200ms ease-in;
+-o-transition: color 200ms ease-in;
+transition: color 200ms ease-in;
+
+}
+
+.checkout-onepage-success .col-main a:hover {
+  color: black;
+  text-decoration: underline;
 }
 
 .checkout-onepage-success .col-main p {
   line-height: 22px;
+  clear:both;
+  padding: 20px;
+	font-family: proximanovalight;
+	font-size: 20px;
 }
 
 #invitationForm p.required {

@@ -1028,9 +1028,10 @@ height:41px;
 }
 
 .f-text, .t-text {
-	margin-top:30px;
+	margin-top:20px;
 	padding:20px;
 	float:left;
+	color:#595959;
 }
 
 .t-hover {
@@ -1249,6 +1250,18 @@ width:95px;
 	
 }
 
+.social-link.info-box {
+	margin-top:20px
+}
+.social-link .black-title-bar {
+	padding: 10px;
+}
+
+#social_link_container {
+	padding:25px 76px;
+	background-color:white;
+}
+
 
 /* END LOGIN */
 
@@ -1442,4 +1455,21 @@ input#p_method_sagepayserver + label, input#p_method_paypal_billing_agreement + 
 	margin-top: 10px;
 }
 
+.checkout-onepage-success .f-trans {
+	margin-left: 260px;
+	margin-bottom: 50px;
+}
 
+.checkout-onepage-success .t-hover {
+	margin-left: 300px;
+}
+
+
+.checkout-onepage-success #tbox-triangle {
+	margin-left:228px;
+}
+
+.checkout-onepage-success .social-share {
+	margin-top:30px;
+	
+}

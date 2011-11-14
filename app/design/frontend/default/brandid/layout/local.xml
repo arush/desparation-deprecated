@@ -42,5 +42,17 @@
     	<reference name="breadcrumbs.container">
     		<remove name="customer_account_navigation" />
     	</reference>
-    </rewardsref_customer_index>   
+    </rewardsref_customer_index>
+    
+    
+    <checkout_onepage_success>
+    	<reference name="head">
+			<block type="core/text" name="twitteranywhere.js">
+				<action method="setText">
+					<text><![CDATA[<script type="text/javascript" src="http://platform.twitter.com/anywhere.js?id=rFclPwPvwaz6yJkaMVLbXQ&v=1"></script>]]></text>
+				</action>
+			</block> 
+    	</reference>
+    </checkout_onepage_success>   
+       
 </layout>
