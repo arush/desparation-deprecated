@@ -17,7 +17,7 @@ var $j = jQuery.noConflict();
         });
 
         // calculate a new width for the container (so it holds all panels)
-        $container.css('width', $panels[0].offsetWidth * $panels.length);
+        //$container.css('width', $panels[0].offsetWidth * $panels.length);
     }
 
     // collect the scroll object, at the same time apply the hidden overflow

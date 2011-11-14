@@ -455,6 +455,7 @@ a.flname {
 	padding: 7px 9px;
 	cursor: pointer;
 	
+	
 }
 input#referral_url {
 	width: auto;
@@ -517,7 +518,7 @@ html[xmlns] .invite-options {
 	width: 134px;
 	height: 52px;
 	margin-right: 10px;
-	background: #cfcfcf;
+	background: #f1f1f1;
 	cursor: pointer;
 }
 
@@ -536,6 +537,9 @@ html[xmlns] .invite-options {
 .send-now-box-left, .send-now-box-right {
 	height: auto !important;
 }
+
+
+
 
 /* Random Quote */
 
@@ -559,7 +563,7 @@ html[xmlns] .invite-options {
 	letter-spacing: -6px;
 }
 .random-quote .quote {
-	background: #eee;
+	background: #f1f1f1;
 	padding: 30px 40px;
 	color: #444;
 	font-size: 15px;
@@ -721,6 +725,18 @@ a.red-title-button {
 	font-family: ProximaNovaBold;
 	background-color: #d2002b;
 	float: right;
+	
+	-webkit-transition: color 200ms ease-in;
+	-moz-transition: color 200ms ease-in;
+	-o-transition: color 200ms ease-in;
+	transition: color 200ms ease-in;
+	
+}
+
+a.red-title-button:hover {
+
+	color:black;
+	
 }
 
 a.red-title-med-button {
@@ -733,6 +749,17 @@ a.red-title-med-button {
 	background-color: #d2002b;
 }
 
+span.black-title-med a.red-title-med-button {
+	-webkit-transition: color 200ms ease-in;
+	-moz-transition: color 200ms ease-in;
+	-o-transition: color 200ms ease-in;
+	transition: color 200ms ease-in;
+}
+
+span.black-title-med a.red-title-med-button:hover {
+	background-color:#d2002b;
+	color:black;
+}
 
 
 .my-account .small-spacer {
@@ -782,6 +809,17 @@ margin-bottom: 15px;
 	padding:27px;
 		
 
+}
+
+span.change-pw-label {
+	float:left;
+	display:block;
+	text-align:left;
+	padding:0;
+	margin:0;
+	font-family:ProximaNovaLight;
+	color:#595959;
+	font-size:16px;
 }
 
 /* ONEALL HEADER */
@@ -1024,3 +1062,172 @@ height:41px;
 	background-color: #004c9c;
 	cursor:pointer;
 }
+
+/* LOGIN */
+
+.account-login .button {
+/* 	background-color: #000; */
+	padding:10px;
+	
+}
+.account-login .login-normal .form-buttons .button {
+    margin: 0px;
+    padding: 10px 17px;
+	
+}
+
+.account-login span.cufon {
+	background:none;
+}
+
+.account-login .registered-users button.button {
+	background: #d2002b;
+	}
+
+.account-login button.button span {
+	height:auto;
+	padding:0;
+}
+
+.account-login button.button span span {
+	padding: 0;
+}
+
+.account-login .form-buttons {
+	width:auto;
+}
+
+.account-login .forgotpass-back-link {
+	padding:10px;
+	margin:0;
+	float:left;
+}
+
+.account-login .forgotpass-back-link a {
+	margin:0;
+}
+
+.account-login .login-normal button.button {
+	
+}
+
+.account-login span.black-title-small {
+	padding:10px;
+}
+
+.account-login label {
+margin-top:8px;
+text-align:right;
+width:95px;
+}
+
+.account-login #panes {
+	margin-bottom:50px;
+}
+
+.account-login .not-member-text, .not-member a {
+	float:left;
+	padding:15px;
+	color: #595959;
+	text-transform: lowercase;
+}
+
+.not-member a, .account-login button.button {
+	text-transform: uppercase;
+	letter-spacing: -1px;
+	font-family: ProximaNovaLight;
+	font-size:13px;
+	color:white;
+	
+	-webkit-transition: color 200ms ease-in;
+	-moz-transition: color 200ms ease-in;
+	-o-transition: color 200ms ease-in;
+	transition: color 200ms ease-in;
+	
+	-webkit-transition: background-color 200ms ease-in;
+	-moz-transition: background-color 200ms ease-in;
+	-o-transition: background-color 200ms ease-in;
+	transition: background-color 200ms ease-in;
+	
+	padding:10px 17px;
+
+}
+
+.account-login a:hover, .account-login button.button:hover {
+	background-color:black;
+	color: white;
+
+}
+
+.forgotpass-back-link a:hover {
+	background:none;
+	color:black;
+	text-decoration: underline;
+}
+
+.red-title-med-button:hover {
+	background-color: #000;
+	
+}
+
+.dashboard .red-title-med-button {
+	text-decoration: none;
+	-webkit-transition: background-color 200ms ease-in;
+	-moz-transition: background-color 200ms ease-in;
+	-o-transition: background-color 200ms ease-in;
+	transition: background-color 200ms ease-in;
+}
+
+.dashboard a.red-title-med-button:hover {
+	background-color:#000;
+	text-decoration: none;
+}
+
+.my-account button.button {
+	-webkit-transition: background-color 200ms ease-in;
+	-moz-transition: background-color 200ms ease-in;
+	-o-transition: background-color 200ms ease-in;
+	transition: background-color 200ms ease-in;
+}
+
+
+/* END LOGIN */
+
+
+/* REGISTER */
+
+.customer-account-create .form-list li{
+	clear:both;
+}
+
+.account-create .form-list .control .input-box {
+	margin: 0;
+	width:auto;
+}
+
+.account-create li.control label {
+	margin:0;
+	
+}
+
+.account-create li.control p {
+	padding:0;
+	text-align:left;
+	color: #595959;
+	margin-left: 5px;
+	float:left;
+	width:250px;
+	
+}
+
+.customer-account-create #form-validate p#policy-text, .enterprise-invitation-customer-account-create #form-validate p#policy-text {
+	font-size: 11px;
+	font-family: arial;
+	text-transform: none;
+	float: left;
+	margin-left: 424px;
+	width: 250px;
+	margin-top: 10px;
+	color: #888;
+}
+/* END REGISTER */

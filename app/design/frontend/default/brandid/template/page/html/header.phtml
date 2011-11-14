@@ -148,7 +148,7 @@ jQuery('.account-link').hover(
 							<?php echo $this->getChildHtml('accountLinks') ?>
 						</div>
 						<div class="register-header">
-							<a href="customer/account/create">Register</a>
+							<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK); ?>customer/account/create">Register</a>
 						</div>
 					</div>				
 
@@ -159,7 +159,7 @@ jQuery('.account-link').hover(
 							 oneall.api.plugins.social_login.build("oa_social_login_header", {
 							  'providers' :  ['facebook', 'google', 'twitter', 'yahoo'], 
 							  'callback_uri': '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK); ?>arush-oneall/rpx/token_url/',
-							  'css_theme_uri': '<?php echo $this->getSkinUrl(); ?>css/styles.css'
+							  'css_theme_uri': '<?php echo $this->getSkinUrl(); ?>css/brandid.css'
 							 });
 						</script>	
 				</div>

@@ -50,7 +50,7 @@
                         </div>
                    	<div class="button-set" style="margin-top:0px">
                         <!--<a href="<?php echo $this->getBackUrl() ?>" class="left">&laquo; <?php echo $this->__('Back') ?></a>-->
-                        <button class="form-button rewardsref-button sendinvitations" type="submit">Send invitations</button>
+                        <button class="form-button rewardsref-button sendinvitations" type="submit">Send</button>
 		            </div>
                         
                     </div>
@@ -94,9 +94,9 @@
 							$('randomQuotePreview').innerHTML = transport.responseText;
 
 							jQuery('.send-now-box .quote').css("background-color","#FFFBCC");
-							jQuery('.send-now-box .quote').animate({ backgroundColor: '#eaeaea'}, 2000);
+							jQuery('.send-now-box .quote').animate({ backgroundColor: '#f1f1f1'}, 2000);
 							jQuery('.send-now-box .quote-triangle').css("border-top-color","#FFFBCC");
-							jQuery('.send-now-box .quote-triangle').animate({ borderTopColor: '#eaeaea'}, 2000);
+							jQuery('.send-now-box .quote-triangle').animate({ borderTopColor: '#f1f1f1'}, 2000);
 
 						}
 					});
@@ -121,9 +121,9 @@
 			onSuccess: function(transport) {
 				$('randomQuotePreview').innerHTML = transport.responseText;
 				jQuery('.send-now-box .quote').css("background-color","#FFFBCC");
-				jQuery('.send-now-box .quote').animate({ backgroundColor: '#eaeaea'}, 2000);
+				jQuery('.send-now-box .quote').animate({ backgroundColor: '#f1f1f1'}, 2000);
 				jQuery('.send-now-box .quote-triangle').css("border-top-color","#FFFBCC");
-				jQuery('.send-now-box .quote-triangle').animate({ borderTopColor: '#eaeaea'}, 2000);
+				jQuery('.send-now-box .quote-triangle').animate({ borderTopColor: '#f1f1f1'}, 2000);
 			}
 		});
     </script>
