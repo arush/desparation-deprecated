@@ -25,17 +25,16 @@
  */
 ?>
 <div class="page-title">
-    <h1><?php echo $this->__('Review Order') ?></h1>
+    <h1><?php echo $this->__('Review & Confirm') ?></h1>
 </div>
 <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
 
 <?php if ($this->getShippingAddress()): ?>
 <div class="info-set col2-set">
-    <h2 class="legend"><?php echo $this->__('Shipping Information') ?></h2>
     <div class="col-1">
         <div class="box">
-            <div class="box-title">
-                <h3><?php echo $this->__('Shipping Address') ?><span class="separator"><?php if ($this->getCanEditShippingAddress()):?> | </span><a href="<?php echo $this->getEditUrl() ?>"><?php echo $this->__('Change Shipping Address') ?></a><?php endif;?></h3>
+            <div class="black-title-bar">
+                <?php echo $this->__('Shipping Address') ?><?php if ($this->getCanEditShippingAddress()):?><a class="red-title-button" href="<?php echo $this->getEditUrl() ?>"><?php echo $this->__('Edit') ?></a><?php endif;?>
             </div>
             <div class="box-content">
                 <address><?php echo $this->renderAddress($this->getShippingAddress())?></address>
@@ -44,8 +43,8 @@
     </div>
     <div class="col-2">
         <div class="box">
-            <div class="box-title">
-                <h3><?php echo $this->__('Shipping Method') ?></h3>
+            <div class="black-title-bar">
+                <?php echo $this->__('Shipping Method') ?>
             </div>
             <div class="box-content">
             <?php if ($this->getCanEditShippingMethod() || !$this->getCurrentShippingRate()):?>
@@ -85,11 +84,10 @@
 <?php endif; ?>
 
 <div class="info-set col2-set">
-    <h2 class="legend"><?php echo $this->__('Billing Information') ?></h2>
     <div class="col-1">
         <div class="box">
-            <div class="box-title">
-                <h3><?php echo $this->__('Payment Method') ?> <span class="separator">|</span> <a href="<?php echo $this->getEditUrl() ?>"><?php echo $this->__('Change Payment Method') ?></a></h3>
+            <div class="black-title-bar">
+				<?php echo $this->__('Payment Method') ?>  <a class="red-title-button" href="<?php echo $this->getEditUrl() ?>"><?php echo $this->__('Edit') ?></a>
             </div>
             <div class="box-content">
                 <?php echo $this->escapeHtml($this->getPaymentMethodTitle()) ?>
@@ -98,8 +96,8 @@
     </div>
     <div class="col-2">
         <div class="box">
-            <div class="box-title">
-                <h3><?php echo $this->__('Billing Address') ?></h3>
+            <div class="black-title-bar">
+				<?php echo $this->__('Billing Address') ?>
             </div>
             <div class="box-content">
                 <address>
@@ -111,9 +109,9 @@
     </div>
 </div>
 
-<div class="info-set">
-    <h2 class="legend"><?php echo $this->__('Items in Your Shopping Cart') ?><span class="separator"> | </span><a href="<?php echo $this->getUrl('checkout/cart') ?>"><?php echo $this->__('Edit Shopping Cart') ?></a></h2>
-    <div id="details-reload">
+<div class="info-set" id="checkout-step-review">
+    <div class="black-title-bar"><?php echo $this->__('Items in Your Shopping Cart') ?><a class="red-title-button" href="<?php echo $this->getUrl('checkout/cart') ?>"><?php echo $this->__('Edit Shopping Cart') ?></a></div>
+    <div id="checkout-review-table-wrapper">
         <?php echo $this->getChildHtml('details') ?>
     </div>
 </div>

@@ -34,26 +34,105 @@
 
 <!-- END Innovate Analytics tracking beacon  -->
 
-<div class="page-title">
-    <h1><?php echo $this->__('Thank you for your purchase!') ?></h1>
+<span class="black-title-med">
+    <?php echo $this->__('You\'re done!') ?>
 </div>
 <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
-<p><strong><?php echo $this->__('Why not <a href="%srewardsref/customer/index/">invite your friends and earn 1500 reward points</a> towards your next purchase?', $this->escapeHtml(Mage::getBaseUrl())) ?></strong></p></br>
-<?php if ($this->getOrderId()):?>
-<?php if ($this->getCanViewOrder()) :?>
-    <p><?php echo $this->__('Your order # is: %s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getViewOrderUrl()), $this->escapeHtml($this->getOrderId()))) ?></p>
-<?php  else :?>
-    <p><?php echo $this->__('Your order # is: %s.', $this->escapeHtml($this->getOrderId())) ?>.</p>
-<?php endif;?>
-    <p><?php echo $this->__('You will receive an order confirmation email with details of your order and a link to track its progress.') ?></p>
-<?php if ($this->getViewOrder() && $this->getCanPrintOrder()) :?>
-    <p>
-        <?php echo $this->__('Click <a href="%s" onclick="this.target=\'_blank\'">here to print</a> a copy of your order confirmation.', $this->getPrintUrl()) ?>
-        <?php echo $this->getChildHtml() ?>
-    </p>
-<?php endif;?>
-<?php endif;?>
 
-<div class="buttons-set">
-    <button id="continue-shopping-button" type="button" class="button" title="<?php echo $this->__('Continue Shopping') ?>" onclick="window.location='<?php echo $this->getUrl() ?>'"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>
+<p class="checkout-success-message"><strong><?php echo $this->__('Congratulations! You are now a fully fledged man…') ?></strong></p></br>
+
+
+<span class="black-title-med">
+    <?php echo $this->__('Share your purchase') ?>
 </div>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+
+<p><strong><?php echo $this->__('Earn 10 points per signup, 1000 for a purchase and don\'t forget about your <a href="%srewardsref/customer/index/">Free Gucci Tie</a>', $this->escapeHtml(Mage::getBaseUrl())) ?></strong></p></br>
+
+
+   <div class="social-share">
+	        <div class="social-share-images">
+	        <?php /*?><a href="http://www.facebook.com/sharer.php?u=<?php echo $this->getReferralUrl(); ?>" target="_blank"><img class="facebook" src="<?php echo $this-> getSkinUrl(); ?>images/facebook.png" width="48" height="48" title="post this on facebook"/></a><?php */?>
+	        
+	        <div class="facebok-share">
+		        <div class="f-trans"><a style="display:block;" href"#"></a></div>
+				<div class="f-text">on Facebook</div>
+	        </div>
+	        
+	        <div class="twitter-share">
+	        	<div class="t-trans" style="display:block;"></div>
+				<div class="t-text">on Twitter</div>
+	        	<div class="t-hover" style="display:none;">
+		        	<div id="tbox-triangle"></div><div class="t-box-wrapper"><div id="tbox"></div><span id="follow-placeholder"></span></div>
+	        	</div>
+					
+					<script type="text/javascript">
+						var $j = jQuery.noConflict();
+					    
+				    	$j(document).ready(function () {
+							 $j(".t-trans").hover(
+									function () {
+
+										//show its submenu
+										jQuery('.t-hover').show();
+							 			jQuery('.t-trans').animate({backgroundColor: '#46c8f4'}, 300);
+									},
+									function () {
+										//hide its submenu
+										jQuery('.t-hover').hide();
+										jQuery('.t-trans').animate({backgroundColor: '#595959'}, 300);         
+         
+									}
+								);
+								
+								$j(".t-hover").hover(
+									function () {
+
+										//show its submenu
+										jQuery('.t-hover').show();
+							 			jQuery('.t-trans').animate({backgroundColor: '#46c8f4'}, 300);
+									}, 
+									function () {
+										//hide its submenu
+										jQuery('.t-hover').hide();
+										jQuery('.t-trans').animate({backgroundColor: '#595959'}, 300);         
+									}
+								);
+						});
+						
+					</script>
+					
+					<script type="text/javascript">
+					 
+					  twttr.anywhere(function (T) {
+					 
+					    T("#tbox").tweetBox({
+						  label: "Tweet this:",
+					      height: 60,
+					      width: 400,
+					      defaultContent: "MAN UP AND JOIN THE REVOLUTION @getbrandid INVITE LINK: <?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);?><?php echo Mage::getModel('customer/customer')->load(Mage::getSingleton('customer/session')->getId())->getCustomerurl(); ?>"
+					    });
+					 
+					  });
+					 
+					</script>
+				  <script type="text/javascript">
+				 
+				    twttr.anywhere(function (T) {
+				      T("#follow-placeholder").followButton('getbrandid');
+				    });
+				 
+				  </script>
+	        </div>
+	    </div>
+	</div>
+
+
+<?php if ($this->getOrderId()):?>
+	<?php if ($this->getCanViewOrder()) :?>
+	    <p><?php echo $this->__('Your order # is: %s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getViewOrderUrl()), $this->escapeHtml($this->getOrderId()))) ?></p>
+	<?php  else :?>
+	    <p><?php echo $this->__('Your order # is: %s.', $this->escapeHtml($this->getOrderId())) ?>.</p>
+	<?php endif;?>
+<?php endif;?>

@@ -16,22 +16,24 @@
                 <li class="fields">
                 <?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getAddress())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
                 </li>
-                <li>
+                <!--
+<li>
                     <label for="billing:company"><?php echo $this->__('Company') ?></label>
                     <div class="input-box">
                         <input type="text" id="billing:company" name="billing[company]" value="<?php echo $this->htmlEscape($this->getAddress()->getCompany()) ?>" title="<?php echo $this->__('Company') ?>" class="input-text" />
                     </div>
                 </li>
+-->
         <?php if(!$this->isCustomerLoggedIn()): ?>
                 <li>
-                    <label for="billing:email" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
+                    <label for="billing:email" class="required"><span class="black-title-small"><em>*</em><?php echo $this->__('Email Address') ?></span></label>
                     <div class="input-box">
                         <input type="text" name="billing[email]" id="billing:email" value="<?php echo $this->htmlEscape($this->getAddress()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text validate-email required-entry" />
                     </div>
                 </li>
         <?php endif ?>
                 <li>
-                    <label for="billing:street1" class="required"><em>*</em><?php echo $this->__('Address') ?></label>
+                    <label for="billing:street1" class="required"><span class="black-title-small"><em>*</em><?php echo $this->__('Address') ?></span></label>
                     <div class="input-box">
                         <input type="text" title="<?php echo $this->__('Street Address') ?>" name="billing[street][]" id="billing:street1" value="<?php echo $this->htmlEscape($this->getAddress()->getStreet(1)) ?>" class="input-text required-entry" />
                     </div>
@@ -45,13 +47,13 @@
     <?php endfor ?>
                 <li class="fields">
                     <div class="field">
-                        <label for="billing:city" class="required"><em>*</em><?php echo $this->__('City') ?></label>
+                        <label for="billing:city" class="required"><span class="black-title-small"><em>*</em><?php echo $this->__('City') ?></span></label>
                         <div class="input-box">
                             <input type="text" title="<?php echo $this->__('City') ?>" name="billing[city]" value="<?php echo $this->htmlEscape($this->getAddress()->getCity()) ?>" class="input-text required-entry" id="billing:city" />
                         </div>
                     </div>
                     <div class="field">
-                        <label for="billing:region_id" class="required"><em>*</em><?php echo $this->__('State/Province') ?></label>
+                        <label for="billing:region_id" class="required"><span class="black-title-small"><em>*</em><?php echo $this->__('State/Province') ?></span></label>
                         <div class="input-box">
                             <select id="billing:region_id" name="billing[region_id]" title="<?php echo $this->__('State/Province') ?>" class="validate-select" style="display:none;">
                                 <option value=""><?php echo $this->__('Please select region, state or province') ?></option>
@@ -65,13 +67,13 @@
                 </li>
                 <li class="fields">
                     <div class="field">
-                        <label for="billing:postcode" class="required"><em>*</em><?php echo $this->__('Zip/Postal Code') ?></label>
+                        <label for="billing:postcode" class="required"><span class="black-title-small"><em>*</em><?php echo $this->__('Zip/Postal Code') ?></span></label>
                         <div class="input-box">
                             <input type="text" title="<?php echo $this->__('Zip/Postal Code') ?>" name="billing[postcode]" id="billing:postcode" value="<?php echo $this->htmlEscape($this->getAddress()->getPostcode()) ?>" class="input-text validate-zip-international required-entry" />
                         </div>
                     </div>
                     <div class="field">
-                        <label for="billing:country_id" class="required"><em>*</em><?php echo $this->__('Country') ?></label>
+                        <label for="billing:country_id" class="required"><span class="black-title-small"><em>*</em><?php echo $this->__('Country') ?></span></label>
                         <div class="input-box">
                             <?php echo $this->getCountryHtmlSelect('billing') ?>
                         </div>
@@ -79,17 +81,19 @@
                 </li>
                 <li class="fields">
                     <div class="field">
-                        <label for="billing:telephone" class="required"><em>*</em><?php echo $this->__('Telephone') ?></label>
+                        <label for="billing:telephone" class="required"><span class="black-title-small"><em>*</em><?php echo $this->__('Telephone') ?></span></label>
                         <div class="input-box">
                             <input type="text" name="billing[telephone]" value="<?php echo $this->htmlEscape($this->getAddress()->getTelephone()) ?>" title="<?php echo $this->__('Telephone') ?>" class="input-text required-entry" id="billing:telephone" />
                         </div>
                     </div>
-                    <div class="field">
-                        <label for="billing:fax"><?php echo $this->__('Fax') ?></label>
+                    <!--
+<div class="field">
+                        <label for="billing:fax"><span class="black-title-small"><?php echo $this->__('Fax') ?></span></label>
                         <div class="input-box">
                             <input type="text" name="billing[fax]" value="<?php echo $this->htmlEscape($this->getAddress()->getFax()) ?>" title="<?php echo $this->__('Fax') ?>" class="input-text" id="billing:fax" />
                         </div>
                     </div>
+-->
                 </li>
 
                 <?php $addressAttributes = $this->getChild('customer_form_billing_address_user_defined_attributes');?>
@@ -100,10 +104,10 @@
                 <?php endif;?>
 
                 <?php if(!$this->isCustomerLoggedIn()): ?>
-                <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
-                <?php $_taxvat = $this->getLayout()->createBlock('customer/widget_taxvat') ?>
-                <?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
-                <?php if ($_dob->isEnabled() || $_taxvat->isEnabled() || $_gender->isEnabled() ): ?>
+                <?php // $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
+                <?php // $_taxvat = $this->getLayout()->createBlock('customer/widget_taxvat') ?>
+                <?php // $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
+                <?php /* if ($_dob->isEnabled() || $_taxvat->isEnabled() || $_gender->isEnabled() ): ?>
                 <li class="fields">
                     <?php if ($_dob->isEnabled()): ?>
                     <div class="field">
@@ -113,8 +117,7 @@
                     <?php endif; ?>
                     <?php if ($_taxvat->isEnabled()): ?>
                                 <div class="field">
-                                    <?php echo $_taxvat->setTaxvat($this->getQuote()->getCustomerTaxvat())
-                                        ->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
+                                    <?php echo $_taxvat->setTaxvat($this->getQuote()->getCustomerTaxvat())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
                                 </div>
                     <?php endif ?>
                     <?php if ($_gender->isEnabled()): ?>
@@ -124,7 +127,7 @@
                                 </div>
                     <?php endif ?>
                 </li>
-                <?php endif; ?>
+                <?php endif; */?>
                 <?php $customerAttributes = $this->getChild('customer_form_customer_user_defined_attributes');?>
                 <?php if ($customerAttributes): ?>
                     <?php $customerAttributes->setEntityModelClass('customer/customer')->setFieldIdFormat('billing:%1$s');?>
@@ -133,13 +136,13 @@
                 <?php endif;?>
                 <li class="fields" id="register-customer-password">
                     <div class="field">
-                        <label for="billing:customer_password" class="required"><em>*</em><?php echo $this->__('Password') ?></label>
+                        <label for="billing:customer_password" class="required"><span class="black-title-small"><em>*</em><?php echo $this->__('Password') ?></span></label>
                         <div class="input-box">
                             <input type="password" name="billing[customer_password]" id="billing:customer_password" title="<?php echo $this->__('Password') ?>" class="input-text required-entry validate-password" />
                         </div>
                     </div>
                     <div class="field">
-                        <label for="billing:confirm_password" class="required"><em>*</em><?php echo $this->__('Confirm Password') ?></label>
+                        <label for="billing:confirm_password" class="required"><span class="black-title-small"><em>*</em><?php echo $this->__('Confirm Password') ?></span></label>
                         <div class="input-box">
                             <input type="password" name="billing[confirm_password]" title="<?php echo $this->__('Confirm Password') ?>" id="billing:confirm_password" class="input-text required-entry validate-cpassword" />
                         </div>
