@@ -21,8 +21,8 @@ class Arush_Oneall_Helper_Identifiers extends Mage_Core_Helper_Abstract {
 		if(!$customer->getId())
 			Mage::throwException('Invalid Customer ID');
 			
-		if ($customer->getOneallUserToken() != $profile['identity_token']) {
-			$customer->setOneallUserToken($profile['identity_token']);		
+		if ($customer->getOneallUserToken() != $profile['user_token']) {
+			$customer->setOneallUserToken($profile['user_token']);		
 			$customer->save();
 		}	
 //		$customer->setOneallUserToken($profile['identity_token']);
