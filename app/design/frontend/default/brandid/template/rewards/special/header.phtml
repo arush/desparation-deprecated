@@ -47,6 +47,7 @@
 
 $pointssummary = $this->getPointsSummary();
 $header_points_balance = (int)substr_replace($pointssummary,"",-7);
+$header_points_balance = 5900;
 ?>
 	<div class="points-special-header">
 		<a href="/index.php/rewards/customer/">
@@ -56,7 +57,7 @@ $header_points_balance = (int)substr_replace($pointssummary,"",-7);
 		<?php
 		if (!Mage::getSingleton('customer/session')->getPointsLoaded()) {
 			Mage::getSingleton('customer/session')->setPointsLoaded('1');
-			$startValue = (int)$header_points_balance-($header_points_balance/8);
+			$startValue = (int)($header_points_balance-($header_points_balance/8));
 		} else {
 			$startValue = $header_points_balance;		
 		}		
