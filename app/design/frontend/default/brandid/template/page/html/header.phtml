@@ -58,7 +58,6 @@
 					?> 						
 					<a class="flname" href="#">Hi <?php echo $firstname; ?></a>						
 					<div class="my-account-links">
-						<div class="my-account-triangle"></div>
 						<?php echo $this->getChildHtml('accountLinks') ?>
 					</div>					
 				
@@ -67,61 +66,24 @@
 				<script>
 					jQuery(document).ready(function () { 
 		 
-						jQuery('.account-link .header-link').hover(
+						jQuery('.account-link').hover(
 							function () {
 								//show its submenu
-								jQuery('.my-account-links').show();
-								jQuery('.account-link .header-link').css("border-top", "7px solid #000");
-
+								jQuery('.my-account-links').slideDown(100);
 					 
 							}, 
 							function () {
 								//hide its submenu
-								jQuery('.my-account-links').hide();
-								jQuery('.account-link .header-link').css("border-top", "7px solid #cfcfcf");
-         
+								jQuery('.my-account-links').slideUp(100);         
 							}
 						);
-						jQuery('.account-link .my-account-links').hover(
-							function () {
-								//show its submenu
-								jQuery('.my-account-links').show();
-								jQuery('.account-link .header-link').css("border-top", "7px solid #000");
-
-					 
-							}, 
-							function () {
-								//hide its submenu
-								jQuery('.my-account-links').hide();
-								jQuery('.account-link .header-link').css("border-top", "7px solid #cfcfcf");
-         
-							}
-						);
-						jQuery('.flname').hover(
-							function () {
-								//show its submenu
-								jQuery('.my-account-links').show();
-								jQuery('.account-link .header-link').css("border-top", "7px solid #000");
-
-					 
-							}, 
-							function () {
-								//hide its submenu
-								jQuery('.my-account-links').hide();
-								jQuery('.account-link .header-link').css("border-top", "7px solid #cfcfcf");
-         
-							}
-						
-						);
-									/*
-jQuery('.account-link').hover(
+									jQuery('.account-link').hover(
 										function() {
 										  jQuery(this).addClass('light');
 											},
 										function() {
 										  jQuery(this).removeClass('light');
 									});
-*/
 					});
 				</script>
 			<?php }; ?>
@@ -148,7 +110,7 @@ jQuery('.account-link').hover(
 							<?php echo $this->getChildHtml('accountLinks') ?>
 						</div>
 						<div class="register-header">
-							<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK); ?>customer/account/create">Register</a>
+							<a href="customer/account/create">Register</a>
 						</div>
 					</div>				
 

@@ -7,18 +7,25 @@ class Arush_Oneall_Helper_Identifiers extends Mage_Core_Helper_Abstract {
 	 * @param int $customer_id
 	 * @param string $identifier
 	 */
-	public function save_identifier($customer_id, $profile) {
+	public function save_identifier($customer_id, $profile, $customer = false) {
 
 		/**
 		 * Make sure we have a valid customer_id
 		 *
 		 */
-		$customer = Mage::getModel('customer/customer')
-			->getCollection()
-			->addFieldToFilter('entity_id', $customer_id)
-			->getFirstItem();
+
+		if ($customer === false) {
+			$customer = Mage::getModel('customer/customer')->load($customer_id);
+		}
+
 		if(!$customer->getId())
 			Mage::throwException('Invalid Customer ID');
+			
+		if ($customer->getOneallUserToken() != $profile['identity_token']) {
+			$customer->setOneallUserToken($profile['identity_token']);		
+			$customer->save();
+		}	
+//		$customer->setOneallUserToken($profile['identity_token']);
 		// below line just doesn't work, can't understand why
 		//	$customer->setOnealluuid($profile['oneall_uuid'])
 		//		->save();

@@ -98,16 +98,18 @@ class Arush_Oneall_Helper_Data extends Mage_Core_Helper_Abstract {
 	public function buildProfile($response) {
 		$provider = false;
 		$provider = $response->response->result->data->user->identity->provider;
-		
 		if($provider == 'twitter') {
 			$profile_name = $response->response->result->data->user->identity->preferredUsername;
 		}
 		else {$profile_name = $provider;}
 
-		return array('provider' => $provider,
-					'identifier' => $this->getSocialId($response),
-					'profile_name' => $profile_name,
-					'oneall_uuid' => $response->response->result->data->user->user_token);
+		return array(
+			'provider' => $provider,
+			'identifier' => $this->getSocialId($response),
+			'profile_name' => $profile_name,
+			'oneall_uuid' => $response->response->result->data->user->user_token,
+			'identity_token' => $response->response->result->data->user->identity->identity_token
+		);
 	}
 	
 	public function getSocialId($returnObject) {

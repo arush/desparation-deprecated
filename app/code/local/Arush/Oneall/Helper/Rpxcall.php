@@ -171,7 +171,7 @@ try {
 		    curl_setopt($curl, CURLOPT_TIMEOUT, 5);
 		    curl_setopt($curl, CURLOPT_VERBOSE, 0);
 		    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-		    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 1);
+		    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
 		    curl_setopt($curl, CURLOPT_FAILONERROR, 0);
 		 
 		 	$json = curl_exec($curl);

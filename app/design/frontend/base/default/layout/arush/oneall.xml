@@ -13,9 +13,13 @@
 		<reference name="head">
 			<block type="core/template"
 				name="arush_oneall_scripts"
-				template="arush/oneall/scripts.phtml"/>
+				template="arush/oneall/scripts.phtml" />
 		</reference>
 	</default>
+	
+	<checkout_onepage_index>
+		<remove name="arush_oneall_scripts" />
+	</checkout_onepage_index>
 
 	<!-- Use our own register.phtml with no password fields and custom action -->
 	<oneall_rpx_authenticate>
@@ -68,11 +72,13 @@
 				template="arush/oneall/styles.phtml"/>
 		</reference>
 
-		<!--reference name="content">
+		<reference name="content">
 			<block type="core/template"
-            name="arush_oneall_dashboard"
+            name="arush_oneall_social_linking"
 			after="-"
-            template="arush/oneall/dashboard.phtml"/>
-		</reference-->
+            template="arush/oneall/social_linking.phtml"/>
+		</reference>
 	</customer_account_index>
+	
+
 </layout>

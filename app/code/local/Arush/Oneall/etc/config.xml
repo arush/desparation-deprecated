@@ -60,7 +60,7 @@
 			</oneall_mysql4>
         </models>
 		<events>
-			<customer_save_after>
+			<customer_save_before>
 				<observers>
 					<add_oneall_identifier>
 						<type>singleton</type>
@@ -68,7 +68,7 @@
 						<method>addIdentifier</method>
 					</add_oneall_identifier>
 				</observers>
-			</customer_save_after>
+			</customer_save_before>
 			<admin_system_config_changed_section_oneall>
 				<observers>
 					<oneall_config_save>
