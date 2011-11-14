@@ -7400,7 +7400,7 @@ background: none repeat scroll 0 0 #F1F1F1;
 }
 
 
-.account-create .form-list label, .account-create .form-list span.label{width: 415px;}
+.account-create .form-list label, .account-create .form-list span.label{width: 186px;}
 
 
 
@@ -12854,9 +12854,10 @@ float:right;}
 	text-transform: uppercase;
 }
 .account-login #gigya-fieldset {
-	margin: 30px auto 40px;
+	margin: 30px auto 11px;
 	width: 204px;
-	height: 135px;
+	height: 151px;
+overflow: hidden;
 }
 .login-oneall p{
 	text-align: center;
@@ -12881,7 +12882,7 @@ float:right;}
 /* REGISTER PAGE START*/
 	.account-create{
 		float: left;
-		padding: 40px 20px;
+		margin:15px;
 	}
 	.account-create p{
 		text-align: center;
@@ -12903,12 +12904,12 @@ float:right;}
 	  margin-top: -25px;
 	}
 	.account-create .form-buttons .button span{color: #fff;}
-	.account-create .fieldset{margin: 0 0 16px;}
+	.account-create .fieldset{margin: 28px 0 16px;}
 	.customer-account-create .form-list .input-box, .enterprise-invitation-customer-account-create .form-list .input-box {
 		width: 185px;
 	}
 	.account-create .form-buttons .button{
-		margin: 0 0 0 430px;
+		margin: 0 0 0 201px;
 	}
 	
 /* REGISTER PAGE END*/

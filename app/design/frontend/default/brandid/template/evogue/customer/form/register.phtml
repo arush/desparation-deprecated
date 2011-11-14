@@ -33,11 +33,13 @@
 ?>
 <?php //echo $this->getLayout()->createBlock('cms/block')->setBlockId('login-bg')->toHtml() ?>
 
+<div class="black-title-bar">Register<a class="red-title-button" href="/customer/account/login">Already a member?</a></div>
+<div class="register-copy">Register, earn points and shop for free!</div>
 <div class="account-login account-register">
 	<div class="login-oneall">
 		
-		<h1>Login or connect</h1>
-	
+		<span class="black-title-med">Connect via Social Account</span>
+		
 		<form action="<?php echo Mage::getUrl('oneall/rpx/loginpost') ?>" method="post" id="login-form">
 			<div class="fieldset" id="gigya-fieldset">
 				<div class="gigya-group">
@@ -63,27 +65,13 @@
 	
 		<p>We never post to your profile without your consent</p>
 	
-		<div id="panes">
-			
-			
-			<img src="<?php echo $this->getSkinUrl();?>images/login-line.jpg"/>
-			
-			<a href="/customer/account/login">Already a member?</a>
-		
-		</div> <!-- end panes -->
-	
-	
 	
 	</div>
-	<img class="divider" src="<?php echo $this->getSkinUrl();?>images/login-line.png"/>
 
 
 
 	<div class="account-create">
-		
-		<h1>Complete your registration</h1>
-		
-		<p>Register, earn points and shop for free!</p>
+		<span class="black-title-med"><span class="register-red-or">…or</span>Register with your email</span>
 
 		<?php echo $this->getChildHtml('form_fields_before')?>
 		<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>

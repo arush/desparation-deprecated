@@ -1153,10 +1153,15 @@ width:95px;
 
 }
 
-.account-login a:hover, .account-login button.button:hover {
+.account-login button.button:hover {
 	background-color:black;
 	color: white;
 
+}
+
+.account-login a:hover {
+	background:none;
+	color:black;
 }
 
 .forgotpass-back-link a:hover {
@@ -1220,14 +1225,53 @@ width:95px;
 	
 }
 
+
 .customer-account-create #form-validate p#policy-text, .enterprise-invitation-customer-account-create #form-validate p#policy-text {
 	font-size: 11px;
 	font-family: arial;
 	text-transform: none;
-	float: left;
-	margin-left: 424px;
+	margin-left: 197px;
 	width: 250px;
 	margin-top: 10px;
 	color: #888;
+	clear:both;
 }
+
+.customer-account-create .login-oneall {
+	padding:0;
+	margin:25px;
+	text-align: center;
+	
+}
+
+.customer-account-create .account-create {
+	margin:25px;
+	text-align:center;
+	
+}
+
+
+.customer-account-create .black-title-bar {
+	padding:10px;
+}
+
+.customer-account-create .red-title-bar {
+	float:right;
+	
+}
+
+.register-red-or {
+	color:#d2002b;
+	margin-right: 10px;
+}
+
+.customer-account-create .register-copy {
+	padding: 25px;
+	font-family:ProximaNovaLight;
+	color:#595959;
+	font-size:16px;
+	text-align:center;
+}
+
+
 /* END REGISTER */
