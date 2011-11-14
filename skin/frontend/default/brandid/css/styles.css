@@ -6577,7 +6577,7 @@ background: none repeat scroll 0 0 #F1F1F1;
 }
 
 #checkout-step-login p {
-  margin: 0pt 0pt 15px;
+  margin: 10px 0pt 15px;
 }
 
 #checkout-step-login .form-list p {
@@ -7262,7 +7262,10 @@ background: none repeat scroll 0 0 #F1F1F1;
   width: 10px;
 }
 
-.my-account .form-list label, .account-create .form-list span.label, .form-list span.label {
+.my-account .form-list label,
+.account-create .form-list span.label,
+.form-list span.label,
+.checkout-onepage-index .form-list label {
   padding: 2px 15px 0 0;
   margin-top:8px;
 }
@@ -9888,10 +9891,6 @@ width: 331px;
   background: #fff;
   height: auto ! important;
   min-height: 0pt ! important;
-	-moz-box-shadow: 0pt 0px 2px #acacac;
-	-webkit-box-shadow: 0pt 0px 2px #acacac;
-	-khtml-box-shadow: 0pt 0px 2px #acacac;
-  	box-shadow: 0pt 0px 2px #acacac;
 	border: 1px solid #acacac\9;
 color: #555555;
 }
@@ -9906,11 +9905,14 @@ color: #555555;
   text-align: left;
 }
 #checkout-step-login .col2-set .col-2 li{
-  list-style: circle;
-  padding-left: 0;
+	list-style-image: url("../images/listarrow2.png");
+	padding-left: 0;
+	margin-top: 35px;
 }
 #checkout-step-login .col2-set .col-2 ul{
   padding-left: 20px;
+  padding-right: 37px;
+
 }
 #opc-login #checkout-step-login .col2-set .button{
   width: 221px;
@@ -10176,7 +10178,7 @@ input#p_method_paypal_express{margin-top: 5px;}
   padding: 20px 0 20px 126px;
 }
 #p_method_sagepayserver, input#p_method_sagepayserver + label{float: left;}
-input#p_method_sagepayserver + label{display: block; height: 30px;}
+input#p_method_sagepayserver + label{display: block; height: 30px;margin-left:10px;}
 dl.sp-methods li#serversecure{padding-top: 0;}
 #reward_placer{
 	background: #ffffff;
@@ -10244,7 +10246,7 @@ dl.sp-methods li#serversecure{padding-top: 0;}
 .opc .step #co-billing-form .form-list label{color: #555555;}
 .opc .step .form-list .form-alt .input-box, .opc .step .form-list .form-alt .input-box select#billing-address-select{width: 640px; color: #555555;}
 .opc .step .form-list .form-alt .input-box select#billing-address-select{border: 1px solid #ababab;} 
-#co-billing-form .form-list input.input-text{width: 371px; background: #f1f1f1; color: #555555; border: 1px solid #ababab; padding: 5px;}
+#co-billing-form .form-list input.input-text{width: 371px; background: #f1f1f1; color: #555555; border: 1px solid #ababab;}
 #co-billing-form .form-list select{width: 383px; background: #f1f1f1; color: #555555; border: 1px solid #ababab;}
 /*BILLING INFORMATION END*/
 
@@ -10259,7 +10261,7 @@ dl.sp-methods li#serversecure{padding-top: 0;}
 .opc .step #co-shipping-form .form-list label{color: #555555;}
 .opc .step .form-list .form-alt .input-box select#shipping-address-select{width: 640px; color: #555555;}
 .opc .step .form-list .form-alt .input-box select#shipping-address-select{border: 1px solid #ababab;} 
-#co-shipping-form .form-list input.input-text{width: 371px; background: #f1f1f1; color: #555555; border: 1px solid #ababab; padding: 5px;}
+#co-shipping-form .form-list input.input-text{width: 371px; background: #f1f1f1; color: #555555; border: 1px solid #ababab;}
 #co-shipping-form .form-list select{width: 383px; background: #f1f1f1; color: #555555; border: 1px solid #ababab;}
 /*SHIPPING INFORMATION END*/
 
@@ -11873,7 +11875,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 }
 .opc-block-progress div div a{
 	float: right;
-	color: #d2002b;
+	color: white;
 	padding-right: 10px;
 }
 .opc-block-progress div div dd{
@@ -12392,54 +12394,7 @@ color:#d2002b;
 }
 
 
-/*ARUSH BRANDID EDIT 09-11-11 */
-.footer-right{width: 300px; float: right;}
-.footer-cards{padding-top: 10px;}
 
-
-.footer-block {
-	padding: 10px;
-	float:left;
-}
-
-.footer-block-right-line {
-	border-right: 1px solid #aaa;
-	padding:0px;
-	float:left;
-}
-
-.footer-block-middle {
-	margin-left: 20px;
-}
-
-.footer-block-right {
-float:right;}
-
-.footer-cms-block-title {
-	padding: 7px 12px;
-	margin-right: 15px;
-	font-family: 'ProximaNovaBold';
-	color: white;
-	background-color:#000000;
-	font-size: 22px;
-	display: block;
-}
-
-
-.footer-cms-block-title-caption {
-	padding: 10px;
-	display:block;
-}
-
-.footer-block-padder {
-	padding: 20px 0;
-}
-
-.footer-all-link {
-	padding: 10px;
-	
-}
-/*ARUSH END EDIT 09-11-11 */
 
 
 /* FLO FOOTER END*/

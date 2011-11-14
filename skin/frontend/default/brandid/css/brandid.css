@@ -388,6 +388,54 @@ a.flname {
 
 /*TOP HEADER END*/
 
+/* GENERAL - FOOTER */
+.footer-right{width: 300px; float: right;}
+.footer-cards{padding-top: 10px;}
+
+
+.footer-block {
+	padding: 10px;
+	float:left;
+}
+
+.footer-block-right-line {
+	border-right: 1px solid #aaa;
+	padding:0px;
+	float:left;
+}
+
+.footer-block-middle {
+	margin-left: 20px;
+}
+
+.footer-block-right {
+float:right;}
+
+.footer-cms-block-title {
+	padding: 7px 12px;
+	margin-right: 15px;
+	font-family: 'ProximaNovaBold';
+	color: white;
+	background-color:#000000;
+	font-size: 22px;
+	display: block;
+}
+
+
+.footer-cms-block-title-caption {
+	padding: 10px;
+	display:block;
+}
+
+.footer-block-padder {
+	padding: 20px 0;
+}
+
+.footer-all-link {
+	padding: 10px;
+	
+}
+/* GENERAL - FOOTER END */
 
 
 .breadcrumbs {
@@ -816,7 +864,7 @@ span.change-pw-label {
 	display:block;
 	text-align:left;
 	padding:0;
-	margin:0;
+	margin: 0 0 0 10px;
 	font-family:ProximaNovaLight;
 	color:#595959;
 	font-size:16px;
@@ -1195,6 +1243,12 @@ width:95px;
 	transition: background-color 200ms ease-in;
 }
 
+.account-login .not-member a:hover {
+	background-color:black;
+	color:white;
+	
+}
+
 
 /* END LOGIN */
 
@@ -1275,3 +1329,117 @@ width:95px;
 
 
 /* END REGISTER */
+
+
+/* CHECKOUT */
+
+#co-billing-form .form-list .add-field .input-box, #co-shipping-form .form-list .add-field .input-box {
+	margin-left: 241px;
+}
+
+.checkout-onepage-index li.control label {
+	margin: 0 0 0 10px;
+
+}
+
+input#p_method_sagepayserver + label, input#p_method_paypal_billing_agreement + label, input#p_method_paypal_express +label, input#p_method_checkmo + label {
+	margin-left:10px;
+}
+
+.checkout-onepage-index button.button {
+	-webkit-transition: background-color 200ms ease-in;
+	-moz-transition: background-color 200ms ease-in;
+	-o-transition: background-color 200ms ease-in;
+	transition: background-color 200ms ease-in;
+
+}
+
+.checkout-review-submit p.f-left a {
+	-webkit-transition: color 200ms ease-in;
+	-moz-transition: color 200ms ease-in;
+	-o-transition: color 200ms ease-in;
+	transition: color 200ms ease-in;
+}
+
+.checkout-review-submit p.f-left a:hover {
+	color: black;
+}
+
+.checkout-onepage-index .col-main .black-title-bar {
+	margin-top: 9px;
+	padding: 10px;
+}
+
+
+.paypal-express-review .page-title {
+	margin:0;
+}
+
+.paypal-express-review .black-title-bar {
+	padding:10px;
+}
+
+.paypal-express-review .box-content {
+	color: #595959;
+	font-size: 16px;
+	font-family: ProximaNovaLight, Arial,sans-serif;
+	
+}
+
+.paypal-express-review .box-content, .paypal-express-review .box {
+	margin:10px;
+	padding:10px;
+	background-color:white;
+}
+
+
+.paypal-express-review .info-set.col2-set {
+	background-color:white;
+}
+
+.paypal-express-review #details-reload {
+	padding:20px;
+	background-color:white;
+	
+}
+
+.paypal-express-review #checkout-review-table-wrapper {
+	margin:0;
+	padding:20px;
+	background-color:white;
+}
+
+.paypal-express-review #checkout-step-review {
+	background-color:white;
+}
+
+.paypal-express-review #checkout-step-review .data-table {
+    padding: 0 20px 10px;
+}
+
+.paypal-express-review #review_button span span {
+	
+	font: 11px/20px ProximaNovaBold;
+	padding: 12px 38px;
+	
+}
+
+.paypal-express-review  #review_button {
+
+	margin-top:5px;
+	-webkit-transition: background-color 200ms ease-in;
+	-moz-transition: background-color 200ms ease-in;
+	-o-transition: background-color 200ms ease-in;
+	transition: background-color 200ms ease-in;
+}
+
+
+.paypal-express-review  #review_button span {
+	height: 43px;
+}
+
+.paypal-express-review .col1-layout .col-main .page-title {
+	margin-top: 10px;
+}
+
+
