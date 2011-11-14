@@ -47,7 +47,7 @@
             <div class="input-box">
                 <input type="checkbox" name="change_password" id="change_password" value="1" onclick="setPasswordForm(this.checked)" title="<?php echo $this->__('Change Password') ?>"<?php if($this->getCustomer()->getChangePassword()==1): ?> checked="checked"<?php endif; ?> class="checkbox" />
             </div>
-            <label for="change_password"><?php echo $this->__('Change Password') ?></label>
+            <span class="change-pw-label" for="change_password"><?php echo $this->__('Change Password') ?></span>
         </li>
     </ul>
 </div>
@@ -56,7 +56,6 @@
     <?php echo $userDefinedAttributes->setEntity($this->getCustomer())->toHtml(); ?>
 <?php endif;?>
 <div class="fieldset" style="display:none;">
-    <span class="black-title-med"><?php echo $this->__('Change Password') ?></span>
     <ul class="form-list">
         <li class="fields">
             <div class="field">

@@ -386,33 +386,8 @@ input, select, textarea, button {
 input.input-text, select, textarea {
   border: 1px solid rgb(199,
     199, 199);
-  background: url("../images/bkg_input.gif") repeat-x scroll
-    0pt 0pt rgb(255, 255, 255);
 }
 
-input.input-text, textarea {
-  padding: 2px;
-  background: url("../images/bkg_input.gif") repeat-x scroll 0pt 0pt rgb(255, 255, 255);
-    -webkit-transition: color 200ms ease-in;
-	-webkit-transition: border-color 200ms ease-in;
-	-webkit-transition: box-shadow 200ms ease-in;
-	-moz-transition: color 200ms ease-in;
-	-moz-transition: border-color 200ms ease-in;
-	-moz-transition: box-shadow 200ms ease-in;
-	-o-transition: color 200ms ease-in;
-	-o-transition: border-color 200ms ease-in;
-	-o-transition: box-shadow 200ms ease-in;
-	transition: color 200ms ease-in;
-	transition: border-color 200ms ease-in;
-	transition: box-shadow 200ms ease-in;
-}
-/* input.input-text:focus, textarea:focus {
-	-moz-box-shadow: inset 0 0 5px #888;
-	-webkit-box-shadow: inset 0 0 5px #888;
-	box-shadow: inner 0 0 5px #888;
-	border-color: #d2002b ! important;
-	color:#d2002b ! important;
-} */
 
 select {
   padding: 1px;
@@ -436,16 +411,20 @@ textarea {
   overflow: auto;
 }
 
+/*
 input.radio, input.checkbox {
   margin-right: 9px;
-  font-size: 11px ! important;
+  font-size: 16px ! important;
   margin-top: 4px;
   vertical-align: top;
 }
+*/
+/*
 
 input.radio {
   font-size: 10px ! important;
 }
+*/
 
 input.qty {
   background: none repeat scroll
@@ -483,9 +462,7 @@ button.button {
 	color:#FFF;
 }
 button.button:hover, .account-login  button.button:hover{
-	-moz-box-shadow: 0pt 0px 2px #acacac;
-	-webkit-box-shadow: 0pt 0px 2px #acacac;
-	-khtml-box-shadow: 0pt 0px 2px #acacac;
+
 	background-color:#000;
 }
 .registered-users button.button{background: transparent;}
@@ -648,14 +625,13 @@ p.required {
 }
 
 .form-list label {
-  float: left;
-  width: 242px;
+	float:left;
   padding: 2px 15px 0pt
     0pt;
   font-size: 12px;
-  font-weight: bold;
   color: rgb(68, 68, 68);
   text-align: right;
+  width:226px;
 }
 
 .checkout-onepage-index .form-list .control label {
@@ -7286,7 +7262,7 @@ background: none repeat scroll 0 0 #F1F1F1;
   width: 10px;
 }
 
-.my-account .form-list label, .account-create .form-list span.label {
+.my-account .form-list label, .account-create .form-list span.label, .form-list span.label {
   padding: 2px 15px 0 0;
   margin-top:8px;
 }
@@ -7330,7 +7306,6 @@ background: none repeat scroll 0 0 #F1F1F1;
 
 .account-login {
   min-height: 350px;
-  margin-bottom: -20px;
 }
 
 .login-only {
@@ -7424,52 +7399,32 @@ background: none repeat scroll 0 0 #F1F1F1;
   margin-bottom: 0.5em;
 }
 
-.account-login .form-list label, .account-login .form-list span.label, .account-create .form-list label, .account-create .form-list span.label  {
- font-family: ProximaNovaLight;
- font-size: 14px;
- color: #444;
- font-weight: 100;
- padding-top: 0px;
- text-transform:lowercase;
-  width: 75px;
-}
-.account-create .form-list label, .account-create .form-list span.label{width: 130px;}
 
-.customer-account-forgotpassword .form-list label {
-  color: rgb(134, 134, 134);
-  font-size: 14px ! important;
-  font-weight: normal;
-  width: 110px;
-}
+.account-create .form-list label, .account-create .form-list span.label{width: 415px;}
+
+
+
 #register{
 	margin: 22px 0 27px;
 }
 .account-login .form-buttons .button {
-  float: none;
+  float: left;
 }
 
 .account-login .btn-only , .account-login .form-buttons .button{
   position: relative;
-  background: #d2002b;
-  width: 212px;
-  height: 31px;
-  margin: 0px 0px 0px
-    90px;
+  margin: 0px 0px 0px 110px;
   text-transform: uppercase;
   *right: 17px;
 }
 
-/* .customer-account-forgotpassword .form-buttons .button {
-  background: url("../images/sprites.gif") no-repeat scroll
-    -8px -4px transparent;
+ .customer-account-forgotpassword .form-buttons .button {
   border: 1px solid rgb(207,
     206, 196);
   margin-right: 2px;
-  width: 196px;
-  height: 28px;
   text-transform: uppercase;
   margin-bottom: 10px;
-} */
+}
 
 .account-login span.validation-error, div.validation-error, span.validation-passed,
 div.validation-passed {
@@ -7503,7 +7458,7 @@ div.validation-passed {
 .account-login .form-list input.input-text, 
 .account-create .form-list select, .account-create .form-list input.input-text  {
   color: #444;
-  padding: 5px;
+  padding: 10px;
   float: left;
   background: none repeat scroll #f5f5f5;
   border-color: #d9d9d9;
@@ -7533,9 +7488,10 @@ div.validation-passed {
 }
 
 .account-login .scrollContainer div.panel {
-  width: 320px; /* change to 560px if not using JS to remove rh.scroll */
+  width: 350px; /* change to 560px if not using JS to remove rh.scroll */
   padding-bottom: 25px;
   padding-left: 2px;
+  padding-top:8px;
 }
 
 .account-login #slider .navigation a, a#become-member {
@@ -7569,11 +7525,11 @@ color: #444;
 font-size: 14px ! important;
 font-weight: normal;
 font-family: ProximaNovaLight;
-width: 75px;
+width: 95px;
 float: left;
 }
 
-.account-login #forgotpass .form-buttons {width:auto; margin-right: 25px; float: right;}
+.account-login #forgotpass .form-buttons {width:auto; float: left;}
 
 /* .account-login #forgotpass .form-buttons .button {
 background: url("../images/sprites.gif") no-repeat scroll
@@ -7588,10 +7544,7 @@ text-transform: uppercase;
 
 
 .account-login #forgotpass .forgotpass-back-link a {
-	float: right;
-	margin-right: 6px;
-	margin-top: 11px;
-	text-transform: lowercase;
+		text-transform: lowercase;
 }
 .account-login #forgotpass .forgotpass-back-link a:hover {
 	text-decoration: underline;
@@ -7631,11 +7584,7 @@ text-transform: uppercase;
 
 }
 
-.account-login .login-normal .form-buttons .button {
-    margin: 0px;
-	width: 212px;
-	height: 31px;
-}
+
 
 .account-login .panel #register {
 	padding: 20px;
@@ -7665,10 +7614,6 @@ text-transform: uppercase;
     130, 118);
 } */
 
-.account-login .fieldset .form-list {
-  /* padding: 20px 0pt 0pt; */
-  width: 335px;
-}
 
 .account-login .form-list p {
   padding: 0pt 0pt 0pt
@@ -7777,14 +7722,6 @@ text-transform: uppercase;
   width: 230px;
 }
 
-.account-create .form-list .control .input-box {
-  margin-left: 113px ! important;
-}
-
-.account-create .form-list label, .account-create .form-list span.label {
-  padding: 2px 15px 0pt
-    0pt;
-}
 
 .account-create .form-list select.gender {
   width: 200px ! important;
@@ -7819,7 +7756,7 @@ text-transform: uppercase;
 
 .account-create .form-list .required em, .customer-account-forgotpassword .required em
  {
-  color: rgb(130, 130, 118);
+  color: #d2002b;
 }
 
 .account-create .form-buttons p.back-link, .customer-account-forgotpassword p.back-link
@@ -8677,33 +8614,10 @@ font-size: 16px;
 
 
 
-
-
-
 .customer-account-forgotpassword .wrapper /*.customer-account-create .wrapper, 
 .enterprise-invitation-customer-account-create .wrapper */{
   background: url("../images/bg-eros.png") no-repeat scroll center top transparent;
   height: 100%;
-}
-
-/*.customer-account-login .page, .customer-account-forgotpassword .page, .enterprise-invitation-customer-account-create .page,
-.customer-account-create .page {
-  margin: 0pt auto;
-  width: 1007px;
-  height: 100%;
-}*/
-
-/*.customer-account-login .main, .customer-account-forgotpassword .main .customer-account-create .main,
-.enterprise-invitation-customer-account-create .main  {
-  background: url("../images/bg-login.png") repeat scroll
-    left top transparent;
-  float: right;
-  width: 420px;
-  height: 100%;
-}*/
-
-.customer-account-login .main {
-  min-height: 595px;
 }
 
 
@@ -12908,11 +12822,7 @@ float:right;}
 	
 /* FLO HEADER END*/
 
-.customer-account-login .account-login {
-	height: 607px;
-}
 .customer-account-login .wrapper{
-	background: url('../images/header-bg.png') repeat-x #F4F4ED;
 	overflow: auto;
 }
 .customer-account-login .col-main, .customer-account-forgotpassword .col-main , .customer-account-create .col-main{
@@ -12926,12 +12836,11 @@ float:right;}
 }
 
 .login-oneall, .registered-users{
-	padding: 40px 40px;
-	width: 400px;
-	height: 450px;
+	padding: 0 40px 40px 40px;
+	margin: 15px;
 	float: left;
 }
-.account-login .registered-users{padding: 40px 20px; width: 435px;}
+.account-login .registered-users{padding: 0 40px 40px 40px; margin: 15px;}
 .account-login h1{
 	font-family: ProximaNovaBold;
 	color: #d2002b;
@@ -12961,21 +12870,17 @@ float:right;}
 	text-transform: uppercase;
 	color: #444;
 }
-.registered-users #register {
-	margin:148px 0 33px 55px;
-}
 
 .account-login .divider {
-		padding: 20px 0;
+
 		width:1px;
-		height: 450px;
+		height: 330px;
 	}
 
 
 /* REGISTER PAGE START*/
 	.account-create{
 		float: left;
-		width: 435px;
 		padding: 40px 20px;
 	}
 	.account-create p{
@@ -13003,21 +12908,9 @@ float:right;}
 		width: 185px;
 	}
 	.account-create .form-buttons .button{
-		margin: 0 0 0 144px;
+		margin: 0 0 0 430px;
 	}
-	.customer-account-create #form-validate p#policy-text, .enterprise-invitation-customer-account-create #form-validate p#policy-text {
-		font-size: 0.75em;
-		font-family: arial;
-		text-transform: none;
-		float: left;
-		margin-left: 140px;
-		width: 218px;
-	}
-	.account-create .divider {
-		width:1px;
-		height: 200px;
-	}
-
+	
 /* REGISTER PAGE END*/
 
 
@@ -13365,4 +13258,32 @@ float:right;}
 
 }
 
+
+input.input-text, textarea {
+  padding: 10px;
+    -webkit-transition: color 200ms ease-in;
+	-webkit-transition: border-color 200ms ease-in;
+	-webkit-transition: box-shadow 200ms ease-in;
+	-moz-transition: color 200ms ease-in;
+	-moz-transition: border-color 200ms ease-in;
+	-moz-transition: box-shadow 200ms ease-in;
+	-o-transition: color 200ms ease-in;
+	-o-transition: border-color 200ms ease-in;
+	-o-transition: box-shadow 200ms ease-in;
+	transition: color 200ms ease-in;
+	transition: border-color 200ms ease-in;
+	transition: box-shadow 200ms ease-in;
+}
+input.input-text:focus, textarea:focus {
+	-moz-box-shadow: inset 0 0 5px #888;
+	-webkit-box-shadow: inset 0 0 5px #888;
+	box-shadow: inner 0 0 5px #888;
+	border-color: #d2002b ! important;
+	color:#d2002b ! important;
+}
+
+/*GENERAL */
+.form-list input.input-text, .form-list textarea {
+	padding:10px;
+}
 /* END ARUSH UX NICETIES */
