@@ -7,6 +7,7 @@ class Vdh_Randomquote_Model_Email_Template extends Mage_Core_Model_Email_Templat
 
 		if (!array_key_exists('invite_style', $params) || array_key_exists('invite_quote', $params)) {
 	    	parent::sendTransactional($templateId, $sender, $email, $name, $vars, $storeId);
+	    	return;
 		}
 				
 		$inviteStyle = Mage::getModel('randomquote/style')->load($params['invite_style']);
