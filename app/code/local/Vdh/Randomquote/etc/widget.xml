@@ -13,12 +13,12 @@
                 
                 <values>
                     <inline translate="label">
-                        <value>vdh/randomquote/inline.phtml</value>
-                        <label>Inline</label>
+                        <value>vdh/randomquote/invite.phtml</value>
+                        <label>Invite</label>
                     </inline>
                     <block translate="label">
-                        <value>vdh/randomquote/block.phtml</value>
-                        <label>Inline</label>
+                        <value>vdh/randomquote/footer.phtml</value>
+                        <label>Footer</label>
                     </block>
                     
                 </values>

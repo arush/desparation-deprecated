@@ -32,8 +32,25 @@
             	</rewrite>
             </core>
         </models> 
+       
+		<page>
+			<layouts>            
+				<plan module="randomquote" translate="label">
+			        <label>Plans Layout</label>
+	        		<template>vdh/randomquote/plan.phtml</template>
+			        <layout_handle>product_plan</layout_handle>    	
+			    </plan>
+			</layouts>
+		</page>    	
     </global> 
     <frontend>
+    	<layouts>
+            <updates>
+                <randomquote>
+                    <file>vdh/randomquote/layout.xml</file>
+                </randomquote>
+            </updates>
+    	</layouts> 
         <routers>
             <randomquote>
                 <use>standard</use>
