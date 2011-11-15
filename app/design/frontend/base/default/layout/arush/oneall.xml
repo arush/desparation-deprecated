@@ -17,9 +17,7 @@
 		</reference>
 	</default>
 	
-	<checkout_onepage_index>
-		<remove name="arush_oneall_scripts" />
-	</checkout_onepage_index>
+	
 
 	<!-- Use our own register.phtml with no password fields and custom action -->
 	<oneall_rpx_authenticate>

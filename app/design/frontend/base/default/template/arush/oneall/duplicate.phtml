@@ -75,7 +75,8 @@
 														<div class="forgotpass-back-link"><a href="#login"><?php echo $this->__('Go back') ?></a></div>
 
 														<button type="submit" name="submit" class="button" id="submit_btn" value="Send"><span><span class="cufon"><?php echo $this->__('Reset Password') ?></span></span></button>
-
+														
+														<span id="forgotpass-response"></span>
 													<div style="clear: both;"><!-- --></div>
 												</div>
 											</div>
@@ -138,9 +139,31 @@
     <script type="text/javascript">
     //<![CDATA[
 		$('submit_btn').observe('click', function(){
+		    
+		    $('forgotpass-response').addClassName('loading');
+			$('forgotpass-response').innerHTML = 'Resetting your password…';
+		    
 		    var ajax = this.form.request({
 		        onSuccess: function(transport) {
-		            alert(transport.responseText);
+		            if(transport.responseText.indexOf('This email address was not found in our records.') >= 0) {
+          				$('forgotpass-response').removeClassName('loading');
+						$('forgotpass-response').innerHTML="Address not found";
+		            }
+		            else if(transport.responseText.indexOf('Invalid email address.') >= 0) {
+          				$('forgotpass-response').removeClassName('loading');
+						$('forgotpass-response').innerHTML="Invalid email address";
+		            }
+		            else if(transport.responseText.indexOf('Please enter your email.') >= 0) {
+          				$('forgotpass-response').removeClassName('loading');
+						$('forgotpass-response').innerHTML="Please enter an email address";
+		            }
+		            else {
+          				$('forgotpass-response').removeClassName('loading');
+						$('forgotpass-response').innerHTML="Done - check your email";
+		            }
+
+
+		            
 		        }
 		    });
 		    Event.stop();

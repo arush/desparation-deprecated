@@ -68,5 +68,15 @@
 			<action method="addCss"><stylesheet>css/jScrollPane.css</stylesheet></action>
         </reference>
     </oneall_rpx_duplicate>   
+    
+       
+       <customer_account_forgotpassword>
+		<reference name="root">
+			<action method="setTemplate"><template>page/empty.phtml</template></action>
+           	<remove name="head"/>
+        </reference>
+ 	   </customer_account_forgotpassword>
+
+
        
 </layout>

@@ -56,6 +56,11 @@ body {
 	font-size: 14px;
 }
 
+.newsletter-manage-index label[for="subscription"], .newsletter-manage-index #main-sub {
+	display:none;
+	
+}
+
 .my-account-links .account-link a {
 	border-bottom: 1px solid #aaa;
 	margin-bottom:10px;
@@ -641,6 +646,7 @@ html[xmlns] .invite-options {
 
 
 #customer-url-validation-message {
+	color: #595959;
 	padding: 20px;
 	display:block;
 	font-family: ProximaNovaLight;
@@ -1532,6 +1538,8 @@ input#p_method_sagepayserver + label, input#p_method_paypal_billing_agreement + 
 	
 }
 
+
+
 .oneall-rpx-duplicate .black-title-bar {
 	padding:10px;
 }
@@ -1549,6 +1557,7 @@ input#p_method_sagepayserver + label, input#p_method_paypal_billing_agreement + 
 
 .oneall-rpx-duplicate a.f-left {
 	margin-top: 10px;
+	text-transform: lowercase;
 }
 
 .oneall-rpx-duplicate ul.form-list {
@@ -1575,6 +1584,28 @@ input#p_method_sagepayserver + label, input#p_method_paypal_billing_agreement + 
 
 .oneall-rpx-duplicate #slider .scroll.rpx-duplicate-scroll {
 	height:163px;
+}
+
+.oneall-rpx-duplicate .black-title-bar {
+	margin-top: 10px;
+}
+
+.oneall-rpx-duplicate #send2 {
+	margin-left:12px;
+}
+
+#forgotpass-response {
+	color: #595959;
+	font-family: ProximaNovaLight;
+	font-size:16px;
+	float:left;
+	margin-left: 6px;
+    margin-top: 10px;
+}
+#forgotpass-response.loading {
+	background: url('../images/ajax-loader.gif') no-repeat 0% 50%;
+
+    padding-left: 28px;
 }
 
 /* END ONEALL DUPLICATE */
