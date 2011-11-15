@@ -41,7 +41,11 @@
 				        FB.ui({method: 'apprequests',
 				          message: '<?php echo Mage::getBaseUrl() . Mage::getModel('customer/customer')->load(Mage::getSingleton('customer/session')->getId())->getCustomerurl();?>'
 				        }, requestCallback);
-				      }				
+				      }
+				function requestCallback(response) {
+				// Handle callback here
+				}
+
 				</script>
 			</div>
 		    </div>    	        
