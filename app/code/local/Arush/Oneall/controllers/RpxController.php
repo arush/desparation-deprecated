@@ -116,12 +116,11 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 			$socialid = 'not yet defined';
 			
 			//$customer = Mage::helper('oneall/identifiers')->get_customer(Mage::helper('oneall')->getSocialId($auth_info));
-			$customer = Mage::getModel('customer/customer')
+			$customerCollection = Mage::getModel('customer/customer')
 			->getCollection()
 			->addAttributeToSelect('oneall_user_token')
-			->addAttributeToFilter('oneall_user_token', $auth_info->response->result->data->user->user_token)
-			->getFirstItem();
-			if (!$customer) {
+			->addAttributeToFilter('oneall_user_token', $auth_info->response->result->data->user->user_token);
+			if ($customerCollection->count() == 0) {
 				$this->loadLayout();
 				$block = Mage::getSingleton('core/layout')->getBlock('customer_form_register');
 				if($block !== false) {
@@ -150,6 +149,7 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 				$this->renderLayout();
 				return;
 			} else {
+				$customer = $customerCollection->getFirstItem();
 				Mage::getSingleton('oneall/session')->setLoginRequest(true);
 				//$session->login($customer->getEmail(), 'REQUIRED_SECOND_PARAM');
 				$session->setCustomerAsLoggedIn($customer);
