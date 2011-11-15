@@ -1,5 +1,33 @@
 <?php class Vdh_Randomquote_SocialController extends Mage_Core_Controller_Front_Action {
 	
+	public function facebookFriendsListAction() {
+
+		$identifier = Mage::getModel('oneall/identifiers')
+			->getCollection()
+			->addFieldToFilter('customer_id', Mage::getSingleton('customer/session')->getId())
+			->addFieldToFilter('provider', 'facebook')
+			->getFirstItem();
+			
+			print_r($identifier->getData());
+
+
+
+		$curl = curl_init();
+	        
+	    curl_setopt($curl, CURLOPT_URL, ' https://graph.facebook.com/psychocrackpot/friends');
+	    curl_setopt($curl, CURLOPT_HEADER, 0);
+	    curl_setopt($curl, CURLOPT_TIMEOUT, 5);
+	    curl_setopt($curl, CURLOPT_VERBOSE, 0);
+	    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+	    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+	    curl_setopt($curl, CURLOPT_FAILONERROR, 0);
+		
+	 	$response = curl_exec($curl);
+	 	print_r($response);
+
+	
+	}
+
 	public function facebookAction() {
 		
 		$identifier = Mage::getModel('oneall/identifiers')
@@ -8,12 +36,10 @@
 			->addFieldToFilter('provider', 'facebook')
 			->getFirstItem();
 		
-		print_r('me');	
 		if (!$identifier) {
 			echo json_encode(array('message' => 'No facebook profile found.'));
 			return;
 		}
-		print_r('you');
 		
 		$message = $this->getRequest()->getParam('message');
 		
