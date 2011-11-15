@@ -24,7 +24,7 @@
 	        <?php /*?><a href="http://www.facebook.com/sharer.php?u=<?php echo $this->getReferralUrl(); ?>" target="_blank"><img class="facebook" src="<?php echo $this-> getSkinUrl(); ?>images/facebook.png" width="48" height="48" title="post this on facebook"/></a><?php */?>
 	        
 	        <div class="facebok-share">
-		        <div class="f-trans"><a style="display:block;" href"#" onclick="sendRequestViaMultiFriendSelector(); return false;"></a></div>
+		        <div class="f-trans"></div>
 				<div class="f-text">on Facebook</div>
 	        </div>
 
@@ -45,6 +45,10 @@
 				function requestCallback(response) {
 				// Handle callback here
 				}
+				
+				$$('.f-trans')[0].observe('click', function(){
+					sendRequestViaMultiFriendSelector();
+				});
 
 				</script>
 			</div>
