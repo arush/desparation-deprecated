@@ -42,12 +42,12 @@ class Vdh_Randomquote_Helper_Data extends Mage_Core_Helper_Abstract {
 		
 		$return = array(
 			"billing_date" => date('y-m-d 00:00 A', mktime(0,0,0,date('m')+1, $billingDate, date('Y'))),
-			"delivery_date" => date('y-m-d 00:00 A', mktime(0,0,0,date('m')+1, $deliveryDate, date('Y')))			
+			"delivery_date" => date('Y-m-d', mktime(0,0,0,date('m')+1, $deliveryDate, date('Y')))			
 		);
 		if ($today > $nextDelivery) {
 			$return = array(
 				"billing_date" => date('y-m-d 00:00 A', mktime(0,0,0,date('m')+2, $billingDate, date('Y'))),
-				"delivery_date" => date('y-m-d 00:00 A', mktime(0,0,0,date('m')+2, $deliveryDate, date('Y')))			
+				"delivery_date" => date('Y-m-d', mktime(0,0,0,date('m')+2, $deliveryDate, date('Y')))			
 			);
 
 		}
