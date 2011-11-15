@@ -1521,5 +1521,63 @@ input#p_method_sagepayserver + label, input#p_method_paypal_billing_agreement + 
 
 }
 
+/* END ONEALL REGISTER */
+
+/* ONEALL DUPLICATE */
+	
+.oneall-rpx-duplicate .account-login {
+
+	background-color: white;
+	padding: 25px;
+	
+}
+
+.oneall-rpx-duplicate .black-title-bar {
+	padding:10px;
+}
+
+.oneall-rpx-duplicate .account-login label {
+	width:115px;
+}
+
+.oneall-rpx-duplicate .account-login button.button {
+	float:left;
+	margin-left: 5px;
+	padding: 10px 50px;
+
+}
+
+.oneall-rpx-duplicate a.f-left {
+	margin-top: 10px;
+}
+
+.oneall-rpx-duplicate ul.form-list {
+	margin-top:20px;
+}
+
+.oneall-rpx-duplicate button#send {
+	margin-left: 130px;
+}
+
+.oneall-rpx-duplicate #read-only-email {
+	padding:10px;
+	color:black;
+}
+
+.oneall-rpx-duplicate .account-login .scrollContainer div.panel {
+
+    width: 370px;
+}
+
+.oneall-rpx-duplicate .forgotpass-buttons.buttons-set.form-buttons {
+	margin-left: 43px;
+}
+
+.oneall-rpx-duplicate #slider .scroll.rpx-duplicate-scroll {
+	height:163px;
+}
+
+/* END ONEALL DUPLICATE */
+
 
 
