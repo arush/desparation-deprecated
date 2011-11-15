@@ -1283,6 +1283,11 @@ width:95px;
 	padding:25px 64px;
 	background-color:white;
 }
+#social_link_container.loading {
+	background: url('../images/ajax-loader.gif') no-repeat 50% 50% #fff;
+	padding:40px 64px;
+
+}
 
 
 /* END LOGIN */
@@ -1635,4 +1640,22 @@ input#p_method_sagepayserver + label, input#p_method_paypal_billing_agreement + 
 
 
 /* ONEALL SOCIAL LINKING */
+
+
+/* RANDOMQUOTE FOOTER */
+	
+.footer.quote-footer {
+	background-color:white;
+	padding:20px;
+
+}
+
+.quote-footer .footer-container {
+	margin: 21px auto;
+	width: 655px;
+	padding:0;
+}
+
+
+/* END RANDOMQUOTE FOOTER */
 

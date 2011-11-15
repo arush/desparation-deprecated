@@ -2,14 +2,17 @@
 
 <div class="social-link info-box">
 <div class="black-title-bar">Connect your social accounts</div>
-<div id="social_link_container"></div>
+<div id="social_link_container" class="loading"></div>
 <script type="text/javascript">
  oneall.api.plugins.social_link.build("social_link_container", {
   'providers' :  ['facebook', 'google','twitter', 'yahoo'], 
   'user_token': '<?php echo Mage::getModel('customer/customer')->load(Mage::getSingleton('customer/session')->getId())->getOneallUserToken(); ?>',
   'css_theme_uri': 'https://oneallcdn.com/css/api/socialize/themes/link.css',
   'grid_size_x': '2',
-  'callback_uri': '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK); ?>arush-oneall/rpx/token_url_add/'
+  'callback_uri': '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK); ?>arush-oneall/rpx/token_url_add/',
+  'events' :{
+        'onload' : function(){jQuery('#social_link_container').removeClass('loading');}   
+      } 
  });
 </script>
 

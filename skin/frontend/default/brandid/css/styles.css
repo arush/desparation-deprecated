@@ -13219,11 +13219,11 @@ overflow: hidden;
 
 /* ARUSH UX NICETIES */
 ::selection {
-        background-color: #4900ef;
+        background: #4900ef;
 		color: #d2002b;
         }
 ::-moz-selection {
-        background-color: #4900ef;
+        background: #4900ef;
 		color: #d2002b;
 
 }
