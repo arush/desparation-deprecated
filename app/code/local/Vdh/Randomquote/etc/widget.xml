@@ -4,23 +4,25 @@
         <name>Random Quote</name>
         <description type="desc">Adds a random quote to the page</description>
 		<parameters>
-            <position translate="label">
+            <template_path translate="label">
                 <required>1</required>
                 <visible>1</visible>
-                <label>Position</label>
+                <label>Template</label>
 
-                <type>select</type>
+		        <type>select</type>
+                
                 <values>
-                    <title translate="label">
-                        <value>title</value>
-                        <label>Title</label>
-                    </title>
-                    <footer translate="label">
-                        <value>footer</value>
-                        <label>Footer</label>
-                    </footer>
+                    <inline translate="label">
+                        <value>vdh/randomquote/inline.phtml</value>
+                        <label>Inline</label>
+                    </inline>
+                    <block translate="label">
+                        <value>vdh/randomquote/block.phtml</value>
+                        <label>Inline</label>
+                    </block>
+                    
                 </values>
-            </position>
+            </template_path>
         </parameters>        
     </randomquote>
 </widgets> 
