@@ -1,11 +1,3 @@
-#recurring_start_date, #recurring_start_date_trig, label[for="recurring_start_date"] {
-	display: none;
-	width: 0;
-	height: 0;
-	position: absolute;
-	left: -999em;
-}
-
 body {
 	background: #cfcfcf;
 }
@@ -64,10 +56,26 @@ body {
 	font-size: 14px;
 }
 
-.newsletter-manage-index label[for="subscription"], .newsletter-manage-index #main-sub {
+.newsletter-manage-index label[for="main-subscription"], .newsletter-manage-index #main-sub {
 	display:none;
 	
 }
+
+.newsletter-manage-index .black-title-bar {
+	padding:10px;
+	
+}
+
+.newsletter-manage-index .my-account {
+	background-color:white;
+	padding-bottom: 25px;
+	}
+
+.newsletter-manage-index #subscription-information {
+padding:25px;
+margin-left:207px;}
+
+
 
 .my-account-links .account-link a {
 	border-bottom: 1px solid #aaa;
@@ -1272,7 +1280,7 @@ width:95px;
 }
 
 #social_link_container {
-	padding:25px 76px;
+	padding:25px 64px;
 	background-color:white;
 }
 
@@ -1619,6 +1627,12 @@ input#p_method_sagepayserver + label, input#p_method_paypal_billing_agreement + 
 /* END ONEALL DUPLICATE */
 
 
+/* ONEALL SOCIAL LINKING */
+	
+.customer-account-index #social-link-container .plugin #providers .provider {
+	width:212px;
+}
 
 
+/* ONEALL SOCIAL LINKING */
 
