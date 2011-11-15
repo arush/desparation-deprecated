@@ -15,6 +15,12 @@
             <randomquote>
             	<class>Vdh_Randomquote_Block</class>
             </randomquote>
+            
+            <payment>
+            	<rewrite>
+            		<catalog_product_view_profile>Vdh_Randomquote_Block_Catalog_Product_View_Profile</catalog_product_view_profile>            		
+            	</rewrite>
+            </payment>
         </blocks>            
   		<models>
             <randomquote>

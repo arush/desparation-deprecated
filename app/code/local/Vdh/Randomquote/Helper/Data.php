@@ -31,5 +31,26 @@ class Vdh_Randomquote_Helper_Data extends Mage_Core_Helper_Abstract {
 		array_multisort($value, SORT_ASC, $return);
 		return $return;
 
-	}	
+	}
+	
+	public function getProfileDate() {
+		$cutoff = Mage::getStoreConfig('randomquote/general/cutoff');
+		$deliveryDate = Mage::getStoreConfig('randomquote/general/delivery_date');
+		$billingDate = Mage::getStoreConfig('randomquote/general/billing_date');
+		$today = mktime(0,0,0, date('m'),date('d')+$cutoff, date('Y'));
+		$nextDelivery = mktime(0,0,0,date('m')+1, $deliveryDate, date('Y'));
+		
+		$return = array(
+			"billing_date" => date('y-m-d 00:00 A', mktime(0,0,0,date('m')+1, $billingDate, date('Y'))),
+			"delivery_date" => date('y-m-d 00:00 A', mktime(0,0,0,date('m')+1, $deliveryDate, date('Y')))			
+		);
+		if ($today > $nextDelivery) {
+			$return = array(
+				"billing_date" => date('y-m-d 00:00 A', mktime(0,0,0,date('m')+2, $billingDate, date('Y'))),
+				"delivery_date" => date('y-m-d 00:00 A', mktime(0,0,0,date('m')+2, $deliveryDate, date('Y')))			
+			);
+
+		}
+		return $return;
+	}
 }
