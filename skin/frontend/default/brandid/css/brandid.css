@@ -1473,3 +1473,53 @@ input#p_method_sagepayserver + label, input#p_method_paypal_billing_agreement + 
 	margin-top:30px;
 	
 }
+
+/* Oneall Register */
+
+.oneall-register .black-title-bar {
+	margin-bottom: 20px;
+}
+
+.oneall-register .form-list label {
+	margin-top:8px;
+	}
+
+.oneall-complete-reg {
+	margin-left:100px;
+}
+
+.oneall-register .account-register {
+	background-color: white;
+	padding: 25px;
+}
+
+.oneall-register #reg-now span span {
+	padding:0;
+	font: 11px/20px ProximaNovaBold;
+	
+}
+
+.oneall-register #reg-now span {
+	
+	padding:0;
+}
+
+
+.oneall-register  #reg-now {
+	height:45px;
+	padding: 0 56px;
+	-webkit-transition: background-color 200ms ease-in;
+	-moz-transition: background-color 200ms ease-in;
+	-o-transition: background-color 200ms ease-in;
+	transition: background-color 200ms ease-in;
+	margin:0;
+	float:left;
+}
+
+.oneall-register .form-buttons {
+	width:636px;
+
+}
+
+
+
