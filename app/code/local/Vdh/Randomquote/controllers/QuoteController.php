@@ -2,7 +2,7 @@
 
 	public function quoteAction() {
 		$position = $this->getRequest()->getParam('position');		
-		$layout = ($this->getRequest()->getParam('layout')) ? $this->getRequest()->getParam('layout') : 'inline';
+		$layout = ($this->getRequest()->getParam('layout')) ? $this->getRequest()->getParam('layout') : 'invite';
 		$quote = Mage::getModel('randomquote/quote')->load(isset($position) ? $position : false);
 		
         $this->loadLayout();
