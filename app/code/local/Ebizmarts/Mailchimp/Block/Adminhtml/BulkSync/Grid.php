@@ -34,16 +34,25 @@ class Ebizmarts_Mailchimp_Block_Adminhtml_BulkSync_Grid extends Mage_Adminhtml_B
         $this->getMassactionBlock()->setUseSelectAll(false);
 
         $helper = Mage::helper('mailchimp');
+        $stores = Mage::getModel('mailchimp/source_cms')->toOptionArray();
 
         $this->getMassactionBlock()->addItem(Ebizmarts_Mailchimp_Model_BulkSynchro::WAY_IMPORT, array(
              'label'    => $helper->__('Import List'),
+             'complete' => $helper->__('A new list have been created.'),
              'additional'   => array(
-                'visibility'    => array(
-                     'name'     => 'optionToImport',
+                'list'    => array(
+                     'name'     => 'list',
                      'type'     => 'select',
                      'class'	=> 'selectChimp',
-                     'label'    => $helper->__('Please select the list to import to General Newsletter'),
+                     'label'    => $helper->__('From list'),
                      'values'   => Mage::getSingleton('mailchimp/source_lists')->toOptionArray()
+                 ),
+                 'store'    => array(
+                     'name'     => 'import',
+                     'type'     => 'select',
+                     'class'	=> 'selectChimp',
+                     'label'    => $helper->__('To store'),
+                     'values'   => $stores
                  ),
 	             'start'  => array(
 	                     'name'     => 'start',
@@ -65,13 +74,20 @@ class Ebizmarts_Mailchimp_Block_Adminhtml_BulkSync_Grid extends Mage_Adminhtml_B
         $this->getMassactionBlock()->addItem(Ebizmarts_Mailchimp_Model_BulkSynchro::WAY_EXPORT, array(
              'label'    => $helper->__('Export List'),
              'additional'   => array(
-                'visibility'    => array(
-                     'name'     => 'optionToExport',
-                     'type'     => 'select',
-                     'class'	=> 'selectChimp',
-                     'label'    => $helper->__('Please select the list to export to'),
-                     'values'   => Mage::getSingleton('mailchimp/source_lists')->toOptionArray()
-                 )
+	             'store'    => array(
+	                 'name'     => 'store',
+	                 'type'     => 'select',
+	                 'class'	=> 'selectChimp',
+	                 'label'    => $helper->__('From store'),
+	                 'values'   => $stores
+	             ),
+				'list'    => array(
+				     'name'     => 'list',
+				     'type'     => 'select',
+				     'class'	=> 'selectChimp',
+				     'label'    => $helper->__('To list'),
+				     'values'   => Mage::getSingleton('mailchimp/source_lists')->toOptionArray()
+				 )
             )
         ));
 
@@ -106,6 +122,15 @@ class Ebizmarts_Mailchimp_Block_Adminhtml_BulkSync_Grid extends Mage_Adminhtml_B
             'width'     => '250px'
         ));
 
+        $this->addColumn('store', array(
+            'header'    => $helper->__('Store'),
+            'index'     => 'store',
+			'type'      => 'options',
+            'options'   => Mage::getSingleton('mailchimp/source_cms')->getStores(),
+            'index'     =>'store',
+            'width'     => '150px'
+        ));
+
         $this->addColumn('type', array(
             'header'    => $helper->__('Type'),
             'type'      => 'options',
@@ -115,7 +140,7 @@ class Ebizmarts_Mailchimp_Block_Adminhtml_BulkSync_Grid extends Mage_Adminhtml_B
         ));
 
 		$this->addColumn('list_id', array(
-              'header'    => $helper->__('List Id'),
+              'header'    => $helper->__('List'),
               'width'     => '250px',
               'align'     => 'center',
               'type'      => 'options',
@@ -139,15 +164,15 @@ class Ebizmarts_Mailchimp_Block_Adminhtml_BulkSync_Grid extends Mage_Adminhtml_B
             'sortable'  => false,
             'actions'   => array(
             	array(
-	                'url'       => $this->getUrl('*/*/delete', array('time' => '$created_time', 'type' => '$type', 'list' => '$list')),
+	                'url'       => $this->getUrl('*/*/delete', array('time' => '$created_time', 'type' => '$type', 'list' => '$list', 'store' => '$store')),
 	                'caption'   => $helper->__('Delete'),
 	                'confirm'   => $helper->__('Are you sure you want to DELETE this?')),
 				array(
-	                'url'       => $this->getUrl('*/*/run', array('time' => '$created_time', 'type' => '$type', 'list' => '$list')),
+	                'url'       => $this->getUrl('*/*/run', array('time' => '$created_time', 'type' => '$type', 'list' => '$list', 'store' => '$store')),
 	                'caption'   => $helper->__('Run'),
 	                'confirm'   => $helper->__('Are you sure you want to RUN this?')),
 				array(
-	                'url'       => $this->getUrl('*/*/download', array('time' => '$created_time', 'type' => '$type', 'list' => '$list')),
+	                'url'       => $this->getUrl('*/*/download', array('time' => '$created_time', 'type' => '$type', 'list' => '$list', 'store' => '$store')),
 	                'caption'   => $helper->__('Download'),
 	                'confirm'   => $helper->__('Are you sure you want to DOWNLOAD this?'))
                 ),

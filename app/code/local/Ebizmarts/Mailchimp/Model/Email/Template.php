@@ -69,17 +69,22 @@ class Ebizmarts_Mailchimp_Model_Email_Template extends Mage_Core_Model_Email_Tem
 						);
 
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url.'?'.http_build_query($params));
+
+		/*****this code has been updated thanks to manisanjai*****************************/
+		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+		/*****this code has been updated thanks to manisanjai*****************************/
 
 		$result = curl_exec($ch);
 		curl_close ($ch);
 		$data = json_decode($result);
 
 		if (isset($data->message_id)) {
-		     Mage::getSingleton('adminhtml/session')->addSuccess('e-mail successfully sent');
+		     Mage::getSingleton('adminhtml/session')->addSuccess('e-mail successfully sent.');
 		}else {
-		 	Mage::getSingleton('adminhtml/session')->addError('There was an error sending your email  - '.$data->aws_code);
+		 	Mage::getSingleton('adminhtml/session')->addError('There was an error sending your email, internal code error: '.$data->aws_code);
 		 	return false;
 		}
 		return true;

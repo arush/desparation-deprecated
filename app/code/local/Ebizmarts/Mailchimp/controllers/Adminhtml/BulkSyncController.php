@@ -19,6 +19,7 @@ class Ebizmarts_Mailchimp_Adminhtml_BulkSyncController extends Mage_Adminhtml_Co
 			$file = Mage::getModel('mailchimp/BulkSynchro')
 	            ->setType($params['way'])
 	            ->setList($params['list'])
+	            ->setStore($params['store'])
 	            ->setTime(time());
 			try {
 	  			$file->create($params);
@@ -33,10 +34,11 @@ class Ebizmarts_Mailchimp_Adminhtml_BulkSyncController extends Mage_Adminhtml_Co
 
 		$params = $this->getRequest()->getParams();
 
-		if(isset($params['time'],$params['type'],$params['list'])){
+		if(isset($params['time'],$params['type'],$params['list'],$params['store'])){
 			$file = Mage::getModel('mailchimp/BulkSynchro')
 	            ->setTime((int)$params['time'])
 	            ->setType($params['type'])
+	            ->setStore($params['store'])
             	->setList($params['list']);
 			try {
 	  			$file->delete();
@@ -51,10 +53,11 @@ class Ebizmarts_Mailchimp_Adminhtml_BulkSyncController extends Mage_Adminhtml_Co
 	public function downloadAction() {
 
 		$params = $this->getRequest()->getParams();
-		if(isset($params['time'],$params['type'],$params['list'])){
+		if(isset($params['time'],$params['type'],$params['list'],$params['store'])){
 			$file = Mage::getModel('mailchimp/BulkSynchro')
 	            ->setTime((int)$params['time'])
 	            ->setType($params['type'])
+	            ->setStore($params['store'])
 	            ->setList($params['list']);
 	        if (!$file->exists()) {
 	            $this->_redirect('*/*');
@@ -77,11 +80,12 @@ class Ebizmarts_Mailchimp_Adminhtml_BulkSyncController extends Mage_Adminhtml_Co
 		$params = $this->getRequest()->getParams();
 		$helper = Mage::helper('mailchimp');
 
-		if(isset($params['time'],$params['type'],$params['list'])){
+		if(isset($params['time'],$params['type'],$params['list'],$params['store'])){
 			try {
 				$file = Mage::getModel('mailchimp/BulkSynchro')
 		            ->setTime((int)$params['time'])
 		            ->setType($params['type'])
+		            ->setStore($params['store'])
 		            ->setList($params['list']);
 		        if (!$file->exists()) {
 		            $this->_redirect('*/*');
@@ -89,7 +93,7 @@ class Ebizmarts_Mailchimp_Adminhtml_BulkSyncController extends Mage_Adminhtml_Co
 
 				$s = $file->run();
 
-				if(isset($s['chimp'])) $this->_getSession()->addSuccess($helper->__('%s subscribers has been registered/updated on the MailChimp Subscribers List.',$s['chimp']));
+				if(isset($s['chimp'])) $this->_getSession()->addSuccess($helper->__('%s subscribers has been registered/updated on the MailChimp Synchronized Subscribers List.',$s['chimp']));
 				if(isset($s['general'])) $this->_getSession()->addSuccess($helper->__('%s subscribers has been registered/updated on the Magento General List.',$s['general']));
 				if(isset($s['success_count']) && $s['success_count']) $this->_getSession()->addSuccess($helper->__('%s subscribers has been Unsubscripted on MailChimp.',$s['success_count']));
 				if(isset($s['add_count']) && $s['add_count']) $this->_getSession()->addSuccess($helper->__('%s subscribers has been registered on MailChimp.',$s['add_count']));

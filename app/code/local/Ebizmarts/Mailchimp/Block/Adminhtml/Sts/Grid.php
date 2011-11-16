@@ -6,7 +6,7 @@ class Ebizmarts_Mailchimp_Block_Adminhtml_Sts_Grid extends Mage_Adminhtml_Block_
 
 		parent::__construct();
         $this->setId('stsGrid');
-        $this->setUseAjax(true);
+		$this->setFilterVisibility(false);
         $this->setSaveParametersInSession(true);
     }
 
@@ -23,8 +23,7 @@ class Ebizmarts_Mailchimp_Block_Adminhtml_Sts_Grid extends Mage_Adminhtml_Block_
             'header'=> Mage::helper('mailchimp')->__('Email Adress'),
             'type'  => 'text',
             'index' => 'emailadress',
-            'filter' =>false,
-            'sortable' => true,
+            'filter' =>false
         ));
         $this->addColumn('remove',
             array(
@@ -63,9 +62,6 @@ class Ebizmarts_Mailchimp_Block_Adminhtml_Sts_Grid extends Mage_Adminhtml_Block_
                 'is_system' => true,
         ));
 
-        $this->addExportType('*/*/exportCsv', Mage::helper('sales')->__('CSV'));
-        $this->addExportType('*/*/exportExcel', Mage::helper('sales')->__('Excel'));
-
         return parent::_prepareColumns();
     }
 
@@ -80,11 +76,6 @@ class Ebizmarts_Mailchimp_Block_Adminhtml_Sts_Grid extends Mage_Adminhtml_Block_
              'url'  => $this->getUrl('*/*/massremove'),
         ));
         return $this;
-    }
-
-    public function getGridUrl(){
-
-        return $this->getUrl('*/*/grid', array('_current'=>true));
     }
 
 }

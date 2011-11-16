@@ -1,7 +1,7 @@
 <?php
 class Ebizmarts_Mailchimp_Model_Mysql4_Sts extends Varien_Data_Collection {
 
-	protected $_emailCollection = Array();
+	protected $_emailCollection = array();
 
 	public function __construct(){
 

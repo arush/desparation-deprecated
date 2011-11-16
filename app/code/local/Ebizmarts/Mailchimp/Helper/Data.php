@@ -32,13 +32,27 @@ class Ebizmarts_Mailchimp_Helper_Data extends Mage_Core_Helper_Abstract{
 
 		$apikey = $this->getGeneralConfig('apikey',Mage::app()->getStore()->getStoreId());
 		if(!$apikey){
-			Mage::getSingleton('adminhtml/session')->addNotice(Mage::helper('mailchimp')->__('The Ebizmarts MailChimp API Key field is empty.'));
+			Mage::getSingleton('adminhtml/session')->addNotice($this->__('The Ebizmarts MailChimp API Key field is empty.'));
 			return false;
 		}
-		if(substr($apikey, -4) != '-us1' && substr($apikey, -4) != '-us2'){
-			Mage::getSingleton('adminhtml/session')->addError(Mage::helper('mailchimp')->__('Ebizmarts MailChimp General Error, the API Key is not well formed.'));
+
+	    $dc = "us1";
+	    if (strstr($apikey,"-")){
+        	list($key, $dc) = explode("-",$apikey,2);
+            if (!$dc) $dc = "us1";
+        }
+        $host = "http://".$dc."."."api.mailchimp.com/";
+
+        try{
+	        $url=fopen($host,"r");
+	        if($url){
+         	    fclose ($url);
+    	    }
+        }catch (Exception  $e) {
+			Mage::getSingleton('adminhtml/session')->addError($this->__('Ebizmarts MailChimp General Error, the API Key is not well formed.'));
 			return false;
-		}
+        }
+		//if(substr($apikey, -4) != '-us1' && substr($apikey, -4) != '-us2'){}
 		return $apikey;
 	}
 
@@ -74,13 +88,13 @@ class Ebizmarts_Mailchimp_Helper_Data extends Mage_Core_Helper_Abstract{
 
 		$store = Mage::app()->getStore()->getStoreId();
 		$current = Mage::helper('core/url')->getCurrentUrl();
+		$return = true;
 
 		if($this->mailChimpEnabled($store)){
-			$return = ((bool)$this->getSubscribeConfig('double_optin',$store)
-					|| (bool)$this->getSubscribeConfig('send_welcome',$store)
+			$return = ($this->getSubscribeConfig('double_optin',$store)
+					|| $this->getSubscribeConfig('send_welcome',$store)
+					|| $this->getSubscribeConfig('success_disabled',$store)
 					|| (bool)strpos($current, self::BULK_URL))? false : true;
-		}else{
-			$return = true;
 		}
 
 		return $return;
@@ -90,13 +104,12 @@ class Ebizmarts_Mailchimp_Helper_Data extends Mage_Core_Helper_Abstract{
 
 		$store = Mage::app()->getStore()->getStoreId();
 		$current = Mage::helper('core/url')->getCurrentUrl();
+		$return = true;
 
 		if($this->mailChimpEnabled($store)){
 			$return = ((bool)$this->getUnSubscribeConfig('send_notify',$store)
 					|| (bool)$this->getUnSubscribeConfig('send_goodbye',$store)
 					|| (bool)strpos($current, self::BULK_URL))? false : true;
-		}else{
-			$return = true;
 		}
 
 		return $return;
@@ -149,7 +162,7 @@ class Ebizmarts_Mailchimp_Helper_Data extends Mage_Core_Helper_Abstract{
 	public function getMergeVars($customer,$flag){
 
 		$merge_vars = array();
-		$maps = explode('<',$this->getSubscribeConfig('mapping_fields',Mage::app()->getStore()->getStoreId()));
+		$maps = explode('<',$this->getSubscribeConfig('mapping_fields',$customer->getStoreId()));
 		foreach($maps as $map){
 			if($map){
 				$aux = substr(strstr($map,"customer='"),10);
@@ -165,6 +178,16 @@ class Ebizmarts_Mailchimp_Helper_Data extends Mage_Core_Helper_Abstract{
 																   'state'=>$address['region'],
 																   'zip'=>$address['postcode'],
 																   'country'=>$address['country_id']);
+					/*****this code has been added thanks to phroggar*****************************/
+					}elseif($customAtt == 'date_of_purchase'){
+						$orders = Mage::getResourceModel('sales/order_collection')
+	                        ->addFieldToFilter('customer_id', $customer->getEntityId())
+	                        ->addFieldToFilter('state', array('in' => Mage::getSingleton('sales/order_config')->getVisibleOnFrontStates()))
+	                        ->setOrder('created_at', 'desc');
+	                    if (($last_order = $orders->getFirstItem()) && (!$last_order->isEmpty())){
+	                      $merge_vars[strtoupper($chimpTag)] = Mage::helper('core')->formatDate($last_order->getCreatedAt());
+	                    }
+                	/*****this code has been added thanks to phroggar*****************************/
 					}else{
 						if($value = (string)$customer->getData(strtolower($customAtt))) $merge_vars[strtoupper($chimpTag)] = $value;
 					}
@@ -186,7 +209,6 @@ class Ebizmarts_Mailchimp_Helper_Data extends Mage_Core_Helper_Abstract{
 			}
 		}
 		$merge_vars['GROUPINGS'] = $groupings;
-
 		return $merge_vars;
 	}
 
@@ -244,7 +266,6 @@ class Ebizmarts_Mailchimp_Helper_Data extends Mage_Core_Helper_Abstract{
 	}
 
 	public function preFilter($email,$params){
-
 		$subscriber = Mage::getSingleton('newsletter/subscriber')->loadByEmail($email);
 		if(!$subscriber->getData()){
 			$customSession = Mage::getSingleton('customer/session')->getCustomer();
@@ -261,10 +282,14 @@ class Ebizmarts_Mailchimp_Helper_Data extends Mage_Core_Helper_Abstract{
 			}else{
 				$subscriber->setCustomerId($subscriber->getEntityId());
 			}
-		}
-		if(isset($params['oldEmail'])) $subscriber->setOldEmail($params['oldEmail']);
+			if(isset($params['oldEmail'])) $subscriber->setOldEmail($params['oldEmail']);
+			return $this->mailChimpFilter($subscriber,$params);
 
-		return $this->mailChimpFilter($subscriber,$params);
+		}else{
+			if(isset($params['oldEmail'])) $subscriber->setOldEmail($params['oldEmail']);
+			return true;
+		}
+
 	}
 
 	public function preAdminFilter($params){
@@ -336,8 +361,8 @@ class Ebizmarts_Mailchimp_Helper_Data extends Mage_Core_Helper_Abstract{
 					}
 					$subscriber->setAddress($address);
 				}else{
-					$subscriber->setFirstname(($this->getSubscribeConfig('guest_name',$subscriber->getStoreId()))? $this->getSubscribeConfig('guest_name',$subscriber->getStoreId()) : 'GUEST')
-							   ->setLastname(($this->getSubscribeConfig('guest_lastname',$subscriber->getStoreId()))? $this->getSubscribeConfig('guest_lastname',$subscriber->getStoreId()) : 'GUEST');
+					$subscriber->setFirstname($this->getSubscribeConfig('guest_name',$subscriber->getStoreId()))
+							   ->setLastname($this->getSubscribeConfig('guest_lastname',$subscriber->getStoreId()));
 				}
 			}
 
@@ -447,6 +472,43 @@ class Ebizmarts_Mailchimp_Helper_Data extends Mage_Core_Helper_Abstract{
 		}
 	}
 
+	public function getCtemplatesCollection(){
+
+		$collection = Mage::getModel('mailchimp/mysql4_helper_collection');
+
+        $allTemplates = Mage::getSingleton('mailchimp/mailchimp')->getCtemplates();
+        if(is_array($allTemplates) && count($allTemplates)){
+			foreach($allTemplates as $source=>$templates){
+        		if(is_array($templates) && count($templates)){
+        			foreach($templates as $template){
+						$item = new Varien_Object;
+			          	$item->addData($template);
+			          	$item->setTid($source);
+			          	$collection->addItem($item);
+        			}
+	          	}
+			}
+        }
+        return $collection;
+	}
+
+    public function getPageUrl($pageId = null, $storeId){
+
+        $page = Mage::getSingleton('cms/page');
+        if (!is_null($pageId) && $pageId !== $page->getId()) {
+            $page->setStoreId($storeId);
+            if (!$page->load($pageId)) {
+                return null;
+            }
+        }
+
+        if (!$page->getId()) {
+            return null;
+        }
+		Mage::app("default")->setCurrentStore($storeId);
+        return Mage::getUrl($page->getIdentifier());
+    }
+
  	public function addException($e){
 
 		$currentStore = Mage::app()->getStore()->getStoreId();
@@ -463,6 +525,5 @@ class Ebizmarts_Mailchimp_Helper_Data extends Mage_Core_Helper_Abstract{
         }
         return $this;
 	}
-
 }
 ?>

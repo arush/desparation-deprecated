@@ -37,11 +37,11 @@
                     </ecomm360>
                 </entities>
 			</mailchimp_mysql4>
-            <!--core>
+            <core>
                 <rewrite>
                     <email_template>Ebizmarts_Mailchimp_Model_Email_Template</email_template>
                 </rewrite>
-            </core-->
+            </core>
 		</models>
 		<resources>
             <Mailchimp_setup>
@@ -176,6 +176,10 @@
 	                    <depends><module>Ebizmarts_Mailchimp</module></depends>
 						<action>mailchimp/adminhtml_webHooks</action>
 		                <children>
+	                       <help translate="title" module="mailchimp">
+	                            <title>HELP</title>
+	                            <action>mailchimp/adminhtml_help</action>
+	                        </help>
                             <sts translate="title" module="mailchimp">
                                 <title>STS</title>
                                 <action>mailchimp/adminhtml_sts</action>
@@ -188,6 +192,10 @@
 		                        <title>Ecommerce 360</title>
 		                        <action>mailchimp/adminhtml_ecomm360</action>
 		                    </ecomm360>
+		                    <ctemplate translate="title" module="mailchimp">
+		                        <title>Campaign templates</title>
+		                        <action>mailchimp/adminhtml_ctemplate</action>
+		                    </ctemplate>
 		                    <bulksync translate="title" module="mailchimp">
 		                        <title>Bulk synchronization</title>
 		                        <action>mailchimp/adminhtml_bulkSync</action>
@@ -216,7 +224,7 @@
 	<default>
 		<mailchimp>
 			<general>
-				<version>3.0.4</version>
+				<version>3.1.2</version>
 				<active>0</active>
 				<intgr>0</intgr>
 				<ecomm360>0</ecomm360>
@@ -230,6 +238,7 @@
 				<update_existing>0</update_existing>
 				<replace_interests>1</replace_interests>
 				<send_welcome>0</send_welcome>
+				<success_disabled>0</success_disabled>
 				<mapping_fields><![CDATA[<]]>customer='firstname' mailchimp='FNAME'<![CDATA[><]]>customer='lastname' mailchimp='LNAME'<![CDATA[>]]></mapping_fields>
 				<guest_lastname>GUEST</guest_lastname>
 				<guest_name>GUEST</guest_name>
@@ -316,6 +325,18 @@
                 </observers>
             </controller_action_layout_load_before>
         </events>
+		<secure_url>
+            <mailchimp_caputre>/mailchimp/capture</mailchimp_caputre>
+        </secure_url>
+        <routers>
+            <mailchimp>
+                <use>standard</use>
+                <args>
+                    <module>Ebizmarts_Mailchimp</module>
+                    <frontName>mailchimp</frontName>
+                </args>
+            </mailchimp>
+        </routers>
 		<layout>
             <updates>
                 <mailchimp>

@@ -37,20 +37,23 @@ class Ebizmarts_Mailchimp_Model_BulkSynchro extends Ebizmarts_Mailchimp_Model_MC
 
 			$header = 	self::TD . $helper->__('Subscriber Email') . self::TD . self::TS .
 						self::TD . $helper->__('Subscriber Status') . self::TD . self::TS .
+						self::TD . $helper->__('Store') . self::TD . self::TS .
 						self::TD . $helper->__('TimeStamp') . self::TD;
 
 			$this->write($header."\n");
 
 			$statusGroup = array('subscribed', 'unsubscribed', 'cleaned');
 			foreach($statusGroup as $status){
-				try {
-					$subscribers = $this->listMembers($params['list'], $status, null, $params['start'], $params['limit']);
-				}catch (Exception $e) {
-		        	$helper->addException($e);
-		        }
+				$subscribers = $this->listMembers($params['list'], $status, null, $params['start'], $params['limit']);
+				if ($this->errorCode){
+					$this->setErrorOutput();
+					$this->close();
+					return false;
+				}
 				foreach($subscribers['data'] as $subscriber){
 					$data = self::TD . $subscriber['email'] . self::TD . self::TS .
 							self::TD . $status . self::TD . self::TS .
+							self::TD . $this->getStore() . self::TD . self::TS .
 							self::TD . $subscriber['timestamp'] . self::TD ;
 					$this->write($data."\n");
 				}
@@ -62,14 +65,14 @@ class Ebizmarts_Mailchimp_Model_BulkSynchro extends Ebizmarts_Mailchimp_Model_MC
 		}elseif($this->getType() == self::WAY_EXPORT){
 
 			$header = 	self::TD . $helper->__('Magento Subscriber Id') . self::TD . self::TS .
-						self::TD . $helper->__('Store Id') . self::TD . self::TS .
+						self::TD . $helper->__('Store') . self::TD . self::TS .
 						self::TD . $helper->__('Customer Id') . self::TD . self::TS .
 						self::TD . $helper->__('Subscriber Email') . self::TD . self::TS .
 						self::TD . $helper->__('Subscriber Status') . self::TD;
 
 			$this->write($header."\n");
+			$subscribers = Mage::getResourceModel('newsletter/subscriber_collection')->addStoreFilter($this->getStore());
 
-			$subscribers = Mage::getSingleton('newsletter/subscriber')->getCollection();
 			foreach($subscribers as $subscriber){
 				$data = self::TD . $subscriber->getSubscriberId() . self::TD . self::TS .
 						self::TD . $subscriber->getStoreId() . self::TD . self::TS .
@@ -87,7 +90,10 @@ class Ebizmarts_Mailchimp_Model_BulkSynchro extends Ebizmarts_Mailchimp_Model_MC
 
     public function getFileName(){
 
-        return $this->getTime() . "_" . $this->getType() . "_" . $this->getList() . "." . self::FILE_EXTENSION . "." . self::BULK_EXTENSION;
+		$fileName = $this->getTime() . "_" . $this->getType() . "_" . $this->getList();
+		if($this->getStore()) $fileName .= "_" . $this->getStore();
+
+        return $fileName . "." . self::FILE_EXTENSION . "." . self::BULK_EXTENSION;
     }
 
     public function getPath(){
@@ -163,10 +169,17 @@ class Ebizmarts_Mailchimp_Model_BulkSynchro extends Ebizmarts_Mailchimp_Model_MC
 
 	public function loadFile($fileName, $filePath){
 
-        list ($time, $type, $list) = explode("_", substr($fileName, 0, strrpos($fileName, ".")));
+
+        $sections = explode("_", substr($fileName, 0, strrpos($fileName, ".")));
+        $time = $sections[0];
+        $type = $sections[1];
+        $list = (isset($sections[3]))? $sections[2] : substr($sections[2], 0, strrpos($sections[2], "."));
+        $store = (isset($sections[3]))? substr($sections[3], 0, strrpos($sections[3], ".")) : '';
+
         $this->addData(array(
             'id'   => $filePath . DS . $fileName,
-            'list'   => substr($list, 0, strrpos($list, ".")),
+            'list'   => $list,
+            'store'   => $store,
             'created_time' => (int)$time,
             'path' => $filePath,
             'created_object' => new Zend_Date((int)$time)
@@ -230,6 +243,7 @@ class Ebizmarts_Mailchimp_Model_BulkSynchro extends Ebizmarts_Mailchimp_Model_MC
 		if(!$this->_customCol || !count($this->_customCol)){
 	   		$customers = Mage::getSingleton('customer/customer')
 	   					->getCollection()
+	   					->addFieldToFilter('store_id',$this->getStore())
 	   					->addAttributeToSelect('*');
 			$customerArray = array();
 	    	foreach($customers as $customer){
@@ -251,6 +265,10 @@ class Ebizmarts_Mailchimp_Model_BulkSynchro extends Ebizmarts_Mailchimp_Model_MC
 		$this->MCAPI($apikey);
 
 		$subscribed = $this->listMembers($this->getList(), 'subscribed', null, (int)0, (int)15000);
+		if ($this->errorCode){
+			$this->setErrorOutput();
+			return false;
+		}
 		if(isset($subscribed['data']) && count($subscribed['data'])){
 			foreach($subscribed['data'] as $item){
 				$this->_alreadySubscripted[] = $item['email'];
@@ -260,6 +278,10 @@ class Ebizmarts_Mailchimp_Model_BulkSynchro extends Ebizmarts_Mailchimp_Model_MC
 		$statusGroup = array('unsubscribed', 'cleaned');
 		foreach($statusGroup as $status){
 			$unSubscribed = $this->listMembers($this->getList(), $status, null, (int)0, (int)15000);
+			if ($this->errorCode){
+				$this->setErrorOutput();
+				return false;
+			}
 			if(isset($unSubscribed['data']) && count($unSubscribed['data'])){
 				foreach($unSubscribed['data'] as $item){
 					$this->_alreadyUnSubscripted[] = $item['email'];
@@ -270,16 +292,16 @@ class Ebizmarts_Mailchimp_Model_BulkSynchro extends Ebizmarts_Mailchimp_Model_MC
     	return $this;
 	}
 
-	private function setCustomToHandle($email){
+	private function setCustomToHandle($email, $store){
 
 		$customer = Mage::getModel('customer/customer');
 		$customer->setListId($this->getList());
 		$customer->setEmail($email);
 		$customer->setCustomerId('0');
-		$customer->setStoreId(Mage::app()->getDefaultStoreView()->getStoreId());
-    	$customer->setWebsiteId(Mage::app()->getDefaultStoreView()->getWebsiteId());
-    	$customer->setFirstname(($this->getSubscribeConfig('guest_name',$customer->getStoreId()))? $this->getSubscribeConfig('guest_name',$customer->getStoreId()) : 'GUEST');
-	    $customer->setLastname(($this->getSubscribeConfig('guest_lastname',$customer->getStoreId()))? $this->getSubscribeConfig('guest_lastname',$customer->getStoreId()) : 'GUEST');
+		$customer->setStoreId($store);
+    	//$customer->setWebsiteId(Mage::app()->set->getWebsiteId());
+    	$customer->setFirstname($this->getSubscribeConfig('guest_name',$customer->getStoreId()));
+	    $customer->setLastname($this->getSubscribeConfig('guest_lastname',$customer->getStoreId()));
 
 		if(count($this->_customCol) && array_key_exists($email,$this->_customCol)){
 			$customer->setCustomerId($this->_customCol[$email]['entity_id']);
@@ -313,32 +335,49 @@ class Ebizmarts_Mailchimp_Model_BulkSynchro extends Ebizmarts_Mailchimp_Model_MC
     	$this->getAllCustomers();
     	$helper = Mage::helper('mailchimp');
 		$lines = gzfile($this->getPath() . DS . $this->getFileName());
-		if($this->getType() == self::WAY_EXPORT) $this->getListSubscribers();
 
-		foreach($lines as $k=>$line){
-
-			if($k != 0){
-
-				if($this->getType() == self::WAY_EXPORT){
-
+		if($this->getType() == self::WAY_EXPORT){
+			$this->getListSubscribers();
+			foreach($lines as $k=>$line){
+				if($k != 0){
 					list($subscriberId, $storeId, $customerId, $email, $status) = explode(self::TS, str_replace("\n","",str_replace(self::TD,"",$line)));
 
 					if($status == Mage_Newsletter_Model_Subscriber::STATUS_SUBSCRIBED && !in_array($email, $this->_alreadySubscripted)){
-						$this->_batchSubscribe[] = $helper->getMergeVars($this->setCustomToHandle($email),true);
+						$this->_batchSubscribe[] = $helper->getMergeVars($this->setCustomToHandle($email, $storeId),true);
 					}elseif($status == Mage_Newsletter_Model_Subscriber::STATUS_UNSUBSCRIBED && !in_array($email, $this->_alreadyUnSubscripted) && in_array($email, $this->_alreadySubscripted)){
 						$this->_batchUnsubscribe[$this->getList()][] = $email;
 					}
+				}
+			}
+			if(!count($this->_batchSubscribe) && !count($this->_batchUnsubscribe)){
+				$this->_return['notice'] = $helper->__('All subscribers on this file are already synchronized.');
+				return $this->_return;
+			}
 
-				}elseif($this->getType() == self::WAY_IMPORT){
+			$apikey = $helper->getApiKey();
+			if(!$apikey){
+				return false;
+			}
+			$this->MCAPI($apikey);
 
-					list($email, $action) = explode(self::TS, str_replace("\n","",str_replace(self::TD,"",$line)));
+			$this->batchSubscribe();
+			$this->batchUnsubscribe();
+		}elseif($this->getType() == self::WAY_IMPORT){
+			foreach($lines as $k=>$line){
+				if($k != 0){
+					$sections = explode(self::TS, str_replace("\n","",str_replace(self::TD,"",$line)));
+					$email = $sections[0];
+					$action = $sections[1];
+					$store = (isset($sections[2]))? $sections[2] : Mage::app()->getDefaultStoreView()->getStoreId() ;
 
-					$customer = $this->setCustomToHandle($email);
+					$customer = $this->setCustomToHandle($email, $store);
 
-					$subscriber = Mage::getModel('newsletter/subscriber')->loadByEmail($email);
+					$mdl = Mage::getModel('newsletter/subscriber')->setStoreId($store);
+
+					$subscriber = $mdl->loadByEmail($email);
 
 					if($action == 'subscribed'){
-						if((string)$this->getList() == (string)$helper->getGeneralConfig('general',$customer->getStoreId())){
+						if((string)$this->getList() == (string)$helper->getGeneralConfig('general',$store)){
 							if(!$subscriber->getSubscriberId()){
 								Mage::getModel('mailchimp/subscriber')->quickSubscribe($customer);
 								$general++;
@@ -358,33 +397,12 @@ class Ebizmarts_Mailchimp_Model_BulkSynchro extends Ebizmarts_Mailchimp_Model_MC
 						$customer->setAction(Ebizmarts_Mailchimp_Model_Mailchimp::ACTION_UNSUBSCRIBE);
 					}
 					$chimp += Mage::getModel('mailchimp/subscripter')->changeStatus($customer);
-
-				}else{
-					$this->_return['error'] = $helper->__('The way of bulk does not exists.');
 				}
 			}
-		}
-
-		if($this->getType() == self::WAY_EXPORT){
-
- 			if(!count($this->_batchSubscribe) && !count($this->_batchUnsubscribe)){
-				$this->_return['notice'] = $helper->__('This file is already synchronized.');
-				return $this->_return;
-			}
-
-			$apikey = $helper->getApiKey();
-			if(!$apikey){
-				return false;
-			}
-			$this->MCAPI($apikey);
-			$this->setStore(Mage::app()->getDefaultStoreView()->getStoreId());
-
-			$this->batchSubscribe();
-			$this->batchUnsubscribe();
-
-		}elseif($this->getType() == self::WAY_IMPORT){
 			$this->_return = array('chimp'=>$chimp,
 								   'general'=>$general);
+		}else{
+			$this->_return['error'] = $helper->__('The way of bulk does not exists.');
 		}
 
 		return $this->_return;
@@ -400,7 +418,6 @@ class Ebizmarts_Mailchimp_Model_BulkSynchro extends Ebizmarts_Mailchimp_Model_MC
 			if(!$apikey){
 				return false;
 			}
-			$this->setStore(Mage::app()->getDefaultStoreView()->getStoreId());
 			$this->MCAPI($apikey);
 
 			$this->_return = $this->listBatchSubscribe($this->getList(),
@@ -431,7 +448,6 @@ class Ebizmarts_Mailchimp_Model_BulkSynchro extends Ebizmarts_Mailchimp_Model_MC
 			if(!$apikey){
 				return false;
 			}
-			$this->setStore(Mage::app()->getDefaultStoreView()->getStoreId());
 			$this->MCAPI($apikey);
 
 			foreach($this->_batchUnsubscribe as $listId=>$batchUnsubscribe){
@@ -497,7 +513,7 @@ class Ebizmarts_Mailchimp_Model_BulkSynchro extends Ebizmarts_Mailchimp_Model_MC
 				$customer->setCustomerId($id);
 				$email = $customer->getEmail();
 				if(!in_array($email, $this->_alreadySubscripted)){
-					$this->_batchSubscribe[] = $helper->getMergeVars($this->setCustomToHandle($email),true);
+					$this->_batchSubscribe[] = $helper->getMergeVars($this->setCustomToHandle($email, Mage::app()->getDefaultStoreView()->getStoreId()),true);
 					$customer->setListId($this->getList());
 					$customer->setAction(Ebizmarts_Mailchimp_Model_Mailchimp::ACTION_SUBSCRIBE);
 					$model->changeStatus($customer);
@@ -535,4 +551,16 @@ class Ebizmarts_Mailchimp_Model_BulkSynchro extends Ebizmarts_Mailchimp_Model_MC
 
 		return $this;
     }
+
+	private function setErrorOutput(){
+
+		$this->setCode($this->errorCode);
+		$this->setMessage($this->errorMessage);
+
+		Mage::helper('mailchimp')->addException($this);
+
+		unset($this->errorCode, $this->errorMessage);
+
+		return $this;
+	}
 }

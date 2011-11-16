@@ -30,7 +30,7 @@ class Ebizmarts_Mailchimp_Model_WebHooks extends Ebizmarts_Mailchimp_Model_MCAPI
 		}
 
 		$this->MCAPI($apikey);
-		$this->setWebHookUrl(str_replace('index.php/','',Mage::getBaseUrl()).'WebHooksCapture.php');
+		$this->setWebHookUrl(Mage::getStoreConfig('web/unsecure/base_url',Mage::app()->getDefaultStoreView()->getStoreId()).'mailchimp/capture');
 
 		if(is_array($listId)){
 			$list = array();
@@ -93,6 +93,58 @@ class Ebizmarts_Mailchimp_Model_WebHooks extends Ebizmarts_Mailchimp_Model_MCAPI
 		unset($this->errorCode, $this->errorMessage);
 
 		return $this;
+	}
+
+	public function updateController(){
+
+		$fileName = 'WebHooksCapture.php';
+		if (is_file(Mage::getBaseDir() . DS . $fileName)) {
+			$url = Mage::getStoreConfig('web/unsecure/base_url',Mage::app()->getDefaultStoreView()->getStoreId());
+			$this->setWebHookUrl($url.$fileName);
+
+			$lists = Mage::getSingleton('mailchimp/mailchimp')->getLists();
+
+			$helper = Mage::helper('mailchimp');
+			$apikey = $helper->getApiKey();
+			if(!$apikey){
+				return false;
+			}
+
+			$this->MCAPI($apikey);
+
+			foreach($lists['data'] as $list){
+				$this->_response = $this->listWebhooks($list['id']);
+				if ($this->errorCode){
+					$this->setErrorOutput();
+					return false;
+				}
+				if(count($this->_response)){
+					foreach($this->_response as $hook){
+						if($hook['url'] == $this->getWebHookUrl()){
+							$this->listWebhookDel($list['id'],$this->getWebHookUrl());
+							if ($this->errorCode){
+								$this->setErrorOutput();
+								return false;
+							}
+							$this->listWebhookAdd($list['id'],$url.'mailchimp/capture',$hook['actions'],$hook['sources']);
+							if ($this->errorCode){
+								$this->setErrorOutput();
+								return false;
+							}
+						}
+					}
+				}
+			}
+			$this->setWebHookUrl($url.'mailchimp/capture');
+		    try {
+		        $ioProxy = new Varien_Io_File();
+		        $ioProxy->open(array('path'=>Mage::getBaseDir()));
+		        $ioProxy->rm($fileName);
+		    }catch (Exception $e) {
+		        Mage::helper('mailchimp')->addException($e);
+		    }
+	    }
+	    return true;
 	}
 
 }

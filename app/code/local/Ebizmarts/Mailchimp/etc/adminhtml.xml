@@ -28,6 +28,10 @@
                     <depends><module>Ebizmarts_mailchimp</module></depends>
 					<action>mailchimp/adminhtml_webHooks</action>
 	                <children>
+                        <help translate="title" module="mailchimp">
+                            <title>HELP</title>
+                            <action>mailchimp/adminhtml_help</action>
+                        </help>
                         <sts translate="title" module="mailchimp">
                             <title>STS</title>
                             <action>mailchimp/adminhtml_sts</action>
@@ -40,6 +44,10 @@
 	                        <title>Ecommerce 360</title>
 	                        <action>mailchimp/adminhtml_ecomm360</action>
 	                    </ecomm360>
+	                    <ctemplate translate="title" module="mailchimp">
+	                        <title>Campaign templates</title>
+	                        <action>mailchimp/adminhtml_ctemplate</action>
+	                    </ctemplate>
 	                    <bulksync translate="title" module="mailchimp">
 	                        <title>Bulk synchronization</title>
 	                        <action>mailchimp/adminhtml_bulkSync</action>

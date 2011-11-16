@@ -109,6 +109,5 @@ class Ebizmarts_Mailchimp_Model_Subscriber extends Mage_Newsletter_Model_Subscri
     		return $this;
     	}
     }
-
 }
 ?>

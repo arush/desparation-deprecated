@@ -8,7 +8,6 @@ class Ebizmarts_Mailchimp_Block_Adminhtml_Sts_Edit extends Mage_Adminhtml_Block_
         $this->_controller = 'adminhtml_sts';
         $this->_blockGroup = 'mailchimp';
         $helper = Mage::helper('mailchimp');
-        //$this->_headerText = $helper->__('System Emails');
 
         $this->_objectId = 'emailadress';
         $this->_updateButton('save', 'label', $helper->__('Save Email'));

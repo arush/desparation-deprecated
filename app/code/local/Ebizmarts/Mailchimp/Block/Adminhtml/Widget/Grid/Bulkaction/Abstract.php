@@ -5,6 +5,7 @@ abstract class Ebizmarts_Mailchimp_Block_Adminhtml_Widget_Grid_Bulkaction_Abstra
  	public function __construct(){
         parent::__construct();
         $this->setTemplate('mailchimp/widget/grid/bulkaction.phtml');
+        $this->setErrorText(Mage::helper('catalog')->jsQuoteEscape(Mage::helper('mailchimp')->__('Please complete all fields.')));
     }
 
     public function getApplyButtonHtml(){

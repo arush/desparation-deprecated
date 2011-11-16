@@ -6,7 +6,11 @@ class Ebizmarts_Mailchimp_Model_Mysql4_Subscripter_Collection extends Mage_Core_
           $this->_init('mailchimp/subscripter');
       }
 
-/*****hack for old Magentos*******************************/
+/*******************************
+ *
+ * hack for old Magentos
+ *
+ ********************************/
 	public function addFieldToSelect($field, $alias = null){
         if ($field === '*') { // If we will select all fields
             $this->_fieldsToSelect = null;
@@ -40,6 +44,6 @@ class Ebizmarts_Mailchimp_Model_Mysql4_Subscripter_Collection extends Mage_Core_
         $this->_fieldsToSelectChanged = true;
         return $this;
     }
-/*****hack for old Magentos*******************************/
+
   }
 ?>

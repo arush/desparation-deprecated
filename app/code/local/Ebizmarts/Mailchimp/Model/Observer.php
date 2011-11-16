@@ -81,6 +81,8 @@ class Ebizmarts_Mailchimp_Model_Observer extends Mage_Core_Model_Abstract {
 	public function adminCustomerSave($observer){
 
 		$params = (Mage::app()->getRequest()->getParams())? Mage::app()->getRequest()->getParams() : array();
+		if(!isset($params['id']) && isset($params['customer_id'])) $params['id'] = $params['customer_id'];
+
 		if(isset($params['id'])){
 			Mage::helper('mailchimp')->preAdminFilter($params);
 		}
@@ -147,5 +149,6 @@ class Ebizmarts_Mailchimp_Model_Observer extends Mage_Core_Model_Abstract {
 		Mage::getSingleton('mailchimp/ecomm360')->registerMe();
         return $this;
     }
+
 }
 ?>

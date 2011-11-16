@@ -8,15 +8,14 @@ class Ebizmarts_Mailchimp_Block_Adminhtml_WebHooks_Grid extends Mage_Adminhtml_B
         $this->setId('webHooksGrid');
         $this->setDefaultSort('name');
         $this->setDefaultDir('ASC');
+		$this->setFilterVisibility(false);
         $this->setSaveParametersInSession(true);
 	}
 
 	protected function _prepareCollection(){
 
-		$collection = Mage::getSingleton('mailchimp/mysql4_webHooks_collection');
-		$currentStore = Mage::app()->getStore()->getStoreId();
-		$helper = Mage::helper('mailchimp');
-
+		Mage::getSingleton('mailchimp/webHooks')->updateController();
+		$collection = Mage::getSingleton('mailchimp/mysql4_helper_collection');
         $lists = Mage::getSingleton('mailchimp/source_lists')->toOptionArray();
         if(is_array($lists) && count($lists)){
         	foreach($lists as $list){
@@ -40,7 +39,42 @@ class Ebizmarts_Mailchimp_Block_Adminhtml_WebHooks_Grid extends Mage_Adminhtml_B
         }
 
         $this->setCollection($collection);
-        return parent::_prepareCollection();
+		if ($this->getCollection()) {
+
+        	$this->_preparePage();
+
+            $columnId = $this->getParam($this->getVarNameSort(), $this->_defaultSort);
+            $dir      = $this->getParam($this->getVarNameDir(), $this->_defaultDir);
+            $filter   = $this->getParam($this->getVarNameFilter(), null);
+
+            if (is_null($filter)) {
+                $filter = $this->_defaultFilter;
+            }
+
+            if (is_string($filter)) {
+                $data = $this->helper('adminhtml')->prepareFilterString($filter);
+                $this->_setFilterValues($data);
+            }
+            else if ($filter && is_array($filter)) {
+                $this->_setFilterValues($filter);
+            }
+            else if(0 !== sizeof($this->_defaultFilter)) {
+                $this->_setFilterValues($this->_defaultFilter);
+            }
+
+            if (isset($this->_columns[$columnId]) && $this->_columns[$columnId]->getIndex()) {
+                $dir = (strtolower($dir)=='desc') ? 'desc' : 'asc';
+                $this->_columns[$columnId]->setDir($dir);
+                $column = $this->_columns[$columnId]->getFilterIndex() ?
+                    $this->_columns[$columnId]->getFilterIndex() : $this->_columns[$columnId]->getIndex();
+                $this->setCollection($this->getCollection()->sortCollection($column, $dir));
+            }
+
+            $this->getCollection()->load();
+            $this->_afterLoadCollection();
+		}
+
+        return $this;
 	}
 
 	protected function _prepareColumns() {
@@ -67,6 +101,7 @@ class Ebizmarts_Mailchimp_Block_Adminhtml_WebHooks_Grid extends Mage_Adminhtml_B
             'align'     => 'center',
             'index'     => 'subscribe',
 			'type'      => 'checkbox',
+          	'sortable'  => false,
             'values'   => Mage::getSingleton('adminhtml/system_config_source_yesno')->toOptionArray()
 		));
 
@@ -76,6 +111,7 @@ class Ebizmarts_Mailchimp_Block_Adminhtml_WebHooks_Grid extends Mage_Adminhtml_B
             'field_name'=> 'unsubscribe',
             'index'     => 'unsubscribe',
 			'type'      => 'checkbox',
+          	'sortable'  => false,
             'values'   => Mage::getSingleton('adminhtml/system_config_source_yesno')->toOptionArray()
        	));
 
@@ -85,6 +121,7 @@ class Ebizmarts_Mailchimp_Block_Adminhtml_WebHooks_Grid extends Mage_Adminhtml_B
             'align'     => 'center',
             'index'     => 'profile',
 			'type'      => 'checkbox',
+          	'sortable'  => false,
             'values'   => Mage::getSingleton('adminhtml/system_config_source_yesno')->toOptionArray()
       	));
 
@@ -94,6 +131,7 @@ class Ebizmarts_Mailchimp_Block_Adminhtml_WebHooks_Grid extends Mage_Adminhtml_B
             'align'     => 'center',
             'index'     => 'cleaned',
 			'type'      => 'checkbox',
+          	'sortable'  => false,
             'values'   => Mage::getSingleton('adminhtml/system_config_source_yesno')->toOptionArray()
       	));
 
@@ -103,6 +141,7 @@ class Ebizmarts_Mailchimp_Block_Adminhtml_WebHooks_Grid extends Mage_Adminhtml_B
             'align'     => 'center',
             'index'     => 'upemail',
 			'type'      => 'checkbox',
+          	'sortable'  => false,
             'values'   => Mage::getSingleton('adminhtml/system_config_source_yesno')->toOptionArray()
       	));
 
@@ -112,6 +151,7 @@ class Ebizmarts_Mailchimp_Block_Adminhtml_WebHooks_Grid extends Mage_Adminhtml_B
             'align'     => 'center',
             'index'     => 'user',
 			'type'      => 'checkbox',
+          	'sortable'  => false,
             'values'   => Mage::getSingleton('adminhtml/system_config_source_yesno')->toOptionArray()
       	));
 
@@ -121,6 +161,7 @@ class Ebizmarts_Mailchimp_Block_Adminhtml_WebHooks_Grid extends Mage_Adminhtml_B
             'align'     => 'center',
             'index'     => 'admin',
 			'type'      => 'checkbox',
+          	'sortable'  => false,
             'values'   => Mage::getSingleton('adminhtml/system_config_source_yesno')->toOptionArray()
 		));
 
@@ -130,6 +171,7 @@ class Ebizmarts_Mailchimp_Block_Adminhtml_WebHooks_Grid extends Mage_Adminhtml_B
             'align'     => 'center',
             'index'     => 'api',
 			'type'      => 'checkbox',
+          	'sortable'  => false,
             'values'   => Mage::getSingleton('adminhtml/system_config_source_yesno')->toOptionArray()
       	));
 

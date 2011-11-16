@@ -15,7 +15,6 @@ class Ebizmarts_Mailchimp_Adminhtml_WebHooksController extends Mage_Adminhtml_Co
 		$mod = 0;
      	foreach($this->getRequest()->getPost() as $list){
      		$items = explode('&',$list);
-
      		if(is_array($items) && count($items) > 1){
      			if(Mage::getSingleton('mailchimp/webHooks')->mainWebHooksAction($items)) $mod++;
      		}

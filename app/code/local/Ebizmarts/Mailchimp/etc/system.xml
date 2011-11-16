@@ -172,11 +172,21 @@
                             <show_in_store>1</show_in_store>
                             <comment>If your double_optin is false and this is true, MailChimp will send your lists Welcome Email if this subscribe succeeds - this will *not* fire if we end up updating an existing subscriber. If double_optin is true, this has no effect, defaults to No.</comment>
                         </send_welcome>
+                        <success_disabled translate="label comment">
+                            <label>Disable Success/Welcome emails</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>This option will disable the success or welcome emails to be send to the subscriber.</comment>
+                        </success_disabled>
 						<mapping_fields translate="label comment">
 							<label>General Customer Mapping</label>
                             <frontend_type>textarea</frontend_type>
                             <comment>You can chose which fields will be synchronized with MailChimp using the following format: '&lt; customer='attribute_code' mailchimp='merge_tag'&gt;'. If you want to send the default billing address, you must set 'address' as 'attribute_code'.</comment>
-                            <sort_order>8</sort_order>
+                            <sort_order>9</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -184,7 +194,7 @@
 						<guest_name translate="label comment">
 							<label>Default name for guests subscribers</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>9</sort_order>
+                            <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -192,7 +202,7 @@
 						<guest_lastname translate="label comment">
 							<label>Default lastname for guests subscribers</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>10</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>

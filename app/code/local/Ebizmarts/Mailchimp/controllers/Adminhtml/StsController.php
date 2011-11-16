@@ -21,7 +21,7 @@ class Ebizmarts_Mailchimp_Adminhtml_StsController extends Mage_Adminhtml_Control
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $result = curl_exec($ch);
         curl_close ($ch);
-        Mage::getSingleton('adminhtml/session')->addSuccess('e-mail address successfully added');
+        Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('mailchimp')->__('The e-mail address was successfully added, a confirmation email has been sent to this account.'));
         $this->_redirect('*/*/index');
 	}
 
@@ -42,7 +42,7 @@ class Ebizmarts_Mailchimp_Adminhtml_StsController extends Mage_Adminhtml_Control
 
         $apikey = Mage::helper('mailchimp')->getApiKey();
         $url = "http://".substr($apikey, -3).".sts.mailchimp.com/1.0/DeleteVerifiedEmailAddress";
-
+		$cnt = 0;
         foreach ($this->getRequest()->getPost('emailadress') as $email) {
             $params = array('apikey'=>$apikey,'email'=>$email);
             $ch = curl_init();
@@ -50,8 +50,9 @@ class Ebizmarts_Mailchimp_Adminhtml_StsController extends Mage_Adminhtml_Control
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             $result = curl_exec($ch);
             curl_close ($ch);
+            $cnt++;
         }
-        Mage::getSingleton('adminhtml/session')->addSuccess('Addresses successfuly deleted');
+        Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('mailchimp')->__(($cnt > 1)? 'The e-mails were successfuly deleted.' : 'The e-mail was successfuly deleted.'));
         $this->_redirectReferer();
     }
 
@@ -65,7 +66,7 @@ class Ebizmarts_Mailchimp_Adminhtml_StsController extends Mage_Adminhtml_Control
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $result = curl_exec($ch);
         curl_close ($ch);
-        Mage::getSingleton('adminhtml/session')->addSuccess('Address successfuly deleted');
+        Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('mailchimp')->__('The e-mail was successfuly deleted.'));
         $this->_redirectReferer();
 	}
 
@@ -99,9 +100,9 @@ class Ebizmarts_Mailchimp_Adminhtml_StsController extends Mage_Adminhtml_Control
         curl_close ($ch);
         $data = json_decode($result);
         if (isset($data->message_id)) {
-             Mage::getSingleton('adminhtml/session')->addSuccess('e-mail successfully sent');
+             Mage::getSingleton('adminhtml/session')->addSuccess('Test e-mail successfully sent.');
         }else {
-         Mage::getSingleton('adminhtml/session')->addError('There was an error sending your email - '.$data->aws_code);
+         Mage::getSingleton('adminhtml/session')->addError('There was an error sending your email, internal code error: '.$data->aws_code);
         }
         $this->_redirectReferer();
     }

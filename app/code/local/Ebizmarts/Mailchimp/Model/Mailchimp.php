@@ -252,6 +252,52 @@ class Ebizmarts_Mailchimp_Model_Mailchimp extends Ebizmarts_Mailchimp_Model_MCAP
 		return true;
 	}
 
+	public function getCtemplates(){
+
+		$apikey = Mage::helper('mailchimp')->getApiKey();
+		if(!$apikey){
+			return false;
+		}
+		$this->MCAPI($apikey);
+		$this->setTypes(array('user'=>(bool)true,
+							  'gallery'=>(bool)true,
+							  'base'=>(bool)true));
+		$this->setCategory(null);
+		$this->setInactives(array('include'=>(bool)true,
+								  'only'=>(bool)false));
+
+		$retval = $this->templates($this->getTypes(),
+								   $this->getCategory(),
+								   $this->getInactives());
+		if ($this->errorCode){
+			$this->setErrorOutput();
+			return false;
+		}
+		return $retval;
+
+	}
+
+	public function getTemplateInfo(){
+
+		$apikey = Mage::helper('mailchimp')->getApiKey();
+		if(!$apikey || !$this->getTemplateId()){
+			return false;
+		}
+		$this->MCAPI($apikey);
+
+		$retval = $this->templateInfo($this->getTemplateId(),
+								      $this->getTid());
+		if ($this->errorCode){
+			$this->setErrorOutput();
+			return false;
+		}
+		$template = new Varien_Object;
+	  	$template->addData($retval);
+	  	$template->setId($this->getTemplateId());
+
+		return $template;
+
+	}
 	private function setErrorOutput(){
 
 		$this->setCode($this->errorCode);
