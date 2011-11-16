@@ -39,7 +39,9 @@
 					<?php  } else if(isset($twitterID)) { ?>
 						<img class="oaimg" width="50" height="50" src="http://api.twitter.com/1/users/profile_image?screen_name=<?php echo $twitterID ?>&size=normal" />
 					<?php
-					} 
+					} else {
+					?><style type"text/css">.top-header .account-link a.header-link { padding-right:0px; }</style><?php
+					}
 					?>
 					
 					<?php // Mage::helper('oneall')->getThumbnailUrl(); ?>
