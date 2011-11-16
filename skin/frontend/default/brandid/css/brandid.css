@@ -1659,3 +1659,118 @@ input#p_method_sagepayserver + label, input#p_method_paypal_billing_agreement + 
 
 /* END RANDOMQUOTE FOOTER */
 
+/* BOOSTERS CATEGORY DETAIL FOOTER */
+
+.block-layered-nav .black-title-bar {
+ padding:10px;
+ font-size:18px !important;
+}
+
+
+.block-layered-nav .black-title-bar span {
+ font-size:18px;
+
+}
+
+
+
+.black-title-xsmall {
+	padding:5px;
+	background-color: black;
+	font-family: ProximaNovaBold,Helvetica,sans-serif;
+	text-transform: uppercase;
+	color:white;
+	letter-spacing: -1px;
+	margin-bottom:10px;
+}
+
+
+.left-layered-nav .block .block-content dd {
+padding: 10px 0 20px 30px;
+}
+
+.left-layered-nav {
+width: 172px;
+float: left;
+background: white;
+margin: 33px 30px 0 0;
+-moz-box-shadow: none;
+-webkit-box-shadow: none;
+-khtml-box-shadow: none;
+box-shadow: none;
+border: none;
+}
+
+.category-products .product-brand {
+	font-family: ProximaNovaBold,sans-serif;
+	letter-spacing: -1px;
+	padding-left:5px;
+	color: white  !important;
+	background-color:#000000 !important;
+	font-size: 18px !important;
+	text-transform: uppercase;
+}
+
+.products-grid .product-brand {
+height: 42px;
+border-bottom: 1px solid #E8E8E8;
+background: white;
+text-transform: uppercase;
+float: left;
+}
+
+.products-grid .product-brand h2 {
+padding: 10px;
+
+}
+
+.products-grid .product-brand a {
+color: #fff;
+font-size: 18px;
+}
+
+.products-grid li.item {
+	height: 496px;
+	border-bottom: none;
+	margin-right: 30px;
+	position: relative;
+}
+
+.products-grid li.item, .products-grid .product-image {
+width: 231px;
+}
+
+
+.products-grid .price-box{
+	height: 34px;
+	padding: 0;
+	font-family: ProximaNovaLight;
+	padding: 0pt 10px 5px 0pt;
+}
+
+.products-grid .product-name{
+	height: 31px;
+	padding: 5px 0 5px 10px;
+	font-size: 12px;
+	line-height: 12px;
+	width: 234px;
+}
+.products-grid .product-name a{
+	font-size: 12px;
+	color: #a7a7a7;
+	line-height: 12px;
+}
+.products-grid .product-name a:hover{
+	text-decoration: none;
+	color: #a7a7a7;
+}
+
+.products-grid li.last{margin-right: 0;}
+.products-grid .product-image{
+	height: 258px;
+	margin: 0;
+}
+
+/* PLANS */
+
+.category-plans .toolbar {display:none;}

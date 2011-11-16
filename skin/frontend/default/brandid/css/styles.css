@@ -220,8 +220,7 @@ ul, ol {
 }
 
 .main {
-  background: url("../images/bg-page.gif") repeat-y scroll
-    0% 0% transparent;
+  0% 0% transparent;
   margin: 0pt auto;
   padding: 0pt 8px;
   text-align: left;
@@ -3430,11 +3429,6 @@ ul.disc li {
   clear: both;
 }
 
-.products-grid .price-box {
-  padding: 0pt 10px 5px
-    0pt;
-  float: right;
-}
 
 .products-grid .price-box .special-price .price {
   color: #eeeeee;
@@ -10540,21 +10534,6 @@ font-size: 20px; }
 }
 .lte9 .category-products{width:765px;}
 
-.products-grid li.item, .products-grid .product-image{
-	width: 246px;
-}
-.products-grid li.item{
-	height: 496px;
-	border-bottom: none;
-	background: #fff;
-	margin-right: 10px;
-	position: relative;
-	-moz-box-shadow: 0pt 0 2px #acacac;
-	-webkit-box-shadow: 0pt 0 2px #acacac;
-	-khtml-box-shadow: 0pt 0 2px #acacac;
-	box-shadow: 0pt 0px 2px #acacac;
-	border: 1px solid #acacac\9;
-}
 .products-grid li.last{margin-right: 0;}
 .products-grid .product-image{
 	height: 412px;
@@ -10593,12 +10572,7 @@ font-size: 20px; }
 	text-decoration: none;
 	color: #a7a7a7;
 }
-.products-grid .price-box{
-	width: 246px;
-	height: 34px;
-	padding: 0;
-	font-family: ProximaNovaLight;
-}
+
 .category-products .old-price, .products-grid .price-box .special-price{
 	width: 130px;
 	font-size: 12px;
@@ -10732,17 +10706,7 @@ a.cat-view-now {
 /*CATEGORY GRID PRODUCT IMAGE ROLLOVER 2011-05-24 BY FLO END*/
 
 /*LAYERED NAV START*/
-.left-layered-nav{
-	width: 192px;
-	float: left;
-	background: #fff;
-	margin: 29px 10px 0 0;
-	-moz-box-shadow: 0pt 4px 4px #acacac;
-	-webkit-box-shadow: 0pt 4px 4px #acacac;
-	-khtml-box-shadow: 0pt 4px 4px #acacac;
-	box-shadow: 0pt 4px 4px #acacac;
-	border: 1px solid #acacac\9;
-}
+
 
 .lte9 .left-layered-nav{
 	width: 183px;
