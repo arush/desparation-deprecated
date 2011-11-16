@@ -1748,13 +1748,6 @@ width: 231px;
 }
 
 
-.products-grid .price-box{
-	height: 34px;
-	padding: 0;
-	font-family: ProximaNovaLight;
-	padding: 0pt 10px 5px 0pt;
-}
-
 .products-grid .product-name{
 	height: 31px;
 	padding: 5px 0 5px 10px;
@@ -1776,6 +1769,15 @@ width: 231px;
 .products-grid .product-image{
 	height: 258px;
 	margin: 0;
+}
+
+.category-products .price-box {
+    background-color: #FFFFFF;
+    color: #D2002B;
+    font-size: 24px;
+    letter-spacing: -1px;
+    font-family: ProximaNovaBold;
+    
 }
 
 /* PLANS */
