@@ -39,17 +39,16 @@ class Vdh_Customerurl_Model_Customer {
 		if (!$customer->getCustomerurl()) {
 			$customer->setCustomerurl($default);
 		}
-		$otherCustomers = Mage::getModel('customer/customer')
-			->getCollection()
-			->addAttributeToFilter('customerurl', $customer->getCustomerurl());
-			
-		$updatedUrl = $customer->getCustomerurl();
-		foreach($otherCustomers as $other) {
-			if ($other->getId() == $customer->getId() && $otherCustomers->count() == 1) {
-				break;
-			} elseif ($other->getId() == $customer->getId()) {
-				continue;
-			}
+		$otherCustomers = Mage::getModel('customer/customer')->getCollection()->addAttributeToFilter('customerurl', $customer->getCustomerurl());
+		
+		$updatedUrl = $customer->getCustomerurl();		
+		while(
+			Mage::getModel('customer/customer')
+				->getCollection()
+				->addAttributeToFilter('customerurl', $updatedUrl)
+				->addAttributeToFilter('entity_id', array('neq' => $customer->getId()))
+				->count() > 0 
+		) {
 			
 			$originalUrl	= $updatedUrl;
 			$pattern		=	"/(.*)([0-9]+)$/";
@@ -63,11 +62,8 @@ class Vdh_Customerurl_Model_Customer {
 						    	    $originalUrl
 								);
 			if ($updatedUrl == $originalUrl) { $updatedUrl .= '1'; }
-			
-			$otherCustomers = Mage::getModel('customer/customer')
-				->getCollection()
-				->addAttributeToFilter('customerurl', $updatedUrl);						
 		}
+
 		$customer->setCustomerurl($updatedUrl);	
 		return true;				
 	}

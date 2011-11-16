@@ -3,13 +3,18 @@ $products = Mage::getModel('catalog/product')->getCollection()->addAttributeToSe
 
 if ($products->count() > 0): ?>
 <div id="planOther">
-	<h1><?php echo $this->__('Shirts');?></h1>	
+	<h1 class="black-title-bar"><?php echo $this->__('Shirts');?></h1>	
 	<div class="holder">
 	
 		<div class="slider">
 			<ul>
 			<?php foreach($products as $product): ?>
-				<li><?php echo $product->getName(); ?></li>
+				<?php $_product = Mage::getModel('catalog/product')->load($product->getId());?>
+				<li>
+					<img src="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize(191, 155);?>" width="191" height="155" />
+					<span class="black-title-small"><?php echo $_product->getAttributeText('designer'); ?></span>
+					<span><?php echo Mage::helper('core')->currency($product->getPrice(), true); ?></span>
+				</li>
 			<? endforeach ?>
 			</ul>
 		</div>
@@ -18,6 +23,33 @@ if ($products->count() > 0): ?>
 	</div>
 </div>
 <?php endif; ?>
+
+<?php
+$products = Mage::getModel('catalog/product')->getCollection()->addAttributeToSelect('*')->addAttributeToFilter('rmscategory', 'Boxers');
+
+if ($products->count() > 0): ?>
+<div id="planOther">
+	<h1 class="black-title-bar"><?php echo $this->__('Boxers');?></h1>	
+	<div class="holder">
+	
+		<div class="slider">
+			<ul>
+			<?php foreach($products as $product): ?>
+				<?php $_product = Mage::getModel('catalog/product')->load($product->getId());?>
+				<li>
+					<img src="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize(191, 155);?>" width="191" height="155" />
+					<span class="black-title-small"><?php echo $_product->getAttributeText('designer'); ?></span>
+					<span><?php echo Mage::helper('core')->currency($product->getPrice(), true); ?></span>
+				</li>
+			<? endforeach ?>
+			</ul>
+		</div>
+		<div class="left"></div>		
+		<div class="right"></div>	
+	</div>
+</div>
+<?php endif; ?>
+
 
 <script type="text/javascript">
 
@@ -66,5 +98,6 @@ if ($products->count() > 0): ?>
 			);
 		});
 	});
+	
 	
 </script>

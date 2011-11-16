@@ -1664,6 +1664,9 @@ input#p_method_sagepayserver + label, input#p_method_paypal_billing_agreement + 
 /* Custom Slider */
 #planOther h1 {
 	clear: both;
+	padding: 10px;
+	width: 610px;
+	
 }
 #planOther .holder {
 	width: 630px;
