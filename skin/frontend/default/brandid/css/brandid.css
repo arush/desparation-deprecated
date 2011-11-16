@@ -1742,9 +1742,16 @@ font-size: 18px;
 
 }
 
-
 .products-grid li.item, .products-grid .product-image {
 width: 231px;
+}
+
+
+.products-grid .price-box{
+	height: 34px;
+	padding: 0;
+	font-family: ProximaNovaLight;
+	padding: 0pt 10px 5px 0pt;
 }
 
 
@@ -1771,6 +1778,7 @@ width: 231px;
 	margin: 0;
 }
 
+
 .category-products .price-box {
     background-color: #FFFFFF;
     color: #D2002B;
@@ -1779,7 +1787,5 @@ width: 231px;
     font-family: ProximaNovaBold;
     
 }
-
-/* PLANS */
 
 .category-plans .toolbar {display:none;}
