@@ -1659,3 +1659,49 @@ input#p_method_sagepayserver + label, input#p_method_paypal_billing_agreement + 
 
 /* END RANDOMQUOTE FOOTER */
 
+
+
+/* Custom Slider */
+#planOther h1 {
+	clear: both;
+}
+#planOther .holder {
+	width: 630px;
+	height: 210px;
+	overflow: hidden;
+
+}
+
+#planOther .holder .slider {
+	position: relative;
+	height: 210px;
+	left: 0px;
+	margin: 0px;
+}
+
+#planOther .holder .slider ul li {
+	display: block;
+	width: 210px;
+	height: 210px;
+	float: left;
+	background: #fff;
+}
+
+#planOther .holder .left {
+	position: absolute;
+	width: 34px;
+	height: 210px;
+	margin-top: -210px;	
+	background: url('../images/slider-left.png') no-repeat 50% 50%;
+	cursor: pointer;
+}
+
+#planOther .holder .right {
+	position: absolute;
+	margin-left: 596px;
+	width: 34px;
+	height: 210px;	
+	margin-top: -210px;
+	background: url('../images/slider-right.png') no-repeat 50% 50%;
+	cursor: pointer;
+}
