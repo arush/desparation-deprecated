@@ -1,0 +1,42 @@
+
+<?php
+$products = Mage::getModel('catalog/product')->getCollection()->addAttributeToSelect('*');//->addAttributeToFilter('rmscategory', 'Shirt')->getSelect()->order('RAND()');
+
+if ($products->count() > 0): ?>
+<div id="planOther">
+	<h1><?php echo $this->__('Shirts');?></h1>	
+	<div class="holder">
+	
+		<div class="slider">
+			<ul>
+			<?php foreach($products as $product): ?>
+				<li><?php echo $product->getName(); ?></li>
+			<? endforeach ?>
+			</ul>
+		</div>
+		<div class="left"></div>		
+		<div class="right"></div>	
+	</div>
+</div>
+<?php endif; ?>
+
+<script type="text/javascript">
+	$$('.holder .left').each(function(obj){
+		obj.observe('click', function(){
+			var slider = obj.up().select('.slider')[0];
+			if (parseInt(slider.getStyle('left')) < 0) {
+				new Effect.Move(slider , { x: 210, y: 0, mode: 'relative' });									
+			}
+
+		});	
+//		obj.next().setStyle({ left: (parseInt(obj.next().getStyle('left'))+210) + 'px' });
+	});
+	$$('.holder .right').each(function(obj){
+		obj.observe('click', function(){
+			new Effect.Move(obj.up().select('.slider')[0], { x: -210, y: 0, mode: 'relative' });				
+		});
+
+		//obj.prev().setStyle({ left: (parseInt(obj.next().getStyle('left'))-210) + 'px' });
+	});
+	
+</script>

@@ -37,20 +37,20 @@
 			<layouts>            
 				<plan module="randomquote" translate="label">
 			        <label>Plans Layout</label>
-	        		<template>vdh/randomquote/plan.phtml</template>
+	        		<template>vdh/randomquote/product/plan.phtml</template>
 			        <layout_handle>product_plan</layout_handle>    	
 			    </plan>
 			</layouts>
 		</page>    	
     </global> 
     <frontend>
-    	<layouts>
+    	<layout>
             <updates>
                 <randomquote>
                     <file>vdh/randomquote/layout.xml</file>
                 </randomquote>
             </updates>
-    	</layouts> 
+    	</layout> 
         <routers>
             <randomquote>
                 <use>standard</use>
