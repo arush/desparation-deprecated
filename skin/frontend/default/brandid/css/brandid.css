@@ -1871,3 +1871,35 @@ padding-left: 10px;
 }
 
 /*CATEGORY GRID PRODUCT IMAGE ROLLOVER 2011-05-24 BY FLO END*/
+
+
+.product-left-side {
+	float:left;
+	padding:25px;
+	background-color:white;
+	margin:	0 25px 25px 0;
+}
+
+.product-name span.black-title-med {
+	padding: 5px;
+	text-transform: none;
+}
+
+.price-box span.price-label, .product-view .product-shop .price-box .price-as-configured .price, .product-view .product-shop .price-box .price {
+	color:#d2002b;
+	font-family:ProximaNovaBold;
+	font-size:24px;
+	letter-spacing: -1px;
+	text-transform:uppercase;
+	padding:10px;
+}
+
+.product-view .product-shop .price-box {
+	padding:0;
+}
+.product-view .product-shop .price-box .price {
+	font-size:18px;
+ 	color:#595959;
+ }
+
+.product-view .product-shop .price-box-bundle .container2 .product-options .last label {display:none;}
