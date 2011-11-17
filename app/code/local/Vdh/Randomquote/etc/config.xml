@@ -59,6 +59,16 @@
                     <frontName>randomquote</frontName>
                 </args>
             </randomquote>
-        </routers>      
+        </routers>
+        
+
+		<product>
+			<collection>
+				<attributes>
+					<num_socks />     
+				</attributes>
+			</collection>
+		</product>
+
     </frontend>      
 </config>

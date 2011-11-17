@@ -1,4 +1,6 @@
 <?php $_product = Mage::getModel('catalog/product')->load(Mage::registry('current_product')->getId());?>
+<?php $_helper = $this->helper('catalog/output'); ?>
+
 <div class="sliders">
 <?php
 $pieces = array(
@@ -28,10 +30,9 @@ if ($products->count() > 0){ ?>
 		<div class="slider">
 			<ul>
 			<?php foreach($products as $product): ?>
-				<?php $_product = Mage::getModel('catalog/product')->load($product->getId());?>
 				<li>
 					<img src="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize(191, 155);?>" width="191" height="155" />
-					<span class="black-title-small"><?php echo $_product->getAttributeText('brand'); ?></span>
+					<span class="black-title-small"><?php echo $product->getAttributeText('brand'); ?></span>
 					<span><?php echo Mage::helper('core')->currency($product->getPrice(), true); ?></span>
 				</li>
 			<? endforeach ?>
@@ -53,9 +54,50 @@ if ($products->count() > 0){ ?>
     <div class="add-to-box">
         <?php echo $this->getChildHtml('addtocart') ?>
         <?php echo $this->getChildHtml('addto') ?>
+		<div class="delivery-date"><?php
+		$profile = Mage::helper('randomquote')->getProfileDate();
+		echo $this->__('Your plan will be delivered on <span>%s</span>', $profile['delivery_date']);
+		?>
+		</div>        
+    </div>
+    <div class="extra-info">
+    	<ul>
+			<?php if ($_helper->productAttribute($_product, $_product->getName(), 'freeshipping') != ''): ?>
+    		<li><?php echo $this->__('Free delivery'); ?></li>
+			<?php endif; ?>	
+    	</ul>
     </div>
 </div>
+<?php
 
+$upsells = $_product->getUpSellProductCollection()->addAttributeToSort('position', 'asc');
+if ($upsells->count() > 0):
+?>
+<div class="upsells">
+	<h1 class="black-title-bar"><?php echo $this->__('Our Plans'); ?></h1>
+	<ul>
+	<?php foreach($upsells as $upsell): ?>
+		<li>
+			<h3><? echo $upsell->getName(); ?></h3>
+			<span class="price"><?php echo $upsell->getPrice();?></span>
+			<span class="special-price"><?php echo $upsell->getSpecialPrice();?></span>
+			<button><span><?php echo $this->__('View plan'); ?></span></button>
+		</li>
+	<?php endforeach; ?>
+	</ul>
+</div>
+<?php endif; ?>
+
+<style type="text/css">
+.extra-info {
+	margin: 10px;
+}
+.extra-info ul li {
+	background: url('../images/green-tick.png') no-repeat 0% 50%;
+	padding-left: 35px;
+	
+}
+</style>
 <script type="text/javascript">
 
 	$('product-options-wrapper').select('label').each(function(obj){

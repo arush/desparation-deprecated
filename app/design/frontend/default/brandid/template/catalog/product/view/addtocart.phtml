@@ -39,11 +39,6 @@
 		<?php if($_product->getData('promo_offer')): ?><?php echo $this->htmlEscape($_product->getData('promo_offer')); ?><br/><?php endif; ?>
 		<?php if($this->getProduct()->getShutl()): ?>90 minute London delivery<br/><?php endif; ?>
 		<?php $_nonrefundable = $this->htmlEscape($_product->getResource()->getAttribute('nonrefundable')->getFrontend()->getValue($_product)); ?>
-		<div class="delivery-date"><?php
-		$profile = Mage::helper('randomquote')->getProfileDate();
-		echo $this->__('Your plan will be delivered on <span>%s</span>', $profile['delivery_date']);
-		?>
-		</div>
         <?php if ($_nonrefundable === 'No'):?>Free returns<?php endif; ?>
 		</div>
     </div>
