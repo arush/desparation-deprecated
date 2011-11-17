@@ -33,8 +33,8 @@
 ?>
 <?php if($this->canShowBlock()): ?>
 <div class="block block-layered-nav">
-    <div class="block-title">
-        <span><?php echo $this->__('Refine') ?></span>
+    <div class="black-title-bar">
+        <span><?php echo $this->__('Filter') ?></span>
     </div>
     <div class="block-content">
         <?php echo $this->getStateHtml() ?>
@@ -44,7 +44,7 @@
                 <?php $_filters = $this->getFilters() ?>
                 <?php foreach ($_filters as $_filter): ?>
                 <?php if($_filter->getItemsCount()): ?>
-                    <dt><?php echo $this->__($_filter->getName()) ?></dt>
+                    <dt><span class="black-title-xsmall"><?php echo $this->__($_filter->getName()) ?></span></dt>
                     <dd><?php echo $_filter->getHtml() ?></dd>
                 <?php endif; ?>
                 <?php endforeach; ?>

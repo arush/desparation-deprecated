@@ -65,7 +65,7 @@
 <!-- Addition for Highslide -->
 <div class="product-image">
     <?php
-        $_img = '<a href="'.$this->helper('catalog/image')->init($_product, 'image').'" class="highslide" onclick="return hs.expand(this, {slideshowGroup: \'media-group\'})"><img id="image" src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(288, 432).'"  height="432" width="288" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" /></a>';
+        $_img = '<a href="'.$this->helper('catalog/image')->init($_product, 'image').'" class="highslide" onclick="return hs.expand(this, {slideshowGroup: \'media-group\'})"><img id="image" src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(436, 539).'"  height="539" width="436" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" /></a>';
         echo $_helper->productAttribute($_product, $_img, 'image');
     ?>
 	<div class="highslide-caption"><?php echo $this->htmlEscape($this->getImageLabel()); ?></div>
@@ -73,7 +73,7 @@
 <?php else: ?>
 <p class="product-image">
     <?php
-        $_img = '<img src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(288, 432).'" height="432" width="287" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
+        $_img = '<img src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(436, 539).'" height="539" width="436" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
         echo $_helper->productAttribute($_product, $_img, 'image');
     ?>
 </p>
@@ -85,7 +85,7 @@
     <ul>
     <?php foreach ($this->getGalleryImages() as $_image): ?>
         <li>
-           <a href="<?php echo $this->helper('catalog/image')->init($this->getProduct(), '', $_image->getFile()); ?>" class="highslide" onclick="return hs.expand(this, {slideshowGroup: 'media-group'})"><img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(95, 142); ?>" width="95" height="142" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>" /></a>
+           <a href="<?php echo $this->helper('catalog/image')->init($this->getProduct(), '', $_image->getFile()); ?>" class="highslide" onclick="return hs.expand(this, {slideshowGroup: 'media-group'})"><img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(108, 133); ?>" width="108" height="133" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>" /></a>
 		   <div class="highslide-caption"><?php echo $this->htmlEscape($_image->getLabel()) ?></div>
         </li>
     <?php endforeach; ?>
