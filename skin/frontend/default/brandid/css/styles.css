@@ -10754,9 +10754,9 @@ a.cat-view-now {
 }
 .product-view .product-shop .add-to-cart, .product-view .add-to-box .add-to-cart{float: left; padding: 0; width: 100%;}
 .product-view .product-shop .add-to-links, .product-view .add-to-box .add-to-links{float: left; margin: 0 0 0 5px !important; width: 95px;}
-.product-view .product-options-bottom, .add-to-box{padding: 20px 10px;}
+.product-view .product-options-bottom, .add-to-box{padding: 0;}
 .product-view .add-to-box .add-to-links li{padding: 5px 0; text-align: center; text-transform: uppercase;}
-.add-to-box{background: #fff; float: left;}
+.add-to-box{width:100%;background: #fff; float: left;}
 .info-shipment{
 	color: #919191;
 	text-transform: uppercase;

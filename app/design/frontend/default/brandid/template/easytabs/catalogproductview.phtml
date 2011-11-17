@@ -40,16 +40,16 @@
 </script>
 <div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
 <div class="product-view">
-<div class="lucky-dip">
-					<div class="shutl-right-col">
-	                	<?php echo $this->getChildHtml('shutl_service'); ?>
-	                </div>
-</div>
-	            
+
 <div class="product-left-side">
 	<div class="product-name">
        <h1><span class="black-title-med"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></span></h1>
     </div>
+
+    <div class="fb-like-button-prod">
+	    <?php echo $this->getBlockHtml('info.likebutton') ?>
+    </div>
+
 	<div class="product-img-box">
         <?php echo $this->getChildHtml('media') ?>
     </div>
@@ -61,7 +61,13 @@
             <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
             <input type="hidden" name="related_product" id="related-products-field" value="" />
         </div>
-			
+			<!--
+				<div class="cms-block1">
+					<div class="shutl-right-col">
+	                	<?php echo $this->getChildHtml('shutl_service'); ?>
+	                </div>
+	            </div>
+			-->
             
         <div class="product-shop">
             
@@ -93,6 +99,10 @@
                 	<a onclick="window.open('/index.php/sizing','popup','width=790,height=500,scrollbars=yes,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=575,top=0'); return false" href="/index.php/sizing" id="my-size"><?php echo $this->__('Whats My Size?') ?></a>
 				<?php endif; ?>
 				</div>
+				<div class="add-to-box">
+	                        <?php echo $this->getChildHtml('addtocart') ?>
+	               
+					</div>
 				
 			<?php endif;?>
                 
@@ -120,16 +130,12 @@
 				
 				<?php if ($_product->isSaleable() && $this->hasOptions() && $this->getChildChildHtml('container1') ):?>
                 	<?php echo $this->getChildChildHtml('container1', '', true, true) ?>
-				<?php elseif (!$_product->isSaleable()): ?>
-					<div class="add-to-box">
-						<div class="availability out-of-stock detail-view">
-
-							
-					    	
-						</div>
-						<!-- div class="sold-out-wishlist"--><?php // echo $this->getChildHtml('addto') ?><!-- /div-->
-
+                	<div class="add-to-box">
+	                        <?php echo $this->getChildHtml('addtocart') ?>
+	               
 					</div>
+				<?php elseif (!$_product->isSaleable()): ?>
+					
 				
 				<?php endif;?>
                 
@@ -192,20 +198,23 @@
     </div>
     
     <div class="product-collateral-wrapper">
-	    <div class="product-collateral">
-			<div class="cms-block1">
-	        	<?php $block = Mage::getModel('cms/block')->load('prod-page-block');?>
-				<?php /*?><p><strong><?php echo $block8->getTitle(); ?></strong></p><?php */?>
-	            <?php echo $block->getContent(); ?>
-	        </div>
-	        
-			<?php /*?><?php if (!Mage::getStoreConfig('easy_tabs/general/descriptiontabbed')):?>
-		        <?php echo $this->getChildHtml('description') ?>
-	        <?php endif;?><?php */?>
-	        <?php echo $this->getChildHtml('additional') ?>
-	        <?php echo $this->getChildHtml('upsell_products') ?>
-	        <?php echo $this->getChildHtml('product_additional_data') ?>
-	    </div>
+    <div class="product-collateral">
+		<div class="cms-block1">
+        	<?php $block = Mage::getModel('cms/block')->load('prod-page-block');?>
+			<?php /*?><p><strong><?php echo $block8->getTitle(); ?></strong></p><?php */?>
+            <?php echo $block->getContent(); ?>
+        </div>
+        <div class="checkboxes">
+        	<?php $block = Mage::getModel('cms/block')->load('quickie-checkboxes');?>
+            <?php echo $block->getContent(); ?>
+        </div>
+		<?php /*?><?php if (!Mage::getStoreConfig('easy_tabs/general/descriptiontabbed')):?>
+	        <?php echo $this->getChildHtml('description') ?>
+        <?php endif;?><?php */?>
+        <?php echo $this->getChildHtml('additional') ?>
+        <?php echo $this->getChildHtml('upsell_products') ?>
+        <?php echo $this->getChildHtml('product_additional_data') ?>
+    </div>
     </div>
 
 <?php // echo $this->getChildHtml('recently_viewed') ?>
