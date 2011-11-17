@@ -151,6 +151,12 @@
         
 		
     </form>
+    
+    	<div class="checkboxes">
+        	<?php $block = Mage::getModel('cms/block')->load('quickie-checkboxes');?>
+            <?php echo $block->getContent(); ?>
+        </div>
+        
     <script type="text/javascript">
     //<![CDATA[
         var productAddToCartForm = new VarienForm('product_addtocart_form');
@@ -204,10 +210,7 @@
 			<?php /*?><p><strong><?php echo $block8->getTitle(); ?></strong></p><?php */?>
             <?php echo $block->getContent(); ?>
         </div>
-        <div class="checkboxes">
-        	<?php $block = Mage::getModel('cms/block')->load('quickie-checkboxes');?>
-            <?php echo $block->getContent(); ?>
-        </div>
+        
 		<?php /*?><?php if (!Mage::getStoreConfig('easy_tabs/general/descriptiontabbed')):?>
 	        <?php echo $this->getChildHtml('description') ?>
         <?php endif;?><?php */?>
