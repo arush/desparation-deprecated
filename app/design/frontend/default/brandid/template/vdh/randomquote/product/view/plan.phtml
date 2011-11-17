@@ -1,9 +1,28 @@
+<?php $_product = Mage::getModel('catalog/product')->load(Mage::registry('current_product')->getId());?>
+<div class="sliders">
 <?php
-$products = Mage::getModel('catalog/product')->getCollection()->addAttributeToSelect('*')->addAttributeToFilter('rmscategory', 'Shirt');
+$pieces = array(
+	'Socks'		=> 'SOCKS',
+	'Boxers'	=> 'BOXERS',
+	'T-Shirts'	=> 'T-SHIRT',
+	'Shirts'	=> 'SHIRT'
+);
+$relatedProductIds = array();
+foreach($_product->getRelatedLinkCollection() as $related) {
+	$relatedProductIds[] = $related->getLinkedProductId();
+}
+?>
+<?php
+foreach ($pieces as $k => $v) {
+	$products = Mage::getModel('catalog/product')
+		->getCollection()
+		->addAttributeToSelect('*')
+		->addAttributeToFilter('rmscategory', $v)
+		->addAttributeToFilter('entity_id', array('in' => $relatedProductIds));	
 
-if ($products->count() > 0): ?>
+if ($products->count() > 0){ ?>
 <div id="planOther">
-	<h1 class="black-title-bar"><?php echo $this->__('Shirts');?></h1>	
+	<h1 class="black-title-bar"><?php echo $this->__($k);?></h1>	
 	<div class="holder">
 	
 		<div class="slider">
@@ -12,7 +31,7 @@ if ($products->count() > 0): ?>
 				<?php $_product = Mage::getModel('catalog/product')->load($product->getId());?>
 				<li>
 					<img src="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize(191, 155);?>" width="191" height="155" />
-					<span class="black-title-small"><?php echo $_product->getAttributeText('designer'); ?></span>
+					<span class="black-title-small"><?php echo $_product->getAttributeText('brand'); ?></span>
 					<span><?php echo Mage::helper('core')->currency($product->getPrice(), true); ?></span>
 				</li>
 			<? endforeach ?>
@@ -22,35 +41,35 @@ if ($products->count() > 0): ?>
 		<div class="right"></div>	
 	</div>
 </div>
-<?php endif; ?>
-
-<?php
-$products = Mage::getModel('catalog/product')->getCollection()->addAttributeToSelect('*')->addAttributeToFilter('rmscategory', 'Boxers');
-
-if ($products->count() > 0): ?>
-<div id="planOther">
-	<h1 class="black-title-bar"><?php echo $this->__('Boxers');?></h1>	
-	<div class="holder">
-	
-		<div class="slider">
-			<ul>
-			<?php foreach($products as $product): ?>
-				<?php $_product = Mage::getModel('catalog/product')->load($product->getId());?>
-				<li>
-					<img src="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize(191, 155);?>" width="191" height="155" />
-					<span class="black-title-small"><?php echo $_product->getAttributeText('designer'); ?></span>
-					<span><?php echo Mage::helper('core')->currency($product->getPrice(), true); ?></span>
-				</li>
-			<? endforeach ?>
-			</ul>
-		</div>
-		<div class="left"></div>		
-		<div class="right"></div>	
-	</div>
+<?php 
+	};
+}
+?>
 </div>
-<?php endif; ?>
+<div class="product-info">
+    <div class="container2">
+    <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+    </div>
+    <div class="add-to-box">
+        <?php echo $this->getChildHtml('addtocart') ?>
+        <?php echo $this->getChildHtml('addto') ?>
+    </div>
+</div>
+<style type="text/css">
+.sliders {
+	width: 630px;
+	float: left;
+}
+.product-info {
+	float: right;
+	background: #fff;
+	width: 296px;
+}
 
-
+.sock-bg {
+	background: #595959 url('../images/sock-bg.png') no-repeat;
+}
+</style>
 <script type="text/javascript">
 
 	$$('.holder .slider').each(function(obj){
