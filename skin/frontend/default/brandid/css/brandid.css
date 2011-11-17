@@ -251,7 +251,6 @@ margin-left:207px;}
 .top-header a.header-link:hover
 ,.top-header .catalogLinks a:hover {
 	border-top: solid 7px #000;
-
 }
 
 .top-header a.header-link.active
@@ -1660,83 +1659,248 @@ input#p_method_sagepayserver + label, input#p_method_paypal_billing_agreement + 
 
 /* END RANDOMQUOTE FOOTER */
 
+/* BOOSTERS CATEGORY DETAIL FOOTER */
 
-
-/* Custom Slider */
-#planOther h1 {
-	clear: both;
-	padding: 10px;
-	width: 610px;
-	
+.block-layered-nav .black-title-bar {
+ padding:10px;
+ font-size:18px !important;
 }
-#planOther .holder {
-	width: 630px;
-	height: 210px;
-	overflow: hidden;
+
+
+.block-layered-nav .black-title-bar span {
+ font-size:18px;
 
 }
 
-#planOther .holder .slider {
+
+
+.black-title-xsmall {
+	padding:5px;
+	background-color: black;
+	font-family: ProximaNovaBold,Helvetica,sans-serif;
+	text-transform: uppercase;
+	color:white;
+	letter-spacing: -1px;
+	margin-bottom:10px;
+}
+
+
+.left-layered-nav .block .block-content dd {
+padding: 10px 0 20px 30px;
+}
+
+.left-layered-nav {
+width: 172px;
+float: left;
+background: white;
+margin: 33px 30px 0 0;
+-moz-box-shadow: none;
+-webkit-box-shadow: none;
+-khtml-box-shadow: none;
+box-shadow: none;
+border: none;
+}
+
+.category-products .product-brand {
+	font-family: ProximaNovaBold,sans-serif;
+	letter-spacing: -1px;
+	padding-left:5px;
+	color: white  !important;
+	background-color:#000000 !important;
+	font-size: 18px !important;
+	text-transform: uppercase;
+}
+
+.products-grid .product-brand {
+border-bottom: 1px solid #E8E8E8;
+background: white;
+text-transform: uppercase;
+float: left;
+}
+
+.products-grid .product-brand h2 {
+padding: 10px;
+
+}
+
+.products-grid .product-brand a {
+color: #fff;
+font-size: 18px;
+}
+
+
+.products-grid li.item {
+  float: left;
+  margin-right: 10px;
+  overflow: hidden;
+  border-bottom: 1px solid rgb(79,78, 74);
+  margin-bottom: 40px;
+	margin-right: 30px;
+	border-bottom: none;
 	position: relative;
-	height: 210px;
-	left: 0px;
-	margin: 0px;
+
 }
 
-#planOther .holder .slider ul li {
+.products-grid li.item, .products-grid .product-image {
+width: 231px;
+}
+
+
+.products-grid .price-box{
+	height: 34px;
+	padding: 0;
+	font-family: ProximaNovaLight;
+	padding: 0pt 10px 5px 0pt;
+}
+
+
+.products-grid .product-name{
+	padding: 15px 0 5px 10px;
+}
+.products-grid .product-name a{
+	font-size: 15px;
+	color: #595959;
+}
+.products-grid .product-name a:hover{
+	text-decoration: none;
+	color: #a7a7a7;
+}
+
+.products-grid li.last{margin-right: 0;}
+.products-grid .product-image{
+	margin: 0;
+}
+
+
+.category-products .price-box {
+    background-color: #FFFFFF;
+    color: #D2002B;
+    font-size: 24px;
+    letter-spacing: -1px;
+    font-family: ProximaNovaBold;
+    
+}
+.category-quickies .price-box span.price {
+padding-left: 10px;
+}
+
+.category-plans .toolbar {display:none;}
+
+/*CATEGORY GRID PRODUCT IMAGE ROLLOVER 2011-05-24 BY FLO START*/
+.ProdImgRollover{
+	-moz-transition: all 0.2s ease 0s;
+	-webkit-transition: all 0.2s ease 0s;
+    display: block;
+    height: 70px;
+	background-color: rgba(0, 0, 0, 0.6);
+	bottom: 63px;
+	left: 0;
+	opacity: 0;
+	position: absolute;
+	width: 231px;
+	display: none\9;
+}
+.products-grid li.item:hover .ProdImgRollover{
+	opacity: 1;
+	-webkit-transition: all 0.2s ease 0s;
+	-moz-transition: all 0.2s ease 0s;
+	background-color: rgba(0, 0, 0, 0.6);
+	height: 300px;
+	top: 0;
+	display: block\9;
+	background: URL('../images/grid_rollover.png')\9;
+}
+.ProdImgRollover p{
+	color: #ffffff;
+	text-align: center;
+}
+.ProdImgRollover-static, .ProdImgRollover-static-wl{
+	opacity: 1;
+	background-color: rgba(0, 0, 0, 0.6);
+	height: 90px;
+	bottom: 143px;
 	display: block;
-	width: 210px;
-	height: 210px;
-	float: left;
-	background: #fff;
-}
-
-#planOther .holder .left {
 	position: absolute;
-	width: 34px;
-	height: 210px;
-	margin-top: -210px;	
-	background: url('../images/slider-left.png') no-repeat 50% 50%;
-	cursor: pointer;
+	width: 231px;
+	color: #fff;
+	text-align: center;
+	line-height: 90px;
+	font-size: 17px;
+	font-family: ProximaNovaLight;
+	display: block\9;
+	background: URL('../images/grid_rollover.png')\9;
 }
-
-#planOther .holder .right {
+.ProdImgRollover-static-wl{
+	bottom: 300px;
+	position: relative;
+	margin-bottom: -90px;
+}
+.ProdImgRollover-static-wl a{
+	display: block;
+	padding: 9px 2px;
+	color: #444444;
+}
+.products-grid li.item .ProdImgRollover-static-wl .cat-view-now{
+	-moz-transition: all 0.2s ease 0s;
+	-webkit-transition: all 0.2s ease 0s;
+	opacity: 0;
+	display: none\9;
 	position: absolute;
-	margin-left: 596px;
-	width: 34px;
-	height: 210px;	
-	margin-top: -210px;
-	background: url('../images/slider-right.png') no-repeat 50% 50%;
-	cursor: pointer;
+	height: 0px;
+	bottom: -10px;
+	left: 70px;
+	padding: 0;
+}
+.products-grid li.item:hover .ProdImgRollover-static-wl{
+	-moz-transition: all 0.2s ease 0s;
+	-webkit-transition: all 0.2s ease 0s;
+	line-height: 52px;
 }
 
-
-
-.sliders {
-	width: 630px;
-	float: left;
+.products-grid li.item:hover .ProdImgRollover-static-wl .cat-view-now{
+	opacity: 1;
+	display: block\9;
+	height: 33px;
+	bottom: 10px;
 }
-.product-info {
-	float: right;
-	background: #fff;
-	width: 296px;
-}
-
-.sock-bg {
-	background: #595959 url('../images/plans-bg-socks.png') no-repeat 55px 50%;	
-}
-.tshirt-bg {
-	background: #595959 url('../images/plans-bg-tshirt.png') no-repeat 55px 50%;	
-}
-.boxer-bg {
-	background: #595959 url('../images/plans-bg-boxer.png') no-repeat 55px 50%;	
-}
-.shirt-bg {
-	background: #595959 url('../images/plans-bg-shirt.png') no-repeat 55px 50%;	
+.only-left{
+	position: absolute;
+	color: #d2002b;
+	font-size: 12px;
+	padding: 59px 0 0 171px;
+	font-family: ProximaNovaLight;
 }
 
+/*CATEGORY GRID PRODUCT IMAGE ROLLOVER 2011-05-24 BY FLO END*/
 
-.product-options dd select {
-	width: 140px;
-	margin-left: 112px;
+
+.product-left-side {
+	float:left;
+	padding:25px;
+	background-color:white;
+	margin:	0 25px 25px 0;
 }
+
+.product-name span.black-title-med {
+	padding: 5px;
+	text-transform: none;
+}
+
+.price-box span.price-label, .product-view .product-shop .price-box .price-as-configured .price, .product-view .product-shop .price-box .price {
+	color:#d2002b;
+	font-family:ProximaNovaBold;
+	font-size:24px;
+	letter-spacing: -1px;
+	text-transform:uppercase;
+	padding:10px;
+}
+
+.product-view .product-shop .price-box {
+	padding:0;
+}
+.product-view .product-shop .price-box .price {
+	font-size:18px;
+ 	color:#595959;
+ }
+
+.product-view .product-shop .price-box-bundle .container2 .product-options .last label {display:none;}
