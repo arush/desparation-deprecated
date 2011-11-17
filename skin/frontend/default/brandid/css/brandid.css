@@ -1712,7 +1712,6 @@ border: none;
 }
 
 .products-grid .product-brand {
-height: 42px;
 border-bottom: 1px solid #E8E8E8;
 background: white;
 text-transform: uppercase;
@@ -1756,16 +1755,11 @@ width: 231px;
 
 
 .products-grid .product-name{
-	height: 31px;
-	padding: 5px 0 5px 10px;
-	font-size: 12px;
-	line-height: 12px;
-	width: 234px;
+	padding: 15px 0 5px 10px;
 }
 .products-grid .product-name a{
-	font-size: 12px;
-	color: #a7a7a7;
-	line-height: 12px;
+	font-size: 15px;
+	color: #595959;
 }
 .products-grid .product-name a:hover{
 	text-decoration: none;
@@ -1774,7 +1768,6 @@ width: 231px;
 
 .products-grid li.last{margin-right: 0;}
 .products-grid .product-image{
-	height: 258px;
 	margin: 0;
 }
 
@@ -1787,5 +1780,94 @@ width: 231px;
     font-family: ProximaNovaBold;
     
 }
+.category-quickies .price-box span.price {
+padding-left: 10px;
+}
 
 .category-plans .toolbar {display:none;}
+
+/*CATEGORY GRID PRODUCT IMAGE ROLLOVER 2011-05-24 BY FLO START*/
+.ProdImgRollover{
+	-moz-transition: all 0.2s ease 0s;
+	-webkit-transition: all 0.2s ease 0s;
+    display: block;
+    height: 70px;
+	background-color: rgba(0, 0, 0, 0.6);
+	bottom: 63px;
+	left: 0;
+	opacity: 0;
+	position: absolute;
+	width: 231px;
+	display: none\9;
+}
+.products-grid li.item:hover .ProdImgRollover{
+	opacity: 1;
+	-webkit-transition: all 0.2s ease 0s;
+	-moz-transition: all 0.2s ease 0s;
+	background-color: rgba(0, 0, 0, 0.6);
+	height: 300px;
+	top: 0;
+	display: block\9;
+	background: URL('../images/grid_rollover.png')\9;
+}
+.ProdImgRollover p{
+	color: #ffffff;
+	text-align: center;
+}
+.ProdImgRollover-static, .ProdImgRollover-static-wl{
+	opacity: 1;
+	background-color: rgba(0, 0, 0, 0.6);
+	height: 90px;
+	bottom: 143px;
+	display: block;
+	position: absolute;
+	width: 231px;
+	color: #fff;
+	text-align: center;
+	line-height: 90px;
+	font-size: 17px;
+	font-family: ProximaNovaLight;
+	display: block\9;
+	background: URL('../images/grid_rollover.png')\9;
+}
+.ProdImgRollover-static-wl{
+	bottom: 300px;
+	position: relative;
+	margin-bottom: -90px;
+}
+.ProdImgRollover-static-wl a{
+	display: block;
+	padding: 9px 2px;
+	color: #444444;
+}
+.products-grid li.item .ProdImgRollover-static-wl .cat-view-now{
+	-moz-transition: all 0.2s ease 0s;
+	-webkit-transition: all 0.2s ease 0s;
+	opacity: 0;
+	display: none\9;
+	position: absolute;
+	height: 0px;
+	bottom: -10px;
+	left: 70px;
+	padding: 0;
+}
+.products-grid li.item:hover .ProdImgRollover-static-wl{
+	-moz-transition: all 0.2s ease 0s;
+	-webkit-transition: all 0.2s ease 0s;
+	line-height: 52px;
+}
+.products-grid li.item:hover .ProdImgRollover-static-wl .cat-view-now{
+	opacity: 1;
+	display: block\9;
+	height: 33px;
+	bottom: 10px;
+}
+.only-left{
+	position: absolute;
+	color: #d2002b;
+	font-size: 12px;
+	padding: 59px 0 0 171px;
+	font-family: ProximaNovaLight;
+}
+
+/*CATEGORY GRID PRODUCT IMAGE ROLLOVER 2011-05-24 BY FLO END*/

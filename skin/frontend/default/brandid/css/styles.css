@@ -3181,9 +3181,7 @@ ul.disc li {
   padding: 35px 0pt 0pt;
 }
 
-.category-products .price-box {
-  font-size: 12px;
-}
+
 
 .category-products .old-price {
   color: #dcdcdc;
@@ -3238,8 +3236,6 @@ ul.disc li {
 }
 
 #filter-results .currently li {
-  background: url("../images/sprites.png") no-repeat scroll
-    -10px -522px transparent;
   float: left;
   padding: 6px 5px 0pt
     20px;
@@ -3257,14 +3253,10 @@ ul.disc li {
 }
 
 #filter-menu li.top-level {
-  background: url("../images/sprites.png") no-repeat scroll
-    -10px -566px transparent;
   height: 28px;
 }
 
 #filter-menu li.top-level:hover {
-  background: url("../images/sprites.png") no-repeat scroll
-    -10px -522px transparent;
   height: 28px;
 }
 
@@ -3363,21 +3355,6 @@ ul.disc li {
   width: 125px;
 }
 
-.products-grid {
-
-}
-
-.products-grid li.item {
-  background: url("../images/price-bg.jpg") no-repeat scroll left bottom transparent;
-  float: left;
-  width: 300px;
-  height: 439px;
-  margin-right: 10px;
-  overflow: hidden;
-  border-bottom: 1px solid rgb(79,78, 74);
-  margin-bottom: 40px;
-}
-
 .lte9 .products-grid li.item {
   margin-right: 7px;
 }
@@ -3395,8 +3372,6 @@ ul.disc li {
   text-decoration: none ! important;
   margin: 0pt auto 5px;
   position: relative;
-  width: 300px;
-  height: 380px;
 }
 
 .products-grid .product-name {
@@ -4305,7 +4280,6 @@ p.product-image {
 }
 
 .price-box .price {
-  font-weight: bold;
 }
 
 .price-box-bundle {
@@ -10534,11 +10508,7 @@ font-size: 20px; }
 }
 .lte9 .category-products{width:765px;}
 
-.products-grid li.last{margin-right: 0;}
-.products-grid .product-image{
-	height: 412px;
-	margin: 0;
-}
+
 .products-grid .product-brand{
 	height: 42px;
 	border-bottom: 1px solid #e8e8e8;
@@ -10556,22 +10526,7 @@ font-size: 20px; }
 	line-height: 13px;
 	color: #d2002b;
 }
-.products-grid .product-name{
-	height: 31px;
-	padding: 5px 0 5px 10px;
-	font-size: 12px;
-	line-height: 12px;
-	width: 234px;
-}
-.products-grid .product-name a{
-	font-size: 12px;
-	color: #a7a7a7;
-	line-height: 12px;
-}
-.products-grid .product-name a:hover{
-	text-decoration: none;
-	color: #a7a7a7;
-}
+
 
 .category-products .old-price, .products-grid .price-box .special-price{
 	width: 130px;
