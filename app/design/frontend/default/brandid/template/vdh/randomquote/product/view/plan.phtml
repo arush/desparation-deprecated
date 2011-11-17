@@ -55,22 +55,21 @@ if ($products->count() > 0){ ?>
         <?php echo $this->getChildHtml('addto') ?>
     </div>
 </div>
-<style type="text/css">
-.sliders {
-	width: 630px;
-	float: left;
-}
-.product-info {
-	float: right;
-	background: #fff;
-	width: 296px;
-}
 
-.sock-bg {
-	background: #595959 url('../images/sock-bg.png') no-repeat;
-}
-</style>
 <script type="text/javascript">
+
+	$('product-options-wrapper').select('label').each(function(obj){
+		if (obj.innerHTML.toLowerCase().indexOf('sock') >= 0) {
+			obj.up().next().addClassName('sock-bg');
+		} else if (obj.innerHTML.toLowerCase().indexOf('t-shirt') >= 0) {
+			obj.up().next().addClassName('tshirt-bg');	
+		} else if (obj.innerHTML.toLowerCase().indexOf('boxer') >= 0) {
+			obj.up().next().addClassName('boxer-bg');		
+		} else if (obj.innerHTML.toLowerCase().indexOf('shirt') >= 0) {
+			obj.up().next().addClassName('shirt-bg');		
+		}
+		console.log(obj.innerHTML);
+	});
 
 	$$('.holder .slider').each(function(obj){
 		var calculatedWidth = obj.select('ul li').length * parseInt(obj.select('ul li')[0].getStyle('width'));
