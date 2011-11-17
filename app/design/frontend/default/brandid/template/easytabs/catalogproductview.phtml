@@ -41,6 +41,26 @@
 <div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
 <div class="product-view">
 
+<?php $_brand =  $this->htmlEscape($_product->getResource()->getAttribute('brand')->getFrontend()->getValue($_product)); 
+	if($_brand === 'Lucky Dip') {
+?>
+
+<div class="lucky-dip-box">
+	<?php $block = Mage::getModel('cms/block')->load('lucky-dip');?>
+    <?php echo $block->getContent(); ?>
+	<div class="lucky-dip-points-container">
+		<span class="points-number">3X</span>
+		<span class="points-label">points</span>
+	</div>
+   
+   <div class="points-triangle">
+   
+   </div>
+</div>
+
+<?php }
+?>
+
 <div class="product-left-side">
 	<div class="product-name">
        <h1><span class="black-title-med"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></span></h1>
