@@ -40,7 +40,12 @@
 </script>
 <div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
 <div class="product-view">
-
+<div class="lucky-dip">
+					<div class="shutl-right-col">
+	                	<?php echo $this->getChildHtml('shutl_service'); ?>
+	                </div>
+</div>
+	            
 <div class="product-left-side">
 	<div class="product-name">
        <h1><span class="black-title-med"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></span></h1>
@@ -56,13 +61,7 @@
             <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
             <input type="hidden" name="related_product" id="related-products-field" value="" />
         </div>
-			<!--
-				<div class="cms-block1">
-					<div class="shutl-right-col">
-	                	<?php echo $this->getChildHtml('shutl_service'); ?>
-	                </div>
-	            </div>
-			-->
+			
             
         <div class="product-shop">
             
@@ -192,20 +191,21 @@
     </script>
     </div>
     
-    
-    <div class="product-collateral">
-		<div class="cms-block1">
-        	<?php $block = Mage::getModel('cms/block')->load('prod-page-block');?>
-			<?php /*?><p><strong><?php echo $block8->getTitle(); ?></strong></p><?php */?>
-            <?php echo $block->getContent(); ?>
-        </div>
-        
-		<?php /*?><?php if (!Mage::getStoreConfig('easy_tabs/general/descriptiontabbed')):?>
-	        <?php echo $this->getChildHtml('description') ?>
-        <?php endif;?><?php */?>
-        <?php echo $this->getChildHtml('additional') ?>
-        <?php echo $this->getChildHtml('upsell_products') ?>
-        <?php echo $this->getChildHtml('product_additional_data') ?>
+    <div class="product-collateral-wrapper">
+	    <div class="product-collateral">
+			<div class="cms-block1">
+	        	<?php $block = Mage::getModel('cms/block')->load('prod-page-block');?>
+				<?php /*?><p><strong><?php echo $block8->getTitle(); ?></strong></p><?php */?>
+	            <?php echo $block->getContent(); ?>
+	        </div>
+	        
+			<?php /*?><?php if (!Mage::getStoreConfig('easy_tabs/general/descriptiontabbed')):?>
+		        <?php echo $this->getChildHtml('description') ?>
+	        <?php endif;?><?php */?>
+	        <?php echo $this->getChildHtml('additional') ?>
+	        <?php echo $this->getChildHtml('upsell_products') ?>
+	        <?php echo $this->getChildHtml('product_additional_data') ?>
+	    </div>
     </div>
 
 <?php // echo $this->getChildHtml('recently_viewed') ?>

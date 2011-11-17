@@ -3540,7 +3540,6 @@ ul.disc li {
 /*  float: right; */
   clear: right;
   padding: 0pt;
-  width: 310px;
   position: absolute;
   margin: 88px 299px 0;
 /*  margin: -264px 333px 0pt
@@ -10617,7 +10616,6 @@ a.cat-view-now {
 
 .product-view .product-img-box .product-image{
 
-	border-bottom: 1px solid #cdcdcd;
 }
 .zoom-text{
 	background: #fff;
@@ -10641,7 +10639,6 @@ a.cat-view-now {
 .product-view .product-collateral{
 	float: left;
 	margin-right: 10px;
-	width: 354px;
 }
 
 .lte9 .product-view .product-collateral { width: 350px;}
@@ -10726,15 +10723,19 @@ a.cat-view-now {
 }
 .product-view .product-options-bottom .add-to-cart button.button, .product-view .add-to-box button.button{
 	background: #d2002b;
-	height: 33px;
-	font-family: ProximaNovaLight;
+	height: 55px;
+		font-family: ProximaNovaBold;
+		-webkit-transition: background 200ms ease-in;
+	-moz-transition: background 200ms ease-in;
+	-o-transition: background 200ms ease-in;
+	transition: background 200ms ease-in;
 }
 .product-view button.button span{color: #fff; font-size: 11px; line-height: 24px;}
 .product-view .product-options-bottom .add-to-cart button.button:hover, .product-view .add-to-box button.button:hover{
-	background: url('../images/button-rollover.png');
+	background: black;
 }
 .product-view .product-options p.required{display: none;}
-.product-view .product-options-bottom .add-to-cart button.button, .product-view .add-to-box button.button{width: 177px !important; margin-bottom: 10px;}
+.product-view .product-options-bottom .add-to-cart button.button, .product-view .add-to-box button.button{width: 100% !important; margin-bottom: 10px;}
 .product-view .product-shop .add-to-links li{border-bottom: none; text-transform: uppercase;}
 .add-to-links a{color: #5b5757; font-size: 11px; line-height: 24px;}
 .add-to-links a:hover{text-decoration: none;}
@@ -10751,7 +10752,7 @@ a.cat-view-now {
 	-webkit-box-shadow: 0pt 0px 4px #acacac;
 	-khtml-box-shadow: 0pt 0px 4px #acacac;
 }
-.product-view .product-shop .add-to-cart, .product-view .add-to-box .add-to-cart{float: left; padding: 0; width: 177px;}
+.product-view .product-shop .add-to-cart, .product-view .add-to-box .add-to-cart{float: left; padding: 0; width: 100%;}
 .product-view .product-shop .add-to-links, .product-view .add-to-box .add-to-links{float: left; margin: 0 0 0 5px !important; width: 95px;}
 .product-view .product-options-bottom, .add-to-box{padding: 20px 10px;}
 .product-view .add-to-box .add-to-links li{padding: 5px 0; text-align: center; text-transform: uppercase;}

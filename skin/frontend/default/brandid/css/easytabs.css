@@ -10,28 +10,35 @@
 
 .tabs{
 	background: #fff;
-	padding: 7px 14px;
-	width: 326px;
-	-moz-box-shadow: 0pt 2px 4px #acacac;
-	-webkit-box-shadow: 0pt 2px 4px #acacac;
-	-khtml-box-shadow: 0pt 2px 4px #acacac;
 	float: left;
-	font-family: HelveticaNeueLight;
+	font-family: ProximaNovaBold;
 
 }
 .product-view .product-collateral .tabs a{
-	display:block;
-	padding:6px 10px;
-	color:#9c9c9c;
-	text-decoration: none;
+display: block;
+padding: 13px;
+color: white;
+text-decoration: none;
+text-transform: uppercase;
+letter-spacing: -1px;
+color: white;
+background: #CFCFCF;
+margin-right: 15px;
+-webkit-transition: background 200ms ease-in;
+-moz-transition: background 200ms ease-in;
+-o-transition: background 200ms ease-in;
+transition: background 200ms ease-in;
 }
 .tabs a:hover{
 	text-decoration:none;
 	text-decoration: none;
 }
-.product-view .tabs li.active a, .product-view .tabs li.active a:hover {color:#2e2e2e; }
+.product-view .tabs li.active a, .product-view .tabs li.active a:hover {
+background:black; 
+}
+
 .padder{padding: 20px 10px; float: left;}
-.padder a{color: #B14E4E;}
+.padder a{color: #d2002b;}
 .padder a:hover{text-decoration: underline;}
 .details-header{color: #000;}
 .details-content, .padder{color: #444;}
