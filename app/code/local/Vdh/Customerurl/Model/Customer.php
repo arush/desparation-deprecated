@@ -34,14 +34,14 @@ class Vdh_Customerurl_Model_Customer {
 	
 	public function createUnique($customer, $default = 'username') {
 		if (!$customer->getCustomerurl()) {
-			$customer->setCustomerurl($customer->getFirstname());
+			$customer->setCustomerurl(strtolower($customer->getFirstname()));
 		}
 		if (!$customer->getCustomerurl()) {
 			$customer->setCustomerurl($default);
 		}
-		$otherCustomers = Mage::getModel('customer/customer')->getCollection()->addAttributeToFilter('customerurl', $customer->getCustomerurl());
 		
-		$updatedUrl = $customer->getCustomerurl();		
+		$updatedUrl = $customer->getCustomerurl();	
+						
 		while(
 			Mage::getModel('customer/customer')
 				->getCollection()
@@ -64,7 +64,7 @@ class Vdh_Customerurl_Model_Customer {
 			if ($updatedUrl == $originalUrl) { $updatedUrl .= '1'; }
 		}
 
-		$customer->setCustomerurl($updatedUrl);	
+		$customer->setCustomerurl(strtolower($updatedUrl));	
 		return true;				
 	}
 	
