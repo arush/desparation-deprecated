@@ -32,14 +32,14 @@ $rrp = number_format($rrp, 0);
 			var located = $H(obj.value.selections);
 			located.each(function(o){
 				var tierPrices = o.value.tierPrice;
-				$$('.quickie-tier-prices span.price')[0].innerHTML = '&pound;' + parseInt(o.value.price);
-				$$('.quickie-tier-prices span.price')[1].innerHTML = '&pound;' + parseInt(tierPrices[0].website_price);
-				$$('.quickie-tier-prices span.price')[2].innerHTML = '&pound;' + parseInt(tierPrices[1].website_price);				
+				$$('.quickie-tier-prices span.price')[0].innerHTML = '&pound;' + parseInt(o.value.price) + '<span class="each"> each</span>';
+				$$('.quickie-tier-prices span.price')[1].innerHTML = '&pound;' + parseInt(tierPrices[0].website_price) + '<span class="each"> each</span>';
+				$$('.quickie-tier-prices span.price')[2].innerHTML = '&pound;' + parseInt(tierPrices[1].website_price) + '<span class="each"> each</span>';
 				throw $break;
 				
 			});
 			var rrp = '<?php echo $rrp; ?>';
-			$$('.price-box span.price')[0].innerHTML = '&pound;' + rrp;
+			$$('.price-box span.price')[0].innerHTML = 'RRP &pound;' + rrp;
 			throw $break;
 		});
 
