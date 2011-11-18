@@ -2100,7 +2100,7 @@ span.the {
 }
 
 .plans-list a.choose-plan {
-	background-color: black;
+	background-color: #d2002b;
 	padding: 15px 30px;
 	color: white;
 	text-transform:uppercase;
@@ -2110,16 +2110,21 @@ span.the {
 	-o-transition: background-color 200ms ease-in;
 	transition: background-color 200ms ease-in;
 	display:block;
+	font-size:14px;
+	font-family: ProximaNovaBold;
+	text-align:center;
+	letter-spacing: -1px;
+	
 }
 
 .plans-list .rrp{
 	color: #595959;
 	font-family: ProximaNovaBold;
 	font-size: 18px;
-	text-align: center;
+	text-align: left;
 	display:block;
-	margin:15px 0px;
-
+	margin:10px 0px;
+	letter-spacing: -1px;
 }
 
 .plans-list a.choose-plan:hover {
@@ -2128,12 +2133,16 @@ span.the {
 }
 
 .plans-list span.special-price {
-	padding: 15px;
-	color: white;
+	margin:10px 0 20px 0px;
+	color: #d2002b;
 	text-transform: uppercase;
 	font-family: proximanovabold, arial, sans-serif;
-	font-size: 20px;
-	background-color: black;
+	font-size: 24px;
+	letter-spacing: -1px;
+	display:block;
+}
+.plans-list span.per-month {
+	font-size:12px;
 	
 }
 
@@ -2150,10 +2159,11 @@ span.the {
 }
 
 .plans-list .package-desc.socks, .plans-list .package-desc.boxers, .plans-list .package-desc.tshirts, .plans-list .package-desc.shirts {
-	width:123px;
+	width:144px;
 	text-align: left;
 	padding-left:80px;
 	background-position: 65% 50%;
+	float:none;
 }
 
 .plans-list .plan-checks {
