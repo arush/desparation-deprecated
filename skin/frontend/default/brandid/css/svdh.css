@@ -212,10 +212,6 @@
 
 }
 
-
-
-
-
 .plans-list li {
 	background: #fff;
 	width: 233px;
@@ -260,4 +256,18 @@
 }
 .plans-list .package-desc.shirts {
 	background: #595959 url('../images/plans-bg-shirt.png') 85% 50% no-repeat;
+}
+
+.my-points {
+	width: 308px;
+	float: right;
+}
+.my-points h1 {
+	padding: 10px;
+}
+.my-points .content {
+	float: left;
+	width: 268px;
+	padding: 20px;
+	background: #fff;
 }

@@ -1,17 +1,20 @@
+
 <div class="my-points">
-	<span><?php echo $this->__("points"); ?></span><div id="my-points" class="flip-counter"></div>
-	<a href="/index.php/rewards/customer/">		
-	</a>
-	<?php if($this->getPointsSummary() != ""): ?>
-	<?php
-	$startValue = (int)($this->getPoints()-($this->getPoints()/8));
-	?>
-	<script type="text/javascript">
-		document.observe('dom:loaded', function(){
-			var myCounter = new flipCounter('my-points', {value:<?php echo $startValue; ?>, inc:3, pace:30, tFH: 15, bFH: 24, fW: 20, bOffset: 150});
-				myCounter.incrementTo(<?php echo $this->getPoints(); ?>);				
-		});	
-	</script>
-	<?php endif; ?>
+	<h1 class="black-title-bar"><?php echo $this->__('My points'); ?></h1>
+	<div class="content">
+		<a href="/index.php/rewards/customer/"><?php echo $this->__('Earn more points'); ?></a>
+		<div id="my-points" class="flip-counter"></div><span><?php echo $this->__('points'); ?></span><br />
+
+		<span class="info"><?php echo $this->getText(); ?></span>
+		<?php
+		$startValue = (int)($this->getPoints()-($this->getPoints()/8));
+		?>
+		<script type="text/javascript">
+			document.observe('dom:loaded', function(){
+				var myCounter = new flipCounter('my-points', {value:<?php echo $startValue; ?>, inc:3, pace:30, tFH: 20, bFH: 34, fW: 28, bOffset: 200});
+					myCounter.incrementTo(<?php echo $this->getPoints(); ?>);				
+			});	
+		</script>
+	</div>
 	
 </div>

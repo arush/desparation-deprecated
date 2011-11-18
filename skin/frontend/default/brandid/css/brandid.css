@@ -277,8 +277,8 @@ padding-left:38px;
 
 .flip-counter ul.cd{float:left;list-style-type:none;margin:0;padding:0}
 .flip-counter li{background:url(../images/counter/digits.png) 0 0 no-repeat}
-.flip-counter li.t{background-position:0 0;width:53px;height:39px}
-.flip-counter li.b{background-position:0 0;width:53px;height:64px}
+.flip-counter li.t{background-position:0 0;width:28px;height:20px}
+.flip-counter li.b{background-position:0 0;width:28px;height:34px}
 .flip-counter li.s{background-position:-53px -1030px;width:0px;height:0px}
 
 

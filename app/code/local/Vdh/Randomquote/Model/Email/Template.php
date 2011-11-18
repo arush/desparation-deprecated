@@ -4,8 +4,8 @@ class Vdh_Randomquote_Model_Email_Template extends Mage_Core_Model_Email_Templat
     public function sendTransactional($templateId, $sender, $email, $name, $vars=array(), $storeId=null) {
     
 		$params = Mage::app()->getFrontController()->getRequest()->getParams();
-
-		if (!array_key_exists('invite_style', $params) || array_key_exists('invite_quote', $params)) {
+		Mage::log($params, null, 'email.log');
+		if (!array_key_exists('invite_style', $params) || !array_key_exists('invite_quote', $params)) {
 	    	parent::sendTransactional($templateId, $sender, $email, $name, $vars, $storeId);
 	    	return;
 		}
@@ -18,6 +18,7 @@ class Vdh_Randomquote_Model_Email_Template extends Mage_Core_Model_Email_Templat
 			array("referral_url"=>Mage::getModel('customer/customer')->load(Mage::getSingleton('customer/session')->getId())->getCustomerurl()),
 			$randomQuote->getData()
 		);
+		Mage::log($randomQuote, null, 'email.log');
 		
     	parent::sendTransactional($templateId, $sender, $email, $name, $newVars, $storeId);
     }

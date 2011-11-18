@@ -22,6 +22,12 @@
 
     </default>
     
+
+	<customer_account_index>
+		<reference name="root">
+			<action method="setTemplate"><template>page/1column.phtml</template></action>			
+		</reference>
+	</customer_account_index>
     <customer_account_login>
         <remove name="storerestriction"/>       
     </customer_account_login>
