@@ -15,4 +15,12 @@
     		</block>
     	</reference>
     </catalog_product_view>
+    
+    <catalog_category_view>
+    	<reference name="root">
+    		<block type="catalog/product_list" name="plan_content" template="vdh/randomquote/category/view/plan.phtml">
+    		
+			</block>
+    	</reference>
+    </catalog_category_view>    
 </layout>

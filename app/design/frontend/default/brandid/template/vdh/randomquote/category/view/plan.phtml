@@ -1,0 +1,30 @@
+<?php
+    $_productCollection=$this->getLoadedProductCollection();
+    $_helper = $this->helper('catalog/output');
+?>    
+<?php if($_productCollection->count()): ?>
+<?php $counter = $_productCollection->count(); ?>
+<ul class="plans-list">
+	<?php foreach($_productCollection as $product):?>
+	<?php $counter--;?>
+	<li<?php echo ($counter == 0) ? ' class="last"': ''; ?>>
+		<span class="discount"><?php echo $product->getDiscount() ; ?></span>
+		<h3><span>the</span><?php echo $product->getName(); ?></h3>
+		<button class="button">
+			<span>
+				<span><a href="<?php echo $product->getProductUrl(); ?>"><?php echo $this->__('Choose plan'); ?></a></span>
+				<span class="special-price"><?php echo Mage::helper('core')->currency($product->getSpecialPrice());?></span>
+			</span>		
+		</button>
+		<span class="price">RRP<?php echo Mage::helper('core')->currency($product->getPrice());?></span>
+		<?php if ($product->getNumSocks() && $product->getNumSocks() > 0): ?><div class="package-desc socks"><?php echo $product->getNumSocks(); ?>x</div><?php endif; ?>
+		<?php if ($product->getNumSocks() && $product->getNumTshirts() > 0): ?><div class="package-desc tshirts"><?php echo $product->getNumTshirts(); ?>x</div><?php endif; ?>
+		<?php if ($product->getNumSocks() && $product->getNumBoxers() > 0): ?><div class="package-desc boxers"><?php echo $product->getNumBoxers(); ?>x</div><?php endif; ?>
+		<?php if ($product->getNumSocks() && $product->getNumShirts() > 0): ?><div class="package-desc shirts"><?php echo $product->getNumShirts(); ?>x</div><?php endif; ?>		
+		<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-' . $product->getSku())->toHtml(); ?>
+	</li>
+	<?php endforeach;?>
+</ul>
+<?php endif; ?>
+
+

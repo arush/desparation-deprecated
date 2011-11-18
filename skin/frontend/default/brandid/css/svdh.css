@@ -214,3 +214,50 @@
 
 
 
+
+
+.plans-list li {
+	background: #fff;
+	width: 233px;
+	padding: 32px;
+	margin-right: 34px;	
+	float: left;
+}
+.plans-list .button {
+	font-family: ProximaNovaSemibold;
+	font-size: 18px;
+	padding: 10px;
+	color: #fff;
+	float: left;
+
+}
+
+.plans-list li.last {
+	margin-right: 0px;
+}
+
+.plans-list .package-desc {
+	float: left;
+	width: 91px;
+	height: 60px;
+	margin: 0 5px 3px 0;
+	padding: 0 10px;
+	background-color: #595959;
+	font-family: ProximaNovaBold;
+	font-size: 30px;
+	line-height: 68px;
+	color: #fff;
+}
+
+.plans-list .package-desc.socks {
+	background: #595959 url('../images/plans-bg-socks.png') 85% 50% no-repeat;
+}
+.plans-list .package-desc.tshirts {
+	background: #595959 url('../images/plans-bg-tshirt.png') 85% 50% no-repeat;
+}
+.plans-list .package-desc.boxers {
+	background: #595959 url('../images/plans-bg-boxer.png') 85% 50% no-repeat;
+}
+.plans-list .package-desc.shirts {
+	background: #595959 url('../images/plans-bg-shirt.png') 85% 50% no-repeat;
+}
