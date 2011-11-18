@@ -29,7 +29,6 @@ $_tierPrices = $this->getTierPrices();
 			});
 			throw $break;
 		});
-//		console.log(bundle.config.options.firstChild);		
 
 
 		$$('ul.quickie-tier-prices li').each(function(obj){
@@ -62,25 +61,3 @@ $_tierPrices = $this->getTierPrices();
 		});
 	});
 </script>
-<style type="text/css">
-.quickie-tier-prices {
-/* 	clear: both; */
-	float: left;
-	margin-top: 40px;
-}
-
-.quickie-tier-prices li {
-	background-color: #595959;
-	width: 106px;
-	padding: 10px;
-	cursor: pointer;
-	float: left;
-	margin-right: 10px;
-	text-align: center;
-}
-
-.quickie-tier-prices li span.price {
-	position: absolute;
-	margin-top: -40px;
-}
-</style>

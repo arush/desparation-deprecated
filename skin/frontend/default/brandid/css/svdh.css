@@ -271,3 +271,24 @@
 	padding: 20px;
 	background: #fff;
 }
+
+.quickie-tier-prices {
+/* 	clear: both; */
+	float: left;
+	margin-top: 40px;
+}
+
+.quickie-tier-prices li {
+	background-color: #595959;
+	width: 106px;
+	padding: 10px;
+	cursor: pointer;
+	float: left;
+	margin-right: 10px;
+	text-align: center;
+}
+
+.quickie-tier-prices li span.price {
+	position: absolute;
+	margin-top: -40px;
+}
