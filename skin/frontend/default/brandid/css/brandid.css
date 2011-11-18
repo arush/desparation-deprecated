@@ -1977,7 +1977,7 @@ clear:both;
 	font-family: ProximaNovaLight;
 }
 
-.product-detail-checkbox .red {
+.product-detail-checkbox.red {
      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAUCAIAAADgN5EjAAACG0lEQVQ4EZ2U30sUURTH8647u6JrubNjrWVKxqqIqbu1Sa0ovglKkuBLmZj4D/jkn+Cbf4GI6FNgJIoFgSgrEYKFhkQ9hD9WV1hHzdV1nVW273TkcB1ExPtw5sznfL/3cg9nJiOdTt+41sq0uE6TyZ2fy/rit6PoBpWyvHfVKr+7vMLmdMriDPnM6Nzs2uT7VHxfVlBud+Xeb37pDdVz6cx5ahi/R4f0ha9cuDBRA7W+1102RUFVkOIqNiixNZRkMZ3R8Ix8Wm5JKdU4ygTKzdlplARasj41zqKHr94+6u3TgiEmyEHAmUQ+TcAltpe+G/t7RLH3nWd1yEs7u8mMiBzEUx1w5Kkkgx4uW/fzp4nNdULHu/rRtu6p9v+X+pU8tbilFflJIrE00J+MbZEMUSgOW0+o1tjbYZTYWGNzTmER23h3Ugq7Ioz4X7ZREpuf2/oSZhiZ/myxoZQ6jAvFdZNFlNxraqXb0mtx8wu5YQTt2S7h8GiyEz2EFAR3W5k86zk3jJXO/Nvilq+M37E3nUYtiXz88Gt4kKowc29B4BKa/wlmksp0Q7LR3UDIjIjOkwx6uMy5xUz8eTdCFBF7s4ighTxo7yiobzSnDw+MMjstNnCZqDVB6AFNJxa+ACDKL4nuqse+N+ZIYZ3/PsMzqxNjJ4cHVJNjZnZOUUubt66B4TknqPlPWP4RW5g/1mMkcqiaFgi6Kyot/4R/N9jw1m+GVFoAAAAASUVORK5CYII=);
 }
 
