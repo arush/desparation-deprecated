@@ -88,16 +88,20 @@ if ($upsells->count() > 0):
 
 <script type="text/javascript">
 
-
 	$('product-options-wrapper').select('label').each(function(obj){
-		if (obj.innerHTML.toLowerCase().indexOf('sock') >= 0) {
+		if (obj.innerHTML.toLowerCase().indexOf('shoe') >= 0) {
 			obj.up().next().addClassName('sock-bg');
+			obj.up().next().innerHTML += '<span class="option-number"><?php echo $_product->getNumSocks(); ?>x</span>';
 		} else if (obj.innerHTML.toLowerCase().indexOf('t-shirt') >= 0) {
 			obj.up().next().addClassName('tshirt-bg');	
+			obj.up().next().innerHTML += '<span class="option-number"><?php echo $_product->getNumTshirts(); ?>x</span>';			
 		} else if (obj.innerHTML.toLowerCase().indexOf('boxer') >= 0) {
 			obj.up().next().addClassName('boxer-bg');		
+			obj.up().next().innerHTML += '<span class="option-number"><?php echo $_product->getNumBoxers(); ?>x</span>';			
 		} else if (obj.innerHTML.toLowerCase().indexOf('shirt') >= 0) {
-			obj.up().next().addClassName('shirt-bg');		
+			obj.up().next().addClassName('shirt-bg');	
+			obj.up().next().innerHTML += '<span class="option-number"><?php echo $_product->getNumShirts(); ?>x</span>';
+				
 		}
 	});
 
