@@ -290,15 +290,19 @@
 
 .quickie-tier-prices li {
 	background-color: #595959;
-	width: 106px;
+	width: 109px;
 	padding: 10px;
 	cursor: pointer;
 	float: left;
 	margin-right: 10px;
 	text-align: center;
+	font-family: ProximaNovaBold;
+	color: white;
 }
 
 .quickie-tier-prices li span.price {
 	position: absolute;
 	margin-top: -40px;
+	font-size: 21px;
+	color: #D2002B;
 }

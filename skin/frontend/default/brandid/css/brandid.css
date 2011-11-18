@@ -2259,3 +2259,24 @@ span.the {
 .plan.product-info span.actual-date {
 	font-size:18px;
 }
+
+.price-box-bundle .button.btn-cart {
+	width:100%;
+}
+
+.price-box-bundle .product-options dd input.input-text {
+	position:absolute;
+	left:-9999px;
+}
+
+.price-box-bundle span.cheeky-label {
+	font-size:12px;
+}
+
+.price-box-bundle span.big-qty {
+	font-size:47px;
+}
+
+.price-box-bundle ul.quickie-tier-prices li.last {
+	margin-right:0;
+}
