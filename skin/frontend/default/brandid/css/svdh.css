@@ -102,6 +102,16 @@
 	background: #595959 url('../images/plans-bg-shirt.png') no-repeat 55px 50%;	
 }
 
+.option-number {
+	display: block;
+	position: absolute;
+	font-family: ProximaNovaBold;
+	font-size: 30px;
+	margin-left: 15px;
+	margin-top: -35px;
+	color: #fff;
+}
+
 
 .plan .product-options dd select {
 	width: 140px;
