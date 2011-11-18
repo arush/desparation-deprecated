@@ -114,8 +114,36 @@
                     <?php /*?><div class="discount"><?php echo $_discount ?></div><?php */?>
                 </div>
 
-                <?php echo $this->getPriceHtml($_product, true) ?>
-				
+                <?php //echo $this->getPriceHtml($_product, true) ?>
+				<?php
+					$assocs = $_product->getTypeInstance()->getChildrenIds($_product->getId());
+					$ids = array();
+					
+					foreach($assocs as $k => $v) { $ids[] = $v; }
+					$children = Mage::getModel('catalog/product')
+						->getCollection()
+						->addAttributeToFilter('entity_id', array('in' => $ids))
+						->addAttributeToSort('price', 'DESC');					
+					foreach($assocs as $k => $v) { $ids[] = $v; }
+					$rrp = $children->getFirstItem()->getPrice();
+					$rrp = number_format($rrp, 0);
+									
+					$lowest = -1;
+					foreach($children as $child) {
+						$fullChild = Mage::getModel('catalog/product')->load($child->getId());
+						$tierPrices = $fullChild->getTierPrice();
+						foreach($tierPrices as $tierPrice) {
+							if ($lowest < 0) {
+								$lowest = $tierPrice['price'];
+							} elseif ($tierPrice['price'] < $lowest) {
+								$lowest = $tierPrice['price'];
+							}
+						}
+					}
+					$lowest = number_format($lowest, 0);
+				?>                
+				<span class="price">&pound;<?php echo $rrp; ?></span>
+				<span class="lowest">From &pound;<?php echo $lowest; ?></span>				
 				<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(231,285); ?>" width="231" height="285" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>
 				<div class="product-name"><h2><a href="<?php echo $_product->getProductUrl() ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2></div>
                 <?php if($_product->getRatingSummary()): ?>

@@ -4,6 +4,18 @@
  */
 $_product = $this->getProduct();
 $_tierPrices = $this->getTierPrices();
+$assocs = $_product->getTypeInstance()->getChildrenIds($_product->getId());
+$ids = array();
+
+foreach($assocs as $k => $v) { $ids[] = $v; }
+$rrp = Mage::getModel('catalog/product')
+	->getCollection()
+	->addAttributeToFilter('entity_id', array('in' => $ids))
+	->addAttributeToSort('price', 'DESC')
+	->getFirstItem()->getPrice();
+	
+$rrp = number_format($rrp, 0);
+
 
 ?>
 <ul class="quickie-tier-prices">
@@ -15,7 +27,6 @@ $_tierPrices = $this->getTierPrices();
 	document.observe('dom:loaded', function(){
 	
 		var counter = 0;
-
 		$H(bundle.config.options).each(function(obj){
 
 			var located = $H(obj.value.selections);
@@ -27,6 +38,8 @@ $_tierPrices = $this->getTierPrices();
 				throw $break;
 				
 			});
+			var rrp = '<?php echo $rrp; ?>';
+			$$('.price-box span.price')[0].innerHTML = '&pound;' + rrp;
 			throw $break;
 		});
 
