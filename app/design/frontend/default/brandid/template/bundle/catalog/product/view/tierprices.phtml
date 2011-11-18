@@ -4,21 +4,34 @@
  */
 $_product = $this->getProduct();
 $_tierPrices = $this->getTierPrices();
+
 ?>
-<?php if (count($_tierPrices) > 0 && 1 == 2): ?>
-    <ul class="tier-prices product-pricing">
-    <?php foreach($_tierPrices as $_price): ?>
-        <li><?php echo $this->__('Buy %1$s with %2$s discount each', $_price['price_qty'], '<strong class="benefit">'.($_price['price']*1).'%</strong>') ?></li>
-    <?php endforeach ?>
-    </ul>
-<?php endif;?>
 <ul class="quickie-tier-prices">
-	<li><span><?php echo $this->__('1')?></span>x<br /><span><?php echo $this->__('for one night stands');?></span></li>
-	<li><span><?php echo $this->__('2')?></span>x<br /><span><?php echo $this->__('\'cos all good things come in threes');?></span></li>
-	<li><span><?php echo $this->__('3')?></span>x<br /><span><?php echo $this->__('to impress that fit bird at work');?></span></li>		
+	<li><span class="price">&pound;<?php echo number_format($_product->getPrice(), 0)?></span><span><?php echo $this->__('1')?></span>x<br /><span><?php echo $this->__('for one night stands');?></span></li>
+	<li><span class="price"></span><span><?php echo $this->__('2')?></span>x<br /><span><?php echo $this->__('\'cos all good things come in threes');?></span></li>
+	<li><span class="price"></span><span><?php echo $this->__('3')?></span>x<br /><span><?php echo $this->__('to impress that fit bird at work');?></span></li>		
 </ul>
 <script type="text/javascript">
 	document.observe('dom:loaded', function(){
+	
+		var counter = 0;
+
+		$H(bundle.config.options).each(function(obj){
+
+			var located = $H(obj.value.selections);
+			located.each(function(o){
+				var tierPrices = o.value.tierPrice;
+				$$('.quickie-tier-prices span.price')[0].innerHTML = '&pound;' + parseInt(o.value.price);
+				$$('.quickie-tier-prices span.price')[1].innerHTML = '&pound;' + parseInt(tierPrices[0].website_price);
+				$$('.quickie-tier-prices span.price')[2].innerHTML = '&pound;' + parseInt(tierPrices[1].website_price);				
+				throw $break;
+				
+			});
+			throw $break;
+		});
+//		console.log(bundle.config.options.firstChild);		
+
+
 		$$('ul.quickie-tier-prices li').each(function(obj){
 			obj.observe('mouseover', function(){
 				if (this.getStyle('background-color') != '#d2002b') {
@@ -53,6 +66,7 @@ $_tierPrices = $this->getTierPrices();
 .quickie-tier-prices {
 /* 	clear: both; */
 	float: left;
+	margin-top: 40px;
 }
 
 .quickie-tier-prices li {
@@ -63,5 +77,10 @@ $_tierPrices = $this->getTierPrices();
 	float: left;
 	margin-right: 10px;
 	text-align: center;
+}
+
+.quickie-tier-prices li span.price {
+	position: absolute;
+	margin-top: -40px;
 }
 </style>

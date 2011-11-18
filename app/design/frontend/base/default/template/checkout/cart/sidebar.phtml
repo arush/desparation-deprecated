@@ -50,6 +50,7 @@
                 <?php if ($_subtotalInclTax = $this->getSubtotalInclTax()): ?>
                     <br />(<?php echo Mage::helper('checkout')->formatPrice($_subtotalInclTax) ?> <?php echo Mage::helper('tax')->getIncExcText(true) ?>)
                 <?php endif; ?>
+                </span>
             </p>
         </div>
     <?php endif ?>
