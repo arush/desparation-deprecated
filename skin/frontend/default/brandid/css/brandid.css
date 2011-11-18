@@ -1917,6 +1917,10 @@ padding-left: 10px;
 	width: 70px;
 }
 
+.plans-list .discount-triangle-container {
+	margin: -19px 0 0 203px;
+}
+
 .price-box-bundle .discount-triangle-container span.discount-number, .plans-list .discount-triangle-container span.discount-number {
 	color: white;
 	position: absolute;
@@ -1932,6 +1936,9 @@ clear:both;
 	display:block;
 }
 
+.plans-list .discount-triangle-container span.discount-label {
+	margin: 17px 0 0 26px;
+}
 
 .price-box-bundle .discount-triangle, .plans-list .discount-triangle {
 	width: 0;
@@ -1941,6 +1948,10 @@ clear:both;
 	border-top: 100px solid #D2002B;
 	position:absolute;
 	margin: -21px 0 0 328px;
+}
+
+.plans-list .discount-triangle {
+	margin:-33px 0 0 166px;
 }
 
 .product-view .product-collateral {
@@ -2066,7 +2077,85 @@ clear:both;
 	width: 70px;
 }
 
+.plans-list h3 {
+	text-align:left;
+	margin-bottom:25px;
+}
+.plan-category-grid-title {
+	font-family: ff-enzo-web,proximaNovaBold,sans-serif;
+	font-size: 22px;
+	color:black;
+	text-transform:uppercase;
+}
+
+span.the {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAASCAIAAADKe1n0AAADrklEQVQ4EWP8//8/Azbw6/3jcxeuP3j5TsbQyUZdDJsSLGKM2I37dtHVMPjeH7BNCvnn9+TxMWLRjCnEhCkEEmGVqu3rKk1yBDK5JNhZiDMLqBhq3L/312a015dWTLn/HWQaA6uonXeQh4EskPn7GwPElWAJAgTUuLtHF3fPWbJ246HvfxAa3jx/CuQY2ukT6VOgYqhxX188BnK4jb1UeOHG/bxy6ShIkIMVLkSQwfL65rGTt9/dvvgBqFSU/emeffs5GLnUTYykef/8ePsXKOjpqPX3/a0Vy9YePXebWdQipzxJXZAFbu6bu6fXrNpy6fbjn9zKGaX5jHva9dJmf4FLQxiFy05l671MMfE78OP/fxY10X+33/yDpifNtAVbym0hys6trAitWg3X+5/NmEnNY/r0CZUiYE8HFnUtnDtn2vTZPmp8DP9//QCbwPjn1ld19+6Fy1titIE67x6/8Aks/urUDKBZ/1iN5249vHFaDlCK8ddZFlkDK1ktgQUsjG9+/Xfx8bORh4bUp8tXTvz8z8AkXtg/I8NHD+i9i/clGRiuMjCygZzz/83Mij4gXTBjioOG2G9OdZAgJCr+fnj9+u9/oFPlhBCh/uM3KATYdOJTwWYB2W/fvASS+uCI/nxl04KHf5nkEn10/26ZVq7hlAuU+sduBwrUzy/v3vvL8IdTlYcdyIOCR+fOAVkcIuz/IAL/318+dAPIVFIQBpJ/wQn736P5bmbzgdz/TGKJ5Q3Z8e4g414/BKUSLkVZEbA/gGwGhj+vX78AUqbmupxgPsOP56dugtKkoYo4kHx2G6QFCLQdopJjwhxtdfnAsQ0iPr64BST1LVS5QAqAelgY/v+4fQUkyMkBFmNg+PL0KjAo/7LbGqrzAcV/f3kPJNl0C5bMyYUn8m8fvgBj9OvZEyB/Xb98befafld1jfTF1/9/f3jyPMgtZtoyQBIInt+8BiQZ/329dXhdW98aAX1dIPfX5QkH7wJz5Y8HV45NLIvUNdYHOuT/z++gmP96YkLWCYZ/zKqlptK/3h+58xskyA6LmzePbgO5TL/P5aad+8vpHuTnI8zE8PYfQ4G7TgFQAgzcsycwMTCy8HJDs5prcvORczvcNPi+vXr85h/DX+4AY2VopuMXF4HosQypO3h8moaKU74XB9QYBgar4MINhy9MK/IFl3d/Pjx69olPSEqABxyeIFV/fvz4w8LBAecDRV49fsYsKCbMAzfl54Obt78ycIpLy4nwQH0BALpbby75KauzAAAAAElFTkSuQmCC);
+	background-repeat: no-repeat;
+	width: 26px;
+	height:18px;
+	margin-right:10px;
+	display:block;
+	float:left;
+	margin: 5px 10px 7px 3px;
+}
+
+.plans-list a.choose-plan {
+	background-color: black;
+	padding: 15px 30px;
+	color: white;
+	text-transform:uppercase;
+	font-family; ProximaNovaBold;
+	-webkit-transition: background-color 200ms ease-in;
+	-moz-transition: background-color 200ms ease-in;
+	-o-transition: background-color 200ms ease-in;
+	transition: background-color 200ms ease-in;
+	display:block;
+}
+
+.plans-list .rrp{
+	color: #595959;
+	font-family: ProximaNovaBold;
+	font-size: 18px;
+	text-align: center;
+	display:block;
+	margin:15px 0px;
+
+}
+
+.plans-list a.choose-plan:hover {
+	color: white;
+	background-color: black;
+}
+
+.plans-list span.special-price {
+	padding: 15px;
+	color: white;
+	text-transform: uppercase;
+	font-family: proximanovabold, arial, sans-serif;
+	font-size: 20px;
+	background-color: black;
+	
+}
 
 .plans-list .product-detail-checkbox {
-	padding-left:0;
+	font-size: 14px;
+	color: #595959;
+	margin:10px;
+	float:left;
+}
+
+.plans-list .plan-graphics {
+	padding:20px 0;
+	float:left;
+}
+
+.plans-list .package-desc.socks, .plans-list .package-desc.boxers, .plans-list .package-desc.tshirts, .plans-list .package-desc.shirts {
+	width:123px;
+	text-align: left;
+	padding-left:80px;
+	background-position: 65% 50%;
+}
+
+.plans-list .plan-checks {
+	margin: 15px 0;
 }

@@ -61,11 +61,8 @@ if ($products->count() > 0){ ?>
 		</div>        
     </div>
     <div class="extra-info">
-    	<ul>
-			<?php if ($_helper->productAttribute($_product, $_product->getName(), 'freeshipping') != ''): ?>
-    		<li><?php echo $this->__('Free delivery'); ?></li>
-			<?php endif; ?>	
-    	</ul>
+       		<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-' . $_product->getSku())->toHtml(); ?>
+			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-common')->toHtml(); ?>
     </div>
 </div>
 <?php
