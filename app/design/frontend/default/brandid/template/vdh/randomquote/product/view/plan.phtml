@@ -32,8 +32,10 @@ if ($products->count() > 0){ ?>
 			<?php foreach($products as $product): ?>
 				<li>
 					<img src="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize(191, 155);?>" width="191" height="155" />
-					<span class="black-title-small"><?php echo $product->getAttributeText('brand'); ?></span>
-					<span><?php echo Mage::helper('core')->currency($product->getPrice(), true); ?></span>
+					<div class="plan-item-details">
+						<span class="black-title-small"><?php echo $product->getAttributeText('brand'); ?></span>
+						<span class="plan-item-rrp"><?php echo 'RRP &pound;' . number_format($product->getPrice(),0); ?></span>
+					</div>
 				</li>
 			<? endforeach ?>
 			</ul>
@@ -48,22 +50,38 @@ if ($products->count() > 0){ ?>
 ?>
 </div>
 <div class="plan product-info">
+		<div class="discount-triangle-container">
+			<span class="discount-number"><?php echo $_product->getDiscount() ; ?> % off</span>
+			<span class="discount-label">RRP</span>
+		</div>
+
+		<div class="discount-triangle">
+		</div>		
+	<div class="price-box">
+		<span class="price"><?php echo 'RRP &pound;' . number_format($_product->getPrice(), 0); ?></span>
+		<span class="special-price"><?php echo 'Plan Price &pound;' . number_format($_product->getSpecialPrice(), 0); ?></span>
+	</div>
+
     <div class="container2">
     <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
     </div>
-    <div class="add-to-box">
-        <?php echo $this->getChildHtml('addtocart') ?>
-        <?php echo $this->getChildHtml('addto') ?>
-		<div class="delivery-date"><?php
-		$profile = Mage::helper('randomquote')->getProfileDate();
-		echo $this->__('Your plan will be delivered on <span>%s</span>', $profile['delivery_date']);
-		?>
-		</div>        
+    
+    <div class="bottom-stuff">
+	    <div class="add-to-box">
+	        <?php echo $this->getChildHtml('addtocart') ?>
+	        <?php echo $this->getChildHtml('addto') ?>
+			<div class="delivery-date">
+				<?php $profile = Mage::helper('randomquote')->getProfileDate(); ?>
+				<?php echo $this->__('Your Delivery drops on <br/><span class="actual-date">%s</span><br/> and every month after that', $profile['delivery_date']);?>	
+			</div>
+	    </div>
+	    <div class="extra-info">
+	       		<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-' . $_product->getSku())->toHtml(); ?>
+				<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-common')->toHtml(); ?>
+	    </div>
     </div>
-    <div class="extra-info">
-       		<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-' . $_product->getSku())->toHtml(); ?>
-			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-common')->toHtml(); ?>
-    </div>
+    
+    
 </div>
 <?php
 $upsells = $_product->getUpSellProductCollection()->addAttributeToSort('position', 'asc');

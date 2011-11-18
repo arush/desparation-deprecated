@@ -15,12 +15,12 @@
 	position: relative;
 	height: 210px;
 	left: 0px;
-	margin: 0px;
+	margin: 0 27px;
 }
 
 .sliders .holder .slider ul li {
 	display: block;
-	width: 210px;
+	width: 191px;
 	height: 210px;
 	float: left;
 	background: #fff;

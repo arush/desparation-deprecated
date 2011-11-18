@@ -1903,8 +1903,11 @@ padding-left: 10px;
  }
 
 .product-view .product-shop .price-box-bundle .container2 .product-options .last label {display:none;}
+.plan.product-info  .last label {display:none;}
+.plan.product-info .product-options {padding:10px 15px 0;}
 
-.price-box-bundle .discount-triangle-container, .plans-list .discount-triangle-container {
+
+.price-box-bundle .discount-triangle-container, .plans-list .discount-triangle-container, .plan.product-info .discount-triangle-container {
 	color: white;
 	position: absolute;
 	font-size: 14px;
@@ -1921,7 +1924,11 @@ padding-left: 10px;
 	margin: -19px 0 0 203px;
 }
 
-.price-box-bundle .discount-triangle-container span.discount-number, .plans-list .discount-triangle-container span.discount-number {
+.plan.product-info .discount-triangle-container {
+	margin: 11px 0 0 231px;
+}
+
+.price-box-bundle .discount-triangle-container span.discount-number, .plans-list .discount-triangle-container span.discount-number,  .plan.product-info .discount-triangle-container span.discount-number {
 	color: white;
 	position: absolute;
 	font-size: 14px;
@@ -1929,7 +1936,7 @@ clear:both;
 
 }
 
-.price-box-bundle .discount-triangle-container span.discount-label, .plans-list .discount-triangle-container span.discount-label {
+.price-box-bundle .discount-triangle-container span.discount-label, .plans-list .discount-triangle-container span.discount-label, .plan.product-info .discount-triangle-container span.discount-label {
 	margin: 17px 0 0 19px;
 	font-size: 14px;
 	clear:both;
@@ -1940,7 +1947,7 @@ clear:both;
 	margin: 17px 0 0 26px;
 }
 
-.price-box-bundle .discount-triangle, .plans-list .discount-triangle {
+.price-box-bundle .discount-triangle, .plans-list .discount-triangle, .plan.product-info .discount-triangle {
 	width: 0;
 	height: 0;
 	border-left: 100px solid transparent;
@@ -1952,6 +1959,10 @@ clear:both;
 
 .plans-list .discount-triangle {
 	margin:-33px 0 0 166px;
+}
+
+.plan.product-info .discount-triangle {
+	margin:0 0 0 197px;
 }
 
 .product-view .product-collateral {
@@ -2146,7 +2157,7 @@ span.the {
 	
 }
 
-.plans-list .product-detail-checkbox {
+.plans-list .product-detail-checkbox, .plan.product-info .product-detail-checkbox {
 	font-size: 14px;
 	color: #595959;
 	margin:10px;
@@ -2168,4 +2179,83 @@ span.the {
 
 .plans-list .plan-checks {
 	margin: 15px 0;
+}
+
+/* plan details page */
+.sliders .black-title-small {
+	padding:5px;
+}
+
+.sliders .plan-item-rrp, .plan.product-info .price-box span.price, .plan.product-info .price-box span.special-price {
+	display:block;
+	color: #595959;
+	font-family: ProximaNovaBold, arial, sans-serif;
+	font-size: 12px;
+	letter-spacing: -1px;
+	margin-top:10px;
+	
+
+}
+
+.plan.product-info .price-box span.special-price {
+	margin-top:0;
+}
+
+.sliders .plan-item-details {
+	text-align: center;
+	}
+	
+.account-create .messages {
+
+	margin:10px 0 0 58px;
+	width: 353px;
+
+}
+
+.plan.product-info .price-box span.price {
+	font-size: 18px;
+	
+}
+
+.plan.product-info .price-box span.special-price {
+	color: #d2002b;
+	text-transform: uppercase;
+	font-size: 24px;
+	
+}
+
+.plan.product-info .price-box {
+	margin:25px 0 0 25px;
+}
+
+.plan.product-info .bottom-stuff {
+	padding:15px;
+	float:left;
+}
+
+.plan.product-info .add-to-box button.button {
+	width:100%;
+	
+}
+.plan.product-info .add-to-box button.button:hover {
+	background-color: black;
+	-webkit-transition: background-color 200ms ease-in;
+	-moz-transition: background-color 200ms ease-in;
+	-o-transition: background-color 200ms ease-in;
+	transition: background-color 200ms ease-in;
+}
+
+.plan.product-info .delivery-date {
+	background-color:black;
+	padding:20px;
+	text-align:center;
+	color:white;
+	font-family: ProximaNovaBold, arial, sans-serif;
+	text-transform: uppercase;
+	margin:10px 0 15px 0;
+
+}
+
+.plan.product-info span.actual-date {
+	font-size:18px;
 }
