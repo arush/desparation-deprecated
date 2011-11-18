@@ -2025,6 +2025,7 @@ clear:both;
 
 .lucky-dip-red span.lucky-dip-red-title {
 	font-family: ProximaNovaBold;
+	display:block;
 }
 
 .lucky-dip-box .points-triangle {

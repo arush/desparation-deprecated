@@ -154,7 +154,7 @@
 	                        <?php echo $this->getChildHtml('addtocart') ?>
 	               
 					</div>
-				<?php elseif (!$_product->isSaleable()): ?>
+				<?php // elseif (!$_product->isSaleable()): ?>
 					
 				
 				<?php endif;?>
@@ -163,6 +163,7 @@
 			<?php endif; ?>
 			            
         <?php echo $this->getChildHtml('extra_buttons') ?>
+        
         <?php echo $this->getChildHtml('other');?>
 
         </div>
@@ -173,6 +174,25 @@
     </form>
     
     	<div class="checkboxes">
+        	<?php if($_product->getData('promo_offer')): ?>
+        		<div class="product-detail-checkbox">
+        			<?php echo $this->htmlEscape($_product->getData('promo_offer')); ?>
+        		</div>
+        	<?php endif; ?>
+			<?php if($_product->getData('freeshipping')): ?>
+        		<div class="product-detail-checkbox">
+        			Free UK Shipping
+        		</div>
+        	<?php endif; ?>
+			<?php if($this->getProduct()->getShutl()): ?>
+        		<div class="product-detail-checkbox">
+					90 minute London delivery
+				</div>
+			<?php endif; ?>
+			
+			<?php /* $_nonrefundable = $this->htmlEscape($_product->getResource()->getAttribute('nonrefundable')->getFrontend()->getValue($_product)); ?>
+        	<?php if ($_nonrefundable === 'No'):?>Free returns<?php endif; */ ?>
+        	
         	<?php $block = Mage::getModel('cms/block')->load('quickie-checkboxes');?>
             <?php echo $block->getContent(); ?>
         </div>

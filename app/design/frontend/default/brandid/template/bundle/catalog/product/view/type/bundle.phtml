@@ -41,6 +41,13 @@
     <p class="availability out-of-stock"><?php echo $this->helper('catalog')->__('Availability:') ?> <span><?php echo $this->helper('catalog')->__('Out of stock') ?></span></p>
 <?php endif; ?>
 <div class="price-box-bundle">
+	    <div class="discount-triangle-container">
+			<span class="discount-number"><?php echo $_helper->productAttribute($_product, $_product->getDiscount(), 'discount') ?> % off</span>
+			<span class="discount-label">RRP</span>
+		</div>
+
+		<div class="discount-triangle">
+		</div>
     
     <?php echo $this->getPriceHtml($_product) ?>
 	
