@@ -1,24 +1,24 @@
-#planOther h1 {
+.sliders h1 {
 	clear: both;
 	padding: 10px;
 	width: 610px;
 	
 }
-#planOther .holder {
+.sliders .holder {
 	width: 630px;
 	height: 210px;
 	overflow: hidden;
 
 }
 
-#planOther .holder .slider {
+.sliders .holder .slider {
 	position: relative;
 	height: 210px;
 	left: 0px;
 	margin: 0px;
 }
 
-#planOther .holder .slider ul li {
+.sliders .holder .slider ul li {
 	display: block;
 	width: 210px;
 	height: 210px;
@@ -26,7 +26,7 @@
 	background: #fff;
 }
 
-#planOther .holder .left {
+.sliders .holder .left {
 	position: absolute;
 	width: 34px;
 	height: 210px;
@@ -35,7 +35,7 @@
 	cursor: pointer;
 }
 
-#planOther .holder .right {
+.sliders .holder .right {
 	position: absolute;
 	margin-left: 596px;
 	width: 34px;
@@ -45,12 +45,42 @@
 	cursor: pointer;
 }
 
-
-
 .sliders {
+	background: #fff;
 	width: 630px;
 	float: left;
+	text-align: left;	
 }
+
+.sliders.quickie {
+	float: none;
+	margin: 0 auto;
+	width: 960px;
+}
+
+.sliders.quickie h1 {
+
+	display: inline;
+	
+}
+
+.sliders.quickie .holder {
+	width: 858px;
+	margin: 0 51px;
+}
+
+.sliders.quickie .holder .slider ul li {
+	width: 143px;
+
+}
+.sliders.quickie .holder .left {
+	margin-left: -51px;
+}
+.sliders.quickie .holder .right {
+	margin-left: 875px;
+}
+
+
 .plan.product-info {
 	float: right;
 	background: #fff;
@@ -98,3 +128,89 @@
 	padding: 10px;
 	margin: 10px 0;
 }
+
+.upsells h3 {
+	font-family: ProximaNovaBold;
+	font-size: 26px;
+	padding-left: 45px;
+}
+.upsells span.title {
+	font-family: 'pt-serif-caption';	
+	font-style: italic;
+	position: absolute;
+	margin-top: -3px;
+	margin-left: -45px;
+	font-size: 22px;
+}
+.upsells ul li {
+	background: #595959;
+	padding: 10px;
+	color: #fff;
+	margin-bottom: 10px;
+}
+.upsells span {
+	font-family: ProximaNovaBold;
+}
+.upsells .price .price {
+	color: #cfcfcf;
+	font-size: 21px;
+}
+.upsells .special-price .price {
+	color: #fff;
+	font-size: 50px;
+
+}
+
+.relationship {
+	width: 960px;
+	margin: 0 auto;
+	text-align: left;
+}
+
+.relationship h1 {
+	display: inline;
+	float: none;
+	padding: 10px;
+	margin: 10px 0;
+}
+
+.relationship h3 {
+	font-family: ProximaNovaBold;
+	font-size: 26px;
+	padding-left: 45px;
+}
+.relationship span.title {
+	font-family: 'pt-serif-caption';	
+	font-style: italic;
+	position: absolute;
+	margin-top: -3px;
+	margin-left: -45px;
+	font-size: 22px;
+}
+.relationship ul li {
+	background: #595959;
+	padding: 10px;
+	width: 283px;
+	height: 100px;
+	color: #fff;
+	margin-right: 25px;
+	float: left;
+}
+.relationship ul li.last {
+	margin-right: 0px;
+}
+.relationship span {
+	font-family: ProximaNovaBold;
+}
+.relationship .price .price {
+	color: #cfcfcf;
+	font-size: 21px;
+}
+.relationship .special-price .price {
+	color: #fff;
+	font-size: 50px;
+
+}
+
+
+

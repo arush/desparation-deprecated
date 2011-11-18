@@ -1,0 +1,17 @@
+<div class="my-points">
+	<span><?php echo $this->__("points"); ?></span><div id="my-points" class="flip-counter"></div>
+	<a href="/index.php/rewards/customer/">		
+	</a>
+	<?php if($this->getPointsSummary() != ""): ?>
+	<?php
+	$startValue = (int)($this->getPoints()-($this->getPoints()/8));
+	?>
+	<script type="text/javascript">
+		document.observe('dom:loaded', function(){
+			var myCounter = new flipCounter('my-points', {value:<?php echo $startValue; ?>, inc:3, pace:30, tFH: 15, bFH: 24, fW: 20, bOffset: 150});
+				myCounter.incrementTo(<?php echo $this->getPoints(); ?>);				
+		});	
+	</script>
+	<?php endif; ?>
+	
+</div>

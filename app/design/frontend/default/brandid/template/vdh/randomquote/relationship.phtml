@@ -1,0 +1,20 @@
+<?php
+$products = $this->getCollection();
+if ($products->count() > 0):
+?>
+<div class="relationship">
+	<h1 class="black-title-bar"><?php echo $this->__('How about a steady relationship?'); ?></h1>
+	<ul>
+	<?php $counter=0;foreach($products as $product): ?>
+		<?php $counter++; $lastClass = ($counter % 3 == 0) ? ' class="last"' : ''; ?>
+		
+		<li<?php echo $lastClass?>>
+			<h3><span class="title">the</span><? echo $product->getName(); ?></h3>
+			<span class="price"><?php echo Mage::helper('core')->currency($product->getPrice());?></span><br />
+			<span class="special-price"><?php echo Mage::helper('core')->currency($product->getSpecialPrice());?></span>
+			<button class="button"><span><span><?php echo $this->__('View plan'); ?></span></span></button>
+		</li>
+	<?php endforeach; ?>
+	</ul>
+</div>
+<?php endif; ?>

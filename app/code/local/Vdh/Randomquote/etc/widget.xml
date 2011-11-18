@@ -25,4 +25,71 @@
             </template_path>
         </parameters>        
     </randomquote>
+    <quickie type="randomquote/quickie">
+        <name>Fancy a Quickie</name>
+        <description type="desc">Adds a quickie carousel to the page</description>
+		<parameters>
+            <template_path translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <label>Template</label>
+
+		        <type>select</type>
+                
+                <values>
+                    <block translate="label">
+                        <value>vdh/randomquote/quickie.phtml</value>
+                        <label>Block</label>
+                    </block>
+                </values>
+            </template_path>
+        </parameters>        
+    </quickie>
+    <relationship type="randomquote/relationship">
+        <name>How about a steady relationship</name>
+        <description type="desc">Shows a block for the Plans</description>
+		<parameters>
+            <template_path translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <label>Template</label>
+
+		        <type>select</type>
+                
+                <values>
+                    <block translate="label">
+                        <value>vdh/randomquote/relationship.phtml</value>
+                        <label>Block</label>
+                    </block>
+                </values>
+            </template_path>
+        </parameters>        
+    </relationship>
+    <points type="randomquote/points">
+        <name>My points balance</name>
+        <description type="desc">Shows customer's points and an invite and earn link</description>
+		<parameters>
+            <template_path translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <label>Template</label>
+
+		        <type>select</type>
+                
+                <values>
+                    <block translate="label">
+                        <value>vdh/randomquote/relationship.phtml</value>
+                        <label>Block</label>
+                    </block>
+                </values>
+            </template_path>
+            <text translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <label>My points text</label>
+
+		        <type>textarea</type>                
+            </text>            
+        </parameters>        
+    </points>      
 </widgets> 

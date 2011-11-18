@@ -69,7 +69,6 @@ if ($products->count() > 0){ ?>
     </div>
 </div>
 <?php
-
 $upsells = $_product->getUpSellProductCollection()->addAttributeToSort('position', 'asc');
 if ($upsells->count() > 0):
 ?>
@@ -77,11 +76,12 @@ if ($upsells->count() > 0):
 	<h1 class="black-title-bar"><?php echo $this->__('Our Plans'); ?></h1>
 	<ul>
 	<?php foreach($upsells as $upsell): ?>
+		<?php $upsellProduct = Mage::getModel('catalog/product')->load($upsell->getId()); ?>
 		<li>
-			<h3><? echo $upsell->getName(); ?></h3>
-			<span class="price"><?php echo $upsell->getPrice();?></span>
-			<span class="special-price"><?php echo $upsell->getSpecialPrice();?></span>
-			<button><span><?php echo $this->__('View plan'); ?></span></button>
+			<h3><span class="title">the</span><? echo $upsellProduct->getName(); ?></h3>
+			<span class="price"><?php echo Mage::helper('core')->currency($upsellProduct->getPrice());?></span><br />
+			<span class="special-price"><?php echo Mage::helper('core')->currency($upsellProduct->getSpecialPrice());?></span>
+			<button class="button"><span><span><?php echo $this->__('View plan'); ?></span></span></button>
 		</li>
 	<?php endforeach; ?>
 	</ul>
@@ -101,54 +101,8 @@ if ($upsells->count() > 0):
 		} else if (obj.innerHTML.toLowerCase().indexOf('shirt') >= 0) {
 			obj.up().next().addClassName('shirt-bg');		
 		}
-		console.log(obj.innerHTML);
 	});
 
-	$$('.holder .slider').each(function(obj){
-		var calculatedWidth = obj.select('ul li').length * parseInt(obj.select('ul li')[0].getStyle('width'));
-		obj.setStyle({ width: calculatedWidth + 'px' });
-	});
-	
-	$$('.holder .left').each(function(obj){
-		obj.observe('click', function(){
-			var target = obj.up().firstDescendant().firstDescendant().childElements()[obj.up().firstDescendant().firstDescendant().childElements().length-1];
 
-			var lastChild = document.createElement('li');
-			lastChild.innerHTML = target.innerHTML;
-			target.remove();
-			obj.up().firstDescendant().firstDescendant().insert({top: lastChild });
-			target = lastChild;
-			target.setStyle({ marginLeft: (parseInt(target.getStyle('width'))*-1) + 'px' })			
-			var start = parseInt(target.getStyle('margin-left'));
-			var end = start + parseInt(target.getStyle('width'));
-			
-			new Effect.Tween(
-				target, start, end, { duration: 0.5	},
-				function(p) { this.setStyle({marginLeft : p + "px" }) }
-			);
-		});	
-	});
-	$$('.holder .right').each(function(obj){
-		obj.observe('click', function(){
-			var target = obj.up().firstDescendant().firstDescendant().firstDescendant();
-			var start = parseInt(target.getStyle('margin-left'));
-			var end = start + (parseInt(target.getStyle('width')) * -1);
-			new Effect.Tween(
-				target, start, end, {
-					duration: 0.5, afterFinish: function(){
-						
-						if (end != parseInt(target.getStyle('width'))*-1) {
-							var lastChild = document.createElement('li');
-							lastChild.innerHTML = target.innerHTML;
-							target.remove();
-							obj.up().firstDescendant().firstDescendant().insert(lastChild);
-						}
-					}
-				},
-				function(p) { this.setStyle({marginLeft : p + "px" }) }
-			);
-		});
-	});
-	
 	
 </script>
