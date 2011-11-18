@@ -1904,7 +1904,7 @@ padding-left: 10px;
 
 .product-view .product-shop .price-box-bundle .container2 .product-options .last label {display:none;}
 
-.price-box-bundle .discount-triangle-container {
+.price-box-bundle .discount-triangle-container, .plans-list .discount-triangle-container {
 	color: white;
 	position: absolute;
 	font-size: 14px;
@@ -1917,7 +1917,7 @@ padding-left: 10px;
 	width: 70px;
 }
 
-.price-box-bundle .discount-triangle-container span.discount-number {
+.price-box-bundle .discount-triangle-container span.discount-number, .plans-list .discount-triangle-container span.discount-number {
 	color: white;
 	position: absolute;
 	font-size: 14px;
@@ -1925,7 +1925,7 @@ clear:both;
 
 }
 
-.price-box-bundle .discount-triangle-container span.discount-label {
+.price-box-bundle .discount-triangle-container span.discount-label, .plans-list .discount-triangle-container span.discount-label {
 	margin: 17px 0 0 19px;
 	font-size: 14px;
 	clear:both;
@@ -1933,7 +1933,7 @@ clear:both;
 }
 
 
-.price-box-bundle .discount-triangle {
+.price-box-bundle .discount-triangle, .plans-list .discount-triangle {
 	width: 0;
 	height: 0;
 	border-left: 100px solid transparent;
