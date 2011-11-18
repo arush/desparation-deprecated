@@ -22,6 +22,8 @@
 		<?php if ($product->getNumSocks() && $product->getNumBoxers() > 0): ?><div class="package-desc boxers"><?php echo $product->getNumBoxers(); ?>x</div><?php endif; ?>
 		<?php if ($product->getNumSocks() && $product->getNumShirts() > 0): ?><div class="package-desc shirts"><?php echo $product->getNumShirts(); ?>x</div><?php endif; ?>		
 		<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-' . $product->getSku())->toHtml(); ?>
+		<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-common'); ?>
+
 	</li>
 	<?php endforeach;?>
 </ul>

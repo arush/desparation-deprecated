@@ -2065,3 +2065,8 @@ clear:both;
 	height:44px;
 	width: 70px;
 }
+
+
+.plans-list .product-detail-checkbox {
+	padding-left:0;
+}
