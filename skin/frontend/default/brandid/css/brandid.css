@@ -2292,8 +2292,13 @@ span.the {
 }
 
 .plan-explanation {
+	padding:30px;
+	float:left;
 	font-size: 16px;
 	font-family: ProximaNovaLight;
 	color: #595959;
-	padding:20px;
+	background-color:white;
+
 }
+
+

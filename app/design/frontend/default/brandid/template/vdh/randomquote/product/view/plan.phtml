@@ -2,12 +2,13 @@
 <?php $_helper = $this->helper('catalog/output'); ?>
 
 
+
+
+<div class="sliders">
 <div class="plan-explanation">
 	<?php $block = Mage::getModel('cms/block')->load('plan-randomness-explanation');?>
     <?php echo $block->getContent(); ?>
 </div>
-
-<div class="sliders">
 <?php
 $pieces = array(
 	'Socks'		=> 'SOCKS',
