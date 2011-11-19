@@ -10789,6 +10789,7 @@ a.cat-view-now:hover {
 	background: none;
 	padding: 0;
 	margin: 20px 0 0;
+	float: left;
 }
 .my-account .page-title h4, .rewards-sidebar .page-title h4{
 	color: #2e2e2e;

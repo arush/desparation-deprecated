@@ -29,7 +29,10 @@ $rrp = number_format($rrp, 0);
         $$('.bundle-option-select')[0].observe('change', function(){
             if (this.options[this.selectedIndex].value != '') {
                 $$('.quickie-tier-prices')[0].show();
-            } else {
+				$$('.quickie-tier-prices li').each(function(o){
+                    	o.setStyle({ backgroundColor: '#595959', cursor: 'pointer' });
+ 					});
+             } else {
                 $$('.quickie-tier-prices')[0].hide();            
                 $$('.quickie-tier-prices li').each(function(o){
                     o.setStyle({ backgroundColor: '#595959', cursor: 'pointer' });
