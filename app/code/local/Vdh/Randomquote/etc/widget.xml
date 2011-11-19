@@ -91,5 +91,47 @@
 		        <type>textarea</type>                
             </text>            
         </parameters>        
-    </points>      
+    </points> 
+    <titleblock type="randomquote/title">
+        <name>Red Title Block</name>
+        <description type="desc">Bold red title block</description>
+		<parameters>
+            <template translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <label>Template</label>
+
+		        <type>select</type>
+                
+                <values>
+                    <block translate="label">
+                        <value>vdh/randomquote/title.phtml</value>
+                        <label>Block</label>
+                    </block>
+                </values>
+            </template>
+            <title translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <label>Title</label>
+		        <type>text</type>                
+            </title>
+			<block_id type="complex" translate="label">
+                <visible>1</visible>
+                <required>1</required>
+                <label>Block</label>
+                <type>label</type>
+                <helper_block>
+                    <type>adminhtml/cms_block_widget_chooser</type>
+                    <data>
+                        <button translate="open">
+                            <open>Select Block...</open>
+                        </button>
+                    </data>
+                </helper_block>
+                <sort_order>20</sort_order>
+            </block_id>
+                        
+        </parameters>        
+    </titleblock>             
 </widgets> 
