@@ -1,4 +1,4 @@
-<?php class Vdh_Randomquote_Quotecontroller extends Mage_Core_Controller_Front_Action {
+<?php class Vdh_Randomquote_QuoteController extends Mage_Core_Controller_Front_Action {
 
 	public function quoteAction() {
 		$position = $this->getRequest()->getParam('position');		
