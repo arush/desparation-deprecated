@@ -2280,3 +2280,9 @@ span.the {
 .price-box-bundle ul.quickie-tier-prices li.last {
 	margin-right:0;
 }
+
+.price-box-bundle span.price span.each {
+	font-size: 18px;
+	font-family: ProximaNovaLight;
+	color: #595959;
+}

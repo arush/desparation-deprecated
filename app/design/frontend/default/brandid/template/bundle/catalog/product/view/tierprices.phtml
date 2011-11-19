@@ -73,7 +73,7 @@ $rrp = number_format($rrp, 0);
                 });
                 this.setStyle({ backgroundColor: '#d2002b', cursor: 'default' });
 
-                $$('.input-text.qty')[0].value = this.select('span')[2].innerHTML;    
+                $$('.input-text.qty')[0].value = parseInt(this.select('span')[2].innerHTML);    
                 jQuery($$('.input-text.qty')[0]).keyup();        
             });            
         });
