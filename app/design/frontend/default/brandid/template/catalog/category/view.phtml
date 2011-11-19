@@ -74,6 +74,43 @@ padding:0 32px 0 0;
 			</div>
 		<?php endif; ?>
 	</div>
+	<?php
+	$subCats = $_category->getChildrenCategories();
+	if ($subCats->count() > 0): ?>
+	<div class="sub-cat-listing">
+		<ul>
+			<?php $counter=0; foreach($subCats as $subCat): ?>
+				<?php $counter++; $sub = Mage::getModel('catalog/category')->load($subCat->getId()); ?>
+			<li style="background: #595959 url('<?php echo $sub->getImageUrl(); ?>') 5px 50% no-repeat; "<?php echo ($counter % 3 == 0) ? ' class="last"': ''; ?>>
+				<h3><?php echo $subCat->getName(); ?></h3>
+				<a href="<?php echo Mage::getUrl($subCat->getRequestPath()); ?>" title="<?php echo $this->__('View boosters'); ?>">
+				<button class="button"><span><span><?php echo $this->__('View boosters'); ?></span></span></button>
+				</a>
+			</li>
+			<?php endforeach; ?>
+		</ul>
+	</div>
+	<style type="text/css">
+	.sub-cat-listing li {
+		float: left;
+		width: 310px;
+		height: 124px;
+		text-align: center;
+		text-transform: uppercase;
+		margin-right: 14px;
+		
+	}
+	.sub-cat-listing li.last {
+		margin-right: 0px;
+	}	
+	.sub-cat-listing li h3 {
+		color: #fff;
+		font-family: ProximaNovaBold;
+		font-size: 33px;
+		margin-top: 32px;
+	}
+	</style>
+	<?php endif; ?>
 	<div class="clearer"></div>
     <?php if($this->isContentMode()): ?>
         <?php echo $this->getCmsBlockHtml() ?>
