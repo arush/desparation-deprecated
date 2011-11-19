@@ -8,8 +8,22 @@
 		$orders = Mage::getModel('sales/order')
 			->getCollection()
 			->addAttributeToFilter('customer_id', $customer->getId());
+
+		foreach($orders as $order) {
+			$items = $order->getAllItems();
+			foreach($items as $item) {
+				$product = Mage::getModel('catalog/product')->load($items->getId());
+				print_r($product->getSku());
 			
-		print_r('hello');
+			}
+		}
+
+		$customerGroupId = 0;
+		
+		if ($customerGroupId != $customer->getCustomerGroupId()) {
+			$customer->setCustomerGroupId($customerGroupId);
+			$customer->save();	
+		}
 	}
 
 }
