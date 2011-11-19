@@ -86,8 +86,9 @@ if($_description=$this->getCurrentCategory()->getDescription()): ?>
 			<?php $counter=0; foreach($subCats as $subCat): ?>
 				<?php $counter++; $sub = Mage::getModel('catalog/category')->load($subCat->getId()); ?>
 
-			<a href="<?php echo Mage::getUrl($subCat->getRequestPath()); ?>" title="<?php echo $this->__('View boosters'); ?>">
-				<li class="category-block" style="background-image: url('<?php echo $sub->getImageUrl(); ?>');"<?php echo ($counter % 3 == 0) ? ' class="last"': ''; ?>>
+				<li class="category-block<?php echo ($counter % 3 === 0) ? ' "last"': ''; ?>" style="background-image: url('<?php echo $sub->getImageUrl(); ?>');">
+					<a href="<?php echo Mage::getUrl($subCat->getRequestPath()); ?>" title="<?php echo $this->__('View boosters'); ?>">
+
 					<h3><?php echo $subCat->getName(); ?></h3>
 					<!--
 <a href="<?php /*
@@ -95,8 +96,9 @@ echo Mage::getUrl($subCat->getRequestPath()); ?>" title="<?php echo $this->__('V
 					<button class="button"><span><span><?php echo $this->__('View boosters');
 */ ?></span></span></button></a>
 -->
+					</a>
+
 				</li>
-			</a>
 
 			<?php endforeach; ?>
 		</ul>
