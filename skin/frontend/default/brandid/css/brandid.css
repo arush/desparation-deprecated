@@ -2400,6 +2400,10 @@ span.the {
 	background-color: #000;
 	background-position:  5px 50%;
 	background-repeat: no-repeat; 
+	-webkit-transition: background-color 200ms ease-in;
+	-moz-transition: background-color 200ms ease-in;
+	-o-transition: background-color 200ms ease-in;
+	transition: background-color 200ms ease-in;	
 }
 
 .sub-cat-listing li.category-block:hover {
