@@ -1772,17 +1772,34 @@ width: 231px;
 }
 
 
-.category-products .price-box {
+.category-products .prices-section {
     background-color: #FFFFFF;
     color: #D2002B;
     font-size: 24px;
     letter-spacing: -1px;
     font-family: ProximaNovaBold;
-    
+    padding:15px;    
 }
+
+.category-products .prices-section span.price {
+	color:#595959;
+	font-size:14px;
+		
+}
+
+
+.category-products .prices-section span.lowest {
+	clear: both;
+	display: block;
+	text-transform: uppercase;
+	
+}
+
 .category-quickies .price-box span.price {
-padding-left: 10px;
+	padding-left: 10px;
 }
+
+
 
 .category-plans .toolbar {display:none;}
 
@@ -1907,7 +1924,7 @@ padding-left: 10px;
 .plan.product-info .product-options {padding:10px 15px 0;}
 
 
-.price-box-bundle .discount-triangle-container, .plans-list .discount-triangle-container, .plan.product-info .discount-triangle-container {
+.price-box-bundle .discount-triangle-container, .plans-list .discount-triangle-container, .plan.product-info .discount-triangle-container, .products-grid .discount-triangle-container {
 	color: white;
 	position: absolute;
 	font-size: 14px;
@@ -1928,7 +1945,12 @@ padding-left: 10px;
 	margin: 11px 0 0 231px;
 }
 
-.price-box-bundle .discount-triangle-container span.discount-number, .plans-list .discount-triangle-container span.discount-number,  .plan.product-info .discount-triangle-container span.discount-number {
+.products-grid .discount-triangle-container {
+	margin: 10px 0 0 166px;
+}
+
+
+.price-box-bundle .discount-triangle-container span.discount-number, .plans-list .discount-triangle-container span.discount-number,  .plan.product-info .discount-triangle-container span.discount-number, .products-grid .discount-triangle-container span.discount-number {
 	color: white;
 	position: absolute;
 	font-size: 14px;
@@ -1936,7 +1958,7 @@ clear:both;
 
 }
 
-.price-box-bundle .discount-triangle-container span.discount-label, .plans-list .discount-triangle-container span.discount-label, .plan.product-info .discount-triangle-container span.discount-label {
+.price-box-bundle .discount-triangle-container span.discount-label, .plans-list .discount-triangle-container span.discount-label, .plan.product-info .discount-triangle-container span.discount-label, .products-grid .discount-triangle-container span.discount-label {
 	margin: 17px 0 0 19px;
 	font-size: 14px;
 	clear:both;
@@ -1947,7 +1969,7 @@ clear:both;
 	margin: 17px 0 0 26px;
 }
 
-.price-box-bundle .discount-triangle, .plans-list .discount-triangle, .plan.product-info .discount-triangle {
+.price-box-bundle .discount-triangle, .plans-list .discount-triangle, .plan.product-info .discount-triangle, .products-grid .discount-triangle {
 	width: 0;
 	height: 0;
 	border-left: 100px solid transparent;
@@ -1956,6 +1978,11 @@ clear:both;
 	position:absolute;
 	margin: -21px 0 0 328px;
 }
+
+.products-grid .discount-triangle {
+	margin:0 0 0 131px;
+}
+
 
 .plans-list .discount-triangle {
 	margin:-33px 0 0 166px;
@@ -2050,7 +2077,7 @@ clear:both;
 	display:block;
 }
 
-.lucky-dip-box .points-triangle {
+.lucky-dip-box .points-triangle, .products-grid .points-triangle {
 	width: 0;
 	height: 0;
 	border-left: 93px solid transparent;
@@ -2060,7 +2087,17 @@ clear:both;
 	margin: -94px 0 0 866px;
 }
 
-.lucky-dip-box .lucky-dip-points-container span.points-number {
+.products-grid .points-triangle {
+	margin: 192px 0 0 139px;
+	border-left: 0px solid transparent;
+	border-right: 93px solid #00CF18;
+	border-top: 93px solid transparent;
+	z-index: 1;
+}
+
+
+
+.lucky-dip-box .lucky-dip-points-container span.points-number, .products-grid .lucky-dip-points-container span.points-number {
 	color: white;
 	position: absolute;
 	font-size: 20px;
@@ -2068,14 +2105,14 @@ clear:both;
 	margin-left:8px;
 }
 
-.lucky-dip-box .lucky-dip-points-container span.points-label {
+.lucky-dip-box .lucky-dip-points-container span.points-label, .products-grid .lucky-dip-points-container span.points-label {
 	margin: 21px 0 0 0;
 	font-size: 14px;
 	clear:both;
 	display:block;
 }
 
-.lucky-dip-box .lucky-dip-points-container {
+.lucky-dip-box .lucky-dip-points-container, .products-grid .lucky-dip-points-container {
 	color: white;
 	position: absolute;
 	font-size: 14px;
@@ -2087,6 +2124,12 @@ clear:both;
 	height:44px;
 	width: 70px;
 }
+
+.products-grid .lucky-dip-points-container {
+	margin: 236px 0 0 180px;
+	z-index: 2;
+}
+
 
 .plans-list h3 {
 	text-align:left;
@@ -2300,5 +2343,4 @@ span.the {
 	background-color:white;
 
 }
-
 
