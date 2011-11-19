@@ -502,14 +502,23 @@ float:right;}
 	font-size: 50px;
 	color: #fff;
 	text-transform: uppercase;
-	width: 50%;	
+	width: 970px;
+	margin:0 auto;
 }
 
 .title-block .title span { 
+	background-color:black;
+	padding:20px;
 	display: block;
 	margin: 0 auto;
-	width: 972px;
 	position: relative;
+}
+
+.title-cms-block {
+	background-color:white;
+	padding:20px;
+	color:#595959;
+	font-size:16px;
 }
 
 .urlcode-input-box .edit {
@@ -2360,21 +2369,16 @@ span.the {
 
 .sub-cat-listing li {
 	float: left;
-	width: 310px;
+	width: 320px;
 	height: 124px;
 	text-align: center;
 	text-transform: uppercase;
-	margin-right: 10px;
-}
 
+}
 .sub-cat-listing li.category-block {
 	background-color: #000;
 	background-position:  5px 50%;
 	background-repeat: no-repeat; 
-	-webkit-transition: background-color 200ms ease-in;
-	-moz-transition: background-color 200ms ease-in;
-	-o-transition: background-color 200ms ease-in;
-	transition: background-color 200ms ease-in;
 }
 
 .sub-cat-listing li.category-block:hover {
