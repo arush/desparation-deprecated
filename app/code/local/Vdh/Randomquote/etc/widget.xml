@@ -118,7 +118,7 @@
             </title>
 			<block_id type="complex" translate="label">
                 <visible>1</visible>
-                <required>1</required>
+                <required>0</required>
                 <label>Block</label>
                 <type>label</type>
                 <helper_block>
