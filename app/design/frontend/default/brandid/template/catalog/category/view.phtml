@@ -87,15 +87,15 @@ if($_description=$this->getCurrentCategory()->getDescription()): ?>
 				<?php $counter++; $sub = Mage::getModel('catalog/category')->load($subCat->getId()); ?>
 
 				<li class="category-block<?php echo ($counter % 3 === 0) ? ' "last"': ''; ?>" style="background-image: url('<?php echo $sub->getImageUrl(); ?>');">
-					<a href="<?php echo Mage::getUrl($subCat->getRequestPath()); ?>" title="<?php echo $this->__('View boosters'); ?>">
+					<a href="<?php echo Mage::getUrl($subCat->getRequestPath()); ?>" title="<?php echo $this->__('View quickies'); ?>">
 
 					<h3><?php echo $subCat->getName(); ?></h3>
 					<!--
-<a href="<?php /*
-echo Mage::getUrl($subCat->getRequestPath()); ?>" title="<?php echo $this->__('View boosters'); ?>">
-					<button class="button"><span><span><?php echo $this->__('View boosters');
-*/ ?></span></span></button></a>
--->
+					<a href="<?php /*
+					echo Mage::getUrl($subCat->getRequestPath()); ?>" title="<?php echo $this->__('View boosters'); ?>">
+										<button class="button"><span><span><?php echo $this->__('View boosters');
+					*/ ?></span></span></button></a>
+					-->
 					</a>
 
 				</li>

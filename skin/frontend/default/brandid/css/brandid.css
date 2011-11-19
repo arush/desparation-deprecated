@@ -506,19 +506,39 @@ float:right;}
 	margin:0 auto;
 }
 
+.title-block .title .first-row {
+	margin-bottom:15px;
+	
+}
+.title-block .title .second-row {
+	background-color:white;
+}
+
+
 .title-block .title span.page-title { 
 	background-color:black;
-	padding:20px;
-	display: block;
-	margin: 0 auto;
+	padding:5px 16px;
+	
 	position: relative;
 }
 
 .title-cms-block {
+	float:left;
 	background-color:white;
 	padding:20px;
 	color:#595959;
 	font-size:16px;
+	text-transform:none;
+	font-family: ProximaNovaLight;
+	
+}
+
+p.actual-category-text {
+	width:410px;
+}
+
+p.title-block-image {
+	float:left;
 	
 }
 
