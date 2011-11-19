@@ -2,7 +2,7 @@
 <layout version="0.1.0">
     <catalog_product_view>
     	<reference name="root">
-    		<block type="page/html" name="plan_content" template="vdh/randomquote/product/view/plan.phtml">
+    		<block type="catalog/product_view" name="plan_content" template="vdh/randomquote/product/view/plan.phtml">
     		
                 <block type="core/template_facade" name="product.info.container2" as="container2">
                     <action method="setDataByKey"><key>alias_in_layout</key><value>container2</value></action>
