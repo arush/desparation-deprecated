@@ -1303,7 +1303,8 @@ width:95px;
 }
 
 .social-link.info-box {
-	margin-top:20px
+	margin-top:20px;
+	width: 560px;
 }
 .social-link .black-title-bar {
 	padding: 10px;
