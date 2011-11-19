@@ -276,7 +276,7 @@ padding-left:38px;
 
 
 .flip-counter ul.cd{float:left;list-style-type:none;margin:0;padding:0}
-.flip-counter li{background:url(../images/counter/digits.png) 0 0 no-repeat}
+.flip-counter li{background:url(../images/counter/digits.png) 0 0 no-repeat }
 .flip-counter li.t{background-position:0 0;width:28px;height:20px}
 .flip-counter li.b{background-position:0 0;width:28px;height:34px}
 .flip-counter li.s{background-position:-53px -1030px;width:0px;height:0px}
@@ -2404,4 +2404,102 @@ span.the {
 	font-size: 33px;
 	margin-top: 38px;
 	font-weight:normal;
+}
+
+
+
+.countdown {
+	width: 638px;
+	height: 78px;
+	background: #fff;
+}
+
+.countdown .title {
+	background: #000;
+	float: left;
+	font-family: ProximaNovaBold;
+	font-size: 18px;
+	color: #fff;
+	text-transform: uppercase;
+	text-align: right;
+	width: 130px;
+	height: 78px;
+	line-height: 20px;
+}
+.countdown .title span {
+	display: block;
+	padding: 10px 15px;
+	
+}
+.countdown .content {
+	float: left;
+	width: 293px;
+	height: 78px;
+}
+.countdown .text {
+	float: right;
+	text-align: left;
+	width: 215px;
+	height: 78px;
+	font-family: ProximaNovaLight;
+	font-size: 14px;
+	color: #474747;
+}
+.countdown .text span {
+	display: block;
+	padding: 20px;
+}
+.countdown .content .counter {
+	margin: 0 auto;
+	width: 260px;
+}
+.countdown .content .counter ul li {
+	float: left;
+	text-align: center;
+	width: 56px;
+	text-transform: uppercase;
+	color: #474747;
+	font-size: 8px;
+	margin: 8px 9px 6px 0;
+}
+
+.countdown .content .counter .flip-counter-ul li {
+	width: 56px;
+	height: 54px;
+	margin: 0px;
+	margin-right: 9px;
+	background: url('../images/counter/bg.png') no-repeat;
+}
+.countdown .content .counter .flip-counter-ul li.last {
+	margin-right: 0px;
+}
+
+.countdown .content .counter .flip-counter-ul li ul.cd {
+	float: left;
+	width: 28px;
+}
+
+.countdown .content .counter .flip-counter-ul li li.t {
+	height: 20px;
+	width: 28px;
+	background: url('../images/counter/digits.png') no-repeat;
+	margin-right: 0;
+	float:right;	
+	
+	
+}
+.countdown .content .counter .flip-counter-ul li li.b {
+	height: 34px;
+	width: 28px;	
+	background: url('../images/counter/digits.png') no-repeat;
+	margin-right: 0;
+	float:right;	
+}
+
+.countdown .content .counter .flip-counter-ul div.flip-counter {
+	float:left;
+	width: 56px;
+}
+.countdown .content .counter .flip-counter-ul div.flip-counter ul {
+	float: right;
 }
