@@ -1,6 +1,12 @@
 <?php $_product = Mage::getModel('catalog/product')->load(Mage::registry('current_product')->getId());?>
 <?php $_helper = $this->helper('catalog/output'); ?>
 
+
+<div class="plan-explanation">
+	<?php $block = Mage::getModel('cms/block')->load('plan-randomness-explanation');?>
+    <?php echo $block->getContent(); ?>
+</div>
+
 <div class="sliders">
 <?php
 $pieces = array(
