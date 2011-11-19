@@ -1,0 +1,91 @@
+<div class="countdown">
+	<div class="title"><span><?php echo $this->getTitle(); ?></span></div>
+	<div class="content">
+		<div class="counter">
+			<ul>
+				<li><?php echo $this->__('Days'); ?></li>
+				<li><?php echo $this->__('Hours'); ?></li>
+				<li><?php echo $this->__('Minutes'); ?></li>
+				<li><?php echo $this->__('Seconds'); ?></li>												
+			</ul>
+			<ul class="flip-counter-ul">
+				<li><div id="countdownDays" class="flip-counter"></div></li>
+				<li><?php echo $this->__('Hours'); ?></li>
+				<li><?php echo $this->__('Minutes'); ?></li>
+				<li><?php echo $this->__('Seconds'); ?></li>												
+			</ul>			
+			
+		</div>
+	</div>
+	<div class="text"><span><?php echo $this->getContent();?></span></div>
+	
+</div>
+<script type="text/javascript">
+	document.observe('dom:loaded', function(){
+		var myCounter = new flipCounter('countdownDays', {value:<?php echo $startValue; ?>, inc:3, pace:30, tFH: 20, bFH: 34, fW: 28, bOffset: 200});
+			myCounter.incrementTo(<?php echo $this->getPoints(); ?>);				
+	});	
+</script>
+<style type="text/css">
+.countdown {
+	width: 638px;
+	height: 78px;
+	background: #fff;
+}
+
+.countdown .title {
+	background: #000;
+	float: left;
+	font-family: ProximaNovaBold;
+	font-size: 18px;
+	color: #fff;
+	text-transform: uppercase;
+	text-align: right;
+	width: 130px;
+	height: 78px;
+	line-height: 20px;
+}
+.countdown .title span {
+	display: block;
+	padding: 10px 15px;
+	
+}
+.countdown .content {
+	float: left;
+	width: 293px;
+	height: 78px;
+}
+.countdown .text {
+	float: right;
+	text-align: left;
+	width: 215px;
+	height: 78px;
+	font-family: ProximaNovaLight;
+	font-size: 14px;
+	color: #474747;
+}
+.countdown .text span {
+	display: block;
+	padding: 20px;
+}
+.countdown .content .counter {
+	margin: 0 auto;
+	width: 260px;
+}
+.countdown .content .counter ul li {
+	float: left;
+	text-align: center;
+	width: 65px;
+	text-transform: uppercase;
+	color: #474747;
+	font-size: 8px;
+	margin: 8px 0;
+}
+
+.countdown .flip-counter-ul li {
+	width: 56px;
+	height: 54px;
+	margin-right: 9px;
+	background: url('../images/counter/bg.png') no-repeat;
+}
+</style>

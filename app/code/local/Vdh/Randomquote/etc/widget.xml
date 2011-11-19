@@ -131,7 +131,39 @@
                 </helper_block>
                 <sort_order>20</sort_order>
             </block_id>
-                        
         </parameters>        
-    </titleblock>             
+    </titleblock>
+    
+    <countdown type="randomquote/countdown">
+        <name>Next Delivery Drop</name>
+        <description type="desc">Counter to the next delivery drop</description>
+		<parameters>
+            <template translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <label>Template</label>
+		        <type>select</type>
+                <values>
+                    <block translate="label">
+                        <value>vdh/randomquote/countdown.phtml</value>
+                        <label>Block</label>
+                    </block>
+                </values>
+            </template>
+            <title translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <label>Title</label>
+		        <type>text</type>
+                <sort_order>10</sort_order>		                        
+            </title>
+            <content translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <label>Content</label>
+		        <type>text</type>     
+                <sort_order>20</sort_order>		                   
+            </content>                           
+        </parameters>        
+    </countdown>                 
 </widgets> 
