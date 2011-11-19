@@ -88,10 +88,10 @@
 
 	document.observe('dom:loaded', function(){
 		setInterval('fixFloats()', 50);	
-		setTimeout('runDays(<?php echo $drop[0]; ?>)', 0);
-		setTimeout('runHours(<?php echo $drop[1]; ?>)', 200);		
-		setTimeout('runMinutes(<?php echo $drop[2]; ?>)', 400);		
-		setTimeout('runSeconds(<?php echo $drop[3]; ?>)', 600);		
+//		runSeconds(<?php echo $drop[0]; ?>);
+		setTimeout('runDays(<?php echo $drop[0]; ?>)', 200);		
+		setTimeout('runMinutes(<?php echo $drop[1]; ?>)', 400);		
+		setTimeout('runHours(<?php echo $drop[2]; ?>)', 600);		
 		setInterval('startTimer()', 1000);
 	});	
 </script>
