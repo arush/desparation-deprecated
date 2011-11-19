@@ -2344,3 +2344,17 @@ span.the {
 
 }
 
+
+.top-container {
+	width: auto;
+	padding: 0;
+}
+
+
+#recurring_start_date, #recurring_start_date_trig, label[for="recurring_start_date"] {
+	position: absolute;
+	left: -999px;
+	height: 0px;
+	width: 0px;
+
+}
