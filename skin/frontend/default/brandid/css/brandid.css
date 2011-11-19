@@ -2365,8 +2365,23 @@ span.the {
 	text-align: center;
 	text-transform: uppercase;
 	margin-right: 14px;
+}
+
+.sub-cat-listing li.category-block {
+	background-color: #000;
+	background-position:  5px 50%;
+	background-repeat: no-repeat; 
+	-webkit-transition: background-color 200ms ease-in;
+	-moz-transition: background-color 200ms ease-in;
+	-o-transition: background-color 200ms ease-in;
+	transition: background-color 200ms ease-in;
+}
+
+.sub-cat-listing li.category-block:hover {
+	background-color: #d2002b;
 	
 }
+
 .sub-cat-listing li.last {
 	margin-right: 0px;
 }	
@@ -2374,5 +2389,14 @@ span.the {
 	color: #fff;
 	font-family: ProximaNovaBold;
 	font-size: 33px;
-	margin-top: 32px;
+	margin-top: 38px;
+	font-weight:normal;
+}
+
+.sub-cat-listing a:hover {
+	color: #fff;
+	font-family: ProximaNovaBold;
+	font-size: 33px;
+	margin-top: 38px;
+	font-weight:normal;
 }

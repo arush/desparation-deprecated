@@ -85,12 +85,19 @@ if($_description=$this->getCurrentCategory()->getDescription()): ?>
 		<ul>
 			<?php $counter=0; foreach($subCats as $subCat): ?>
 				<?php $counter++; $sub = Mage::getModel('catalog/category')->load($subCat->getId()); ?>
-			<li style="background: #595959 url('<?php echo $sub->getImageUrl(); ?>') 5px 50% no-repeat; "<?php echo ($counter % 3 == 0) ? ' class="last"': ''; ?>>
-				<h3><?php echo $subCat->getName(); ?></h3>
-				<a href="<?php echo Mage::getUrl($subCat->getRequestPath()); ?>" title="<?php echo $this->__('View boosters'); ?>">
-				<button class="button"><span><span><?php echo $this->__('View boosters'); ?></span></span></button>
-				</a>
-			</li>
+
+			<a href="<?php echo Mage::getUrl($subCat->getRequestPath()); ?>" title="<?php echo $this->__('View boosters'); ?>">
+				<li class="category-block" style="background-image: url('<?php echo $sub->getImageUrl(); ?>');"<?php echo ($counter % 3 == 0) ? ' class="last"': ''; ?>>
+					<h3><?php echo $subCat->getName(); ?></h3>
+					<!--
+<a href="<?php /*
+echo Mage::getUrl($subCat->getRequestPath()); ?>" title="<?php echo $this->__('View boosters'); ?>">
+					<button class="button"><span><span><?php echo $this->__('View boosters');
+*/ ?></span></span></button></a>
+-->
+				</li>
+			</a>
+
 			<?php endforeach; ?>
 		</ul>
 	</div>
