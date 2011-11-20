@@ -8,7 +8,6 @@ $installer->run("
 CREATE TABLE `{$installer->getTable('oneall_identifiers')}` (
   `oneall_identifier_id` int(11) NOT NULL AUTO_INCREMENT,
   `identifier` varchar(255) NOT NULL,
-  `user_token` varchar(255) NOT NULL,
   `identity_token` varchar(255) NOT NULL,
   `customer_id` int(11) unsigned NOT NULL,
   `profile_name` varchar(100) NOT NULL,
