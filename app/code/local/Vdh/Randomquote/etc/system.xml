@@ -69,9 +69,19 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </styles>                        
+                        </styles>
+						<plans translate="label">
+                            <label>Plans / Customer Group Relations</label>
+                            <frontend_model>randomquote/system_config_form_field_array_plan</frontend_model>
+                            <backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </plans>                                                
                     </fields>
                 </general>
+
 			</groups>
 		</randomquote>
     </sections>
