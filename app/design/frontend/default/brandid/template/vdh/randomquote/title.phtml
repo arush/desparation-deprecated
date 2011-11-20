@@ -1,5 +1,11 @@
 <?php
-	if(Mage::registry('current_category')) {
+	
+    if(Mage::registry('current_product')) {
+    	$_product = Mage::registry('current_product');
+	    $_helper    = $this->helper('catalog/output');
+    	$_description = $_product->getDescription();
+    }
+    else if(Mage::registry('current_category')) {
 		$_category = Mage::registry('current_category');
 	    $_helper    = $this->helper('catalog/output');
 	    $_description = $_category->getDescription();
@@ -8,11 +14,6 @@
 	        $_imgHtml = '<p class="title-block-image"><img src="'.$_imgUrl.'" alt="'.$this->htmlEscape($_category->getName()).'" title="'.$this->htmlEscape($_category->getName()).'" /></p>';
 	        $_imgHtml = $_helper->categoryAttribute($_category, $_imgHtml, 'image');
     	}
-    }
-    else if(Mage::registry('current_product')) {
-    	$_product = Mage::registry('current_product');
-	    $_helper    = $this->helper('catalog/output');
-    	$_description = $_product->getDescription();
     }
 ?>
 
@@ -54,7 +55,7 @@
 			       	</div>
             	</div>
             
-            }
+            <?php }
             
             
             else { ?>
