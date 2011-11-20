@@ -1,5 +1,5 @@
 <?php
-class Vdh_Randomquote_Model_Customer_Observer {
+class Vdh_Randomquote_Model_Observer {
 
 	public function customerSave($observer) {
 		$customer = $observer->getEvent()->getCustomer();	

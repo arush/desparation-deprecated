@@ -196,12 +196,11 @@ $customerCollection = Mage::getModel('customer/customer')
 
 		}
 		else if($deleteTrue == false) {
-			echo 'adding';
 			
 			Mage::getSingleton('oneall/session')->setData('response', $linkResponse);
 			
 			
-			//$this->_redirect("arush-oneall/rpx/addIdentifier", array("ses" => 'response'));
+			$this->_redirect("arush-oneall/rpx/addIdentifier", array("ses" => 'response'));
 		}
 		
 		
