@@ -29,6 +29,7 @@
 					<span class="page-title"><?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?></span>
 				</div>
 				
+				<?php if ($_description) { ?>
 				<div class="second-row clearfix">
 					<div class="title-cms-block">
 						<div class="category-likebutton">
@@ -40,6 +41,7 @@
 			       	</div>
 		       	<?php echo $_imgHtml;?>
 		       	</div>
+		       	<?php } ?>
 
             <?php } else if($_product) { ?>
 				<div class="product-title-wrapper">
