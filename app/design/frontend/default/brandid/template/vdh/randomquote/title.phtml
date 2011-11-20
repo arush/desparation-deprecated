@@ -9,6 +9,11 @@
 	        $_imgHtml = $_helper->categoryAttribute($_category, $_imgHtml, 'image');
     	}
     }
+    else if(Mage::registry('current_product')) {
+    	$_product = Mage::registry('current_product');
+	    $_helper    = $this->helper('catalog/output');
+    	$_description = $_product->getDescription();
+    }
 ?>
 
 <div class="title-block">
@@ -32,7 +37,27 @@
 		       	<?php echo $_imgHtml;?>
 		       	</div>
 
-            <?php } else { ?>
+            <?php } else if($_product) { ?>
+				<div class="product-title-wrapper">
+
+	            	<div class="product-title">
+						<span class="page-title"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></span>
+					</div>
+				
+					<div class="product-description-block">
+						<div class="category-likebutton">
+	    	        		<?php echo $this->getBlockHtml('info.likebutton') ?>
+	        	    	</div>
+			
+			       	   	<p class="actual-category-text"><?php echo $_description; ?></p>
+			
+			       	</div>
+            	</div>
+            
+            }
+            
+            
+            else { ?>
             	
         		<div class="first-row"><h1><span class="page-title">
 					<?php echo $this->getTitle(); ?></span></h1>
