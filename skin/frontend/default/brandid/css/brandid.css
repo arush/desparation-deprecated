@@ -2553,3 +2553,55 @@ span.the {
 .countdown .content .counter .flip-counter-ul div.flip-counter ul {
 	float: right;
 }
+
+.invite-image {
+	margin-right: 20px;
+	float:left;
+	padding: 0 0 17px;
+	background-color:white;
+}
+.rewardsref-customer-index .affiliate {
+margin-top: 411px;
+	}
+
+.rewardsref-customer-index .invite-gauge {
+	width: 270px;
+	float:right;
+	
+}
+
+.rewardsref-customer-index .invite-gauge {
+	font-weight: normal;
+	padding:21px;
+	
+}
+
+.rewardsref-customer-index .invite-gauge h3 {
+	font-weight: normal;
+	display:block;
+	line-height: 20px;
+	
+
+}
+
+.rewardsref-customer-index .title-block {
+
+	left: 0;
+    margin: 0 auto;
+    padding-top: 18px;
+    position: absolute;
+    text-align: left;
+    top: 88px;
+    width: 100%;
+}
+
+.rewardsref-customer-index .title-cms-block {
+	background:none;
+	padding:0;
+	width:970px;
+}
+
+.rewardsref-customer-index .title-block .title span.page-title {
+	font-size: 46px;
+	
+}

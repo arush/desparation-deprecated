@@ -51,6 +51,11 @@
     	<reference name="breadcrumbs.container">
     		<remove name="customer_account_navigation" />
     	</reference>
+    	<reference name="referral">
+    		<block type="cms/block" name="invitered">
+				<action method="setBlockId"><block_id>invite-red</block_id></action>
+			</block>
+    	</reference>
     </rewardsref_customer_index>
     
     
