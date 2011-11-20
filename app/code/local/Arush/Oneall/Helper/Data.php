@@ -123,10 +123,80 @@ class Arush_Oneall_Helper_Data extends Mage_Core_Helper_Abstract {
 	    	}
 	}
 	
+	public function getIdentityToken($response) {
+		if(isset($response->response->result->data->user->identity->identity_token)) {
+	    	return $response->response->result->data->user->identity->identity_token;
+	    	}
+		else { return "no identity token";}
+	}
 	
+	public function getUserToken($response) {
+		if(isset($response->response->result->data->user->user_token)) {
+	    	return $response->response->result->data->user->user_token;
+	    	}
+		else { return "no user token";}
+	}
+	
+	
+	public function getDeleteTrue($deleteTrue) {
+		if(isset($returnObject->response->result->status->code)) {
+			if($returnObject->response->result->status->code === 200) {
+				
+				if($returnObject->response->result->data->plugin->data->action == "unlink_identity" &&
+					$returnObject->response->result->data->plugin->data->status == "success") {
+						$deleteTrue = true;
+						return $deleteTrue;
+				}
+				else if($returnObject->response->result->data->plugin->data->action == "link_identity" &&
+					$returnObject->response->result->data->plugin->data->status == "success") {
+						$deleteTrue = false;
+						return $deleteTrue;
+				}
+			
+				
+			}
+			
+		}
+		else { 
+			$deleteTrue = "Something went wrong, please contact customer support";
+			return $deleteTrue;
+		}
+	}
 	
 	public function getThumbnailUrl() {
 				
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

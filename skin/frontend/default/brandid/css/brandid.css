@@ -1556,6 +1556,10 @@ input#p_method_sagepayserver + label, input#p_method_paypal_billing_agreement + 
 
 /* Oneall Register */
 
+.oneall-register {
+	margin-top:25px;
+}
+
 .oneall-register .black-title-bar {
 	margin-bottom: 20px;
 }

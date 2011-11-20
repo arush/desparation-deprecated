@@ -38,11 +38,11 @@ class Arush_Oneall_Helper_Identifiers extends Mage_Core_Helper_Abstract {
 		try {
 			Mage::getModel('oneall/identifiers')
 					->setIdentifier($profile['identifier'])
+					->setIdentityToken($profile['identity_token'])
 					->setProvider($profile['provider'])
 					->setProfileName($profile['profile_name'])
 					->setCustomerId($customer_id)
 					->save();
-			
 			
 		}
 		catch (Exception $e) {
@@ -57,10 +57,10 @@ class Arush_Oneall_Helper_Identifiers extends Mage_Core_Helper_Abstract {
 	 * @param string $identifier
 	 * @return Mage_Customer_Model_Customer
 	 */
-	public function get_customer($identifier) {
+	public function get_customer($identity_token) {
 		$customer_id = Mage::getModel('oneall/identifiers')
 						->getCollection()
-						->addFieldToFilter('identifier', $identifier)
+						->addFieldToFilter('identity_token', $identity_token)
 						->getFirstItem();
 
 		$customer_id = $customer_id->getCustomerId();
@@ -74,6 +74,29 @@ class Arush_Oneall_Helper_Identifiers extends Mage_Core_Helper_Abstract {
 
 		return false;
 	}
+	
+	public function get_customer_from_user_token($user_token) {
+		
+		$customerCollection = Mage::getModel('customer/customer')
+			->getCollection()
+			->addAttributeToSelect('oneall_user_token')
+			->addAttributeToFilter('oneall_user_token', $user_token)
+			->getFirstItem();
+
+
+		
+		$customer_id = $customerCollection->getCustomerId();
+		if((int) $customer_id > 0) {
+			$customer = Mage::getModel('customer/customer')
+						->getCollection()
+						->addFieldToFilter('entity_id', $customer_id)
+						->getFirstItem();
+			return $customer;
+		}
+
+		return false;
+	}
+
 
 	public function get_identifiers($customer_id) {
 		if((int) $customer_id > 0){
@@ -94,7 +117,7 @@ class Arush_Oneall_Helper_Identifiers extends Mage_Core_Helper_Abstract {
 
 		$identifier = Mage::getModel('oneall/identifiers')
 							->getCollection()
-							->addFieldToFilter('oneall_identifier_id', $id)
+							->addFieldToFilter('identity_token', $id)
 							->getFirstItem();
 		if($identifier->getCustomerId() == $customer_id) {
 			try {

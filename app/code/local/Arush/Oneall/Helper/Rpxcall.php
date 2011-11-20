@@ -215,59 +215,6 @@ try {
 
     }
 
-	/*
-public function rpxLinkCall($connectionToken) {
-	
-		
-	
-		$token = $connectionToken;
-		
-		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_URL, $OAdomain.'connections/'.$token .'.json');
-	
-		curl_setopt($curl, CURLOPT_HEADER, 0);
- 		curl_setopt($curl, CURLOPT_USERPWD, $OAusername . ":" . $OApassword);
-		curl_setopt($curl, CURLOPT_TIMEOUT, 5);
-		curl_setopt($curl, CURLOPT_VERBOSE, 0);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 1);
-		curl_setopt($curl, CURLOPT_FAILONERROR, 0);
-	
-		$json = curl_exec($curl);
-		$info = curl_getinfo($curl);
-		$infoverbose = 'Took ' . $info['total_time'] . ' seconds for url ' . $info['url'] . ' with code ' . $info['http_code'];
-
-		//Error
-		if ( ($json = curl_exec($curl)) === false)
-		{
-			echo 'Curl error: ' . curl_error($curl);
-		}
-		//Success
-		else
-		{
-			//Close connection
-			curl_close($curl);
-			try {
-	               // $result = json_decode($body);
-	               $result = json_decode($json);  //moved here from above
-	            }
-	            catch (Exception $e) {
-	                throw Mage::exception('Mage_Core', $e);
-	            }
-	
-	            if ($result) {
-	                return $result;
-	            }
-	            else {
-	                throw Mage::exception('Mage_Core', $infoverbose);
-	            }
-	            // end varien flow
-
-		}
-		
-	}
-*/
-
 
 	public function getFirstName($auth_info) {
 		if (isset($auth_info->response->result->data->user->identity->name->givenName))
