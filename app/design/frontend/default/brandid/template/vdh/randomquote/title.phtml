@@ -1,5 +1,8 @@
 <?php
 	
+	$_category = false;
+	$_product = false;
+	
     if(Mage::registry('current_product')) {
     	$_product = Mage::registry('current_product');
 	    $_helper    = $this->helper('catalog/output');
