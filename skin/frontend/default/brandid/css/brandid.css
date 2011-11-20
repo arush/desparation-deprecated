@@ -522,7 +522,7 @@ float:right;}
 	position: relative;
 }
 
-.title-cms-block {
+.title-cms-block, .title-block .title .product-description-block {
 	float:left;
 	background-color:white;
 	padding:20px;
@@ -542,6 +542,16 @@ p.title-block-image {
 	width: 520px;
 	
 }
+
+.title-block .title .product-title {
+	float:left;
+}
+
+.title-block .title .product-description-block {
+	float: right;
+}
+
+/*END TITLE WIDGET */
 
 .urlcode-input-box .edit {
 	position: relative;
