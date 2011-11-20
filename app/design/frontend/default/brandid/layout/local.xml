@@ -10,6 +10,7 @@
 
             <action method="addCss"><stylesheet>fonts/fonts.css</stylesheet></action>            
 			<action method="addItem"><type>skin_js</type><name>js/brandid.js</name></action>    
+			<action method="addItem"><type>skin_js</type><name>js/gauge.js</name></action>    			
 			<action method="addItem"><type>skin_js</type><name>js/flipcounter.min.js</name></action>    		
 					
     	</reference>

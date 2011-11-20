@@ -165,5 +165,31 @@
                 <sort_order>20</sort_order>		                   
             </content>                           
         </parameters>        
-    </countdown>                 
+    </countdown>     
+    
+    <gauge type="randomquote/gauge">
+        <name>Points Gauge</name>
+        <description type="desc">Displays points needed for next free gift</description>
+		<parameters>
+            <template translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <label>Template</label>
+		        <type>select</type>
+                <values>
+                    <gauge translate="label">
+                        <value>vdh/randomquote/gauge.phtml</value>
+                        <label>Gauge	</label>
+                    </gauge>
+                </values>
+            </template>
+            <title translate="label">
+                <required>1</required>
+                <visible>1</visible>
+                <label>Title</label>
+		        <type>text</type>
+                <sort_order>10</sort_order>		                        
+            </title>
+        </parameters>        
+    </gauge>                  
 </widgets> 
