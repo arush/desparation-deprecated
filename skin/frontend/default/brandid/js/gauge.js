@@ -2774,7 +2774,9 @@
         z.setInterval(pa(this.fb, this), this.Jb)
     }
     Qd.prototype.fb = function () {
-        this.ka.send(this.vb)
+
+        this.ka.send(this.vb);
+    	if (this.vb.indexOf('init') < 0) this.vb = this.vb + '/init/1';
     };
     Qd.prototype.Gb = function () {
         var a;
