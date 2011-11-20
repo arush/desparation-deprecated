@@ -138,10 +138,9 @@ class Arush_Oneall_Helper_Data extends Mage_Core_Helper_Abstract {
 	}
 	
 	
-	public function getDeleteTrue($deleteTrue) {
+	public function getDeleteTrue($returnObject) {
 		if(isset($returnObject->response->result->status->code)) {
 			if($returnObject->response->result->status->code === 200) {
-				
 				if($returnObject->response->result->data->plugin->data->action == "unlink_identity" &&
 					$returnObject->response->result->data->plugin->data->status == "success") {
 						$deleteTrue = true;
@@ -152,12 +151,10 @@ class Arush_Oneall_Helper_Data extends Mage_Core_Helper_Abstract {
 						$deleteTrue = false;
 						return $deleteTrue;
 				}
-			
-				
 			}
-			
 		}
 		else { 
+		
 			$deleteTrue = "Something went wrong, please contact customer support";
 			return $deleteTrue;
 		}
