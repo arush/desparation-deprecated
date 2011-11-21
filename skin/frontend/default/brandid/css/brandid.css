@@ -232,7 +232,7 @@ margin-left:207px;}
 ,.top-header .catalogLinks a
 , .top-cart #basket-items {
 	display: block;
-	height: 80px;
+	height: 60px;
 	border: 0px;
 	border-top: solid 7px #cfcfcf;	
 	margin-top: -7px;
@@ -1327,13 +1327,14 @@ width:95px;
 .social-link.info-box {
 	margin-top:20px;
 	width: 560px;
+	float:left;
 }
 .social-link .black-title-bar {
 	padding: 10px;
 }
 
 #social_link_container {
-	padding:25px 64px;
+	padding:25px 60px;
 	background-color:white;
 }
 #social_link_container.loading {
@@ -1689,14 +1690,6 @@ input#p_method_sagepayserver + label, input#p_method_paypal_billing_agreement + 
 /* END ONEALL DUPLICATE */
 
 
-/* ONEALL SOCIAL LINKING */
-	
-.customer-account-index #social-link-container .plugin #providers .provider {
-	width:212px;
-}
-
-
-/* ONEALL SOCIAL LINKING */
 
 
 /* RANDOMQUOTE FOOTER */
@@ -2605,3 +2598,4 @@ margin-top: 411px;
 	font-size: 46px;
 	
 }
+

@@ -115,18 +115,12 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 			
 			
 			//$customer = Mage::helper('oneall/identifiers')->get_customer(Mage::helper('oneall')->getSocialId($auth_info));
-			$user_token = $auth_info->response->result->data->user->user_token;
-			
-			$customerCollection = Mage::helper('oneall/identifiers')->get_customer_from_user_token($user_token);
-						
-			/*
-$customerCollection = Mage::getModel('customer/customer')
+			$customerCollection = Mage::getModel('customer/customer')
 			->getCollection()
 			->addAttributeToSelect('oneall_user_token')
-			->addAttributeToFilter('oneall_user_token', );
-*/
+			->addAttributeToFilter('oneall_user_token', $auth_info->response->result->data->user->user_token);
 
-			if ($customerCollection !== false) {
+			if ($customerCollection->count() == 0) {
 				$this->loadLayout();
 				$block = Mage::getSingleton('core/layout')->getBlock('customer_form_register');
 				if($block !== false) {
@@ -169,7 +163,8 @@ $customerCollection = Mage::getModel('customer/customer')
 		
 		}
 	}
-
+	
+	
 	public function checkLinkAction() {
 	
 		$session = $this->_getSession();
