@@ -2,7 +2,7 @@
     	$today = time();
     	$nextDrop = mktime(0,0,0,date('m')+1,Mage::getStoreConfig('randomquote/general/delivery_date'), date('Y'));
     	//$drop = split('-', date('d-h-m-s', $nextDrop-$today));
-		$drop = preg_split('-', date('d-h-m-s', $nextDrop-$today));
+		$drop = preg_split('/[: -]/', date('d-h-m-s', $nextDrop-$today));
 ?>
 <div class="countdown">
 	<div class="title"><span><?php echo $this->getTitle(); ?></span></div>
