@@ -4,7 +4,7 @@
 ?>    
 <?php if($_productCollection->count()): ?>
 <?php $counter = $_productCollection->count(); ?>
-
+<?php echo  $this->getLayout()->createBlock('cms/block')->setBlockId('next-delivery-drop')->toHtml() ; ?>
 
 <ul class="plans-list">
 	<?php foreach($_productCollection as $product):?>

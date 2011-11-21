@@ -83,15 +83,11 @@ class Arush_Oneall_Helper_Identifiers extends Mage_Core_Helper_Abstract {
 			->addAttributeToFilter('oneall_user_token', $user_token)
 			->getFirstItem();
 
-
 		
 		$customer_id = $customerCollection->getCustomerId();
+		
 		if((int) $customer_id > 0) {
-			$customer = Mage::getModel('customer/customer')
-						->getCollection()
-						->addFieldToFilter('entity_id', $customer_id)
-						->getFirstItem();
-			return $customer;
+			return $customerCollection;
 		}
 
 		return false;
