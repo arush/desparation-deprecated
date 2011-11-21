@@ -89,15 +89,15 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 			
 			$token = $this->getRequest()->getPost('connection_token');
 			//testing echo
-			//echo $token;
+			echo $token;
 			
 			// Store token in session under random key
-			$key = Mage::helper('oneall')->rand_str(12);
-			Mage::getSingleton('oneall/session')->setData($key, $token);
+			// $key = Mage::helper('oneall')->rand_str(12);
+			// Mage::getSingleton('oneall/session')->setData($key, $token);
 
 			
 			// Redirect user to $this->authAction method passing $key as ses
-			$this->_redirect("arush-oneall/rpx/checkLink", array("ses" => $key));
+			//$this->_redirect("arush-oneall/rpx/addIdentifier", array("ses" => $key));
 		}
 		//else { echo 'watt up';}
 	}
@@ -113,20 +113,14 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 
 		if(isset($auth_info) && $auth_info->response->result->status->code ===200) {
 			
+			$socialid = 'not yet defined';
 			
 			//$customer = Mage::helper('oneall/identifiers')->get_customer(Mage::helper('oneall')->getSocialId($auth_info));
-			$user_token = $auth_info->response->result->data->user->user_token;
-			
-			$customerCollection = Mage::helper('oneall/identifiers')->get_customer_from_user_token($user_token);
-						
-			/*
-$customerCollection = Mage::getModel('customer/customer')
+			$customerCollection = Mage::getModel('customer/customer')
 			->getCollection()
 			->addAttributeToSelect('oneall_user_token')
-			->addAttributeToFilter('oneall_user_token', );
-*/
-
-			if ($customerCollection !== false) {
+			->addAttributeToFilter('oneall_user_token', $auth_info->response->result->data->user->user_token);
+			if ($customerCollection->count() == 0) {
 				$this->loadLayout();
 				$block = Mage::getSingleton('core/layout')->getBlock('customer_form_register');
 				if($block !== false) {
@@ -170,57 +164,23 @@ $customerCollection = Mage::getModel('customer/customer')
 		}
 	}
 
-	public function checkLinkAction() {
-	
+	public function addIdentifierAction() {
 		$session = $this->_getSession();
 
 		$key = $this->getRequest()->getParam('ses');
 		$token = Mage::getSingleton('oneall/session')->getData($key);
 		//$uuid = Mage::helper('oneall')->getUuid();
 		
-		//retrieve info from oneall about this connection
+		//add account to oneall
 		$linkResponse = Mage::helper('oneall/rpxcall')->rpxAuthInfoCall($token);
-		
-		$deleteTrue = Mage::helper('oneall')->getDeleteTrue($linkResponse);
-		if($deleteTrue == true) {
-			$deleteToken = $linkResponse->response->result->data->user->identity->identity_token;
-			
-			// Store deleteToken in session under 'delete'
-			Mage::getSingleton('oneall/session')->setData('delete', $deleteToken);
 
-			
-			// Redirect user to $this->removeIdAction
-			//echo 'removing';
+		$socialID = Mage::helper('oneall')->getSocialId($linkResponse);
 
-			$this->_redirect("arush-oneall/rpx/removeId", array("delete" => $deleteToken));
-
-		}
-		else if($deleteTrue == false) {
-			
-			Mage::getSingleton('oneall/session')->setData('response', $linkResponse);
-			
-			
-			$this->_redirect("arush-oneall/rpx/addIdentifier", array("ses" => 'response'));
-		}
-		
-		
-	}
-	
-	public function addIdentifierAction() {
-		
-		$session = $this->_getSession();
-		
-		$key = $this->getRequest()->getParam('ses');
-		$response = Mage::getSingleton('oneall/session')->getData($key);
-
-		$user_token = Mage::helper('oneall')->getUserToken($response);		
-		
-		$customer = Mage::helper('oneall/identifiers')->get_customer_from_user_token($user_token);
-		
+		$customer = Mage::helper('oneall/identifiers')->get_customer($socialID);
 				
 		if ($customer===false) {
 			$customer_id = $session->getCustomer()->getId();
-			$profile = Mage::helper('oneall')->buildProfile($response);
+			$profile = Mage::helper('oneall')->buildProfile($linkResponse);
 
 			Mage::helper('oneall/identifiers')
 					->save_identifier($customer_id, $profile);
@@ -255,7 +215,6 @@ $customerCollection = Mage::getModel('customer/customer')
 				->setEmail($email)
 				->setFirstname($firstname)
 				->setLastname($lastname);
-			
 			$this->_redirect('oneall/rpx/duplicate');
 		}
 
@@ -301,7 +260,7 @@ $customerCollection = Mage::getModel('customer/customer')
 
 	public function removeIdAction() {
 		$session = $this->_getSession();
-		$id = $this->getRequest()->getParam('delete');
+		$id = $this->getRequest()->getParam('identifier');
 
 		Mage::helper('oneall/identifiers')
 				->delete_identifier($id);
