@@ -25,7 +25,7 @@ class Vdh_Randomquote_Model_Customer extends Varien_Object {
 		$relations = unserialize(Mage::getStoreConfig('randomquote/general/plans'));
 		
 		$priority = 0;
-		$customerGroupId = 0;
+		$customerGroupId = 1;
 		
 		foreach($relations as $relation) {
 			if (in_array($relation['sku'], $skus) && $relation['priority'] > $priority) {
