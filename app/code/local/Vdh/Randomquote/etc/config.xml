@@ -8,16 +8,16 @@
     <global>
     
 		<events>
-			<customer_save_after>
-                <observers>
+			<customer_load_before>
+				<observers>
                     <randomquote>
                         <type>singleton</type>
                         <class>Vdh_Randomquote_Model_Observer</class>
                         <method>customerSave</method>
                     </randomquote>
                 </observers>
-            </customer_save_after> 
-			<sales_recurring_profile_save_after>
+            </customer_load_before> 
+			<controller_action_predispatch_sales_recurring_profile_view>
                 <observers>
                     <randomquote>
                         <type>singleton</type>
@@ -25,7 +25,7 @@
                         <method>profileSave</method>
                     </randomquote>
                 </observers>
-            </sales_recurring_profile_save_after>
+            </controller_action_predispatch_sales_recurring_profile_view>
 			<sales_order_save_after>
                 <observers>
                     <randomquote>

@@ -13,9 +13,7 @@ class Vdh_Randomquote_Model_Observer {
 	}	
 
 	public function profileSave($observer) {
-		Mage::log($observer->getEvent(), null, 'profile.log');
-		$profile = $observer->getEvent()->getRecurringProfile();
-		$customer = Mage::getModel('customer/customer')->load($profile->getCustomerId());
+		$customer = Mage::getModel('customer/customer')->load(Mage::getSingleton('customer/session')->getId());
 		return Mage::getModel('randomquote/customer')->setGroupId($customer);
 	}	
 	

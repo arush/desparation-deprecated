@@ -2,7 +2,6 @@
 class Vdh_Randomquote_Model_Customer extends Varien_Object {
 
 	public function setGroupId($customer = false) {
-	
 		if ($customer === false) {
 			$customerId = Mage::getSingleton('customer/session')->getId();		
 			$customer = Mage::getModel('customer/customer')->load($customerId);
@@ -26,14 +25,12 @@ class Vdh_Randomquote_Model_Customer extends Varien_Object {
 		
 		$priority = 0;
 		$customerGroupId = 1;
-		
 		foreach($relations as $relation) {
 			if (in_array($relation['sku'], $skus) && $relation['priority'] > $priority) {
 				$priority = $relation['priority'];
 				$customerGroupId = $relation['customer_group_id'];
 			}
 		}
-		
 		if ($customerGroupId != $customer->getGroupId()) {
 			$customer->setGroupId($customerGroupId);
 			$customer->setCustomerGroupId($customerGroupId);
