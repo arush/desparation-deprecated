@@ -3,6 +3,7 @@
 	<div id="inviteGauge"></div>
 	<div id="inviteCounter" class="flip-counter"></div>
 	<span class="text"><?php echo $this->__('invitations to converted signups'); ?></span>
+	<span class="text total-signups">50 signups</span>
 </div>	
 <script type='text/javascript'>
 	var inviteCounter = new flipCounter('inviteCounter', {value:0, inc:3, pace:15, tFH: 20, bFH: 34, fW: 28, bOffset: 200});
@@ -22,21 +23,3 @@
     new SiteTotal(config);
 })();
 </script>
-<style type="text/css">
-.invite-gauge {
-	background: #fff;
-	width: 270px;
-	padding: 15px;
-	text-align: center;
-}
-
-.invite-gauge h3 {
-	display: inline;
-	padding: 10px;
-	color: #fff;
-	background: #000;
-	font-size: 16px;
-	font-family: ProximaNovaBold;
-	
-}
-</style>

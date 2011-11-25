@@ -2649,6 +2649,13 @@ margin-top: 411px;
 	font-size: 16px;
 
 }
+.invite-gauge span.total-signups {
+	color:#cfcfcf;
+	font-family:ProximaNovaBold;
+	position:absolute;
+	margin: -74px 0 0 189px;
+font-size: 14px;
+}
 
 .info-box.my-info {
 	width:270px;
