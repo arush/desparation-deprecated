@@ -339,3 +339,20 @@ padding-left:0;
 	font-size: 21px;
 	color: #D2002B;
 }
+
+.invite-gauge {
+	background: #fff;
+	width: 270px;
+	padding: 15px;
+	text-align: center;
+}
+
+.invite-gauge h3 {
+	display: inline;
+	padding: 10px;
+	color: #fff;
+	background: #000;
+	font-size: 16px;
+	font-family: ProximaNovaBold;
+	
+}
