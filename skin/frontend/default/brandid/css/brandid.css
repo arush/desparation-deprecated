@@ -2637,11 +2637,11 @@ margin-top: 411px;
 	
 }
 
-.customer-account-index .inviteCounter {
+.customer-account-index #inviteCounter {
 	margin-left: 61px;
 }
 
-.customer-account-index .inviteCounter span.text {
+.customer-account-index #inviteCounter span.text {
 	display: block;
 	margin-top: 10px;
 	color: #595959;
