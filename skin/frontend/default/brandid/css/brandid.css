@@ -2678,6 +2678,32 @@ margin-top: 411px;
 .my-account #address-title {
 	clear:both;
 }
+
+.footer .sliders {
+	background:none;
+	
+}
+.footer .sliders .holder {
+	height:auto;
+}
+.footer .sliders .holder .slider {
+	heigh:163px;
+}
+
+.footer .sliders .holder .left, .sliders .holder .right{
+	margin-top:184px;
+}
+
 .customer-account-index .my-account {
 	float:left;
+}
+
+.sliders.quickie {
+	margin:30px 0 35px 0;
+}
+
+.sliders.quickie .holder {
+	background:none;
+	margin-top:20px;
+	
 }

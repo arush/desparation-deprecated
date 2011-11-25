@@ -356,3 +356,41 @@ padding-left:0;
 	font-family: ProximaNovaBold;
 	
 }
+
+.footer-before-container .sliders {
+	background:none;
+	
+}
+.footer-before-container .sliders .holder {
+	height:auto;
+}
+.footer-before-container .sliders .holder .slider {
+	heigh:163px;
+}
+
+.footer-before-container .sliders .holder .left, .footer-before-container .sliders .holder .right{
+	margin-top:-228px;
+}
+
+.customer-account-index .my-account {
+	float:left;
+}
+
+.footer-before-container .sliders.quickie {
+	background:none;
+}
+
+.footer-before-container .sliders .holder .slider ul li {
+	height:auto;
+	background:none;
+}
+
+.sliders-footer-container.quickie {
+	margin:30px 0 35px 0;
+}
+
+.sliders-footer-container.quickie .holder {
+	background:none;
+	margin-top:20px;
+	
+}
