@@ -8,11 +8,11 @@ html {
 }
 
 body {
-background: #f4f4ed none repeat scroll 0% 0%;
-color: #C1C1C1;
-font: normal normal normal 0.75em/1.35 Arial, Helvetica, sans-serif;
-height: 100%;
-text-align: center;
+	background: #f4f4ed none repeat scroll 0% 0%;
+	color: #C1C1C1;
+	font: normal normal normal 0.75em/1.35 Arial, Helvetica, sans-serif;
+	height: 100%;
+	text-align: center;
 }
 
 img {
@@ -10789,7 +10789,6 @@ a.cat-view-now:hover {
 	background: none;
 	padding: 0;
 	margin: 20px 0 0;
-	float: left;
 }
 .my-account .page-title h4, .rewards-sidebar .page-title h4{
 	color: #2e2e2e;

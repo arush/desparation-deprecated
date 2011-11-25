@@ -2638,15 +2638,15 @@ margin-top: 411px;
 }
 
 .customer-account-index #inviteCounter {
-	margin-left: 61px;
+	margin-left: 29px;
 }
 
-.customer-account-index .invite-gauge span.text {
+.invite-gauge span.text {
 	display: block;
 	margin-top: 10px;
 	color: #595959;
 	font-family: ProximaNovaLight;
-	font-size: 14px;
+	font-size: 16px;
 
 }
 
@@ -2665,4 +2665,7 @@ margin-top: 411px;
 
 .my-account #address-title {
 	clear:both;
+}
+.customer-account-index .my-account {
+	float:left;
 }

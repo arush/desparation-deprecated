@@ -56,10 +56,23 @@ class Vdh_Randomquote_Helper_Data extends Mage_Core_Helper_Abstract {
 	
 	public function getInvitesRemaining() {
 	
-		$invites = Mage::getModel('rewardsref/referral')->getCollection()->addFieldToFilter('referral_parent_id', Mage::getSingleton('customer/session')->getId());
+		$invites = Mage::getModel('rewardsref/referral')->getCollection()
+		->addFieldToFilter('referral_parent_id', Mage::getSingleton('customer/session')->getId())
+		->addFieldToFilter('referral_status', 1);
 		
 		$invitesRemaining = 50 -($invites->count() % 50);
 		return $invitesRemaining;
 	
 	}
+	
+	public function getInvitesSent() {
+	
+		$invites = Mage::getModel('rewardsref/referral')->getCollection()
+		->addFieldToFilter('referral_parent_id', Mage::getSingleton('customer/session')->getId());
+		
+		$invitesRemaining = 50 -($invites->count() % 50);
+		return $invitesRemaining;
+	
+	}
+	
 }
