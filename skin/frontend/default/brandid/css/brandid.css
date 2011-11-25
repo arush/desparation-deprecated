@@ -2620,26 +2620,26 @@ margin-top: 411px;
 	
 }
 
-.my-account .invite-gauge {
+.customer-account-index .invite-gauge {
 	float:right;
 	width: 347px;
 	
 }
-.my-account .invite-gauge h3 {
+.customer-account-index .invite-gauge h3 {
 	font-weight: normal;
 	display:block;
 }
 
-.my-account .chartbeatWidget {
+.customer-account-index .chartbeatWidget {
 	width:327px;
 	
 }
 
-.my-account .inviteCounter {
+.customer-account-index .inviteCounter {
 	margin-left: 61px;
 }
 
-.my-account .inviteCounter span.text {
+.customer-account-index .inviteCounter span.text {
 	display: block;
 	margin-top: 10px;
 	color: #595959;
