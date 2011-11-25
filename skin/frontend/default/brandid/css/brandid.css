@@ -2149,10 +2149,6 @@ clear:both;
 }
 
 
-
-
-
-
 .lucky-dip-box .lucky-dip-points-container span.points-number, .products-grid .lucky-dip-points-container span.points-number {
 	color: white;
 	position: absolute;
@@ -2622,4 +2618,32 @@ margin-top: 411px;
 	margin: -336px 0 0 332px;
 	position: absolute;
 	
+}
+
+.my-account .invite-gauge {
+	float:right;
+	width: 347px;
+	
+}
+.my-account .invite-gauge h3 {
+	font-weight: normal;
+	display:block;
+}
+
+.my-account .chartbeatWidget {
+	width:327px;
+	
+}
+
+.my-account .inviteCounter {
+	margin-left: 61px;
+}
+
+.my-account .inviteCounter span.text {
+	display: block;
+	margin-top: 10px;
+	color: #595959;
+	font-family: ProximaNovaLight;
+	font-size: 14px;
+
 }
