@@ -25,7 +25,7 @@
  */
 ?>
 
-<div class="info-box">
+<div class="info-box my-info">
             <div class="black-title-bar"><?php echo $this->__('My Info') ?> <a class="red-title-button" href="<?php echo $this->getUrl('customer/account/edit') ?>"><?php echo $this->__('Edit') ?></a></div>
             <p class="box-content">
                 <?php echo $this->htmlEscape($this->getCustomer()->getName()) ?><br />
@@ -35,7 +35,7 @@
 </div>
 
 <?php if( $this->isNewsletterEnabled() ): ?>
-        <div class="info-box">
+        <div class="info-box newsletter-box">
             <div class="black-title-bar"><?php echo $this->__('Newsletters') ?> <a class="red-title-button" href="<?php echo $this->getUrl('newsletter/manage') ?>"><?php echo $this->__('Edit') ?></a></div>
             <p class="box-content">
                 <?php if( $this->getIsSubscribed() ): ?>

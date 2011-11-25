@@ -2649,3 +2649,20 @@ margin-top: 411px;
 	font-size: 14px;
 
 }
+
+.info-box.my-info {
+	width:270px;
+	margin-right:20px;
+	float:left;
+}
+
+.info-box.newsletter-box {
+	width:270px;
+	min-height: 165px;
+	float:left;
+	
+}
+
+.my-account #address-title {
+	clear:both;
+}
