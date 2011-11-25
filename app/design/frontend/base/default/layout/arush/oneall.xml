@@ -73,6 +73,7 @@
 		<reference name="content">
 			<block type="core/template"
             name="arush_oneall_social_linking"
+            as="social"
 			after="-"
             template="arush/oneall/social_linking.phtml"/>
 		</reference>

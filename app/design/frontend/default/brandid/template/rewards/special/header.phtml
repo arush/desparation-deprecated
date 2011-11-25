@@ -54,12 +54,30 @@ $header_points_balance = (int)substr_replace($pointssummary,"",-7);
 		</a>
 		<?php if($this->getPointsSummary() != ""): ?>
 		<?php
+		/*
 		if (!Mage::getSingleton('customer/session')->getPointsLoaded()) {
-			Mage::getSingleton('customer/session')->setPointsLoaded('1');
-			$startValue = (int)($header_points_balance-($header_points_balance/8));
+					Mage::getSingleton('customer/session')->setPointsLoaded('1');
+		*/
+
+		$routeName = Mage::app()->getRequest()->getRouteName();
+		$identifier = Mage::getSingleton('cms/page')->getIdentifier();
+ 
+		if($routeName == 'cms' && $identifier == 'home') {
+		
+
+			if($header_points_balance > 1000) {
+				$startValue = $header_points_balance - 100;
+			}
+			else if($header_points_balance > 0){
+				$startValue = (int)($header_points_balance-($header_points_balance/10));
+			}
+			else { // $header_points_balance = 0
+				$startValue = 100;
+			}
+			 		
 		} else {
 			$startValue = $header_points_balance;		
-		}		
+		}
 		?>
 		<script type="text/javascript">
 			document.observe('dom:loaded', function(){

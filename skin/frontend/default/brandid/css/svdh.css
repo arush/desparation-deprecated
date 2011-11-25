@@ -269,17 +269,50 @@
 }
 
 .my-points {
-	width: 308px;
+	width: 378px;
 	float: right;
+	margin-top: 20px;
 }
 .my-points h1 {
 	padding: 10px;
 }
+#my-points {
+float:left;}
+
+a#earn {
+	color:white;
+	-webkit-transition: color 200ms ease-in;
+	-moz-transition: color 200ms ease-in;
+	-o-transition: color 200ms ease-in;
+	transition: color 200ms ease-in;
+	
+}
+a#earn:hover {
+	color:black;
+	}
+
+
 .my-points .content {
 	float: left;
-	width: 268px;
+	width: 338px;
 	padding: 20px;
 	background: #fff;
+	color: #595959;
+	font-family: ProximaNovaLight;
+	font-size: 14px;
+}
+
+.my-points span {
+	margin-top:20px;
+	float: left;
+	display:block;
+	margin-left: 10px;
+	
+}
+
+.my-points span.info {
+clear:both;
+padding-left:0;
 }
 
 .quickie-tier-prices {

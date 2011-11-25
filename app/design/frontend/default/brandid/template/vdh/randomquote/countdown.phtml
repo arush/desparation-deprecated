@@ -4,28 +4,31 @@
     	//$drop = split('-', date('d-h-m-s', $nextDrop-$today));
 		$drop = explode('-', date('d-h-m-s', $nextDrop-$today));
 ?>
-<div class="countdown">
-	<div class="title"><span><?php echo $this->getTitle(); ?></span></div>
-	<div class="content">
-		<div class="counter">
-			<ul>
-				<li><?php echo $this->__('Days'); ?></li>
-				<li><?php echo $this->__('Hours'); ?></li>
-				<li><?php echo $this->__('Minutes'); ?></li>
-				<li><?php echo $this->__('Seconds'); ?></li>												
-			</ul>
-			<ul class="flip-counter-ul">
-				<li><div id="countdownDays" class="flip-counter"></div></li>
-				<li><div id="countdownHours" class="flip-counter"></div></li>
-				<li><div id="countdownMinutes" class="flip-counter"></div></li>
-				<li class="last"><div id="countdownSeconds" class="flip-counter"></div></li>												
-			</ul>			
-			
+<div class="countdown-subscription">
+	<div class="countdown">
+		<div class="title"><span><?php echo $this->getTitle(); ?></span></div>
+		<div class="content">
+			<div class="counter">
+				<ul>
+					<li><?php echo $this->__('Days'); ?></li>
+					<li><?php echo $this->__('Hours'); ?></li>
+					<li><?php echo $this->__('Minutes'); ?></li>
+					<li><?php echo $this->__('Seconds'); ?></li>												
+				</ul>
+				<ul class="flip-counter-ul">
+					<li><div id="countdownDays" class="flip-counter"></div></li>
+					<li><div id="countdownHours" class="flip-counter"></div></li>
+					<li><div id="countdownMinutes" class="flip-counter"></div></li>
+					<li class="last"><div id="countdownSeconds" class="flip-counter"></div></li>												
+				</ul>			
+				
+			</div>
 		</div>
+		<div class="text"><span><?php echo $this->getContent();?></span></div>
+		
 	</div>
-	<div class="text"><span><?php echo $this->getContent();?></span></div>
-	
 </div>
+
 <script type="text/javascript">
 
 	var nextDrop = <?php echo $nextDrop-$today; ?>;

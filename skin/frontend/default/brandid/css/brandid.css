@@ -1326,7 +1326,7 @@ width:95px;
 
 .social-link.info-box {
 	margin-top:20px;
-	width: 560px;
+	width: 100%;
 	float:left;
 }
 .social-link .black-title-bar {
@@ -1334,7 +1334,7 @@ width:95px;
 }
 
 #social_link_container {
-	padding:25px 60px;
+	padding:25px 250px;
 	background-color:white;
 }
 #social_link_container.loading {
@@ -2125,7 +2125,7 @@ clear:both;
 	display:block;
 }
 
-.lucky-dip-box .points-triangle, .products-grid .points-triangle {
+.lucky-dip-box .points-triangle, .products-grid .points-triangle, .my-points .points-triangle {
 	width: 0;
 	height: 0;
 	border-left: 93px solid transparent;
@@ -2142,6 +2142,14 @@ clear:both;
 	border-top: 93px solid transparent;
 	z-index: 1;
 }
+
+.my-points .points-triangle {
+	margin:	-69px 0 0 266px;
+
+}
+
+
+
 
 
 
@@ -2160,7 +2168,7 @@ clear:both;
 	display:block;
 }
 
-.lucky-dip-box .lucky-dip-points-container, .products-grid .lucky-dip-points-container {
+.lucky-dip-box .lucky-dip-points-container, .products-grid .lucky-dip-points-container, .my-points .points-triangle-container {
 	color: white;
 	position: absolute;
 	font-size: 14px;
@@ -2172,6 +2180,12 @@ clear:both;
 	height:44px;
 	width: 70px;
 }
+
+.my-points .points-triangle-container {
+	margin: -60px 0 0 313px;
+}
+
+
 
 .products-grid .lucky-dip-points-container {
 	margin: 236px 0 0 180px;
@@ -2599,3 +2613,13 @@ margin-top: 411px;
 	
 }
 
+.category-plans .countdown-subscription {
+	margin: 0 auto;
+	width:970px;
+}
+
+.category-plans .countdown {
+	margin: -336px 0 0 332px;
+	position: absolute;
+	
+}
