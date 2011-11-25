@@ -2654,8 +2654,13 @@ margin-top: 411px;
 	font-family:ProximaNovaBold;
 	position:absolute;
 	margin: -74px 0 0 189px;
-font-size: 14px;
+	font-size: 14px;
 }
+
+.customer-account-index .invite-gauge span.total-signups {
+	margin: -74px 0 0 227px;
+}
+
 
 .info-box.my-info {
 	width:270px;
