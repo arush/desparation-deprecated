@@ -177,8 +177,12 @@
 	text-align: left;
 }
 
-.relationship h1 {
-	display: inline;
+ul.relationship {
+	margin-top:20px;
+
+}
+
+.relationship span.black-title-med {
 	float: none;
 	padding: 10px;
 	margin: 10px 0;
@@ -187,16 +191,14 @@
 .relationship h3 {
 	font-family: ProximaNovaBold;
 	font-size: 26px;
-	padding-left: 45px;
+	padding-left: 38px;
+	font-weight: normal;
+	text-transform: uppercase;
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAATCAIAAADnDkEVAAAEMElEQVQ4EZ1UfWxTVRS/r33tSlu6drRdvw3dujFIANkqYw6/RkDJkMgM0sRAFPxCQWfMjJqpif4hwxAQRoxTmFMgy5aNxUxwWbJMTFgMYwNhzPKEjG1d29nadi17/Viv99733qhNliyeP94795zf/d1zz8elXC4XWEBWPFaz/ckyo1atyGEvnTnS0j++AHBBM72Qh7bt+Pj1GsGbW/mE83+wi4T92f90YKC5taN3cIJzRGei2YhFrIXYKXnljl2PFhuoyO2vG9tCEKRjnp6u9rQ0WH56n5ICNC1ZBFs2hGcX6av21WySAgBZqUrUFprjcdaK1Ygaicf9R/bWRaz5zEh1cg4cGxu5J1Aji0wu4+wzMXYRbNkQPnadbTkKHMm4+1YmZOUKE17CGHP9b/RXaO1FVp0EBH4fYjJhnE4vMxfbLEppYuzGsDcGkZHecqBht1OXADkcomTbB01PxZDuvdZWf6JHkoOPh3FfVOd89509ZQ+pOdj9ib733m9C5eGEUq6t/ejVeS+AkZ+O158bmBZp8rQUnUNIeKiCyFxwCopMK625yErJ7G9++PaDzQDILRWVVj6rlKrySGMd5+WTSqmqX96bLwJ097eHR9Wqqr37Sw0SAIOd35xiIlAqBX7mBgBGWugpdMb0XwOt33fon63bWaYFMJXiAqfkBz99Ix81FAz+8MnBi/6KhqP7zTJAKQqcFhE9M3lraMq0TUkywHp/vXTVl+YvIc4vNSlwx0D23ukvP+8dwS1f6v0HAC1SaNJLeeUvrTdgbeT8VxeYNBTdmeWvFEd9QGKjZDKCTQQmw0Iq8X6VRIx+ADD9ZzhqpDsKjcQ2x8W+dfMatIRRd0uHu8pVW/O0U00GIx2eGg+kMbtYu8pAispGQ2wGu9VRtIQEOBuOE0aAKlFoUGA6dmLEgyI1FZrxklIWffbdWQnXdiDuvtx19MR5VHPMLtGpxYTFP/afd0qvX0pI43cZD1GASGnPz8XQRMDnRwmkwPxsIOpkzH/1t57W9gtcOyIYZrfYzNyps+EIx8J9jSYdVmAqFrnPWaS25UtJHMFxBt+S6NiV9PzY8MXPN/FMZAougaNYj00wMnSZQZet3vX8Oh0FqLxiC0lC3Dc6yRfaUVJI4kiNXrmSyYIy5R59QL160+7a17bK0OuEQHIZGXdK9WL9oZ0aM8p11M6+cti3jDQM2pkQmFY5uJLSj2yvc75VEB1sRw2ERWp3vbCh+Rr9+MbyDesf1qAqwthw50UaxWg34pFBIs4zLwEgHbp58ni3xPicBh8N4v7J+ZcnCVPYhJ4EWwH6esNTw0y4ZC0e4JLqA4eqsQtJInSnrelY33Qujabgz4nwOi1GwFT4en/nsVM9KKcFG/mG8Y7dJVvwJykUEbL+X842tvTepq2qZ9bsUQsFSEY9fd3nmrsGMZrS/AtH53/RDRGKhAAAAABJRU5ErkJggg==);
+	background-repeat: no-repeat;
+	background-position: 0 6px;
 }
-.relationship span.title {
-	font-family: 'pt-serif-caption';	
-	font-style: italic;
-	position: absolute;
-	margin-top: -3px;
-	margin-left: -45px;
-	font-size: 22px;
-}
+
 .relationship ul li {
 	background: #595959;
 	padding: 10px;
@@ -212,15 +214,37 @@
 .relationship span {
 	font-family: ProximaNovaBold;
 }
-.relationship .price .price {
+.relationship .price {
 	color: #cfcfcf;
 	font-size: 21px;
 }
-.relationship .special-price .price {
+.relationship .special-price {
 	color: #fff;
 	font-size: 50px;
-
+	line-height: 44px;
 }
+
+.relationship a {
+	display: block;
+	float: right;
+	background-color: #D2002B;
+	padding: 14px 52px;
+	font-family: ProximaNovaBold;
+	color: white;
+	text-transform: uppercase;
+	margin-right: 2px;
+	-webkit-transition: background-color 200ms ease-in;
+	-moz-transition: background-color 200ms ease-in;
+	-o-transition: background-color 200ms ease-in;
+	transition: background-color 200ms ease-in;
+	
+}
+
+.relationship a:hover {
+	background-color:black;
+}
+
+
 
 .plans-list li {
 	background: #fff;
