@@ -40,8 +40,6 @@
 </style>
 <![endif]-->
 
-<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('login-bg')->toHtml() ?> 
-
 <div class="account-login<?php if (!$this->helper('customer')->isRegistrationAllowed()) echo ' login-only' ?>" />
 
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
@@ -150,7 +148,7 @@
 								
 								
 								<div class="panel" id="forgotpass">
-									<form action="<?php echo $this->getUrl('*/*/forgotpasswordpost') ?>" method="post" id="form-validate">
+									<form action="<?php echo $this->getUrl('customer/account/forgotpasswordpost') ?>" onsubmit="return false" method="post" id="form-validate">
 										<fieldset>
 											<div class="field set">
 												<div class="password-message"><?php echo $this->__('Please enter your email below and we\'ll send you a new password.') ?></div>
@@ -164,9 +162,14 @@
 													</ul>
 													<div class="buttons-set form-buttons">
 														<button type="submit" name="submit" class="button" id="submit_btn" value="Send"><span><span class="cufon"><?php echo $this->__('Reset Password') ?></span></span></button>
+														
+																												
 														<div class="forgotpass-back-link"><a href="#login">return to login</a></div>
 
-													<div style="clear: both;"><!-- --></div>
+														<div style="clear: both;"><!-- --></div>
+													
+														<span id="forgotpass-response"></span>
+
 												</div>
 											</div>
 										</fieldset>
@@ -197,22 +200,47 @@
         
     
 
-	<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('home-text')->toHtml() ?>
-	<?php /* ?><div id="content-links">
-		
-		<ul>
-			<li><a id="about-box" href = "javascript:void(0)" onclick = "document.getElementById('light1').style.visibility='visible';document.getElementById('fade').style.display='block'">photography</a></li>
-			<li><a id="terms-service-box" href = "javascript:void(0)" onclick = "document.getElementById('light2').style.visibility='visible';document.getElementById('fade').style.display='block'">terms</a></li>
-			<li><a id="privacy-box" href = "javascript:void(0)" onclick = "document.getElementById('light3').style.visibility='visible';document.getElementById('fade').style.display='block'">privacy policy</a></li>
-			<li>copyright 2011</li>
-		</ul>
-	</div><?php */ ?>
+	
     <script type="text/javascript">
     //<![CDATA[
         var dataForm = new VarienForm('login-form', true);
     //]]>
     </script>
     
+    <script type="text/javascript">
+    //<![CDATA[
+		$('submit_btn').observe('click', function(){
+		    
+		    $('forgotpass-response').addClassName('loading');
+			$('forgotpass-response').innerHTML = 'Resetting your password…';
+		    
+		    var ajax = this.form.request({
+		        onSuccess: function(transport) {
+		            if(transport.responseText.indexOf('This email address was not found in our records.') >= 0) {
+          				$('forgotpass-response').removeClassName('loading');
+						$('forgotpass-response').innerHTML="Address not found";
+		            }
+		            else if(transport.responseText.indexOf('Invalid email address.') >= 0) {
+          				$('forgotpass-response').removeClassName('loading');
+						$('forgotpass-response').innerHTML="Invalid email address";
+		            }
+		            else if(transport.responseText.indexOf('Please enter your email.') >= 0) {
+          				$('forgotpass-response').removeClassName('loading');
+						$('forgotpass-response').innerHTML="Please enter an email address";
+		            }
+		            else {
+          				$('forgotpass-response').removeClassName('loading');
+						$('forgotpass-response').innerHTML="Done - check your email";
+		            }
+
+
+		            
+		        }
+		    });
+		    Event.stop();
+		});
+    //]]>
+    </script>
   
             
 </div>

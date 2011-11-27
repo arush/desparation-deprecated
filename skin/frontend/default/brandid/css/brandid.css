@@ -1244,7 +1244,7 @@ text-align:right;
 width:95px;
 }
 
-.account-login #panes {
+.account-login #panes, #checkout-step-login #panes {
 	margin-bottom:50px;
 }
 
@@ -1685,6 +1685,10 @@ input#p_method_sagepayserver + label, input#p_method_paypal_billing_agreement + 
 	background: url('../images/ajax-loader.gif') no-repeat 0% 50%;
 
     padding-left: 28px;
+}
+
+.account-login #forgotpass-response {
+	margin-left: 110px;
 }
 
 /* END ONEALL DUPLICATE */
@@ -2661,6 +2665,9 @@ margin-top: 411px;
 	margin: -74px 0 0 227px;
 }
 
+.customer-account-login account-login {
+	padding-top: 34px;
+}
 
 .info-box.my-info {
 	width:270px;
@@ -2679,31 +2686,83 @@ margin-top: 411px;
 	clear:both;
 }
 
-.footer .sliders {
-	background:none;
-	
-}
-.footer .sliders .holder {
-	height:auto;
-}
-.footer .sliders .holder .slider {
-	heigh:163px;
+
+#checkout-step-login .login-oneall, #checkout-step-login .registered-users {
+	padding:0;
+	margin:0;
 }
 
-.footer .sliders .holder .left, .sliders .holder .right{
-	margin-top:184px;
+#checkout-step-login .login-oneall {
+	width:204px;
 }
 
-.customer-account-index .my-account {
+#checkout-step-login .login-oneall p {
+	padding:0;
+}
+
+#checkout-step-login .register-on-checkout {
+	float:left;
+
+}
+
+#opc-login .col-1 { 
+	width:408px;
+}
+
+#checkout-step-login .scrollContainer div.panel {
+    width: 408px;
+}
+
+#opc-login .col-1 {
+	margin-left: 20px;
 	float:left;
 }
 
-.sliders.quickie {
-	margin:30px 0 35px 0;
+#checkout-step-login .form-list label {
+	width:125px;
+}
+#checkout-step-login .forgotpass-back-link {
+	width:139px;
+	float:left;
+	margin-top:18px;
+	
 }
 
-.sliders.quickie .holder {
+#opc-login #checkout-step-login .col2-set .button {
+	margin-left:2px;
+	width: 230px;
+	background-color: #d2002b;
+
+}
+#opc-login #checkout-step-login .col2-set .button:hover {
+	background-color: #000;
+
+}
+
+#opc-login #checkout-step-login .col2-set .button span span {
 	background:none;
+}
+#forgotpass .forgotpass-back-link {
+	width:103px;
+	text-align: right;
+	padding-right:5px;
+}
+
+#checkout-step-login .register-on-checkout .black-title-med {
+	padding: 9px 12px;
+	margin:0;
+	float:left;
+}
+
+#checkout-step-login .register-on-checkout {
 	margin-top:20px;
-	
+
+}
+
+#checkout-step-login #forgotpass-response {
+	margin-left:110px;
+}
+
+.opc {
+	height: 1100px;
 }

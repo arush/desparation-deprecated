@@ -69,6 +69,15 @@
     	</reference>
     </checkout_onepage_success>
     
+    <checkout_onepage_index>
+    	<reference name="head">
+	    	<action method="addJs"><script>jquery/jquery.localscroll-1.2.7-min.js</script></action>
+			<action method="addJs"><script>jquery/jquery.scrollTo-1.4.2-min.js</script></action>
+			<action method="addJs"><script>jquery/jquery.serialScroll-1.2.2-min.js</script></action>
+			<action method="addJs"><script>jquery/coda-slider.js</script></action>
+    	</reference>
+    </checkout_onepage_index>
+    
     
     <oneall_rpx_duplicate>
     	<reference name="head">

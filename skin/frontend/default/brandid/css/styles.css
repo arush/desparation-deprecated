@@ -7423,31 +7423,31 @@ div.validation-passed {
 /* gigya additions */
 .account-login .gigya-content {margin-left: 17px;}
 
-.account-login #slider {
+.account-login #slider, #checkout-step-login #slider {
   margin: 0 auto;
   position: relative;
 }
 
-.account-login #slider .scroll {
-  height: 150px;
+.account-login #slider .scroll, #checkout-step-login #slider .scroll {
+  height: 180px;
   overflow: auto;
   position: relative; /* fix for IE to respect overflow */
   clear: left;
   background: none;
 }
 
-.account-login .login-normal {
+.account-login .login-normal, ##checkout-step-login .login-normal {
 	height: 80px;
 }
 
-.account-login .scrollContainer div.panel {
+.account-login .scrollContainer div.panel, #checkout-step-login .scrollContainer div.panel {
   width: 350px; /* change to 560px if not using JS to remove rh.scroll */
   padding-bottom: 25px;
   padding-left: 2px;
   padding-top:8px;
 }
 
-.account-login #slider .navigation a, a#become-member {
+.account-login #slider .navigation a, a#become-member, #checkout-step-login #slider .navigation a {
 	padding: 16px;
 	float: left;
     color: #C1C1C1;
@@ -7458,22 +7458,22 @@ div.validation-passed {
     padding: 5px 19px 10px;
     position: relative;
 }
-.account-login #slider .navigation a.selected{
+.account-login #slider .navigation a.selected, #checkout-step-login #slider .navigation a.selected{
     background: url("../images/60_black.png") repeat scroll 0 0 transparent;
 	color: #eee;
 }
 
 
-.account-login #forgotpass {clear:both;height:300px;}
+.account-login #forgotpass, #checkout-step-login #forgotpass {clear:both;height:300px;}
 
-.account-login #forgotpass .password-message {
+.account-login #forgotpass .password-message, #checkout-step-login  #forgotpass .password-message {
 	padding: 0 20px;
 	color: #444;
 	font-size: 12px;
 	margin-bottom: 20px;
 }
 
-.account-login #forgotpass .form-list label {
+.account-login #forgotpass .form-list label, #checkout-step-login #forgotpass .form-list label {
 color: #444;
 font-size: 14px ! important;
 font-weight: normal;
@@ -7482,7 +7482,7 @@ width: 95px;
 float: left;
 }
 
-.account-login #forgotpass .form-buttons {width:auto; float: left;}
+.account-login #forgotpass .form-buttons, #checkout-step-login #forgotpass .form-buttons {width:auto; float: left;}
 
 /* .account-login #forgotpass .form-buttons .button {
 background: url("../images/sprites.gif") no-repeat scroll
@@ -7496,10 +7496,10 @@ text-transform: uppercase;
 } */
 
 
-.account-login #forgotpass .forgotpass-back-link a {
+.account-login #forgotpass .forgotpass-back-link a, #checkout-step-login #forgotpass .forgotpass-back-link a {
 		text-transform: lowercase;
 }
-.account-login #forgotpass .forgotpass-back-link a:hover {
+.account-login #forgotpass .forgotpass-back-link a:hover, #checkout-step-login #forgotpass .forgotpass-back-link a:hover {
 	text-decoration: underline;
 }
 
@@ -9852,7 +9852,7 @@ color: #555555;
   font-family: ProximaNovaLight;
 }
 #checkout-step-login .form-list label, #checkout-step-login .form-list .label {
-  text-align: left;
+  text-align: right;
 }
 #checkout-step-login .col2-set .col-2 li{
 	list-style-image: url("../images/listarrow2.png");
@@ -9889,7 +9889,7 @@ color: #555555;
 #checkout-step-login .checkout-register-leftcol .messages{
 	width: 225px;
 }
-#checkout-step-login .col2-set .buttons-set{width: 221px; float: right; margin: 10px 85px 0 0;}
+#checkout-step-login .col2-set .buttons-set{width: 408px; float: right; margin: 0;}
 #checkout-step-login .col2-set .buttons-set-2{width: 221px; float: left; margin: 10px 0 0;}
 /* #checkout-step-login .col2-set .buttons-set, #checkout-step-login .col2-set .buttons-set-2{
 	position: relative;
@@ -10123,7 +10123,7 @@ input#p_method_paypal_express{margin-top: 5px;}
 	width: 250px;
 }
 #checkout-shipping-method-load dl.sp-methods label[for="s_method_flatrate_flatrate"] {
-  background: url("../images/ups.png") no-repeat scroll 20px 50% transparent;
+  background: url("../images/royalmail.png") no-repeat scroll 20px 50% transparent;
   margin-top: -35px;
   padding: 20px 0 20px 126px;
 }
@@ -11563,7 +11563,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 #opc-login .col-2 .form-list label { width:110px; }
 #opc-login .form-list li.control label { float:none; }
 #opc-login .form-list li.control input { margin:0 8px 0 0; }
-#opc-login .col-1 { float:right; margin-top: 40px; }
+#opc-login .col-1 { float:right;}
 #opc-login .col-1 { width:290px; }
 #opc-login .col-1 h4,#opc-login .col-1 .ul { display:none; }
 
