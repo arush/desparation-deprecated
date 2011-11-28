@@ -36,7 +36,7 @@
 
 <?php if( $this->isNewsletterEnabled() ): ?>
         <div class="info-box newsletter-box">
-            <div class="black-title-bar"><?php echo $this->__('Newsletters') ?> <a class="red-title-button" href="<?php echo $this->getUrl('newsletter/manage') ?>"><?php echo $this->__('Edit') ?></a></div>
+            <div class="black-title-bar"><?php echo $this->__('Newsletters') ?> <!--a class="red-title-button" href="<?php // echo $this->getUrl('newsletter/manage') ?>"><?php // echo $this->__('Edit') ?></a--></div>
             <p class="box-content">
                 <?php if( $this->getIsSubscribed() ): ?>
                     <?php echo $this->__("You are currently subscribed to receive emails from us.") ?>

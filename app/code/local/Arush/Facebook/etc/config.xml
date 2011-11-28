@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <arush_facebook>
+            <version>0.0.1</version>
+        </arush_facebook>
+    </modules>
+    <frontend>
+     	<layout>
+            <updates>
+                <facebook>
+                    <file>arush/facebook.xml</file>
+                </facebook>
+            </updates>
+        </layout>
+        <routers>
+            <facebook>
+                <use>standard</use>
+                <args>
+                    <module>Arush_Facebook</module>
+                    <frontName>facebook</frontName>
+                </args>
+            </facebook>
+        </routers>   
+    </frontend>
+</config>

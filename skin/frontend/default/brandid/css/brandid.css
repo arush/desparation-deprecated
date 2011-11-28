@@ -2792,3 +2792,38 @@ margin-top: 411px;
 	position:absolute;
 	left:-9999px;	
 }
+
+.facebook-welcome-landing {
+	background:#fff;
+}
+.facebook-welcome-landing .main {
+	margin:0;
+	padding:0;
+	width:520px;
+	background:#fff;
+}
+.fb-canvas-logo {
+	margin: 0 auto;
+	text-align:center;
+	margin-bottom:20px;
+}
+.facebook-welcome-landing .invite-gauge span.total-signups {
+	margin: -40px 0 0 189px;
+}
+
+.facebook-welcome-landing .invite-gauge span.text {
+float: left;
+margin-left: 10px;
+}
+
+.facebook-welcome-landing .gauge-bottom {
+	margin: 0 0 0 20px;
+}
+
+.facebook-welcome-landing .invite-gauge h3 {
+	font-weight: normal;
+}
+
+.facebook-welcome-landing .invite-gauge {
+	margin: 0 auto;
+}
