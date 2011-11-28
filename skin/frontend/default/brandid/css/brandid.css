@@ -1109,7 +1109,8 @@ height:41px;
 }
 
 .t-text {
-padding-top:5px;
+padding-top:7px;
+margin-left:28px;
 }
 
 .t-hover {
@@ -2775,6 +2776,8 @@ margin-top: 411px;
 	float:left;
 	margin-top: 24px;
 	margin-left: 0;
+	width:145px;
+	text-align:center;
 }
 
 .share-invitation-link-box .social-share-images, .share-invitation-link-box .tweet-this-button {
@@ -2782,5 +2785,5 @@ margin-top: 411px;
 }
 
 .share-invitation-link-box .f-text {
-	margin-left: 56px;
+	margin-left: 16px;
 }

@@ -12,7 +12,20 @@
 			<action method="addItem"><type>skin_js</type><name>js/brandid.js</name></action>    
 			<action method="addItem"><type>skin_js</type><name>js/gauge.js</name></action>    			
 			<action method="addItem"><type>skin_js</type><name>js/flipcounter.min.js</name></action>    		
+			<block type="core/text" name="fb-meta">
+				<action method="setText">
+					<text><![CDATA[
 					
+					<meta property="og:title" content="BRANDiD - Shop. Like a man."/>
+				    <meta property="og:type" content="website"/>
+				    <meta property="og:url" content="http://www.getbrandid.com/"/>
+				    <meta property="og:image" content="http://www.getbrandid.com/brandid-square-big"/>
+				    <meta property="fb:admins" content="202908185"/>
+				    <meta property="og:description"
+				          content="Designer essentials on subscription, so you never have to shop again. And everything's at least 50% off. Man up… sign up!"/>
+					]]></text>
+				</action>
+			</block> 
     	</reference>
     	
 		<reference name="header">
