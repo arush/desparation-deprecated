@@ -1102,10 +1102,14 @@ height:41px;
 }
 
 .f-text, .t-text {
-	margin-top:20px;
-	padding:20px;
+	margin-top:10px;
+	padding:10px;
 	float:left;
 	color:#595959;
+}
+
+.t-text {
+padding-top:5px;
 }
 
 .t-hover {
@@ -2765,4 +2769,18 @@ margin-top: 411px;
 
 .opc {
 	height: 1100px;
+}
+
+.share-invitation-link-box .social-share, .share-invitation-link-box .twitter-share {
+	float:left;
+	margin-top: 24px;
+	margin-left: 0;
+}
+
+.share-invitation-link-box .social-share-images, .share-invitation-link-box .tweet-this-button {
+	text-align:center;
+}
+
+.share-invitation-link-box .f-text {
+	margin-left: 56px;
 }

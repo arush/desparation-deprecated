@@ -40,13 +40,30 @@
 		    </div>    	        
 	    
 	        <div class="twitter-share">
+
+			<div class="tweet-this-button">
+				<a href="https://twitter.com/share"
+					class="twitter-share-button"
+					data-url="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . Mage::getModel('customer/customer')->load(Mage::getSingleton('customer/session')->getId())->getCustomerurl()	;?>"
+					data-text="Dirty boxers never got anyone laid. Designer brands auto-delivered for MEN, use my invite"
+					data-count="none"
+					data-via="getbrandid">
+					Tweet
+				</a>
+				<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+			</div>
+<!--
 	        	<div class="t-trans" style="display:block;"></div>
+-->
 				<div class="t-text">on Twitter</div>
-	        	<div class="t-hover" style="display:none;">
+	        	<!--
+<div class="t-hover" style="display:none;">
 		        	<div id="tbox-triangle"></div><div class="t-box-wrapper"><div id="tbox"></div><span id="follow-placeholder"></span></div>
 	        	</div>
+-->
 					
-					<script type="text/javascript">
+				<!--
+	<script type="text/javascript">
 						var $j = jQuery.noConflict();
 					    
 				    	$j(document).ready(function () {
@@ -103,6 +120,8 @@
 				    });
 				 
 				  </script>
+-->
+
 	        </div>
 	    </div>
 	</div>
