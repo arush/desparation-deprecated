@@ -3,16 +3,9 @@
     
     <default>
     	<reference name="head">
+    		
     		<block type="page/html_head" name="storerestriction" as="storerestriction" template="storerestriction/head.phtml" />
-    		<block type="page/html_head" name="typekit" template="typekit.phtml" />
-            <action method="addCss"><stylesheet>css/brandid.css</stylesheet></action>
-            <action method="addCss"><stylesheet>css/svdh.css</stylesheet></action>
-
-            <action method="addCss"><stylesheet>fonts/fonts.css</stylesheet></action>            
-			<action method="addItem"><type>skin_js</type><name>js/brandid.js</name></action>    
-			<action method="addItem"><type>skin_js</type><name>js/gauge.js</name></action>    			
-			<action method="addItem"><type>skin_js</type><name>js/flipcounter.min.js</name></action>    		
-			<block type="core/text" name="fb-meta">
+    		<block type="core/text" name="fb-meta">
 				<action method="setText">
 					<text><![CDATA[
 					
@@ -26,6 +19,15 @@
 					]]></text>
 				</action>
 			</block> 
+    		<block type="page/html_head" name="typekit" template="typekit.phtml" />
+            <action method="addCss"><stylesheet>css/brandid.css</stylesheet></action>
+            <action method="addCss"><stylesheet>css/svdh.css</stylesheet></action>
+
+            <action method="addCss"><stylesheet>fonts/fonts.css</stylesheet></action>            
+			<action method="addItem"><type>skin_js</type><name>js/brandid.js</name></action>    
+			<action method="addItem"><type>skin_js</type><name>js/gauge.js</name></action>    			
+			<action method="addItem"><type>skin_js</type><name>js/flipcounter.min.js</name></action>    		
+			
     	</reference>
     	
 		<reference name="header">
