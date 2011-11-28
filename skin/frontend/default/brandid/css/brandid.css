@@ -2827,3 +2827,9 @@ margin-left: 10px;
 .facebook-welcome-landing .invite-gauge {
 	margin: 0 auto;
 }
+
+
+#container_notlike, #container_like {
+    display:none
+}
+
