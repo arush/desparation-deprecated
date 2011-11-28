@@ -1,9 +1,15 @@
-<div id="fb-root"></div>
-<script src="http://connect.facebook.net/en_US/all.js"></script>
-
-
 <div class="fb-like-box" data-href="http://www.facebook.com/pages/Brandid/282808678428182" data-width="300" data-show-faces="false" data-stream="false" data-header="false"></div>
 
+<?php 
+
+if($signed_request = Mage::helper('facebook')->parsePageSignedRequest()) {
+	    if($signed_request->page->liked) {
+	      echo "This content is for Fans only!";
+	    } else {
+	      echo "Please click on the Like button to view this tab!";
+	    }
+	  }
+?>
 
 <div id="container_notlike">
 YOU DONT LIKE
@@ -12,18 +18,6 @@ YOU DONT LIKE
 <div id="container_like">
 YOU LIKE
 </div>
-
-<script>
-  
-FB.init({
-    appId  : '251477524911497',
-    status : true, 
-    cookie : true, 
-    xfbml  : true  
-  });
-
-</script>
-
 
 <div class="fb-canvas-logo">
 	<img src="<?php echo $this->getSkinUrl('images/logo.png'); ?>" alt="" />

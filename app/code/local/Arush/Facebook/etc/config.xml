@@ -5,6 +5,13 @@
             <version>0.0.1</version>
         </arush_facebook>
     </modules>
+    <global>
+     	<helpers>
+        	<facebook>
+        		<class>Arush_Facebook_Helper</class>
+        	</facebook>
+        </helpers>
+    </global>
     <frontend>
      	<layout>
             <updates>
