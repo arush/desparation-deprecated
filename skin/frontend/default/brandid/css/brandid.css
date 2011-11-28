@@ -2787,3 +2787,8 @@ margin-top: 411px;
 .share-invitation-link-box .f-text {
 	margin-left: 16px;
 }
+
+#newsletter-section {
+	position:absolute;
+	left:-9999px;	
+}

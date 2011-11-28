@@ -152,12 +152,12 @@
 				</li>
 			
 					<?php if ($this->isNewsletterEnabled()): ?>
-					<li class="control">
+					<li id="newsletter-section" class="control">
 						<label for="is_subscribed"><?php echo $this->__('Email Reminders') ?></label>
 						<div class="input-box">
-							<input type="checkbox" name="is_subscribed" title="<?php echo $this->__('Email Reminders') ?>" value="1" id="is_subscribed"<?php if($this->getFormData()->getIsSubscribed()): ?> checked="checked"<?php endif; ?> class="checkbox" />
+							<input type="checkbox" name="is_subscribed" title="<?php echo $this->__('Email Reminders') ?>" value="1" id="is_subscribed"<?php // if($this->getFormData()->getIsSubscribed()): ?> checked="checked"<?php // endif; ?> class="checkbox" />
 						</div>
-						<p id="reminder-text">Send me Collection Email Alerts right before Collections open for purchase</p>
+						<p id="reminder-text">Send me important updates by email</p>
 
 		 <!--************* EBIZMARTS MAILCHIMP HERE ************************-->
 
