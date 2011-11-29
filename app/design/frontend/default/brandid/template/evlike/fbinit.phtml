@@ -44,11 +44,16 @@
    	
   	
   	FB.Event.subscribe('edge.remove', function(href, widget) {
-    	alert('You unliked ' + href, widget);
+    	alert('You are not a real man');
   	}); 
     
   	FB.Event.subscribe('edge.create', function(href, widget) {
-    	var dataSend = 'hello';
+ 		<?php if(isset($_REQUEST['signed_request'])) {?>
+ 		window.location.reload();
+ 	<?php } ?>
+ 
+ /*
+   	var dataSend = 'hello';
                 jQuery.ajax({
                     type: 'POST',
                     url: '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>test.php',
@@ -93,6 +98,7 @@
 
                     }
                 });
+*/
    	
   	});
   	
