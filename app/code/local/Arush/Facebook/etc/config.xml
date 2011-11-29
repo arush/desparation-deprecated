@@ -6,12 +6,42 @@
         </arush_facebook>
     </modules>
     <global>
+	    <blocks>
+	        <adminhtml>
+	            <rewrite>
+	            </rewrite>
+	        </adminhtml>
+	    </blocks>
      	<helpers>
         	<facebook>
         		<class>Arush_Facebook_Helper</class>
         	</facebook>
         </helpers>
     </global>
+    <adminhtml>
+      <acl>
+          <resources>
+              <admin>
+                  <children>
+                      <system>
+                          <children>
+                              <config>
+                                  <children>
+                                      <facebook>
+                                          <title>Facebook Canvas</title>
+                                      </facebook>
+                                  </children>
+                              </config>
+                          </children>
+                      </system>
+                  </children>
+              </admin>
+          </resources>
+      </acl>
+      <events></events> 
+      <translate></translate>
+  </adminhtml> 
+  
     <frontend>
      	<layout>
             <updates>
@@ -30,4 +60,25 @@
             </facebook>
         </routers>   
     </frontend>
+    
+    <admin>
+       <routers>
+          <facebook>
+              <use>admin</use>
+              <args>
+                  <module>Arush_Facebook</module>
+                  <frontName>facebook</frontName>
+              </args>
+          </facebook>
+      </routers>
+  </admin>
+
+
+    <default>
+        <facebook>
+            <options>
+                <fbpageid></fbpageid>
+            </options>
+        </facebook>
+    </default>
 </config>

@@ -1,15 +1,6 @@
-<div class="fb-like-box" data-href="http://www.facebook.com/pages/Brandid/282808678428182" data-width="300" data-show-faces="false" data-stream="false" data-header="false"></div>
+<!-- <div class="fb-like-box" data-href="http://www.facebook.com/pages/Brandid/282808678428182" data-width="300" data-show-faces="false" data-stream="false" data-header="false"></div> -->
 
-<?php 
-
-if($signed_request = Mage::helper('facebook')->parsePageSignedRequest()) {
-	    if($signed_request->page->liked) {
-	      echo "This content is for Fans only!";
-	    } else {
-	      echo "Please click on the Like button to view this tab!";
-	    }
-	  }
-?>
+<?php echo Mage::helper('facebook')->isFan(); ?>
 
 <div id="container_notlike">
 YOU DONT LIKE
