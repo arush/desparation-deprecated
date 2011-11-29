@@ -1,37 +1,51 @@
 <!-- <div class="fb-like-box" data-href="http://www.facebook.com/pages/Brandid/282808678428182" data-width="300" data-show-faces="false" data-stream="false" data-header="false"></div> -->
 
-<?php echo Mage::helper('facebook')->isFan(); ?>
-
-<div id="container_notlike">
-YOU DONT LIKE
-</div>
-
-<div id="container_like">
-YOU LIKE
-</div>
-
-<div class="fb-canvas-logo">
-	<img src="<?php echo $this->getSkinUrl('images/logo.png'); ?>" alt="" />
-</div>
-
 <div class="invite-gauge">
-	<h3><?php echo $this->__('Total invitations sent'); ?></h3>
+	<h3><?php echo $this->__('Live feed of BRANDiD invites'); ?></h3>
 	<div id="inviteGauge"></div>
 
-<div class="gauge-bottom">
-	<div id="inviteCounter" class="flip-counter"></div>
-	<span class="text"><?php echo $this->__('of 10,000 beta invitations'); ?></span>
-	<span class="total-signups">10,000</span>
-</div>
+	<div class="gauge-bottom">
+		<div id="inviteCounter" class="flip-counter"></div>
+		<span class="text"><?php echo $this->__('of 10 weekly invitations'); ?></span>
+		<span class="total-signups">10</span>
+	</div>
 
 </div>	
+<div class="small-spacer"></div>
+
+
+
+<?php if(!Mage::helper('facebook')->isFan()) { ?>
+	<div class="black-title-bar">'like' THIS PAGE TO GET STARTED</div>
+	<div class="small-spacer"></div>
+	<div class="fb-like-box" data-href="http://www.facebook.com/pages/Brandid/282808678428182" data-width="495" data-show-faces="true" data-border-color="#ffffff" data-stream="true" data-header="false"></div>
+<?php } else if(!Mage::getSingleton('customer/session')->isLoggedIn()) { ?>
+	<div class="black-title-bar">CLAIM YOUR FACEBOOK INVITATION</div>
+			<!-- The provider login will be embedded in this div //-->
+				<div id="oa_social_login_container"></div>
+			
+				<script type="text/javascript">
+					 oneall.api.plugins.social_login.build("oa_social_login_container", {
+					  'providers' :  ['facebook'], 
+					  'callback_uri': '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK); ?>arush-oneall/rpx/token_url/',
+					  'css_theme_uri': 'https://cdn.oneall.com/css/api/socialize/themes/connect_vertical.css'
+					 });
+				</script>
+<?php } else {
+	echo 'log in and send invites';
+} ?>
+
+<!--div class="fb-canvas-logo">
+	<img src="<?php // echo $this->getSkinUrl('images/logo.png'); ?>" alt="" />
+</div-->
+
 <script type='text/javascript'>
 	var inviteCounter = new flipCounter('inviteCounter', {value:0, inc:3, pace:15, tFH: 20, bFH: 34, fW: 28, bOffset: 200});
 	inviteCounter.incrementTo(<?php echo Mage::helper('randomquote')->getTotalInvitesSent(); ?>);	
 
 (function() {
     var config = {
-        'api': '/randomquote/gauge/points',
+        'api': '/randomquote/gauge/weekly',
         'color': '#d2002b',  // Optional
         'disableStyles': false,  // Optional
         'element': 'inviteGauge',
@@ -42,39 +56,5 @@ YOU LIKE
 
     new SiteTotal(config);
 })();
-</script>
-
-<script type='text/javascript'>
-
-jQuery(document).ready(function(){
-
-    FB.login(function(response) {
-      if (response.session) {
-       
-          var user_id = response.session.uid;
-          var page_id = "40796308305"; //coca cola
-          var fql_query = "SELECT uid FROM page_fan WHERE page_id = "+page_id+"and uid="+user_id;
-          var the_query = FB.Data.query(fql_query);
-          
-          the_query.wait(function(rows) {
-
-              if (rows.length == 1 && rows[0].uid == user_id) {
-                  jQuery("#container_like").show();
-
-                  //here you could also do some ajax and get the content for a "liker" instead of simply showing a hidden div in the page.
-                  
-              } else {
-                  jQuery("#container_notlike").show();
-                  //and here you could get the content for a non liker in ajax...
-              }
-          });
-          
-
-      } else {
-        // user is not logged in
-      }
-    });
-        
-});
 </script>
 

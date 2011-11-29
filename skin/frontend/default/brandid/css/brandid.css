@@ -884,7 +884,7 @@ span.black-title-med a.red-title-med-button:hover {
 }
 
 
-.my-account .small-spacer {
+.small-spacer {
 	clear: both;
 	height:20px;
 	width: 1px;
@@ -2795,6 +2795,11 @@ margin-top: 411px;
 
 .facebook-welcome-landing {
 	background:#fff;
+	width:520px;
+	overflow:hidden;
+}
+.facebook-welcome-landing .black-title-bar {
+	padding:10px;
 }
 .facebook-welcome-landing .main {
 	margin:0;
@@ -2829,7 +2834,7 @@ margin-left: 10px;
 }
 
 
-#container_notlike, #container_like {
-    display:none
+.facebook-welcome-landing #oa_social_login_container {
+	padding-left: 167px;
+	padding-top: 30px;
 }
-
