@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+    <keep_calm_signup>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+        
+		<remove name="header"/>
+
+        <reference name="content">
+            <block type="core/template" name="keep_calm_signup" template="arush/keep/calm/signup.phtml"></block>
+        </reference>
+    </keep_calm_signup>
+</layout>

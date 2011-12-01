@@ -21,19 +21,23 @@
 	<div class="fb-like-box" data-href="http://www.facebook.com/pages/Brandid/282808678428182" data-width="495" data-show-faces="true" data-border-color="#ffffff" data-stream="true" data-header="false"></div>
 <?php } else if(!Mage::getSingleton('customer/session')->isLoggedIn()) { ?>
 	
+	
+	
 	<div class="black-title-bar">CLAIM YOUR FACEBOOK INVITATION</div>
-				<div id="oa_social_login_container"></div>
-			
-				<script type="text/javascript">
-					 oneall.api.plugins.social_login.build("oa_social_login_container", {
-					  'providers' :  ['facebook'], 
-					  'callback_uri': '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK); ?>arush-oneall/rpx/token_url/',
-					  'css_theme_uri': 'https://cdn.oneall.com/css/api/socialize/themes/connect_vertical.css'
-					 });
-				</script>
-
-
-				
+		<script type="text/javascript">var host = (("https:" == document.location.protocol) ? "https://secure." : "http://");document.write(unescape("%3Cscript src='" + host + "wufoo.com/scripts/embed/form.js' type='text/javascript'%3E%3C/script%3E"));</script>
+	
+		<script type="text/javascript">
+		var z7x0w7 = new WufooForm();
+		z7x0w7.initialize({
+		'userName':'evoguemembership', 
+		'formHash':'z7x0w7', 
+		'autoResize':true,
+		'height':'580',
+		'header':'show'});
+		z7x0w7.display();
+		</script>
+		
+						
 <?php } else {
 	echo 'You are already a member';
 } ?>
