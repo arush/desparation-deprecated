@@ -20,8 +20,8 @@
 	<div class="small-spacer"></div>
 	<div class="fb-like-box" data-href="http://www.facebook.com/pages/Brandid/282808678428182" data-width="495" data-show-faces="true" data-border-color="#ffffff" data-stream="true" data-header="false"></div>
 <?php } else if(!Mage::getSingleton('customer/session')->isLoggedIn()) { ?>
+	
 	<div class="black-title-bar">CLAIM YOUR FACEBOOK INVITATION</div>
-			<!-- The provider login will be embedded in this div //-->
 				<div id="oa_social_login_container"></div>
 			
 				<script type="text/javascript">
@@ -31,8 +31,11 @@
 					  'css_theme_uri': 'https://cdn.oneall.com/css/api/socialize/themes/connect_vertical.css'
 					 });
 				</script>
+
+
+				
 <?php } else {
-	echo 'log in and send invites';
+	echo 'You are already a member';
 } ?>
 
 <!--div class="fb-canvas-logo">
