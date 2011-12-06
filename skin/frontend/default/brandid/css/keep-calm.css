@@ -640,20 +640,22 @@ height:23px;
 	width:165px;
 }
 
-.vert-chevron .select-triangle {
+.vert-chevron .select-triangle, .vert-chevron .subscribe-triangle {
 	width: 0;
 	height: 0;
-	border-top: 150px solid transparent;
-	border-bottom: 150px solid transparent;
-	border-left: 90px solid white;
+	border-top: 80px solid transparent;
+	border-bottom: 80px solid transparent;
+	border-left: 40px solid white;
 	position: absolute;
-	margin: -338px 282px;
+	margin-top: -379px;
+	margin-left:272px;
 	z-index: 1;
 }
 
-.vert-chevron .select-triangle.grey {
-	margin: -338px 303px;
-	border-left: 90px solid #cfcfcf;
+.vert-chevron .select-triangle.grey, .vert-chevron .subscribe-triangle.grey {
+	margin-top: -379px;
+	margin-left: 302px;
+	border-left: 40px solid #cfcfcf;
 	z-index: 0;
 }
 
