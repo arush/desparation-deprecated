@@ -319,7 +319,7 @@
 		      window.meeting_ratio = (Math.round((window.meeting_rel / ($j("#how").data("scrolls")[2] )) * 100 ) / 15);
 			
 /* 			console.log("w: %d",w); */
-			console.log("del: %d / scroll2: %d = ratio: %d",window.meeting_rel, $j("#how").data("scrolls")[2], window.meeting_ratio);   
+/* 			console.log("del: %d / scroll2: %d = ratio: %d",window.meeting_rel, $j("#how").data("scrolls")[2], window.meeting_ratio);    */
 
 		      $j(".moveable").each(function(index) {
 		      				      		
@@ -391,7 +391,6 @@
 		marginBig = parseInt($j(this).css('marginLeft').replace("px", ""),10);
 	    marginBig += 28;
 	    marginBig += "px";
-	    alert(marginBig);
 	    
 	    var original = new Array()
 	    original[0] = $j(this).css('marginLeft');
