@@ -314,9 +314,9 @@
 			
 			if(w > $j("#how").data("scrolls")[0] && w < $j("#how").data("scrolls")[1]) {
 	      	      
-		      window.meeting_rel = w - ($j("#how").data("scrolls")[1] - 600);
+		      window.meeting_rel = w - ($j("#how").data("scrolls")[1] - 750);
 		      
-		      window.meeting_ratio = (Math.round((window.meeting_rel / ($j("#how").data("scrolls")[2] )) * 100 ) / 15);
+		      window.meeting_ratio = (Math.round((window.meeting_rel / ($j("#how").data("scrolls")[2] )) * 100 ) / 10);
 			
 /* 			console.log("w: %d",w); */
 /* 			console.log("del: %d / scroll2: %d = ratio: %d",window.meeting_rel, $j("#how").data("scrolls")[2], window.meeting_ratio);    */
@@ -389,7 +389,7 @@
 	  $j(".moveable").each(function(){
 		var marginBig;
 		marginBig = parseInt($j(this).css('marginLeft').replace("px", ""),10);
-	    marginBig += 28;
+	    marginBig += 30;
 	    marginBig += "px";
 	    
 	    var original = new Array()
