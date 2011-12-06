@@ -46,14 +46,16 @@
 			<span class="first">I'm a man.</span><br/>
 			<span class="second">I don't read instructions.</span>
 		</div>
-		<div class="signmeup-now chevron" id="signmeupnow">
-			<div class="first-line block">Sign me up</div>
-			<div class="second-line block">Now!</div>
+		<div class="signmeupnow-container section">
+			<div class="signmeup-now chevron" id="signmeupnow">
+				<div class="first-line block">Sign me up</div>
+				<div class="second-line block">Now!</div>
+			</div>
 		</div>
 		
 	</div>
 	
-	<div class="title-block">
+	<div id="title-block" class="title-block">
 		<div class="title-block-inner clearfix">
 			<div class="title-block-container section">		
 				<div class="reg-form">
@@ -115,6 +117,43 @@
 						</div>
 						
 					</div>
+				</div> <!-- end grey tilt container -->
+		</div> <!-- end grey tilt -->
+	</div>
+	<a class="invisibut" href="#pre-how">
+		<div class="chevron down black">
+			<div class="first-line block">Whatever man. Just show me</div>
+			<div class="second-line block">How?</div>
+			<div class="chevron-triangle"></div>
+		</div>
+	</a>
+
+	<div class="quotes section clearfix">
+
+		<div class="quote-box">
+		<div class="apostrophe"><span>&lsquo;</span><span class="apostrophe2">&lsquo;</span></div>
+		<span class="quote">@getbrandid is the kind of place Tony Montana would shop at</span>
+		<div class="quote-triangle"></div>
+		<span class="author">Gabbi Cahane</span>
+		<span class="caption-small">Man since 1972</span></div>
+		
+		<div class="quote-box">
+		<div class="apostrophe"><span>&lsquo;</span><span class="apostrophe2">&lsquo;</span></div>
+		<span class="quote">@getbrandid is the kind of place Tony Montana would shop at</span>
+		<div class="quote-triangle"></div>
+		<span class="author">Gabbi Cahane</span> <span class="caption-small">Man since 1972</span></div>
+		
+		<div class="quote-box last">
+		<div class="apostrophe"><span>&lsquo;</span><span class="apostrophe2">&lsquo;</span></div>
+		<span class="quote">@getbrandid is the kind of place Tony Montana would shop at</span>
+		<div class="quote-triangle"></div>
+		<span class="author">Gabbi Cahane</span> <span class="caption-small">Man since 1972</span></div>
+		
+	</div>
+	<div id="pre-how"></div>
+	<div class="grey-tilt-holder">
+		<div class="grey-tilt clearfix">
+				<div class="grey-tilt-container clearfix">	
 				
 					<div id="how" class="how section">
 						<div class="vision-title">
@@ -162,11 +201,11 @@
 								</div>
 							</div> <!-- end how to box -->
 				
-							<div class="how-to-box last">
+							<div id="third-how" class="how-to-box last">
 								<div class="select-title">
 									<span class="select-title-text">Sorted</span>
 								</div>
-								<div class="sorted-circle circle">
+								<div id="sorted-cal" class="sorted-circle circle">
 								</div>
 								<div class="select-title red-title">
 									<span class="select-title-text">Automatic monthly delivery</span>
@@ -180,8 +219,9 @@
 				</div> <!-- end grey tilt container -->
 		</div> <!-- end grey tilt -->
 	</div>
+		
 
-	<div class="chev-group-wrap section">
+	<div id="chevron-plax" class="chev-group-wrap section convinced">
 		<div class="chevron-group">
 			<a class="invisibutred" href="#signmeupnow">
 				<div class="chevron-triangle up red section"></div>
@@ -200,33 +240,12 @@
 		</div>
 	</div>
 	
-	<div class="quotes section clearfix">
-		
-		<div class="quote-box">
-		<div class="apostrophe"><span>&lsquo;</span><span class="apostrophe2">&lsquo;</span></div>
-		<span class="quote">@getbrandid is the kind of place Tony Montana would shop at</span>
-		<div class="quote-triangle"></div>
-		<span class="author">Gabbi Cahane</span>
-		<span class="caption-small">Man since 1972</span></div>
-		
-		<div class="quote-box">
-		<div class="apostrophe"><span>&lsquo;</span><span class="apostrophe2">&lsquo;</span></div>
-		<span class="quote">@getbrandid is the kind of place Tony Montana would shop at</span>
-		<div class="quote-triangle"></div>
-		<span class="author">Gabbi Cahane</span> <span class="caption-small">Man since 1972</span></div>
-		
-		<div class="quote-box last">
-		<div class="apostrophe"><span>&lsquo;</span><span class="apostrophe2">&lsquo;</span></div>
-		<span class="quote">@getbrandid is the kind of place Tony Montana would shop at</span>
-		<div class="quote-triangle"></div>
-		<span class="author">Gabbi Cahane</span> <span class="caption-small">Man since 1972</span></div>
-		
-	</div>
+	
 	<div id="underthehood"></div>
-	<div class="title section">
-		<span class="first">I'm a man.</span><br/>
-		<span class="second">Show me what's under the hood.</span>
-	</div>
+		<div id="bigtop-title" class="title section">
+			<span class="first">I'm a man.</span><br/>
+			<span class="second">Show me what's under the hood.</span>
+		</div>
 	
 	<div class="price-compare section">
 		
@@ -316,7 +335,7 @@
 	      	      
 		      window.meeting_rel = w - ($j("#how").data("scrolls")[1] - 750);
 		      
-		      window.meeting_ratio = (Math.round((window.meeting_rel / ($j("#how").data("scrolls")[2] )) * 100 ) / 10);
+		      window.meeting_ratio = (Math.round((window.meeting_rel / ($j("#how").data("scrolls")[2] )) * 100 ) / 40);
 			
 /* 			console.log("w: %d",w); */
 /* 			console.log("del: %d / scroll2: %d = ratio: %d",window.meeting_rel, $j("#how").data("scrolls")[2], window.meeting_ratio);    */
@@ -330,8 +349,17 @@
 			          		$j(this).stop().animate({
 			          			marginLeft: fullMargin
 			          		},200,function() {
-			          				$j(this).data("moved","true")
-			          			});
+			          				$j(this).data("moved","true");
+			          				$j("#third-how").animate({
+			          					backgroundColor: "#d2002b"
+			          				  }, 500 );
+							        new Effect.Morph('sorted-cal', {
+							            style: 'background-position:-2425px 0px',
+							            duration: 10
+							        });
+
+							    });
+									
 			          	}
 			        }
 			        else {
@@ -339,7 +367,14 @@
 			          		$j(this).stop().animate({
 			          			marginLeft: resetMargin
 			          		},200,function() {
-			          				$j(this).data("moved","false")
+			          				$j(this).data("moved","false");
+			          				$j("#third-how").animate({
+			          					backgroundColor: "#fff"
+			          				  }, 200 );
+			          				new Effect.Morph('sorted-cal', {
+							            style: 'background-position: 0px 0px',
+							            duration: .2
+							        });
 			          			});
 			          	}
 			        }
@@ -364,6 +399,13 @@
 		      });
 		      
 		    }
+		   	
+		   	if(w > $j("#title-block").data("scrolls")[0]) {
+				$j.plax.disable();      			
+			}
+			if(w < $j("#title-block").data("scrolls")[0]) {
+				$j.plax.enable();      			
+			}
 		
 		});
 	});
@@ -373,7 +415,7 @@
 	  $j(".section").each(function(){
 	    var scrolls = new Array()
 	    scrolls[0] = $j(this).offset().top - w_height;
-	    scrolls[1] = $j(this).offset().top + $j(this).height();
+	    scrolls[1] = $j(this).offset().top /* + $j(this).height() */;
 	    scrolls[2] = scrolls[1] - scrolls[0];
 	    $j(this).data("scrolls",scrolls);
 	  });
@@ -383,6 +425,12 @@
 	    scrolls[0] = $j(this).offset().top - w_height;
 	    scrolls[1] = $j(this).offset().top + $j(this).height();
 	    scrolls[2] = scrolls[1] - scrolls[0];
+	    $j(this).data("scrolls",scrolls);
+	  });
+	  
+	  $j("#title-block").each(function(){
+	    var scrolls = new Array()
+	    scrolls[0] = $j(this).offset().top;
 	    $j(this).data("scrolls",scrolls);
 	  });
 	  
@@ -402,10 +450,6 @@
 	}
 	
 	function init() {
-	  //$j("#intro h2").lettering();
-	
-	  //$j("#golden_ratio .gr").hide().css("visibility","visible");
-	  
 	  set_section_scrolls();
 	  $j(window).resize(set_section_scrolls);
 	  	
@@ -417,27 +461,27 @@
 	  
 	}
 
+	$j('#signmeupnow').plaxify({"xRange":0,"yRange":30, invert:false});
+	$j.plax.enable();
 	
 	
 	function clearDefault(el) {
   		if (el.defaultValue==el.value) el.value = ""
 	}
 
-
 	
-    
-    	$j(document).ready(function () {
-			$j.localScroll();
-			$j('a.invisibut').hover(
-				function() {
-					$j(this).addClass('red');
-					},
-				function() {
-					$j(this).removeClass('red');
-				});				
-			
-			// $j("a.invisibut > .chevron").("border", "3px double red");
 
-	});
+	$j(document).ready(function () {
+		$j.localScroll();
+		$j('a.invisibut').hover(
+			function() {
+				$j(this).addClass('red');
+				},
+			function() {
+				$j(this).removeClass('red');
+			});				
+		
+
+});
 
 </script>

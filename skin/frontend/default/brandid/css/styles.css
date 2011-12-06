@@ -265,7 +265,7 @@ ul, ol {
 .col1-layout {
 
 }
-.col1-layout  a {
+.col1-layout a {
 	color: #d2002b;
 	-webkit-transition: color 200ms ease-in;
 	-moz-transition: color 200ms ease-in;
@@ -8992,119 +8992,6 @@ font-size: 16px;
   width: 20%;
 }
 /* END sales ended */
-
-
-
-/* do we need color thumbnails anymore? */
-
-#color-thumbnails-tooltip {
-  padding: 5px 0pt 1px
-    4px;
-  font-weight: bold;
-  height: 20px;
-}
-
-#color-thumbnails {
-  padding: 0pt;
-  height: 26px;
-}
-
-#color-thumbnails ul {
-  margin: 0pt;
-  padding: 0px;
-}
-
-#color-thumbnails li {
-  float: left;
-  margin: 0pt;
-  padding: 0pt 1px;
-}
-
-#color-thumbnails img {
-  padding: 2px;
-  margin: 0pt;
-  border: 1px solid rgb(255,
-    255, 255);
-}
-
-#color-thumbnails img.selected {
-  padding: 2px;
-  margin: 0pt;
-  border: 1px solid rgb(182,
-    182, 182);
-}
-
-#color-thumbnails-additional {
-  border: 1px solid rgb(255,
-    255, 255);
-  display: block;
-  width: 290px;
-}
-
-#color-thumbnails-additional img {
-  width: 94px;
-  height: 94px;
-  border: 1px solid rgb(255,
-    255, 255);
-}
-
-#color-thumbnails-additional img.selected {
-  border: 1px solid silver;
-}
-
-/* do we need color thumbnails anymore? */
-
-
-
-.social-container {
-  margin-top: 15px;
-}
-
-#social-btns {
-  font-size: 0.92em;
-  color: rgb(128, 128, 128);
-  margin-top: 10px;
-}
-
-#social-btns a {
-  color: rgb(128, 128, 128);
-}
-
-#social-btns .email-btn, #social-btns .twitter-btn {
-  padding-top: 4px;
-}
-
-#social-btns .email-btn a {
-  background: url("../images/sprites.png") no-repeat scroll
-    -574px -50px transparent;
-  display: block;
-  width: 22px;
-  height: 22px;
-}
-
-#social-btns .email-btn span {
-  display: none;
-}
-
-#social-btns .twitter {
-  cursor: pointer;
-}
-
-#social-btns .twitter-btn .twitter {
-  background: url("../images/sprites.png") no-repeat scroll
-    -541px -50px transparent;
-  display: block;
-  width: 22px;
-  height: 22px;
-}
-
-#social-btns .twitter-btn .twitter span {
-  display: none;
-}
-
-.twitter-anywhere-tweet-box {
-
-}
 
 #promo-offer {
   color: #efefef;

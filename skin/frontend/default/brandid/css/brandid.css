@@ -72,8 +72,8 @@ body {
 	}
 
 .newsletter-manage-index #subscription-information {
-padding:25px;
-margin-left:207px;}
+	padding:25px;
+	margin-left:207px;}
 
 
 
@@ -2840,7 +2840,7 @@ margin-left: 10px;
 }
 
 span.apostrophe2 {
-	margin-left:-44px;
+	margin-left:-14px;
 }
 
 @media screen and (max-width: 520px)
