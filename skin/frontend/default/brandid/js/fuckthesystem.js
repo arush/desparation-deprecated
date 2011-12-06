@@ -85,7 +85,6 @@ var $j = jQuery.noConflict();
 			}
 			if(w < $j("#title-block").data("scrolls")[0]) {
 				$j.plax.enable();
-				$j('#signmeupnow').css(left,0);      			
 			}
 		
 		});
@@ -144,7 +143,6 @@ var $j = jQuery.noConflict();
 
 	$j('#signmeupnow').plaxify({"yRange":30, invert:false});
 	$j.plax.enable();
-	$j('#signmeupnow').css(left,0);
 	
 	
 	function clearDefault(el) {
