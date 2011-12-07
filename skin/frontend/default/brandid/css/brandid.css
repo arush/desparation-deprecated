@@ -334,6 +334,9 @@ padding-left:38px;
 	font-size: 12px;
 	text-transform: none;
 }
+
+.points-special-header span{float:left;}
+
 .top-header .widget-category-link span.title {
 	padding: 7px 0 0 0;
 }
@@ -2865,3 +2868,18 @@ body, .main {
 }
 
 
+/* ff basket fixes */
+
+.top-cart .block-content .truncated a.details { clear:both; float:right; }
+.top-cart .block-content table { float:right;}
+
+/* end ff basket fixes */
+
+
+.rewardsref-customer-index .group-select ul li label {
+	color: #595959;
+    font-family: ProximaNovaLight;
+    font-size: 16px;
+    font-weight: normal;
+    margin-left: 10px;
+}
