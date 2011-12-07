@@ -10956,6 +10956,7 @@ a.cat-view-now:hover {
 	padding: 20px;
 }
 .col2-left-layout .col-main h1, .col2-left-layout .col-main h2{color: #fff;}
+.std h2 {color: #595959;}
 .col2-left-layout .col-main p, .col2-left-layout .col-main li{color: #444444;}
 .col2-left-layout .col-main a, .col2-left-layout .col-main span{color: #d2002b;}
 .col2-left-layout .col-main a:hover{text-decoration: underline;}

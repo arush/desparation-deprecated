@@ -1,8 +1,8 @@
 
 <?php $store = $this->getCustomer()->getStoreId();?>
 
-<?php if($this->isMailChimpEnabled($store)): ?>
-
+<?php // if($this->isMailChimpEnabled($store)): ?>
+<?php echo 'this is a test'; ?>
 	<input type="hidden" name="is_general" id="is_general" value="1" />
 
 	<?php if($this->getGroups(null,$store)): ?>
@@ -21,4 +21,4 @@
 		</script>
 	<?php endif; ?>
 
-<?php endif; ?>
+<?php // endif; ?>

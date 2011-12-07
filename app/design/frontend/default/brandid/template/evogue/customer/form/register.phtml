@@ -158,11 +158,11 @@
 							<input type="checkbox" name="is_subscribed" title="<?php echo $this->__('Email Reminders') ?>" value="1" id="is_subscribed"<?php // if($this->getFormData()->getIsSubscribed()): ?> checked="checked"<?php // endif; ?> class="checkbox" />
 						</div>
 						<p id="reminder-text">Send me important updates by email</p>
-
+						<input type="hidden" name="is_general" id="is_general" value="1" />
 		 <!--************* EBIZMARTS MAILCHIMP HERE ************************-->
 
             		<?php echo $this->getChildHtml('generalNewsletter') ?>
-
+					
      <!--************* EBIZMARTS MAILCHIMP HERE ************************-->
 					
 					</li>

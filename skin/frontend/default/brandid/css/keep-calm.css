@@ -431,7 +431,7 @@ a.invisibut, a.invisibutred {
 }
 
 .keep-calm-signmeup .chevron {
-	font-family: Gotham-book;
+	font-family: Gotham-book, Gotham,arial, sans-serif;
 	text-transform: uppercase;
 	font-weight: bold;
 	letter-spacing: -2px;

@@ -124,7 +124,7 @@ New customer registration
 			<action method="addCss"><stylesheet>css/jScrollPane.css</stylesheet></action>
 		</reference>
 	
-	<block type="page/html_wrapper" name="customer.form.register.fields.before" translate="label">
+		<block type="page/html_wrapper" name="customer.form.register.fields.before" translate="label">
             <label>Form Fields Before</label>
             <!--action method="setMayBeInvisible"><value>1</value></action-->
             <action method="setElementClass"><value>rewards</value></action>
