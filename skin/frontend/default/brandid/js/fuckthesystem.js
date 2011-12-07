@@ -162,7 +162,7 @@ var $j = jQuery.noConflict();
 			});				
 	    
 	    $j.reject({  
-	        reject: { all: true }, // Reject all renderers for demo  
+	        reject: { msie: true }, // Reject all renderers for demo  
 	        display: ['firefox','chrome','safari'],
 	        header: 'Newsflash buddy, your browser sucks.', // Header Text  
 	        paragraph1: 'Internet Explorer is an old and poorly built browser (yes, even IE9), and we can\'t afford to develop custom code to support it.', // Paragraph 1  
