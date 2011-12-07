@@ -2,17 +2,14 @@
 <div class="rewardsref_myreferrals_multireferral_section">
     <form action="<?php echo $this->getUrl('rewardsref/customer/invites/') ?>" method="post" id="form-validates">
         <?php if ($this->hasPredictedSignupPoints()): ?>
-    		<div class="rewardsref_myreferrals_multireferral_predictpoints rewardsref_myreferrals_multireferral_predictpoints_signup">
-                <?php echo $this->__("You could earn up to %s when your referral signs up.", $this->getPredictedSignupPoints()); ?>
-            </div>
+            <?php echo $this->__("You could earn up to %s when your referral signs up.", $this->getPredictedSignupPoints()); ?>
         <?php endif; ?>
         <?php if ($this->hasPredictedFirstOrderPoints()): ?>
-    		<div class="rewardsref_myreferrals_multireferral_predictpoints rewardsref_myreferrals_multireferral_predictpoints_firstorder">
-                <?php echo $this->__("You could earn up to %s when your referral makes their first order.", $this->getPredictedFirstOrderPoints()); ?>
-            </div>
+            <?php echo $this->__("You could earn up to %s when your referral makes their first order.", $this->getPredictedFirstOrderPoints()); ?>
         <?php endif; ?>
 
         <fieldset class="group-select" style="margin-bottom: 0px;">
+
             <h4 class="legend"><?php echo $this->__('Send Invitations') ?></h4>
             <div class="input-box" >
                 <label for="to"><?php echo $this->__('To') ?></label>

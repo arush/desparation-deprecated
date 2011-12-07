@@ -50,8 +50,7 @@ class TBT_RewardsReferral_Manage_ReferralsController extends Mage_Adminhtml_Cont
     }
 
     public function saveAction() {
-        $data = $this->getRequest()->getPost();
-        if ($data) {
+        if ($data = $this->getRequest()->getPost()) {
             $model = Mage::getModel('rewardsref/referral');
             $model->setData($data)
                     ->setId($this->getRequest()->getParam('id'));
@@ -107,7 +106,7 @@ class TBT_RewardsReferral_Manage_ReferralsController extends Mage_Adminhtml_Cont
                     $rule->delete();
                 }
                 Mage::getSingleton('adminhtml/session')->addSuccess(
-                        Mage::helper('rewardsref')->__('%d referral(s) successfully deleted', count($ruleIds))
+                        Mage::helper('rewardsref')->__('%d referral(2) successfully deleted', count($ruleIds))
                 );
             } catch (Exception $e) {
                 Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
