@@ -4,7 +4,7 @@
     <default>
     	<reference name="head">
     		
-    		<block type="page/html_head" name="storerestriction" as="storerestriction" template="storerestriction/head.phtml" />
+    		<!-- block type="page/html_head" name="storerestriction" as="storerestriction" template="storerestriction/head.phtml" / -->
     		<block type="core/text" name="fb-meta">
 				<action method="setText">
 					<text><![CDATA[
@@ -47,7 +47,12 @@
     <customer_account_login>
         <remove name="storerestriction"/>       
     </customer_account_login>
+    <keep_calm_signmeup>
+        <remove name="storerestriction"/>       
+    </keep_calm_signmeup>
     <customer_account_create>
+    	<remove name="header"/>
+    	<remove name="footer"/>
         <remove name="storerestriction"/>       
     </customer_account_create>
     <customer_account_forgotpassword>
