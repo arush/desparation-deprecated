@@ -8,9 +8,9 @@
  * Depends On: jQuery Browser Plugin (http://jquery.thewikies.com/browser)
  */
 
-(function($) {
-$.reject = function(opts) {
-	var opts = $.extend(true,{
+(function(jQuery) {
+jQuery.reject = function(opts) {
+	var opts = jQuery.extend(true,{
 		reject : { // Rejection flags for specific browsers
 			all: false, // Covers Everything (Nothing blocked)
 			msie5: true, msie6: true // Covers MSIE 5-6 (Blocked by default)
@@ -95,7 +95,7 @@ $.reject = function(opts) {
 			expires: 0
 		},
 
-		imagePath: './images/', // Path where images are located
+		imagePath: 'http://brandid.s3.amazonaws.com/browsers/', // Path where images are located
 		overlayBgColor: '#000', // Background color for overlay
 		overlayOpacity: 0.8, // Background transparency (0-1)
 
@@ -115,7 +115,7 @@ $.reject = function(opts) {
 		opts.display = ['firefox','chrome','msie','safari','opera','gcf'];
 
 	// beforeRject: Customized Function
-	if ($.isFunction(opts.beforeReject)) opts.beforeReject(opts);
+	if (jQuery.isFunction(opts.beforeReject)) opts.beforeReject(opts);
 
 	// Disable 'closeESC' if closing is disabled (mutually exclusive)
 	if (!opts.close) opts.closeESC = false;
@@ -128,16 +128,16 @@ $.reject = function(opts) {
 		// Check 4: Browser name (eg. 'firefox','msie','chrome')
 		// Check 5: Browser+major version (eg. 'firefox3','msie7','chrome4')
 		return (settings['all'] ? true : false) ||
-			(settings[$.os.name] ? true : false) ||
-			(settings[$.layout.name] ? true : false) ||
-			(settings[$.browser.name] ? true : false) ||
-			(settings[$.browser.className] ? true : false);
+			(settings[jQuery.os.name] ? true : false) ||
+			(settings[jQuery.layout.name] ? true : false) ||
+			(settings[jQuery.browser.name] ? true : false) ||
+			(settings[jQuery.browser.className] ? true : false);
 	};
 
 	// Determine if we need to display rejection for this browser, or exit
 	if (!browserCheck(opts.reject)) {
 		// onFail: Customized Function
-		if ($.isFunction(opts.onFail)) opts.onFail(opts);
+		if (jQuery.isFunction(opts.onFail)) opts.onFail(opts);
 		return false;
 	}
 
@@ -176,7 +176,7 @@ $.reject = function(opts) {
 					// Loop through all cookie values
 					var clen = cookies.length;
 					for (var i = 0; i < clen; ++i) {
-						cookie = $.trim(cookies[i]);
+						cookie = jQuery.trim(cookies[i]);
 
 						// Does this cookie string begin with the name we want?
 						if (cookie.substring(0,name.length+1) == (name+'=')) {
@@ -231,7 +231,7 @@ $.reject = function(opts) {
 	// Close #jr_inner and #jr_wrap
 	'</div></div>';
 
-	var element = $('<div>'+html+'</div>'); // Create element
+	var element = jQuery('<div>'+html+'</div>'); // Create element
 	var size = _pageSize(); // Get page size
 	var scroll = _scrollSize(); // Get page scroll
 
@@ -241,19 +241,19 @@ $.reject = function(opts) {
 		if (!opts.close) return false; // Make sure the ability to close is set
 
 		// Customized Function
-		if ($.isFunction(opts.beforeClose)) opts.beforeClose(opts);
+		if (jQuery.isFunction(opts.beforeClose)) opts.beforeClose(opts);
 
-		$(this).unbind('closejr'); // Remove binding function
+		jQuery(this).unbind('closejr'); // Remove binding function
 
 		// Fade out background and modal wrapper
-		$('#jr_overlay,#jr_wrap').fadeOut(opts.fadeOutTime,function() {
-			$(this).remove(); // Remove element from DOM
+		jQuery('#jr_overlay,#jr_wrap').fadeOut(opts.fadeOutTime,function() {
+			jQuery(this).remove(); // Remove element from DOM
 
 			// afterClose: Customized Function
-			if ($.isFunction(opts.afterClose)) opts.afterClose(opts);
+			if (jQuery.isFunction(opts.afterClose)) opts.afterClose(opts);
 		});
 
-		$('embed, object, select, applet').show(); // Show elements that were hidden
+		jQuery('embed, object, select, applet').show(); // Show elements that were hidden
 
 		// Set close cookie for next run
 		if (opts.closeCookie) _cookie(COOKIE_NAME,'true');
@@ -326,7 +326,7 @@ $.reject = function(opts) {
 		minWidth: displayNum*100,
 		maxWidth: displayNum*140,
 		// min/maxWidth not supported by IE
-		width: $.layout.name == 'trident' ? displayNum*155 : 'auto',
+		width: /* jQuery.layout.name == 'trident' ? displayNum*155 :*/ 'auto',
 		padding: 20,
 		fontSize: 12
 	}).children('#jr_header').css({ // Header (h1)
@@ -367,13 +367,13 @@ $.reject = function(opts) {
 		background: 'transparent no-repeat scroll left top',
 		cursor: 'pointer'
 	}).each(function() { // Dynamically sets the icon background image
-		var self = $(this);
+		var self = jQuery(this);
 		self.css('background','transparent url('+opts.imagePath+'browser_'+
 				(self.parent('li').attr('id').replace(/jr_/,''))+'.gif)'+
 					' no-repeat scroll left top');
 		
 		self.click(function () {
-			var url = $(this).next('div').children('a').attr('href');
+			var url = jQuery(this).next('div').children('a').attr('href');
 			openBrowserLinks(url);
 		});
 	}).siblings('div').css({ // Text under the browser icon (div)
@@ -391,11 +391,11 @@ $.reject = function(opts) {
 		padding: 0,
 		margin: 0
 	}).hover(function() { // Underline effect (a:hover)
-		$(this).css('textDecoration','underline');
+		jQuery(this).css('textDecoration','underline');
 	},function() {
-		$(this).css('textDecoration','none');
+		jQuery(this).css('textDecoration','none');
 	}).click(function() { // Make links open in new window (a)
-		openBrowserLinks($(this).attr('href'));
+		openBrowserLinks(jQuery(this).attr('href'));
 		return false;
 	}).parents('#jr_inner').children('#jr_close').css({ // Close window option (div)
 		margin: '0 0 0 50px',
@@ -411,7 +411,7 @@ $.reject = function(opts) {
 		padding: 0,
 		textDecoration: 'underline'
 	}).click(function() { // Bind closing event
-		$(this).trigger('closejr');
+		jQuery(this).trigger('closejr');
 
 		// If plain anchor is set, return false so there is no page jump
 		if (opts.closeURL === '#') return false;
@@ -421,37 +421,37 @@ $.reject = function(opts) {
 	});
 
 	// Set focus (fixes ESC key issues with forms and other focus bugs)
-	$('#jr_overlay').focus();
+	jQuery('#jr_overlay').focus();
 
 	// Hide elements that won't display properly
-	$('embed, object, select, applet').hide();
+	jQuery('embed, object, select, applet').hide();
 
 	// Append element to body of document to display
-	$('body').append(element.hide().fadeIn(opts.fadeInTime));
+	jQuery('body').append(element.hide().fadeIn(opts.fadeInTime));
 
 	// Handle window resize/scroll events and update overlay dimensions
-	$(window).bind('resize scroll',function() {
+	jQuery(window).bind('resize scroll',function() {
 		var size = _pageSize(); // Get size
 
 		// Update overlay dimensions based on page size
-		$('#jr_overlay').css({ width: size[0],height: size[1] });
+		jQuery('#jr_overlay').css({ width: size[0],height: size[1] });
 
 		var scroll = _scrollSize(); // Get page scroll
 
 		// Update modal position based on scroll
-		$('#jr_wrap').css({ top: scroll[1] + (size[3]/4),left: scroll[0] });
+		jQuery('#jr_wrap').css({ top: scroll[1] + (size[3]/4),left: scroll[0] });
 	});
 
 	// Add optional ESC Key functionality
 	if (opts.closeESC) {
-		$(document).bind('keydown',function(event) {
+		jQuery(document).bind('keydown',function(event) {
 			// ESC = Keycode 27
 			if (event.keyCode == 27) element.trigger('closejr');
 		});
 	}
 
 	// afterReject: Customized Function
-	if ($.isFunction(opts.afterReject)) opts.afterReject(opts);
+	if (jQuery.isFunction(opts.afterReject)) opts.afterReject(opts);
 
 	return true;
 };

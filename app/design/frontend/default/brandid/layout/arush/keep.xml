@@ -21,7 +21,7 @@
 			<action method="addItem"><type>skin_js</type><name>js/jquery-color-min.js</name></action>
 			<action method="addItem"><type>skin_js</type><name>js/plax.js</name></action>
 			<action method="addItem"><type>skin_js</type><name>js/fuckthesystem.js</name></action>
-			
+			<action method="addItem"><type>skin_js</type><name>js/jquery.reject.js</name></action>
 			
 			<action method="removeItem"><type>js</type><name>lib/ccard.js</name></action>
 			<action method="removeItem"><type>js</type><name>prototype/validation.js</name></action>

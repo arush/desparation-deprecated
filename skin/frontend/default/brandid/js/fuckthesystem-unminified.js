@@ -160,6 +160,17 @@ var $j = jQuery.noConflict();
 			function() {
 				$j(this).removeClass('red');
 			});				
-		
+	    
+	    $.reject({  
+	        reject: { all: true }, // Reject all renderers for demo  
+	        display: ['firefox','chrome','safari'],
+	        header: 'The Internet must look pretty ugly from where you\'re sitting', // Header Text  
+	        paragraph1: 'Internet Explorer (yes, even IE9) is an old and clunky browser, and we can\'t afford to develop custom code to support it', // Paragraph 1  
+	        paragraph2: 'Man up and get a real browser, leave IE for the ladies', // Paragraph 2  
+	        closeMessage: 'By closing this you understand that your experience may be ruined by your browser.', // Message below close window link  
+	        closeCookie: true
+	    }); // Customized Text  
+	  
+	    return false;
 
 });
