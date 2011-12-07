@@ -15,7 +15,7 @@ class TBT_Rewards_Model_Customer_Indexer_Observer extends Varien_Object {
     	        return $this;
     	    }
     	    
-    		$transfer = $observer->getEvent ()->getDataObject ();
+    		$transfer = Mage::helper('rewards/dispatch')->getEventObject($observer);
     	    
     		Mage::helper('rewards/debug_profiler')->start('TBT_Rewards::Customer Points Index - Update usable points balance.');
     		
@@ -51,11 +51,14 @@ class TBT_Rewards_Model_Customer_Indexer_Observer extends Varien_Object {
     	        return $this;
     	    }
     	    
+    	    $event = $observer->getEvent();
+    	    
     	    $session_customer = $this->_getRewardsCustomer($observer->getEvent()->getOrder());
     	
     		if(!$session_customer || !$session_customer->getId()) {
     		    // Only if a customer model exists and that customer has been already created.
-    		    Mage::helper('rewards/debug')->error("Customer model deos not exist in observer or that customer has not been saved yet, so aborted index update after order save function.");
+                //TODO tempoarily edited: Mage::helper('rewards/customer_points_index')->error();
+    		    Mage::helper('rewards/debug')->error("Customer model does not exist in observer or that customer has not been saved yet.  This caused the points index to be to become out of sync and disabled.");
     		    return $this;
     		}
     		
@@ -92,7 +95,8 @@ class TBT_Rewards_Model_Customer_Indexer_Observer extends Varien_Object {
     	
     		if(!$customer || !$customer->getId()) {
     		    // Only if a customer model exists and that customer has been already created.
-    		    Mage::helper('rewards/debug')->error("Customer model deos not exist in observer or that customer has not been saved yet, so aborted index update after order save function.");
+                    Mage::helper('rewards/customer_points_index')->error();
+    		    Mage::helper('rewards/debug')->error("Customer model does not exist in observer or that customer has not been saved yet.  This caused the points index to be to become out of sync and disabled.");
     		    return $this;
     		}
     		
@@ -122,12 +126,11 @@ class TBT_Rewards_Model_Customer_Indexer_Observer extends Varien_Object {
 	
          // If the customer exists in the order, use that. If not, use the session customer from the rewards model.
         if ($order) {
-            if( $order->getCustomer()) {
+            if( $order ->getCustomer() ) {
                 // The index session dispatch requires a rewards model, so we should load that.
                 $session_customer = $order->getCustomer();
-                
                 if (! ($session_customer instanceof TBT_Rewards_Model_Customer)) {
-                    $session_customer = Mage::getModel('rewards/customer')->load( $session_customer->getCustomerId() );
+                    $session_customer = Mage::getModel('rewards/customer')->getRewardsCustomer( $session_customer );
                 }
             } else {
                 $session_customer = Mage::getModel('rewards/customer')->load( $order->getCustomerId() );

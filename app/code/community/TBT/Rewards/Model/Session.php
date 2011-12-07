@@ -74,6 +74,7 @@ class TBT_Rewards_Model_Session extends Mage_Core_Model_Session_Abstract {
 	 * @return TBT_Rewards_Model_Session
 	 */
 	public function triggerNewCustomerCreate(&$customer) {
+	    $customer = Mage::getModel('rewards/customer')->getRewardsCustomer($customer);
 		foreach ( $this->_customerListeners as $customer_listener ) {
 			$customer_listener->onNewCustomerCreate ( $customer );
 		}
@@ -130,7 +131,7 @@ class TBT_Rewards_Model_Session extends Mage_Core_Model_Session_Abstract {
 				}
 			}
 		}
-		return $this->_customer;
+		return Mage::getModel('rewards/customer')->getRewardsCustomer($this->_customer);
 	}
 	
 	public function isCustConfirmPending($customer = null) {
@@ -169,6 +170,7 @@ class TBT_Rewards_Model_Session extends Mage_Core_Model_Session_Abstract {
 	 * @return TBT_Rewards_Model_Session
 	 */
 	public function setCustomer($customer) {
+	    $customer = Mage::getModel('rewards/customer')->getRewardsCustomer($customer);
 		if ($this->isAdminMode ()) {
 			// TODO: What do we do here? ... hmm
 		} else {

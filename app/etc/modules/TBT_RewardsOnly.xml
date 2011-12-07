@@ -2,7 +2,7 @@
 <config>
     <modules>
         <TBT_RewardsOnly>
-            <active>false</active>
+            <active>true</active>
             <codePool>community</codePool>
             <!-- dependent on TBT_Rewards -->
             

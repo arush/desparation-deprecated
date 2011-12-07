@@ -3,15 +3,14 @@
 $installer = $this;
 
 $installer->startSetup();
+/*
+$install_version = Mage::getConfig ()->getNode ( 'modules/TBT_RewardsApi/version' );
 
-$message = Mage::getModel('adminnotification/inbox');
-$message->setSeverity(Mage_AdminNotification_Model_Inbox::SEVERITY_NOTICE);
-$message->setDateAdded(date("c", time()));
-$message->setTitle("Sweet Tooth API 0.6 Was Installed Sucessfully");
-$message->setDescription("Sweet Tooth Reward Points API Was Installed Sucessfully");
-$message->setUrl("http://www.wdca.ca/sweet_tooth/wiki/index.php/API");
-$message->save();
+$msg_title = "Sweet Tooth API ". $install_version ." was sucessfully installed!";
+$msg_desc = "Sweet Tooth API ". $install_version ." was just installed.";
+Mage::helper ( 'rewards/mysql4_install' )->createInstallNotice ( $msg_title, $msg_desc );*/
 
-$installer->endSetup(); 
+$installer->endSetup();
+
 
 

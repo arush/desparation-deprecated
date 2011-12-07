@@ -63,13 +63,8 @@ h3.head-manage-promo-catalog
     text-align: left;
 }
 
-
-.textarea{
-	width: 88% !important;
-}
-
-.value{
-	width: 310px !important;
+td.rewards-wikihinted-value {
+    width: 310px !important;
 }
 
 .wikiHint {

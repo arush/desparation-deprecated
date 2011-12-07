@@ -155,8 +155,8 @@ class TBT_RewardsOnly_Block_Manage_Promo_Catalog_Edit_Tab_Main extends Mage_Admi
         
         //@nelkaake POINTS ONLY
         if($this->_isRedemptionType()) {
-        	$fieldset->addField('points_only_mode', 'select', array(
-                'label'     => Mage::helper('catalogrule')->__('Products Can Only Be Purchased With This Rule'),
+        	$points_only_mode_field = $fieldset->addField('points_only_mode', 'select', array(
+                'label'     => Mage::helper('catalogrule')->__('Points-only Mode'),
                 'title'     => Mage::helper('catalogrule')->__('Products can only be purchased with points defined in the conditions tab for this rule.'),
                 'name'      => 'points_only_mode',
                 'required' => true,
@@ -164,7 +164,8 @@ class TBT_RewardsOnly_Block_Manage_Promo_Catalog_Edit_Tab_Main extends Mage_Admi
                     '0' => Mage::helper('catalogrule')->__('Inactive'),
                     '1' => Mage::helper('catalogrule')->__('Active'),
                 ),
-            ));        
+            ));  
+		    Mage::getSingleton('rewards/wikihints')->addWikiHint($points_only_mode_field, "Catalog Spending Rule: Points-only Mode" );      
         }
         //@nelkaake POINTS ONLY
         

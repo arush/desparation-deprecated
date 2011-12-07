@@ -196,10 +196,10 @@
 {
 	margin-bottom: 6px;
 }
+.mypoints-summary .pendingapproval-points { }
+.mypoints-summary .pendingevent-points { }
+.mypoints-summary .pendingtime-points { }
 .mypoints-summary .pending-points
-{
-}
-.mypoints-summary .onhold-points
 {
 	margin-bottom: 12px;
 }
@@ -317,4 +317,10 @@
 
 .cart-points-spending_warnings .notice {
 	font-size: 8pt;
+}
+
+.rewards-checkout-onepage-guestwarn {
+	top: -6px;
+	position: relative;
+	font-style: italic;
 }

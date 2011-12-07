@@ -57,3 +57,9 @@ $colspan = 4;
         <td class="last a-right"><span class="amount"><?php echo $this->getPointsSpentString() ?></span></td>
     </tr>
 <?php endif; ?>
+<?php if ($this->hasCatalogSpendingDiscount()): ?>
+    <tr class="order-item-discounts">
+        <td colspan="<?php echo $colspan; ?>" class="a-right caption" <?php echo $this->getLabelProperties(); ?>><?php echo $this->__('Item Discounts') ?></td>
+        <td class="last a-right" <?php echo $this->getValueProperties(); ?>><span class="amount"><?php echo $this->getCatalogSpendingDiscount() ?></span></td>
+    </tr>
+<?php endif; ?>

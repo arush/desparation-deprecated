@@ -60,7 +60,7 @@ class TBT_Rewards_Block_Manage_Promo_Quote_Edit_Tab_Main extends Mage_Adminhtml_
 		
 		$fieldset->addField ( 'name', 'text', array ('name' => 'name', 'label' => Mage::helper ( 'salesrule' )->__ ( 'Rule Name' ), 'title' => Mage::helper ( 'salesrule' )->__ ( 'Rule Name' ), 'required' => true ) );
 		
-		$fieldset->addField ( 'description', 'textarea', array ('name' => 'description', 'label' => Mage::helper ( 'salesrule' )->__ ( 'Description' ), 'title' => Mage::helper ( 'salesrule' )->__ ( 'Description' ), 'style' => 'width: 98%; height: 100px;' ) );
+		$fieldset->addField ( 'description', 'textarea', array ('name' => 'description', 'label' => Mage::helper ( 'salesrule' )->__ ( 'Description' ), 'title' => Mage::helper ( 'salesrule' )->__ ( 'Description' ), 'style' => 'height: 100px;' ) );
 		
 		$fieldset->addField ( 'is_active', 'select', array ('label' => Mage::helper ( 'salesrule' )->__ ( 'Status' ), 'title' => Mage::helper ( 'salesrule' )->__ ( 'Status' ), 'name' => 'is_active', 'required' => true, 'options' => array ('1' => Mage::helper ( 'salesrule' )->__ ( 'Active' ), '0' => Mage::helper ( 'salesrule' )->__ ( 'Inactive' ) ) ) );
 		
@@ -94,11 +94,14 @@ class TBT_Rewards_Block_Manage_Promo_Quote_Edit_Tab_Main extends Mage_Adminhtml_
 		if (Mage::helper ( 'rewards' )->isBaseMageVersionAtLeast ( '1.4.1.0' )) {
 			$couponTypeFiled = $fieldset->addField ( 'coupon_type', 'select', array ('name' => 'coupon_type', 'label' => Mage::helper ( 'salesrule' )->__ ( 'Coupon' ), 'required' => true, 'options' => Mage::getModel ( 'salesrule/rule' )->getCouponTypes () ) );
 			
+		    Mage::getSingleton('rewards/wikihints')->addWikiHint($couponTypeFiled, "Shopping Cart Rule - Coupons" );
+			
 			$couponCodeFiled = $fieldset->addField ( 'coupon_code', 'text', array ('name' => 'coupon_code', 'label' => Mage::helper ( 'salesrule' )->__ ( 'Coupon Code' ), 'required' => true ) );
 			
 			$usesPerCouponFiled = $fieldset->addField ( 'uses_per_coupon', 'text', array ('name' => 'uses_per_coupon', 'label' => Mage::helper ( 'salesrule' )->__ ( 'Uses per Coupon' ) ) );
 		} else {
-			$fieldset->addField ( 'coupon_code', 'text', array ('name' => 'coupon_code', 'label' => Mage::helper ( 'salesrule' )->__ ( 'Coupon code' ) ) );
+			$couponCodeFiled = $fieldset->addField ( 'coupon_code', 'text', array ('name' => 'coupon_code', 'label' => Mage::helper ( 'salesrule' )->__ ( 'Coupon code' ) ) );
+		    Mage::getSingleton('rewards/wikihints')->addWikiHint($couponCodeFiled, "Shopping Cart Rule - Coupons" );
 			
 			$fieldset->addField ( 'uses_per_coupon', 'text', array ('name' => 'uses_per_coupon', 'label' => Mage::helper ( 'salesrule' )->__ ( 'Uses per coupon' ) ) );
 		}

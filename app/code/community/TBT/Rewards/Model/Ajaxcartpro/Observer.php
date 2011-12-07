@@ -70,8 +70,8 @@ class TBT_Rewards_Model_Ajaxcartpro_Observer extends AW_Ajaxcartpro_Model_Observ
 	 * Return true if the version of AW Ajax Cart Pro is at least $compare_version
 	 * @param string $compare_version
 	 */
-	protected function _awAcpVerAtLeast($compare_version) {
-	    $aw_version = (string) Mage::getConfig()->getNode('modules/TBT_Rewards/version');
+	protected function _awVerAtLeast($compare_version) {
+	    $aw_version = (string) Mage::getConfig()->getNode('modules/AW_Ajaxcartpro/version');
 	    
 	    $version_match = version_compare($aw_version, $compare_version, '>=');
 	    

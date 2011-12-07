@@ -7,11 +7,11 @@ class TBT_Testsweet_Model_Test_Suite_Php_Su extends TBT_Testsweet_Model_Test_Sui
     }
 
     public function getSubject() {
-        return $this->__('Check if PHP is run under a [Switch User] ');
+        return $this->__('PHP - Check if is run under a [Switch User] ');
     }
 
     public function getDescription() {
-        return $this->__('System admins often times run PHP as a different user for extra protection');
+        return $this->__('System admins often times run PHP as a different user for extra protection.');
     }
 
     protected function generateSummary() {
@@ -57,7 +57,7 @@ class TBT_Testsweet_Model_Test_Suite_Php_Su extends TBT_Testsweet_Model_Test_Sui
         if (strripos($phpinfo, "suphp")) {
             $this->addWarning($this->__("PHP might be running with suphp"), $this->__("filesystem might need to be: chown [user]:[group], chmod -R u=rwx,g=rx,o=rx ./[magento]/"));
         } else {
-            $this->addPass($this->__("PHP does not look to be using suphp"));
+            $this->addPass($this->__("PHP does not look to be using suphp."));
         }
 
         // PHPsuexec
@@ -72,9 +72,9 @@ class TBT_Testsweet_Model_Test_Suite_Php_Su extends TBT_Testsweet_Model_Test_Sui
             $phpSuExec_found = true;
 
         if ($phpSuExec_found) {
-            $this->addWarning($this->__("PHP might be running with suexec"), $this->__("filesystem might need to be: chown [user]:[group], chmod -R u=rwx,g=rx,o=rx ./[magento]/"));
+            $this->addWarning($this->__("PHP might be running with suexec."), $this->__("filesystem might need to be: chown [user]:[group], chmod -R u=rwx,g=rx,o=rx ./[magento]/"));
         } else {
-            $this->addPass($this->__("PHP does not look to be using suexec"));
+            $this->addPass($this->__("PHP does not look to be using suexec."));
         }
         
     }

@@ -45,10 +45,14 @@
  */
 class TBT_Rewards_Customer_IndexController extends Mage_Core_Controller_Front_Action {
 	
+    protected function _isAllowed() {
+        return Mage::getSingleton ( 'admin/session' )->isAllowed ( 'rewards/customer/customer' );
+    }
+    
 	public function indexAction() {
 		$this->loadLayout ();
 		
-		$cust = Mage::registry ( 'customer' );
+		$cust = Mage::getModel('rewards/customer')->getRewardsCustomer(Mage::registry ( 'customer' ));
 		if (! $cust->getId ()) {
 			$this->redirect ( 'customer' );
 			return;

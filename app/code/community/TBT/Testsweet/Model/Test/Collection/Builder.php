@@ -31,7 +31,7 @@ class TBT_Testsweet_Model_Test_Collection_Builder extends TBT_Testsweet_Model_Ab
                                 if (version_compare($r->getRequireTestsweetVersion(), $testsweet_version, '<=')) {
                                     $suite_collection[] = $r;
                                 } else {
-                                    //TODO: warning test is skiped because testsweet needs an upgrade to version $r->getRequireTestsweetVersion()
+                                    //TODO: warning test is skipped because testsweet needs an upgrade to version $r->getRequireTestsweetVersion()
                                 }
                             } catch (Exception $ex) {
                                 //TODO : deal with this possible error some other way?

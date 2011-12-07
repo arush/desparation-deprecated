@@ -2,7 +2,7 @@
 <config>
     <modules>
         <TBT_Rewards>
-            <version>1.5.0.2</version>
+            <version>1.6.0.4</version>
         </TBT_Rewards>
     </modules>
     <admin>
@@ -68,11 +68,6 @@
             <title><![CDATA[<span class="stadmin-menu_main">Rewards</span>]]></title>
             <sort_order>75</sort_order>
             <children>
-                <currency module="rewards" translate="title">
-                    <title>Point Currencies</title>
-                    <sort_order>10</sort_order>
-                    <action>rewardsadmin/manage_currency</action>
-                </currency>
                 <rules module="rewards" translate="title">
                     <title>Point Rules</title>
                     <sort_order>20</sort_order>
@@ -127,38 +122,47 @@
                     <title>Customer Points</title>
                     <sort_order>30</sort_order>
                     <action>rewardsadmin/manage_customer_points</action>
-                </customer>
-                <transfers module="rewards" translate="title">
-                    <title>Manage Transfers</title>
-                    <action>rewardsadmin/manage_transfer</action>
-                    <sort_order>40</sort_order>
                     <children>
-                        <redemhistory module="rewards" translate="title">
-                            <title>Redemptions</title>
+                        <customer module="rewards" translate="title">
+                            <title>Customer Point Balances</title>
                             <sort_order>10</sort_order>
-                            <action>rewardsadmin/manage_transfer_redemption</action>
-                        </redemhistory>
-                        <mandistri module="rewards" translate="title">
-                            <title>Distributions</title>
-                            <sort_order>20</sort_order>
-                            <action>rewardsadmin/manage_transfer_distribution</action>
-                        </mandistri>
-                        <othertransfers module="rewards" translate="title">
-                            <title>All Other Transfers</title>
-                            <sort_order>30</sort_order>
-                            <action>rewardsadmin/manage_transfer_other</action>
-                        </othertransfers>
-                        <createtransfer module="rewards" translate="title">
-                            <title>Create New Transfer</title>
-                            <sort_order>40</sort_order>
-                            <action>rewardsadmin/manage_transfer/new</action>
-                        </createtransfer>
+                            <action>rewardsadmin/manage_customer_points</action>
+                        </customer>
+		                <transfers module="rewards" translate="title">
+		                    <title>Point Transfers</title>
+		                    <action>rewardsadmin/manage_transfer</action>
+		                    <sort_order>20</sort_order>
+		                    <children>
+                                <othertransfers module="rewards" translate="title">
+                                    <title>Manage Transfers</title>
+                                    <sort_order>0</sort_order>
+                                    <action>rewardsadmin/manage_transfer</action>
+                                </othertransfers>
+		                        <createtransfer module="rewards" translate="title">
+		                            <title>Create New Transfer</title>
+		                            <sort_order>40</sort_order>
+		                            <action>rewardsadmin/manage_transfer/new</action>
+		                        </createtransfer>
+		                    </children>
+                        </transfers>
                     </children>
-                </transfers>
+                </customer>
                 <cfg module="rewards" translate="title">
                     <title>Configuration</title>
                     <action>adminhtml/system_config/edit/section/rewards/</action>
                     <sort_order>60</sort_order>
+                    <children>
+		                <currency module="rewards" translate="title">
+		                    <title>Points Currency</title>
+		                    <sort_order>10</sort_order>
+		                    <action>rewardsadmin/manage_currency</action>
+		                </currency>
+                        <cfg module="rewards" translate="title">
+                            <title>Other Configuration</title>
+                            <action>adminhtml/system_config/edit/section/rewards/</action>
+                            <sort_order>20</sort_order>
+                        </cfg>
+                    </children>
                 </cfg>
             </children>
         </rewards>
@@ -174,10 +178,6 @@
                         <title>Customer Rewards</title>
                         <sort_order>75</sort_order>
                         <children>
-                            <currency module="rewards" translate="title">
-                                <title>Point Currencies</title>
-                                <sort_order>10</sort_order>
-                            </currency>
                             <rules module="rewards" translate="title">
                                 <title>Point Rules</title>
                                 <sort_order>20</sort_order>
@@ -219,34 +219,42 @@
                                 </children>
                             </rules>
                             <customer module="rewards" translate="title">
-                                <title>Customers Points</title>
+                                <title>Customer Points</title>
                                 <sort_order>30</sort_order>
-                            </customer>
-                            <transfers module="rewards" translate="title">
-                                <title>Manage Transfers</title>
-                                <sort_order>40</sort_order>
                                 <children>
-                                    <redemhistory module="rewards" translate="title">
-                                        <title>Redemptions</title>
-                                        <sort_order>10</sort_order>
-                                    </redemhistory>
-                                    <mandistri module="rewards" translate="title">
-                                        <title>Distributions</title>
-                                        <sort_order>20</sort_order>
-                                    </mandistri>
-                                    <othertransfers module="rewards" translate="title">
-                                        <title>All Other Transfers</title>
-                                        <sort_order>30</sort_order>
-                                    </othertransfers>
-                                    <createtransfer module="rewards" translate="title">
-                                        <title>Create New Transfer</title>
-                                        <sort_order>40</sort_order>
-                                    </createtransfer>
+		                            <customer module="rewards" translate="title">
+		                                <title>Customer Point Balances</title>
+		                                <sort_order>10</sort_order>
+		                            </customer>
+			                        <transfers module="rewards" translate="title">
+			                            <title>Point Transfers</title>
+			                            <sort_order>20</sort_order>
+			                            <children>
+			                                <othertransfers module="rewards" translate="title">
+			                                    <title>Manage Transfers</title>
+			                                    <sort_order>0</sort_order>
+			                                </othertransfers>
+			                                <createtransfer module="rewards" translate="title">
+			                                    <title>Create New Transfer</title>
+			                                    <sort_order>40</sort_order>
+			                                </createtransfer>
+			                            </children>
+			                        </transfers>
                                 </children>
-                            </transfers>
+                            </customer>
                             <cfg module="rewards" translate="title">
                                 <title>Configuration</title>
                                 <sort_order>60</sort_order>
+                                <children>
+		                            <currency module="rewards" translate="title">
+		                                <title>Points Currency</title>
+		                                <sort_order>10</sort_order>
+		                            </currency>
+                                    <cfg module="rewards" translate="title">
+                                        <title>Configuration</title>
+                                        <sort_order>20</sort_order>
+                                    </cfg>
+                                </children>
                             </cfg>
                         </children>
                     </rewards>
@@ -354,15 +362,6 @@
                     </tbt_rewards_model_catalogrule_observer>
                 </observers>
             </checkout_cart_add_product_complete>
-            <checkout_cart_update_items_after>
-                <observers>
-                    <tbt_rewards_model_catalogrule_observer>
-                        <type>singleton</type>
-                        <class>rewards/catalogrule_observer</class>
-                        <method>updateRedemptions</method>
-                    </tbt_rewards_model_catalogrule_observer>
-                </observers>
-            </checkout_cart_update_items_after>
             <sales_quote_save_before>
                 <observers>
                     <tbt_rewards_model_catalogrule_observer>
@@ -372,9 +371,7 @@
                     </tbt_rewards_model_catalogrule_observer>
                 </observers>
             </sales_quote_save_before>
-            
-            
-            <checkout_cart_add_product_complete>
+            <controller_action_postdispatch>
                 <observers>
                     <tbt_rewards_model_checkout_cart_observer>
                         <type>singleton</type>
@@ -382,16 +379,7 @@
                         <method>checkRedemptions</method>
                     </tbt_rewards_model_checkout_cart_observer>
                 </observers>
-            </checkout_cart_add_product_complete>
-            <checkout_cart_update_items_after>
-                <observers>
-                    <tbt_rewards_model_checkout_cart_observer>
-                        <type>singleton</type>
-                        <class>rewards/checkout_cart_observer</class>
-                        <method>checkRedemptions</method>
-                    </tbt_rewards_model_checkout_cart_observer>
-                </observers>
-            </checkout_cart_update_items_after>
+            </controller_action_postdispatch>
           <catalogrule_after_apply>
             <observers>
               <tbt_rewards_model_observer_catalog_product_flat_update_product>
@@ -571,12 +559,6 @@
             
             <!-- TODO : WDCA Special Rules Triggers Begin -->
             
-            <customer>
-                <rewrite>
-                        <customer>TBT_Rewards_Model_Customer</customer>
-                </rewrite>
-            </customer> 
-            
             <poll>
                 <rewrite>
                         <poll>TBT_Rewards_Model_Poll</poll>
@@ -597,7 +579,7 @@
                 </rewrite>
             </sales>
             
-            <!-- For PayPal standard payment compatibility -->
+            <!-- For PayPal standard payment compatibility for Magento versions lower than 1.4.1.0, for newer versions see TBT_Rewards_Model_Paypal_Observer -->
             <paypal>
                 <rewrite>
                         <standard>TBT_Rewards_Model_Paypal_Standard</standard>
@@ -706,6 +688,16 @@
                 </observers>
             </core_block_abstract_to_html_before>
             
+            <!-- For PayPal standard payments for Magento versions >= 1.4.1.0, for older versions rewrite above is used -->
+            <paypal_prepare_line_items>
+                <observers>
+                    <tbt_rewards_model_paypal_standard_prepare>
+                        <type>singleton</type>
+                        <class>rewards/paypal_observer</class>
+                        <method>prepare</method>
+                    </tbt_rewards_model_paypal_standard_prepare>
+                </observers>
+            </paypal_prepare_line_items>
         </events>
      
         <sales>
@@ -731,12 +723,17 @@
                         <renderer>rewards/checkout_rewardearned</renderer> 
                         <admin_renderer>rewards/checkout_rewardearned</admin_renderer>
                     </rewardearned>
+                    <rewardshipping>
+                        <class>rewards/sales_quote_total_freeshipping</class>
+                        <after>freeshipping</after>
+                        <before>shipping</before>
+                    </rewardshipping>
                 </totals>
             </quote>     
             <order>
                 <totals>
                     <rewards>
-                        <class>rewards/sales_order_points</class>
+                        <class>rewards/sales_order_view_points</class>
                         <before>subtotal</before>
                         <renderer>rewards/checkout_rewardearned</renderer> 
                         <admin_renderer>rewards/checkout_rewarddiscount</admin_renderer>
@@ -752,6 +749,13 @@
                     </rewards>
                 </totals>
             </order_invoice> 
+            <order_creditmemo>
+                <totals>
+                    <rewards>
+                        <class>rewards/sales_creditmemo_total</class>
+                    </rewards>
+                </totals>
+            </order_creditmemo>
         </sales>
       
         <template>
@@ -766,9 +770,19 @@
                     <file>rewards/expiry_notice.html</file>
                     <type>html</type>
                 </rewards_expire_email_warning1_template>
+                <rewards_birthday_email_template translate="label" module="rewards">
+                    <label>Sweet Tooth - Behavior - birthday notice</label>
+                    <file>rewards/behavior_birthday.html</file>
+                    <type>html</type>
+                </rewards_birthday_email_template>
             </email>
         </template>
         
+        <pdf>
+            <totals>
+                <points_discount><model>rewards/sales_pdf_points_discount</model></points_discount>
+            </totals>
+        </pdf>
     </global>
     
      
@@ -789,8 +803,31 @@
                 <schedule><cron_expr>0 0 * * *</cron_expr></schedule>
                 <run><model>rewards/observer_cron::checkPointsExpiry</model></run>
             </rewards_checkpointsexpiry>
+            <rewards_checkpointsprobation>
+                <schedule><cron_expr>0 0 * * *</cron_expr></schedule>
+                <run><model>rewards/observer_cron::checkPointsProbation</model></run>
+            </rewards_checkpointsprobation>
+	        <rewards_checkcustomerbirthdays>
+	            <schedule><cron_expr>0 12 * * *</cron_expr></schedule>
+	            <run><model>rewards/birthday_observer::checkCustomerBirthdays</model></run>
+	        </rewards_checkcustomerbirthdays>
+	        <rewards_cfu>
+	            <schedule><cron_expr>0 8 * * *</cron_expr></schedule>
+	            <run><model>rewards/observer_cron::cfu</model></run>
+	        </rewards_cfu>
         </jobs>
     </crontab>
+    
+    
+    <!-- BEGIN Points Probation Support BEGIN -->
+    <rewards>
+        <probational_behaviors>
+            <customer_sign_up />
+            <customer_send_friend />
+            <customer_writes_review />
+        </probational_behaviors>
+    </rewards>
+    <!-- END Points Probation Support END -->
     
     
     <!-- BEGIN Newletter Rewards Components BEGIN -->
@@ -811,7 +848,7 @@
     </rewards>   
      <global>
         <events>
-            <newsletter_subscriber_save_before>
+            <model_save_before>
                 <observers>
                     <tbt_rewards_model_newsletter_subscriber_save_before>
                         <type>singleton</type>
@@ -819,8 +856,8 @@
                         <method>beforeSaveSubscription</method>
                     </tbt_rewards_model_newsletter_subscriber_save_before>
                 </observers>
-            </newsletter_subscriber_save_before>
-            <newsletter_subscriber_save_after>
+            </model_save_before>
+            <model_save_after>
                 <observers>
                     <tbt_rewards_model_newsletter_subscriber_save_after>
                         <type>singleton</type>
@@ -828,7 +865,7 @@
                         <method>afterSaveSubscription</method>
                     </tbt_rewards_model_newsletter_subscriber_save_after>
                 </observers>
-            </newsletter_subscriber_save_after>
+            </model_save_after>
         </events>
     </global>
     <!-- END Newletter Rewards Components END-->
@@ -849,10 +886,10 @@
                 <review>rewards/review_reason</review>
             </reason>
         </transfer>
-    </rewards> 
+    </rewards>
     <global>
         <events>
-            <review_save_after>
+            <model_save_after>
                 <observers>
                     <tbt_rewards_model_review_observer_save_after>
                         <type>singleton</type>
@@ -860,8 +897,8 @@
                         <method>afterSaveReview</method>
                     </tbt_rewards_model_review_observer_save_after>
                 </observers>
-            </review_save_after>
-            <review_load_after>
+            </model_save_after>
+            <model_load_after>
                 <observers>
                     <tbt_rewards_model_review_observer_load_after>
                         <type>singleton</type>
@@ -869,7 +906,7 @@
                         <method>afterLoadReview</method>
                     </tbt_rewards_model_review_observer_load_after>
                 </observers>
-            </review_load_after>
+            </model_load_after>
             <core_block_abstract_prepare_layout_after>
                 <observers>
                     <tbt_rewards_model_review_add_tab>
@@ -918,7 +955,7 @@
     </rewards> 
     <global>
         <events>
-            <tag_save_after>
+            <model_save_after>
                 <observers>
                     <tbt_rewards_model_tag_observer_save_after>
                         <type>singleton</type>
@@ -926,8 +963,8 @@
                         <method>afterSaveTag</method>
                     </tbt_rewards_model_tag_observer_save_after>
                 </observers>
-            </tag_save_after>
-            <tag_load_after>
+            </model_save_after>
+            <model_load_after>
                 <observers>
                     <tbt_rewards_model_tag_observer_load_after>
                         <type>singleton</type>
@@ -935,7 +972,7 @@
                         <method>afterLoadTag</method>
                     </tbt_rewards_model_tag_observer_load_after>
                 </observers>
-            </tag_load_after>
+            </model_load_after>
             <core_block_abstract_prepare_layout_after>
                 <observers>
                     <tbt_rewards_model_tag_add_tab>
@@ -949,38 +986,53 @@
     </global>
     <!-- END Tag Rewards Components END --> 
     
+    <!-- BEGIN Birthday Rewards Components BEGIN -->
+    <rewards>
+        <special>
+            <birthday>
+                <config>rewards/birthday_action</config>
+            </birthday>
+        </special>
+        <transfer>
+            <reason>
+                <birthday>rewards/birthday_reason</birthday>
+            </reason>
+        </transfer>
+    </rewards> 
+    <!-- END Birthday Rewards Components END --> 
+    
     <!-- BEGIN Customer Rewards Components BEGIN -->
-    <!--global>
+    <global>
         <events>
             <customer_save_after>
                 <observers>
-                    <tbt_rewards_model_customer_customer_save_after>
+                    <tbt_rewards_model_customer_save_after>
                         <type>singleton</type>
-                        <class>rewards/customer_customer_observer</class>
+                        <class>rewards/customer_observer</class>
                         <method>customerAfterSave</method>
-                    </tbt_rewards_model_customer_customer_save_after>
+                    </tbt_rewards_model_customer_save_after>
                 </observers>
             </customer_save_after>
             <customer_load_after>
                 <observers>
-                    <tbt_rewards_model_customer_customer_load_after>
+                    <tbt_rewards_model_customer_load_after>
                         <type>singleton</type>
-                        <class>rewards/customer_customer_observer</class>
+                        <class>rewards/customer_observer</class>
                         <method>customerAfterLoad</method>
-                    </tbt_rewards_model_customer_customer_load_after>
+                    </tbt_rewards_model_customer_load_after>
                 </observers>
             </customer_load_after>
             <customer_save_before>
-                <observers>
-                    <tbt_rewards_model_customer_customer_save_before>
+            	<observers>
+                    <tbt_rewards_model_customer_save_before>
                         <type>singleton</type>
-                        <class>rewards/customer_customer_observer</class>
+                        <class>rewards/customer_observer</class>
                         <method>customerBeforeSave</method>
-                    </tbt_rewards_model_customer_customer_save_before>
+                    </tbt_rewards_model_customer_save_before>
                 </observers>
             </customer_save_before>
-        </events>
-    </global-->
+    	</events>
+    </global>
     <!-- END Customer Rewards Components END -->
     
     <default>
@@ -1002,6 +1054,8 @@
                 <shopping_cart_rule_earn_after_discount>0</shopping_cart_rule_earn_after_discount>
                 <maximum_points_spent_in_cart>100</maximum_points_spent_in_cart>
                 <maximum_points_spent_in_catalog>100</maximum_points_spent_in_catalog>
+                <freeshipping_when_spending_points>0</freeshipping_when_spending_points>
+                <cfu>1</cfu>
             </general>
             <display>
                 <noPointsCaption>zero points</noPointsCaption>
@@ -1023,6 +1077,9 @@
                 <product_view_page_tag_points>0</product_view_page_tag_points>
                 <shopping_cart_under_coupon>0</shopping_cart_under_coupon>
                 <customer_dashboard_summary>0</customer_dashboard_summary>
+                <checkout_onepage_warnguest>1</checkout_onepage_warnguest>
+                <product_view_warnguest>1</product_view_warnguest>
+                <product_listing>1</product_listing>
             </autointegration>
             <InitialTransferStatus>
                 <AfterOrder>4</AfterOrder>
@@ -1033,6 +1090,7 @@
                 <AfterTag>4</AfterTag>
                 <AfterNewsletter>5</AfterNewsletter>
                 <AfterSignup>5</AfterSignup>
+                <AfterBirthday>5</AfterBirthday>
                 <TransferToFriend>5</TransferToFriend>
             </InitialTransferStatus>
             <orders>
@@ -1044,6 +1102,7 @@
                 <orderEarned><![CDATA[Points received for making an order.]]></orderEarned>
                 <orderSpent><![CDATA[Points spent on a purchase.]]></orderSpent>
                 <reviewOrRatingEarned><![CDATA[Points received for writing a review/making a rating]]></reviewOrRatingEarned>
+                <birthdayEarned><![CDATA[Points received for having a birthday.]]></birthdayEarned>
                 <pollEarned><![CDATA[Points received for participating in a poll.]]></pollEarned>
                 <tellAFriendEarned><![CDATA[Points received for telling a friend about a product.]]></tellAFriendEarned>
                 <tagEarned><![CDATA[Points received for tagging a product.]]></tagEarned>
@@ -1060,11 +1119,21 @@
                 <is_enabled>0</is_enabled>
                 <delay_days>365</delay_days>
                 <email_warning1_days>45</email_warning1_days>
-                <email_warning1_template>rewards_default_expiry</email_warning1_template>
+                <email_warning1_template>rewards_expire_email_warning1_template</email_warning1_template>
                 <email_warning2_days>14</email_warning2_days>
-                <email_warning2_template>rewards_default_expiry</email_warning2_template>
+                <email_warning2_template>rewards_expire_email_warning2_template</email_warning2_template>
                 <log_when_points_expire>1</log_when_points_expire>
             </expire>
+            <birthday>
+                <min_days_between_reward>364</min_days_between_reward>
+                <email_template>rewards_birthday_email_template</email_template>
+                <is_log_birthday_enabled>1</is_log_birthday_enabled>
+            </birthday>
+
+            <checkout>
+                <enable_paypal_checkout_fee>1</enable_paypal_checkout_fee>
+            </checkout>
+			
             <!-- Annual Limit Feature
             <anualRedemptionLimit>
                 <is_enabled>0</is_enabled>
@@ -1088,8 +1157,11 @@
         <tests>
             <rewards>
                 <suites>
-                    <database>TBT_Rewards_Model_Test_Suite_Rewards_Database</database>
-                    <template>TBT_Rewards_Model_Test_Suite_Rewards_Template</template>
+                    <database_tables>TBT_Rewards_Model_Test_Suite_Rewards_Database_Tables</database_tables>
+                    <!--<database_schema>TBT_Rewards_Model_Test_Suite_Rewards_Database_Schema</database_schema>-->
+                    <module_issue>TBT_Rewards_Model_Test_Suite_Rewards_Module_Issue</module_issue>
+                    <template_points>TBT_Rewards_Model_Test_Suite_Rewards_Template_Points</template_points>
+                    <template_migration>TBT_Rewards_Model_Test_Suite_Rewards_Template_Migration</template_migration>
                 </suites>
             </rewards>
         </tests>

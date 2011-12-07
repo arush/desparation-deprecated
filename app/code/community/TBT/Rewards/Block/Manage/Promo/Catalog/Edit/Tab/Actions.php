@@ -56,6 +56,8 @@ class TBT_Rewards_Block_Manage_Promo_Catalog_Edit_Tab_Actions extends Mage_Admin
 		
 		if ($this->_isDistributionType ()) {
 			$fieldset = $form->addFieldset ( 'points_action_fieldset', array ('legend' => Mage::helper ( 'rewards' )->__ ( 'Reward With Points' ) ) );
+		    Mage::getSingleton('rewards/wikihints')->addWikiHint($fieldset, "Catalog Earning Rules - Actions" );
+		    
 			$options = Mage::getSingleton ( 'rewards/catalogrule_actions' )->getDistributionOptionArray ();
 			
 			$fieldset->addField ( 'points_action', 'select', array ('label' => Mage::helper ( 'salesrule' )->__ ( 'Action' ), 'name' => 'points_action', 'options' => $options, 'onchange' => 'toggleActionsSelect(this.value)' ) );
@@ -87,7 +89,8 @@ class TBT_Rewards_Block_Manage_Promo_Catalog_Edit_Tab_Actions extends Mage_Admin
 			//        ));
 			
 
-			$fieldset->addField ( 'points_max_qty', 'text', array ('name' => 'points_max_qty', 'label' => Mage::helper ( 'rewards' )->__ ( 'Maximum Total of Points To Transfer (0 for unlimited)' ) ) );
+			$points_max_qty_field = $fieldset->addField ( 'points_max_qty', 'text', array ('name' => 'points_max_qty', 'label' => Mage::helper ( 'rewards' )->__ ( 'Maximum Total of Points To Transfer (0 for unlimited)' ) ) );
+		    Mage::getSingleton('rewards/wikihints')->addWikiHint($points_max_qty_field, "Catalog Points Earning Rule: Maximum Total of Points To Transfer" );
 			
 			$simple_actions = array ('' => Mage::helper ( 'salesrule' )->__ ( 'No Discount -- ' ), 'by_percent' => Mage::helper ( 'salesrule' )->__ ( 'By Percentage of the original price' ), 'by_fixed' => Mage::helper ( 'salesrule' )->__ ( 'By Fixed Amount' ), 'to_percent' => Mage::helper ( 'salesrule' )->__ ( 'To Percentage of the original price' ), 'to_fixed' => Mage::helper ( 'salesrule' )->__ ( 'To Fixed Amount' ) );
 			$simple_actions_caption = 'Additionally, update prices using the following information';
@@ -99,6 +102,7 @@ class TBT_Rewards_Block_Manage_Promo_Catalog_Edit_Tab_Actions extends Mage_Admin
 			$simple_actions_caption = 'Update prices using the following information';
 			
 			$fieldset = $form->addFieldset ( 'action_fieldset', array ('legend' => Mage::helper ( 'catalogrule' )->__ ( $simple_actions_caption ) ) );
+			Mage::getSingleton('rewards/wikihints')->addWikiHint($fieldset, "Catalog Points Spending Rule - Actions - Discount Amount" );
 			
 			$fieldset->addField ( 'points_catalogrule_simple_action', 'select', array ('label' => Mage::helper ( 'salesrule' )->__ ( 'Discount Style' ), 'name' => 'points_catalogrule_simple_action', 'options' => $simple_actions, 'onchange' => 'toggleDiscountActionsSelect(this.value)' ) );
 			
@@ -112,7 +116,13 @@ class TBT_Rewards_Block_Manage_Promo_Catalog_Edit_Tab_Actions extends Mage_Admin
 			$element = $fieldset->addField ( 'points_catalogrule_stop_rules_processing', 'select', array ('label' => Mage::helper ( 'salesrule' )->__ ( 'Stop further rules processing' ), 'title' => Mage::helper ( 'salesrule' )->__ ( 'Stop further rules processing' ), 'name' => 'points_catalogrule_stop_rules_processing', 'options' => array ('1' => Mage::helper ( 'salesrule' )->__ ( 'Yes' ), '0' => Mage::helper ( 'salesrule' )->__ ( 'No' ) ) ) );
 			Mage::getSingleton('rewards/wikihints')->addWikiHint($element, "Stop further rules processing", null, $this->__("Get help with the Stop Further Rules Processing flag."));
 					
-			$fieldset->addField ( 'points_uses_per_product', 'text', array ('name' => 'points_uses_per_product', 'required' => true, 'class' => 'validate-not-negative-number', 'value' => 1, 'label' => Mage::helper ( 'rewards' )->__ ( 'Uses Allowed Per Product (0 for unlimited)' ) ) );
+			$points_uses_per_product_field = $fieldset->addField ( 'points_uses_per_product', 'text', array (
+				'name' => 'points_uses_per_product', 
+				'required' => true, 
+				'class' => 'validate-not-negative-number', 
+				'value' => 1, 'label' => Mage::helper ( 'rewards' )->__ ( 'Uses Allowed Per Product (0 for unlimited)' ) ) );
+			Mage::getSingleton('rewards/wikihints')->addWikiHint($points_uses_per_product_field, "Catalog Points Spending Rule - Actions - Uses Allowed Per Product" );
+			
 		}
 		
 		$model_data = $model->getData ();
