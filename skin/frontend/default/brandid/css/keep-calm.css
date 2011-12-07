@@ -300,7 +300,7 @@ float:right;}
 }
 
 span.apostrophe2 {
-	margin-left:-36px;
+	margin-left:-14px;
 }
 
 
@@ -609,10 +609,10 @@ height:23px;
 }
 
 .commitment-caption {
-	font-family: pt-serif-caption;
-	font-size: 15px;
+	font-family: proximaNovaLight;
+	font-size: 18px;
 	color: #595959;
-	margin:55px auto 115px;
+	margin:55px auto 75px;
 	width: 450px;
 	text-align: center;
 }
@@ -775,7 +775,8 @@ height:23px;
 
 .keep-calm-signmeup span.quote {
 	display: block;
-	font-family: 'pt-serif-caption';
+	font-family: 'georgia';
+	font-style: italic;
 }
 
 .keep-calm-signmeup .quote-box {
@@ -788,7 +789,7 @@ height:23px;
 	background: #F1F1F1;
 	padding: 30px 40px;
 	color: #444;
-	font-size: 15px;
+	font-size: 17px;
 }
 
 .keep-calm-signmeup .apostrophe {
@@ -817,8 +818,8 @@ height:23px;
 	padding-left: 70px;
 	padding-top: 5px;
 	color: #4A4A4A;
-	font-size: 12px;
-	font-family: 'pt-serif-caption';
+	font-size: 14px;
+	font-family: 'georgia';
 	font-style: italic;
 	display:block;
 	clear:both;
