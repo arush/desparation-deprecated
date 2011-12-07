@@ -53,7 +53,7 @@ Default layout, loads most of the pages
                 <action method="addJs"><script>varien/menu.js</script></action>
                 <action method="addJs"><script>mage/translate.js</script></action>
                 <action method="addJs"><script>mage/cookies.js</script></action>
-                <action method="addJs"><script>jquery/jquery-1.4.2.min.js</script></action>
+                <action method="addJs"><script>jquery/jquery-1.7.1.min.js</script></action>
 				<action method="addJs"><script>jquery/jquery.tools.min.js</script></action>
                 
 		<!-- START COUNTDOWN -->
