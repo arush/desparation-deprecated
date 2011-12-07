@@ -10,7 +10,6 @@
 font-weight: bold;margin-top: -33px;padding: 0 8px;}*/
 /*.rewardsref-customer-index .group-select ul li { padding-right: 20px;}*/
 .rewardsref-customer-index .group-select ul li .input-box { float: left;width: 275px;}
-.rewardsref-customer-index .group-select ul li label{ font-weight:bold;}
 .rewardsref-customer-index .group-select ul li input[type=text]{ width:444px;}
 .rewardsref-customer-index .group-select ul li .input-box input[type=text]{ width:250px;}
 .rewardsref-customer-index .group-select ul li textarea{ width:525px;}
@@ -51,10 +50,7 @@ input#referral_url{margin-right: 20px;margin-bottom:2px;}
 	background: #000;
 }
 .rewardsref-button:hover{
-	
-	
-	
-	
+		
 }
 /*REFERRAL PAGE START 12/04/11*/
 .referrals{
