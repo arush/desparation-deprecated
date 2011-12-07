@@ -609,7 +609,11 @@ height:23px;
 }
 
 .commitment-caption {
+<<<<<<< HEAD
 	font-family: proximaNovaLight;
+=======
+	font-family: ProximaNovaLight;
+>>>>>>> d918786aa52c809fb897e8b67cf42cd1d0d5322d
 	font-size: 18px;
 	color: #595959;
 	margin:55px auto 75px;

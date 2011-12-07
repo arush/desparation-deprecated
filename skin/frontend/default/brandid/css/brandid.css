@@ -673,8 +673,13 @@ html[xmlns] .invite-options {
 
 .random-quote span {
 	display: block;
+<<<<<<< HEAD
 	font-family: 'georgia';
 	font-style: italic;
+=======
+	font-family: 'pt-serif-caption';
+	font-style: italic;	
+>>>>>>> d918786aa52c809fb897e8b67cf42cd1d0d5322d
 	
 }
 .random-quote .apostrophe {
@@ -709,7 +714,11 @@ html[xmlns] .invite-options {
 	padding-top: 5px;		
 	color: #4a4a4a;
 	font-size: 14px;	
+<<<<<<< HEAD
 	font-family: 'georgia';	
+=======
+	font-family: 'pt-serif-caption';	
+>>>>>>> d918786aa52c809fb897e8b67cf42cd1d0d5322d
 	font-style: italic;
 }
 
