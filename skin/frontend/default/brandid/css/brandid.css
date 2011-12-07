@@ -673,7 +673,8 @@ html[xmlns] .invite-options {
 
 .random-quote span {
 	display: block;
-	font-family: 'pt-serif-caption';	
+	font-family: 'pt-serif-caption';
+	font-style: italic;	
 	
 }
 .random-quote .apostrophe {
@@ -706,7 +707,7 @@ html[xmlns] .invite-options {
 	padding-left: 70px;
 	padding-top: 5px;		
 	color: #4a4a4a;
-	font-size: 12px;	
+	font-size: 14px;	
 	font-family: 'pt-serif-caption';	
 	font-style: italic;
 }

@@ -609,8 +609,8 @@ height:23px;
 }
 
 .commitment-caption {
-	font-family: pt-serif-caption;
-	font-size: 15px;
+	font-family: ProximaNovaLight;
+	font-size: 18px;
 	color: #595959;
 	margin:55px auto 115px;
 	width: 450px;
@@ -775,7 +775,8 @@ height:23px;
 
 .keep-calm-signmeup span.quote {
 	display: block;
-	font-family: 'pt-serif-caption';
+	font-family: 'georgia';
+	font-style: italic;
 }
 
 .keep-calm-signmeup .quote-box {
@@ -817,8 +818,8 @@ height:23px;
 	padding-left: 70px;
 	padding-top: 5px;
 	color: #4A4A4A;
-	font-size: 12px;
-	font-family: 'pt-serif-caption';
+	font-size: 14px;
+	font-family: 'georgia';
 	font-style: italic;
 	display:block;
 	clear:both;
