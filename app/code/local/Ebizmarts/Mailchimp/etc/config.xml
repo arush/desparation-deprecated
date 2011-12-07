@@ -37,11 +37,11 @@
                     </ecomm360>
                 </entities>
 			</mailchimp_mysql4>
-            <!-- core>
+            <core>
                 <rewrite>
                     <email_template>Ebizmarts_Mailchimp_Model_Email_Template</email_template>
                 </rewrite>
-            </core-->
+            </core>
 		</models>
 		<resources>
             <Mailchimp_setup>
