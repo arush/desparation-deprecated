@@ -39,7 +39,11 @@ class Vdh_Customerurl_Model_Customer {
 	
 	public function createUnique($customer, $default = 'username') {
 		if (!$customer->getCustomerurl()) {
-			$customer->setCustomerurl(strtolower($customer->getFirstname()));
+			$temp = strtolower($customer->getFirstname()) . strtolower($customer->getLastname());
+			$temp = trim($temp);
+			$temp = preg_replace("/[^a-zA-Z0-9_-]/", "", $temp);						
+			$customer->setCustomerurl($temp);
+			
 		}
 		if (!$customer->getCustomerurl()) {
 			$customer->setCustomerurl($default);
