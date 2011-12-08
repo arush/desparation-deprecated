@@ -21,12 +21,13 @@
 			<action method="addItem"><type>skin_js</type><name>js/jquery-color-min.js</name></action>
 			<action method="addItem"><type>skin_js</type><name>js/plax.js</name></action>
 			<action method="addItem"><type>skin_js</type><name>js/fuckthesystem.js</name></action>
+			<action method="addItem"><type>skin_js</type><name>js/jquery-1.7.1.min.js</name></action>
 			<action method="addItem"><type>skin_js</type><name>js/jquery.reject.js</name></action>
-			
+
 			<action method="removeItem"><type>js</type><name>lib/ccard.js</name></action>
 			<action method="removeItem"><type>js</type><name>prototype/validation.js</name></action>
-			
-			
+			<action method="removeItem"><type>js</type><name>jquery/jquery-1.4.2.min.js</name></action>
+
 			<action method="removeItem"><type>js</type><name>scriptaculous/builder.js</name></action>
 			<action method="removeItem"><type>js</type><name>scriptaculous/dragdrop.js</name></action>
             <action method="removeItem"><type>js</type><name>scriptaculous/controls.js</name></action>
