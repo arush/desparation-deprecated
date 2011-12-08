@@ -12774,7 +12774,7 @@ overflow: hidden;
 	}
 	.gettingstarted .divider{height:244px;width:1px;}
 	
-	.gettingstarted.getstarted .popup-form {height: 248px;}
+	.gettingstarted.getstarted .popup-form {height: 248px; padding: 0 48px;}
 	.gettingstarted.getstarted a {
 		background-color: #D2002B;
 	    color: white;
@@ -12784,6 +12784,19 @@ overflow: hidden;
 	    padding: 14px 17px;
 	    text-transform: uppercase;
     }
+    .gettingstarted.getstarted .popup-form .left {
+    	font-family: proximanovalight;
+    	font-size: 16px;
+    	color: #595959;
+    	width:275px;
+    	padding:0;
+    	
+    }
+    .gettingstarted.getstarted .popup-form .left {
+    	padding: 0;
+    	width: 275px;
+    }
+
 	
 	/* GETTING STARTED END */
 
