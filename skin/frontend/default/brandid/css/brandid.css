@@ -640,14 +640,14 @@ html[xmlns] .invite-options {
 	display: block;
 	float: left;
 	width: 134px;
-	height: 52px;
+	height: 40px;
 	margin-right: 10px;
 	background: #f1f1f1;
 	cursor: pointer;
 	text-align: center;
 	text-transform: uppercase;
 	padding-top: 25px;
-	font-family: proximanovabold;
+	font-family: ProximaNovaBold;
 	color: black;
 }
 

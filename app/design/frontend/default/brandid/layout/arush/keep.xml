@@ -13,15 +13,16 @@
 				</action>
 				
 			</block>
+			<action method="addItem"><type>skin_js</type><name>js/jquery-1.7.1.min.js</name></action>
+
 			<action method="addItem"><type>skin_js</type><name>js/scroll/jquery.localscroll-1.2.7-min.js</name></action>
 			
-<action method="addItem"><type>skin_js</type><name>js/scroll/jquery.scrollTo-1.4.2-min.js</name></action>
+			<action method="addItem"><type>skin_js</type><name>js/scroll/jquery.scrollTo-1.4.2-min.js</name></action>
 		<!--	<action method="addItem"><type>skin_js</type><name>js/scroll/jquery.serialScroll-1.2.2-min.js</name></action>
 -->
 			<action method="addItem"><type>skin_js</type><name>js/jquery-color-min.js</name></action>
 			<action method="addItem"><type>skin_js</type><name>js/plax.js</name></action>
 			<action method="addItem"><type>skin_js</type><name>js/fuckthesystem.js</name></action>
-			<action method="addItem"><type>skin_js</type><name>js/jquery-1.7.1.min.js</name></action>
 			<action method="addItem"><type>skin_js</type><name>js/jquery.reject.js</name></action>
 
 			<action method="removeItem"><type>js</type><name>lib/ccard.js</name></action>
@@ -43,6 +44,9 @@
 			<action method="removeItem"><type>skin_js</type><name>mailchimp/js/MailChimp.js</name></action>
 			<action method="removeItem"><type>skin_js</type><name>js/evogue/scripts.js</name></action>
 			<action method="removeItem"><type>skin_js</type><name>js/evogue/catalogevent.js</name></action>
+			<action method="removeItem"><type>skin_js</type><name>js/jquery-color.js</name></action>
+			<action method="removeItem"><type>skin_js</type><name>js/vdh/popup/script.js</name></action>
+
 
 			<action method="removeItem"><type>skin_css</type><name>css/highslide.css</name></action>
 			<action method="removeItem"><type>skin_css</type><name>css/styles.css</name></action>
@@ -51,7 +55,9 @@
 			<action method="removeItem"><type>skin_css</type><name>css/svdh.css</name></action>
 			<action method="removeItem"><type>skin_css</type><name>rewards/css/skin.css</name></action>
 			<action method="removeItem"><type>skin_css</type><name>rewards/css/catalog.css</name></action>
+			<action method="removeItem"><type>skin_css</type><name>css/vdh/popup/style.css</name></action>
 
+			
 			<action method="removeItem"><type>skin_js</type><name>js/brandid.js</name></action>    
 			<action method="removeItem"><type>skin_js</type><name>js/gauge.js</name></action>    			
 			<action method="removeItem"><type>skin_js</type><name>js/flipcounter.min.js</name></action>
