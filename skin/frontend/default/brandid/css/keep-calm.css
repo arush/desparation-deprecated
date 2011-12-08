@@ -303,6 +303,21 @@ span.apostrophe2 {
 	margin-left:-14px;
 }
 
+.quote-triangle {
+ 	width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #eee;
+
+	-moz-transform:rotate(90deg);
+	-webkit-transform:rotate(90deg);
+	-o-transform:rotate(90deg);
+	-ms-transform:rotate(90deg);
+	margin: -11px 0 0 52px;
+
+}
+
 
 /* end brandid.css */
 
@@ -776,6 +791,8 @@ height:23px;
 .keep-calm-signmeup span.quote {
 	display: block;
 	font-family: 'georgia';
+	font-style: italic;
+	height:79px;
 }
 
 .keep-calm-signmeup .quote-box {
@@ -803,8 +820,8 @@ height:23px;
 }
 
 .quotes .author {
-	padding-left: 70px;
 	padding-top: 10px;
+	padding-left:40px;
 	letter-spacing: -1px;
 	font-weight: 600;
 	color: black;
@@ -814,8 +831,8 @@ height:23px;
 }
 
 .quotes .caption-small {
-	padding-left: 70px;
 	padding-top: 5px;
+	padding-left:40px;
 	color: #4A4A4A;
 	font-size: 14px;
 	font-family: 'georgia';
