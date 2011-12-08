@@ -1,0 +1,29 @@
+<?php/*
+
+if ($this->getSuppressPopup() == '1') {
+	Mage::getModel('core/cookie')->set('suppress_popup', true);
+}
+if ($this->getSubmit()) {
+	Mage::getModel('core/cookie')->set('getting_started', true);
+}
+if (!Mage::getModel('core/cookie')->get('getting_started') && !Mage::getSingleton('customer/session')->isLoggedIn()):
+*/
+?>
+<div class="gettingstarted">
+	<div class="popup-top">
+		<h1>You're in, now what?</h1>
+	</div>
+	<div class="popup-form">
+		<div class="left">
+			some text
+		</div>
+		
+		<div class="right">
+			<img class="gauge-start" src="<?php echo $this->getSkinUrl();?>images/getstarted.png"/>
+		</div>
+	</div>
+	<div class="popup-bottom">
+		<a href="/customer/rewardsref/index">Start sending invitations</a>
+	</div>
+</div>
+<?php // endif; ?>
