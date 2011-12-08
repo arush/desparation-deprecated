@@ -12774,6 +12774,17 @@ overflow: hidden;
 	}
 	.gettingstarted .divider{height:244px;width:1px;}
 	
+	.gettingstarted.getstarted .popup-form {height: 248px;}
+	.gettingstarted.getstarted a {
+		background-color: #D2002B;
+	    color: white;
+	    cursor: pointer;
+	    font-family: proximanovabold;
+	    margin-top: -20px;
+	    padding: 14px 17px;
+	    text-transform: uppercase;
+    }
+	
 	/* GETTING STARTED END */
 
 /* VDH-POPUP END*/

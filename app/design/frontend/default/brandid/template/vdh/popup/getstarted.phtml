@@ -5,11 +5,11 @@ if ($this->getSuppressPopup() == '1') {
 }
 if ($this->getSubmit()) {
 	Mage::getModel('core/cookie')->set('getting_started', true);
-}
-if (!Mage::getModel('core/cookie')->get('getting_started') && !Mage::getSingleton('customer/session')->isLoggedIn()):
-*/
+} */
+if (Mage::getSingleton('customer/session')->isLoggedIn()):
+
 ?>
-<div class="gettingstarted">
+<div class="gettingstarted getstarted">
 	<div class="popup-top">
 		<h1>You're in, now what?</h1>
 	</div>
@@ -23,7 +23,7 @@ if (!Mage::getModel('core/cookie')->get('getting_started') && !Mage::getSingleto
 		</div>
 	</div>
 	<div class="popup-bottom">
-		<a href="/customer/rewardsref/index">Start sending invitations</a>
+		<a href="/rewardsref/customer/index">Start sending invitations</a>
 	</div>
 </div>
-<?php // endif; ?>
+<?php endif; ?>
