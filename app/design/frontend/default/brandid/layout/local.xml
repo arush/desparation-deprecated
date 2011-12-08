@@ -98,6 +98,12 @@
     	</reference>
     </checkout_onepage_index>
     
+    <checkout_cart_index>
+    	<reference name="head">
+			<action method="addJs"><script>jquery/jquery.tools.min.js</script></action>
+		</reference>
+	</checkout_cart_index>
+    
     
     <oneall_rpx_duplicate>
     	<reference name="head">
