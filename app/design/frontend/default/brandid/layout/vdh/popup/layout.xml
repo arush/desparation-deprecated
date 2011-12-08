@@ -75,5 +75,11 @@
         <remove name="popup" />
         <remove name="popup_header" />
     </customer_onepage_index>
+ 
+	 <keep_calm_signmeup>
+    	<remove name="popup" />
+		<remove name="popup_header" />
+    </keep_calm_signmeup>
+
 
  </layout>
