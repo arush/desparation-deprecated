@@ -18,7 +18,7 @@
 					<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.getbrandid.com/" data-text="Dirty boxers never got anyone laid. Designer brands auto-delivered for MEN. get #BRANDiD" data-count="horizontal" data-via="getbrandid">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
 				</div>
 				
-				<div class="share-but">
+				<div class="share-but gp">
 					<g:plusone size="medium" href="http://www.getbrandid.com"></g:plusone>
 				</div>
 	
@@ -30,7 +30,7 @@
 				
 				<div class="login-signup-but"><a href="/customer/account/login">Login</a>
 				</div>
-				<div class="login-signup-but"><a href="#signmeupnow">Sign Up</a>
+				<div class="login-signup-but but-right"><a href="#signmeupnow">Sign Up</a>
 				</div>
 			</div>
 	
@@ -390,10 +390,25 @@
       
 		      window.group_rel = w - ($j("#mags").data("scrolls")[0] + 650);
 		      window.group_ratio = (Math.round((window.group_rel / ($j("#mags").data("scrolls")[2] - 650)) * 100) / 25);      
+		    	
+		    var c =0;
 		    
-   		      $j(".hood-element").each(function(index) {
+   		      $j(".hood-element").each(function(c) {
 		        if($j(this).data("visible")=="false") {
-		          if(window.group_ratio > index) $j(this).fadeIn(600,function() {$j(this).data("visible","true")});
+		          if(window.group_ratio > c) $j(this).fadeIn(600,
+		          	function() {
+		          		$j(this).data("visible","true");
+						c += 1;
+						alert(c);
+		          		while (c <= 3) {
+			          		$j(".hood-element").each(function(c) {
+			          				$j(this).fadeIn(600, function() {
+						          		$j(this).data("visible","true")});
+				          		});
+							c += 1;
+				          	alert(c);
+							}			          		
+		          		});
 		        }
 		        else {
 		          if(window.group_ratio < index) $j(this).fadeOut(600,function() {$j(this).data("visible","false")});

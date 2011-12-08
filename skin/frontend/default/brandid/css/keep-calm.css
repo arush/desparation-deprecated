@@ -333,7 +333,7 @@ span.apostrophe2 {
 
 .share-but {
 	float:left;
-	width:136px;
+	width:202px;
 	margin-top:16px;
 }
 
@@ -355,13 +355,22 @@ span.apostrophe2 {
 	width:143px;
 	height:54px;
 	float:left;
-	margin-right:136px;
+	margin-right:96px;
 }
 
+.login-signup {
+	float: left;
+	width: 123px;
+	margin-top: 10px;
+}
+
+.login-signup-but {
+	float:left;
+	padding:5px;
+}
 
 .login-signup-but a {
-	float:right;
-	width:132px;
+	width:88px;
 	font-family: ProximaNovaBold;
 	font-size: 16px;
 	letter-spacing: -1px;
@@ -373,6 +382,10 @@ span.apostrophe2 {
 
 .login-signup-but a:hover {
 	color:#d2002b;
+}
+
+.login-signup-but.but-right {
+	float:right;
 }
 
 .big-fuckoff .logo {
@@ -905,7 +918,7 @@ height:23px;
 .hood-element {
 	float: left;
 	margin: 45px 5px;
-    width: 465px;
+    width: 475px;
 }
 .hood-img {
 	float:left;
@@ -1010,5 +1023,10 @@ height:23px;
 
 .signmeupnow-container {
 	position:relative;
+}
+
+.gp {
+	width:146px;
+	
 }
 
