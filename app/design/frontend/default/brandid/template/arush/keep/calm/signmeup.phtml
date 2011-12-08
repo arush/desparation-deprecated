@@ -1,3 +1,10 @@
+<?php 
+
+Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("rewardsref/customer/index"));
+
+?>
+
+
 <div class="keep-calm-signup-container">
 	
 	
@@ -93,7 +100,35 @@
 			<span class="caption">That's OK. Let us explain exactly what you're getting into.<br/>If only girls were this up front...</span>
 		</div>
 	</div>	
+	
+	<div class="quotes section clearfix">
 
+		<div class="quote-box">
+		<div class="apostrophe"><span>&lsquo;</span><span class="apostrophe2">&lsquo;</span></div>
+		<span class="quote left">BRANDiD makes the hairs on my hairs stand up.</span>
+		<div class="quote-triangle"></div>
+		<span class="author">Wolverine</span>
+		<span class="caption-small">aka Logan of the X-Men</span>
+		<span class="caption-small">Man since… nobody knows</span></div>
+		
+		<div class="quote-box">
+		<div class="apostrophe"><span>&lsquo;</span><span class="apostrophe2">&lsquo;</span></div>
+		<span class="quote middle">I’d have shopped at BRANDiD if it had been around in my day.</span>
+		<div class="quote-triangle"></div>
+		<span class="author">Charlton Heston</span>
+		<span class="caption-small">Actor of heroic roles</span>
+		<span class="caption-small">Man since 1923</span></div>
+		
+		<div class="quote-box last">
+		<div class="apostrophe"><span>&lsquo;</span><span class="apostrophe2">&lsquo;</span></div>
+		<span class="quote right">It's not for me.</span>
+		<div class="quote-triangle"></div>
+		<span class="author">Gok Wan</span>
+		<span class="caption-small">Not sure why he's famous</span>
+		<span class="caption-small">Around since 1974</span></div>
+		
+	</div>
+	
 	<div class="grey-tilt-holder">
 		<div class="grey-tilt clearfix">
 				<div class="grey-tilt-container clearfix">
@@ -120,41 +155,7 @@
 				</div> <!-- end grey tilt container -->
 		</div> <!-- end grey tilt -->
 	</div>
-	<a class="invisibut" href="#pre-how">
-		<div class="chevron down black">
-			<div class="first-line block">Whatever man. Just show me</div>
-			<div class="second-line block">How?</div>
-			<div class="chevron-triangle"></div>
-		</div>
-	</a>
-
-	<div class="quotes section clearfix">
-
-		<div class="quote-box">
-		<div class="apostrophe"><span>&lsquo;</span><span class="apostrophe2">&lsquo;</span></div>
-		<span class="quote">BRANDiD makes the hairs on my hairs stand up.</span>
-		<div class="quote-triangle"></div>
-		<span class="author">Wolverine</span>
-		<span class="caption-small">aka Logan of the X-Men</span>
-		<span class="caption-small">Man since… nobody knows</span></div>
-		
-		<div class="quote-box">
-		<div class="apostrophe"><span>&lsquo;</span><span class="apostrophe2">&lsquo;</span></div>
-		<span class="quote">I’d have shopped at BRANDiD if it had been around in my day.</span>
-		<div class="quote-triangle"></div>
-		<span class="author">Charlton Heston</span>
-		<span class="caption-small">Actor of heroic roles</span>
-		<span class="caption-small">Man since 1923</span></div>
-		
-		<div class="quote-box last">
-		<div class="apostrophe"><span>&lsquo;</span><span class="apostrophe2">&lsquo;</span></div>
-		<span class="quote">It's not for me.</span>
-		<div class="quote-triangle"></div>
-		<span class="author">Gok Wan</span>
-		<span class="caption-small">Not sure why he's famous</span>
-		<span class="caption-small">Around since 1974</span></div>
-		
-	</div>
+	
 	<div id="pre-how"></div>
 	<div class="grey-tilt-holder">
 		<div class="grey-tilt clearfix">
@@ -312,7 +313,7 @@
 				</div>
 				
 				<div class="share-but gplus">
-					<g:plusone size="medium" href="http://www.getbrandid.com"></g:plusone>
+					<g:plusone size="medium" href="http://www.getbrandid.com/"></g:plusone>
 				</div>
 		</div>
 	</div>
@@ -398,16 +399,7 @@
 		          if(window.group_ratio > c) $j(this).fadeIn(600,
 		          	function() {
 		          		$j(this).data("visible","true");
-						c += 1;
-						alert(c);
-		          		while (c <= 3) {
-			          		$j(".hood-element").each(function(c) {
-			          				$j(this).fadeIn(600, function() {
-						          		$j(this).data("visible","true")});
-				          		});
-							c += 1;
-				          	alert(c);
-							}			          		
+								          		
 		          		});
 		        }
 		        else {

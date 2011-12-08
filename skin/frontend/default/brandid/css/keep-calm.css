@@ -794,7 +794,7 @@ height:23px;
 }
 
 .keep-calm-signmeup .quotes {
-	margin:150px auto 113px;
+	margin:10px auto 50px;
 }
 
 .chev-group-wrap {
@@ -806,6 +806,7 @@ height:23px;
 	font-family: 'georgia';
 	font-style: italic;
 	height:79px;
+	text-align: center;
 }
 
 .keep-calm-signmeup .quote-box {
@@ -1030,3 +1031,11 @@ height:23px;
 	
 }
 
+
+span.quote.left {
+	padding:49px 40px 12px;
+}
+
+span.quote.right {
+	padding:57px 40px 3px;
+}
