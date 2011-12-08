@@ -34,7 +34,7 @@
 <?php //echo $this->getLayout()->createBlock('cms/block')->setBlockId('login-bg')->toHtml() ?>
 
 <div class="black-title-bar">Register<a class="red-title-button" href="/customer/account/login">Already a member?</a></div>
-<div class="register-copy">Register, earn points and shop for free!</div>
+<div class="register-copy">Free sex (only kidding - this is actually the BRANDiD registration page)<br/><br/>You’re just a few seconds away from shopping like a man. For a few seconds. Before doing something more important instead.</div>
 <div class="account-login account-register">
 	<div class="login-oneall">
 		
@@ -155,10 +155,10 @@
 					<li id="newsletter-section" class="control">
 						<label for="is_subscribed"><?php echo $this->__('Email Reminders') ?></label>
 						<div class="input-box">
-							<input type="checkbox" name="is_subscribed" title="<?php echo $this->__('Email Reminders') ?>" value="1" id="is_subscribed"<?php // if($this->getFormData()->getIsSubscribed()): ?> checked="checked"<?php // endif; ?> class="checkbox" />
+							<input type="checkbox" name="is_subscribed" title="<?php echo $this->__('Email Reminders') ?>" value="0" id="is_subscribed"<?php // if($this->getFormData()->getIsSubscribed()): ?> <?php // checked="checked" endif; ?> class="checkbox" />
 						</div>
 						<p id="reminder-text">Send me important updates by email</p>
-						<input type="hidden" name="is_general" id="is_general" value="1" />
+						<!-- input type="hidden" name="is_general" id="is_general" value="1" / -->
 		 <!--************* EBIZMARTS MAILCHIMP HERE ************************-->
 
             		<?php echo $this->getChildHtml('generalNewsletter') ?>

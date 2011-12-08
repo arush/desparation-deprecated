@@ -49,7 +49,7 @@ $pointssummary = $this->getPointsSummary();
 $header_points_balance = (int)substr_replace($pointssummary,"",-7);
 ?>
 	<div class="points-special-header">
-		<a href="/index.php/rewards/customer/">
+		<a href="/index.php/rewardsref/customer/index">
 			<span><?php echo $this->__("points"); ?></span><div id="flip-counter" class="flip-counter"></div>
 		</a>
 		<?php if($this->getPointsSummary() != ""): ?>
