@@ -5,7 +5,7 @@ $installer = $this;
 $installer->startSetup();
 $installer->run("
 -- DROP TABLE IF EXISTS {$this->getTable('oneall_identifiers')};
-CREATE TABLE `{$installer->getTable('oneall_identifiers')}` (
+CREATE TABLE IF NOT EXISTS `{$installer->getTable('oneall_identifiers')}` (
   `oneall_identifier_id` int(11) NOT NULL AUTO_INCREMENT,
   `identifier` varchar(255) NOT NULL,
   `identity_token` varchar(255) NOT NULL,
