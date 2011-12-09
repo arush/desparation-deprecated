@@ -2890,3 +2890,40 @@ body, .main {
     font-weight: normal;
     margin-left: 10px;
 }
+
+.customer-account-confirmation .page-title {
+	margin-top:20px;
+	margin-bottom:0;
+}
+
+.customer-account-confirmation .page-box {
+	background-color: #fff;
+	padding: 20px 0;
+}
+
+.customer-account-confirmation .form-buttons {
+	width: 636px;
+}
+
+.customer-account-confirmation button.button {
+	padding: 10px 42px;
+}
+.customer-account-confirmation button span {
+	padding:0;
+}
+
+.customer-account-confirmation button span span {
+	padding:0;
+}
+
+.customer-account-confirmation .form-list label {
+	margin-top: 8px;
+}
+
+.customer-account-confirmation .buttons-set {
+	padding:0 323px;
+}
+
+.customer-account-confirmation ul.form-list {
+	padding-top:20px;
+}
