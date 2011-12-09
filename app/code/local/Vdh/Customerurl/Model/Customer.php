@@ -17,15 +17,15 @@ class Vdh_Customerurl_Model_Customer {
 				array($customer->getId(), $customer->getCustomerurl()), 
 				$template['redirect']
 			);
-/*
 			$currentUrl = Mage::getModel('core/url_rewrite')->getCollection()
 			->addFilter('target_path', $redirect)
 			->addFilter('id_path', $redirect . '_' . $customer->getId())
 			->getFirstItem();
-*/
+/*
 			$sql = "DELETE FROM ".Mage::getSingleton('core/resource')->getTableName('core_url_rewrite')." WHERE id_path = '".$redirect . '_' . $customer->getId()."' AND target_path = '".$redirect."'";
 			$conn = Mage::getSingleton("core/resource")->getConnection("core_write");
 			$conn->query($sql);
+*/
 			$currentUrl = Mage::getModel('core/url_rewrite');
 			$currentUrl->setStoreId(Mage_Core_Model_App::ADMIN_STORE_ID);
 			$currentUrl->setIdPath($redirect . '_' . $customer->getId());
@@ -39,7 +39,7 @@ class Vdh_Customerurl_Model_Customer {
 	
 	public function createUnique($customer, $default = 'username') {
 		if (!$customer->getCustomerurl()) {
-			$temp = strtolower($customer->getFirstname()) . strtolower($customer->getLastname());
+			$temp = strtolower($customer->getFirstname());// . strtolower($customer->getLastname());
 			$temp = trim($temp);
 			$temp = preg_replace("/[^a-zA-Z0-9_-]/", "", $temp);						
 			$customer->setCustomerurl($temp);
@@ -50,12 +50,13 @@ class Vdh_Customerurl_Model_Customer {
 		}
 		
 		$updatedUrl = $customer->getCustomerurl();	
-		$customers = Mage::getModel('customer/customer')->getCollection();
-		$customers->addAttributeToFilter('customerurl', $updatedUrl);
-		if ($customer->getId()) {
-			$customers->addAttributeToFilter('entity_id', array('neq' => $customer->getId()));								
-		}
-		while($customers->count() > 0) {
+
+		while(
+			Mage::getModel('customer/customer')->getCollection()
+				->addAttributeToFilter('customerurl', $updatedUrl)
+				->addAttributeToFilter('entity_id', array('neq' => ($customer->getId()) ? $customer->getId() : 0))
+				->count() > 0
+		) {
 			
 			$originalUrl	= $updatedUrl;
 			$pattern		=	"/(.*)([0-9]+)$/";
@@ -69,11 +70,7 @@ class Vdh_Customerurl_Model_Customer {
 						    	    $originalUrl
 								);
 			if ($updatedUrl == $originalUrl) { $updatedUrl .= '1'; }
-			$customers = Mage::getModel('customer/customer')->getCollection();
-			$customers->addAttributeToFilter('customerurl', $updatedUrl);
-			if ($customer->getId()) {
-				$customers->addAttributeToFilter('entity_id', array('neq' => $customer->getId()));								
-			}			
+											
 		}
 
 		$customer->setCustomerurl(strtolower($updatedUrl));	
