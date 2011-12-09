@@ -1,9 +1,10 @@
 <?php 
 if ($this->getSuppress() == 'true'){
-    Mage::getModel('core/cookie')->set('suppress', '1');
-	echo '<script type="text/javascript">document.location.href = "/rewardsref/customer/index/";</script>';
+    Mage::getModel('core/cookie')->set('suppress', true);
+	echo '/rewardsref/customer/index/';
+ }
+if (Mage::getSingleton('customer/session')->isLoggedIn()):
 
-} elseif (Mage::getSingleton('customer/session')->isLoggedIn() && !Mage::getModel('core/cookie')->get('suppress')) {
 ?>
 <div class="gettingstarted getstarted">
     <div class="popup-top">
@@ -26,7 +27,15 @@ if ($this->getSuppress() == 'true'){
         <a href="/popup/form/page/index/getstarted/suppress/true">Start sending invitations</a>
     </div>
 </div>
-
-<?php } ?>
+<script type="text/javascript">
+Ajax.Responders.register({
+    onComplete: function(request) {
+        if (request.url.indexOf('popup/form/page/index/getstarted/suppress/true') >= 0) {
+            document.location.href = request.transport.responseText;
+        }
+    }
+});
+</script>
+<?php endif; ?>
 
 

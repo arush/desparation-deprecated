@@ -184,24 +184,6 @@ vdh.count = function() {
 }
 vdh.popupCount = 0;
 
-Ajax.Responders.register({
-    onComplete: function(request) {
-        if (request.url.indexOf('popup/form/page/index') >= 0) {
- 
-			var scripts = new Array();
-		
-			var matched = request.transport.responseText.match(/<script(.*)>[\s\S]*<\/script>/gi);
-			if (matched != null) { scripts = matched; }
-			
-			for (var i = 0; i < scripts.length; i++) {
-				var tmp = scripts[i].replace(/<script(.*)>([\s\S]*)<\/script>/gi, "$2");
-				eval(tmp);
-			}	 
-        }
-    }
-});
-
-
 document.observe('dom:loaded', function(){
 	Event.observe($('popupMessages'), 'click', function(){
 		if (vdh.popupCount > 0) {
