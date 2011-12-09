@@ -128,8 +128,8 @@ jQuery.reject = function(opts) {
 		// Check 4: Browser name (eg. 'firefox','msie','chrome')
 		// Check 5: Browser+major version (eg. 'firefox3','msie7','chrome4')
 		return (settings['all'] ? true : false) ||
-			(settings[jQuery.os.name] ? true : false) ||
-			(settings[jQuery.layout.name] ? true : false) ||
+			// (settings[jQuery.os.name] ? true : false) ||
+			// (settings[jQuery.layout.name] ? true : false) ||
 			(settings[jQuery.browser.name] ? true : false) ||
 			(settings[jQuery.browser.className] ? true : false);
 	};
