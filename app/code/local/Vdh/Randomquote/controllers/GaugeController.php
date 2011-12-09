@@ -40,14 +40,14 @@ class Vdh_Randomquote_GaugeController extends Mage_Core_Controller_Front_Action 
 		$gaugeValue = $invitesSent +1; //plus one because of the graphic offset
 
 		
-		if (!$this->getRequest()->getParam('init')) { $gaugeValue = 10; }
+		if (!$this->getRequest()->getParam('init')) { $gaugeValue = 1000; }
 		$return = array(
-			"links"		=> 10,
+			"links"		=> 1000,
 			"people"	=> $gaugeValue,
 			"read"		=> 4,
 			"toppages"	=> array(),
 			"direct"	=> 14,
-			"visits"	=> 50,
+			"visits"	=> 1000,
 			"subscr"	=> 1,
 			"pages"		=> 23,
 			"search"	=> 3,
@@ -58,7 +58,7 @@ class Vdh_Randomquote_GaugeController extends Mage_Core_Controller_Front_Action 
 			"idle"		=> 37,
 			"internal"	=> 6,
 			"social"	=> 7,
-			"new"		=> 50
+			"new"		=> 1000
 		);
 		
 		echo json_encode($return);
