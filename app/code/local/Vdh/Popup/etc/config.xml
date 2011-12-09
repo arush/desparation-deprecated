@@ -64,15 +64,11 @@
             <resources>
                 <admin>
                     <children>
-                        <system>
+                        <vdh>
                             <children>
-                                <config>
-                                    <children>
-                                        <popup translate="title" module="popup">
-                                            <title>Popup Configuration</title>
-                                        </popup>
-                                    </children>
-                                </config>
+                                <popup translate="title" module="popup">
+                                    <title>Popup Configuration</title>
+                                </popup>
                             </children>
                         </system>
                     </children>

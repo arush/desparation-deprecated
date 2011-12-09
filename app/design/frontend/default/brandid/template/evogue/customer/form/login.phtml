@@ -148,7 +148,7 @@
 								
 								
 								<div class="panel" id="forgotpass">
-									<form action="<?php echo $this->getUrl('customer/account/forgotpasswordpost') ?>" onsubmit="return false" method="post" id="form-validate">
+									<form action="<?php echo $this->getUrl('customer/account/forgotpassword') ?>" onsubmit="return false" method="post" id="form-validate">
 										<fieldset>
 											<div class="field set">
 												<div class="password-message"><?php echo $this->__('Please enter your email below and we\'ll send you a new password.') ?></div>
@@ -163,12 +163,12 @@
 													<div class="buttons-set form-buttons">
 														<button type="submit" name="submit" class="button" id="submit_btn" value="Send"><span><span class="cufon"><?php echo $this->__('Reset Password') ?></span></span></button>
 														
-																												
+														<div id="forgotpass-response"></div>
+										
 														<div class="forgotpass-back-link"><a href="#login">return to login</a></div>
 
 														<div style="clear: both;"><!-- --></div>
 													
-														<span id="forgotpass-response"></span>
 
 												</div>
 											</div>
@@ -216,6 +216,8 @@
 		    
 		    var ajax = this.form.request({
 		        onSuccess: function(transport) {
+		        
+
 		            if(transport.responseText.indexOf('This email address was not found in our records.') >= 0) {
           				$('forgotpass-response').removeClassName('loading');
 						$('forgotpass-response').innerHTML="Address not found";
@@ -229,6 +231,7 @@
 						$('forgotpass-response').innerHTML="Please enter an email address";
 		            }
 		            else {
+		            
           				$('forgotpass-response').removeClassName('loading');
 						$('forgotpass-response').innerHTML="Done - check your email";
 		            }
@@ -237,7 +240,6 @@
 		            
 		        }
 		    });
-		    Event.stop();
 		});
     //]]>
     </script>
