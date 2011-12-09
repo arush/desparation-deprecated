@@ -2927,3 +2927,13 @@ body, .main {
 .customer-account-confirmation ul.form-list {
 	padding-top:20px;
 }
+
+.ff-note {
+	padding: 5px;
+	text-align: center;
+	color: #9F6000;
+	background: #FEEFB3;
+	margin: 0 15px 0 0;
+}
+
+.ff-note a {color:#0000FF;}
