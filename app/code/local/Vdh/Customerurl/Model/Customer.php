@@ -26,7 +26,7 @@ class Vdh_Customerurl_Model_Customer {
 			$conn = Mage::getSingleton("core/resource")->getConnection("core_write");
 			$conn->query($sql);
 */
-			$currentUrl = Mage::getModel('core/url_rewrite');
+//			$currentUrl = Mage::getModel('core/url_rewrite');
 			$currentUrl->setStoreId(Mage_Core_Model_App::ADMIN_STORE_ID);
 			$currentUrl->setIdPath($redirect . '_' . $customer->getId());
 			$currentUrl->setRequestPath($url);						
@@ -39,7 +39,7 @@ class Vdh_Customerurl_Model_Customer {
 	
 	public function createUnique($customer, $default = 'username') {
 		if (!$customer->getCustomerurl()) {
-			$temp = strtolower($customer->getFirstname());// . strtolower($customer->getLastname());
+			$temp = strtolower($customer->getFirstname()) . strtolower($customer->getLastname());
 			$temp = trim($temp);
 			$temp = preg_replace("/[^a-zA-Z0-9_-]/", "", $temp);						
 			$customer->setCustomerurl($temp);
