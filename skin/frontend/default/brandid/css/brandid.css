@@ -1238,7 +1238,7 @@ margin-left:28px;
 .account-login .forgotpass-back-link {
 	padding:10px;
 	margin:0;
-	float:left;
+/* 	float:left; */
 }
 
 .account-login .forgotpass-back-link a {
@@ -2758,7 +2758,7 @@ margin-top: 411px;
 	background:none;
 }
 #forgotpass .forgotpass-back-link {
-	width:103px;
+/* 	width:103px; */
 	text-align: right;
 	padding-right:5px;
 }
