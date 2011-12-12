@@ -49,7 +49,7 @@
 				<a href="https://twitter.com/share"
 					class="twitter-share-button"
 					data-url="<?php echo $personalUrl ;?>"
-					data-text="My pants were shite. Soon they won’t be. I got #BRANDiD."
+					data-text="Money, power, auto-delivered undies. I got #BRANDiD. Use my invite "
 					data-count="none"
 					data-via="getbrandid">
 					Tweet
@@ -93,7 +93,8 @@
 			jQuery('.urlcode-input-box').css("background-color","#FFFBCC");
 			jQuery('#referral_url').animate({ backgroundColor: '#eaeaea' }, 2000);
 			jQuery('.urlcode-input-box').animate({ backgroundColor: '#eaeaea' }, 2000);		
-			jQuery('#customer-url-validation-message').empty();		
+			$('customer-url-validation-message').addClassName('loading');
+			$('customer-url-validation-message').innerHTML = 'Saving your username...';		
 
 			$('referral_url').setAttribute('disabled', 'disabled');	
 			this.select('span')[0].innerHTML = 'edit';
@@ -106,6 +107,7 @@
 				parameters: { customerurl: $('referral_url').value }, 
 				onSuccess: function(transport) {
 					console.log(transport.responseText);
+					window.location.reload();
 				}
 			});
 		}
@@ -140,8 +142,7 @@
 					$('customer-url-validation-message').innerHTML = 'Username is available';
 					
 					$$('.urlcode-input-box button.edit')[0].removeAttribute('disabled');
-					$$('.urlcode-input-box button.edit')[0].setStyle({ background: '#d2002b' });
-					// window.location.reload();			
+					$$('.urlcode-input-box button.edit')[0].setStyle({ background: '#d2002b' });			
 					
 				} else {
 					$('customer-url-validation-message').innerHTML = 'Username already taken.';				
