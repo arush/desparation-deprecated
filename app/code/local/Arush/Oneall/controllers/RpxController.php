@@ -290,7 +290,7 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 				Mage::getSingleton('oneall/session')->setIdentifier(false);
 			}
 		}
-
+		Mage::getModel('customer/customer')->load($customer->getId())->save();
 		parent::_loginPostRedirect();
 	}
 
