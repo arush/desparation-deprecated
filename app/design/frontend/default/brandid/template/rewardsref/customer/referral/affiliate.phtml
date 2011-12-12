@@ -140,7 +140,8 @@
 					$('customer-url-validation-message').innerHTML = 'Username is available';
 					
 					$$('.urlcode-input-box button.edit')[0].removeAttribute('disabled');
-					$$('.urlcode-input-box button.edit')[0].setStyle({ background: '#d2002b' });			
+					$$('.urlcode-input-box button.edit')[0].setStyle({ background: '#d2002b' });
+					// window.location.reload();			
 					
 				} else {
 					$('customer-url-validation-message').innerHTML = 'Username already taken.';				

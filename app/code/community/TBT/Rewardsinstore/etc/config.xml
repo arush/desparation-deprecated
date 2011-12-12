@@ -282,7 +282,7 @@
     <crontab>
         <jobs>
             <rewardsinstore_emailcustomers>
-                <schedule><cron_expr>/5 * * * *</cron_expr></schedule>
+                <schedule><cron_expr>*/5 * * * *</cron_expr></schedule>
                 <run><model>rewardsinstore/observer_cron::emailCustomers</model></run>
             </rewardsinstore_emailcustomers>
         </jobs>
