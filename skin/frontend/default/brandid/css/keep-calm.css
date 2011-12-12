@@ -333,12 +333,16 @@ span.apostrophe2 {
 
 .share-but {
 	float:left;
-	width:202px;
+	width:102px;
 	margin-top:16px;
 }
 
 .tweet-but {
 	margin-right:30px;
+}
+
+.share-but.follow {
+	width:227px;
 }
 
 .section {
