@@ -138,7 +138,7 @@ FEED;
         $contacts = $this->_getContactsFromPost($post_contacts);
 
         $subject = trim((string) strip_tags($this->getRequest()->getPost('subject', "")));
-        $message = trim((string) strip_tags($this->getRequest()->getPost('message', "")));
+        $message = trim((string) nl2br(strip_tags($this->getRequest()->getPost('message', ""))));
 
         // Validate data
         try {
