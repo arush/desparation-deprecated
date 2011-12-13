@@ -397,11 +397,11 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("rewardsre
 		      window.group_rel = w - ($j("#mags").data("scrolls")[0] + 650);
 		      window.group_ratio = (Math.round((window.group_rel / ($j("#mags").data("scrolls")[2] - 650)) * 100) / 25);      
 		    	
-		    var c =0;
+
 		    
-   		      $j(".hood-element").each(function(c) {
+   		      $j(".hood-element").each(function(index) {
 		        if($j(this).data("visible")=="false") {
-		          if(window.group_ratio > c) $j(this).fadeIn(600,
+		          if(window.group_ratio > index) $j(this).fadeIn(600,
 		          	function() {
 		          		$j(this).data("visible","true");
 								          		
