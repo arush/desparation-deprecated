@@ -106,6 +106,12 @@
     	<remove name="popup" />
 		<remove name="popup_header" />
     </rewards_customer_index>
+    
+    <customer_address_form>
+    	<remove name="popup" />
+		<remove name="popup_header" />
+    </customer_address_form>
+
 	<!-- end hack because popup isnt looking up cookie properly -->
 
 
