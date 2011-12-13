@@ -10,7 +10,8 @@ class TBT_RewardsReferral_Block_Customer_Referral_Abstract extends Mage_Core_Blo
         if (!$this->hasData('referred')) {
             $referred = Mage::getResourceModel('rewardsref/referral_collection')
                     ->addClientFilter(Mage::getSingleton('rewards/session')->getCustomerId())
-                    ->setOrder('referral_status','DESC');
+                    ->setOrder('referral_status','DESC')
+                    ->setOrder('referral_email','ASC');
             $this->setReferred($referred);
         }
         return $this->getData('referred');
