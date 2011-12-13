@@ -81,5 +81,32 @@
 		<remove name="popup_header" />
     </keep_calm_signmeup>
 
+	<!-- hack because popup isnt looking up cookie properly -->
+	<rewardsref_customer_index>
+    	<remove name="popup" />
+		<remove name="popup_header" />
+    </rewardsref_customer_index>
+
+	<customer_account_edit>
+    	<remove name="popup" />
+		<remove name="popup_header" />
+    </customer_account_edit>
+
+	<sales_recurring_profile_index>
+    	<remove name="popup" />
+		<remove name="popup_header" />
+    </sales_recurring_profile_index>
+
+	<customerbalance_info_index>
+    	<remove name="popup" />
+		<remove name="popup_header" />
+    </customerbalance_info_index>
+
+	<rewards_customer_index>
+    	<remove name="popup" />
+		<remove name="popup_header" />
+    </rewards_customer_index>
+	<!-- end hack because popup isnt looking up cookie properly -->
+
 
  </layout>
