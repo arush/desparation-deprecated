@@ -69,8 +69,11 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("rewardsre
 	
 	<div id="title-block" class="title-block">
 		<div class="title-block-inner clearfix">
-			<div class="title-block-container section">		
+			<div class="title-block-container section clearfix">		
 				<div class="reg-form">
+					<div class="product-sub-title">
+						<span>No commitment or credit card required, just balls.</span>
+					</div>
 					<form action="/customer/account/create" method="get">
 					  <input type="text" name="email" value="Register with your email address…" onFocus="clearDefault(this)"/>
 					  <button type="submit">Register</button>
