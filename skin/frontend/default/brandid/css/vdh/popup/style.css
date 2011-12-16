@@ -128,7 +128,7 @@ a.vdh.close {
 }
 
 
-.gettingstarted.getstarted a.popup-next {
+.gettingstarted.getstarted a.popup-next, .gettingstarted.getstarted a.done{
 	float:right;
 	margin:0;
 }
@@ -176,23 +176,31 @@ li.plans .popup-title {
 	background: url("../../../images/lightbox/beta/tie.png");
 	width:233px;
 	height:251px;
-	margin:38px 0 0 280px;
+	margin:17px 0 0 286px;
+	position:absolute;
 }
 
 
 .tie-details {
-	text-align: center;
+	text-align: left;
+	line-height: 2em;
 	margin:13px 0 0 0;
+	position:absolute;
+	margin:42px 0 0 417px;
 }
 
 .tie-details span.detail {
 	background-color: #000;
-	text-align: center;
+	text-align: left;
 	font-family: ProximaNovaBold;
 	text-transform: uppercase;
 	color: white;
-	font-size: 15px;
-	padding:6px;
+	font-size: 12px;
+	padding:4px;
+}
+
+.tie-details span.detail.red {
+	background-color:#d2002b;
 }
 
 .vdh.content .plans .explain {
@@ -211,11 +219,27 @@ li.loyalty .popup-title {
 
 li.loyalty .popup-col.explain {
 	padding:0;
-	margin:20px 55px;
+	margin:40px;
 }
 
-li.loyalty .popup-col.explain .brands-list {
+.popup-col.brands-list {
+	text-align: center;
+	margin-top:10px;
+}
+.popup-col.brands-list span.brands {
+	background-color: #000;
+	text-align: center;
+	font-family: ProximaNovaBold;
+	text-transform: uppercase;
+	color: white;
+	font-size: 15px;
+	padding:6px;
+}
 
+li.loyalty .popup-col.explain.friends {
+	position:absolute;
+	margin:150px 0 0 522px;
+	width:246px;
 }
 
 li.loyalty .popup-col.explain .brands-list span.brands {
