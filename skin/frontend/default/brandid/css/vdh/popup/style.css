@@ -62,3 +62,155 @@ a.vdh.close {
 	font-size: 26px;
 	font-family: Gotham-medium;
 }
+
+.popup-title {
+	margin: 40px auto;
+	text-align: center;
+}
+
+.popup-title span {
+	padding:10px 17px;
+	font-family: ProximaNovaBold;
+	font-size:24px;
+	background-color:#000;
+	color:#fff;
+	text-transform: uppercase;
+	clear:both;
+	letter-spacing: -1px;
+}
+
+.big-fuckoff.logo {
+	background: url('../../../images/brandid-huge-beta.png');
+	width:441px;
+	height:140px;
+	margin: 60px auto 48px;
+
+}
+
+.getstarted .sliders .holder .slider {
+	height: 438px;
+	width: 3950px;
+	margin:0;
+}
+
+.getstarted .sliders .holder .slider ul li {
+	width: 790px;
+	height: 438px;
+	position: relative;
+}
+
+.getstarted .sliders .holder {
+	width: 790px;
+	height: 546px;
+}
+
+.getstarted .sliders {
+	width: 790px;
+}
+
+.vdh.content .control-box {
+	position: absolute;
+	bottom: 20px;
+	right:20px;
+}
+
+.vdh.content .explain {
+	font-family: ProximaNovaLight;
+	font-size:18px;
+	color:#595959;
+	text-transform: none;
+	letter-spacing: -1px;
+	margin: 25px 55px
+}
+
+.vdh.content .explain-bold {
+	font-family: ProximaNovaBold;
+}
+
+
+.gettingstarted.getstarted a.popup-next {
+	float:right;
+	margin:0;
+}
+
+.gettingstarted.getstarted a.popup-prev {
+	float:left;
+	margin:0;
+	background: none;
+	color: #595959;
+	text-decoration: underline;
+	font-weight: normal;
+	text-transform: none;
+}
+
+li.plans .popup-title {
+	margin-bottom:0;
+}
+
+.popup-col {
+	float:left;
+	padding:20px;
+}
+
+
+.getstarted .plans-img {
+	background:url("../../../images/lightbox/beta/intro-steps.jpg");
+	height: 166px;
+    width: 455px;
+}
+
+.getstarted .boosters-img {
+	background: url("../../../images/lightbox/beta/boosters-img.jpg");
+	width: 423px;
+	height: 280px;
+}
+
+.getstarted .lucky-dip-img {
+	background: url("../../../images/lightbox/beta/lucky-dip.jpg");
+	width:226px;
+	height:248px;
+	margin-right:30px;
+}
+
+.brands-list {
+	text-align: center;
+	margin:13px 0 0 0;
+}
+
+.brands-list span.brands {
+	background-color: #000;
+	text-align: center;
+	font-family: ProximaNovaBold;
+	text-transform: uppercase;
+	color: white;
+	font-size: 15px;
+	padding:6px;
+}
+
+.vdh.content .plans .explain {
+	margin: 25px 33px;
+}
+
+li.boosters .popup-col.explain {
+	margin: 25px 0 25px 20px;
+	padding-left:0;
+	padding-right:0;
+}
+
+li.loyalty .popup-col.explain {
+
+}
+
+li.loyalty .popup-col.explain .brands-list {
+
+}
+
+li.loyalty .popup-col.explain .brands-list span.brands {
+	font-size:14px;
+}
+
+li.loyalty .popup-col.explain .brands-list span.brands.red {
+	background-color:#d2002b;
+}
+
+

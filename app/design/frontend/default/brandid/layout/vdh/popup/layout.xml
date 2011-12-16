@@ -3,8 +3,7 @@
     <default>
         <reference name="head">
              <action method="addItem"><type>skin_js</type><name>js/vdh/popup/script.js</name></action>
-            <action method="addCss"><stylesheet>css/vdh/popup/style.css</stylesheet></action> 
-                        
+            <action method="addCss"><stylesheet>css/vdh/popup/style.css</stylesheet></action>
         </reference>
 		<reference name="after_body_start">			
 				<block type="core/template" name="popup_header" template="vdh/popup/header.phtml"/>			

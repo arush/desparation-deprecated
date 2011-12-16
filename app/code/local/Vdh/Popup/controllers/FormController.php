@@ -19,6 +19,7 @@ class Vdh_Popup_FormController extends Mage_Core_Controller_Front_Action {
 			}
 		}
 		print_r($count);
+
 	}
 	
 	
