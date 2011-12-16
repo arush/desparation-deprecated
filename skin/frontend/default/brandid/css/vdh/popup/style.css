@@ -172,12 +172,20 @@ li.plans .popup-title {
 	margin-right:30px;
 }
 
-.brands-list {
+.getstarted .tie-img {
+	background: url("../../../images/lightbox/beta/tie.png");
+	width:233px;
+	height:251px;
+	margin:38px 0 0 280px;
+}
+
+
+.tie-details {
 	text-align: center;
 	margin:13px 0 0 0;
 }
 
-.brands-list span.brands {
+.tie-details span.detail {
 	background-color: #000;
 	text-align: center;
 	font-family: ProximaNovaBold;
@@ -197,8 +205,13 @@ li.boosters .popup-col.explain {
 	padding-right:0;
 }
 
-li.loyalty .popup-col.explain {
+li.loyalty .popup-title {
+	margin-bottom:10px;
+}
 
+li.loyalty .popup-col.explain {
+	padding:0;
+	margin:20px 55px;
 }
 
 li.loyalty .popup-col.explain .brands-list {
