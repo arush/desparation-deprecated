@@ -45,4 +45,40 @@ document.observe('dom:loaded', function(){
 			);
 		});
 	});
+	
+
 });
+
+var count;
+
+function doFade(el) {
+		count = 0;
+		nextLi = parseInt(el);
+		el = "#" + el;
+		
+		fadeThings = jQuery("#popup-slide").children("ul").children("li").eq(nextLi).find(".fadein");
+		
+		var numFaders = fadeThings.size();
+		
+		var target;
+		
+		timer = setInterval(function() {
+			if(count >= numFaders) { 
+				clearInterval(timer);
+			 }
+			 else {
+			 	target = fadeThings.eq(count);
+			 	startFade(target);
+				count++;
+			 }
+		}, 2500);
+		
+	}
+
+function startFade(el) {
+		jQuery(el).animate({
+			opacity: 1
+			},500);
+
+	}	
+	

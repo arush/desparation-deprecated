@@ -2,8 +2,9 @@
 class Vdh_Popup_FormController extends Mage_Core_Controller_Front_Action {
 
 	public function countAction() {
-		$count = 0;	
-		foreach(Mage::helper('popup')->getUrls() as $url) {
+		$count = 1;	
+		/*
+foreach(Mage::helper('popup')->getUrls() as $url) {
 	
 			$c = curl_init();
 			curl_setopt($c, CURLOPT_URL, Mage::getBaseUrl() . $url . '?SID=' . Mage::getModel("core/session")->getEncryptedSessionId());
@@ -18,7 +19,9 @@ class Vdh_Popup_FormController extends Mage_Core_Controller_Front_Action {
 				$count++;
 			}
 		}
+*/
 		print_r($count);
+
 	}
 	
 	
