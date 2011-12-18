@@ -39,11 +39,10 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("rewardsre
 			
 			
 			<div class="login-signup">
-				
-				<div class="login-signup-but"><a href="/customer/account/login">Login</a>
-				</div>
-				<div class="login-signup-but but-right"><a href="#signmeupnow">Sign Up</a>
-				</div>
+					<div class="login-signup-but"><a href="/customer/account/login">Login</a>
+					</div>
+					<div class="login-signup-but but-right"><a href="#signmeupnow">Sign Up</a>
+					</div>
 			</div>
 	
 		</div>
@@ -60,8 +59,10 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("rewardsre
 		</div>
 		<div class="signmeupnow-container section">
 			<div class="signmeup-now chevron" id="signmeupnow">
-				<div class="first-line block">Sign up to our beta</div>
-				<div class="second-line block">Now!</div>
+				<a href="#signmeupnow">
+					<div class="first-line block">Sign up to our beta</div>
+					<div class="second-line block">Now!</div>
+				</a>
 			</div>
 		</div>
 		
@@ -109,70 +110,28 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("rewardsre
 		</div>
 	</div>	
 	
-	<div class="quotes section clearfix">
-
-		<div class="quote-box">
-		<div class="apostrophe"><span>&lsquo;</span><span class="apostrophe2">&lsquo;</span></div>
-		<span class="quote left">BRANDiD makes the hairs on my hairs stand up.</span>
-		<div class="quote-triangle"></div>
-		<span class="author">Wolverine</span>
-		<span class="caption-small">aka Logan of the X-Men</span>
-		<span class="caption-small">Man since… nobody knows</span></div>
-		
-		<div class="quote-box">
-		<div class="apostrophe"><span>&lsquo;</span><span class="apostrophe2">&lsquo;</span></div>
-		<span class="quote middle">I’d have shopped at BRANDiD if it had been around in my day.</span>
-		<div class="quote-triangle"></div>
-		<span class="author">Charlton Heston</span>
-		<span class="caption-small">Actor of heroic roles</span>
-		<span class="caption-small">Man since 1923</span></div>
-		
-		<div class="quote-box last">
-		<div class="apostrophe"><span>&lsquo;</span><span class="apostrophe2">&lsquo;</span></div>
-		<span class="quote right">It's not for me.</span>
-		<div class="quote-triangle"></div>
-		<span class="author">Gok Wan</span>
-		<span class="caption-small">Not sure why he's famous</span>
-		<span class="caption-small">Around since 1974</span></div>
-		
-	</div>
-	
 	<div class="grey-tilt-holder">
 		<div class="grey-tilt clearfix">
 				<div class="grey-tilt-container clearfix">
 					<div class="vision section clearfix">
 						<div class="vision-title">
-							<span class="vision-title-text">Our Vision</span>
+							<span class="vision-title-text">#1 Plans</span>
 						</div>
-						<div class="mandate box">
-							<span class="vision-sub-title">Our <span class="red-text">Man</span>date</span>
-							<div class="mandate-one-line block">
-								We are reinventing shopping for men because the industry has forgotten about us.
-								Why should we have to sift through poncy female-focused fashionista content just to get our clothes delivered? It's time to <a href="http://www.youtube.com/watch?v=aaas7GFbLHk&feature=related" target="_blank">take the power back.</a>
-								<!-- if you're reading this, watch this one from '92! http://www.youtube.com/watch?v=cPHEgpWhkuQ&feature=related -->
-							</div>
+						<div class="what box plans">Because you've got more important things to do.<br/>
+						Yes boys, everyone needs clean undies. Even you.
+						Choose your essentials, we deliver monthly. Bosh.
 						</div>
-						<div class="what-is box">
-							<span class="vision-sub-title">What is BRANDiD?</span>
-							<div class="what-is-oneliner">
-								BRANDiD is a subscription service for designer basics… and a whole lot more. We love quality gear, big discounts and good humour. We hate fashionistas.
-							</div>
+						<div class="plans-img">
 						</div>
 						
 					</div>
-				</div> <!-- end grey tilt container -->
-		</div> <!-- end grey tilt -->
-	</div>
-	
-	<div id="pre-how"></div>
-	<div class="grey-tilt-holder">
-		<div class="grey-tilt clearfix">
-				<div class="grey-tilt-container clearfix">	
-				
+					
 					<div id="how" class="how section">
-						<div class="vision-title">
+						<!--
+<div class="vision-title">
 							<span class="vision-title-text">How does it work?</span>
 						</div>
+-->
 						
 						
 						<div class="how-to-process">
@@ -231,10 +190,86 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("rewardsre
 						
 						
 					</div> <!-- end how section -->
+					
+					<div class="vision section clearfix">
+						<div class="vision-title">
+							<span class="vision-title-text">#2 Boosters</span>
+						</div>
+						<div class="what box boosters">Because men shop to solve a problem.<br/>
+						Delivered immediately in large quantities and with bulk discounts,
+						Boosters ensure you're not in this situation again any time soon.<br/>
+						If you're not the shopping type, choose Lucky Dip and we'll shop for you.
+						</div>
+
+						<div class="boosters-img first">
+						</div>
+						<div class="boosters-img second">
+						</div>
+						<div class="boosters-img third">
+						</div>
+
+						
+					</div>
 				</div> <!-- end grey tilt container -->
 		</div> <!-- end grey tilt -->
 	</div>
+	
+	<div class="quotes section clearfix">
+
+		<div class="quote-box">
+		<div class="apostrophe"><span>&lsquo;</span><span class="apostrophe2">&lsquo;</span></div>
+		<span class="quote left">BRANDiD makes the hairs on my hairs stand up.</span>
+		<div class="quote-triangle"></div>
+		<span class="author">Wolverine</span>
+		<span class="caption-small">aka Logan of the X-Men</span>
+		<span class="caption-small">Man since… nobody knows</span></div>
 		
+		<div class="quote-box">
+		<div class="apostrophe"><span>&lsquo;</span><span class="apostrophe2">&lsquo;</span></div>
+		<span class="quote middle">I’d have shopped at BRANDiD if it had been around in my day.</span>
+		<div class="quote-triangle"></div>
+		<span class="author">Charlton Heston</span>
+		<span class="caption-small">Actor of heroic roles</span>
+		<span class="caption-small">Man since 1923</span></div>
+		
+		<div class="quote-box last">
+		<div class="apostrophe"><span>&lsquo;</span><span class="apostrophe2">&lsquo;</span></div>
+		<span class="quote right">It's not for me.</span>
+		<div class="quote-triangle"></div>
+		<span class="author">Gok Wan</span>
+		<span class="caption-small">Not sure why he's famous</span>
+		<span class="caption-small">Around since 1974</span></div>
+		
+	</div>
+	
+	<div class="grey-tilt-holder">
+		<div class="grey-tilt clearfix">
+				<div class="grey-tilt-container clearfix">
+					<div class="vision section clearfix">
+						<div class="vision-title">
+							<span class="vision-title-text">Our Vision</span>
+						</div>
+						<div class="mandate box">
+							<span class="vision-sub-title">Our <span class="red-text">Man</span>date</span>
+							<div class="mandate-one-line block">
+								We are reinventing shopping for men because the industry has forgotten about us.
+								Why should we have to sift through poncy female-focused fashionista content just to get our clothes delivered? It's time to <a href="http://www.youtube.com/watch?v=aaas7GFbLHk&feature=related" target="_blank">take the power back.</a>
+								<!-- if you're reading this, watch this one from '92! http://www.youtube.com/watch?v=cPHEgpWhkuQ&feature=related -->
+							</div>
+						</div>
+						<div class="what-is box">
+							<span class="vision-sub-title">What is BRANDiD?</span>
+							<div class="what-is-oneliner">
+								BRANDiD is a subscription service for designer basics… and a whole lot more. We love quality gear, big discounts and good humour. We hate fashionistas.
+							</div>
+						</div>
+						
+					</div>
+				</div> <!-- end grey tilt container -->
+		</div> <!-- end grey tilt -->
+	</div>
+	
+			
 
 	<div id="chevron-plax" class="chev-group-wrap section convinced">
 		<div class="chevron-group">
@@ -314,7 +349,7 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("rewardsre
 		<div class="share-buttons clearfix">
 				
 				<div class="like-but share-but">
-					<div class="fb-like" data-href="http://www.facebook.com/pages/Brandid/282808678428182" data-send="false" data-layout="button_count" data-width="200" data-show-faces="true"></div>
+					<div class="fb-like" data-href="http://www.facebook.com/pages/Brandid/282808678428182" data-send="false" data-layout="button_count" data-width="100" data-show-faces="true"></div>
 				</div>
 				
 				<div class="share-but twitter">

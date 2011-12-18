@@ -798,7 +798,7 @@ height:23px;
 }
 
 .keep-calm-signmeup .quotes {
-	margin:10px auto 50px;
+	margin:57px auto 50px;
 }
 
 .chev-group-wrap {
@@ -1047,4 +1047,46 @@ span.quote.right {
 .reg-form .product-sub-title {
 	margin: 14px 0;
 	text-align: left;
+}
+
+.plans-img {
+	background: url('../images/lightbox/beta/plans-preview.png');
+	height:415px;
+	width:930px;
+	margin: 0 0 0 20px;
+	float:left;
+}
+
+.boosters-img {
+	background: url('../images/lightbox/beta/boosters.png');
+	width: 238px;
+	height: 410px;
+	float:left;
+	margin: 0 40px 50px 40px;
+}
+
+.boosters-img.first {
+	margin: 0 40px 50px 40px;
+
+}
+
+.boosters-img.second{
+	margin: 0 40px 50px 40px;
+	background-position-x: 241px;
+
+}
+
+.boosters-img.third {
+	margin: 0 40px 50px 40px;
+	background-position-x: 499px;
+}
+
+
+.what.box {
+	width: 910px;
+	height: 42px;
+}
+
+.what.box.boosters {
+	height:60px;
 }
