@@ -152,19 +152,6 @@ li.plans .popup-title {
 	padding:20px;
 }
 
-
-.getstarted .plans-img {
-	background:url("../../../images/lightbox/beta/intro-steps.jpg");
-	height: 166px;
-    width: 455px;
-}
-
-.getstarted .boosters-img {
-	background: url("../../../images/lightbox/beta/boosters-img.jpg");
-	width: 423px;
-	height: 280px;
-}
-
 .getstarted .lucky-dip-img {
 	background: url("../../../images/lightbox/beta/lucky-dip.jpg");
 	width:226px;
@@ -204,13 +191,22 @@ li.plans .popup-title {
 }
 
 .vdh.content .plans .explain {
-	margin: 25px 33px;
+	margin: 25px 10px;
+}
+
+.vdh.content .plans .explain span.explanation {
+	display:block;
+	float:left;
+	width:244px;
+	margin:10px;
 }
 
 li.boosters .popup-col.explain {
-	margin: 25px 0 25px 20px;
+	margin: 25px 0 25px 40px;
 	padding-left:0;
 	padding-right:0;
+	width:500px;
+	
 }
 
 li.loyalty .popup-title {
@@ -224,7 +220,7 @@ li.loyalty .popup-col.explain {
 
 .popup-col.brands-list {
 	text-align: center;
-	margin-top:10px;
+	margin-top:60px;
 }
 .popup-col.brands-list span.brands {
 	background-color: #000;
@@ -250,4 +246,12 @@ li.loyalty .popup-col.explain .brands-list span.brands.red {
 	background-color:#d2002b;
 }
 
+img.plans-img, img.boosters-img {
+	width:446px;
+	float:left;
+	margin: 10px 20px 0 0;
+}
 
+img.boosters-img {
+	margin: 10px 10px 10px 0;
+}
