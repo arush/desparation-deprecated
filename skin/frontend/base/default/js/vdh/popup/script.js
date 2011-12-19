@@ -5,11 +5,28 @@ vdh.windowSize = function(w) {
     return {
     	width: document.viewport.getWidth() + 'px', 
     	height: document.viewport.getHeight() + 'px',
+    	//docHeight: htmlHeight + 'px',
     	left: offsets.left + 'px',
     	top: offsets.top + 'px'
     
     }
 }
+vdh.docSize = function(w) {
+	var offsets = document.viewport.getScrollOffsets();
+	var htmlHeight = getDocHeight();
+	//alert(htmlHeight);
+	// var wrapperHeight = jQuery("wrapper").css('height');
+    return {
+    	width: document.viewport.getWidth() + 'px', 
+    	// height: document.viewport.getHeight() + 'px',
+    	height: htmlHeight + 'px',
+    	left: offsets.left + 'px',
+    	top: offsets.top + 'px'
+    
+    }
+}
+
+
 vdh.queue = {
 	requestHandler: function(transport) {
 		vdh.queue.sending = false;
@@ -137,11 +154,11 @@ vdh.popup = function(suppress) {
 	document.body.setStyle({ overflow: 'hidden' });
 
 
-	var dimensions = vdh.windowSize();
+	var overlayDimensions = vdh.docSize();
 
 	$$('.vdh.overlay').each(function(obj){
 
-		obj.setStyle(dimensions);
+		obj.setStyle(overlayDimensions);
 		obj.setStyle({ opacity: 0 });
 		obj.setStyle({top:0}); //arush
 		obj.fade({ duration: 1.0, from: 0, to: 0.7 });
@@ -215,3 +232,12 @@ Ajax.Responders.register({
 		}
 	}
 });
+
+function getDocHeight() {
+    return Math.max(
+        jQuery(document).height(),
+        jQuery(window).height(),
+        /* For opera: */
+        document.documentElement.clientHeight
+    );
+}

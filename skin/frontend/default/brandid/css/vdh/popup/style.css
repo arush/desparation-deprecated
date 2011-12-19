@@ -38,7 +38,7 @@ a.vdh.close {
 	color: transparent;
 	font-weight: bold;
 	cursor: pointer;
-	background: url("../../../images/vdh/popup/close.png");
+	/*background: url("../../../images/vdh/popup/close.png");*/
 }
 
 
@@ -46,7 +46,7 @@ a.vdh.close {
 	display: none;
 	cursor: pointer;
 
-	background: #FEEFB3 url(../images/message-bg.png) repeat-x 0 0;
+	background: #FEEFB3;
 	color: #9F6000;
 	font-family: Gotham-light,Arial;
 	font-size: 18px;
