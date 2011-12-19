@@ -299,7 +299,7 @@ padding-left:38px;
 
 .header {
 
-	width: 972px;
+	width: 960px;
 	margin: 0 auto;
 }
 
@@ -374,6 +374,7 @@ padding-left:38px;
 .branding {
     float: left;
     margin-top: 8px;
+    margin-left:8px;
 }
 
 .top-header img {
@@ -1344,14 +1345,17 @@ width:95px;
 	margin-top:20px;
 	width: 100%;
 	float:left;
+	background-color: white;
+	overflow:hidden;
 }
 .social-link .black-title-bar {
 	padding: 10px;
 }
 
 #social_link_container {
-	padding:25px 250px;
+	margin:25px 250px;
 	background-color:white;
+	width:460px;
 }
 #social_link_container.loading {
 	background: url('../images/ajax-loader.gif') no-repeat 50% 50% #fff;
@@ -2194,7 +2198,7 @@ clear:both;
 	letter-spacing: -1px;
 	text-transform: uppercase;
 	height:44px;
-	width: 70px;
+	width: 46px;
 }
 
 .my-points .points-triangle-container {
