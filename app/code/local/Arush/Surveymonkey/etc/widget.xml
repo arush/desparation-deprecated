@@ -18,13 +18,13 @@
                     </block>
                 </values>
             </template_path>
-            <!-- embed translate="label">
+            <embed translate="label">
                 <required>1</required>
                 <visible>1</visible>
                 <label>Survey HTML to embed</label>
 
 		        <type>textarea</type>                
-            </embed-->            
+            </embed>            
         </parameters>
     </simple>
 </widgets>

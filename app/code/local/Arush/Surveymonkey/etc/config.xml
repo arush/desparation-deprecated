@@ -7,14 +7,14 @@
     </modules>
     <global>
         <helpers>
-            <widgetone>
+            <surveymonkey>
                 <class>Arush_Surveymonkey_Helper</class>
-            </widgetone>
+            </surveymonkey>
         </helpers>
         <blocks>
-             <widgetone>
+             <surveymonkey>
                 <class>Arush_Surveymonkey_Block</class>
-             </widgetone>
+             </surveymonkey>
         </blocks>
     </global>
 </config>
