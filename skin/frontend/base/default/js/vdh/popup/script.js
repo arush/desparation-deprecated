@@ -174,10 +174,15 @@ vdh.count = function() {
 			vdh.popupCount = transport.responseText;
 			$('popupCounter').innerHTML = vdh.popupCount;				
 			if (vdh.popupCount > 0 && vdh.loggedIn) {
-				$('popupMessages').setStyle({ display: 'block' });
+				var delayHeader = function() {
+					$('popupMessages').setStyle({ display: 'block' });
+				};
 			} else {
-				$('popupMessages').setStyle({ display: 'none' });			
+				var delayHeader = function() { $('popupMessages').setStyle({ display: 'none' });
+				};
 			}
+			setTimeout(delayHeader,5000);
+
 		}
 	});
 
