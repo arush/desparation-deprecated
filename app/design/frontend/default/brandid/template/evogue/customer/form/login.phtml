@@ -39,6 +39,11 @@
 	}
 </style>
 <![endif]-->
+<?php 
+
+Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("customer/account/index"));
+
+?>
 
 <div class="account-login<?php if (!$this->helper('customer')->isRegistrationAllowed()) echo ' login-only' ?>" />
 
