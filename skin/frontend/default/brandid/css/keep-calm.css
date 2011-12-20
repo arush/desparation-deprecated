@@ -1072,13 +1072,13 @@ span.quote.right {
 
 .boosters-img.second{
 	margin: 0 40px 50px 40px;
-	background-position-x: 241px;
+	background-position: 241px 0;
 
 }
 
 .boosters-img.third {
 	margin: 0 40px 50px 40px;
-	background-position-x: 499px;
+	background-position: 499px 0;
 }
 
 
