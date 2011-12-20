@@ -2954,7 +2954,7 @@ body, .main {
 	opacity:0;
 }
 #showPanel, #hidePanel {
-	position:inherit;
+	position:absolute;
 	z-index:2;
 	left:0;
 	float:left;
@@ -2968,6 +2968,17 @@ body, .main {
 	display:block;
 }
 */
+
+#survey-wrap {
+	width:100%;
+	margin:-20px 0 0 0;
+	z-index: 0;
+	background:#000;
+}
+#surveyMonkeyInfo {
+	margin:0 auto;
+	width:960px;
+}
 #showPanel span, #hidePanel span {
 	display:block;
 	font-size:15px;

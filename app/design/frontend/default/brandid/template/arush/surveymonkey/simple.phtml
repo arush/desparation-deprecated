@@ -28,13 +28,13 @@
 			
 			if(survey.is(":visible")) {
 				$j("#showPanel").css("display","block");
-				// $j(survey).wrap('<div id="panel" />');
-				// $j('#survey-container').text('<div id="hidePanel"><a href="#">&laquo; Hide Feedback</a></div>');
+				$j(survey).wrap('<div id="panel" />');
+				$j('#survey-container').text('<div id="survey-wrap"><a href="#">&laquo; Hide Feedback</a></div>');
 			}
 			
 
 		 $j("#hidePanel").click(function(){
-			 $j("#panel").animate({marginTop:"-400px"}, 500 );
+			 $j("#panel").animate({marginTop:"-313px"}, 500 );
 			 $j("#colleft").animate({height:"0px", opacity:0}, 400 );
 			 $j("#showPanel").show("normal").animate({height:"40px", opacity:1}, 200);
 			 //$j("#colright").animate({marginLeft:"50px"}, 500);
@@ -43,7 +43,7 @@
 		 $j("#showPanel").click(function(){
 			 //$j("#colright").animate({height:"200px"}, 200);
 			 $j("#panel").animate({marginTop:"0px"}, 400 );
-			 $j("#colleft").animate({height:"400px", opacity:1}, 400 );
+			 $j("#colleft").animate({height:"313px", opacity:1}, 400 );
 			 $j("#showPanel").animate({height:"0px", opacity:0}, 600).hide("slow");
 		 });
 		
