@@ -2942,3 +2942,64 @@ body, .main {
 }
 
 .ff-note a {color:#0000FF;}
+
+/* survey monkey */
+
+#colleft {
+	width:100%;
+	margin-top:0;
+	overflow:hidden;
+	background:#fff;
+	height: 0;
+	opacity:0;
+}
+#showPanel, #hidePanel {
+	position:inherit;
+	z-index:2;
+	left:0;
+	float:left;
+	width:100%;
+	height:40px;
+	cursor:pointer;
+	
+}
+/*
+#showPanel {
+	display:block;
+}
+*/
+#showPanel span, #hidePanel span {
+	display:block;
+	font-size:15px;
+	height:20px;
+	text-align: center;
+    text-transform: uppercase;
+	padding:10px 50px 10px 10px;
+    font-family: ProximaNovaBold;
+    color:#fff;
+    
+    
+}
+
+#show-container {
+    width: 386px;
+    margin:0 auto;
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAABsklEQVRIDe1VTUrEMBRuVYQBwVW349Iu677gygMIrtz2BkLBM/QYPUIRunDrfkQo1GU9QylUkPi+kkpo8jqZVOhCA28yee/7aZI28YUQ3hrtaA1TeP494xOHpd4S54biWHK/qH+m+JBjuw4vl2XcEm5HwTXUgLHSswGdkdgT52bIAwvOrPZskcjnFHOzpLKxgQMuq88WJOmQmU6fAFxWny0QCfu1tLF77pMy9xbuqBBxRcv8K+GuTFjOGJ9MYyI45C6Io31q3Ml1PTUoisLzfZ+NMAy9tm2nNIw1rQGEpTbEo2lz0zTFvmix2WxEVVUmCnLQ0jy0hAQ9gDFtfd+LOI414zzPp1B1DC3NR0tI0L3KVP83TSOCIPgxT5JELZv+Q0vz0RIStDUpjLmyLAfjKIpE13VjmuuhpfloCQU0e2JlWSbquubMxjw0jB7GpAT/xgFy52KMhyopXBu47MTYgiThoH9zcMYSg8vqswWFhCvukJkDu/haVB8Mez43e9TYS4FqqpbHndXDqcb8XFI+pjiV9U/qXyje5diqczG2Et4H4i6JfbzF9X/jxUtoK7DaUn8DWGcIbNCUP0IAAAAASUVORK5CYII=);
+	background-position: 340px 4px;
+	background-repeat: no-repeat;
+	background-color:#2074ff;
+}
+
+#hide-container {
+	width:181px;
+    margin:0 auto;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAABtElEQVRIDe1VPUrFQBB+T0UICFZpn2XaHCCtB7AVrHIDIWAt2OQYuUFASGFrrwiBWMYrBAIRZJ1PdiVkdjZ/RQodmCyZ+X6ym2R3r5TabRFHW5jC8+8ZnyxY6gNxLimPNfeLxifKD30/bcDHNTGvCPdCKQV6wEzSmwI6I7FHyc1SBxYcp7azSeRzStcsqW0NcMAV9cWGJs2Z6fAJwBX1xQaR8L7WhvjOXcbOJa6qSqVpOvZg0LB6WIsEPrgU27ZVYRhir1VFUbig6EGL+bCCBt2AIUUcxz+mMPZ9X9V1LUFRhxbzYQUNugPDFlmW/ZrCGBlFkeq6zgZHDVrMhxU06BaMYZRlqTzPY8YwT5JkCDf30GI+rKBB14ZlxqZpVBAEVlMz8zzPDbw/Qov57FG0BPbj2lJfUrogEtvHpWMRwNclLgMONJgpMJIxeve4rIwHkW9b/15t9CclrBTgsndramJDA7DRv1HODexY4Ir6YqNHwhE3Z+bArj4W+w+GDd81e/TEQ4F6fa2d9DuJ3wQ1AsqI8lSDPml8pnzX95OGJcaThMdArt9pjLuq/2+8avnmkDdb6m8fHuthiSjFRgAAAABJRU5ErkJggg==);
+    background-position: 139px 4px;
+	background-repeat: no-repeat;
+	background-color:#2074ff;
+}
+
+#colright {
+	color:#1c1c1c;
+	margin-left:200px;
+}
