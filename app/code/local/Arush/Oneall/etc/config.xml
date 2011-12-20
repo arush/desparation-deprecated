@@ -60,7 +60,7 @@
 			</oneall_mysql4>
         </models>
 		<events>
-			<customer_save_after>
+			<!--customer_save_after>
 				<observers>
 					<add_oneall_identifier>
 						<type>singleton</type>
@@ -70,14 +70,14 @@
 				</observers>
 			</customer_save_after>
 			<admin_system_config_changed_section_oneall>
-				<observers>
+				< observers>
 					<oneall_config_save>
 						<type>singleton</type>
 						<class>Arush_Oneall_Model_Observer</class>
 						<method>onConfigSave</method>
 					</oneall_config_save>
 				</observers>
-			</admin_system_config_changed_section_oneall>
+			</admin_system_config_changed_section_oneall-->
 		</events>
         <helpers>
             <oneall>
