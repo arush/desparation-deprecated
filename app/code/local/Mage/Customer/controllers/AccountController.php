@@ -341,7 +341,11 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
             } catch (Mage_Core_Exception $e) {
                 $session->setCustomerFormData($this->getRequest()->getPost());
                 if ($e->getCode() === Mage_Customer_Model_Customer::EXCEPTION_EMAIL_EXISTS) {
-                    $url = Mage::getUrl('#forgotpass');
+                    
+                    /* arush edit */
+                    $url = Mage::getBaseUrl('customer/account/login');
+                    /* end arush edit */
+                    
                     $message = $this->__('There is already an account with this email address. If you are sure that it is your email address, <a href="%s">click here</a> to get your password and access your account.', $url);
                     $session->setEscapeMessages(false);
                 } else {
