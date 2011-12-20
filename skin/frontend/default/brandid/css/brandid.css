@@ -2968,12 +2968,15 @@ body, .main {
 	display:block;
 }
 */
+#panel {
+	background:#000;
+}
 
 #survey-wrap {
 	width:100%;
 	margin:-20px 0 0 0;
 	z-index: 0;
-	background:#000;
+
 }
 #surveyMonkeyInfo {
 	margin:0 auto;
