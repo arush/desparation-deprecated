@@ -39,11 +39,10 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("rewardsre
 			
 			
 			<div class="login-signup">
-				
-				<div class="login-signup-but"><a href="/customer/account/login">Login</a>
-				</div>
-				<div class="login-signup-but but-right"><a href="#signmeupnow">Sign Up</a>
-				</div>
+					<div class="login-signup-but"><a href="/customer/account/login">Login</a>
+					</div>
+					<div class="login-signup-but but-right"><a href="#signmeupnow">Sign Up</a>
+					</div>
 			</div>
 	
 		</div>
@@ -60,8 +59,10 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("rewardsre
 		</div>
 		<div class="signmeupnow-container section">
 			<div class="signmeup-now chevron" id="signmeupnow">
-				<div class="first-line block">Sign up to our beta</div>
-				<div class="second-line block">Now!</div>
+				<a href="#signmeupnow">
+					<div class="first-line block">Sign up to our beta</div>
+					<div class="second-line block">Now!</div>
+				</a>
 			</div>
 		</div>
 		
@@ -108,6 +109,110 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("rewardsre
 			<span class="caption">That's OK. Let us explain exactly what you're getting into.<br/>If only girls were this up front...</span>
 		</div>
 	</div>	
+	
+	<div class="grey-tilt-holder">
+		<div class="grey-tilt clearfix">
+				<div class="grey-tilt-container clearfix">
+					<div class="vision section clearfix">
+						<div class="vision-title">
+							<span class="vision-title-text">#1 Plans</span>
+						</div>
+						<div class="what box plans">Because you've got more important things to do.<br/>
+						Yes boys, everyone needs clean undies. Even you.
+						Choose your essentials, we deliver monthly. Bosh.
+						</div>
+						<div class="plans-img">
+						</div>
+						
+					</div>
+					
+					<div id="how" class="how section">
+						<!--
+<div class="vision-title">
+							<span class="vision-title-text">How does it work?</span>
+						</div>
+-->
+						
+						
+						<div class="how-to-process">
+							<div class="how-to-box">
+								<div class="select-title">
+									<span class="select-title-text">Select</span>
+								</div>
+								<div class="select-circle circle">
+								</div>
+								<div class="select-title red-title">
+									<span class="select-title-text">Select a monthly plan</span>
+								</div>
+								
+								<div class="select-triangle vert-chevron">
+									<div class="select-triangle white moveable">
+									</div>
+									<div class="select-triangle grey">
+									</div>
+								</div>
+							</div> <!-- end how to box -->
+							
+							<div class="how-to-box">
+								<div class="select-title">
+									<span class="select-title-text">Subscribe</span>
+								</div>
+								<div class="subscribe-circle circle">
+									<div class="sub-detail detail-1">minimum of</div>
+									<div class="sub-detail detail-2">30% off</div>
+									<div class="sub-detail detail-3">the high street price</div>
+								</div>
+								<div class="select-title red-title">
+									<span class="select-title-text">Automatic monthly billing</span>
+								</div>
+								
+								<div class="subscribe-triangle vert-chevron">
+									<div class="subscribe-triangle white moveable">
+									</div>
+									<div class="subscribe-triangle grey">
+									</div>
+								</div>
+							</div> <!-- end how to box -->
+				
+							<div id="third-how" class="how-to-box last">
+								<div class="select-title">
+									<span class="select-title-text">Sorted</span>
+								</div>
+								<div id="sorted-cal" class="sorted-circle circle">
+								</div>
+								<div class="select-title red-title">
+									<span class="select-title-text">Automatic monthly delivery</span>
+								</div>
+								
+							</div> <!-- end how to box -->
+							
+						</div> <!-- end how to process -->						
+						
+						
+					</div> <!-- end how section -->
+					
+					<div class="vision section clearfix">
+						<div class="vision-title">
+							<span class="vision-title-text">#2 Boosters</span>
+						</div>
+						<div class="what box boosters">Because men shop to solve a problem.<br/>
+						Delivered immediately in large quantities and with bulk discounts,
+						Boosters ensure you're not in this situation again any time soon.<br/>
+						If you're not the shopping type, choose Lucky Dip and we'll shop for you.
+						</div>
+
+						<div class="boosters-img first">
+						</div>
+						<div class="boosters-img second">
+						</div>
+						<div class="boosters-img third">
+						</div>
+
+						
+					</div>
+				</div> <!-- end grey tilt container -->
+		</div> <!-- end grey tilt -->
+	</div>
 	
 	<div class="quotes section clearfix">
 
@@ -164,76 +269,7 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("rewardsre
 		</div> <!-- end grey tilt -->
 	</div>
 	
-	<div id="pre-how"></div>
-	<div class="grey-tilt-holder">
-		<div class="grey-tilt clearfix">
-				<div class="grey-tilt-container clearfix">	
-				
-					<div id="how" class="how section">
-						<div class="vision-title">
-							<span class="vision-title-text">How does it work?</span>
-						</div>
-						
-						
-						<div class="how-to-process">
-							<div class="how-to-box">
-								<div class="select-title">
-									<span class="select-title-text">Select</span>
-								</div>
-								<div class="select-circle circle">
-								</div>
-								<div class="select-title red-title">
-									<span class="select-title-text">Select a monthly plan</span>
-								</div>
-								
-								<div class="select-triangle vert-chevron">
-									<div class="select-triangle white moveable">
-									</div>
-									<div class="select-triangle grey">
-									</div>
-								</div>
-							</div> <!-- end how to box -->
-							
-							<div class="how-to-box">
-								<div class="select-title">
-									<span class="select-title-text">Subscribe</span>
-								</div>
-								<div class="subscribe-circle circle">
-									<div class="sub-detail detail-1">minimum of</div>
-									<div class="sub-detail detail-2">30% off</div>
-									<div class="sub-detail detail-3">the high street price</div>
-								</div>
-								<div class="select-title red-title">
-									<span class="select-title-text">Automatic monthly billing</span>
-								</div>
-								
-								<div class="subscribe-triangle vert-chevron">
-									<div class="subscribe-triangle white moveable">
-									</div>
-									<div class="subscribe-triangle grey">
-									</div>
-								</div>
-							</div> <!-- end how to box -->
-				
-							<div id="third-how" class="how-to-box last">
-								<div class="select-title">
-									<span class="select-title-text">Sorted</span>
-								</div>
-								<div id="sorted-cal" class="sorted-circle circle">
-								</div>
-								<div class="select-title red-title">
-									<span class="select-title-text">Automatic monthly delivery</span>
-								</div>
-								
-							</div> <!-- end how to box -->
-							
-						</div> <!-- end how to process -->
-						
-					</div> <!-- end how section -->
-				</div> <!-- end grey tilt container -->
-		</div> <!-- end grey tilt -->
-	</div>
-		
+			
 
 	<div id="chevron-plax" class="chev-group-wrap section convinced">
 		<div class="chevron-group">
@@ -313,7 +349,7 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("rewardsre
 		<div class="share-buttons clearfix">
 				
 				<div class="like-but share-but">
-					<div class="fb-like" data-href="http://www.facebook.com/pages/Brandid/282808678428182" data-send="false" data-layout="button_count" data-width="200" data-show-faces="true"></div>
+					<div class="fb-like" data-href="http://www.facebook.com/pages/Brandid/282808678428182" data-send="false" data-layout="button_count" data-width="100" data-show-faces="true"></div>
 				</div>
 				
 				<div class="share-but twitter">

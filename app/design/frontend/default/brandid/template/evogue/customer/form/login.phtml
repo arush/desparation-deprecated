@@ -39,6 +39,11 @@
 	}
 </style>
 <![endif]-->
+<?php 
+
+Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("customer/account/index"));
+
+?>
 
 <div class="account-login<?php if (!$this->helper('customer')->isRegistrationAllowed()) echo ' login-only' ?>" />
 
@@ -217,10 +222,10 @@
 		    var ajax = this.form.request({
 		        onSuccess: function(transport) {
 		        
-
-		            if(transport.responseText.indexOf('This email address was not found in our records.') >= 0) {
+					
+		            if(transport.responseText.indexOf('customer-account-login') >= 0) {
           				$('forgotpass-response').removeClassName('loading');
-						$('forgotpass-response').innerHTML="Address not found";
+						$('forgotpass-response').innerHTML="Done - check your email";
 		            }
 		            else if(transport.responseText.indexOf('Invalid email address.') >= 0) {
           				$('forgotpass-response').removeClassName('loading');
@@ -233,7 +238,7 @@
 		            else {
 		            
           				$('forgotpass-response').removeClassName('loading');
-						$('forgotpass-response').innerHTML="Done - check your email";
+						$('forgotpass-response').innerHTML="Address not found";
 		            }
 
 

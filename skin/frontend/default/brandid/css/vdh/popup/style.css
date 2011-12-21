@@ -38,7 +38,7 @@ a.vdh.close {
 	color: transparent;
 	font-weight: bold;
 	cursor: pointer;
-	background: url("../../../images/vdh/popup/close.png");
+	/*background: url("../../../images/vdh/popup/close.png");*/
 }
 
 
@@ -46,7 +46,7 @@ a.vdh.close {
 	display: none;
 	cursor: pointer;
 
-	background: #FEEFB3 url(../images/message-bg.png) repeat-x 0 0;
+	background: #FEEFB3;
 	color: #9F6000;
 	font-family: Gotham-light,Arial;
 	font-size: 18px;
@@ -61,4 +61,197 @@ a.vdh.close {
 #popupCounter {
 	font-size: 26px;
 	font-family: Gotham-medium;
+}
+
+.popup-title {
+	margin: 40px auto;
+	text-align: center;
+}
+
+.popup-title span {
+	padding:10px 17px;
+	font-family: ProximaNovaBold;
+	font-size:24px;
+	background-color:#000;
+	color:#fff;
+	text-transform: uppercase;
+	clear:both;
+	letter-spacing: -1px;
+}
+
+.big-fuckoff.logo {
+	background: url('../../../images/brandid-huge-beta.png');
+	width:441px;
+	height:140px;
+	margin: 60px auto 48px;
+
+}
+
+.getstarted .sliders .holder .slider {
+	height: 438px;
+	width: 3950px;
+	margin:0;
+}
+
+.getstarted .sliders .holder .slider ul li {
+	width: 790px;
+	height: 438px;
+	position: relative;
+}
+
+.getstarted .sliders .holder {
+	width: 790px;
+	height: 546px;
+}
+
+.getstarted .sliders {
+	width: 790px;
+}
+
+.vdh.content .control-box {
+	position: absolute;
+	bottom: 20px;
+	right:20px;
+}
+
+.vdh.content .explain {
+	font-family: ProximaNovaLight;
+	font-size:18px;
+	color:#595959;
+	text-transform: none;
+	letter-spacing: -1px;
+	margin: 25px 55px
+}
+
+.vdh.content .explain-bold {
+	font-family: ProximaNovaBold;
+}
+
+
+.gettingstarted.getstarted a.popup-next, .gettingstarted.getstarted a.done{
+	float:right;
+	margin:0;
+}
+
+.gettingstarted.getstarted a.popup-prev {
+	float:left;
+	margin:0;
+	background: none;
+	color: #595959;
+	text-decoration: underline;
+	font-weight: normal;
+	text-transform: none;
+}
+
+li.plans .popup-title {
+	margin-bottom:0;
+}
+
+.popup-col {
+	float:left;
+	padding:20px;
+}
+
+.getstarted .lucky-dip-img {
+	background: url("../../../images/lightbox/beta/lucky-dip.jpg");
+	width:226px;
+	height:248px;
+	margin-right:30px;
+}
+
+.getstarted .tie-img {
+	background: url("../../../images/lightbox/beta/tie.png");
+	width:233px;
+	height:251px;
+	margin:17px 0 0 286px;
+	position:absolute;
+}
+
+
+.tie-details {
+	text-align: left;
+	line-height: 2em;
+	margin:13px 0 0 0;
+	position:absolute;
+	margin:42px 0 0 417px;
+}
+
+.tie-details span.detail {
+	background-color: #000;
+	text-align: left;
+	font-family: ProximaNovaBold;
+	text-transform: uppercase;
+	color: white;
+	font-size: 12px;
+	padding:4px;
+}
+
+.tie-details span.detail.red {
+	background-color:#d2002b;
+}
+
+.vdh.content .plans .explain {
+	margin: 25px 10px;
+}
+
+.vdh.content .plans .explain span.explanation {
+	display:block;
+	float:left;
+	width:244px;
+	margin:10px;
+}
+
+li.boosters .popup-col.explain {
+	margin: 25px 0 25px 40px;
+	padding-left:0;
+	padding-right:0;
+	width:500px;
+	
+}
+
+li.loyalty .popup-title {
+	margin-bottom:10px;
+}
+
+li.loyalty .popup-col.explain {
+	padding:0;
+	margin:40px;
+}
+
+.popup-col.brands-list {
+	text-align: center;
+	margin-top:60px;
+}
+.popup-col.brands-list span.brands {
+	background-color: #000;
+	text-align: center;
+	font-family: ProximaNovaBold;
+	text-transform: uppercase;
+	color: white;
+	font-size: 15px;
+	padding:6px;
+}
+
+li.loyalty .popup-col.explain.friends {
+	position:absolute;
+	margin:150px 0 0 522px;
+	width:246px;
+}
+
+li.loyalty .popup-col.explain .brands-list span.brands {
+	font-size:14px;
+}
+
+li.loyalty .popup-col.explain .brands-list span.brands.red {
+	background-color:#d2002b;
+}
+
+img.plans-img, img.boosters-img {
+	width:446px;
+	float:left;
+	margin: 10px 20px 0 0;
+}
+
+img.boosters-img {
+	margin: 10px 10px 10px 0;
 }

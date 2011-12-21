@@ -11970,7 +11970,6 @@ transition: background 200ms ease-in;
 /* FLO FOOTER START 7.9.2011*/
 .footer {
   background: none repeat scroll #CFCFCF;
-  min-width: 980px;
 }
 .footer-container {
   margin: 0pt auto 0;
@@ -12084,7 +12083,7 @@ color:#d2002b;
 /* FLO HEADER START 7.9.2011*/
 .header-container {
   margin: 0pt auto;
-  padding: 0pt 8px;
+  padding: 0;
   position: relative;
   text-align: left;
   width: 960px;

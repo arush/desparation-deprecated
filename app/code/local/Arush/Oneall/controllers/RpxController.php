@@ -282,6 +282,7 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 
 	protected function _loginPostRedirect() {
 		$session = $this->_getSession();
+		
 		if ($session->isLoggedIn()) {
 			if ($profile = Mage::getSingleton('oneall/session')->getIdentifier()) {
 				$customer = $session->getCustomer();
@@ -291,6 +292,7 @@ class Arush_Oneall_RpxController extends Mage_Customer_AccountController {
 			}
 		}
 
+		// Mage::getModel('customer/customer')->load($customer->getId())->save();
 		parent::_loginPostRedirect();
 	}
 
