@@ -3,7 +3,7 @@ if ($this->getSuppresstest() == 'true'){
 	Mage::getModel('core/cookie')->set('suppresstest', true);
 	header('Location: '.Mage::getBaseUrl().'customer/account/create/');
 } 
-if (Mage::getSingleton('customer/session')->isLoggedIn() && !Mage::getModel('core/cookie')->get('suppresstest')):
+if (!Mage::getSingleton('customer/session')->isLoggedIn() /* && !Mage::getModel('core/cookie')->get('suppresstest') */):
 ?>
 
 Yowza
