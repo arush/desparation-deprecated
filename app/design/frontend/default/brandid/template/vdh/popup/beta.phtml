@@ -1,15 +1,12 @@
 <?php 
- /* if ($this->getSuppress() == 'true'){
-   // Mage::getModel('core/cookie')->set('suppress', true);
-	echo 'document.location.href = "/rewardsref/customer/index/";';
-} */
+if ($this->getSuppress() == 'true'){
+	Mage::getModel('core/cookie')->set('suppress', true);
+	//echo 'document.location.href = "/rewardsref/customer/index/";';
+	header('Location: '.Mage::getBaseUrl().'rewardsref/customer/index/');
+} 
 if (Mage::getSingleton('customer/session')->isLoggedIn() && !Mage::getModel('core/cookie')->get('suppress')):
 ?>
 <div class="gettingstarted getstarted">
-	 
-	 
-
-	 
 	 
 				<div id="panels">
 					
@@ -155,7 +152,7 @@ if (Mage::getSingleton('customer/session')->isLoggedIn() && !Mage::getModel('cor
 										<div class="popup-col explain friends fadein">Or, get 50 friends to sign up, and we’ll send you a free designer tie, no points needed.</div>
 										<div class="control-box fadein">
 											<a id="5-prev" class="popup-prev" href="#">go back</a>
-											<a id="5-next" class="done" href="/rewardsref/customer/index">Send some invitations</a>
+											<a id="5-next" class="done" href="/popup/form/page/index/getstarted/suppress/true">Send some invitations</a>
 										</div>
 									</li>
 								</ul>
