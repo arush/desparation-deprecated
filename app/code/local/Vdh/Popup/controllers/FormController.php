@@ -8,7 +8,7 @@ class Vdh_Popup_FormController extends Mage_Core_Controller_Front_Action {
 				$template = explode('/', $url);
 				$this->loadLayout();
 		        $this->getLayout()->getBlock('root')->setTemplate('vdh/popup/'. $template[5] . '.phtml');
-		        if (strlen($this->getLayout()->getBlock('root')->toHtml()) > 0) { count++; }
+		        if (strlen($this->getLayout()->getBlock('root')->toHtml()) > 0) { $count++; }
 			
 			} catch(Exception $e) {
 				print_r($e);
