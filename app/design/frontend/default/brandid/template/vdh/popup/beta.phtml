@@ -1,8 +1,6 @@
 <?php 
 if ($this->getSuppress() == 'true'){
 	Mage::getModel('core/cookie')->set('suppress', true);
-	print_r($this->getData());
-	//echo 'document.location.href = "/rewardsref/customer/index/";';
 	header('Location: '.Mage::getBaseUrl().'rewardsref/customer/index/');
 } 
 if (Mage::getSingleton('customer/session')->isLoggedIn() && !Mage::getModel('core/cookie')->get('suppress')):
