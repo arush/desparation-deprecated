@@ -4,18 +4,14 @@ class Vdh_Popup_FormController extends Mage_Core_Controller_Front_Action {
 	public function countAction() {
 		$count = 0;	
 		foreach(Mage::helper('popup')->getUrls() as $url) {
-	
-			$c = curl_init();
-			curl_setopt($c, CURLOPT_URL, Mage::getBaseUrl() . $url . '?SID=' . Mage::getModel("core/session")->getEncryptedSessionId());
-			curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);			
-			curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
-			curl_exec($c);
-			$httpcode = curl_getinfo($c, CURLINFO_HTTP_CODE);
-			$size = curl_getinfo($c, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
-			curl_close($c);
-			if ($httpcode == 200 && $size > 0) {
-				$count++;
+			try {
+				$template = explode('/', $url);
+				$this->loadLayout();
+		        $this->getLayout()->getBlock('root')->setTemplate('vdh/popup/'. $template[5] . '.phtml');
+		        if (strlen($this->getLayout()->getBlock('root')->toHtml()) > 0) { count++; }
+			
+			} catch(Exception $e) {
+				print_r($e);
 			}
 		}
 		print_r($count);
