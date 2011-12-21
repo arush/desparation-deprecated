@@ -30,8 +30,7 @@ vdh.docSize = function(w) {
 vdh.queue = {
 	requestHandler: function(transport) {
 		vdh.queue.sending = false;
-		
-		if (transport.responseText) {
+		if (transport.responseText == '') {
 			var nextUrl = false;
 			for(var i = 0; i < vdh.urls.length; i++) {
 				if (!vdh.urls[i].loaded) {
@@ -57,7 +56,7 @@ vdh.queue = {
 				obj.setStyle({display: 'block'});
 				obj.innerHTML = '<a class="vdh close"><span>close</span></a>';		
 				obj.insert(transport.responseText);			
-				
+			
 				var dimensions = vdh.windowSize();
 				var offsets = document.viewport.getScrollOffsets();
 			
