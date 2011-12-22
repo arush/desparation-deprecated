@@ -7,6 +7,9 @@
         </Arush_Oneall>
     </modules>
     <frontend>
+	    <secure_url>
+	    	<oneall>/arush-oneall/rpx/</oneall>
+	    </secure_url>
         <layout>
             <updates>
                 <oneall>
