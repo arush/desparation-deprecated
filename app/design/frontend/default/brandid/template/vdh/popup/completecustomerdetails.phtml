@@ -1,20 +1,5 @@
-
-
 <?php
-/*
-<script type="text/javascript">
-//<![CDATA[
 
-function setGenderTwo(gender) {
-	document.getElementById('gender_two').value = gender.value;
-}
-//]]>
-</script>
-*/
-
-if ($this->getSuppressPopup() == '1') {
-	Mage::getModel('core/cookie')->set('suppress_popup', true);
-}
 $customer = Mage::getSingleton('customer/session')->getCustomer();
 $email = $customer->getEmail();
 $firstname = $customer->getFirstname();
