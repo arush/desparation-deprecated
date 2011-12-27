@@ -70,10 +70,21 @@
         <remove name="popup_header" />
     </customer_account_logoutsuccess>
  
- 	<customer_onepage_index>
+ 	<checkout_onepage_index>
         <remove name="popup" />
         <remove name="popup_header" />
-    </customer_onepage_index>
+    </checkout_onepage_index>
+ 
+ 	<checkout_cart_index>
+        <remove name="popup" />
+        <remove name="popup_header" />
+    </checkout_cart_index>
+ 
+ 	<paypal_express_review>
+	 	<remove name="popup" />
+        <remove name="popup_header" />
+ 	</paypal_express_review>
+ 	
  
 	 <keep_calm_signmeup>
     	<remove name="popup" />
