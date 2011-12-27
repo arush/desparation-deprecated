@@ -11182,11 +11182,12 @@ a.cat-view-now:hover {
 
 .cart .totals table tfoot strong {
   font-weight: normal;
-  font-size: 18px;
+  font-size: 24px;
   color: #2f2f2f;
   display: block;
   margin: 10px 0pt 15px;
 }
+
 
 .cart .totals table tfoot td .summary-collapse {
 	font-size: 24px;
