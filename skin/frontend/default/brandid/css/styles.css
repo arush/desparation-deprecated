@@ -11188,8 +11188,12 @@ a.cat-view-now:hover {
   margin: 10px 0pt 15px;
 }
 
+.cart .totals table tfoot td .summary-collapse {
+	font-size: 24px;
+}
+
 .cart .totals table tfoot td .price {
-  font-weight: bold;
+	font-size: 24px;
 }
 
 .cart .totals .checkout-types li {

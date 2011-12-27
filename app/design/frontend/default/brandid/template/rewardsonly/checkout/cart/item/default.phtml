@@ -150,9 +150,11 @@
         <?php endif; ?>
     </td>
     <?php endif; ?><?php */?>
+    
+    <?php /* arush removed qty data - also have to remove from rewards. also need to add  style="text-align:center" on lines 176 and 182
     <td class="a-center">
         <input name="cart[<?php echo $_item->getId() ?>][qty]" value="<?php echo $this->getQty() ?>" size="4" title="<?php echo $this->__('Qty') ?>" class="input-text qty" maxlength="12" />
-    </td>
+    </td> */ ?>
 
 <!-- // WDCA CODE BEGINS:  // -->
 	<!-- Changes are as of Magento 1.4.2.0 -->
@@ -171,13 +173,13 @@
 		
     ?>
     <?php if($this->showBeforePointsColumn()): ?>
-    <td align="center">
+    <td align="center" style="text-align:center">
     	<?php echo $this->getRowTotalBeforeRedemptions(); ?>
     </td>
     <?php endif; ?>
     
     <?php if($this->showPointsColumn()): ?>
-    <td align="center">
+    <td align="center" style="text-align:center">
     <span class='item-points-block'>
     	<?php if ($hasRedeemed) : ?>
     	
