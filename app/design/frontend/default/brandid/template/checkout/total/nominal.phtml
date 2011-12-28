@@ -45,7 +45,7 @@
     </td>
 </tr>
 <?php endforeach; ?>
-<tr class="summary-total" <?php /*  onclick="expandDetails(this, '>?<?php echo ".summary-details-nominal-{$i}" */ ?>')">
+<tr class="summary-total" <?php /*  onclick="expandDetails(this, '>?<?php echo ".summary-details-nominal-{$i}" ')" */ ?>>
     <td colspan="<?php echo $this->getColspan(); ?>" style="<?php echo $this->getTotalStyle() ?>">
         <div class="summary-collapse"><?php echo $this->escapeHtml($this->getItemName($item)); ?></div>
     </td>
@@ -54,3 +54,35 @@
     </td>
 </tr>
 <?php endforeach; ?>
+
+<?php /*  arush hacking the plans totals table  */ ?>
+<script type="text/javascript">
+
+	var $j = jQuery.noConflict();
+    
+	/*
+$j('#shopping-cart-totals-table tfoot').find('tr:first-child').hide(); //hide grand total
+	$j('#shopping-cart-totals-table tfoot tr th').html('<strong>Plan Breakdown</strong>'); //rename nominal item
+	$j('#shopping-cart-totals-table tfoot').find('tr:nth-child')[4].hide(); //hide tax
+	$j('#shopping-cart-totals-table tfoot tr.summary-details.summary-details-nominal-0.summary-details-first td:nth-child(1)').html('first month');
+	planPrice = $j('#shopping-cart-totals-table tfoot tr.summary-details.summary-details-nominal-0.summary-details-first td:nth-child(2)').html();
+	
+*/
+
+</script>
+
+
+<script type="text/javascript">
+
+	var $j = jQuery.noConflict();
+    
+    	$j(document).ready(function () {
+			/*
+$j('#shopping-cart-totals-table tbody').hide(); //hide subtotal
+			$j('#shopping-cart-totals-table tfoot tr:nth-child(4) td:nth-child(1)').html('second month');
+			$j('#shopping-cart-totals-table tfoot tr:nth-child(4) td:nth-child(2)').html(planPrice);
+
+*/
+	});
+
+</script>
