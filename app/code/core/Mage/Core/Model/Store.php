@@ -772,11 +772,10 @@ class Mage_Core_Model_Store extends Mage_Core_Model_Abstract
         } else {
             $value = $price;
         }
-       
+
         if ($this->getCurrentCurrency() && $format) {
             $value = $this->formatPrice($value, $includeContainer);
         }
-        
         return $value;
     }
 
@@ -801,10 +800,8 @@ class Mage_Core_Model_Store extends Mage_Core_Model_Abstract
     public function formatPrice($price, $includeContainer = true)
     {
         if ($this->getCurrentCurrency()) {
-        	return preg_replace('/.[0-9]*$/', '', $this->getCurrentCurrency()->format($price, array(), $includeContainer));
-//            return $this->getCurrentCurrency()->format($price, array(), $includeContainer);
+            return $this->getCurrentCurrency()->format($price, array(), $includeContainer);
         }
-      
         return $price;
     }
 
