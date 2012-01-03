@@ -47,10 +47,16 @@
                         <div class="send-addresses">
                             <label><?php echo $this->__('To:') ?></label><br/>
                             <textarea name="contacts" id="recipient_list" style="width:406px;" rows="4" cols="80" ></textarea>
+                            <span id="undo"></span>
                         </div>
+                   	
+                   	
+                   	
                    	<div class="button-set" style="margin-top:0px">
                         <!--<a href="<?php echo $this->getBackUrl() ?>" class="left">&laquo; <?php echo $this->__('Back') ?></a>-->
-                        <button class="form-button rewardsref-button sendinvitations" type="submit">Send</button>
+                        <button id="send-emails" class="form-button rewardsref-button sendinvitations" type="submit">Send</button>
+                        <span id="send-validation-message"></span>
+                        <div id="messages-container"> </div>
 		            </div>
                         
                     </div>
@@ -74,7 +80,91 @@
         </fieldset>
    
     </form>
+    
+    
+    
+    
    </div>
+   
+   
+  
+   
+   
+   <script type="text/javascript">
+	
+	var but = $('send-emails');
+	var toField = jQuery('#recipient_list');
+	
+	Event.observe(but, 'click', function sendInvitations (e){
+			
+			
+			but.innerHTML = 'Sending invitations';
+			but.setAttribute('disabled', 'disabled');
+			but.setStyle({ background: '#777' });
+			
+			oldValue = jQuery('#recipient_list').val();
+			
+			$('messages-container').innerHTML = '';
+			$('send-validation-message').addClassName('loading');
+			$('send-validation-message').innerHTML = 'If you\'re sending a bunch of invites, this can take a while. This message will automatically refresh when complete.';		
+			
+			$('form-validates').request({
+			  onSuccess: function(transport){ 
+			  
+			  	// we are inserting the response HTML page into a string and searching for the messages div
+				
+				var needle = '<ul class=\"messages\"';
+				
+				var start = transport.responseText.indexOf(needle);
+				var end = transport.responseText.indexOf('<div class=\"referrals\"',start);
+				var temp = transport.responseText.slice(start,end);
+				var newEnd = temp.lastIndexOf('</ul>') + 5;
+
+				allMessages = temp.slice(0,newEnd);
+				$('messages-container').innerHTML = allMessages;
+				
+				$('send-validation-message').removeClassName('loading');
+				$('send-validation-message').innerHTML = '';
+				
+				but.innerHTML = 'Send';
+				but.removeAttribute('disabled');
+				but.setStyle({ background: '#000' });
+				
+				toField.animate({
+				color: '#F1F1F1' },
+				1000,
+				function() {
+					jQuery('#recipient_list').val('');
+					jQuery('#recipient_list').css({color:'#555'});
+					$('undo').innerHTML = 'click here to restore To: field';
+					jQuery('#undo').show('slow');
+					jQuery('#undo').data('visibility',true);
+				});
+			
+			
+			  },
+			  onFailure: function(){ window.location.reload(); }
+			})
+					
+			Event.stop(e);	
+					
+		});
+		
+	Event.observe($('undo'), 'click', function (){
+			if(jQuery('#undo').data('visibility')) {			
+				jQuery('#undo').hide('slow');
+				jQuery('#undo').data('visibility',false);		
+			}
+			
+			toField.css({color:'#F1F1F1'});
+			jQuery('#recipient_list').val(oldValue);				
+			jQuery('#recipient_list').animate({
+				color: '#555'},
+				1000);
+	});
+	
+	</script>
+   
    
     <script type="text/javascript">
         var dataForm = new VarienForm('form-validate', true);

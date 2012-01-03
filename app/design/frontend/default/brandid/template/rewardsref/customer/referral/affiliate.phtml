@@ -106,7 +106,6 @@
 				method: 'post',
 				parameters: { customerurl: $('referral_url').value }, 
 				onSuccess: function(transport) {
-					console.log(transport.responseText);
 					window.location.reload();
 				}
 			});

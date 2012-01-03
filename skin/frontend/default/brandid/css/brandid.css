@@ -724,14 +724,24 @@ html[xmlns] .invite-options {
 }
 
 
-#customer-url-validation-message {
+#customer-url-validation-message, #send-validation-message {
 	color: #595959;
 	padding: 20px;
 	display:block;
 	font-family: ProximaNovaLight;
 	font-size:16px;
 }
-#customer-url-validation-message.loading {
+
+#send-validation-message {
+	margin-left:20px;
+	padding-left:26px;
+}
+
+#messages-container {
+	margin-left:15px;
+}
+
+#customer-url-validation-message.loading, #send-validation-message.loading {
 	background: url('../images/ajax-loader.gif') no-repeat 0% 50%;
 }
 
