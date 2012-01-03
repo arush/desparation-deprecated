@@ -71,7 +71,7 @@ function doFade(el) {
 			 	startFade(target);
 				count++;
 			 }
-		}, 2500);
+		}, 500);
 		
 	}
 
