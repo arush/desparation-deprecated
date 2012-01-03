@@ -3,18 +3,21 @@ if ($this->getSuppresstest() == 'true'){
 	Mage::getModel('core/cookie')->set('suppresstest', true);
 	header('Location: '.Mage::getBaseUrl().'customer/account/create/');
 } 
-if (!Mage::getSingleton('customer/session')->isLoggedIn() /* && !Mage::getModel('core/cookie')->get('suppresstest') */):
+if (Mage::getSingleton('customer/session')->isLoggedIn() && !Mage::getModel('core/cookie')->get('suppresstest')):
 ?>
 
 Yowza
-
-<a id="5-next" class="done" href="/popup/form/page/index/beta/suppresstest/true">Send some invitations</a>
+<form name="customer_details" action="/popup/form/page/index/anothertest/suppresstest/true">
+	<!-- a id="5-next" class="done" href="/popup/form/page/index/beta/suppress/true">Send some invitations</a-->
+	<input id="5-next" class="done" type="submit" name="submit" value="don't show me this again" />
+</form>
+											
 
 
 <script type="text/javascript">
 Ajax.Responders.register({
     onComplete: function(request) {
-        if (request.url.indexOf('popup/form/page/index/getstarted/suppresstest/true') >= 0) {
+        if (request.url.indexOf('popup/form/page/index/anothertest/suppresstest/true') >= 0) {
             document.location.href = request.transport.responseText;
         }
     }

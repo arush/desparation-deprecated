@@ -66,7 +66,7 @@ vdh.queue = {
 				obj.setStyle({ opacity: 0 });
 				obj.setStyle({ left: left, top: top });
 	
-				obj.fade({ duration: 1.0, from: 0, to: 1 });
+				obj.fade({ duration: 0.5, from: 0, to: 1 });
 				
 				
 				vdh.formListener();			
@@ -161,7 +161,7 @@ vdh.popup = function(suppress) {
 		obj.setStyle(overlayDimensions);
 		obj.setStyle({ opacity: 0 });
 		obj.setStyle({top:0}); //arush
-		obj.fade({ duration: 1.0, from: 0, to: 0.7 });
+		obj.fade({ duration: 0.5, from: 0, to: 0.7 });
 
 		Event.observe(obj, 'click', function(){
 			document.body.setStyle({ overflow: 'auto' });

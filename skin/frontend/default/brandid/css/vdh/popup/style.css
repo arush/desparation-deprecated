@@ -128,7 +128,7 @@ a.vdh.close {
 }
 
 
-.gettingstarted.getstarted a.popup-next, .gettingstarted.getstarted a.done{
+.gettingstarted.getstarted a.popup-next, .gettingstarted.getstarted a.done, .gettingstarted.getstarted .done{
 	float:right;
 	margin:0;
 }

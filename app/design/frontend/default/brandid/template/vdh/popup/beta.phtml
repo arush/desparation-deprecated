@@ -151,7 +151,12 @@ if (Mage::getSingleton('customer/session')->isLoggedIn() && !Mage::getModel('cor
 										<div class="popup-col explain friends fadein">Or, get 50 friends to sign up, and we’ll send you a free designer tie, no points needed.</div>
 										<div class="control-box fadein">
 											<a id="5-prev" class="popup-prev" href="#">go back</a>
-											<a id="5-next" class="done" href="/popup/form/page/index/beta/suppress/true">Send some invitations</a>
+											
+											<form name="customer_details" action="/popup/form/page/index/beta/suppress/true">
+												<!-- a id="5-next" class="done" href="/popup/form/page/index/beta/suppress/true">Send some invitations</a-->
+												<input id="5-next" class="done" type="submit" name="submit" value="submit" />
+
+											</form>
 										</div>
 									</li>
 								</ul>
@@ -169,10 +174,20 @@ if (Mage::getSingleton('customer/session')->isLoggedIn() && !Mage::getModel('cor
  	
 </div>
 <script type="text/javascript">
+
+
+console.log('js working');
+
 Ajax.Responders.register({
     onComplete: function(request) {
-        if (request.url.indexOf('popup/form/page/index/getstarted/suppress/true') >= 0) {
-            document.location.href = request.transport.responseText;
+ 		console.log('oncomplete working');
+
+        if (request.url.indexOf('popup/form/page/index/beta/suppress/true') >= 0) {
+	 		console.log('if working');
+
+			 document.location.href = request.transport.responseText;
+			 	 		console.log('relocate done');
+
         }
     }
 });
@@ -180,7 +195,6 @@ Ajax.Responders.register({
 
 
 <script type="text/javascript">
-	
 	
 	
 	var $j = jQuery.noConflict();
@@ -242,11 +256,8 @@ Ajax.Responders.register({
 		
 	}
 
-
 </script>
 
 
 
 <?php endif; ?>
-
-
