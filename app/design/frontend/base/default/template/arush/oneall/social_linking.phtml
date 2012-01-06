@@ -9,7 +9,7 @@
   'user_token': '<?php echo Mage::getModel('customer/customer')->load(Mage::getSingleton('customer/session')->getId())->getOneallUserToken(); ?>',
   'css_theme_uri': '<?php echo $this->getSkinUrl(); ?>css/social_link.css',
   'grid_size_x': '2',
-  'callback_uri': '<?php echo Mage::getUrl('', array('_nosid' => true, '_forced_secure' => $secure)); ?>arush-oneall/rpx/token_url_add/',
+  'callback_uri': '<?php echo Mage::getUrl('', array('_nosid' => true, '_forced_secure' => true)); ?>arush-oneall/rpx/token_url_add/',
   'events' :{
         'onload' : function(){jQuery('#social_link_container').removeClass('loading');}   
       } 
