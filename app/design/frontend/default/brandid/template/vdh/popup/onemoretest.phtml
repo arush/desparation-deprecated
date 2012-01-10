@@ -1,6 +1,6 @@
 <?php 
 if ($this->getOnemoretest() == 'true'){
-    Mage::getModel('core/cookie')->set('onemoretest', true);
+	Mage::getModel('core/cookie')->set('onemoretest', true);
 ?>
 <script type="text/javascript">document.location.href = '/plans.html';</script>
 <?php 
@@ -33,8 +33,11 @@ Ajax.Responders.register({
 	
 	var pos = 0;
 	for (var i = 0; i < vdh.urls.length; i++) {
-		if vdh.urls[i].url == 'your/current/popup/url'; pos = i+1; break;
+		if (vdh.urls[i].url.indexOf('popup/form/page/index/onemoretest') >= 0) {
+			pos = i+1;
+			break;		
 		}
+	}
 	$('num').innerHTML = pos;
 		
 </script>
