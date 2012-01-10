@@ -4,14 +4,11 @@
 * the system checks if 'suppress' is set and if so, then none of the popups pop automatically
 *
 */
-<?php 
+
 if ($this->getSuppress() == 'true'){
 	Mage::getModel('core/cookie')->set('suppress', true);
-?>
-<script type="text/javascript">document.location.href = '/rewardsref/customer/index';</script>
-<?php 
-}
-
+	header('Location: '.Mage::getBaseUrl().'rewardsref/customer/index/');
+} 
 if (Mage::getSingleton('customer/session')->isLoggedIn() && !Mage::getModel('core/cookie')->get('suppress')):
 ?>
 <div class="gettingstarted getstarted">
