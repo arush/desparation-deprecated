@@ -49,21 +49,12 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("customer/
 
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
         
-        	
-			<!-- <div id="login-title" class="cufon">
-				<?php // echo $this->__('members sign in') ?>
-			</div>
-			<?php // if ($this->helper('customer')->isRegistrationAllowed()): ?>
-			<div id="btn-request" class="cufon">
-				<a href="http://www.evogue.co.uk/editorial/?page_id=120"><span><?php echo $this->__('become a member') ?></span></a>
-			</div> -->
-			<?php // endif; ?>
 			
 			<div class="login-oneall">
 				
 				<div class="black-title-med">Connect via social account</div>
 			
-				<form action="<?php echo Mage::getUrl('oneall/rpx/loginpost') ?>" method="post" id="login-form">
+				<form action="<?php echo Mage::getUrl('arush-oneall/rpx/loginpost', array('_nosid' => true, '_forced_secure' => true)); ?>" method="post" id="login-form">
 					<div class="fieldset" id="gigya-fieldset">
 						<div class="gigya-group">
 							<!--<div class="gigya-label"><p id="loginwith">login with</p><p id="connectwith">connect with</p></div>-->
@@ -75,7 +66,8 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("customer/
 									<script type="text/javascript">
 										 oneall.api.plugins.social_login.build("oa_social_login_container", {
 										  'providers' :  ['facebook', 'google', 'twitter', 'yahoo'], 
-										  'callback_uri': '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK); ?>arush-oneall/rpx/token_url/',
+										  
+										  'callback_uri': '<?php echo $this->getUrl('arush-oneall/rpx/token_url', array('_forced_secure' => true)) ?>',
 										  'css_theme_uri': 'https://cdn.oneall.com/css/api/socialize/themes/connect_vertical.css'
 										 });
 									</script>
@@ -105,12 +97,7 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("customer/
 					
 					
 					<div id="slider">
-						<?php /* ?><ul class="navigation">
-							<li><a id="signin-button" href="#login">Members sign in</a></li>
-							<li><a id="become-button" href="#register">Become a Member</a></li>
-						</ul><?php */ ?>
-							<!-- a id="become-member" href="http://www.evogue.co.uk/editorial/?page_id=120">Become a Member</a -->
-					
+
 						
 					<!-- element with overflow applied -->
 						<div class="scroll">
@@ -192,7 +179,7 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("customer/
 						<div class="not-member-text">
 							<span>Not a Member?</span>
 						</div>
-						<a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK); ?>customer/account/create" class="red-title-button">Register</a>
+						<a href="<?php echo $this->getUrl('customer/account/create') ?>" class="red-title-button">Register</a>
 					</div>
 												
 				</div>
