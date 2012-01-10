@@ -1,4 +1,10 @@
 <?php 
+
+/*
+* the system checks if 'suppress' is set and if so, then none of the popups pop automatically
+*
+*/
+
 if ($this->getSuppress() == 'true'){
 	Mage::getModel('core/cookie')->set('suppress', true);
 	header('Location: '.Mage::getBaseUrl().'rewardsref/customer/index/');
@@ -176,18 +182,13 @@ if (Mage::getSingleton('customer/session')->isLoggedIn() && !Mage::getModel('cor
 <script type="text/javascript">
 
 
-console.log('js working');
 
 Ajax.Responders.register({
     onComplete: function(request) {
- 		console.log('oncomplete working');
 
         if (request.url.indexOf('popup/form/page/index/beta/suppress/true') >= 0) {
-	 		console.log('if working');
 
 			 document.location.href = request.transport.responseText;
-			 	 		console.log('relocate done');
-
         }
     }
 });
@@ -213,7 +214,7 @@ Ajax.Responders.register({
 					});
 					var name = $j(this).attr('id');
 					var delay = function() { doFade(name); };
-					setTimeout(delay,1000);
+					setTimeout(delay,500);
 				});
 			});
 			
@@ -252,7 +253,7 @@ Ajax.Responders.register({
 			 	startFade(target);
 				counter++;
 			 }
-		}, 2500);
+		}, 500);
 		
 	}
 
