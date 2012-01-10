@@ -1,11 +1,11 @@
 <?php 
+
 if ($this->getOnemoretest() == 'true'){
 	Mage::getModel('core/cookie')->set('onemoretest', true);
-?>
-<script type="text/javascript">document.location.href = '/plans.html';</script>
-<?php 
-}
-if (Mage::getSingleton('customer/session')->isLoggedIn() && !Mage::getModel('core/cookie')->get('onemoretest')):
+	header('Location: '.Mage::getBaseUrl().'popup/form/page/index/onemoretest/'); // actually pulling this html via ajax
+} 
+if (Mage::getSingleton('customer/session')->isLoggedIn() && !Mage::getModel('core/cookie')->get('suppresstest')):
+
 ?>
 
 
