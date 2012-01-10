@@ -54,7 +54,7 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("customer/
 				
 				<div class="black-title-med">Connect via social account</div>
 			
-				<form action="<?php echo Mage::getUrl('arush-oneall/rpx/loginpost', array('_nosid' => true, '_forced_secure' => $secure)); ?>" method="post" id="login-form">
+				<form action="<?php echo Mage::getUrl('arush-oneall/rpx/loginpost', array('_nosid' => true, '_forced_secure' => true)); ?>" method="post" id="login-form">
 					<div class="fieldset" id="gigya-fieldset">
 						<div class="gigya-group">
 							<!--<div class="gigya-label"><p id="loginwith">login with</p><p id="connectwith">connect with</p></div>-->
