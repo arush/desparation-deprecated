@@ -538,7 +538,6 @@ float:right;}
 }
 
 p.actual-category-text {
-	width:410px;
 }
 
 p.title-block-image {
@@ -563,7 +562,7 @@ p.title-block-image {
 .title-block .title .product-description-block {
 	float: right;
 	min-width: 540px;
-
+	margin-top: 20px;
 }
 
 /*END TITLE WIDGET */
