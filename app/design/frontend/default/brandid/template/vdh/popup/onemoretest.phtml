@@ -1,10 +1,9 @@
 <?php 
 if ($this->getOnemoretest() == 'true'){
 	Mage::getModel('core/cookie')->set('onemoretest', true);
-?>
-<script type="text/javascript">document.location.href = '/plans.html';</script>
-<?php 
-}
+	header('Location: '.Mage::getBaseUrl().'popup/form/page/index/onemoretest/'); // actually pulling this html via ajax
+} 
+
 if (Mage::getSingleton('customer/session')->isLoggedIn() && !Mage::getModel('core/cookie')->get('onemoretest')):
 ?>
 
@@ -16,6 +15,7 @@ last one dude
 	<!-- a id="5-next" class="done" href="/popup/form/page/index/beta/suppress/true">Send some invitations</a-->
 	<input id="5-next" class="done" type="submit" name="submit" value="don't show me this again" />
 </form>
+
 
 <!--
 
@@ -29,6 +29,7 @@ Ajax.Responders.register({
 });
 </script>
 -->
+
 <script type="text/javascript">
 	
 	var pos = 0;

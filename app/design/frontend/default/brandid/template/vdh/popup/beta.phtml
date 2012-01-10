@@ -5,10 +5,23 @@
 *
 */
 
+/*
+* redirect the whole page
+*
+*/
+
 if ($this->getSuppress() == 'true'){
-	Mage::getModel('core/cookie')->set('suppress', true);
-	header('Location: '.Mage::getBaseUrl().'rewardsref/customer/index/');
-} 
+	Mage::getModel('core/cookie')->set('suppress', true); ?>
+
+<script type="text/javascript">document.location.href = '/rewardsref/customer/index';</script>
+<?php
+}
+
+/*
+* phtml condition check
+*
+*/
+
 if (Mage::getSingleton('customer/session')->isLoggedIn() && !Mage::getModel('core/cookie')->get('suppress')):
 ?>
 <div class="gettingstarted getstarted">
@@ -159,6 +172,8 @@ if (Mage::getSingleton('customer/session')->isLoggedIn() && !Mage::getModel('cor
 											<a id="5-prev" class="popup-prev" href="#">go back</a>
 											
 											<form name="customer_details" action="/popup/form/page/index/beta/suppress/true">
+												<input type="hidden" name="suppress" value="true" />
+
 												<!-- a id="5-next" class="done" href="/popup/form/page/index/beta/suppress/true">Send some invitations</a-->
 												<input id="5-next" class="done" type="submit" name="submit" value="submit" />
 
@@ -181,8 +196,6 @@ if (Mage::getSingleton('customer/session')->isLoggedIn() && !Mage::getModel('cor
 </div>
 <script type="text/javascript">
 
-
-
 Ajax.Responders.register({
     onComplete: function(request) {
 
@@ -192,6 +205,7 @@ Ajax.Responders.register({
         }
     }
 });
+
 </script>
 
 
