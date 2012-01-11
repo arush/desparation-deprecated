@@ -34,99 +34,70 @@
 
 <!-- END Innovate Analytics tracking beacon  -->
 
-<span class="black-title-med">
-    <?php echo $this->__('You\'re done!') ?>
-</span>
 <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<!--
 
 <p class="checkout-success-message"><?php echo $this->__('Congratulations! You are now a fully fledged man…') ?></p></br>
 
+-->
 
 <span class="black-title-med">
-    <?php echo $this->__('Share this incredible accomplishment') ?>
+    <?php echo $this->__('Done.') ?>
 </span>
-<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
 
 
-<p><?php echo $this->__('Earn 10 points per signup, 1000 per purchasing friend, and don\'t forget about your <a href="%srewardsref/customer/index/">Free Designer Tie</a>', $this->escapeHtml(Mage::getBaseUrl())) ?></p></br>
+<p><?php echo $this->__(' Congratulations. You’re now a fully fledged man. Earn yourself some more points and even more hairs on your chest by spreading the word to your fellow man.')?></p></br>
 
 
    <div class="social-share">
 	        <div class="social-share-images">
 	        <?php /*?><a href="http://www.facebook.com/sharer.php?u=<?php echo $this->getReferralUrl(); ?>" target="_blank"><img class="facebook" src="<?php echo $this-> getSkinUrl(); ?>images/facebook.png" width="48" height="48" title="post this on facebook"/></a><?php */?>
 	        
-	        <div class="facebok-share">
+	       
+<div class="facebok-share">
+					 
+			<div class="fb-like" data-href="http://www.facebook.com/pages/Brandid/282808678428182" data-send="true" data-layout="button_count" data-width="100" data-show-faces="true"></div>
+			
+			<!--
 		        <div class="f-trans"><a style="display:block;" href"#"></a></div>
 				<div class="f-text">Post this to my wall</div>
+	        -->
 	        </div>
+
 	        
 	        <div class="twitter-share">
-	        	<div class="t-trans" style="display:block;"></div>
+	        <a href="https://twitter.com/share"
+	        	class="twitter-share-button"
+	        	data-url="http://www.getbrandid.com"
+	        	data-text="Money, power, auto-delivered undies. I got #BRANDiD. Use my invite"
+	        	data-via="getbrandid"
+	        	data-count="none"
+	        	data-hashtags="BRANDiD">Tweet about your package</a>
+			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	        	<!--
+<div class="t-trans" style="display:block;"></div>
 				<div class="t-text">Tweet this</div>
 	        	<div class="t-hover" style="display:none;">
 		        	<div id="tbox-triangle"></div><div class="t-box-wrapper"><div id="tbox"></div><span id="follow-placeholder"></span></div>
 	        	</div>
+-->
 					
-					<script type="text/javascript">
-						var $j = jQuery.noConflict();
-					    
-				    	$j(document).ready(function () {
-							 $j(".t-trans").hover(
-									function () {
-
-										//show its submenu
-										jQuery('.t-hover').show();
-							 			jQuery('.t-trans').animate({backgroundColor: '#46c8f4'}, 300);
-									},
-									function () {
-										//hide its submenu
-										jQuery('.t-hover').hide();
-										jQuery('.t-trans').animate({backgroundColor: '#595959'}, 300);         
-         
-									}
-								);
-								
-								$j(".t-hover").hover(
-									function () {
-
-										//show its submenu
-										jQuery('.t-hover').show();
-							 			jQuery('.t-trans').animate({backgroundColor: '#46c8f4'}, 300);
-									}, 
-									function () {
-										//hide its submenu
-										jQuery('.t-hover').hide();
-										jQuery('.t-trans').animate({backgroundColor: '#595959'}, 300);         
-									}
-								);
-						});
-						
-					</script>
 					
-					<script type="text/javascript">
-					 
-					  twttr.anywhere(function (T) {
-					 
-					    T("#tbox").tweetBox({
-						  label: "Tweet this:",
-					      height: 60,
-					      width: 400,
-					      defaultContent: "MAN UP AND JOIN THE REVOLUTION @getbrandid INVITE LINK: <?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);?><?php echo Mage::getModel('customer/customer')->load(Mage::getSingleton('customer/session')->getId())->getCustomerurl(); ?>"
-					    });
-					 
-					  });
-					 
-					</script>
-				  <script type="text/javascript">
-				 
-				    twttr.anywhere(function (T) {
-				      T("#follow-placeholder").followButton('getbrandid');
-				    });
-				 
-				  </script>
+					
 	        </div>
 	    </div>
 	</div>
+	
+<?php if ($profiles = $this->getRecurringProfiles()):?>
+<p><?php echo $this->__('Your recurring payment profiles:'); ?></p>
+<ul class="disc">
+<?php foreach($profiles as $profile):?>
+<?php $profileIdHtml = ($this->getCanViewProfiles() ? sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getProfileUrl($profile)), $this->escapeHtml($this->getObjectData($profile, 'reference_id'))) : $this->escapeHtml($this->getObjectData($profile, 'reference_id')));?>
+    <li><?php echo $this->__('Payment profile # %s: "%s".', $profileIdHtml, $this->escapeHtml($this->getObjectData($profile, 'schedule_description')))?></li>
+<?php endforeach;?>
+</ul>
+<?php endif;?>
 
 
 <?php if ($this->getOrderId()):?>

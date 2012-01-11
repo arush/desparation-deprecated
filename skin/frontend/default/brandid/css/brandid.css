@@ -543,6 +543,7 @@ p.actual-category-text {
 p.title-block-image {
 	float:left;
 	width: 520px;
+	margin-top: 41px;
 	
 }
 
@@ -560,8 +561,8 @@ p.title-block-image {
 }
 
 .title-block .title .product-description-block {
-	float: right;
-	min-width: 540px;
+	clear:both;
+	min-width: 930px;
 	margin-top: 20px;
 }
 
