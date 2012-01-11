@@ -168,7 +168,7 @@ try {
 		    curl_setopt($curl, CURLOPT_URL, $OAdomain.'connections/'.$postParams["connection_token"].'.json');
 		    curl_setopt($curl, CURLOPT_HEADER, 0);
  			curl_setopt($curl, CURLOPT_USERPWD, $OAusername . ":" . $OApassword);
-		    curl_setopt($curl, CURLOPT_TIMEOUT, 5);
+		    curl_setopt($curl, CURLOPT_TIMEOUT, 30);
 		    curl_setopt($curl, CURLOPT_VERBOSE, 0);
 		    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 		    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
