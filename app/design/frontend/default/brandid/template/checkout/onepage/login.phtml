@@ -180,7 +180,6 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("checkout/
 		    var ajax = this.form.request({
 		        onSuccess: function(transport) {
 		        
-					alert(transport.responseText);	
 		            if(transport.responseText.indexOf('customer-account-login') >= 0) {
           				$('forgotpass-response').removeClassName('loading');
 						$('forgotpass-response').innerHTML="Done - check your email";
