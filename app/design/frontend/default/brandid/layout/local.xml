@@ -115,7 +115,7 @@
     </oneall_rpx_duplicate>   
     
        
-       <customer_account_forgotpassword>
+<customer_account_forgotpassword>
 		<reference name="root">
 			<action method="setTemplate"><template>page/empty.phtml</template></action>
            	<remove name="head"/>

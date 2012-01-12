@@ -24,6 +24,13 @@
  * @license     http://www.magentocommerce.com/license/enterprise-edition
  */
 ?>
+
+<?php 
+
+Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("checkout/onepage/index"));
+
+?>
+
 <?php echo $this->getChildHtml('login_before')?>
 <div class="col2-set<?php if (!$this->helper('customer')->isRegistrationAllowed() && !$this->getQuote()->isAllowedGuestCheckout()) echo ' login-only' ?>">
     
@@ -45,7 +52,7 @@
 									<script type="text/javascript">
 										 oneall.api.plugins.social_login.build("oa_social_login_container", {
 										  'providers' :  ['facebook', 'google', 'twitter', 'yahoo'], 
-										  'callback_uri': '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK); ?>arush-oneall/rpx/token_url/',
+										  'callback_uri': '<?php echo $this->getUrl('arush-oneall/rpx/token_url', array('_forced_secure' => true)) ?>',
 										  'css_theme_uri': 'https://cdn.oneall.com/css/api/socialize/themes/connect_vertical.css'
 										 });
 									</script>
@@ -136,8 +143,9 @@
 														
 														<div style="clear: both;"><!-- --></div>
 													
-														<span id="forgotpass-response"></span>
 
+														<span id="forgotpass-response"></span>
+														
 												</div>
 											</div>
 										</fieldset>
@@ -171,9 +179,11 @@
 		    
 		    var ajax = this.form.request({
 		        onSuccess: function(transport) {
-		            if(transport.responseText.indexOf('This email address was not found in our records.') >= 0) {
+		        
+					alert(transport.responseText);	
+		            if(transport.responseText.indexOf('customer-account-login') >= 0) {
           				$('forgotpass-response').removeClassName('loading');
-						$('forgotpass-response').innerHTML="Address not found";
+						$('forgotpass-response').innerHTML="Done - check your email";
 		            }
 		            else if(transport.responseText.indexOf('Invalid email address.') >= 0) {
           				$('forgotpass-response').removeClassName('loading');
@@ -184,18 +194,19 @@
 						$('forgotpass-response').innerHTML="Please enter an email address";
 		            }
 		            else {
+		            
           				$('forgotpass-response').removeClassName('loading');
-						$('forgotpass-response').innerHTML="Done - check your email";
+						$('forgotpass-response').innerHTML="Address not found";
 		            }
 
 
 		            
 		        }
 		    });
-		    Event.stop();
 		});
     //]]>
     </script>
+ 
     
     
     
