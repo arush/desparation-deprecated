@@ -58,3 +58,17 @@
     <?php endforeach; ?>
 </dl>
 <?php endif; ?>
+
+
+
+<script type="text/javascript">
+
+	var $j = jQuery.noConflict();
+    	
+	var firstLabel = $j('#checkout-shipping-method-load').find('label')[0];
+	var priceSpan = firstLabel.find('span');
+	if(firstLabel.indexOf('Return') >= 0) {
+		$j('#checkout-shipping-method-load').find('label')[0].innerHTML = 'Recorded Delivery & Return Like a Man™'+ priceSpan ;
+	} 
+	 
+</script>

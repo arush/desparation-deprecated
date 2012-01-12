@@ -10010,9 +10010,9 @@ input#p_method_paypal_express{margin-top: 5px;}
 	width: 250px;
 }
 #checkout-shipping-method-load dl.sp-methods label[for="s_method_flatrate_flatrate"] {
-  background: url("../images/royalmail.png") no-repeat scroll 20px 50% transparent;
+/*   background: url("../images/royalmail.png") no-repeat scroll 20px 50% transparent; */
   margin-top: -35px;
-  padding: 20px 0 20px 126px;
+  padding: 20px 0 20px 20px;
 }
 #p_method_sagepayserver, input#p_method_sagepayserver + label{float: left;}
 input#p_method_sagepayserver + label{display: block; height: 30px;margin-left:10px;}
