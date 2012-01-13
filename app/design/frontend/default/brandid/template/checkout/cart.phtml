@@ -140,13 +140,17 @@
             
 			<h2>Shipping Options</h2><br>
 			<div class="cart-shipping-options">
-			<?php $block3 = Mage::getModel('cms/block')->load('nextdayshipping');?>
+			<?php $block3 = Mage::getModel('cms/block')->load('freeshipping');?>
 				<strong><?php echo $block3->getTitle(); ?></strong><br>
 				<?php echo $block3->getContent(); ?>
 				<br>
-				<?php $block7 = Mage::getModel('cms/block')->load('eushipping');?>
-						<strong><?php echo $block7->getTitle(); ?></strong><br>
-						<?php echo $block7->getContent(); ?><br>
+			<?php $block4 = Mage::getModel('cms/block')->load('rlmshipping');?>
+				<strong><?php echo $block3->getTitle(); ?></strong><br>
+				<?php echo $block4->getContent(); ?>
+				<br>
+			<?php $block7 = Mage::getModel('cms/block')->load('eushipping');?>
+				<strong><?php echo $block7->getTitle(); ?></strong><br>
+				<?php echo $block7->getContent(); ?><br>
 			</div>
 		</div>
         <div class="deals">
