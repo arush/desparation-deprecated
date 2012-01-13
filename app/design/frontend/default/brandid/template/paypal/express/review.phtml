@@ -147,8 +147,7 @@ PayPalExpressAjax.addPleaseWait($('review-please-wait'));
 <script type="text/javascript">
 	$j('#checkout-review-table.data-table tfoot tr:contains("Subtotal")').hide();
 	$j('#checkout-review-table.data-table tfoot tr:contains("Nominal Items")').hide();
-	var priceRow = $j('#checkout-review-table.data-table tfoot tr.summary-total');
-	var priceVal = $j(priceRow).find('td')[1].innerHTML;
+	var priceVal = $j('#checkout-review-table.data-table tfoot tr.summary-total').find('span.price').text;
 	var grandTotalRow = $j('#checkout-review-table.data-table tfoot tr:contains("Grand Total")');
 	$j(grandTotalRow).find('span.price').text(priceVal);
 	$j('#checkout-review-table.data-table tfoot tr:contains("Regular Payment")').hide();
