@@ -3027,3 +3027,42 @@ body, .main {
 	color:#1c1c1c;
 	margin-left:200px;
 }
+
+.category-plans .black-title-bar {
+	padding:10px;
+}
+
+#planOther {
+	margin:35px 0;
+}
+
+#planOther .brands-list {
+	margin-top: 18px;
+	float:left;
+	text-align:center;
+	
+}
+
+#planOther .brands-list span.context {
+	color:#595959;
+	text-transform: uppercase;
+	font-family: ProximaNovaBold;
+	font-size: 16px;
+	text-align: center;
+}
+
+#planOther .brands-list span.brands {
+	background-color: #000;
+	text-align: center;
+	font-family: ProximaNovaBold;
+	text-transform: uppercase;
+	color: white;
+	font-size: 16px;
+	padding:6px;
+}
+
+#planOther img.plans-item-img {
+	float:left;
+	clear:both;
+	margin: 0 79px 20px 85px;
+}
