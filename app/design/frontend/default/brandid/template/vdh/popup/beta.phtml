@@ -10,10 +10,10 @@
 *
 */
 
-if ($this->getSuppress() == 'true'){
-	Mage::getModel('core/cookie')->set('suppress', true); ?>
+if ($this->getSuppressbeta() == 'true'){
+	Mage::getModel('core/cookie')->set('suppressbeta', true); ?>
 
-<script type="text/javascript">document.location.href = '/rewardsref/customer/index';</script>
+<script type="text/javascript">document.location.href = 'plans.html';</script>
 <?php
 }
 
@@ -22,7 +22,7 @@ if ($this->getSuppress() == 'true'){
 *
 */
 
-if (Mage::getSingleton('customer/session')->isLoggedIn() && !Mage::getModel('core/cookie')->get('suppress')):
+if (Mage::getSingleton('customer/session')->isLoggedIn() && !Mage::getModel('core/cookie')->get('suppressbeta')):
 ?>
 <div class="gettingstarted getstarted">
 	 
