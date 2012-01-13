@@ -91,6 +91,12 @@
 		<remove name="popup_header" />
     </keep_calm_signmeup>
 
+	<cms_page_view>
+    	<remove name="popup" />
+		<remove name="popup_header" />
+    </cms_page_view>
+
+
 	<!-- hack because popup isnt looking up cookie properly -->
 	<rewardsref_customer_index>
     	<remove name="popup" />
