@@ -145,9 +145,19 @@ PayPalExpressAjax.addPleaseWait($('review-please-wait'));
 </script>
 
 <script type="text/javascript">
+
+	//for plans only *needs to be modified for boosters*
+
 	$j('#checkout-review-table.data-table tfoot tr:contains("Subtotal")').hide();
 	$j('#checkout-review-table.data-table tfoot tr:contains("Nominal Items")').hide();
-	var priceVal = $j('#checkout-review-table.data-table tfoot tr.summary-total').find('span.price').text;
+	
+	var shippingPrice = $j('#checkout-review-table.data-table tfoot tr:contains("Shipping")').find('span.price').text();
+	
+	var basketPrice = $j('#checkout-review-table.data-table tfoot tr.summary-total').find('span.price').text();
+	var total = parseFloat(basketPrice.substring(1)) + parseFloat(shippingPrice.substring(1)); // trim £
+
+	var priceVal = '£' + total;
+		
 	var grandTotalRow = $j('#checkout-review-table.data-table tfoot tr:contains("Grand Total")');
 	$j(grandTotalRow).find('span.price').text(priceVal);
 	$j('#checkout-review-table.data-table tfoot tr:contains("Regular Payment")').hide();
