@@ -67,6 +67,7 @@
 
 	        
 	        <div class="twitter-share">
+	        <br/>
 	        <a href="https://twitter.com/share"
 	        	class="twitter-share-button"
 	        	data-url="http://www.getbrandid.com"
@@ -90,11 +91,11 @@
 	</div>
 	
 <?php if ($profiles = $this->getRecurringProfiles()):?>
-<p><?php echo $this->__('Your recurring payment profiles:'); ?></p>
+<p><?php echo $this->__('Your Plans:'); ?></p>
 <ul class="disc">
 <?php foreach($profiles as $profile):?>
 <?php $profileIdHtml = ($this->getCanViewProfiles() ? sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getProfileUrl($profile)), $this->escapeHtml($this->getObjectData($profile, 'reference_id'))) : $this->escapeHtml($this->getObjectData($profile, 'reference_id')));?>
-    <li><?php echo $this->__('Payment profile # %s: "%s".', $profileIdHtml, $this->escapeHtml($this->getObjectData($profile, 'schedule_description')))?></li>
+    <li><?php echo $this->__('Plan # %s: "%s".', $profileIdHtml, $this->escapeHtml($this->getObjectData($profile, 'schedule_description')))?></li>
 <?php endforeach;?>
 </ul>
 <?php endif;?>
