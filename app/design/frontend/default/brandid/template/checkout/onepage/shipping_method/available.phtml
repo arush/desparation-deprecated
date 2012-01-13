@@ -69,7 +69,7 @@
 	
 	if(firstLabel.innerHTML.indexOf('Return') >= 0) {
 		var priceSpan = $j('#checkout-shipping-method-load dl dd ul li label').find('span');
-		firstLabel.innerHTML = 'Recorded Delivery & Return Like a Man™'+ priceSpan ;
+		firstLabel.innerHTML = 'Recorded Delivery & Return Like a Man™'+ '<span>' + priceSpan.html() + '</span>';
 	} 
 	 
 </script>
