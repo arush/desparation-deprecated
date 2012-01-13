@@ -10,6 +10,9 @@
 *
 */
 
+Mage::getModel('core/cookie')->set('suppress', true);
+
+
 if ($this->getSuppressbeta() == 'true'){
 	Mage::getModel('core/cookie')->set('suppressbeta', true); ?>
 	
