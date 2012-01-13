@@ -65,10 +65,11 @@
 
 	var $j = jQuery.noConflict();
     	
-	var firstLabel = $j('#checkout-shipping-method-load').find('label')[0];
-	var priceSpan = firstLabel.find('span');
+	var firstLabel = $j('#checkout-shipping-method-load dl dd ul li label')[0];
+	
 	if(firstLabel.indexOf('Return') >= 0) {
-		$j('#checkout-shipping-method-load').find('label')[0].innerHTML = 'Recorded Delivery & Return Like a Man™'+ priceSpan ;
+		var priceSpan = $j('#checkout-shipping-method-load dl dd ul li label').find('span');
+		firstLabel.innerHTML = 'Recorded Delivery & Return Like a Man™'+ priceSpan ;
 	} 
 	 
 </script>
