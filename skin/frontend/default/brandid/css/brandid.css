@@ -3066,3 +3066,13 @@ body, .main {
 	clear:both;
 	margin: 0 79px 20px 85px;
 }
+
+#checkout-step-review {
+	margin-top:20px;
+}
+
+#checkout-review-table {
+font-family: ProximaNovaLight;
+font-size: 14px;
+color: #444;
+}

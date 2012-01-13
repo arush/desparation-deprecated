@@ -143,3 +143,16 @@ PayPalExpressAjax = new OrderReviewController($('order_review_form'), $('review_
 PayPalExpressAjax.addPleaseWait($('review-please-wait'));
 //]]>
 </script>
+
+<script type="text/javascript">
+	$j('#checkout-review-table.data-table tfoot tr:contains("Subtotal")').hide();
+	$j('#checkout-review-table.data-table tfoot tr:contains("Nominal Items")').hide();
+	var priceRow = $j('#checkout-review-table.data-table tfoot tr:contains("Regular Payment")');
+	var priceVal = $j(priceRow).find('td')[1].innerHTML;
+	var grandTotalRow = $j('#checkout-review-table.data-table tfoot tr:contains("Grand Total")');
+	$j(grandTotalRow).find('span.price').text(priceVal);
+	$j('#checkout-review-table.data-table tfoot tr:contains("Regular Payment")').hide();
+	$j('#checkout-review-table.data-table tfoot tr:contains("Tax")').hide();
+	$j('#checkout-review-table.data-table tfoot tr.summary-total').hide();
+	
+</script>
