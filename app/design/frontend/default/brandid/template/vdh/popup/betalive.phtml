@@ -26,7 +26,6 @@ if ($this->getSuppressbeta() == 'true'){
 */
 
 if (!Mage::getModel('core/cookie')->get('suppressbeta')):
-	Mage::getModel('core/cookie')->set('suppressbeta', true);
 ?>
 
 <div class="gettingstarted getstarted">
@@ -127,16 +126,14 @@ if (!Mage::getModel('core/cookie')->get('suppressbeta')):
 										<div class="popup-col explain friends fadein">Or, get 50 friends to sign up, and we’ll send you a free designer tie, no points needed.</div>
 										<div class="control-box fadein">
 											<a id="3-prev" class="popup-prev" href="#">go back</a>
- 											<a id="3-next" class="done" href="/plans.html">Enough jibber jabber, take me to the plans</a>
+ 											<!--a id="3-next" class="done" href="/plans.html">Enough jibber jabber, take me to the plans</a-->
 											
-											<!--
-<form name="customer_details" action="/plans.html">
+											<form name="customer_details" action="/plans.html">
 												<input type="hidden" name="suppress" value="true" />
 
-												<input id="3-next" class="done" type="submit" name="submit" value="Take me to the plans, and never show me this again" />
+												<input id="3-next" class="done" type="submit" name="submit" value="Take me to the plans, and don't show me this again" />
 
 											</form>
--->
 										</div>
 									</li>
 								</ul>
