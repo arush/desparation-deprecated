@@ -53,10 +53,10 @@
                         </div>
                     </div>
                     <div class="field">
-                        <label for="billing:region_id" class="required"><span class="black-title-small"><em>*</em><?php echo $this->__('State/Province') ?></span></label>
+                        <label for="billing:region_id" class="required"><span class="black-title-small"><em>*</em><?php echo $this->__('County/Province') ?></span></label>
                         <div class="input-box">
-                            <select id="billing:region_id" name="billing[region_id]" title="<?php echo $this->__('State/Province') ?>" class="validate-select" style="display:none;">
-                                <option value=""><?php echo $this->__('Please select region, state or province') ?></option>
+                            <select id="billing:region_id" name="billing[region_id]" title="<?php echo $this->__('County/Province') ?>" class="validate-select" style="display:none;">
+                                <option value=""><?php echo $this->__('Please select county, region, state or province') ?></option>
                             </select>
                             <script type="text/javascript">
                                 $('billing:region_id').setAttribute('defaultValue',  "<?php echo $this->getAddress()->getRegionId() ?>");
