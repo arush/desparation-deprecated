@@ -80,9 +80,9 @@ class TBT_RewardsReferral_CustomerController
                         ->setWebsiteId(Mage::app()->getStore()->getWebsiteId())
                         ->loadByEmail($email);
 
-                //if ($referralModel->isSubscribed($email)) {
-				//	Mage::throwException($this->__('You or somebody else has already invited %s.', $email));
-                if ($sess_customer->getEmail() == $email) {
+				if ($referralModel->isSubscribed($email)) {
+					Mage::throwException($this->__('You or somebody else has already invited %s.', $email));
+				} elseif ($sess_customer->getEmail() == $email) {
                     Mage::throwException($this->__("%s is your own e-mail address.", $email));
                 } elseif ($customer->getEmail() == $email) {
                     Mage::throwException($this->__("%s is already signed up to the store.", $email));
@@ -162,7 +162,10 @@ FEED;
                         ->setWebsiteId(Mage::app()->getStore()->getWebsiteId())
                         ->loadByEmail($email);
 
-                //if ($referralModel->isSubscribed($email)) {
+                /* ANDREW EDIT 2012.01.20 {
+				 * Allow multiple invitations to same email address.
+				 */
+				//if ($referralModel->isSubscribed($email)) {
                 //    $session->addError($this->__('You or sombody else has already invited %s.', $email));
                 if ($sess_customer->getEmail() == $email) {
                     $session->addError($this->__("%s is your own e-mail address.", $email));
@@ -190,6 +193,7 @@ FEED;
 					Mage::logException($e);
 				}
             }
+			// } ANDREW EDIT 2012.01.20
         }
 
         $this->_redirect('*/*/');
