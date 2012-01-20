@@ -82,7 +82,8 @@ class TBT_RewardsReferral_CustomerController
 
                 //if ($referralModel->isSubscribed($email)) {
 				//	Mage::throwException($this->__('You or somebody else has already invited %s.', $email));
-                if ($sess_customer->getEmail() == $email) {
+                asdfdsda
+					if ($sess_customer->getEmail() == $email) {
                     Mage::throwException($this->__("%s is your own e-mail address.", $email));
                 } elseif ($customer->getEmail() == $email) {
                     Mage::throwException($this->__("%s is already signed up to the store.", $email));
