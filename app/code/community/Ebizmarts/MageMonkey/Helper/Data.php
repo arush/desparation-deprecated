@@ -22,7 +22,7 @@ class Ebizmarts_MageMonkey_Helper_Data extends Mage_Core_Helper_Abstract
 
     /**
      * Check if Magento is EE
-     * 
+     *
      * @return bool
      */
     public function isEnterprise()
@@ -63,6 +63,26 @@ class Ebizmarts_MageMonkey_Helper_Data extends Mage_Core_Helper_Abstract
 		$v = (string)Mage::getConfig()->getNode('modules/Ebizmarts_MageMonkey/version');
 		$version = strpos(Mage::getVersion(),'-')? substr(Mage::getVersion(),0,strpos(Mage::getVersion(),'-')) : Mage::getVersion();
 		return (string)'MageMonkey'.$v.'/Mage'.$aux.$version;
+	}
+
+	/**
+	 * Return Mandrill API key
+	 *
+	 * @param string $store
+	 * @return string Api Key
+	 */
+	public function getMandrillApiKey($store = null)
+	{
+		if(is_null($store)){
+			$key = $this->config('mandrill_apikey');
+		}else{
+			$curstore = Mage::app()->getStore();
+			Mage::app()->setCurrentStore($store);
+			$key = $this->config('mandrill_apikey', $store);
+			Mage::app()->setCurrentStore($curstore);
+		}
+
+		return $key;
 	}
 
 	/**
@@ -135,6 +155,16 @@ class Ebizmarts_MageMonkey_Helper_Data extends Mage_Core_Helper_Abstract
 	public function ecommerce360Active()
 	{
 		return (bool)($this->config('ecommerce360') != 0);
+	}
+
+	/**
+	 * Check if Transactional Email via MC is enabled
+	 *
+	 * @return bool
+	 */
+	public function useTransactionalService()
+	{
+		return Mage::getStoreConfigFlag("monkey/general/transactional_emails");
 	}
 
 	/**
@@ -321,11 +351,11 @@ class Ebizmarts_MageMonkey_Helper_Data extends Mage_Core_Helper_Abstract
 
 						break;
 					case 'ee_customer_balance':
-						
+
 						$merge_vars[$key] = '';
-						
+
 						if($this->isEnterprise()){
-						
+
 							if (Mage::app()->getStore()->isAdmin()) {
 								$websiteId = is_null($websiteId) ? Mage::app()->getStore()->getWebsiteId() : $websiteId;
 							}
@@ -336,9 +366,9 @@ class Ebizmarts_MageMonkey_Helper_Data extends Mage_Core_Helper_Abstract
 									  ->loadByCustomer();
 
 							$merge_vars[$key] = $balance->getAmount();
-            			
+
 						}
-						
+
 						break;
 					default:
 
