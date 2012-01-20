@@ -7,7 +7,7 @@
 </div>	
 <script type='text/javascript'>
 	var inviteCounter = new flipCounter('inviteCounter', {value:0, inc:3, pace:15, tFH: 20, bFH: 34, fW: 28, bOffset: 200});
-	inviteCounter.incrementTo(<?php echo 50-(Mage::helper('randomquote')->getInvitesRemaining()); ?>);	
+	inviteCounter.incrementTo(<?php echo (Mage::helper('randomquote')->getInvitesConverted()); ?>);	
 
 (function() {
     var config = {
