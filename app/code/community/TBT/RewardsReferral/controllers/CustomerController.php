@@ -80,9 +80,9 @@ class TBT_RewardsReferral_CustomerController
                         ->setWebsiteId(Mage::app()->getStore()->getWebsiteId())
                         ->loadByEmail($email);
 
-                if ($referralModel->isSubscribed($email)) {
-                    Mage::throwException($this->__('You or sombody else has already invited %s.', $email));
-                } elseif ($sess_customer->getEmail() == $email) {
+                //if ($referralModel->isSubscribed($email)) {
+				//	Mage::throwException($this->__('You or somebody else has already invited %s.', $email));
+                if ($sess_customer->getEmail() == $email) {
                     Mage::throwException($this->__("%s is your own e-mail address.", $email));
                 } elseif ($customer->getEmail() == $email) {
                     Mage::throwException($this->__("%s is already signed up to the store.", $email));
@@ -95,9 +95,9 @@ class TBT_RewardsReferral_CustomerController
                     }
                 }
             } catch (Mage_Core_Exception $e) {
-                $session->addException($e, $this->__('%s', $e->getMessage()));
+				$session->addException($e, $this->__('%s', $e->getMessage()));
             } catch (Exception $e) {
-                $session->addException($e, $this->__('There was a problem with the invitation.'));
+				$session->addException($e, $this->__('There was a problem with the invitation.'));
                 Mage::logException($e);
             }
         }
@@ -162,9 +162,9 @@ FEED;
                         ->setWebsiteId(Mage::app()->getStore()->getWebsiteId())
                         ->loadByEmail($email);
 
-                if ($referralModel->isSubscribed($email)) {
-                    $session->addError($this->__('You or sombody else has already invited %s.', $email));
-                } elseif ($sess_customer->getEmail() == $email) {
+                //if ($referralModel->isSubscribed($email)) {
+                //    $session->addError($this->__('You or sombody else has already invited %s.', $email));
+                if ($sess_customer->getEmail() == $email) {
                     $session->addError($this->__("%s is your own e-mail address.", $email));
                 } elseif ($customer->getEmail() == $email) {
                     $session->addError($this->__("%s is already signed up to the store.", $email));
@@ -176,11 +176,19 @@ FEED;
                         $session->addError($this->__('There was a problem with the invitation for %s.', "\"{$name}\" <{$email}>"));
                     }
                 }
-            } catch (Mage_Core_Exception $e) {
-                $session->addException($e, $this->__('%s', $e->getMessage()));
+			} catch (Mage_Core_Exception $e) {
+				$session->addException($e, $this->__('%s', $e->getMessage()));
             } catch (Exception $e) {
-                $session->addException($e, $this->__('There was a problem with the invitation.'));
-                Mage::logException($e);
+				// Email send code sends but throws exception if email already on list. Hack to avoid.
+				if ($e->getMessage() == $this->__('You or sombody else has already invited %s.', $email))
+				{
+					$session->addSuccess($this->__('Your referral e-mail to %s has been sent.', $name));
+				}
+				else
+				{
+					$session->addException($e, $this->__('There was a problem with the invitation.'));
+					Mage::logException($e);
+				}
             }
         }
 
