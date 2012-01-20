@@ -74,7 +74,8 @@ if ($linkFormat) {
     </table>
     <?php echo $this->getChildHtml('pager'); ?>
     <script type="text/javascript">decorateTable('<?php echo $this->getGridHtmlId() ?>')</script>
-<?php else: ?>
-    <p><?php echo $this->escapeHtml($this->getEmptyGridMessage()); ?></p>
+    <?php else: ?>
+    <p style="color: #444; font-size: 14px; margin-bottom: 18px;">It looks like you&rsquo;re a man without a plan. Why don&rsquo;t you do something about it?<?php //echo $this->escapeHtml($this->getEmptyGridMessage()); ?></p>
+	<div class="login-header"><a href="/plans.html">Show me what to do</a></div>
 <?php endif; ?>
 </div>
