@@ -2771,7 +2771,7 @@
             this.Ra = new Gc(i, Math.round(150 * d), Math.round(90 * d), b)
         }
         this.fb();
-        z.setInterval(pa(this.fb, this), this.Jb)
+        z.setTimeout(pa(this.fb, this), this.Jb)
     }
     Qd.prototype.fb = function () {
 
