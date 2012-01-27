@@ -28,5 +28,55 @@ class TBT_Rewards_Debug_UpdatesController extends TBT_Rewards_Debug_AbstractCont
 		return $this;
 	}
 	
+	public function fixTransferOptimizationAction()
+	{
+		echo "<pre>";
+		echo "Patching database.  Please wait...\n";
+		flush();
+		$table_prefix = Mage::getConfig()->getTablePrefix();
+	
+		$db = Mage::getSingleton('core/resource')->getConnection('core_write');
+
+		try {
+			$query = "ALTER TABLE `{$table_prefix}rewards_customer_index_points` ADD COLUMN `customer_points_pending_event` INT( 11 ) NOT NULL;";
+			$result = $db->query($query);
+		} catch (Exception $e){
+			echo ($e->getMessage() . "<br/>");
+		}
+
+		try {
+			$query = "ALTER TABLE `{$table_prefix}rewards_customer_index_points` ADD COLUMN `customer_points_pending_time` INT( 11 ) NOT NULL;";
+			$result = $db->query($query);
+		} catch (Exception $e){
+			echo ($e->getMessage() . "<br/>");
+		}
+		
+		try {		
+			$query = "ALTER TABLE `{$table_prefix}rewards_customer_index_points` ADD COLUMN `customer_points_pending_approval` INT( 11 ) NOT NULL;";
+			$result = $db->query($query);			
+		} catch (Exception $e){
+			echo ($e->getMessage() . "<br/>");
+		}
+			
+		try {		
+			$query = "ALTER TABLE `{$table_prefix}rewards_customer_index_points` ADD COLUMN `customer_points_active` INT( 11 ) NOT NULL;";
+			$result = $db->query($query);
+		} catch (Exception $e){
+			echo ($e->getMessage() . "<br/>");
+		}
+		
+		try {
+			$result = $db->addConstraint('FK_TRANSFER_CUSTOMER_ID', "{$table_prefix}rewards_transfer", 'customer_id', "{$table_prefix}customer_entity_varchar", 'entity_id', 'cascade', 'cascade');
+		} catch (Exception $e){
+			echo ($e->getMessage() . "<br/>");
+		}
+
+		Mage::helper( 'rewards/customer_points_index' )->invalidate();
+		
+		echo "</pre>";
+		echo "<h3>DONE</h3>";
+		flush();
+		return $this;
+	}	
 
 }

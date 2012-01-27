@@ -56,16 +56,23 @@ class TBT_Rewards_Block_Manage_Transfer_Edit_Tab_Grid_Orders extends Mage_Adminh
 	protected function _prepareCollection() {
 		
 		if (Mage::helper ( 'rewards' )->isBaseMageVersionAtLeast ( '1.4.1.1' )) {
-			$billingAliasName = 'billing_o_a';
-			$shippingAliasName = 'shipping_o_a';
+			// @mhadianfard -a 3/01/12 (fix_1277): Magento uses 'sales/order_grid_collection' to populate this collection. we should do the same.
+			 
+			// $billingAliasName = 'billing_o_a';
+			// $shippingAliasName = 'shipping_o_a';		
+			// $collection = Mage::getModel ( "sales/order" )->getCollection ()->addAttributeToSelect ( '*' )->addAddressFields ()->addExpressionFieldToSelect ( 'billing_firstname', "{{billing_firstname}}", array ('billing_firstname' => "$billingAliasName.firstname" ) )->addExpressionFieldToSelect ( 'billing_lastname', "{{billing_lastname}}", array ('billing_lastname' => "$billingAliasName.lastname" ) )->addExpressionFieldToSelect ( 'shipping_firstname', "{{shipping_firstname}}", array ('shipping_firstname' => "$shippingAliasName.firstname" ) )->addExpressionFieldToSelect ( 'shipping_lastname', "{{shipping_lastname}}", array ('shipping_lastname' => "$shippingAliasName.lastname" ) )->addExpressionFieldToSelect ( 'billing_name', "CONCAT({{billing_firstname}}, ' ', {{billing_lastname}})", array ('billing_firstname' => "$billingAliasName.firstname", 'billing_lastname' => "$billingAliasName.lastname" ) )->addExpressionFieldToSelect ( 'shipping_name', 'CONCAT({{shipping_firstname}}, " ", {{shipping_lastname}})', array ('shipping_firstname' => "$shippingAliasName.firstname", 'shipping_lastname' => "$shippingAliasName.lastname" ) );
 			
-			$collection = Mage::getModel ( "sales/order" )->getCollection ()->addAttributeToSelect ( '*' )->addAddressFields ()->addExpressionFieldToSelect ( 'billing_firstname', "{{billing_firstname}}", array ('billing_firstname' => "$billingAliasName.firstname" ) )->addExpressionFieldToSelect ( 'billing_lastname', "{{billing_lastname}}", array ('billing_lastname' => "$billingAliasName.lastname" ) )->addExpressionFieldToSelect ( 'shipping_firstname', "{{shipping_firstname}}", array ('shipping_firstname' => "$shippingAliasName.firstname" ) )->addExpressionFieldToSelect ( 'shipping_lastname', "{{shipping_lastname}}", array ('shipping_lastname' => "$shippingAliasName.lastname" ) )->addExpressionFieldToSelect ( 'billing_name', "CONCAT({{billing_firstname}}, ' ', {{billing_lastname}})", array ('billing_firstname' => "$billingAliasName.firstname", 'billing_lastname' => "$billingAliasName.lastname" ) )->addExpressionFieldToSelect ( 'shipping_name', 'CONCAT({{shipping_firstname}}, " ", {{shipping_lastname}})', array ('shipping_firstname' => "$shippingAliasName.firstname", 'shipping_lastname' => "$shippingAliasName.lastname" ) );
+			$collection = Mage::getResourceModel('sales/order_grid_collection');
+			
 		} else if (Mage::helper ( 'rewards' )->isBaseMageVersionAtLeast ( '1.4.1.0' )) {
 			$collection = Mage::getModel ( "sales/order" )->getCollection ()->addAttributeToSelect ( '*' )->joinAttribute ( 'billing_firstname', 'order_address/firstname', 'billing_address_id', null, 'left' )->joinAttribute ( 'billing_lastname', 'order_address/lastname', 'billing_address_id', null, 'left' )->joinAttribute ( 'shipping_firstname', 'order_address/firstname', 'shipping_address_id', null, 'left' )->joinAttribute ( 'shipping_lastname', 'order_address/lastname', 'shipping_address_id', null, 'left' );
 			/* addExpressionAttributeToSelect is broken for 1.4.1 */
 		} else {
 			$collection = Mage::getResourceModel ( 'sales/order_collection' )->addAttributeToSelect ( '*' )->joinAttribute ( 'billing_firstname', 'order_address/firstname', 'billing_address_id', null, 'left' )->joinAttribute ( 'billing_lastname', 'order_address/lastname', 'billing_address_id', null, 'left' )->joinAttribute ( 'shipping_firstname', 'order_address/firstname', 'shipping_address_id', null, 'left' )->joinAttribute ( 'shipping_lastname', 'order_address/lastname', 'shipping_address_id', null, 'left' )->addExpressionAttributeToSelect ( 'billing_name', 'CONCAT({{billing_firstname}}, " ", {{billing_lastname}})', array ('billing_firstname', 'billing_lastname' ) )->addExpressionAttributeToSelect ( 'shipping_name', 'CONCAT({{shipping_firstname}}, " ", {{shipping_lastname}})', array ('shipping_firstname', 'shipping_lastname' ) );
 		}
+				
+		//@mhadianfard -a 3/01/12: limit the list to applicable orders only
+		$collection->addFieldToFilter ( 'entity_id', array ('in' => $this->_getSelectedOrders () ) );
 		
 		$this->setCollection ( $collection );
 		return parent::_prepareCollection ();

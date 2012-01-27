@@ -709,10 +709,12 @@ class TBT_Rewards_Helper_Transfer extends Mage_Core_Helper_Abstract {
 					} else {						
 						// add this associated item's quantity-price to the running total
 						if ($prices_include_tax) {
-							$price += Mage::helper('rewards/price')->getReversedCurrencyPrice($item->getRowTotalBeforeRedemptionsInclTax());
-						} else {													
-							$price += Mage::helper('rewards/price')->getReversedCurrencyPrice($item->getRowTotalBeforeRedemptions());
-						}																								
+							 $rowTotal = $item->getRowTotalBeforeRedemptionsInclTax();
+                             $price += Mage::helper('rewards/price')->getReversedCurrencyPrice($rowTotal ? $rowTotal : $item->getBasePriceInclTax());
+						} else {		
+                            $rowTotal = $item->getRowTotalBeforeRedemptions();
+							$price += Mage::helper('rewards/price')->getReversedCurrencyPrice($rowTotal ? $rowTotal : $item->getBasePrice());
+ 						}																								
 					}	
 					break;														
 				}				

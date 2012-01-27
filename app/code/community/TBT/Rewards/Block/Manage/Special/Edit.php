@@ -111,11 +111,12 @@ TOGGLE_ONHOLD;
 	        	}
 	    	}
 	    	
-	   	// update the onchange events for the rule_points_conditions field.
-	   	document.observe("dom:loaded", function() {
-    	   	var old_onchange_event = $('rule_points_conditions').getAttribute('onchange');
-    		$('rule_points_conditions').setAttribute('onchange', (old_onchange_event == null ? '' : old_onchange_event) + 'toggleActionsSelect(this.value);');
-		});
+	        // update the onchange events for the rule_points_conditions field.
+	        document.observe('dom:loaded', function() {
+	        	Event.observe('rule_points_conditions', 'change', function() {
+	        		toggleActionsSelect(this.value);
+	        	});
+	        });
 		
 ONHOLD_AVAILABLE;
         $this->_formInitScripts [] = "toggleActionsSelect($('rule_points_conditions').value)";

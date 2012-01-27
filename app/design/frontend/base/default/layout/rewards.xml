@@ -302,6 +302,17 @@ Customer account pages, rendered for all tabs in dashboard
         </reference>
         <reference name="content">
             <block type="checkout/cart_totals" name="checkout.cart.totals" template="checkout/cart/totals.phtml"/>
+            <block type="checkout/cart" name="checkout.cart" template="rewards/checkout/cart/methods.phtml">
+                <block type="core/text_list" name="checkout.cart.top_methods" as="top_methods" translate="label">
+                    <label>Payment Methods Before Checkout Button</label>
+                    <block type="checkout/onepage_link" name="checkout.cart.methods.onepage" template="checkout/onepage/link.phtml"/>
+                </block>
+                <block type="core/text_list" name="checkout.cart.methods" as="methods" translate="label">
+                    <label>Payment Methods After Checkout Button</label>
+                    <block type="checkout/onepage_link" name="checkout.cart.methods.onepage" template="checkout/onepage/link.phtml"/>
+                    <block type="checkout/multishipping_link" name="checkout.cart.methods.multishipping" template="checkout/multishipping/link.phtml"/>
+                </block>
+            </block>
         </reference>
     </rewards_cart_redeem_changepointsspending>
 

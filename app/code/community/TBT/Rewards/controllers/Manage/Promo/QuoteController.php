@@ -24,7 +24,7 @@
  * @copyright  Copyright (c) 2008 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-require_once ('app/code/community/TBT/Rewards/controllers/Manage/SweettoothController.php');
+require_once (dirname(__FILE__) . DS . '..' . DS . 'SweettoothController.php');
 
 class TBT_Rewards_Manage_Promo_QuoteController extends TBT_Rewards_Manage_SweettoothController {
 	
@@ -229,7 +229,7 @@ class TBT_Rewards_Manage_Promo_QuoteController extends TBT_Rewards_Manage_Sweett
 	
 	public function preDispatch() {
 		if (! Mage::helper ( 'rewards/loyalty_checker' )->isValid ()) {
-			Mage::throwException ( "Please check your Sweet Tooth registration code your Magento configuration settings, or contact WDCA through contact@wdca.ca for a description of this problem." );
+			Mage::throwException ( "There's a problem with your Sweet Tooth license. This is likely a conflict with CEM. Please make sure the CEM module is completely disabled through its XML file (/app/etc/modules/MageParts_CEM.xml). Contact the Sweet Tooth support team if problem persists." );
 		}
 		parent::preDispatch ();
 	}

@@ -4,6 +4,8 @@ class TBT_Rewards_Model_Mysql4_Transfer_Collection extends Mage_Core_Model_Mysql
 	
 	protected $didSelectCustomerName = false;
 	protected $didSelectCurrency = false;
+	protected $_excludeTransferReferences = false;
+	protected $_transferReferencesAdded = false;
 	
 	public function _construct() {
 		$this->_init ( 'rewards/transfer' );
@@ -23,17 +25,55 @@ class TBT_Rewards_Model_Mysql4_Transfer_Collection extends Mage_Core_Model_Mysql
     }
 
     /**
+     * Used to exclude joining the collection with the transfer references table which is done by default on this collection.
+     * Call excludeTransferReferences() before loading the collection to exclude the join.
+     * 
+     * @return this
+     */
+    public function excludeTransferReferences(){
+    	//@mhadianfard -a 1/12/11:
+    	$this->_excludeTransferReferences = true;
+    	return $this; 	
+    }
+    
+    /**
      * 
      * 
      * (overrides parent method)
      */
     public function _initSelect () {
         parent::_initSelect();
-        
-        // Add a simplified version of the transfer references (1 reference per 1 transfer)
-        $this->_addTransferReferences(  $this->_getSingleReferenceSelect()  );
-        
         return $this;
+    }
+    
+    
+    public function getIterator(){
+    	
+    	//@mhadianfard -a 19/12/11: Magento 1.4.0.1 doesn't call _beforeLoad()
+    	if (!Mage::helper ( 'rewards' )->isBaseMageVersionAtLeast ( '1.4.2' )){
+    		if (!$this->_excludeTransferReferences){
+    			// Add a simplified version of the transfer references (1 reference per 1 transfer)
+    			$this->_addTransferReferences(  $this->_getSingleReferenceSelect()  );
+    		}    		
+    	}
+    	
+    	return parent::getIterator();
+    }
+    
+    /**
+     *
+     *
+     * (overrides parent method)
+     */   
+    protected function _beforeLoad(){
+    	parent::_beforeLoad();
+    	
+    	if (!$this->_excludeTransferReferences){
+    		// Add a simplified version of the transfer references (1 reference per 1 transfer)
+    		$this->_addTransferReferences(  $this->_getSingleReferenceSelect()  );
+    	}
+    	    	
+    	return $this;
     }
     
     /**
@@ -43,6 +83,8 @@ class TBT_Rewards_Model_Mysql4_Transfer_Collection extends Mage_Core_Model_Mysql
      * @param mixed $references [=null] joins the references table (which may create duplicate transfer entries) by default.
      */
     protected function _addTransferReferences($references = null) {
+    	if ($this->_transferReferencesAdded) return $this;
+    	
         if(empty($references)) {
             $references = $this->getTable('transfer_reference');
         }
@@ -58,9 +100,12 @@ class TBT_Rewards_Model_Mysql4_Transfer_Collection extends Mage_Core_Model_Mysql
             	'transfer_id' => "reference_table.rewards_transfer_id"
             )
         );
+        $this->_transferReferencesAdded = true;
         
+        return $this;        
     }
     
+	    
     /**
      * Returns a database select object that selects all references, but limits 1 reference per points transfer
      * @return Zend_Db_Select
@@ -79,6 +124,9 @@ class TBT_Rewards_Model_Mysql4_Transfer_Collection extends Mage_Core_Model_Mysql
 	 * @return TBT_Rewards_Model_Mysql4_Transfer_Collection
 	 */
 	public function addRules() {
+		
+		$this->_addTransferReferences();		//@mhadianfard -a 1/12/11: make sure we're adding in transfer references before we do the rest		
+ 
 		$alias = 'rule_name';
 		$this->getSelect ()->joinLeft ( array ('salesrules' => $this->getTable ( 'salesrule/rule' ) ), 'reference_table.rule_id = salesrules.rule_id', array ('rule_id' => "reference_table.rule_id", 'salesrule_name' => "salesrules.name" ) );
 		$this->getSelect ()->joinLeft ( array ('catalogrules' => $this->getTable ( 'catalogrule/rule' ) ), 'reference_table.rule_id = catalogrules.rule_id', array ('catalogrule_name' => "catalogrules.name" ) );

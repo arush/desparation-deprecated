@@ -65,7 +65,7 @@ class TBT_Rewards_Model_Salesrule_Observer extends Varien_Object {
 			}
 			
 			//@nelkaake -a 11/03/11: Check to see if the rule is applied. If it is, allow it to be alive.
-			$this->_getDiscountValidator ()->validateRedemptionRule ( $quote, $address, $item, $rule_id );
+			$this->_getDiscountValidator ()->validateRedemptionRule ( $quote, $address, $item, $rule_id, $is_applicable );
 			
 			//@nelkaake -a 11/03/11: Calculate any requird discounts
 			//echo "Validating {$item->getName()}::{$item->getId()} with rule {$rule->getName()}::{$rule_id} <Br />";
@@ -93,6 +93,10 @@ class TBT_Rewards_Model_Salesrule_Observer extends Varien_Object {
 		$original_discounts = $event->getResult ();
 		$original_discounts->setDiscountAmount ( $new_discounts->getDiscountAmount () );
 		$original_discounts->setBaseDiscountAmount ( $new_discounts->getBaseDiscountAmount () );
+		
+		if($is_applicable) {
+			$rule->setStopRulesProcessing(false);
+		}
 		
 		return $this;
 	}

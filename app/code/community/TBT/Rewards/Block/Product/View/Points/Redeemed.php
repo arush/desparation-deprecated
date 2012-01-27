@@ -43,6 +43,78 @@
  * @package    TBT_Rewards
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
-class TBT_Rewards_Block_Product_View_Points_Redeemed extends TBT_Rewards_Block_Product_View_Points_Abstract {
-
+class TBT_Rewards_Block_Product_View_Points_Redeemed extends TBT_Rewards_Block_Product_View_Points_Abstract
+{
+    const POINTS_RULE_ID = TBT_Rewards_Model_Catalogrule_Rule::POINTS_RULE_ID;
+    const POINTS_USES = TBT_Rewards_Model_Catalogrule_Rule::POINTS_USES;
+    
+    protected $_redeemedPoints = null;
+    
+    /**
+     * Checks if the specified rule already has a redemption applied to the current quote.
+     * @param int $applicableRuleId
+     */
+    public function isSelectedRule($applicableRuleId)
+    {
+        if (!$this->_loadRedemptionData()) {
+            return false;
+        }
+        
+        foreach ($this->_redeemedPoints as $redemption) {
+            $redeemedRuleId = $redemption->{self::POINTS_RULE_ID};
+            if ($redeemedRuleId == $applicableRuleId) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    /**
+     * Gets an array of redemption 'uses' counts, grouped by Rule ID.
+     */
+    public function getRuleUses()
+    {
+        if (!$this->_loadRedemptionData()) {
+            return array();
+        }
+        
+        $ruleUses = array();
+        foreach ($this->_redeemedPoints as $redemption) {
+            $ruleUses[$redemption->{self::POINTS_RULE_ID}] = $redemption->{self::POINTS_USES};
+        }
+        
+        return $ruleUses;
+    }
+    
+    /**
+     * Loads redemption data from the current quote based on the Item ID passed into the request.
+     * Returns boolean, stating whether it succeeded in gathering redemption data.
+     */
+    protected function _loadRedemptionData()
+    {
+        if (!$this->_redeemedPoints) {
+            $itemId = $this->getRequest()->getParam('id', null);
+            if (!$itemId) {
+                return false;
+            }
+            
+            $item = $this->_getCart()->getQuote()->getItemById($itemId);
+            if (!$item) {
+                return false;
+            }
+            
+            $this->_redeemedPoints = Mage::helper('rewards')->unhashIt($item->getRedeemedPointsHash());
+        }
+        
+        return true;
+    }
+    
+    /**
+     * Returns a singleton of the current cart.
+     */
+    protected function _getCart()
+    {
+        return Mage::getSingleton('checkout/cart');
+    }
 }

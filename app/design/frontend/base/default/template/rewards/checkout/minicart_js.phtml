@@ -3,38 +3,39 @@
     var slider_ajax_timeout = false;
     var slider_ajax_timeout_delay = 500;
     var last_slider_ajax_request = false;
+    var changePointsSpendingUri = '<?php echo $this->getUrl('rewards/cart_redeem/changePointsSpending', array('_forced_secure' => $this->getRequest()->isSecure())) ?>';
     function updateTotalsDueToSpendings(new_spending_amount) {
         $('payment-please-wait').show();
         $('shopping-cart-totals-table').hide();
+        var checkoutLinks = $$('.checkout-types');
+        for (var i = 0; i < checkoutLinks.length; i++) {
+            Element.extend(checkoutLinks[i]).hide();
+        }
         if(last_slider_ajax_request) {
             last_slider_ajax_request.options.onSuccess = function(t) { /* do nothing because a new request has started */}
         }
          
-        //Edited 10/03/2010 3:19:03 AM 
-        // The Ajax.Updater method is not supported by IE 7-8 when we're using UTF-8 data (or some other reason), so we need to use a regular request
-        if(Prototype.Browser.IE) {
-            last_slider_ajax_request = new Ajax.Request(
-            '<?php echo $this->getUrl("rewards/cart_redeem/changePointsSpending"); ?>', 
+        last_slider_ajax_request = new Ajax.Request(
+            changePointsSpendingUri, 
             {
                 parameters: { points_spending: new_spending_amount  },
-                onSuccess: function(t) { 
-                    $('payment-please-wait').hide(); 
-                    $('shopping-cart-totals-table').insert({before:t.responseText});
-                    $('shopping-cart-totals-table').next().remove();
-                    $('shopping-cart-totals-table').show();
+                onSuccess: function(t) {
+                    var result = t.responseJSON;
+                    $('payment-please-wait').hide();
+                    
+                    $('shopping-cart-totals-table').insert({after:result.totals});
+                    $('shopping-cart-totals-table').remove();
+
+                    var checkoutMethods = Element.extend($$('.title-buttons .checkout-types').shift());
+                    checkoutMethods.insert({after: result.top_methods});
+                    checkoutMethods.remove();
+
+                    var checkoutMethods = Element.extend($$('.totals .checkout-types').shift());
+                    checkoutMethods.insert({after: result.methods});
+                    checkoutMethods.remove();
                 } 
             }
         );
-        } else {
-            last_slider_ajax_request = new Ajax.Updater(
-            'shopping-cart-totals-table', 
-            '<?php echo $this->getUrl("rewards/cart_redeem/changePointsSpending"); ?>', 
-            {
-                parameters: { points_spending: new_spending_amount  },
-                onSuccess: function(t) { $('payment-please-wait').hide(); $('shopping-cart-totals-table').show();} 
-            }
-        );
-        }
     }
     /**
      * Sets the value in the input box and what is displayed to the user.
@@ -61,7 +62,7 @@
             }
             // TODO also update giant cart points block if it's there
         }
-    }
+    };
 
     function toggleUseAllPoints(checked) {
         if(checked) {

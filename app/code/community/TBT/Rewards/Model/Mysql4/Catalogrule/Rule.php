@@ -56,7 +56,7 @@ class TBT_Rewards_Model_Mysql4_CatalogRule_Rule extends Mage_CatalogRule_Model_M
 		//$read = Mage::getSingleton('core/resource')->getConnection('core_read');
 		$read = $this->_getReadAdapter ();
 		//$catalogrule_price_table = Mage::getConfig()->getTablePrefix() . ;
-		$catalogrule_price_table = $this->getTable ( 'catalogrule/rule_product_price' );
+		$catalogrule_price_table = $this->getTable ( 'rewards/catalogrule_product' );
 		
 		$select = $read->select ()->from ( array ('p' => $catalogrule_price_table ), array ('product_id', 'rules_hash' ) )->where ( 'p.rule_date = ?', $date )->where ( 'p.customer_group_id = ?', $gId )->where ( 'p.website_id = ?', $wId )->where ( 'p.rules_hash IS NOT NULL' );
 		$this->_filterActiveCatalogruleProducts ( $select, $wId );
@@ -102,9 +102,9 @@ class TBT_Rewards_Model_Mysql4_CatalogRule_Rule extends Mage_CatalogRule_Model_M
 		$read = $this->_getReadAdapter ();
 
                 if ( $gId===null ) {
-                    $select = $read->select ()->from ( $this->getTable ( 'catalogrule/rule_product_price' ), 'rules_hash' )->where ( 'rule_date=?', $date )->where ( 'website_id=?', $wId )->where ( 'product_id=?', $pId );
+                    $select = $read->select ()->from ( $this->getTable ( 'rewards/catalogrule_product' ), 'rules_hash' )->where ( 'rule_date=?', $date )->where ( 'website_id=?', $wId )->where ( 'product_id=?', $pId );
                 } else {
-                    $select = $read->select ()->from ( $this->getTable ( 'catalogrule/rule_product_price' ), 'rules_hash' )->where ( 'rule_date=?', $date )->where ( 'website_id=?', $wId )->where ( 'customer_group_id=?', $gId )->where ( 'product_id=?', $pId );
+                    $select = $read->select ()->from ( $this->getTable ( 'rewards/catalogrule_product' ), 'rules_hash' )->where ( 'rule_date=?', $date )->where ( 'website_id=?', $wId )->where ( 'customer_group_id=?', $gId )->where ( 'product_id=?', $pId );
                 }
                 
                 $rules_hash = $read->fetchOne ( $select );

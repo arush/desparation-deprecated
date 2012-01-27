@@ -56,10 +56,16 @@ class TBT_Rewards_Model_Observer_Block_Output extends Varien_Object {
 			return $this;
 		}
 		
+		if (Mage::getStoreConfigFlag('advanced/modules_disable_output/TBT_Rewards')) {
+			return $this;
+		}
+		
 		$this->appendRewardsHeader ( $block, $transport );
 		$this->appendCartPointsSpender ( $block, $transport );
 		$this->appendPointsSummary ( $block, $transport );
 		$this->appendToCatalogListing ( $block, $transport );
+		$this->overwriteCheckoutButton ( $block, $transport );
+		$this->removeMultishippingLink ( $block, $transport );
 		
 		return $this;
 	}
@@ -114,6 +120,7 @@ class TBT_Rewards_Model_Observer_Block_Output extends Varien_Object {
 	 * @param unknown_type $transport
 	 */
 	public function appendPointsSummary($block, $transport) {
+        
         if(!Mage::getStoreConfigFlag('rewards/autointegration/customer_dashboard_summary')) {
             return $this;
         }
@@ -135,6 +142,7 @@ class TBT_Rewards_Model_Observer_Block_Output extends Varien_Object {
 	 * @param Varien_Object $transport
 	 */
 	public function appendToCatalogListing($block, $transport) {
+        
         // Should we be checking this auto-integration?
         if(!Mage::getStoreConfigFlag('rewards/autointegration/product_listing')) {
             return $this;
@@ -156,6 +164,53 @@ class TBT_Rewards_Model_Observer_Block_Output extends Varien_Object {
 		
 		return $this;
 		
+	}
+	
+	/**
+	 * Overwrites the cart's checkout button with a "not enough points" message if the customer
+	 * doesn't have enough points to checkout with their specified redemptions.
+	 * @param Mage_Checkout_Block_Onepage_Link $mageBlock
+	 * @param Varien_Object $transport
+	 */
+    public function overwriteCheckoutButton($mageBlock, $transport)
+    {
+        if (!($mageBlock instanceof Mage_Checkout_Block_Onepage_Link)) {
+            return $this;
+        }
+        
+        if ($mageBlock instanceof TBT_Rewards_Block_Checkout_Onepage_Link) {
+            return $this;
+        }
+        
+        $rewardsBlock = $mageBlock->getLayout()->createBlock('rewards/checkout_onepage_link');
+        if (!$rewardsBlock->canCheckout() && $this->_disableCheckoutsIfNotEnoughtPoints()) {
+            $transport->setHtml($rewardsBlock->toHtml());
+        }
+        
+        return $this;
+    }
+	
+	/**
+	 * Removes the cart's multishipping checkout link if the checkout button is being overwritten.
+	 * @param Mage_Checkout_Block_Multishipping_Link $mageBlock
+	 * @param Varien_Object $transport
+	 */
+	public function removeMultishippingLink($mageBlock, $transport)
+	{
+	    if (!($mageBlock instanceof Mage_Checkout_Block_Multishipping_Link)) {
+	        return $this;
+	    }
+	    
+	    if ($mageBlock instanceof TBT_Rewards_Block_Checkout_Multishipping_Link) {
+	        return $this;
+	    }
+	    
+	    $rewardsBlock = $mageBlock->getLayout()->createBlock('rewards/checkout_multishipping_link');
+	    if (!$rewardsBlock->canCheckout() && $this->_disableCheckoutsIfNotEnoughtPoints()) {
+	        $transport->setHtml($rewardsBlock->toHtml());
+	    }
+	    
+	    return $this;
 	}
 	
 	/**
@@ -207,6 +262,10 @@ class TBT_Rewards_Model_Observer_Block_Output extends Varien_Object {
 	    return $html;
 		
 	}
+	
+    protected function _disableCheckoutsIfNotEnoughtPoints() {
+    	return Mage::helper('rewards/config')->disableCheckoutsIfNotEnoughPoints();
+    }
 	
 	
 }

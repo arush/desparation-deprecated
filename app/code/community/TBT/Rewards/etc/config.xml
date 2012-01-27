@@ -2,7 +2,7 @@
 <config>
     <modules>
         <TBT_Rewards>
-            <version>1.6.0.4</version>
+            <version>1.6.0.6</version>
         </TBT_Rewards>
     </modules>
     <admin>
@@ -26,6 +26,9 @@
                 </args>
             </rewards>
         </routers>
+        <secure_url>
+            <rewards>/rewards/</rewards>
+        </secure_url>
         <layout>
             <updates>
                 <rewards>
@@ -353,6 +356,15 @@
                     </tbt_rewards_model_catalogrule_observer_after_add>
                 </observers>
             </checkout_cart_product_add_after>
+            <checkout_cart_product_update_after>
+                <observers>
+                    <tbt_rewards_model_catalogrule_observer_after_update>
+                        <type>singleton</type>
+                        <class>rewards/catalogrule_observer</class>
+                        <method>appendPointsQuoteAfterUpdate</method>
+                    </tbt_rewards_model_catalogrule_observer_after_update>
+                </observers>
+            </checkout_cart_product_update_after>
             <checkout_cart_add_product_complete>
                 <observers>
                     <tbt_rewards_model_catalogrule_observer>
@@ -464,6 +476,15 @@
               </tbt_rewards_model_observer_sales_order_payment_cancel>
             </observers>
           </sales_order_payment_cancel>
+          <sales_order_creditmemo_refund>
+            <observers>
+              <tbt_rewards_model_sales_order_creditmemo_refund>
+                <type>singleton</type>
+                <class>rewards/sales_order_creditmemo_observer</class>
+                <method>refund</method>
+              </tbt_rewards_model_sales_order_creditmemo_refund>
+            </observers>
+          </sales_order_creditmemo_refund>
           
           <!-- @nelkaake 16/01/2010 6:20:18 PM points redemption coupon autoapply -->
           <controller_action_postdispatch_checkout_cart_couponPost>
@@ -554,6 +575,9 @@
                     <catalogrule_label>
                         <table>rewards_catalogrule_label</table>
                     </catalogrule_label>
+                    <catalogrule_product>
+                        <table>rewards_catalogrule_product</table>
+                    </catalogrule_product>
                 </entities>
             </rewards_mysql4>
             
@@ -1157,6 +1181,7 @@
         <tests>
             <rewards>
                 <suites>
+                    <birthday_points>TBT_Rewards_Model_Test_Suite_Rewards_Birthday_Points</birthday_points>
                     <database_tables>TBT_Rewards_Model_Test_Suite_Rewards_Database_Tables</database_tables>
                     <!--<database_schema>TBT_Rewards_Model_Test_Suite_Rewards_Database_Schema</database_schema>-->
                     <module_issue>TBT_Rewards_Model_Test_Suite_Rewards_Module_Issue</module_issue>

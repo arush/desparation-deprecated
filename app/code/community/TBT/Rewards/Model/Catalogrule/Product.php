@@ -1,4 +1,5 @@
 <?php
+
 /**
  * WDCA - Sweet Tooth
  * 
@@ -36,66 +37,17 @@
  */
 
 /**
- * Product View Points
+ * Catalog Rule Product
  *
  * @category   TBT
  * @package    TBT_Rewards
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
-class TBT_RewardsOnly_Block_Product_View_Points_Redeemed extends TBT_Rewards_Block_Product_View_Points_Redeemed {
-
-    protected function _toHtml() {
-        if(!$this->doShowRedeemer()) {
-            return "";
-        }
-        return parent::_toHtml();
+class TBT_Rewards_Model_Catalogrule_Product extends Mage_Core_Model_Abstract
+{
+    public function _construct()
+    {
+        parent::_construct();
+        $this->_init('rewards/catalogrule_product');
     }
-    
-    
-    /**
-     * Returns true if you should show the redeemer for this product.
-     *
-     * @return boolean
-     */
-    public function doShowRedeemer() {
-		if($this->hasPointsOnlyRule()) {
-    		return false;
-		}
-    	return parent::doShowRedeemer();	
-    }
-    
-    
-    /**
-     * True if any redeption options exist for this product.
-     *
-     * @return boolean
-     */
-    public function hasRedemptionOptions() {
-    	if($this->hasPointsOnlyRule() ) {
-    		return false;
-    	}
-    	return parent::hasRedemptionOptions();
-    }
-    
-    /**
-     * 
-     * Enter description here ...
-     * @return boolean
-     */
-    public function hasPointsOnlyRule() {
-    
-		$rule_selector = $this->getRedemptionSelectionAlgorithm();
-		$rule_selector->init($this->_getRS()->getSessionCustomer(), $this->getProduct());
-		return $rule_selector->hasRule();
-    }
-    
-	/**
-	 * Loads the rule selection algorithm model from config.
-	 *
-	 * @return TBT_Rewards_Model_Catalogrule_Selection_Algorithm_Abstract
-	 */
-	protected function getRedemptionSelectionAlgorithm() {
-		return Mage::helper('rewardsonly/config')->getRedemptionSelectionAlgorithm();
-	}
-	
 }

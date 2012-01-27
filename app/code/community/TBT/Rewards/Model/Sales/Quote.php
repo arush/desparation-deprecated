@@ -310,7 +310,7 @@ class TBT_Rewards_Model_Sales_Quote extends Mage_Sales_Model_Quote {
 		
 		$cart_redemptions = $this->_getCartTransfersSingleton ();
 		
-		$applied = Mage::getModel ( 'rewards/salesrule_list_applied' )->initQuote ( $this );
+		$applied = Mage::getModel ( 'rewards/salesrule_list_valid_applied' )->initQuote ( $this );
 		$cart_redemptions->setRedemptionRuleIds ( $applied->getList () );
 		
 		if ($this->_getRewardsSession ()->getCustomerId ()) {
@@ -461,6 +461,19 @@ class TBT_Rewards_Model_Sales_Quote extends Mage_Sales_Model_Quote {
             return $address;
         }
 	
+    /**
+     * @see _getAssociatedAddress()
+     */
+    public function getAssociatedAddress(){
+    	/*
+    	 * //@mhadianfard -a 25/11/11: 
+    	 * not sure why the other function here is protected,
+    	 * rewriting it so we can have public access without
+    	 * breaking possibledependencies.
+    	 */
+    	return $this->_getAssociatedAddress();	
+    }
+    
 	/**
 	 * Calculates the maximum points usable using spending rules 
 	 * for this quote model.
@@ -538,15 +551,15 @@ class TBT_Rewards_Model_Sales_Quote extends Mage_Sales_Model_Quote {
 			//@nelkaake Added on Sunday May 30, 2010: 
 			$max_points_spent = $salesrule->getPointsMaxQty ();
 			if ($max_points_spent) {
-				if ($max > $max_points_spent) {
-					$max = $max_points_spent;
-				}
+				$max = min($max, $max_points_spent);
 			}
-                        
-                        // truncate the overflow on the max usages to be a divisible step size
-                        if( $min_divisible_step > 1 && $max > 1 ) {
-                            $max = ((int)($max / $min_divisible_step)) * $min_divisible_step;
-                        }		
+			$customer_balance = Mage::getSingleton('rewards/session')->getCustomer()->getUsablePointsBalance($salesrule->getPointsCurrencyId());
+			$max = min($max, $customer_balance);
+			
+			// truncate the overflow on the max usages to be a divisible step size
+			if( $min_divisible_step > 1 && $max > 1 ) {
+				$max = ((int)($max / $min_divisible_step)) * $min_divisible_step;
+			}
 		} else {
 			$max = $min_divisible_step = $min = 0;
 		}

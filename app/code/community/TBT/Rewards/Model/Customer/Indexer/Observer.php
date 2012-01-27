@@ -52,13 +52,21 @@ class TBT_Rewards_Model_Customer_Indexer_Observer extends Varien_Object {
     	    }
     	    
     	    $event = $observer->getEvent();
+    	    if (!$event) {
+    	        return $this;
+    	    }
     	    
-    	    $session_customer = $this->_getRewardsCustomer($observer->getEvent()->getOrder());
+    	    $order = $event->getOrder();
+    	    if (!$order) {
+    	        return $this;
+    	    }
+    	    
+    	    $session_customer = $this->_getRewardsCustomer($order);
     	
     		if(!$session_customer || !$session_customer->getId()) {
     		    // Only if a customer model exists and that customer has been already created.
                 //TODO tempoarily edited: Mage::helper('rewards/customer_points_index')->error();
-    		    Mage::helper('rewards/debug')->error("Customer model does not exist in observer or that customer has not been saved yet.  This caused the points index to be to become out of sync and disabled.");
+    		    Mage::helper('rewards/debug')->warn("No customer was found for this order (#{$order->getIncrementId()}), so their points index could not be updated.");
     		    return $this;
     		}
     		

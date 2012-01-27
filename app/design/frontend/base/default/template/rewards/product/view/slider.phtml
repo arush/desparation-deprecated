@@ -48,7 +48,15 @@
 </div>
 <script type="text/javascript">
     document.observe("dom:loaded", function() {
+        usesContainer = $('redemption_rule_uses_container');
         rSlider = new PointsSlider('sliderHandle', 'sliderRail', 'sliderCaption', 'redemption_rule_uses');
+
+        var ruleId = $('redemption_rule').value;
+        if (ruleId != "") {
+            $('redemption_rule_uses').value = ruleUses[ruleId];
+            updateUsesInterface();
+            rSlider.slider.setValue(ruleUses[ruleId]);
+        }
     });
 
     // Functions for changing the cursor on the slider
