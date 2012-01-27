@@ -1,9 +1,9 @@
 <?php
 
-class Arush_Test_ControllerController extends Mage_Core_Controller_Front_Action
+class Arush_Keep_CalmController extends Mage_Core_Controller_Front_Action
 {
-    public function magemonkeyAction(){
-    	Mage::getModel('monkey/cron')->processExportJobs();
-    	echo 'done';
+    public function signmeupAction(){
+    $this->loadLayout();
+    $this->renderLayout();
     }
 }
