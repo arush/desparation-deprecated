@@ -73,6 +73,7 @@ class TBT_Rewards_Block_Manage_Transfer_Grid extends Mage_Adminhtml_Block_Widget
 		
 		$this->collection->selectFullCustomerName ( 'fullcustomername' );
 		$this->collection->selectPointsCaption ( 'points' );
+		$this->collection->excludeTransferReferences();
 		
 		$this->setCollection ( $this->collection );
 		

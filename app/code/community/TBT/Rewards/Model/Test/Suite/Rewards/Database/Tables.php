@@ -95,9 +95,6 @@ class TBT_Rewards_Model_Test_Suite_Rewards_Database_Tables extends TBT_Testsweet
             'points_catalogrule_stop_rules_processing',
             'points_uses_per_product',
         );
-        $tableChecks[$cr->getTableName('catalogrule_product_price')] = array(
-            'rules_hash'
-        );
 
         $tableChecks[$cr->getTableName('salesrule')] = array(
             'points_action',

@@ -184,20 +184,39 @@ class TBT_Rewards_Model_Customer extends Mage_Customer_Model_Customer {
 	 *
 	 */
 	private function _loadPointsCollections() {
-		$this->points = $this->_getPointSums ( '*active*' );
-		$this->on_hold_points = $this->_getPointSums ( TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_APPROVAL );
-		$this->pending_points = $this->_getPointSums ( TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_EVENT );
-		$this->pending_time_points = $this->_getPointSums( TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_TIME );
-		// Load Indexed point balance
-		try {
+		
+		try {			
+			// Load Indexed point balance
 			if (Mage::helper('rewards/customer_points_index')->useIndex()) {
-				$this->usable_points = $this->_getIndexerUsablePointsBalance ();
-			} else {
+								
+				$balanceData = $this->_getIndexedCustomerBalanceData();
+				
+				// TODO: currency id's are hard-coded to 1 here. no support for multi-currency atm.
+				$this->usable_points = array( 1 => (int) $balanceData['customer_points_usable']);				
+				$this->points = array( 1 => (int) $balanceData['customer_points_active']);
+				$this->on_hold_points = array( 1 => (int) $balanceData['customer_points_pending_approval']);
+				$this->pending_points = array( 1 => (int) $balanceData['customer_points_pending_event']);
+				$this->pending_time_points = array( 1 => (int) $balanceData['customer_points_pending_time']);				
+								
+			} else {							
 				$this->usable_points = $this->_getEffectiveActivePointsSum ();
+				$this->points = $this->_getPointSums ( '*active*' );
+				$this->on_hold_points = $this->_getPointSums ( TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_APPROVAL );
+				$this->pending_points = $this->_getPointSums ( TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_EVENT );
+				$this->pending_time_points = $this->_getPointSums( TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_TIME );				
 			}
+			
 		} catch ( Exception $e ) {
 			$this->usable_points = $this->_getEffectiveActivePointsSum ();
+			$this->points = $this->_getPointSums ( '*active*' );
+			$this->on_hold_points = $this->_getPointSums ( TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_APPROVAL );
+			$this->pending_points = $this->_getPointSums ( TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_EVENT );
+			$this->pending_time_points = $this->_getPointSums( TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_TIME );				
+			
+			Mage::helper('rewards/debug')->notice("Unable to load points collection in Customer Model: " . $e->getMessage());
 		}
+		
+		return $this;
 	}
 	
 	/**
@@ -213,7 +232,7 @@ class TBT_Rewards_Model_Customer extends Mage_Customer_Model_Customer {
 			$point_sums = $this->getCustomerPointsCollectionAll ()->addStoreFilter ( Mage::app ()->getStore () )->addFilter ( "status", $status );
 		}
 		
-		$point_sums->addFilter ( "customer_id", $this->getId () );
+		$point_sums->excludeTransferReferences()->addFilter ( "customer_id", $this->getId () );
 		
 		$points = array ();
 		//Zero's out all cuurencies on the point map
@@ -234,6 +253,7 @@ class TBT_Rewards_Model_Customer extends Mage_Customer_Model_Customer {
 	 */
 	public function _getPendingPointsRedemptionsSum() {
 		$point_sums = $this->getTransferCollection ()->addStoreFilter ( Mage::app ()->getStore () )
+				->excludeTransferReferences()
 		        ->addFilter ( "status", TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_EVENT )
 		        ->addFieldToFilter ( "quantity", array ('lt' => 0 ) )
 		        ->groupByCustomers ()
@@ -366,7 +386,7 @@ class TBT_Rewards_Model_Customer extends Mage_Customer_Model_Customer {
 	 * 
 	 * @return array
 	 */
-	public function getUsablePoints() {
+	public function getUsablePoints() {		
 		return $this->usable_points;
 	}
 	
@@ -378,6 +398,18 @@ class TBT_Rewards_Model_Customer extends Mage_Customer_Model_Customer {
 	public function getRealUsablePoints() {
 		return $this->_getEffectiveActivePointsSum ();
 	}
+	
+	/**
+	 * Get a non-indexer balance of points for the given status
+	 *  
+	 * Loads point sums for a given status
+	 * @see TBT_Rewards_Model_Transfer_Status for status ids
+	 * @param integer|string $status the only string accepted is '*active*' which will fetch all active points transfers (approved)
+	 * @return array
+	 */
+	public function getRealBalanceForPointsStatus($status) {
+		return $this->_getPointSums($status);
+	}	
 	
 	/**
 	 * Returns all currencies applicable to this customer
@@ -440,8 +472,9 @@ class TBT_Rewards_Model_Customer extends Mage_Customer_Model_Customer {
 	}
 	
 	/**
-	 * Calculates the indexer points balance for this customer
+	 * Calculates the indexer usable points balance for this customer
 	 * 
+	 * @deprecated use _getIndexedCustomerBalanceData instead.
 	 * @return array
 	 */
 	protected function _getIndexerUsablePointsBalance() {
@@ -451,8 +484,29 @@ class TBT_Rewards_Model_Customer extends Mage_Customer_Model_Customer {
 		if ($usable_points->count ()) {
 			$usable_points_array [1] = $usable_points->getFirstItem ()->getCustomerPointsUsable ();
 		}
+
 		return $usable_points_array;
 	}
+
+	/*
+	 * Finds indexed balance data for this customer and returns the data as an array
+	 * 
+	 * @return array, Data from TBT_Rewards_Model_Mysql4_Customer_Indexer_Points_Collection model
+	 */
+	protected function _getIndexedCustomerBalanceData() {
+		/* @var $usable_points TBT_Rewards_Model_Mysql4_Customer_Indexer_Points_Collection */
+		$indexedCustomer = Mage::getModel ( 'rewards/customer_indexer_points' )->load($this->getId ());
+		$balanceData = array();
+		if ($indexedCustomer->getId()) {
+			$balanceData = $indexedCustomer->getData();						
+		} else {
+			throw new Exception("No customer record found in rewards index table for customer #{$this->getId ()}");
+		}
+		
+		return $balanceData;
+	}
+	
+	
 	
 	/**
 	 * Returns a nicely formatted string of the customers points including 

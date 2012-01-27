@@ -49,6 +49,8 @@ class TBT_Rewards_Model_Observer_Catalog_Product_Flat_Update_Product {
 	private $loaded_rules = array ();
 	private $is_redemption_rule = array ();
 	
+	protected $_hasBeenProcessed = false;
+	
 	/* TODO WDCA - Change the classname and path of this to suit the event being observed */
 	
 	public function __construct() {
@@ -57,11 +59,17 @@ class TBT_Rewards_Model_Observer_Catalog_Product_Flat_Update_Product {
 	
 	public function updateCatalogRulesHash($observer) {
 		
-		Varien_Profiler::start ( "TBT_Rewards:: Update rewards rule information on product(s)" );
 		//Mage::log("Update rewards rule information on product(s)");
 		//@nelkaake Friday March 12, 2010 03:48:20 PM : Was this was a product save/delete/update request?
 		//@nelkaake Changed on Wednesday September 29, 2010: Some Magento stores dont parse the controller action properly so it applies all rules on save.  Fixed by checking passed product
 		$target_product_id = $this->_locatedProductId($observer);
+		if ($this->_hasBeenProcessed && $target_product_id) {
+			return $this;
+		}
+		
+		Varien_Profiler::start ( "TBT_Rewards:: Update rewards rule information on product(s)" );
+		
+		$this->_deleteRulesHashForProduct($target_product_id);
 		
 		//@nelkaake Changed on Wednesday September 22, 2010:
 		$this->updateRulesHashForDay ( Mage::helper ( 'rewards/datetime' )->yesterday (), $target_product_id );
@@ -69,6 +77,7 @@ class TBT_Rewards_Model_Observer_Catalog_Product_Flat_Update_Product {
 		$this->updateRulesHashForDay ( Mage::helper ( 'rewards/datetime' )->tomorrow (), $target_product_id );
 		
 		Varien_Profiler::stop ( "TBT_Rewards:: Update rewards rule information on product(s)" );
+		$this->_hasBeenProcessed = true;
 		return $this;
 	}
 
@@ -122,12 +131,11 @@ class TBT_Rewards_Model_Observer_Catalog_Product_Flat_Update_Product {
 	//@nelkaake Added on Wednesday September 22, 2010:
 	public function updateRulesHashForDay($now, $target_product_id = null) {
 		
-		$write = Mage::getSingleton ( 'core/resource' )->getConnection ( 'core_write' );
-		$catalogrule_price_table = Mage::getConfig ()->getTablePrefix () . "catalogrule_product_price";
 		$validator = $this->_getValidator ();
 		
 		$read = Mage::getSingleton ( 'core/resource' )->getConnection ( 'core_read' );
-		$select = $read->select ()->from ( $catalogrule_price_table, array ('product_id', 'customer_group_id', 'website_id' ) )->where ( 'rule_date = ? ', $now );
+		$catalogrule_price_table = Mage::getConfig ()->getTablePrefix () . "catalogrule_product_price";
+		$select = $read->select ()->from ( $catalogrule_price_table, array ('product_id', 'customer_group_id', 'website_id', 'latest_start_date', 'earliest_end_date' ) )->where ( 'rule_date = ? ', $now );
 		
 		//@nelkaake Friday March 12, 2010 03:48:20 PM : if this was a product save/delete/update request, only update that product.
 		if ($target_product_id)
@@ -139,6 +147,8 @@ class TBT_Rewards_Model_Observer_Catalog_Product_Flat_Update_Product {
 			$product_id = $row ['product_id'];
 			$customer_group_id = $row ['customer_group_id'];
 			$website_id = $row ['website_id'];
+			$latest_start_date = $row ['latest_start_date'];
+			$earliest_end_date = $row ['earliest_end_date'];
 			
 			$associated_rule_ids = $this->_getAssociatedRules ( $product_id, $website_id, $customer_group_id, $now );
 			if (! $associated_rule_ids) {
@@ -167,12 +177,21 @@ class TBT_Rewards_Model_Observer_Catalog_Product_Flat_Update_Product {
 			}
 			//Varien_Profiler::stop("TBT_Rewards:: Calc all prev applied rules");
 			//Varien_Profiler::start("TBT_Rewards:: Write updates of rewards rule information on product(s)");
-			$updateData = array ("rules_hash" => base64_encode ( json_encode ( $row_hash ) ) );
-			$updateWhere = array ("`product_id`='{$product_id}' ", "`customer_group_id`='{$customer_group_id}' ", "`rule_date`='{$now}'", "`website_id`='{$website_id}'" );
+			$dataArray = array(
+				'rule_date' => $now,
+				'customer_group_id' => $customer_group_id,
+				'product_id' => $product_id,
+				'rules_hash' => base64_encode(json_encode($row_hash)),
+				'website_id' => $website_id,
+				'latest_start_date' => $latest_start_date,
+				'earliest_end_date' => $earliest_end_date
+			);
 			
+			$write = Mage::getSingleton ( 'core/resource' )->getConnection ( 'core_write' );
+			$catalogrule_product_table = Mage::getConfig()->getTablePrefix() . "rewards_catalogrule_product";
 			try {
 				$write->beginTransaction ();
-				$write->update ( $catalogrule_price_table, $updateData, $updateWhere );
+				$write->insertOnDuplicate ( $catalogrule_product_table, $dataArray );
 				$write->commit ();
 			} catch ( Exception $e ) {
 				Mage::logException ( $e );
@@ -181,6 +200,30 @@ class TBT_Rewards_Model_Observer_Catalog_Product_Flat_Update_Product {
 		
 		//Varien_Profiler::stop("TBT_Rewards:: Write updates of rewards rule information on product(s)");
 		}
+	}
+    
+    protected function _deleteRulesHashForProduct($productId = null)
+    {
+        $tableName = Mage::getConfig()->getTablePrefix() . "rewards_catalogrule_product";
+        
+        $write = Mage::getSingleton('core/resource')->getConnection('core_write');
+        $cond = $write->quoteInto("rule_date between ?", Mage::helper('rewards/datetime')->yesterday());
+        $cond = $write->quoteInto("{$cond} and ?", Mage::helper('rewards/datetime')->tomorrow());
+        $conds = array($cond);
+        if (!is_null($productId)) {
+            $conds[] = $write->quoteInto("product_id = ?", $productId);
+        }
+        
+        $write->beginTransaction();
+        try {
+            $write->delete($tableName, $conds);
+            $write->commit();
+        } catch (Exception $ex) {
+            Mage::logException($ex);
+            $write->rollback();
+        }
+        
+        return $this;
 	}
 	
 	/**

@@ -167,7 +167,7 @@ class TBT_Rewards_Helper_Mysql4_Install extends Mage_Core_Helper_Abstract {
 	 * @param string $msg_desc
 	 * @param string $url=null if null default Sweet Tooth URL is used.
 	 */
-	public function createInstallNotice($msg_title, $msg_desc, $url = null) {
+	public function createInstallNotice($msg_title, $msg_desc, $url = null, $severity = null) {
 		$message = Mage::getModel ( 'adminnotification/inbox' );
 		$message->setDateAdded ( date ( "c", time () ) );
 		
@@ -175,11 +175,13 @@ class TBT_Rewards_Helper_Mysql4_Install extends Mage_Core_Helper_Abstract {
 			$url = "http://www.sweettoothrewards.com/wiki/index.php/Change_Log";
 		}
 		
-		$message->setSeverity ( Mage_AdminNotification_Model_Inbox::SEVERITY_NOTICE );
+		if ($severity === null) {
+			$severity = Mage_AdminNotification_Model_Inbox::SEVERITY_NOTICE;
+		}
 		
 		// If problems occured increase severity and append logged messages.
 		if (Mage::helper ( 'rewards/mysql4_install' )->hasProblems ()) {
-			$message->setSeverity ( Mage_AdminNotification_Model_Inbox::SEVERITY_MINOR );
+			$severity = Mage_AdminNotification_Model_Inbox::SEVERITY_MINOR;
 			$msg_title .= " Problems may have occured during installation.";
 			$msg_desc .= " " . Mage::helper ( 'rewards/mysql4_install' )->getProblemsString ();
 			Mage::helper ( 'rewards/mysql4_install' )->clearProblems ();
@@ -188,6 +190,7 @@ class TBT_Rewards_Helper_Mysql4_Install extends Mage_Core_Helper_Abstract {
 		$message->setTitle ( $msg_title );
 		$message->setDescription ( $msg_desc );
 		$message->setUrl ( $url );
+		$message->setSeverity ( $severity );
 		$message->save ();
 		
 		return $this;

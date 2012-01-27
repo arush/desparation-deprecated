@@ -244,5 +244,9 @@ class TBT_Rewards_Helper_Config extends Mage_Core_Helper_Abstract {
 	public function maximumPointsSpentinCatalog() {
 		return ( int ) Mage::getStoreConfig ( 'rewards/general/maximum_points_spent_in_catalog' );
 	}
+	
+	public function disableCheckoutsIfNotEnoughPoints() {
+		return true;
+	}
 
 }

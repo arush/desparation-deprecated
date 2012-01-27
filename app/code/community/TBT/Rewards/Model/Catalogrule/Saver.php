@@ -72,54 +72,131 @@ class TBT_Rewards_Model_Catalogrule_Saver extends Mage_Core_Model_Abstract {
 	}
 	
 	/**
+	 * Appends the specified redemption usage data to the specified item, provided that the redemption
+	 * is valid for the item.  If this rule has already been saved to the item, it is added to the existing usage data.
 	 * Assumes product has already been added to the cart.
-	 * @param TBT_Rewards_Model_Product $product
-	 * @param Zend_Controller_Request_Http $request
+	 * @param Mage_Catalog_Model_Product $product
+	 * @param int $apply_rule_id
+	 * @param int $apply_rule_uses
+	 * @param int $qty
+	 * @param Mage_Sales_Model_Quote_Item $item
 	 */
-	public function appendPointsToQuote($product, $apply_rule_id, $apply_rule_uses, $qty, $item = null) {
-		//@nelkaake Added on Saturday September 4, 2010: 
-		if (! $product)
+	public function appendPointsToQuote($product, $apply_rule_id, $apply_rule_uses, $qty, $item = null)
+	{
+		if (!$product) {
 			return $this;
-		
-		//@nelkaake Added on Saturday September 4, 2010:  
-		if (! $apply_rule_uses)
-			$apply_rule_uses = 0;
-		if (! $apply_rule_id)
-			return $this;
-		
-		if (empty ( $qty ))
-			$qty = 1;
-		
-		$pId = $product->getId ();
-		
-		//@nelkaake -a 17/02/11: If the item is null, try to get it from the quote.
-		$item = $item == null ? $this->_getQuote ()->getItemByProduct ( $product ) : $item;
-		
-		$date = Mage::helper ( 'rewards' )->now ();
-		
-		$storeId = $product->getStoreId ();
-		$wId = Mage::app ()->getStore ( $storeId )->getWebsiteId ();
-		
-		$gId = Mage::getSingleton ( 'customer/session' )->getCustomerGroupId ();
-		if ($gId !== 0 && empty ( $gId )) {
-			$gId = Mage_Customer_Model_Group::NOT_LOGGED_IN_ID;
 		}
 		
-		if (! $item) {
+		if (!$apply_rule_id) {
 			return $this;
+		}
+		
+		if (!$apply_rule_uses) {
+			$apply_rule_uses = 0;
+		}
+		
+		if (empty($qty)) {
+			$qty = 1;
+		}
+		
+		//@nelkaake -a 17/02/11: If the item is null, try to get it from the quote.
+		if (!$item) {
+			$item = $this->_getQuote()->getItemByProduct($product);
+			if (!$item) {
+				return $this;
+			}
 		}
 		
 		// 1. Validate rule
-		if (empty ( $apply_rule_id ) && $apply_rule_id != '0') {
+		if (empty($apply_rule_id) && $apply_rule_id != '0') {
 			// No new rule applied, so no need to adjust redeemed points set.
-			Mage::getSingleton ( 'rewards/redeem' )->refactorRedemptions ( $item );
+			Mage::getSingleton('rewards/redeem')->refactorRedemptions($item);
 			return $this;
 		}
 		
-		$this->updateRedeemedPointsHash ( $date, $wId, $gId, $pId, $item, $apply_rule_id, $qty, true, $apply_rule_uses );
+		// pass in $product to have applicable rule filters outputted into the rest
+		$this->_getApplicableRuleFilterData($product, $date, $productId, $websiteId, $groupId);
+		
+		$this->updateRedeemedPointsHash($date, $websiteId, $groupId, $productId, $item, $apply_rule_id, $qty, true, $apply_rule_uses);
 		
 		//@nelkaake -a 17/02/11: If an ID exists for the item, save the redemption  
-		Mage::getSingleton ( 'rewards/redeem' )->refactorRedemptions ( $item, ($item->getId () ? true : false) );
+		Mage::getSingleton('rewards/redeem')->refactorRedemptions($item, ($item->getId() ? true : false));
+		
+		return $this;
+	}
+	
+	/**
+	 * Writes the specified redemption usage data to the specified item, provided that the redemption
+	 * is valid for the item.  If this rule has already been saved to the item, it is overwritten.
+	 * Assumes the product has already been added to the cart.
+	 * @param Mage_Catalog_Model_Product $product
+	 * @param int $apply_rule_id
+	 * @param int $apply_rule_uses
+	 * @param int $qty
+	 * @param Mage_Sales_Model_Quote_Item $item
+	 */
+	public function writePointsToQuote($product, $apply_rule_id, $apply_rule_uses, $qty, $item = null)
+	{ 
+		if (!$product) {
+			return $this;
+		}
+		
+		if (!$apply_rule_id) {
+			return $this;
+		}
+		
+		if (!$apply_rule_uses) {
+			$apply_rule_uses = 0;
+		}
+		
+		if (empty($qty)) {
+			$qty = 1;
+		}
+		
+		//@nelkaake -a 17/02/11: If the item is null, try to get it from the quote.
+		if (!$item) {
+			$item = $this->_getQuote()->getItemByProduct($product);
+			if (!$item) {
+				return $this;
+			}
+		}
+		
+		// 1. Validate rule
+		if (empty($apply_rule_id) && $apply_rule_id != '0') {
+			// No new rule applied, so no need to adjust redeemed points set.
+			Mage::getSingleton('rewards/redeem')->refactorRedemptions($item);
+			return $this;
+		}
+		
+		// pass in $product to have applicable rule filters outputted into the rest
+		$this->_getApplicableRuleFilterData($product, $date, $productId, $websiteId, $groupId);
+		
+		$this->updateRedeemedPointsHash($date, $websiteId, $groupId, $productId, $item, $apply_rule_id, $qty, true, $apply_rule_uses, true);
+		
+		//@nelkaake -a 17/02/11: If an ID exists for the item, save the redemption  
+		Mage::getSingleton('rewards/redeem')->refactorRedemptions($item, ($item->getId() ? true : false));
+		
+		return $this;
+	}
+	
+	/**
+	 * Utilizes input parameter of $product to compile applicable rule filters for said product, then
+	 * outputs those filters through the rest of the parameters.
+	 * @param Mage_Catalog_Model_Product $product product of which to get filter data
+	 * @param datetime $date [output] the current date
+	 * @param int $productId [output] the product ID
+	 * @param int $websiteId [output] the product's website ID
+	 * @param int $groupId [output] the current customer's group ID
+	 */
+	protected function _getApplicableRuleFilterData($product, &$date, &$productId, &$websiteId, &$groupId)
+	{
+		$date = Mage::helper('rewards')->now();
+		$productId = $product->getId();
+		$websiteId = Mage::app()->getStore($product->getStoreId())->getWebsiteId();
+		$groupId = Mage::getSingleton('customer/session')->getCustomerGroupId();
+		if ($groupId !== 0 && empty($groupId)) {
+			$groupId = Mage_Customer_Model_Group::NOT_LOGGED_IN_ID;
+		}
 		
 		return $this;
 	}
@@ -147,7 +224,7 @@ class TBT_Rewards_Model_Catalogrule_Saver extends Mage_Core_Model_Abstract {
 	 * @param int $qty
 	 * @param boolean $adjustQty	if true will set the price for that rule to the given qty, otherwise will add to the qty
 	 */
-	private function updateRedeemedPointsHash($date, $wId, $gId, $pId, $item, $apply_rule_id, $qty, $adjustQty = true, $uses = 1) {
+	private function updateRedeemedPointsHash($date, $wId, $gId, $pId, $item, $apply_rule_id, $qty, $adjustQty = true, $uses = 1, $overwrite = false) {
 		
 		/** @var boolean $addedFlag true when the rule qty has been applied to the hash **/
 		$mod_flag = false;
@@ -183,7 +260,8 @@ class TBT_Rewards_Model_Catalogrule_Saver extends Mage_Core_Model_Abstract {
 		// The user is trying to use more than the Maximum USES attribute.
 			}
 		}
-		$uses = empty ( $uses ) ? 1 : $uses;
+		// this makes it very difficult to delete redemptions, and does not serve a purpose
+		//$uses = empty ( $uses ) ? 1 : $uses;
 		
 		// 1.b Check if requested rule is in applicable rules. 
 		if (! $applicable_rule) {
@@ -239,47 +317,57 @@ class TBT_Rewards_Model_Catalogrule_Saver extends Mage_Core_Model_Abstract {
 			$same_rule_id = $old_redeemed_points_line [self::POINTS_RULE_ID] == $apply_rule_id;
 			$same_effects = $old_redeemed_points_line [self::POINTS_EFFECT] == $redeemed_points [self::POINTS_EFFECT];
 			$same_num_uses = $old_redeemed_points_line [self::POINTS_USES] == $uses;
-			if ($same_rule_id && $same_effects && $same_num_uses) {
-				
-				// Double check that the customer can use the rule that many times
-				
-
-				if ($adjustQty) {
-					// Just append the cost with the adjustment qty
-					$new_applic_qty = ($redeemed_points [self::APPLICABLE_QTY] + $old_redeemed_points_line [self::APPLICABLE_QTY]);
-					// Check if we have room to add this redemption rule
-					if ($redeemed_points [self::APPLICABLE_QTY] > $avail_extra_applic) {
-						/*throw new Exception("You cannot apply $qty redemptions (max is $avail_extra_applic) ".
-											"without overlapping with the other redemptions ".
-											"(product id is $pId rule was $apply_rule_id and website $wId. ");
-						*/
-						return $this;
-					
-					}
-				} else {
-					// Set the qty manually.
-					$new_applic_qty = $redeemed_points [self::APPLICABLE_QTY];
-					if ($qty > 0) {
-						// set the qty
-						if ($new_applic_qty > $avail_extra_applic) {
-							/*throw new Exception("You cannot apply $qty redemptions (max is $avail_extra_applic) ".
-												"without overlapping with the other redemptions ".
-												"(product id is $pId rule was $apply_rule_id and website $wId. ");
-							*/
-							return $this;
-						}
-					}
-				
-				}
-				$old_redeemed_points_line [self::APPLICABLE_QTY] = $new_applic_qty;
-				if (! isset ( $old_redeemed_points_line [self::POINTS_USES] ))
-					$old_redeemed_points_line [self::POINTS_USES] = 0;
-				
-				$mod_flag = true;
+			if ($same_rule_id) {
+    			if ($overwrite) {
+    				if ($uses == 0) {
+    					unset($new_redeemed_points[$i]);
+    				} else {
+    					$redeemed_points[self::POINTS_INST_ID] = $old_redeemed_points_line[self::POINTS_INST_ID];
+    					$old_redeemed_points_line = $redeemed_points;
+    				}
+    				$mod_flag = true;
+    			} else if ($same_effects && $same_num_uses) {
+    				
+    				// Double check that the customer can use the rule that many times
+    				
+    
+    				if ($adjustQty) {
+    					// Just append the cost with the adjustment qty
+    					$new_applic_qty = ($redeemed_points [self::APPLICABLE_QTY] + $old_redeemed_points_line [self::APPLICABLE_QTY]);
+    					// Check if we have room to add this redemption rule
+    					if ($redeemed_points [self::APPLICABLE_QTY] > $avail_extra_applic) {
+    						/*throw new Exception("You cannot apply $qty redemptions (max is $avail_extra_applic) ".
+    											"without overlapping with the other redemptions ".
+    											"(product id is $pId rule was $apply_rule_id and website $wId. ");
+    						*/
+    						return $this;
+    					
+    					}
+    				} else {
+    					// Set the qty manually.
+    					$new_applic_qty = $redeemed_points [self::APPLICABLE_QTY];
+    					if ($qty > 0) {
+    						// set the qty
+    						if ($new_applic_qty > $avail_extra_applic) {
+    							/*throw new Exception("You cannot apply $qty redemptions (max is $avail_extra_applic) ".
+    												"without overlapping with the other redemptions ".
+    												"(product id is $pId rule was $apply_rule_id and website $wId. ");
+    							*/
+    							return $this;
+    						}
+    					}
+    				
+    				}
+    				$old_redeemed_points_line [self::APPLICABLE_QTY] = $new_applic_qty;
+    				if (! isset ( $old_redeemed_points_line [self::POINTS_USES] ))
+    					$old_redeemed_points_line [self::POINTS_USES] = 0;
+    				
+    				$mod_flag = true;
+    			}
 			}
 			$num_redemption_instances ++;
 		}
-		if (! $mod_flag && $qty != 0) {
+		if (! $mod_flag && $qty != 0 && $uses != 0) {
 			$redeemed_points [self::POINTS_INST_ID] = $num_redemption_instances;
 			$new_redeemed_points [] = $redeemed_points;
 			$mod_flag = true;
@@ -340,11 +428,12 @@ class TBT_Rewards_Model_Catalogrule_Saver extends Mage_Core_Model_Abstract {
 		$now = date ( "Y-m-d", strtotime ( now () ) );
 		
 		$read = Mage::getSingleton ( 'core/resource' )->getConnection ( 'core_read' );
-		$select = $read->select ()->from ( Mage::getConfig ()->getTablePrefix () . "catalogrule_product_price", 'customer_group_id' )->where ( "`rule_date`='{$now}' AND `product_id`='{$product_id}'" );
+		$select = $read->select ()->from ( Mage::getConfig ()->getTablePrefix () . "catalogrule_product_price", array('customer_group_id', 'website_id') )->where ( "`rule_date`='{$now}' AND `product_id`='{$product_id}'" );
 		$collection = $read->fetchAll ( $select );
 		
 		foreach ( $collection as $row ) {
 			$customer_group_id = $row ['customer_group_id'];
+			$website_id = $row ['website_id'];
 			
 			if (! $associated_rule_ids) {
 				return $this;
@@ -398,12 +487,17 @@ class TBT_Rewards_Model_Catalogrule_Saver extends Mage_Core_Model_Abstract {
 			$write = Mage::getSingleton ( 'core/resource' )->getConnection ( 'core_write' );
 			try {
 				$write->beginTransaction ();
-				$updateData = array ("rules_hash" => base64_encode ( json_encode ( $row_hash ) ) );
-				$updateWhere = array ("`product_id`='{$product_id}' ", "`customer_group_id`='{$customer_group_id}' ", "`rule_date`='{$now}'" );
-				$write->update ( Mage::getConfig ()->getTablePrefix () . "catalogrule_product_price", $updateData, $updateWhere );
+				
+				$dataArray = array(
+					'rule_date' => $now,
+					'customer_group_id' => $customer_group_id,
+					'product_id' => $product_id,
+					'rules_hash' => base64_encode ( json_encode ( $row_hash ) ),
+					'website_id' => $website_id
+				);
+				$write->insertOnDuplicate ( Mage::getConfig ()->getTablePrefix () . "rewards_catalogrule_product", $dataArray );
 				
 				$write->commit ();
-			
 			} catch ( Exception $e ) {
 				$write->rollback ();
 			}

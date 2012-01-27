@@ -360,9 +360,18 @@ class TBT_Rewards_Cart_RedeemController extends Mage_Core_Controller_Front_Actio
 			
             $rewardsQuote->updateDisabledEarnings( $cart->getQuote() );
                                     
-			$this->loadLayout ();
-			$block = $this->getLayout ()->getBlock ( 'checkout.cart.totals' );
-			$this->getResponse ()->setBody ( $block->toHtml () );
+			$this->loadLayout();
+			$totals = $this->getLayout()->getBlock('checkout.cart.totals')->toHtml();
+            $methods = $this->getLayout()->getBlock('checkout.cart')->toHtml();
+            $topMethods = $this->getLayout()->getBlock('checkout.cart')->setPrefix('top_')->toHtml();
+            
+            $result = array(
+                'totals' => $totals,
+                'methods' => $methods,
+                'top_methods' => $topMethods
+            );
+            $this->getResponse()->setHeader('Content-Type', 'application/json', true);
+            $this->getResponse()->setBody(Zend_Json::encode($result));
 		} else {
 			// probably the session expired.
 			$this->refreshResponse ();
@@ -376,7 +385,14 @@ class TBT_Rewards_Cart_RedeemController extends Mage_Core_Controller_Front_Actio
 	public function refreshResponse() {
 		$refresh_js = "";
 		$refresh_js .= "<div class='rewards-session_expired'>" . $this->__ ( "Your session has expired.  Please refresh the page." ) . "</div>";
-		$this->getResponse ()->setBody ( $refresh_js );
+		
+		$result = array(
+			'totals' => $refresh_js,
+			'methods' => '',
+			'top_methods' => ''
+		);
+		$this->getResponse ()->setHeader ( 'Content-Type', 'application/json', true );
+		$this->getResponse ()->setBody ( Zend_Json::encode( $result ) );
 		return $this;
 	}
 	

@@ -43,7 +43,8 @@
  * @package    TBT_Rewards
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
-require_once ('app/code/community/TBT/Rewards/controllers/Manage/SweettoothController.php');
+require_once (dirname(__FILE__) . DS . '..' . DS . 'SweettoothController.php');
+
 class TBT_Rewards_Manage_Promo_CatalogController extends TBT_Rewards_Manage_SweettoothController {
 	protected function _construct() {
 		$this->_usedModuleName = 'rewards';
@@ -292,7 +293,7 @@ class TBT_Rewards_Manage_Promo_CatalogController extends TBT_Rewards_Manage_Swee
 			Mage::getSingleton ( 'adminhtml/session' )->addError ( Mage::helper ( 'catalogrule' )->__ ( 'Unable to apply rules.' ) );
 			throw $e;
 		}
-		$this->indexAction ();
+		$this->indexAction ();//TODO: should this be a forward?
 	}
 	
 	public function addToAlertsAction() {
@@ -308,9 +309,9 @@ class TBT_Rewards_Manage_Promo_CatalogController extends TBT_Rewards_Manage_Swee
 	
 	public function preDispatch() {
 		if (! Mage::helper ( 'rewards/loyalty_checker' )->isValid ()) {
-			Mage::throwException ( "Please check your Sweet Tooth registration code your Magento configuration settings, or contact WDCA through contact@wdca.ca for a description of this problem." );
+			Mage::throwException ( "There's a problem with your Sweet Tooth license. This is likely a conflict with CEM. Please make sure the CEM module is completely disabled through its XML file (/app/etc/modules/MageParts_CEM.xml). Contact the Sweet Tooth support team if problem persists." );
 		}
 		parent::preDispatch ();
-	}
+	}	
 
 }

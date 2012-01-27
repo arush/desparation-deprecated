@@ -127,17 +127,6 @@
             	</rewrite>
             </rewards>
             
-            
-            <checkout>
-            	<rewrite>
-            		<onepage_link>TBT_RewardsOnly_Block_Checkout_Onepage_Link</onepage_link>
-            	</rewrite>
-            </checkout>
-            <checkout>
-            	<rewrite>
-            		<multishipping_link>TBT_RewardsOnly_Block_Checkout_Multishipping_Link</multishipping_link>
-            	</rewrite>
-            </checkout>
             <!--  checkout>
             	<rewrite>
             		<cart_sidebar>TBT_RewardsOnly_Block_Checkout_Cart_Sidebar</cart_sidebar>

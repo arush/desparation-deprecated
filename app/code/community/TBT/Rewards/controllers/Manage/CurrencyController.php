@@ -254,7 +254,7 @@ class TBT_Rewards_Manage_CurrencyController extends Mage_Adminhtml_Controller_Ac
 	
 	public function preDispatch() {
 		if (! Mage::helper ( 'rewards/loyalty_checker' )->isValid ()) {
-			Mage::throwException ( "Please check your Sweet Tooth registration code your Magento configuration settings, or contact WDCA through contact@wdca.ca for a description of this problem." );
+			Mage::throwException ( "There's a problem with your Sweet Tooth license. This is likely a conflict with CEM. Please make sure the CEM module is completely disabled through its XML file (/app/etc/modules/MageParts_CEM.xml). Contact the Sweet Tooth support team if problem persists." );
 		}
 		parent::preDispatch ();
 	}

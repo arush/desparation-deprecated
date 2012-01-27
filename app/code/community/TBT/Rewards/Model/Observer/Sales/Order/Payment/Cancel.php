@@ -43,11 +43,7 @@
  * @package    TBT_Rewards
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
-class TBT_Rewards_Model_Observer_Sales_Order_Payment_Cancel {
-	
-	public function __construct() {
-	
-	}
+class TBT_Rewards_Model_Observer_Sales_Order_Payment_Cancel extends Varien_Object {
 	
 	public function revokeAssociatedPendingTransfersOnCancel($observer) {
 		$order = $observer->getEvent ()->getPayment ()->getOrder ();
@@ -62,19 +58,16 @@ class TBT_Rewards_Model_Observer_Sales_Order_Payment_Cancel {
 				if (($transfer->getStatus () == TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_EVENT) || ($transfer->getStatus () == TBT_Rewards_Model_Transfer_Status::STATUS_PENDING_APPROVAL)) {
 					$transfer->setStatus ( $transfer->getStatus (), TBT_Rewards_Model_Transfer_Status::STATUS_CANCELLED );
 					$transfer->save ();
-                                        $hasCanceledPendingTransferes = true;
+					$hasCanceledPendingTransferes = true;
 				} else if ($transfer->getStatus () == TBT_Rewards_Model_Transfer_Status::STATUS_APPROVED) {
 					try {
-						$is_transfer_successful = Mage::helper ( 'rewards/transfer' )->transferRevokedPoints ( $transfer->getQuantity () * - 1, $transfer->getCurrencyId (), $transfer->getId (), $transfer->getCustomerId () );
+						$transfer->revoke();
 					} catch ( Exception $ex ) {
-						Mage::getSingleton ( 'core/session' )->addError ( $ex->getMessage () );
+						Mage::getSingleton ( 'core/session' )->addError ( Mage::helper ( 'rewards' )->__ ( 'Could not successfully revoke points associated with cancelled order.' ) );
+						continue;
 					}
 					
-					if ($is_transfer_successful) {
-						Mage::getSingleton ( 'core/session' )->addSuccess ( Mage::helper ( 'rewards' )->__ ( 'Successfully cancelled transfer ID #' . $transfer->getId () ) );
-					} else {
-						Mage::getSingleton ( 'core/session' )->addError ( Mage::helper ( 'rewards' )->__ ( 'Could not successfully revoke points associated with cancelled order.' ) );
-					}
+					Mage::getSingleton ( 'core/session' )->addSuccess ( Mage::helper ( 'rewards' )->__ ( 'Successfully cancelled transfer ID #' . $transfer->getId () ) );
 				}
 			}
 		}     

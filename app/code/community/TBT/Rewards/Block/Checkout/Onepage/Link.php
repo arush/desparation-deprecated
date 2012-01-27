@@ -43,28 +43,12 @@
  * @package    TBT_Rewards
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
-class TBT_RewardsOnly_Block_Checkout_Multishipping_Link extends Mage_Checkout_Block_Multishipping_Link
+class TBT_Rewards_Block_Checkout_Onepage_Link extends Mage_Checkout_Block_Onepage_Link
 {
     protected function _construct()
     {
         parent::_construct();
-    }
-	
-    /**
-     * Override this method in descendants to produce html
-     *
-     * @return string
-     */
-    public function _toHtml()
-    {
-    	if(!$this->canCheckout() && $this->disableCheckoutsIfNotEnoughtPoints())	{
-        	$this->setTemplate('rewardsonly/checkout/multishipping/link.phtml');
-    	}
-        return parent::_toHtml();
-    }
-    
-    public function disableCheckoutsIfNotEnoughtPoints() {
-    	return Mage::helper('rewardsonly/config')->disableCheckoutsIfNotEnoughPoints();
+        $this->setTemplate('rewards/checkout/onepage/link.phtml');
     }
     
     public function getBilling()
@@ -140,7 +124,7 @@ class TBT_RewardsOnly_Block_Checkout_Multishipping_Link extends Mage_Checkout_Bl
 	        }
     	} else {
     		$has_redemptions = $this->_getRewardsSess()->hasRedemptions();
-    		$cant_use_redemptions_if_not_logged_in = !Mage::helper('rewardsonly/config')->canUseRedemptionsIfNotLoggedIn();
+    		$cant_use_redemptions_if_not_logged_in = !Mage::helper('rewards/config')->canUseRedemptionsIfNotLoggedIn();
     		if($has_redemptions && $cant_use_redemptions_if_not_logged_in) {
 	        	return false;
     		}
@@ -151,7 +135,6 @@ class TBT_RewardsOnly_Block_Checkout_Multishipping_Link extends Mage_Checkout_Bl
     public function isLoggedIn() {
     	return Mage::getSingleton('rewards/session')->isCustomerLoggedIn();
     }
-
     
     /**
      * Fetches the customer session singleton

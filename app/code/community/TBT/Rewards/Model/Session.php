@@ -340,6 +340,18 @@ class TBT_Rewards_Model_Session extends Mage_Core_Model_Session_Abstract {
 				// give a set qty of points per every given amount spent if this rule's conditions are met
 				// - this is a total price amongst ALL associated items, so add it up
 				$price = Mage::helper ( 'rewards/transfer' )->getTotalAssociatedItemPrice ( $order_items, $rule->getId () );
+				//@mhadianfard -a 25/11/11: Mantis fix 1192 
+				if (Mage::helper ( 'rewards/config' )->calcCartPointsAfterDiscount ()){					
+					$quote = $this->getQuote();
+					if ($quote){
+						$address = $quote->getAssociatedAddress();
+						if($address){
+							$cartDiscounts = $address->getDiscountAmount();
+							$price += $cartDiscounts;	// cart discounts are negative, so adding makes sense ;) 
+						}
+					}																			
+				}
+				//--- End of Mantis fix 1192
 				$points_to_transfer = $rule->getPointsAmount () * floor ( $price / $rule->getPointsAmountStep () );
 				
 				//@nelkaake Added on Sunday May 30, 2010: 

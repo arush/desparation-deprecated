@@ -42,7 +42,7 @@
  * @package    TBT_Rewards
  * @author     WDCA Sweet Tooth Team <contact@wdca.ca>
  */
-require_once ('app/code/community/TBT/Rewards/controllers/Manage/SweettoothController.php');
+require_once (dirname(__FILE__) . DS .'SweettoothController.php');
 
 class TBT_Rewards_Manage_TransferController extends TBT_Rewards_Manage_SweettoothController {
 	const EXPORT_FILE_NAME = 'point_transfers';
@@ -363,6 +363,6 @@ class TBT_Rewards_Manage_TransferController extends TBT_Rewards_Manage_Sweettoot
 	
 	public function preDispatch() {
 		parent::preDispatch ();
-	}
+	}	
 
 }

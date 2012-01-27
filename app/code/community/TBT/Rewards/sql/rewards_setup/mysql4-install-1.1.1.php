@@ -4,9 +4,6 @@ $installer = $this;
 
 $installer->startSetup();
 
-// Clear cache.
-Mage::helper( 'rewards/mysql4_install' )->prepareForDb();
-
 Mage::helper( 'rewards/mysql4_install' )->attemptQuery( $installer, 
     "
 CREATE TABLE IF NOT EXISTS `{$this->getTable('rewards_currency')}` (
@@ -31,7 +28,7 @@ Mage::helper( 'rewards/mysql4_install' )->attemptQuery( $installer,
 CREATE TABLE IF NOT EXISTS `{$this->getTable('rewards_customer')}` (
     `rewards_customer_id` INT(11) NOT NULL AUTO_INCREMENT,
     `rewards_currency_id` INT(11) NOT NULL,
-    `customer_entity_id` INT(11) NOT NULL,
+    `customer_entity_id` INT(10) unsigned NOT NULL,
     PRIMARY KEY (`rewards_customer_id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 " );
@@ -71,7 +68,7 @@ Mage::helper( 'rewards/mysql4_install' )->attemptQuery( $installer,
     "
 CREATE TABLE IF NOT EXISTS `{$this->getTable('rewards_transfer')}` (
     `rewards_transfer_id` INT(11) NOT NULL AUTO_INCREMENT,
-    `customer_id` INT(11) NOT NULL,
+    `customer_id` INT(10) unsigned NOT NULL,
     `quantity` INT(11) NOT NULL DEFAULT '1',
     `comments` VARCHAR(200) DEFAULT '',
     `effective_start` TIMESTAMP,

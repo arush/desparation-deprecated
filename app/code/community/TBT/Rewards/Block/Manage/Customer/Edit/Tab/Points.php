@@ -78,8 +78,7 @@ class TBT_Rewards_Block_Manage_Customer_Edit_Tab_Points extends Mage_Adminhtml_B
 		//die('<pre>'.print_r($this->collection).'</pre>');
 		$this->collection->selectFullCustomerName ( 'fullcustomername' );
 		$this->collection->selectPointsCaption ( 'points' );
-		$this->collection->addRules ();
-		
+						
 		$this->setCollection ( $this->collection );
 		
 		//        $this->addExportType('*/*/exportCsv', Mage::helper('customer')->__('CSV'));

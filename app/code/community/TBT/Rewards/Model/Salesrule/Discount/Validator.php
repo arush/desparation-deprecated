@@ -64,7 +64,7 @@ class TBT_Rewards_Model_Salesrule_Discount_Validator extends Mage_SalesRule_Mode
 	 * @param Mage_Sales_Model_Quote_Address_Item $item
 	 * @param int $rule_id
 	 */
-	public function validateRedemptionRule(&$quote, &$address, &$item, $rule_id) {
+	public function validateRedemptionRule(&$quote, &$address, &$item, $rule_id, &$isValidApplicable = false) {
 		$rule = $this->getRule ( $rule_id );
 		$store = $item->getQuote ()->getStore (); //@nelkaake 17/03/2010 5:01:35 AM
 		
@@ -89,6 +89,7 @@ class TBT_Rewards_Model_Salesrule_Discount_Validator extends Mage_SalesRule_Mode
 				$valid_applied->add ( $rule );
 				$valid_applicable->remove ( $rule );
 			} else {
+				$isValidApplicable = true;
 				$valid_applicable->add ( $rule );
 				$valid_applied->remove ( $rule );
 			}

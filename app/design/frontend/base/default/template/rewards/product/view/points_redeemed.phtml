@@ -25,12 +25,17 @@ $show_slider = true;
     var rule_options = <?php echo json_encode($ruleMap); ?>;
     var base_product_id = <?php echo $pid; ?>;
     var is_configurable_product = <?php echo (int) $this->getProduct()->isConfigurable(); ?>;
-    var customer_points = <?php echo ($this->getCurrentCustomer() ? json_encode($this->getCurrentCustomer()->getPoints()) : "false"); ?>;
+    var customer_points = <?php echo ($this->getCurrentCustomer() ? json_encode($this->getCurrentCustomer()->getUsablePoints()) : "false"); ?>;
     var do_hide_old_price = false;
     var default_guest_points = <?php echo $this->getDefaultGuestPoints(); ?>;
+    var ruleUses = <?php echo json_encode($this->getRuleUses()) ?>;
 
     var new_price_dom_id = 'product-price-<?php echo $pid; ?><?php echo $pid_suffix; ?>';
     var old_price_dom_id = 'old-price-<?php echo $pid; ?><?php echo $pid_suffix; ?>';
+    var new_price_excl_tax_dom_id = 'price-excluding-tax-<?php echo $pid; ?><?php echo $pid_suffix; ?>';
+    var new_price_incl_tax_dom_id = 'price-including-tax-<?php echo $pid; ?><?php echo $pid_suffix; ?>';
+    var old_price_excl_tax_dom_id = 'old-price-excluding-tax-<?php echo $pid; ?><?php echo $pid_suffix; ?>';
+    var old_price_incl_tax_dom_id = 'old-price-including-tax-<?php echo $pid; ?><?php echo $pid_suffix; ?>';
     var slider_mode = <?php echo $show_slider ? 'true' : 'false'; ?>;
 </script>
 <?php if (sizeof($ruleOptions) > 0): ?>
@@ -53,9 +58,9 @@ $show_slider = true;
                 e.observe("change", function(e) {
                     updateUsesInterface();
                 });
-            }
-        );
-        	  
+            });
+
+            $('redemption_rule_prev').value = $('redemption_rule').value;
         });
         function updateUsesInterface() {
             var rule_id = $('redemption_rule').value;
@@ -105,12 +110,13 @@ $show_slider = true;
         <option value="" selected="selected"></option>
         <?php foreach ($ruleOptions as $ruleOption): ?>
             <?php if (isset($ruleOption['rule_id'])): ?>
-                <option value="<?php echo $ruleOption['rule_id']; ?>">
+                <option value="<?php echo $ruleOption['rule_id']; ?>" <?php echo $this->isSelectedRule($ruleOption['rule_id']) ? 'selected' : '' ?>>
                     <?php echo $ruleOption['caption'] . " (" . $this->__('costs') . " " . $ruleOption['points'] . ")"; ?>
                 </option>
             <?php endif; ?>
         <?php endforeach; ?>
     </select>
+    <input type="hidden" name="redemption_rule_prev" id="redemption_rule_prev" />
     <div id="redemption_rule_uses_container" class="redemption_uses_container" style="display:none;">
         <?php if ($show_slider): ?>
             <?php echo $this->getChildHtml('points_slider'); ?>

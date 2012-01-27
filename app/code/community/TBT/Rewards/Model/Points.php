@@ -176,7 +176,7 @@ class TBT_Rewards_Model_Points extends Varien_Object
      * @return TBT_Rewards_Block_Points     false if the block does not exist, the rendering block otherwise
      */
     public function getRendering() {
-    	\$block = Mage::getBlockSingleton('rewards/points');
+    	\$block = Mage::app()->getLayout()->getBlockSingleton('rewards/points');
     	if(\$block !== false) \$block->setDataModel(\$this);
     	return \$block;
     } 

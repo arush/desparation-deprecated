@@ -125,6 +125,7 @@ class TBT_Rewards_Model_Catalogrule_Observer extends Mage_CatalogRule_Model_Obse
 	 * Update include interval 3 days - current day - 1 days before + 1 days after
 	 * This method is called from cron process, cron is workink in UTC time and
 	 * we shold generate data for interval -1 day ... +1 day
+	 * TODO: why are we overriding this?
 	 *
 	 * @param   Varien_Event_Observer $observer
 	 * @return  Mage_CatalogRule_Model_Observer
@@ -316,37 +317,77 @@ class TBT_Rewards_Model_Catalogrule_Observer extends Mage_CatalogRule_Model_Obse
 	}
 	
 	/**
-	 * Gets triggered on the  event to append points information
-        Mage::dispatchEvent('checkout_cart_product_add_after', array('quote_item'=>$result, 'product'=>$product));
-	 * @param unknown_type $o
+	 * Gets triggered on the 'checkout_cart_product_add_after' event to append points information
+	 * to a quote item upon being added to the cart
+	 * @param Varien_Object $o
 	 */
-	public function appendPointsQuoteAfterAdd($o) {
-		$item = $o->getEvent ()->getQuoteItem ();
-		$product = $o->getEvent ()->getProduct ();
-		//@nelkaake -a 17/02/11: Use the generic request.  
-		$request = Mage::app ()->getRequest ();
-		
-		if (! $request || ! $product || ! $item)
+	public function appendPointsQuoteAfterAdd($o)
+	{
+		$event = $o->getEvent();
+		if (!$event) {
 			return $this;
-		
-		if ($item->getParentItem ()) {
-			$item = $item->getParentItem ();
 		}
 		
-		$apply_rule_id = $request->getParam ( 'redemption_rule' );
-		$apply_rule_uses = $request->getParam ( 'redemption_uses' );
-		$qty = $request->getParam ( 'qty' );
+		$item = $event->getQuoteItem();
+		$product = $event->getProduct();
+		$request = Mage::app()->getRequest();
 		
-		try {
-			Mage::getSingleton ( 'rewards/catalogrule_saver' )->appendPointsToQuote ( $product, $apply_rule_id, $apply_rule_uses, $qty, $item );
-		} catch ( Exception $e ) {
-			Mage::helper ( 'rewards' )->notice ( $e->getMessage () );
-			Mage::logException ( $e );
-			Mage::getSingleton ( 'core/session' )->addError ( Mage::helper ( 'rewards' )->__ ( "An error occurred trying to apply the redemption while adding the product to your cart: " ) . $e->getMessage () );
+		if (!$request || !$product || !$item) {
+			return $this;
 		}
+		
+		if ($item->getParentItem()) {
+			$item = $item->getParentItem();
+		}
+		
+		$apply_rule_id = $request->getParam('redemption_rule');
+		$apply_rule_uses = $request->getParam('redemption_uses');
+		$qty = $request->getParam('qty');
+		
+		$this->_writePointsToQuote($product, $item, $apply_rule_id, $apply_rule_uses, $qty);
 		
 		return $this;
 	
+	}
+	
+	/**
+	 * Gets triggered on the 'checkout_cart_product_update_after' event to append points information
+	 * to a quote item upon being updated
+	 * @param Varien_Object $o
+	 */
+	public function appendPointsQuoteAfterUpdate($o)
+	{
+		$event = $o->getEvent();
+		if (!$event) {
+			return $this;
+		}
+		
+		$item = $event->getQuoteItem();
+		$product = $event->getProduct();
+		$request = Mage::app()->getRequest();
+		
+		if (!$request || !$product || !$item) {
+			return $this;
+		}
+		
+		if ($item->getParentItem()) {
+			$item = $item->getParentItem();
+		}
+		
+		$apply_rule_id = $request->getParam('redemption_rule');
+		$apply_rule_uses = $request->getParam('redemption_uses');
+		$qty = $request->getParam('qty');
+		$previous_rule_id = $request->getParam('redemption_rule_prev');
+		
+		// if $apply_rule_id is empty but there was a previous rule applied, we're actually trying to clear that rule
+		if (!$apply_rule_id && $previous_rule_id) {
+			$apply_rule_id = $previous_rule_id;
+			$apply_rule_uses = 0;
+		}
+		
+		$this->_writePointsToQuote($product, $item, $apply_rule_id, $apply_rule_uses, $qty);
+		
+		return $this;
 	}
 	
 	/**
@@ -359,6 +400,28 @@ class TBT_Rewards_Model_Catalogrule_Observer extends Mage_CatalogRule_Model_Obse
 		$request = $o->getEvent ()->getRequest ();
 		
 		$this->_getQuote ()->setTotalsCollectedFlag ( false )->collectTotals ();
+		return $this;
+	}
+	
+	/**
+	 * Writes catalogrule redemption to the quote item into the redeemed points hash, and
+	 * overwrites the existing rule data if one exists.
+	 * @param Mage_Catalog_Model_Product $product
+	 * @param Mage_Sales_Model_Quote_Item $item
+	 * @param int $applyRuleId
+	 * @param int $applyRuleUses
+	 * @param int $qty
+	 */
+	protected function _writePointsToQuote($product, $item, $applyRuleId, $applyRuleUses, $qty)
+	{
+		try {
+			Mage::getSingleton('rewards/catalogrule_saver')->writePointsToQuote($product, $applyRuleId, $applyRuleUses, $qty, $item);
+		} catch (Exception $e) {
+			Mage::helper('rewards')->notice($e->getMessage());
+			Mage::logException($e);
+			Mage::getSingleton('core/session')->addError(Mage::helper('rewards')->__("An error occurred trying to apply the points redemption to the product in your cart: %s", $e->getMessage()));
+		}
+		
 		return $this;
 	}
 	
