@@ -6686,6 +6686,7 @@ $installer->getConnection()->changeColumn(
 );
 */
 
+/*
 $installer->getConnection()->changeColumn(
     $installer->getTable('sales/quote_address'),
     'base_shipping_hidden_tax_amount',
@@ -6697,6 +6698,7 @@ $installer->getConnection()->changeColumn(
         'comment'   => 'Base Shipping Hidden Tax Amount'
     )
 );
+*/
 
 $installer->getConnection()->changeColumn(
     $installer->getTable('sales/shipment_track'),
