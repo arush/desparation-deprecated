@@ -6618,6 +6618,7 @@ $tables = array(
 
 $installer->getConnection()->modifyTables($tables);
 
+/*
 $installer->getConnection()->changeColumn(
     $installer->getTable('sales/creditmemo'),
     'base_shipping_hidden_tax_amount',
@@ -6629,6 +6630,7 @@ $installer->getConnection()->changeColumn(
         'comment'   => 'Base Shipping Hidden Tax Amount'
     )
 );
+*/
 
 $installer->getConnection()->changeColumn(
     $installer->getTable('sales/invoice'),
