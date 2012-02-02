@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_XmlConnect
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -76,6 +76,7 @@ class Mage_XmlConnect_Block_Adminhtml_Mobile_Submission_Tab_Container_Submission
             'name'      => $fieldName,
             'label'     => $title,
             'note'      => !empty($note) ? $note : null,
+            'default_value' => $default,
             'required'  => $required,
         ));
     }
@@ -344,7 +345,7 @@ class Mage_XmlConnect_Block_Adminhtml_Mobile_Submission_Tab_Container_Submission
     }
 
     /**
-     * Returns status flag about this tab can be showen or not
+     * Returns status flag about this tab can be shown or not
      *
      * @return true
      */

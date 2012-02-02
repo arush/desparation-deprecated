@@ -20,16 +20,16 @@
  *
  * @category    Mage
  * @package     Mage_XmlConnect
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 /**
  * Credit Card (Payflow Pro) Payment method xml renderer
  *
- * @category   Mage
- * @package    Mage_XmlConnect
- * @author     Magento Core Team <core@magentocommerce.com>
+ * @category    Mage
+ * @package     Mage_XmlConnect
+ * @author      Magento Core Team <core@magentocommerce.com>
  */
 class Mage_XmlConnect_Block_Checkout_Payment_Method_Paypal_Payflow extends Mage_Payment_Block_Form_Ccsave
 {
@@ -119,40 +119,41 @@ class Mage_XmlConnect_Block_Checkout_Payment_Method_Paypal_Payflow extends Mage_
 
         $verification = '';
         if ($this->hasVerification()) {
-            $verification =
-            '<field name="payment[cc_cid]" type="text" label="' . $this->helper('xmlconnect')->__('Card Verification Number') . '" required="true">
-                <validators>
-                    <validator relation="payment[cc_type]" type="credit_card_svn" message="' . $this->helper('xmlconnect')->__('Card verification number is wrong') . '"/>
-                </validators>
-            </field>';
+            $verification = <<<EOT
+<field name="payment[cc_cid]" type="text" label="{$this->__('Card Verification Number')}" required="true">
+    <validators>
+        <validator relation="payment[cc_type]" type="credit_card_svn" message="{$this->__('Card verification number is wrong')}'"/>
+    </validators>
+</field>
+EOT;
         }
 
         $xml = <<<EOT
-    <fieldset>
-        <field name="payment[cc_type]" type="select" label="{$this->helper('xmlconnect')->__('Credit Card Type')}" required="true">
-            <values>
-                $ccTypes
-            </values>
-        </field>
-        <field name="payment[cc_number]" type="text" label="{$this->helper('xmlconnect')->__('Credit Card Number')}" required="true">
-            <validators>
-                <validator relation="payment[cc_type]" type="credit_card" message="{$this->helper('xmlconnect')->__('Credit card number does not match credit card type.')}"/>
-            </validators>
-        </field>
-        <field name="payment[cc_exp_month]" type="select" label="{$this->helper('xmlconnect')->__('Expiration Date - Month')}" required="true">
-            <values>
-                $ccMonthes
-            </values>
-        </field>
-        <field name="payment[cc_exp_year]" type="select" label="{$this->helper('xmlconnect')->__('Expiration Date - Year')}" required="true">
-            <values>
-                $ccYears
-            </values>
-        </field>
-        $verification
-    </fieldset>
+<fieldset>
+    <field name="payment[cc_type]" type="select" label="{$this->__('Credit Card Type')}" required="true">
+        <values>
+            $ccTypes
+        </values>
+    </field>
+    <field name="payment[cc_number]" type="text" label="{$this->__('Credit Card Number')}" required="true">
+        <validators>
+            <validator relation="payment[cc_type]" type="credit_card" message="{$this->__('Credit card number does not match credit card type.')}"/>
+        </validators>
+    </field>
+    <field name="payment[cc_exp_month]" type="select" label="{$this->__('Expiration Date - Month')}" required="true">
+        <values>
+            $ccMonthes
+        </values>
+    </field>
+    <field name="payment[cc_exp_year]" type="select" label="{$this->helper('xmlconnect')->__('Expiration Date - Year')}" required="true">
+        <values>
+            $ccYears
+        </values>
+    </field>
+    $verification
+</fieldset>
 EOT;
-        $fieldsetXmlObj = new Mage_XmlConnect_Model_Simplexml_Element($xml);
+        $fieldsetXmlObj = Mage::getModel('xmlconnect/simplexml_element', $xml);
         $formXmlObj->appendChild($fieldsetXmlObj);
     }
 }

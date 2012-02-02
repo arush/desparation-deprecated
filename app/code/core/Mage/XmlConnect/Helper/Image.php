@@ -20,12 +20,22 @@
  *
  * @category    Mage
  * @package     Mage_XmlConnect
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
+/**
+ * XmlConnect image helper
+ *
+ * @category    Mage
+ * @package     Mage_XmlConnect
+ * @author      Magento Core Team <core@magentocommerce.com>
+ */
 class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
 {
+    /**
+     * Xml connect glue
+     */
     const XMLCONNECT_GLUE = '_';
 
     /**
@@ -62,15 +72,15 @@ class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
      * @var array|null
      */
     protected $_confPaths = null;
+
     /**
      * Process uploaded file
-     * setup filenames to the configuration
+     * setup file names to the configuration
      *
      * @param string $field
-     * @param mixed &$target
      * @retun string
      */
-    public function handleUpload($field, &$target)
+    public function handleUpload($field)
     {
         $uploadedFilename = '';
         $uploadDir = $this->getOriginalSizeUploadDir();
@@ -93,12 +103,14 @@ class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
                 Mage::throwException(Mage::helper('xmlconnect')->__('File can\'t be uploaded.'));
             } elseif ($e->getMessage() == 'Disallowed file type.') {
                 $filename = $_FILES[$field]['name'];
-                Mage::throwException(Mage::helper('xmlconnect')->__('Error while uploading file "%s". Disallowed file type. Only "jpg", "jpeg", "gif", "png" are allowed.', $filename));
+                Mage::throwException(
+                    Mage::helper('xmlconnect')->__('Error while uploading file "%s". Disallowed file type. Only "jpg", "jpeg", "gif", "png" are allowed.', $filename)
+                );
             } else {
                 Mage::logException($e);
             }
         }
-        return $uploadedFilename;
+        return basename($uploadedFilename);
     }
 
     /**
@@ -117,7 +129,7 @@ class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
      * @throws Mage_Core_Exception
      * @param string $fieldPath
      * @param string $fileName
-     * @param string $default
+     * @param bool $default
      * @return string
      */
     protected function _getResizedFilename($fieldPath, $fileName, $default = false)
@@ -130,24 +142,28 @@ class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
         }
         $customSizeFileName =  $dir . DS . $fileName;
         $originalSizeFileName = $this->getOriginalSizeUploadDir(). DS . $fileName;
-        $error = false;
+
         /**
          * Compatibility with old versions of XmlConnect
          */
         if (!file_exists($originalSizeFileName)) {
             $oldFileName = $this->getOldUploadDir() . DS . $fileName;
             if (file_exists($oldFileName)) {
-                if (!(copy($oldFileName, $originalSizeFileName) &&
-                    (is_readable($customSizeFileName) || chmod($customSizeFileName, 0644)))) {
-                    Mage::throwException(Mage::helper('xmlconnect')->__('Error while processing file "%s".', $fileName));
+                if (!(copy($oldFileName, $originalSizeFileName)
+                    && (is_readable($customSizeFileName) || chmod($customSizeFileName, 0644))
+                )) {
+                    Mage::throwException(
+                        Mage::helper('xmlconnect')->__('Error while processing file "%s".', $fileName)
+                    );
                 }
             } else {
                 Mage::throwException(Mage::helper('xmlconnect')->__('No such file "%s".', $fileName));
             }
         }
 
-        if ((!$error) && copy($originalSizeFileName, $customSizeFileName) &&
-            (is_readable($customSizeFileName) || chmod($customSizeFileName, 0644))) {
+        $isCopied = copy($originalSizeFileName, $customSizeFileName);
+        clearstatcache();
+        if ($isCopied && (is_readable($customSizeFileName) || chmod($customSizeFileName, 0644))) {
             $this->_handleResize($fieldPath, $customSizeFileName);
         } else {
             $fileName = '';
@@ -164,7 +180,7 @@ class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
      *
      * @param string $fieldPath
      * @param string $file
-     * @return void
+     * @return null
      */
     protected function _handleResize($fieldPath, $file)
     {
@@ -199,8 +215,7 @@ class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
             $height = $conf['height'];
         }
 
-        if (($width != $image->getOriginalWidth()) ||
-            ($height != $image->getOriginalHeight()) ) {
+        if (($width != $image->getOriginalWidth()) || ($height != $image->getOriginalHeight())) {
             $image->keepTransparency(true);
             $image->keepFrame(true);
             $image->keepAspectRatio(true);
@@ -219,22 +234,36 @@ class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
     {
         $file =& $_FILES[$field];
 
-        $file['name'] = preg_replace('/\.(gif|jpeg|jpg)$/i', '.png', $file['name']);
+        $dotPosition = strrpos($file['name'], '.');
+        if ($dotPosition !== false) {
+            $file['name'] = substr($file['name'], 0 , $dotPosition);
+        }
+        $file['name'] .= '.png';
 
-        list($x, $x, $fileType) = getimagesize($file['tmp_name']);
-        if ($fileType != IMAGETYPE_PNG ) {
-            switch( $fileType ) {
+//      We can't use exif extension, because magento doesn't require it.
+//      $fileType = exif_imagetype($file['tmp_name']);
+        list($unnecessaryVar, $unnecessaryVar, $fileType) = getimagesize($file['tmp_name']);
+        unset($unnecessaryVar);
+
+        if ($fileType != IMAGETYPE_PNG) {
+            switch ($fileType) {
                 case IMAGETYPE_GIF:
                     $img = imagecreatefromgif($file['tmp_name']);
+                    imagealphablending($img, false);
+                    imagesavealpha($img, true);
                     break;
                 case IMAGETYPE_JPEG:
                     $img = imagecreatefromjpeg($file['tmp_name']);
                     break;
+                case IMAGETYPE_WBMP:
+                    $img = imagecreatefromwbmp($file['tmp_name']);
+                    break;
+                case IMAGETYPE_XBM:
+                    $img = imagecreatefromxbm($file['tmp_name']);
+                    break;
                 default:
                     return;
             }
-            imagealphablending($img, false);
-            imagesavealpha($img, true);
             imagepng($img, $file['tmp_name']);
             imagedestroy($img);
         }
@@ -269,7 +298,7 @@ class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
      */
     public function getFileDefaultSizeSuffixAsUrl($fileName)
     {
-        return 'custom'.'/'.$this->_getScreenSize().'/'.basename($fileName);
+        return 'custom' . '/' . $this->_getScreenSize() . '/' . basename($fileName);
     }
 
     /**
@@ -281,7 +310,11 @@ class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
      */
     public function getFileCustomDirSuffixAsUrl($confPath, $fileName)
     {
-        return 'custom'.'/'.$this->_getScreenSize().'/'.basename($this->_getResizedFilename($confPath, $fileName));
+        return 'custom'
+            . '/'
+            . $this->_getScreenSize()
+            . '/'
+            . basename($this->_getResizedFilename($confPath, $fileName));
     }
 
     /**
@@ -292,10 +325,7 @@ class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
      */
     public function getImageSizeForContent($imageName)
     {
-        $size = 0;
         if (!isset($this->_content)) {
-            /** @var $app Mage_XmlConnect_Model_Application */
-            $app = Mage::helper('xmlconnect')->getApplication();
             $imageLimits = $this->getImageLimits($this->_getScreenSize());
             if (($imageLimits['content']) && is_array($imageLimits['content'])) {
                 $this->_content = $imageLimits['content'];
@@ -329,8 +359,8 @@ class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
      */
     public function getImageSizeForInterface($imagePath)
     {
-        $size = 0;
         if (!isset($this->_interfacePath[$imagePath])) {
+            /** @var $app Mage_XmlConnect_Model_Application */
             $app = Mage::helper('xmlconnect')->getApplication();
             if (!$app) {
                 return 0;
@@ -409,20 +439,20 @@ class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
     /**
      * Retrieve thumbnail image url
      *
+     * @param string $imageUrl
      * @param int $width
+     * @param int $height
      * @return string|null
      */
     public function getCustomSizeImageUrl($imageUrl, $width = 100, $height = 100)
     {
-        $customDirRoot = Mage::getBaseDir('media') . DS . 'xmlconnect' . DS . 'custom';
         $screenSize = $width . 'x' . $height;
-        $customDir = $customDirRoot . DS . $screenSize;
+        $customDir = $this->getMediaPath('custom' . DS . $screenSize);
         $this->_verifyDirExist($customDir);
         $imageUrl = explode('/', $imageUrl);
         $file = $imageUrl[count($imageUrl)-1];
         $filePath = $this->getDefaultSizeUploadDir() . DS . $file;
-
-        if (!file_exists($customDir . $file)) {
+        if (!file_exists($customDir . DS . $file)) {
             $image = new Varien_Image($filePath);
             $widthOriginal = $image->getOriginalWidth();
             $heightOriginal = $image->getOriginalHeight();
@@ -445,7 +475,7 @@ class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
                 $image->save($customDir, basename($file));
             }
         }
-        return Mage::getBaseUrl('media') . "xmlconnect/custom/{$screenSize}/" . basename($file);
+        return $this->getMediaUrl("custom/{$screenSize}/" . basename($file));
     }
 
     /**
@@ -474,11 +504,11 @@ class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
         }
 
         $sourcePath = empty($version) ? Mage_XmlConnect_Model_Application::APP_SCREEN_SOURCE_DEFAULT : $version;
-        $xmlPath = 'screen_size/'.self::XMLCONNECT_GLUE.$resolution.'/'.$sourcePath.'/source';
+        $xmlPath = 'screen_size/' . self::XMLCONNECT_GLUE . $resolution . '/' . $sourcePath . '/source';
 
         $source = Mage::getStoreConfig($xmlPath);
         if (!empty($source)) {
-            $screenSize = $resolution . (empty($version) ? '' : self::XMLCONNECT_GLUE.$version);
+            $screenSize = $resolution . (empty($version) ? '' : self::XMLCONNECT_GLUE . $version);
         } else {
             $screenSize = Mage_XmlConnect_Model_Application::APP_SCREEN_SIZE_DEFAULT;
         }
@@ -515,13 +545,13 @@ class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
         }
 
         $sourcePath = empty($version) ? $defaultScreenSource : $version;
-        $xmlPath = 'screen_size/'.self::XMLCONNECT_GLUE.$resolution.'/'.$sourcePath;
+        $xmlPath = 'screen_size/' . self::XMLCONNECT_GLUE . $resolution . '/' . $sourcePath;
 
         $root = Mage::getStoreConfig($xmlPath);
-
         $updates = array();
+
         if (!empty($root)) {
-            $screenSize = $resolution . (empty($version) ? '' : self::XMLCONNECT_GLUE.$version);
+            $screenSize = $resolution . (empty($version) ? '' : self::XMLCONNECT_GLUE . $version);
             $source = !empty($root['source']) ? $root['source'] : $defaultScreenSource;
             $updates = isset($root['updates']) && is_array($root['updates']) ? $root['updates'] : array();
         } else {
@@ -529,7 +559,7 @@ class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
             $source = $defaultScreenSource;
         }
 
-        $imageLimits = Mage::getStoreConfig('screen_size/'.$source);
+        $imageLimits = Mage::getStoreConfig('screen_size/' . $source);
         if (!is_array($imageLimits)) {
             $imageLimits = Mage::getStoreConfig('screen_size/default');
         }
@@ -584,9 +614,9 @@ class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
     /**
      * Return reference to the $path in $array
      *
-     * @param array $array
+     * @param array &$array
      * @param string $path
-     * @return &mixed    //(reference)
+     * @return mixed reference
      */
     public function &findPath(&$array, $path)
     {
@@ -609,14 +639,14 @@ class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
      * Multiply given $item by $value if non array
      *
      * @param mixed $item (argument to change)
-     * @param mixed $key (not used)
+     * @param mixed $key (used with array_walk_recursive function as a key of given array)
      * @param string $value (contains float)
-     * @return void
+     * @return null
      */
     protected function _zoom(&$item, $key, $value)
     {
         if (is_string($item)) {
-            $item = (int) round($item*$value);
+            $item = (int) round($item * $value);
         }
     }
 
@@ -628,8 +658,12 @@ class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
      */
     protected function _verifyDirExist($dir)
     {
-        $io = new Varien_Io_File();
-        $io->checkAndCreateFolder($dir);
+        try {
+            $ioFile = new Varien_Io_File();
+            $ioFile->checkAndCreateFolder($dir);
+        } catch (Exception $e) {
+            Mage::throwException($e->getMessage());
+        }
     }
 
     /**
@@ -641,9 +675,7 @@ class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
     public function getCustomSizeUploadDir($screenSize)
     {
         $screenSize = $this->filterScreenSize($screenSize);
-        $customDirRoot = Mage::getBaseDir('media') . DS . 'xmlconnect' . DS . 'custom';
-        $this->_verifyDirExist($customDirRoot);
-        $customDir = $customDirRoot . DS .$screenSize;
+        $customDir = $this->getMediaPath('custom' . DS . $screenSize);
         $this->_verifyDirExist($customDir);
         return $customDir;
     }
@@ -655,7 +687,7 @@ class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
      */
     public function getOriginalSizeUploadDir()
     {
-        $dir = Mage::getBaseDir('media') . DS . 'xmlconnect' . DS . 'original';
+        $dir = $this->getMediaPath('original');
         $this->_verifyDirExist($dir);
         return $dir;
     }
@@ -667,7 +699,7 @@ class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
      */
     public function getOldUploadDir()
     {
-        $dir = Mage::getBaseDir('media') . DS . 'xmlconnect';
+        $dir = $this->getMediaPath();
         $this->_verifyDirExist($dir);
         return $dir;
     }
@@ -690,19 +722,22 @@ class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
     public function getInterfaceImagesPathsConf()
     {
         if (!isset($this->_confPaths)) {
-            $paths = $this->getInterfaceImagesPaths();
             $this->_confPaths = array();
-            $len = strlen('conf/native/');
-            foreach ($paths as $path => $defaultFileName) {
-                $this->_confPaths[$path] = substr($path, $len);
+            $paths = $this->getInterfaceImagesPaths();
+            if (is_array($paths)) {
+                $len = strlen('conf/native/');
+                while (list($path,) = each($paths)) {
+                    $this->_confPaths[$path] = substr($path, $len);
+                }
             }
         }
         return $this->_confPaths;
     }
 
     /**
-     *  Return 1) default interface image path for specified $imagePath
-     *         2) array of image paths
+     * Return
+     * - default interface image path for specified $imagePath
+     * - array of image paths
      *
      * @param string $imagePath
      * @return array|string
@@ -712,6 +747,7 @@ class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
         $paths = array (
             'conf/native/navigationBar/icon' => 'smallIcon_1_6.png',
             'conf/native/body/bannerImage' => 'banner_1_2.png',
+            'conf/native/body/bannerIpadLandscapeImage' => 'banner_ipad_l.png',
             'conf/native/body/bannerIpadImage' => 'banner_ipad.png',
             'conf/native/body/bannerAndroidImage' => 'banner_android.png',
             'conf/native/body/backgroundImage' => 'accordion_open.png',
@@ -727,5 +763,21 @@ class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
         } else {
             return null;
         }
+    }
+
+    /**
+     * Check image and get full file path
+     *
+     * @param string &$icon
+     * @return bool
+     */
+    public function checkAndGetImagePath(&$icon)
+    {
+        $icon = basename($icon);
+        if (is_file($this->getDefaultSizeUploadDir() . DS . $icon)) {
+            $icon = $this->getDefaultSizeUploadDir() . DS . $icon;
+            return true;
+        }
+        return false;
     }
 }

@@ -20,18 +20,17 @@
  *
  * @category    Mage
  * @package     Mage_XmlConnect
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 /**
  * Grouped product options xml renderer
  *
- * @category   Mage
- * @package    Mage_XmlConnect
- * @author     Magento Core Team <core@magentocommerce.com>
+ * @category    Mage
+ * @package     Mage_XmlConnect
+ * @author      Magento Core Team <core@magentocommerce.com>
  */
-
 class Mage_XmlConnect_Block_Catalog_Product_Options_Grouped extends Mage_XmlConnect_Block_Catalog_Product_Options
 {
     /**
@@ -43,7 +42,7 @@ class Mage_XmlConnect_Block_Catalog_Product_Options_Grouped extends Mage_XmlConn
      */
     public function getProductOptionsXml(Mage_Catalog_Model_Product $product, $isObject = false)
     {
-        $xmlModel = new Mage_XmlConnect_Model_Simplexml_Element('<product></product>');
+        $xmlModel = Mage::getModel('xmlconnect/simplexml_element', '<product></product>');
         $optionsNode = $xmlModel->addChild('options');
 
         if (!$product->getId()) {
@@ -60,6 +59,7 @@ class Mage_XmlConnect_Block_Catalog_Product_Options_Grouped extends Mage_XmlConn
         if (!sizeof($_associatedProducts)) {
             return $isObject ? $xmlModel : $xmlModel->asNiceXml();
         }
+
         foreach ($_associatedProducts as $_item) {
             if (!$_item->isSaleable()) {
                 continue;
@@ -68,10 +68,9 @@ class Mage_XmlConnect_Block_Catalog_Product_Options_Grouped extends Mage_XmlConn
 
             $optionNode->addAttribute('code', 'super_group[' . $_item->getId() . ']');
             $optionNode->addAttribute('type', 'product');
-            $optionNode->addAttribute('label', $xmlModel->xmlentities(strip_tags($_item->getName())));
+            $optionNode->addAttribute('label', $xmlModel->xmlentities($_item->getName()));
             $optionNode->addAttribute('is_qty_editable', 1);
             $optionNode->addAttribute('qty', $_item->getQty()*1);
-
 
             /**
              * Process product price
@@ -81,8 +80,9 @@ class Mage_XmlConnect_Block_Catalog_Product_Options_Grouped extends Mage_XmlConn
             } else {
                 $productPrice = $_item->getPrice();
             }
-            $productPrice = Mage::helper('xmlconnect')->formatPriceForXml($productPrice);
-            if ($productPrice != 0.00) {
+
+            if ($productPrice != 0) {
+                $productPrice = Mage::helper('xmlconnect')->formatPriceForXml($productPrice);
                 $optionNode->addAttribute('price', Mage::helper('xmlconnect')->formatPriceForXml(
                     Mage::helper('core')->currency($productPrice, false, false)
                 ));

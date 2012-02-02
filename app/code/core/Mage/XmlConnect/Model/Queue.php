@@ -20,66 +20,57 @@
  *
  * @category    Mage
  * @package     Mage_XmlConnect
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
+/**
+ * XmlConnect Queue model
+ *
+ * @category    Mage
+ * @package     Mage_Xmlconnect
+ * @author      Magento Core Team <core@magentocommerce.com>
+ */
 class Mage_XmlConnect_Model_Queue extends Mage_Core_Model_Template
 {
     /**
      * Status in queue identifier
-     *
-     * @var int
      */
     const STATUS_IN_QUEUE   = 0;
 
     /**
      * Status cenceled identifier
-     *
-     * @var int
      */
     const STATUS_CANCELED   = 1;
 
     /**
      * Status completed identifier
-     *
-     * @var int
      */
     const STATUS_COMPLETED  = 2;
 
     /**
      * Status deleted identifier
-     *
-     * @var int
      */
     const STATUS_DELETED    = 3;
 
     /**
      * Airmail message type
-     *
-     * @var string
      */
     const MESSAGE_TYPE_AIRMAIL  = 'airmail';
 
     /**
      * Push notification message type
-     *
-     * @var string
      */
     const MESSAGE_TYPE_PUSH     = 'push';
 
     /**
      * Notification type config path
-     *
-     * @var string
      */
     const XML_PATH_NOTIFICATION_TYPE = 'xmlconnect/devices/%s/notification_type';
 
     /**
      * Count of message in queue for cron
      * config path
-     *
-     * @var string
      */
     const XML_PATH_CRON_MESSAGES_COUNT = 'xmlconnect/mobile_application/cron_send_messages_count';
 
@@ -93,7 +84,7 @@ class Mage_XmlConnect_Model_Queue extends Mage_Core_Model_Template
     /**
      * Initialize queue message
      *
-     * @return void
+     * @return null
      */
     protected function _construct()
     {
@@ -103,17 +94,16 @@ class Mage_XmlConnect_Model_Queue extends Mage_Core_Model_Template
     /**
      * Load object data
      *
-     * @param   integer $id
-     * @return  Mage_Core_Model_Abstract
+     * @param int $id
+     * @param string $field
+     * @return Mage_XmlConnect_Model_Queue
      */
-    public function load($id, $field=null)
+    public function load($id, $field = null)
     {
         parent::load($id, $field);
 
         if ($this->getTemplateId()) {
-            $this->setName(
-                Mage::getModel('xmlconnect/template')->load($this->getTemplateId())->getName()
-            );
+            $this->setName(Mage::getModel('xmlconnect/template')->load($this->getTemplateId())->getName());
         }
         return $this;
     }
@@ -196,16 +186,16 @@ EOT;
         switch ($this->getData('type')) {
             case Mage_XmlConnect_Model_Queue::MESSAGE_TYPE_AIRMAIL:
                 $html  = sprintf($htmlDescription, Mage::helper('xmlconnect')->__('Push title'))
-                            . $this->getPushTitle();
-                $html .= sprintf($htmlDescription, Mage::helper('xmlconnect')->__('Message title'))
-                            . $this->getMessageTitle();
-                $html .= sprintf($htmlDescription, Mage::helper('xmlconnect')->__('Message content'))
-                            . $processor->filter($this->getContent());
+                    . $this->getPushTitle()
+                    . sprintf($htmlDescription, Mage::helper('xmlconnect')->__('Message title'))
+                    . $this->getMessageTitle()
+                    . sprintf($htmlDescription, Mage::helper('xmlconnect')->__('Message content'))
+                    . $processor->filter($this->getContent());
                 break;
             case Mage_XmlConnect_Model_Queue::MESSAGE_TYPE_PUSH:
             default:
                 $html  = sprintf($htmlDescription, Mage::helper('xmlconnect')->__('Push title'))
-                            . $this->getPushTitle();
+                    . $this->getPushTitle();
                 break;
         }
         return $html;
@@ -250,11 +240,7 @@ EOT;
         );
 
         $payload = array(
-            'push' => array(
-                $notificationType => array(
-                    'alert' => $this->getPushTitle(),
-                )
-            ),
+            'push' => array($notificationType => array('alert' => $this->getPushTitle())),
             'title' => $this->getMessageTitle(),
             'message' => $this->getContent(),
         );

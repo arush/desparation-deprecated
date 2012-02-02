@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_XmlConnect
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -34,8 +34,7 @@
 class Mage_XmlConnect_Block_Adminhtml_Mobile_Edit_Tab_Design_Themes extends Mage_Adminhtml_Block_Template
 {
     /**
-     * Set themes template
-     * Set color fieldsets
+     * Set themes template and color fieldsets
      */
     public function __construct()
     {
@@ -176,6 +175,16 @@ class Mage_XmlConnect_Block_Adminhtml_Mobile_Edit_Tab_Design_Themes extends Mage
     public function getSaveThemeActionUrl()
     {
         return $this->getUrl('*/*/saveTheme');
+    }
+
+    /**
+     * Get delete theme action url
+     *
+     * @return string
+     */
+    public function getDeleteThemeActionUrl()
+    {
+        return $this->getUrl('*/*/deleteTheme');
     }
 
     /**

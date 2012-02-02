@@ -20,18 +20,17 @@
  *
  * @category    Mage
  * @package     Mage_XmlConnect
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 /**
  * Application configuration renderer
  *
- * @category   Mage
- * @package    Mage_XmlConnect
- * @author     Magento Core Team <core@magentocommerce.com>
+ * @category    Mage
+ * @package     Mage_XmlConnect
+ * @author      Magento Core Team <core@magentocommerce.com>
  */
-
 class Mage_XmlConnect_Block_Configuration extends Mage_Core_Block_Template
 {
     /**
@@ -100,7 +99,7 @@ class Mage_XmlConnect_Block_Configuration extends Mage_Core_Block_Template
             } else {
                 $value = (string)$value;
                 if ($value != '') {
-                    $section->addChild($key, Mage::helper('core')->htmlEscape($value));
+                    $section->addChild($key, Mage::helper('core')->escapeHtml($value));
                 }
             }
         }
@@ -113,7 +112,7 @@ class Mage_XmlConnect_Block_Configuration extends Mage_Core_Block_Template
      */
     protected function _toHtml()
     {
-        $xml = new Mage_XmlConnect_Model_Simplexml_Element('<configuration></configuration>');
+        $xml = Mage::getModel('xmlconnect/simplexml_element', '<configuration></configuration>');
         $this->_buildRecursive($xml, Mage::helper('xmlconnect')->excludeXmlConfigKeys($this->_app->getRenderConf()));
         return $xml->asNiceXml();
     }

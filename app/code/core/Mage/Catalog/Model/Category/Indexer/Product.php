@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Catalog
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -31,9 +31,33 @@
  *  - Category save (changed assigned products list or category move)
  *  - Store save (new store creation, changed store group) - require reindex all data
  *  - Store group save (changed root category or group website) - require reindex all data
+ *
+ * @method Mage_Catalog_Model_Resource_Category_Indexer_Product _getResource()
+ * @method Mage_Catalog_Model_Resource_Category_Indexer_Product getResource()
+ * @method int getCategoryId()
+ * @method Mage_Catalog_Model_Category_Indexer_Product setCategoryId(int $value)
+ * @method int getProductId()
+ * @method Mage_Catalog_Model_Category_Indexer_Product setProductId(int $value)
+ * @method int getPosition()
+ * @method Mage_Catalog_Model_Category_Indexer_Product setPosition(int $value)
+ * @method int getIsParent()
+ * @method Mage_Catalog_Model_Category_Indexer_Product setIsParent(int $value)
+ * @method int getStoreId()
+ * @method Mage_Catalog_Model_Category_Indexer_Product setStoreId(int $value)
+ * @method int getVisibility()
+ * @method Mage_Catalog_Model_Category_Indexer_Product setVisibility(int $value)
+ *
+ * @category    Mage
+ * @package     Mage_Catalog
+ * @author      Magento Core Team <core@magentocommerce.com>
  */
 class Mage_Catalog_Model_Category_Indexer_Product extends Mage_Index_Model_Indexer_Abstract
 {
+    /**
+     * Data key for matching result to be saved in
+     */
+    const EVENT_MATCH_RESULT_KEY = 'catalog_category_product_match_result';
+
     /**
      * @var array
      */
@@ -94,25 +118,23 @@ class Mage_Catalog_Model_Category_Indexer_Product extends Mage_Index_Model_Index
     public function matchEvent(Mage_Index_Model_Event $event)
     {
         $data      = $event->getNewData();
-        $resultKey = 'catalog_category_product_match_result';
-        if (isset($data[$resultKey])) {
-            return $data[$resultKey];
+        if (isset($data[self::EVENT_MATCH_RESULT_KEY])) {
+            return $data[self::EVENT_MATCH_RESULT_KEY];
         }
 
-        $result = null;
         $entity = $event->getEntity();
         if ($entity == Mage_Core_Model_Store::ENTITY) {
             $store = $event->getDataObject();
-            if ($store->isObjectNew() || $store->dataHasChangedFor('group_id')) {
+            if ($store && ($store->isObjectNew() || $store->dataHasChangedFor('group_id'))) {
                 $result = true;
             } else {
                 $result = false;
             }
         } elseif ($entity == Mage_Core_Model_Store_Group::ENTITY) {
             $storeGroup = $event->getDataObject();
-            $hasDataChanges = $storeGroup->dataHasChangedFor('root_category_id')
-                || $storeGroup->dataHasChangedFor('website_id');
-            if (!$storeGroup->isObjectNew() && $hasDataChanges) {
+            $hasDataChanges = $storeGroup && ($storeGroup->dataHasChangedFor('root_category_id')
+                || $storeGroup->dataHasChangedFor('website_id'));
+            if ($storeGroup && !$storeGroup->isObjectNew() && $hasDataChanges) {
                 $result = true;
             } else {
                 $result = false;
@@ -121,7 +143,7 @@ class Mage_Catalog_Model_Category_Indexer_Product extends Mage_Index_Model_Index
             $result = parent::matchEvent($event);
         }
 
-        $event->addNewData($resultKey, $result);
+        $event->addNewData(self::EVENT_MATCH_RESULT_KEY, $result);
 
         return $result;
     }
@@ -135,6 +157,7 @@ class Mage_Catalog_Model_Category_Indexer_Product extends Mage_Index_Model_Index
      */
     protected function _registerEvent(Mage_Index_Model_Event $event)
     {
+        $event->addNewData(self::EVENT_MATCH_RESULT_KEY, true);
         $entity = $event->getEntity();
         switch ($entity) {
             case Mage_Catalog_Model_Product::ENTITY:

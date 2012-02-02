@@ -20,20 +20,19 @@
  *
  * @category    Mage
  * @package     Mage_XmlConnect
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 /**
  * Product list xml renderer
  *
- * @category   Mage
- * @package    Mage_XmlConnect
- * @author     Magento Core Team <core@magentocommerce.com>
+ * @category    Mage
+ * @package     Mage_XmlConnect
+ * @author      Magento Core Team <core@magentocommerce.com>
  */
 class Mage_XmlConnect_Block_Catalog_Product_List extends Mage_XmlConnect_Block_Catalog_Product
 {
-
     /**
      * Store product collection
      *
@@ -55,7 +54,7 @@ class Mage_XmlConnect_Block_Catalog_Product_List extends Mage_XmlConnect_Block_C
      */
     public function getProductsXmlObject()
     {
-        $productsXmlObj = new Mage_XmlConnect_Model_Simplexml_Element('<products></products>');
+        $productsXmlObj = Mage::getModel('xmlconnect/simplexml_element', '<products></products>');
         $collection     = $this->_getProductCollection();
 
         if (!$collection) {
@@ -100,7 +99,6 @@ class Mage_XmlConnect_Block_Catalog_Product_List extends Mage_XmlConnect_Block_C
             if ($category && is_object($category) && $category->getId()) {
                 $layer->setCurrentCategory($category);
             }
-
             if (!$this->getNeedBlockApplyingFilters()) {
                 $attributes     = $layer->getFilterableAttributes();
                 /**
@@ -108,10 +106,9 @@ class Mage_XmlConnect_Block_Catalog_Product_List extends Mage_XmlConnect_Block_C
                  */
                 foreach ($attributes as $attributeItem) {
                     $attributeCode  = $attributeItem->getAttributeCode();
-                    $filterModel    = $this->helper('xmlconnect')->getFilterByKey($attributeCode);
+                    list($filterModel, $filterBlock) = $this->helper('xmlconnect')->getFilterByKey($attributeCode);
 
-                    $filterModel->setLayer($layer)
-                        ->setAttributeModel($attributeItem);
+                    $filterModel->setLayer($layer)->setAttributeModel($attributeItem);
 
                     $filterParam = parent::REQUEST_FILTER_PARAM_REFIX . $attributeCode;
                     /**
@@ -120,18 +117,17 @@ class Mage_XmlConnect_Block_Catalog_Product_List extends Mage_XmlConnect_Block_C
                     if (isset($requestParams[$filterParam])) {
                         $filterModel->setRequestVar($filterParam);
                     }
-                    $filterModel->apply($request, null);
+                    $filterModel->apply($request, $filterBlock);
                     $filters[] = $filterModel;
                 }
 
                 /**
                  * Separately apply and save category filter
                  */
-                $categoryFilter = $this->helper('xmlconnect')->getFilterByKey('category');
-                $filterParam    = parent::REQUEST_FILTER_PARAM_REFIX . $categoryFilter->getRequestVar();
-                $categoryFilter->setLayer($layer)
-                    ->setRequestVar($filterParam)
-                    ->apply($this->getRequest(), null);
+                list($categoryFilter, $categoryFilterBlock) = $this->helper('xmlconnect')->getFilterByKey('category');
+                $filterParam = parent::REQUEST_FILTER_PARAM_REFIX . $categoryFilter->getRequestVar();
+                $categoryFilter->setLayer($layer)->setRequestVar($filterParam)
+                    ->apply($this->getRequest(), $categoryFilterBlock);
                 $filters[] = $categoryFilter;
 
                 $this->_collectedFilters = $filters;
@@ -158,7 +154,6 @@ class Mage_XmlConnect_Block_Catalog_Product_List extends Mage_XmlConnect_Block_C
                 $this->setHasProductItems(1);
             }
             $collection->getSelect()->limit($count, $offset);
-
             $collection->setFlag('require_stock_items', true);
 
             $this->_productCollection = $collection;

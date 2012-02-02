@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -77,7 +77,7 @@ class Mage_Adminhtml_Catalog_Product_Action_AttributeController extends Mage_Adm
 
                 foreach ($attributesData as $attributeCode => $value) {
                     $attribute = Mage::getSingleton('eav/config')
-                        ->getAttribute('catalog_product', $attributeCode);
+                        ->getAttribute(Mage_Catalog_Model_Product::ENTITY, $attributeCode);
                     if (!$attribute->getAttributeId()) {
                         unset($attributesData[$attributeCode]);
                         continue;
@@ -107,7 +107,10 @@ class Mage_Adminhtml_Catalog_Product_Action_AttributeController extends Mage_Adm
                     ->updateAttributes($this->_getHelper()->getProductIds(), $attributesData, $storeId);
             }
             if ($inventoryData) {
+                /** @var $stockItem Mage_CatalogInventory_Model_Stock_Item */
                 $stockItem = Mage::getModel('cataloginventory/stock_item');
+                $stockItem->setProcessIndexEvents(false);
+                $stockItemSaved = false;
 
                 foreach ($this->_getHelper()->getProductIds() as $productId) {
                     $stockItem->setData(array());
@@ -123,7 +126,15 @@ class Mage_Adminhtml_Catalog_Product_Action_AttributeController extends Mage_Adm
                     }
                     if ($stockDataChanged) {
                         $stockItem->save();
+                        $stockItemSaved = true;
                     }
+                }
+
+                if ($stockItemSaved) {
+                    Mage::getSingleton('index/indexer')->indexEvents(
+                        Mage_CatalogInventory_Model_Stock_Item::ENTITY,
+                        Mage_Index_Model_Event::TYPE_SAVE
+                    );
                 }
             }
 

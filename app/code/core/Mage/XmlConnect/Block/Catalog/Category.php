@@ -20,18 +20,17 @@
  *
  * @category    Mage
  * @package     Mage_XmlConnect
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 /**
  * Category list xml renderer
  *
- * @category   Mage
- * @package    Mage_XmlConnect
+ * @category    Mage
+ * @package     Mage_XmlConnect
  * @author      Magento Core Team <core@magentocommerce.com>
  */
-
 class Mage_XmlConnect_Block_Catalog_Category extends Mage_XmlConnect_Block_Catalog
 {
     /**
@@ -41,49 +40,46 @@ class Mage_XmlConnect_Block_Catalog_Category extends Mage_XmlConnect_Block_Catal
      */
     protected function _toHtml()
     {
-        $categoryXmlObj = new Mage_XmlConnect_Model_Simplexml_Element('<category></category>');
+        /** @var $categoryXmlObj Mage_XmlConnect_Model_Simplexml_Element */
+        $categoryXmlObj = Mage::getModel('xmlconnect/simplexml_element', '<category></category>');
         $categoryId     = $this->getRequest()->getParam('id', null);
         if ($categoryId === null) {
             $categoryId = Mage::app()->getStore()->getRootCategoryId();
         }
 
         $productsXmlObj = $productListBlock = false;
-
+        /** @var $categoryModel Mage_Catalog_Model_Category */
         $categoryModel  = Mage::getModel('catalog/category')->load($categoryId);
         if ($categoryModel->getId()) {
             $hasMoreProductItems = 0;
             $productListBlock = $this->getChild('product_list');
             if ($productListBlock && $categoryModel->getLevel() > 1) {
                 $layer = Mage::getSingleton('catalog/layer');
-                $productsXmlObj = $productListBlock->setCategory($categoryModel)
-                    ->setLayer($layer)
+                $productsXmlObj = $productListBlock->setCategory($categoryModel)->setLayer($layer)
                     ->getProductsXmlObject();
                 $hasMoreProductItems = (int)$productListBlock->getHasProductItems();
             }
 
             $infoBlock = $this->getChild('category_info');
             if ($infoBlock) {
-                $categoryInfoXmlObj = $infoBlock->setCategory($categoryModel)
-                    ->getCategoryInfoXmlObject();
+                $categoryInfoXmlObj = $infoBlock->setCategory($categoryModel)->getCategoryInfoXmlObject();
                 $categoryInfoXmlObj->addChild('has_more_items', $hasMoreProductItems);
                 $categoryXmlObj->appendChild($categoryInfoXmlObj);
             }
         }
 
-        /** @var $categoryCollection Mage_XmlConnect_Model_Mysql4_Category_Collection */
-        $categoryCollection = Mage::getResourceModel('xmlconnect/category_collection');
-        $categoryCollection->setStoreId(Mage::app()->getStore()->getId())
-            ->setOrder('position', 'ASC')
-            ->addParentIdFilter($categoryId);
+        $categoryCollection = $this->getCurrentChildCategories();
 
         // subcategories are exists
         if (sizeof($categoryCollection)) {
             $itemsXmlObj = $categoryXmlObj->addChild('items');
+            foreach ($categoryCollection as $item) {
+                /** @var $item Mage_Catalog_Model_Category */
+                $item = Mage::getModel('catalog/category')->load($item->getId());
 
-            foreach ($categoryCollection->getItems() as $item) {
                 $itemXmlObj = $itemsXmlObj->addChild('item');
-                $itemXmlObj->addChild('label', $categoryXmlObj->xmlentities(strip_tags($item->getName())));
-                $itemXmlObj->addChild('entity_id', $item->getEntityId());
+                $itemXmlObj->addChild('label', $categoryXmlObj->xmlentities($item->getName()));
+                $itemXmlObj->addChild('entity_id', $item->getId());
                 $itemXmlObj->addChild('content_type', $item->hasChildren() ? 'categories' : 'products');
                 if (!is_null($categoryId)) {
                     $itemXmlObj->addChild('parent_id', $item->getParentId());
@@ -101,7 +97,23 @@ class Mage_XmlConnect_Block_Catalog_Category extends Mage_XmlConnect_Block_Catal
         if ($productListBlock && $productsXmlObj) {
             $categoryXmlObj->appendChild($productsXmlObj);
         }
-
         return $categoryXmlObj->asNiceXml();
+    }
+
+    /**
+     * Retrieve child categories of current category
+     *
+     * @return Varien_Data_Tree_Node_Collection
+     */
+    public function getCurrentChildCategories()
+    {
+        $layer = Mage::getSingleton('catalog/layer');
+        $category   = $layer->getCurrentCategory();
+        /* @var $category Mage_Catalog_Model_Category */
+        $categories = $category->getChildrenCategories();
+        $productCollection = Mage::getResourceModel('catalog/product_collection');
+        $layer->prepareProductCollection($productCollection);
+        $productCollection->addCountToCategories($categories);
+        return $categories;
     }
 }

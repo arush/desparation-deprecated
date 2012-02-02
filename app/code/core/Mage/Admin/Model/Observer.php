@@ -20,30 +20,42 @@
  *
  * @category    Mage
  * @package     Mage_Admin
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 /**
  * Admin observer model
  *
- * @category   Mage
- * @package    Mage_Admin
+ * @category    Mage
+ * @package     Mage_Admin
  * @author      Magento Core Team <core@magentocommerce.com>
  */
 class Mage_Admin_Model_Observer
 {
-    public function actionPreDispatchAdmin($event)
+    /**
+     * Handler for controller_action_predispatch event
+     *
+     * @param Varien_Event_Observer $observer
+     * @return boolean
+     */
+    public function actionPreDispatchAdmin($observer)
     {
-        $session  = Mage::getSingleton('admin/session');
-        /* @var $session Mage_Admin_Model_Session */
+        $session = Mage::getSingleton('admin/session');
+        /** @var $session Mage_Admin_Model_Session */
         $request = Mage::app()->getRequest();
         $user = $session->getUser();
 
-        if ($request->getActionName() == 'forgotpassword' || $request->getActionName() == 'logout') {
+        $requestedActionName = $request->getActionName();
+        $openActions = array(
+            'forgotpassword',
+            'resetpassword',
+            'resetpasswordpost',
+            'logout'
+        );
+        if (in_array($requestedActionName, $openActions)) {
             $request->setDispatched(true);
-        }
-        else {
+        } else {
             if($user) {
                 $user->reload();
             }
@@ -61,8 +73,7 @@ class Mage_Admin_Model_Observer
                             ->setControllerName('index')
                             ->setActionName('deniedIframe')
                             ->setDispatched(false);
-                    }
-                    elseif($request->getParam('isAjax')) {
+                    } elseif($request->getParam('isAjax')) {
                         $request->setParam('forwarded', true)
                             ->setControllerName('index')
                             ->setActionName('deniedJson')

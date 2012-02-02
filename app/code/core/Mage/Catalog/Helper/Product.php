@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Catalog
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -280,7 +280,10 @@ class Mage_Catalog_Helper_Product extends Mage_Core_Helper_Url
         }
 
         // Init and load product
-        Mage::dispatchEvent('catalog_controller_product_init_before', array('controller_action' => $controller));
+        Mage::dispatchEvent('catalog_controller_product_init_before', array(
+            'controller_action' => $controller,
+            'params' => $params,
+        ));
 
         if (!$productId) {
             return false;

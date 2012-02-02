@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_CatalogRule
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -53,6 +53,24 @@ class Mage_CatalogRule_Model_Rule_Condition_Product extends Mage_Rule_Model_Cond
     protected $_isUsedForRuleProperty = 'is_used_for_promo_rules';
 
     /**
+     * Customize default operator input by type mapper for some types
+     *
+     * @return array
+     */
+    public function getDefaultOperatorInputByType()
+    {
+        if (null === $this->_defaultOperatorInputByType) {
+            parent::getDefaultOperatorInputByType();
+            /*
+             * '{}' and '!{}' are left for back-compatibility and equal to '==' and '!='
+             */
+            $this->_defaultOperatorInputByType['category'] = array('==', '!=', '{}', '!{}', '()', '!()');
+            $this->_arrayInputTypes[] = 'category';
+        }
+        return $this->_defaultOperatorInputByType;
+    }
+
+    /**
      * Retrieve attribute object
      *
      * @return Mage_Catalog_Model_Resource_Eav_Attribute
@@ -61,7 +79,7 @@ class Mage_CatalogRule_Model_Rule_Condition_Product extends Mage_Rule_Model_Cond
     {
         try {
             $obj = Mage::getSingleton('eav/config')
-                ->getAttribute('catalog_product', $this->getAttribute());
+                ->getAttribute(Mage_Catalog_Model_Product::ENTITY, $this->getAttribute());
         }
         catch (Exception $e) {
             $obj = new Varien_Object();
@@ -96,7 +114,9 @@ class Mage_CatalogRule_Model_Rule_Condition_Product extends Mage_Rule_Model_Cond
         $attributes = array();
         foreach ($productAttributes as $attribute) {
             /* @var $attribute Mage_Catalog_Model_Resource_Eav_Attribute */
-            if (!$attribute->isAllowedForRuleCondition() || !$attribute->getDataUsingMethod($this->_isUsedForRuleProperty)) {
+            if (!$attribute->isAllowedForRuleCondition()
+                || !$attribute->getDataUsingMethod($this->_isUsedForRuleProperty)
+            ) {
                 continue;
             }
             $attributes[$attribute->getAttributeCode()] = $attribute->getFrontendLabel();
@@ -131,7 +151,7 @@ class Mage_CatalogRule_Model_Rule_Condition_Product extends Mage_Rule_Model_Cond
         $selectOptions = null;
         if ($this->getAttribute() === 'attribute_set_id') {
             $entityTypeId = Mage::getSingleton('eav/config')
-                ->getEntityType('catalog_product')->getId();
+                ->getEntityType(Mage_Catalog_Model_Product::ENTITY)->getId();
             $selectOptions = Mage::getResourceModel('eav/entity_attribute_set_collection')
                 ->setEntityTypeFilter($entityTypeId)
                 ->load()
@@ -261,6 +281,9 @@ class Mage_CatalogRule_Model_Rule_Condition_Product extends Mage_Rule_Model_Cond
         if (!is_object($this->getAttributeObject())) {
             return 'string';
         }
+        if ($this->getAttributeObject()->getAttributeCode() == 'category_ids') {
+            return 'category';
+        }
         switch ($this->getAttributeObject()->getFrontendInput()) {
             case 'select':
                 return 'select';
@@ -378,7 +401,8 @@ class Mage_CatalogRule_Model_Rule_Condition_Product extends Mage_Rule_Model_Cond
         $this->setAttribute(isset($arr['attribute']) ? $arr['attribute'] : false);
         $attribute = $this->getAttributeObject();
 
-        if ($attribute && $attribute->getBackendType() == 'decimal') {
+        $isContainsOperator = !empty($arr['operator']) && in_array($arr['operator'], array('{}', '!{}'));
+        if ($attribute && $attribute->getBackendType() == 'decimal' && !$isContainsOperator) {
             if (isset($arr['value'])) {
                 if (!empty($arr['operator'])
                     && in_array($arr['operator'], array('!()', '()'))
@@ -432,7 +456,8 @@ class Mage_CatalogRule_Model_Rule_Condition_Product extends Mage_Rule_Model_Cond
             return parent::validate($object);
         } else {
             $result = false; // any valid value will set it to TRUE
-            $oldAttrValue = $object->hasData($attrCode) ? $object->getData($attrCode) : null; // remember old attribute state
+            // remember old attribute state
+            $oldAttrValue = $object->hasData($attrCode) ? $object->getData($attrCode) : null;
 
             foreach ($this->_entityAttributeValues[$object->getId()] as $storeId => $value) {
                 $attr = $object->getResource()->getAttribute($attrCode);
@@ -458,5 +483,25 @@ class Mage_CatalogRule_Model_Rule_Condition_Product extends Mage_Rule_Model_Cond
 
             return (bool) $result;
         }
+    }
+
+    /**
+     * Correct '==' and '!=' operators
+     * Categories can't be equal because product is included categories selected by administrator and in their parents
+     *
+     * @return string
+     */
+    public function getOperatorForValidate()
+    {
+        $op = $this->getOperator();
+        if ($this->getInputType() == 'category') {
+            if ($op == '==') {
+                $op = '{}';
+            } elseif ($op == '!=') {
+                $op = '!{}';
+            }
+        }
+
+        return $op;
     }
 }

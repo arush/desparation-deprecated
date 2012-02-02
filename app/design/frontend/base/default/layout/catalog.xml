@@ -21,7 +21,7 @@
  *
  * @category    design
  * @package     base_default
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 
@@ -146,14 +146,6 @@ Category layered navigation layout
         </reference>
     </catalog_category_layered>
 
-    <catalog_category_layered_nochildren translate="label">
-        <label>Catalog Category (Without Subcategories)</label>
-        <remove name="right.reports.product.viewed" />
-        <reference name="right">
-            <block type="reports/product_viewed" before="right.permanent.callout" name="left.reports.product.viewed" template="reports/product_viewed.phtml" />
-        </reference>
-    </catalog_category_layered_nochildren>
-
 <!--
 Compare products page
 -->
@@ -264,14 +256,10 @@ Product view
                 <action method="unsetCallChild"><child>container1</child><call>ifEquals</call><if>0</if><key>alias_in_layout</key><key>options_container</key></action>
                 <action method="unsetCallChild"><child>container2</child><call>ifEquals</call><if>0</if><key>alias_in_layout</key><key>options_container</key></action>
             </block>
-            <block type="evogue_targetrule/catalog_product_list_related" name="catalog.product.related" as="relatedProducts" template="evogue/targetrule/catalog/product/list/related.phtml">
-                <action method="setColumnCount"><columns>3</columns></action>
-            </block>
-
         </reference>
-        <!--reference name="right">
+        <reference name="right">
             <block type="catalog/product_list_related" name="catalog.product.related" before="-" template="catalog/product/list/related.phtml"/>
-        </reference-->
+        </reference>
     </catalog_product_view>
 
 <!--
@@ -380,6 +368,9 @@ SEO Site Map
 
     <catalog_seo_sitemap_category translate="label">
         <label>Catalog Seo Sitemap (Category List)</label>
+        <reference name="head">
+            <action method="setTitle" translate="title" module="catalog"><title>Site Map</title></action>
+        </reference>
         <update handle="catalog_seo_sitemap" />
         <reference name="seo.sitemap.container">
             <action method="setTitle" translate="title" module="catalog"><title>Categories</title></action>
@@ -411,6 +402,9 @@ SEO Site Map
 
     <catalog_seo_sitemap_product translate="label">
         <label>Catalog Seo Sitemap (Product List)</label>
+        <reference name="head">
+            <action method="setTitle" translate="title" module="catalog"><title>Site Map</title></action>
+        </reference>
         <update handle="catalog_seo_sitemap" />
         <reference name="seo.sitemap.container">
             <action method="setTitle" translate="title" module="catalog"><title>Products</title></action>

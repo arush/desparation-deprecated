@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_XmlConnect
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -35,57 +35,41 @@ class Mage_XmlConnect_Helper_Android extends Mage_Core_Helper_Abstract
 {
     /**
      * Submission title length
-     *
-     * @var int
      */
     const SUBMISSION_TITLE_LENGTH = 30;
 
     /**
      * Submission description length
-     *
-     * @var int
      */
     const SUBMISSION_DESCRIPTION_LENGTH = 4000;
 
     /**
      * Android preview banner widht
-     *
-     * @var int
      */
     const PREVIEW_BANNER_WIDTH = 320;
 
     /**
      * Android preview banner image height
-     *
-     * @var int
      */
     const PREVIEW_BANNER_HEIGHT = 258;
 
     /**
      * Tags identifier for title bar
-     *
-     * @var int
      */
     const TAGS_ID_FOR_TITLE_BAR = 1;
 
     /**
      * Tags identifier for options menu
-     *
-     * @var int
      */
     const TAGS_ID_FOR_OPTION_MENU = 2;
 
     /**
      * Country renderer for submission
-     *
-     * @var string
      */
     const SUBMISSION_COUNTRY_RENDERER = 'androidmarket';
 
     /**
      * Country columns for submission
-     *
-     * @var int
      */
     const SUBMISSION_COUNTRY_COLUMNS = 2;
 
@@ -104,6 +88,47 @@ class Mage_XmlConnect_Helper_Android extends Mage_Core_Helper_Abstract
     protected $_countryRenderer = null;
 
     /**
+     * List of coutries that allowed in Ituens by Apple Store
+     *
+     * array(
+     *      'country name' => 'country id at directory model'
+     * )
+     *
+     * @var array
+     */
+    protected $_allowedCountries = array(
+        'Argentina' => 'AR',
+        'Australia' => 'AU',
+        'Austria'   => 'AT',
+        'Belgium'   => 'BE',
+        'Brazil'    =>'BR',
+        'Canada'    => 'CA',
+        'Denmark'   => 'DK',
+        'Finland'   => 'FI',
+        'France'    => 'FR',
+        'Germany'   => 'DE',
+        'Hong Kong SAR China' => 'HK',
+        'Ireland'   => 'IE',
+        'Israel'    => 'IL',
+        'Italy'     => 'IT',
+        'Japan'     => 'JP',
+        'Mexico'    => 'MX',
+        'Netherlands' => 'NL',
+        'New Zealand' => 'NZ',
+        'Norway'    => 'NO',
+        'Portugal'  => 'PT',
+        'Russia'    => 'RU',
+        'Singapore' => 'SG',
+        'Spain'     => 'ES',
+        'South Korea' => 'KR',
+        'Sweden'    => 'SE',
+        'Switzerland' => 'CH',
+        'Taiwan'    => 'TW',
+        'United Kingdom' => 'GB',
+        'United States' => 'US',
+    );
+
+    /**
      * Get submit images that are required for application submit
      *
      * @return array
@@ -114,50 +139,8 @@ class Mage_XmlConnect_Helper_Android extends Mage_Core_Helper_Abstract
     }
 
     /**
-     * List of coutries that allowed in Ituens by Apple Store
-     *
-     * array(
-     *      'country name' => 'country id at directory model'
-     * )
-     *
-     * @var array
-     */
-    protected $_allowedCountries = array(
-                'Argentina' => 'AR',
-                'Australia' => 'AU',
-                'Austria' => 'AT',
-                'Belgium' => 'BE',
-                'Brazil' =>'BR',
-                'Canada' => 'CA',
-                'Denmark' => 'DK',
-                'Finland' => 'FI',
-                'France' => 'FR',
-                'Germany' => 'DE',
-                'Hong Kong SAR China' => 'HK',
-                'Ireland' => 'IE',
-                'Israel' => 'IL',
-                'Italy' => 'IT',
-                'Japan' => 'JP',
-                'Mexico' => 'MX',
-                'Netherlands' => 'NL',
-                'New Zealand' => 'NZ',
-                'Norway' => 'NO',
-                'Portugal' => 'PT',
-                'Russia' => 'RU',
-                'Singapore' => 'SG',
-                'Spain' => 'ES',
-                'South Korea' => 'KR',
-                'Sweden' => 'SE',
-                'Switzerland' => 'CH',
-                'Taiwan' => 'TW',
-                'United Kingdom' => 'GB',
-                'United States' => 'US',
-    );
-
-    /**
      * Get default application tabs
      *
-     * @param string
      * @return array
      */
     public function getDefaultDesignTabs()
@@ -212,74 +195,74 @@ class Mage_XmlConnect_Helper_Android extends Mage_Core_Helper_Abstract
      */
      public function getDefaultConfiguration()
      {
-        return array(
-            'native' => array(
-                'body' => array(
-                    'backgroundColor' => '#ABABAB',
-                    'scrollBackgroundColor' => '#EDEDED',
-                ),
-                'itemActions' => array(
-                    'relatedProductBackgroundColor' => '#404040',
-                ),
-                'fonts' => array(
-                    'Title1' => array(
-                        'name' => 'HelveticaNeue-Bold',
-                        'size' => '14',
-                        'color' => '#FEFEFE',
-                    ),
-                    'Title2' => array(
-                        'name' => 'HelveticaNeue-Bold',
-                        'size' => '12',
-                        'color' => '#222222',
-                    ),
-                    'Title3' => array(
-                        'name' => 'HelveticaNeue',
-                        'size' => '13',
-                        'color' => '#000000',
-                    ),
-                    'Title4' => array(
-                        'name' => 'HelveticaNeue',
-                        'size' => '12',
-                        'color' => '#FFFFFF',
-                    ),
-                    'Title5' => array(
-                        'name' => 'HelveticaNeue-Bold',
-                        'size' => '13',
-                        'color' => '#dc5f02',
-                    ),
-                    'Title6' => array(
-                        'name' => 'HelveticaNeue-Bold',
-                        'size' => '16',
-                        'color' => '#222222',
-                    ),
-                    'Title7' => array(
-                        'name' => 'HelveticaNeue-Bold',
-                        'size' => '13',
-                        'color' => '#000000',
-                    ),
-                    'Title8' => array(
-                        'name' => 'HelveticaNeue-Bold',
-                        'size' => '11',
-                        'color' => '#FFFFFF',
-                    ),
-                    'Title9' => array(
-                        'name' => 'HelveticaNeue-Bold',
-                        'size' => '12',
-                        'color' => '#FFFFFF',
-                    ),
-                    'Text1' => array(
-                        'name' => 'HelveticaNeue-Bold',
-                        'size' => '12',
-                        'color' => '#777777',
-                    ),
-                    'Text2' => array(
-                        'name' => 'HelveticaNeue',
-                        'size' => '10',
-                        'color' => '#555555',
-                    ),
-                ),
-            ),
-        );
+         return array(
+             'native' => array(
+                 'body' => array(
+                     'backgroundColor' => '#ABABAB',
+                     'scrollBackgroundColor' => '#EDEDED',
+                 ),
+                 'itemActions' => array(
+                     'relatedProductBackgroundColor' => '#404040',
+                 ),
+                 'fonts' => array(
+                     'Title1' => array(
+                         'name' => 'HelveticaNeue-Bold',
+                         'size' => '14',
+                         'color' => '#FEFEFE',
+                     ),
+                     'Title2' => array(
+                         'name' => 'HelveticaNeue-Bold',
+                         'size' => '12',
+                         'color' => '#222222',
+                     ),
+                     'Title3' => array(
+                         'name' => 'HelveticaNeue',
+                         'size' => '13',
+                         'color' => '#000000',
+                     ),
+                     'Title4' => array(
+                         'name' => 'HelveticaNeue',
+                         'size' => '12',
+                         'color' => '#FFFFFF',
+                     ),
+                     'Title5' => array(
+                         'name' => 'HelveticaNeue-Bold',
+                         'size' => '13',
+                         'color' => '#dc5f02',
+                     ),
+                     'Title6' => array(
+                         'name' => 'HelveticaNeue-Bold',
+                         'size' => '16',
+                         'color' => '#222222',
+                     ),
+                     'Title7' => array(
+                         'name' => 'HelveticaNeue-Bold',
+                         'size' => '13',
+                         'color' => '#000000',
+                     ),
+                     'Title8' => array(
+                         'name' => 'HelveticaNeue-Bold',
+                         'size' => '11',
+                         'color' => '#FFFFFF',
+                     ),
+                     'Title9' => array(
+                         'name' => 'HelveticaNeue-Bold',
+                         'size' => '12',
+                         'color' => '#FFFFFF',
+                     ),
+                     'Text1' => array(
+                         'name' => 'HelveticaNeue-Bold',
+                         'size' => '12',
+                         'color' => '#777777',
+                     ),
+                     'Text2' => array(
+                         'name' => 'HelveticaNeue',
+                         'size' => '10',
+                         'color' => '#555555',
+                     ),
+                 ),
+             ),
+         );
      }
 
     /**
@@ -508,7 +491,7 @@ class Mage_XmlConnect_Helper_Android extends Mage_Core_Helper_Abstract
      */
     public function getFontSizes()
     {
-        $result = array( );
+        $result = array();
         for ($i = 6; $i < 32; $i++) {
             $result[] = array(
                 'value' => $i,
@@ -576,14 +559,14 @@ class Mage_XmlConnect_Helper_Android extends Mage_Core_Helper_Abstract
 
             if (!Zend_Validate::is($resubmissionKey, 'NotEmpty')) {
                 $errors[] = Mage::helper('xmlconnect')->__('Please enter the Resubmission Key.');
-            } else if (!Zend_Validate::is($resubmissionKey, 'StringLength', array(1, $keyLenght))) {
+            } elseif (!Zend_Validate::is($resubmissionKey, 'StringLength', array(1, $keyLenght))) {
                 $errors[] = Mage::helper('xmlconnect')->__('Submit App failure. Invalid activation key provided');
             }
         } else {
             $key = isset($params['key']) ? $params['key'] : null;
             if (!Zend_Validate::is($key, 'NotEmpty')) {
                 $errors[] = Mage::helper('xmlconnect')->__('Please enter the Activation Key.');
-            } else if (!Zend_Validate::is($key, 'StringLength', array(1, $keyLenght))) {
+            } elseif (!Zend_Validate::is($key, 'StringLength', array(1, $keyLenght))) {
                 $errors[] = Mage::helper('xmlconnect')->__('Submit App failure. Invalid activation key provided');
             }
         }
@@ -599,10 +582,9 @@ class Mage_XmlConnect_Helper_Android extends Mage_Core_Helper_Abstract
     public function validateConfig($native)
     {
         $errors = array();
-        if ( ($native === false)
-            || (!isset($native['navigationBar']) || !is_array($native['navigationBar'])
-            || !isset($native['navigationBar']['icon'])
-            || !Zend_Validate::is($native['navigationBar']['icon'], 'NotEmpty'))) {
+        if ($native === false || !isset($native['navigationBar']['icon'])
+            || !Zend_Validate::is($native['navigationBar']['icon'], 'NotEmpty')
+        ) {
             $errors[] = Mage::helper('xmlconnect')->__('Please upload  an image for "Logo in Header" field from Design Tab.');
         }
 
@@ -688,16 +670,18 @@ class Mage_XmlConnect_Helper_Android extends Mage_Core_Helper_Abstract
      */
     public function checkImages(array $data)
     {
-        if (isset($data['conf']['native']['navigationBar']['icon']) &&
-            !file_exists($data['conf']['native']['navigationBar']['icon'])
-        ) {
-            $data['conf']['native']['navigationBar']['icon'] = '';
+        /** @var $helper Mage_XmlConnect_Helper_Image */
+        $helper = Mage::helper('xmlconnect/image');
+
+        $icon =& $data['conf']['native']['navigationBar']['icon'];
+
+        if (!empty($icon) && !$helper->checkAndGetImagePath($icon)) {
+            $icon = '';
         }
 
-        if (isset($data['conf']['native']['body']['bannerAndroidImage']) &&
-            !file_exists($data['conf']['native']['body']['bannerAndroidImage'])
-        ) {
-            $data['conf']['native']['body']['bannerAndroidImage'] = '';
+        $banner =& $data['conf']['native']['body']['bannerAndroidImage'];
+        if (!empty($banner) && !$helper->checkAndGetImagePath($banner)) {
+            $banner = '';
         }
         return $data;
     }
@@ -707,7 +691,7 @@ class Mage_XmlConnect_Helper_Android extends Mage_Core_Helper_Abstract
      *
      * @throws Mage_Core_Exception
      * @param array $data
-     * @return void
+     * @return null
      */
     public function checkRequiredConfigFields($data)
     {
@@ -715,19 +699,22 @@ class Mage_XmlConnect_Helper_Android extends Mage_Core_Helper_Abstract
             return;
         }
 
-        if (isset($data['navigationBar']['icon'])
-            && empty($data['navigationBar']['icon'])
-        ) {
-            Mage::throwException(
-                Mage::helper('xmlconnect')->__('Logo in Header image missing.')
-            );
+        if (isset($data['navigationBar']['icon']) && empty($data['navigationBar']['icon'])) {
+            Mage::throwException(Mage::helper('xmlconnect')->__('Logo in Header image missing.'));
         }
-        if (isset($data['body']['bannerAndroidImage'])
-            && empty($data['body']['bannerAndroidImage'])
-        ) {
-            Mage::throwException(
-                Mage::helper('xmlconnect')->__('Banner on Home Screen image missing.')
-            );
+
+        if (isset($data['body']['bannerAndroidImage']) && empty($data['body']['bannerAndroidImage'])) {
+            Mage::throwException(Mage::helper('xmlconnect')->__('Banner on Home Screen image missing.'));
         }
+    }
+
+    /**
+     * Check the notifications are allowed for current type of application
+     *
+     * @return bool
+     */
+    public function isNotificationsAllowed()
+    {
+        return true;
     }
 }

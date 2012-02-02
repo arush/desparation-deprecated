@@ -20,13 +20,21 @@
  *
  * @category    Mage
  * @package     Mage_Customer
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 /**
  * Customer group model
  *
+ * @method Mage_Customer_Model_Resource_Group _getResource()
+ * @method Mage_Customer_Model_Resource_Group getResource()
+ * @method string getCustomerGroupCode()
+ * @method Mage_Customer_Model_Group setCustomerGroupCode(string $value)
+ * @method Mage_Customer_Model_Group setTaxClassId(int $value)
+ *
+ * @category    Mage
+ * @package     Mage_Customer
  * @author      Magento Core Team <core@magentocommerce.com>
  */
 class Mage_Customer_Model_Group extends Mage_Core_Model_Abstract
@@ -40,6 +48,8 @@ class Mage_Customer_Model_Group extends Mage_Core_Model_Abstract
     const CUST_GROUP_ALL            = 32000;
 
     const ENTITY                    = 'customer_group';
+
+    const GROUP_CODE_MAX_LENGTH     = 32;
 
     /**
      * Prefix of model events names
@@ -84,7 +94,7 @@ class Mage_Customer_Model_Group extends Mage_Core_Model_Abstract
         return $this->getCustomerGroupCode();
     }
 
-    public function getTaxClassId($groupId=null)
+    public function getTaxClassId($groupId = null)
     {
         if (!is_null($groupId)) {
             if (empty(self::$_taxClassIds[$groupId])) {
@@ -119,4 +129,29 @@ class Mage_Customer_Model_Group extends Mage_Core_Model_Abstract
         );
         return $this;
     }
+
+    /**
+     * Prepare data before save
+     *
+     * @return Mage_Core_Model_Abstract
+     */
+    protected function _beforeSave()
+    {
+        $this->_prepareData();
+        return parent::_beforeSave();
+    }
+
+    /**
+     * Prepare customer group data
+     *
+     * @return Mage_Customer_Model_Group
+     */
+    protected function _prepareData()
+    {
+        $this->setCode(
+            substr($this->getCode(), 0, self::GROUP_CODE_MAX_LENGTH)
+        );
+        return $this;
+    }
+
 }

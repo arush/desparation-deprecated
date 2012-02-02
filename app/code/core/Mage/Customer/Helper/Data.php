@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Customer
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -38,6 +38,17 @@ class Mage_Customer_Helper_Data extends Mage_Core_Helper_Abstract
      * Query param name for last url visited
      */
     const REFERER_QUERY_PARAM_NAME = 'referer';
+
+    /**
+     * Config name for Redirect Customer to Account Dashboard after Logging in setting
+     */
+    const XML_PATH_CUSTOMER_STARTUP_REDIRECT_TO_DASHBOARD = 'customer/startup/redirect_dashboard';
+
+    /**
+     * Configuration path to expiration period of reset password link
+     */
+    const XML_PATH_CUSTOMER_RESET_PASSWORD_LINK_EXPIRATION_PERIOD
+        = 'default/customer/password/reset_link_expiration_period';
 
     /**
      * Customer groups collection
@@ -129,7 +140,7 @@ class Mage_Customer_Helper_Data extends Mage_Core_Helper_Abstract
 
         $referer = $this->_getRequest()->getParam(self::REFERER_QUERY_PARAM_NAME);
 
-        if (!$referer && !Mage::getStoreConfigFlag('customer/startup/redirect_dashboard')) {
+        if (!$referer && !Mage::getStoreConfigFlag(self::XML_PATH_CUSTOMER_STARTUP_REDIRECT_TO_DASHBOARD)) {
             if (!Mage::getSingleton('customer/session')->getNoReferer()) {
                 $referer = Mage::getUrl('*/*/*', array('_current' => true, '_use_rewrite' => true));
                 $referer = Mage::helper('core')->urlEncode($referer);
@@ -314,5 +325,25 @@ class Mage_Customer_Helper_Data extends Mage_Core_Helper_Abstract
             $result[$value] = $value;
         }
         return $result;
+    }
+
+    /**
+     * Generate unique token for reset password confirmation link
+     *
+     * @return string
+     */
+    public function generateResetPasswordLinkToken()
+    {
+        return Mage::helper('core')->uniqHash();
+    }
+
+    /**
+     * Retrieve customer reset password link expiration period in days
+     *
+     * @return int
+     */
+    public function getResetPasswordLinkExpirationPeriod()
+    {
+        return (int) Mage::getConfig()->getNode(self::XML_PATH_CUSTOMER_RESET_PASSWORD_LINK_EXPIRATION_PERIOD);
     }
 }

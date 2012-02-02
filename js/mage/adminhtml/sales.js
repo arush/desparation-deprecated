@@ -19,7 +19,7 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 var AdminOrder = new Class.create();
@@ -124,7 +124,7 @@ AdminOrder.prototype = {
     },
 
     bindAddressFields : function(container) {
-        var fields = $(container).select('input', 'select');
+        var fields = $(container).select('input', 'select', 'textarea');
         for(var i=0;i<fields.length;i++){
             Event.observe(fields[i], 'change', this.changeAddressField.bind(this));
         }
@@ -134,6 +134,11 @@ AdminOrder.prototype = {
         var field = Event.element(event);
         var re = /[^\[]*\[([^\]]*)_address\]\[([^\]]*)\](\[(\d)\])?/;
         var matchRes = field.name.match(re);
+
+        if (!matchRes) {
+            return;
+        }
+
         var type = matchRes[1];
         var name = matchRes[2];
         var data;
@@ -170,7 +175,7 @@ AdminOrder.prototype = {
         var regionIdElem = false;
         var regionIdElemValue = false;
 
-        var fields = $(container).select('input', 'select');
+        var fields = $(container).select('input', 'select', 'textarea');
         var re = /[^\[]*\[[^\]]*\]\[([^\]]*)\](\[(\d)\])?/;
         for(var i=0;i<fields.length;i++){
             // skip input type file @Security error code: 1000
@@ -220,7 +225,7 @@ AdminOrder.prototype = {
             $('order-shipping_address_customer_address_id').disabled=flag;
         }
         if($(this.shippingAddressContainer)){
-            var dataFields = $(this.shippingAddressContainer).select('input', 'select');
+            var dataFields = $(this.shippingAddressContainer).select('input', 'select', 'textarea');
             for(var i=0;i<dataFields.length;i++) dataFields[i].disabled = flag;
         }
     },
@@ -270,7 +275,7 @@ AdminOrder.prototype = {
                 var block = $(el);
                 if (block) {
                     block.hide();
-                    block.select('input', 'select').each(function(field) {
+                    block.select('input', 'select', 'textarea').each(function(field) {
                         field.disabled = true;
                     });
                 }
@@ -278,7 +283,7 @@ AdminOrder.prototype = {
         }
 
         if(!this.paymentMethod || method){
-            $('order-billing_method_form').select('input', 'select').each(function(elem){
+            $('order-billing_method_form').select('input', 'select', 'textarea').each(function(elem){
                 if(elem.type != 'radio') elem.disabled = true;
             })
         }
@@ -290,7 +295,7 @@ AdminOrder.prototype = {
                 var block = $(el);
                 if (block) {
                    block.show();
-                   block.select('input', 'select').each(function(field) {
+                   block.select('input', 'select', 'textarea').each(function(field) {
                        field.disabled = false;
                        if (!el.include('_before') && !el.include('_after') && !field.bindChange) {
                            field.bindChange = true;
@@ -422,7 +427,7 @@ AdminOrder.prototype = {
                     var listType = confLink.readAttribute('list_type');
                     var productId = confLink.readAttribute('product_id');
                     if (typeof this.productPriceBase[productId] == 'undefined') {
-                        var priceBase = priceColl.innerHTML.match(/.*?([0-9\.,]+)/);
+                        var priceBase = priceColl.innerHTML.match(/.*?([\d,]+\.?\d*)/);
                         if (!priceBase) {
                             this.productPriceBase[productId] = 0;
                         } else {
@@ -766,7 +771,7 @@ AdminOrder.prototype = {
 
     accountFieldsBind : function(container){
         if($(container)){
-            var fields = $(container).select('input', 'select');
+            var fields = $(container).select('input', 'select', 'textarea');
             for(var i=0; i<fields.length; i++){
                 if(fields[i].id == 'group_id'){
                     fields[i].observe('change', this.accountGroupChange.bind(this))

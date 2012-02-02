@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Bundle
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -62,7 +62,9 @@ class Mage_Bundle_Model_Observer
             }
         }
 
-        $product->setCanSaveBundleSelections((bool)$request->getPost('affect_bundle_product_selections') && !$product->getCompositeReadonly());
+        $product->setCanSaveBundleSelections(
+            (bool)$request->getPost('affect_bundle_product_selections') && !$product->getCompositeReadonly()
+        );
 
         return $this;
     }
@@ -100,7 +102,7 @@ class Mage_Bundle_Model_Observer
         $resource   = Mage::getResourceSingleton('bundle/selection');
 
         $productIds = array_keys($collection->getItems());
-        if ($limit <= count($productIds)) {
+        if (!is_null($limit) && $limit <= count($productIds)) {
             return $this;
         }
 
@@ -124,12 +126,22 @@ class Mage_Bundle_Model_Observer
         Mage::getSingleton('catalog/product_visibility')
             ->addVisibleInCatalogFilterToCollection($bundleCollection);
 
-        $bundleCollection->setPageSize($limit - count($productIds))
-            ->addFieldToFilter('entity_id', array('in' => $bundleIds))
+        if (!is_null($limit)) {
+            $bundleCollection->setPageSize($limit);
+        }
+        $bundleCollection->addFieldToFilter('entity_id', array('in' => $bundleIds))
             ->setFlag('do_not_use_category_id', true);
 
-        foreach ($bundleCollection as $item) {
-            $collection->addItem($item);
+        if ($collection instanceof Varien_Data_Collection) {
+            foreach ($bundleCollection as $item) {
+                $collection->addItem($item);
+            }
+        } elseif ($collection instanceof Varien_Object) {
+            $items = $collection->getItems();
+            foreach ($bundleCollection as $item) {
+                $items[$item->getEntityId()] = $item;
+            }
+            $collection->setItems($items);
         }
 
         return $this;

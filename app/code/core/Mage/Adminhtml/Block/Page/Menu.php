@@ -20,12 +20,15 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 /**
  * Adminhtml menu block
+ *
+ * @method Mage_Adminhtml_Block_Page_Menu setAdditionalCacheKeyInfo(array $cacheKeyInfo)
+ * @method array getAdditionalCacheKeyInfo()
  *
  * @category   Mage
  * @package    Mage_Adminhtml
@@ -71,12 +74,18 @@ class Mage_Adminhtml_Block_Page_Menu extends Mage_Adminhtml_Block_Template
      */
     public function getCacheKeyInfo()
     {
-        return array(
+        $cacheKeyInfo = array(
             'admin_top_nav',
             $this->getActive(),
             Mage::getSingleton('admin/session')->getUser()->getId(),
             Mage::app()->getLocale()->getLocaleCode()
         );
+        // Add additional key parameters if needed
+        $additionalCacheKeyInfo = $this->getAdditionalCacheKeyInfo();
+        if (is_array($additionalCacheKeyInfo) && !empty($additionalCacheKeyInfo)) {
+            $cacheKeyInfo = array_merge($cacheKeyInfo, $additionalCacheKeyInfo);
+        }
+        return $cacheKeyInfo;
     }
 
     /**

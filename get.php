@@ -84,7 +84,7 @@ $pathInfo = str_replace('..', '', ltrim($request->getPathInfo(), '/'));
 $filePath = str_replace('/', $ds, rtrim($bp, $ds) . $ds . $pathInfo);
 
 if ($mediaDirectory) {
-    if (0 !== stripos($pathInfo, $mediaDirectory . '/')) {
+    if (0 !== stripos($pathInfo, $mediaDirectory . '/') || is_dir($filePath)) {
         sendNotFoundPage();
     }
 
@@ -112,7 +112,12 @@ $mageRunType = isset($_SERVER['MAGE_RUN_TYPE']) ? $_SERVER['MAGE_RUN_TYPE'] : 's
 if (empty($mediaDirectory)) {
     Mage::init($mageRunCode, $mageRunType);
 } else {
-    Mage::init($mageRunCode, $mageRunType, array(), array('Mage_Core'));
+    Mage::init(
+        $mageRunCode,
+        $mageRunType,
+        array('cache' => array('disallow_save' => true)),
+        array('Mage_Core')
+    );
 }
 
 if (!$mediaDirectory) {
@@ -137,9 +142,11 @@ if (0 !== stripos($pathInfo, $mediaDirectory . '/')) {
     sendNotFoundPage();
 }
 
-$databaseFileSotrage = Mage::getModel('core/file_storage_database');
-$databaseFileSotrage->loadByFilename($relativeFilename);
-
+try {
+    $databaseFileSotrage = Mage::getModel('core/file_storage_database');
+    $databaseFileSotrage->loadByFilename($relativeFilename);
+} catch (Exception $e) {
+}
 if ($databaseFileSotrage->getId()) {
     $directory = dirname($filePath);
     if (!is_dir($directory)) {

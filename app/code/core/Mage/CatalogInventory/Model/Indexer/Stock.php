@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_CatalogInventory
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -28,12 +28,30 @@
 /**
  * CatalogInventory Stock Status Indexer Model
  *
+ * @method Mage_CatalogInventory_Model_Resource_Indexer_Stock _getResource()
+ * @method Mage_CatalogInventory_Model_Resource_Indexer_Stock getResource()
+ * @method int getProductId()
+ * @method Mage_CatalogInventory_Model_Indexer_Stock setProductId(int $value)
+ * @method int getWebsiteId()
+ * @method Mage_CatalogInventory_Model_Indexer_Stock setWebsiteId(int $value)
+ * @method int getStockId()
+ * @method Mage_CatalogInventory_Model_Indexer_Stock setStockId(int $value)
+ * @method float getQty()
+ * @method Mage_CatalogInventory_Model_Indexer_Stock setQty(float $value)
+ * @method int getStockStatus()
+ * @method Mage_CatalogInventory_Model_Indexer_Stock setStockStatus(int $value)
+ *
  * @category    Mage
  * @package     Mage_CatalogInventory
  * @author      Magento Core Team <core@magentocommerce.com>
  */
 class Mage_CatalogInventory_Model_Indexer_Stock extends Mage_Index_Model_Indexer_Abstract
 {
+    /**
+     * Data key for matching result to be saved in
+     */
+    const EVENT_MATCH_RESULT_KEY = 'cataloginventory_stock_match_result';
+
     /**
      * @var array
      */
@@ -119,17 +137,15 @@ class Mage_CatalogInventory_Model_Indexer_Stock extends Mage_Index_Model_Indexer
     public function matchEvent(Mage_Index_Model_Event $event)
     {
         $data       = $event->getNewData();
-        $resultKey  = 'cataloginventory_stock_match_result';
-        if (isset($data[$resultKey])) {
-            return $data[$resultKey];
+        if (isset($data[self::EVENT_MATCH_RESULT_KEY])) {
+            return $data[self::EVENT_MATCH_RESULT_KEY];
         }
 
-        $result = null;
         $entity = $event->getEntity();
         if ($entity == Mage_Core_Model_Store::ENTITY) {
             /* @var $store Mage_Core_Model_Store */
             $store = $event->getDataObject();
-            if ($store->isObjectNew()) {
+            if ($store && $store->isObjectNew()) {
                 $result = true;
             } else {
                 $result = false;
@@ -137,15 +153,14 @@ class Mage_CatalogInventory_Model_Indexer_Stock extends Mage_Index_Model_Indexer
         } else if ($entity == Mage_Core_Model_Store_Group::ENTITY) {
             /* @var $storeGroup Mage_Core_Model_Store_Group */
             $storeGroup = $event->getDataObject();
-            if ($storeGroup->dataHasChangedFor('website_id')) {
+            if ($storeGroup && $storeGroup->dataHasChangedFor('website_id')) {
                 $result = true;
             } else {
                 $result = false;
             }
         } else if ($entity == Mage_Core_Model_Config_Data::ENTITY) {
             $configData = $event->getDataObject();
-            $path = $configData->getPath();
-            if (in_array($path, $this->_relatedConfigSettings)) {
+            if ($configData && in_array($configData->getPath(), $this->_relatedConfigSettings)) {
                 $result = $configData->isValueChanged();
             } else {
                 $result = false;
@@ -154,7 +169,7 @@ class Mage_CatalogInventory_Model_Indexer_Stock extends Mage_Index_Model_Indexer
             $result = parent::matchEvent($event);
         }
 
-        $event->addNewData($resultKey, $result);
+        $event->addNewData(self::EVENT_MATCH_RESULT_KEY, $result);
 
         return $result;
     }
@@ -166,6 +181,7 @@ class Mage_CatalogInventory_Model_Indexer_Stock extends Mage_Index_Model_Indexer
      */
     protected function _registerEvent(Mage_Index_Model_Event $event)
     {
+        $event->addNewData(self::EVENT_MATCH_RESULT_KEY, true);
         switch ($event->getEntity()) {
             case Mage_CatalogInventory_Model_Stock_Item::ENTITY:
                 $this->_registerCatalogInventoryStockItemEvent($event);

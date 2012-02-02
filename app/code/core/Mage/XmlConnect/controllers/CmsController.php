@@ -20,21 +20,23 @@
  *
  * @category    Mage
  * @package     Mage_XmlConnect
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 /**
  * XmlConnect cms page controller
  *
- * @author  Magento Core Team <core@magentocommerce.com>
+ * @category    Mage
+ * @package     Mage_Xmlconnect
+ * @author      Magento Core Team <core@magentocommerce.com>
  */
 class Mage_XmlConnect_CmsController extends Mage_XmlConnect_Controller_Action
 {
     /**
      * Declare content type header
      *
-     * @return void
+     * @return null
      */
     public function preDispatch()
     {
@@ -45,7 +47,7 @@ class Mage_XmlConnect_CmsController extends Mage_XmlConnect_Controller_Action
     /**
      * Category list
      *
-     * @return void
+     * @return null
      */
     public function pageAction()
     {

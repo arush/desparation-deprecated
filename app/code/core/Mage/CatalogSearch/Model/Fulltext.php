@@ -20,15 +20,24 @@
  *
  * @category    Mage
  * @package     Mage_CatalogSearch
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 /**
  * Catalog advanced search model
  *
- * @category   Mage
- * @package    Mage_CatalogSearch
+ * @method Mage_CatalogSearch_Model_Resource_Fulltext _getResource()
+ * @method Mage_CatalogSearch_Model_Resource_Fulltext getResource()
+ * @method int getProductId()
+ * @method Mage_CatalogSearch_Model_Fulltext setProductId(int $value)
+ * @method int getStoreId()
+ * @method Mage_CatalogSearch_Model_Fulltext setStoreId(int $value)
+ * @method string getDataIndex()
+ * @method Mage_CatalogSearch_Model_Fulltext setDataIndex(string $value)
+ *
+ * @category    Mage
+ * @package     Mage_CatalogSearch
  * @author      Magento Core Team <core@magentocommerce.com>
  */
 class Mage_CatalogSearch_Model_Fulltext extends Mage_Core_Model_Abstract
@@ -37,6 +46,14 @@ class Mage_CatalogSearch_Model_Fulltext extends Mage_Core_Model_Abstract
     const SEARCH_TYPE_FULLTEXT          = 2;
     const SEARCH_TYPE_COMBINE           = 3;
     const XML_PATH_CATALOG_SEARCH_TYPE  = 'catalog/search/search_type';
+
+    /**
+     * Whether table changes are allowed
+     *
+     * @deprecated after 1.6.1.0
+     * @var bool
+     */
+    protected $_allowTableChanges = true;
 
     protected function _construct()
     {
@@ -58,7 +75,15 @@ class Mage_CatalogSearch_Model_Fulltext extends Mage_Core_Model_Abstract
      */
     public function rebuildIndex($storeId = null, $productIds = null)
     {
+        Mage::dispatchEvent('catalogsearch_index_process_start', array(
+            'store_id'      => $storeId,
+            'product_ids'   => $productIds
+        ));
+
         $this->getResource()->rebuildIndex($storeId, $productIds);
+
+        Mage::dispatchEvent('catalogsearch_index_process_complete', array());
+
         return $this;
     }
 
@@ -132,6 +157,19 @@ class Mage_CatalogSearch_Model_Fulltext extends Mage_Core_Model_Abstract
     public function updateCategoryIndex($productIds, $categoryIds)
     {
         $this->getResource()->updateCategoryIndex($productIds, $categoryIds);
+        return $this;
+    }
+
+    /**
+     * Set whether table changes are allowed
+     *
+     * @deprecated after 1.6.1.0
+     * @param bool $value
+     * @return Mage_CatalogSearch_Model_Fulltext
+     */
+    public function setAllowTableChanges($value = true)
+    {
+        $this->_allowTableChanges = $value;
         return $this;
     }
 }

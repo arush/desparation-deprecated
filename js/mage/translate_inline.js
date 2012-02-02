@@ -19,7 +19,7 @@
  *
  * @category    Mage
  * @package     js
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 
@@ -47,7 +47,10 @@ TranslateInline.prototype = {
         if(!el.initializedTranslate) {
             el.addClassName('translate-inline');
             el.initializedTranslate = true;
-            Event.observe(el, 'mouseover', this.trigShow.bind(this, el));
+            // mouseover is not suitable here because for some reason this handler is executed before the handler
+            // specified in menu element description. This causes 'book' to be shown out of the screen because
+            // 'over' CSS class has not been added yet.
+            Event.observe(el, 'mousemove', this.trigShow.bind(this, el));
             Event.observe(el, 'mouseout', this.trigHideDelayed.bind(this));
         }
     },

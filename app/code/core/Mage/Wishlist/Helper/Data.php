@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Wishlist
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -103,8 +103,18 @@ class Mage_Wishlist_Helper_Data extends Mage_Core_Helper_Abstract
     public function getWishlist()
     {
         if (is_null($this->_wishlist)) {
-            $this->_wishlist = Mage::getModel('wishlist/wishlist')
-                ->loadByCustomer($this->_getCurrentCustomer());
+            if (Mage::registry('shared_wishlist')) {
+                $this->_wishlist = Mage::registry('shared_wishlist');
+            }
+            elseif (Mage::registry('wishlist')) {
+                $this->_wishlist = Mage::registry('wishlist');
+            }
+            else {
+                $this->_wishlist = Mage::getModel('wishlist/wishlist');
+                if ($this->_getCustomerSession()->isLoggedIn()) {
+                    $this->_wishlist->loadByCustomer($this->_getCustomerSession()->getCustomer());
+                }
+            }
         }
         return $this->_wishlist;
     }
@@ -112,15 +122,18 @@ class Mage_Wishlist_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * Retrieve wishlist items availability
      *
+     * @deprecated after 1.6.0.0
+     *
      * @return bool
      */
     public function hasItems()
     {
-        return $this->getItemCount() > 0;
+        return $this->getWishlist()->getItemsCount() > 0;
     }
 
     /**
-     * Retrieve wishlist item count (inchlude config settings)
+     * Retrieve wishlist item count (include config settings)
+     * Used in top link menu only
      *
      * @return int
      */
@@ -226,9 +239,9 @@ class Mage_Wishlist_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getRemoveUrl($item)
     {
-        return $this->_getUrl('wishlist/index/remove', array(
-            'item' => $item->getWishlistItemId()
-        ));
+        return $this->_getUrl('wishlist/index/remove',
+            array('item' => $item->getWishlistItemId())
+        );
     }
 
     /**
@@ -247,8 +260,9 @@ class Mage_Wishlist_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * Retrieve url for adding product to wishlist
      *
-     * @param Mage_Catalog_Model_Product|Mage_Wishlist_Model_Item $product
-     * @return  string|boolean
+     * @param Mage_Catalog_Model_Product|Mage_Wishlist_Model_Item $item
+     *
+     * @return  string|bool
      */
     public function getAddUrl($item)
     {
@@ -258,8 +272,9 @@ class Mage_Wishlist_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * Retrieve url for updating product in wishlist
      *
-     * @param Mage_Catalog_Model_Product|Mage_Wishlist_Model_Item $product
-     * @return  string|boolean
+     * @param Mage_Catalog_Model_Product|Mage_Wishlist_Model_Item $item
+     *
+     * @return  string|bool
      */
     public function getUpdateUrl($item)
     {
@@ -282,9 +297,10 @@ class Mage_Wishlist_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * Retrieve url for adding product to wishlist with params
      *
-     * @param Mage_Catalog_Model_Product|Mage_Wishlist_Model_Item $product
-     * @param array $param
-     * @return  string|boolean
+     * @param Mage_Catalog_Model_Product|Mage_Wishlist_Model_Item $item
+     * @param array $params
+     *
+     * @return  string|bool
      */
     public function getAddUrlWithParams($item, array $params = array())
     {
@@ -312,11 +328,14 @@ class Mage_Wishlist_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getAddToCartUrl($item)
     {
-        $continueUrl  = Mage::helper('core')->urlEncode(Mage::getUrl('*/*/*', array(
-            '_current'      => true,
-            '_use_rewrite'  => true,
-            '_store_to_url' => true,
-        )));
+        $urlParamName = Mage_Core_Controller_Front_Action::PARAM_NAME_URL_ENCODED;
+        $continueUrl  = Mage::helper('core')->urlEncode(
+            Mage::getUrl('*/*/*', array(
+                '_current'      => true,
+                '_use_rewrite'  => true,
+                '_store_to_url' => true,
+            ))
+        );
 
         $urlParamName = Mage_Core_Controller_Front_Action::PARAM_NAME_URL_ENCODED;
         $params = array(
@@ -428,10 +447,7 @@ class Mage_Wishlist_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function isRssAllow()
     {
-        if (Mage::getStoreConfig('rss/wishlist/active')) {
-            return true;
-        }
-        return false;
+        return Mage::getStoreConfigFlag('rss/wishlist/active');
     }
 
     /**
@@ -454,15 +470,13 @@ class Mage_Wishlist_Helper_Data extends Mage_Core_Helper_Abstract
     public function calculate()
     {
         $session = $this->_getCustomerSession();
-        if (!$this->_isCustomerLogIn()) {
-            $count = 0;
-        } else {
+        $count = 0;
+        if ($this->_isCustomerLogIn()) {
+            $collection = $this->getWishlistItemCollection()->setInStockFilter(true);
             if (Mage::getStoreConfig(self::XML_PATH_WISHLIST_LINK_USE_QTY)) {
-                $count = $this->getWishlistItemCollection()
-                    ->setInStockFilter(true)
-                    ->getItemsQty();
+                $count = $collection->getItemsQty();
             } else {
-                $count = count($this->getWishlistItemCollection()->setInStockFilter(true));
+                $count = $collection->getSize();
             }
             $session->setWishlistDisplayType(Mage::getStoreConfig(self::XML_PATH_WISHLIST_LINK_USE_QTY));
             $session->setDisplayOutOfStockProducts(

@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Catalog
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -64,6 +64,7 @@ class Mage_Catalog_Model_Product_Type_Configurable_Price extends Mage_Catalog_Mo
                 $attribute->getPrices() ? $attribute->getPrices() : array(),
                 isset($selectedAttributes[$attributeId]) ? $selectedAttributes[$attributeId] : null
             );
+            $product->setParentId(true);
             if($value) {
                 if($value['pricing_value'] != 0) {
                     $product->setConfigurablePrice($this->_calcSelectionPrice($value, $basePrice));

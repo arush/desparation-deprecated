@@ -20,15 +20,34 @@
  *
  * @category    Mage
  * @package     Mage_CatalogSearch
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 /**
  * Catalog advanced search model
  *
- * @category   Mage
- * @package    Mage_CatalogSearch
+ * @method Mage_CatalogSearch_Model_Resource_Advanced _getResource()
+ * @method Mage_CatalogSearch_Model_Resource_Advanced getResource()
+ * @method int getEntityTypeId()
+ * @method Mage_CatalogSearch_Model_Advanced setEntityTypeId(int $value)
+ * @method int getAttributeSetId()
+ * @method Mage_CatalogSearch_Model_Advanced setAttributeSetId(int $value)
+ * @method string getTypeId()
+ * @method Mage_CatalogSearch_Model_Advanced setTypeId(string $value)
+ * @method string getSku()
+ * @method Mage_CatalogSearch_Model_Advanced setSku(string $value)
+ * @method int getHasOptions()
+ * @method Mage_CatalogSearch_Model_Advanced setHasOptions(int $value)
+ * @method int getRequiredOptions()
+ * @method Mage_CatalogSearch_Model_Advanced setRequiredOptions(int $value)
+ * @method string getCreatedAt()
+ * @method Mage_CatalogSearch_Model_Advanced setCreatedAt(string $value)
+ * @method string getUpdatedAt()
+ * @method Mage_CatalogSearch_Model_Advanced setUpdatedAt(string $value)
+ *
+ * @category    Mage
+ * @package     Mage_CatalogSearch
  * @author      Magento Core Team <core@magentocommerce.com>
  */
 class Mage_CatalogSearch_Model_Advanced extends Mage_Core_Model_Abstract
@@ -43,7 +62,7 @@ class Mage_CatalogSearch_Model_Advanced extends Mage_Core_Model_Abstract
     /**
      * Current search engine
      *
-     * @var object | Mage_CatalogSearch_Model_Mysql4_Fulltext_Engine
+     * @var object | Mage_CatalogSearch_Model_Resource_Fulltext_Engine
      */
     protected $_engine = null;
 
@@ -69,7 +88,7 @@ class Mage_CatalogSearch_Model_Advanced extends Mage_Core_Model_Abstract
     /**
      * Retrieve resource instance wrapper
      *
-     * @return Mage_CatalogSearch_Model_Mysql4_Advanced
+     * @return Mage_CatalogSearch_Model_Resource_Advanced
      */
     protected function _getResource()
     {
@@ -87,7 +106,7 @@ class Mage_CatalogSearch_Model_Advanced extends Mage_Core_Model_Abstract
      */
     public function getAttributes()
     {
-        /* @var $attributes Mage_Catalog_Model_Resource_Eav_Mysql4_Product_Attribute_Collection */
+        /* @var $attributes Mage_Catalog_Model_Resource_Eav_Resource_Product_Attribute_Collection */
         $attributes = $this->getData('attributes');
         if (is_null($attributes)) {
             $product = Mage::getModel('catalog/product');
@@ -108,7 +127,7 @@ class Mage_CatalogSearch_Model_Advanced extends Mage_Core_Model_Abstract
     /**
      * Prepare search condition for attribute
      *
-     * @deprecated after 1.4.1.0 - use Mage_CatalogSearch_Model_Mysql4_Advanced->_prepareCondition()
+     * @deprecated after 1.4.1.0 - use Mage_CatalogSearch_Model_Resource_Advanced->_prepareCondition()
      *
      * @param Mage_Catalog_Model_Resource_Eav_Attribute $attribute
      * @param string|array $value
@@ -139,30 +158,30 @@ class Mage_CatalogSearch_Model_Advanced extends Mage_Core_Model_Abstract
             $value = $values[$attribute->getAttributeCode()];
 
             if ($attribute->getAttributeCode() == 'price') {
-                if ((isset($value['from']) && strlen(trim($value['from']))) ||
-                    (isset($value['to']) && strlen(trim($value['to'])))) {
-                    if (isset($value['currency']) && !empty($value['currency'])) {
+                $value['from'] = isset($value['from']) ? trim($value['from']) : '';
+                $value['to'] = isset($value['to']) ? trim($value['to']) : '';
+                if (is_numeric($value['from']) || is_numeric($value['to'])) {
+                    if (!empty($value['currency'])) {
                         $rate = Mage::app()->getStore()->getBaseCurrency()->getRate($value['currency']);
-                    }
-                    else {
+                    } else {
                         $rate = 1;
                     }
-
-                    if ($this->_getResource()->addRatedPriceFilter($this->getProductCollection(), $attribute, $value, $rate)) {
+                    if ($this->_getResource()->addRatedPriceFilter(
+                        $this->getProductCollection(), $attribute, $value, $rate)
+                    ) {
                         $hasConditions = true;
                         $this->_addSearchCriteria($attribute, $value);
                     }
                 }
-            }
-            else if ($attribute->isIndexable()) {
+            } else if ($attribute->isIndexable()) {
                 if (!is_string($value) || strlen($value) != 0) {
-                    if ($this->_getResource()->addIndexableAttributeFilter($this->getProductCollection(), $attribute, $value)) {
+                    if ($this->_getResource()->addIndexableAttributeModifiedFilter(
+                        $this->getProductCollection(), $attribute, $value)) {
                         $hasConditions = true;
                         $this->_addSearchCriteria($attribute, $value);
                     }
                 }
-            }
-            else {
+            } else {
                 $condition = $this->_prepareCondition($attribute, $value);
                 if ($condition === false) {
                     continue;
@@ -179,7 +198,6 @@ class Mage_CatalogSearch_Model_Advanced extends Mage_Core_Model_Abstract
                 $allConditions[$table][$attributeId] = $condition;
             }
         }
-
         if ($allConditions) {
             $this->getProductCollection()->addFieldsToFilter($allConditions);
         } else if (!$hasConditions) {
@@ -213,7 +231,8 @@ class Mage_CatalogSearch_Model_Advanced extends Mage_Core_Model_Abstract
 
                     if (strlen($value['from']) > 0 && strlen($value['to']) > 0) {
                         // -
-                        $value = sprintf('%s - %s', ($currencyModel ? $from : $value['from']), ($currencyModel ? $to : $value['to']));
+                        $value = sprintf('%s - %s',
+                            ($currencyModel ? $from : $value['from']), ($currencyModel ? $to : $value['to']));
                     } elseif (strlen($value['from']) > 0) {
                         // and more
                         $value = Mage::helper('catalogsearch')->__('%s and greater', ($currencyModel ? $from : $value['from']));
@@ -227,7 +246,9 @@ class Mage_CatalogSearch_Model_Advanced extends Mage_Core_Model_Abstract
             }
         }
 
-        if (($attribute->getFrontendInput() == 'select' || $attribute->getFrontendInput() == 'multiselect') && is_array($value)) {
+        if (($attribute->getFrontendInput() == 'select' || $attribute->getFrontendInput() == 'multiselect')
+            && is_array($value)
+        ) {
             foreach ($value as $key => $val){
                 $value[$key] = $attribute->getSource()->getOptionText($val);
 
@@ -263,7 +284,7 @@ class Mage_CatalogSearch_Model_Advanced extends Mage_Core_Model_Abstract
     /**
      * Retrieve advanced search product collection
      *
-     * @return Mage_CatalogSearch_Model_Mysql4_Advanced_Collection
+     * @return Mage_CatalogSearch_Model_Resource_Advanced_Collection
      */
     public function getProductCollection(){
         if (is_null($this->_productCollection)) {
@@ -281,7 +302,7 @@ class Mage_CatalogSearch_Model_Advanced extends Mage_Core_Model_Abstract
     /**
      * Prepare product collection
      *
-     * @param Mage_CatalogSearch_Model_Mysql4_Advanced_Collection $collection
+     * @param Mage_CatalogSearch_Model_Resource_Advanced_Collection $collection
      * @return Mage_Catalog_Model_Layer
      */
     public function prepareProductCollection($collection)

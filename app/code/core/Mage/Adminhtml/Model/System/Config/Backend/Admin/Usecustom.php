@@ -20,23 +20,27 @@
  *
  * @category    Mage
  * @package     Mage_Adminhtml
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 
 /**
- * Adminhtml backend model for "Use Secure URLs in Admin" option
+ * Adminhtml backend model for "Use Custom Admin URL" option
  *
  * @category   Mage
  * @package    Mage_Adminhtml
- * @author      Magento Core Team <core@magentocommerce.com>
+ * @author     Magento Core Team <core@magentocommerce.com>
  */
 class Mage_Adminhtml_Model_System_Config_Backend_Admin_Usecustom extends Mage_Core_Model_Config_Data
 {
+    /**
+     * Validate custom url
+     *
+     * @return Mage_Adminhtml_Model_System_Config_Backend_Admin_Usecustom
+     */
     protected function _beforeSave()
     {
-
         $value = $this->getValue();
         if ($value == 1) {
             $customUrl = $this->getData('groups/url/fields/custom/value');

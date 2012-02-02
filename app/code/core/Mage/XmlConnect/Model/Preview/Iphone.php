@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_XmlConnect
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -57,13 +57,12 @@ class Mage_XmlConnect_Model_Preview_Iphone extends Mage_XmlConnect_Model_Preview
      */
     public function getBackgroundImage()
     {
-        $backgroundImage = '';
         $configPath = 'conf/body/backgroundImage';
         $imageUrlOrig = $this->getData($configPath);
         if ($imageUrlOrig) {
             $backgroundImage = $imageUrlOrig;
         } else {
-            $backgroundImage = $this->getPreviewImagesUrl('banner.png');
+            $backgroundImage = $this->getPreviewImagesUrl('background.png');
         }
         return $backgroundImage;
     }

@@ -20,25 +20,34 @@
  *
  * @category    Mage
  * @package     Mage_XmlConnect
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 /**
  * XmlConnect index controller
  *
- * @author  Magento Core Team <core@magentocommerce.com>
+ * @category    Mage
+ * @package     Mage_Xmlconnect
+ * @author      Magento Core Team <core@magentocommerce.com>
  */
 class Mage_XmlConnect_IndexController extends Mage_XmlConnect_Controller_Action
 {
     /**
      * Default action
      *
-     * @return void
+     * @return null
      */
     public function indexAction()
     {
-        $this->loadLayout(false);
-        $this->renderLayout();
+        try {
+            $this->loadLayout(false);
+            $this->renderLayout();
+        } catch (Mage_Core_Exception $e) {
+            $this->_message($e->getMessage(), self::MESSAGE_STATUS_ERROR);
+        } catch (Exception $e) {
+            $this->_message($this->__('Unable to load categories.'), self::MESSAGE_STATUS_ERROR);
+            Mage::logException($e);
+        }
     }
 }

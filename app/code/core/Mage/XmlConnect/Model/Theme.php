@@ -20,22 +20,45 @@
  *
  * @category    Mage
  * @package     Mage_XmlConnect
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
+/**
+ * XmlConnect Theme model
+ *
+ * @category    Mage
+ * @package     Mage_Xmlconnect
+ * @author      Magento Core Team <core@magentocommerce.com>
+ */
 class Mage_XmlConnect_Model_Theme
 {
-    protected $_file;
-    protected $_xml;
-    protected $_conf;
+    /**
+     * Current theme file
+     *
+     * @var string|null
+     */
+    protected $_file = null;
+
+    /**
+     * Loaded theme xml object
+     *
+     * @var SimpleXMLElement|null
+     */
+    protected $_xml = null;
+
+    /**
+     * Theme configuration
+     *
+     * @var array|null
+     */
+    protected $_conf = null;
 
     /**
      * Load Theme xml from $file
      *
      * @param string $file
      * @throws Mage_Core_Exception
-     * @return void
      */
     public function __construct($file)
     {
@@ -46,8 +69,8 @@ class Mage_XmlConnect_Model_Theme
         if (!is_readable($file)) {
             Mage::throwException(Mage::helper('xmlconnect')->__('Can\'t read file "%s".', $file));
         }
-        $text = file_get_contents($file);
         try {
+            $text = file_get_contents($file);
             $this->_xml = simplexml_load_string($text);
         } catch (Exception $e) {
             Mage::throwException(Mage::helper('xmlconnect')->__('Can\'t load XML.'));
@@ -64,7 +87,7 @@ class Mage_XmlConnect_Model_Theme
 
     /**
      * Get theme xml as array
-     * 
+     *
      * @param array $xml
      * @return array
      */
@@ -82,7 +105,17 @@ class Mage_XmlConnect_Model_Theme
     }
 
     /**
-     * Getter for theme name
+     * Get theme file
+     *
+     * @return null|string
+     */
+    protected function _getThemeFile()
+    {
+        return $this->_file;
+    }
+
+    /**
+     * Get theme name
      *
      * @return string
      */
@@ -92,13 +125,99 @@ class Mage_XmlConnect_Model_Theme
     }
 
     /**
-     * Getter for theme Label
+     * Set theme name
+     *
+     * @param  $name
+     * @return Mage_XmlConnect_Model_Theme
+     */
+    public function setName($name)
+    {
+        $name = trim((string) $name);
+        $this->_xml->manifest->name = htmlentities($name, ENT_QUOTES, 'UTF-8');
+        return $this;
+    }
+
+    /**
+     * Get theme Label
      *
      * @return string
      */
     public function getLabel()
     {
         return (string) $this->_xml->manifest->label;
+    }
+
+    /**
+     * Set theme Label
+     *
+     * @param  $label
+     * @return Mage_XmlConnect_Model_Theme
+     */
+    public function setLabel($label)
+    {
+        $label = trim((string) $label);
+        $this->_xml->manifest->label = htmlentities($label, ENT_QUOTES, 'UTF-8');
+        return $this;
+    }
+
+    /**
+     * Generate full file name for custome theme in media
+     *
+     * @return string
+     */
+    protected function _createThemeName()
+    {
+        /** @var $themesHelper Mage_XmlConnect_Helper_Theme */
+        $themesHelper = Mage::helper('xmlconnect/theme');
+        /** @var $coreHelper Mage_Core_Helper_Data */
+        $coreHelper = Mage::helper('core');
+
+        $themeFileName = $themesHelper->getMediaThemePath() . DS .$themesHelper->getCustomThemeName() . '_' . time()
+            . '_' . $coreHelper->getRandomString(10, 'abcdefghijklmnopqrstuvwxyz0123456789') . '.xml';
+        return $themeFileName;
+    }
+
+    /**
+     * Copy current theme to specified file
+     *
+     * @param  $filePath
+     * @return string new file
+     */
+    protected function _createCopy($filePath)
+    {
+        $currentThemeFileName = $this->_getThemeFile();
+
+        $ioFile = new Varien_Io_File();
+        if (!$ioFile->cp($currentThemeFileName, $filePath)) {
+            Mage::throwException(
+                Mage::helper('xmlconnect')->__('Can\'t copy file "%s" to "%s".', $currentThemeFileName, $filePath)
+            );
+        } else {
+            $ioFile->chmod($filePath, 0755);
+        }
+
+        return $filePath;
+    }
+
+    /**
+     * Create a copy of current instance with specified data
+     *
+     * @param  $themeName new theme label
+     * @param  $data theme config array
+     * @return Mage_XmlConnect_Model_Theme
+     */
+    public function createNewTheme($themeName, $data)
+    {
+        $filePath = $this->_createThemeName();
+        $themeFileName = $this->_createCopy($filePath);
+
+        /** @var $themeFileName Mage_XmlConnect_Model_Theme */
+        $themeFileName = Mage::getModel('xmlconnect/theme', $filePath);
+        $themeFileName->setLabel($themeName);
+        $fileName = basename($filePath);
+        $themeFileName->setName(substr($fileName, 0, -4));
+        $themeFileName->importAndSaveData($data);
+        return $themeFileName;
     }
 
     /**
@@ -118,7 +237,7 @@ class Mage_XmlConnect_Model_Theme
      * @param string $prefix
      * @return array
      */
-    protected function _flatArray($subtree, $prefix=null)
+    protected function _flatArray($subtree, $prefix = null)
     {
         $result = array();
         foreach ($subtree as $key => $value) {
@@ -144,7 +263,7 @@ class Mage_XmlConnect_Model_Theme
      * @param array $xml
      * @return array
      */
-    protected function _validateFormInput($data, $xml=NULL)
+    protected function _validateFormInput($data, $xml = null)
     {
         $root = false;
         $result = array();
@@ -173,7 +292,7 @@ class Mage_XmlConnect_Model_Theme
      *
      * @param SimpleXMLElement $parent
      * @param array $data
-     * @return void
+     * @return null
      */
     protected function _buildRecursive($parent, $data)
     {
@@ -190,7 +309,7 @@ class Mage_XmlConnect_Model_Theme
      * Import data into theme form $data array, and save XML to file
      *
      * @param array $data
-     * @return void
+     * @return null
      */
     public function importAndSaveData($data)
     {

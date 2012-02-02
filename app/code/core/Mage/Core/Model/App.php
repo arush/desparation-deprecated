@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Core
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -37,6 +37,8 @@ class Mage_Core_Model_App
 {
 
     const XML_PATH_INSTALL_DATE = 'global/install/date';
+
+    const XML_PATH_SKIP_PROCESS_MODULES_UPDATES = 'global/skip_process_modules_updates';
 
     const DEFAULT_ERROR_HANDLER = 'mageCoreErrorHandler';
 
@@ -226,6 +228,11 @@ class Mage_Core_Model_App
      */
     protected $_useSessionVar = false;
 
+    /**
+     * Cache locked flag
+     *
+     * @var null|bool
+     */
     protected $_isCacheLocked = null;
 
     /**
@@ -279,7 +286,8 @@ class Mage_Core_Model_App
         $this->_config->setOptions($options);
 
         $this->_initBaseConfig();
-        $this->_initCache();
+        $cacheInitOptions = is_array($options) && array_key_exists('cache', $options) ? $options['cache'] : array();
+        $this->_initCache($cacheInitOptions);
 
         return $this;
     }
@@ -322,6 +330,7 @@ class Mage_Core_Model_App
     {
         $options = isset($params['options']) ? $params['options'] : array();
         $this->baseInit($options);
+        Mage::register('application_params', $params);
 
         if ($this->_cache->processRequest()) {
             $this->getResponse()->sendResponse();
@@ -371,17 +380,21 @@ class Mage_Core_Model_App
     /**
      * Initialize application cache instance
      *
+     * @param array $cacheInitOptions
      * @return Mage_Core_Model_App
      */
-    protected function _initCache()
+    protected function _initCache(array $cacheInitOptions = array())
     {
+        $this->_isCacheLocked = true;
         $options = $this->_config->getNode('global/cache');
         if ($options) {
             $options = $options->asArray();
         } else {
             $options = array();
         }
+        $options = array_merge($options, $cacheInitOptions);
         $this->_cache = Mage::getModel('core/cache', $options);
+        $this->_isCacheLocked = false;
         return $this;
     }
 
@@ -394,7 +407,7 @@ class Mage_Core_Model_App
     {
         if (!$this->_config->loadModulesCache()) {
             $this->_config->loadModules();
-            if ($this->_config->isLocalConfigLoaded()) {
+            if ($this->_config->isLocalConfigLoaded() && !$this->_shouldSkipProcessModulesUpdates()) {
                 Varien_Profiler::start('mage::app::init::apply_db_schema_updates');
                 Mage_Core_Model_Resource_Setup::applyAllUpdates();
                 Varien_Profiler::stop('mage::app::init::apply_db_schema_updates');
@@ -403,6 +416,24 @@ class Mage_Core_Model_App
             $this->_config->saveCache();
         }
         return $this;
+    }
+
+    /**
+     * Check whether modules updates processing should be skipped
+     *
+     * @return bool
+     */
+    protected function _shouldSkipProcessModulesUpdates()
+    {
+        if (!Mage::isInstalled()) {
+            return false;
+        }
+
+        if (Mage::getIsDeveloperMode()) {
+            return false;
+        }
+
+        return (bool)(string)$this->_config->getNode(self::XML_PATH_SKIP_PROCESS_MODULES_UPDATES);
     }
 
     /**
@@ -1460,5 +1491,39 @@ class Mage_Core_Model_App
         $id = strtoupper($id);
         $id = preg_replace('/([^a-zA-Z0-9_]{1,1})/', '_', $id);
         return $id;
+    }
+
+    /**
+     * Get is cache locked
+     *
+     * @return bool
+     */
+    public function getIsCacheLocked()
+    {
+        return (bool)$this->_isCacheLocked;
+    }
+
+    /**
+     *  Unset website by id from app cache
+     *
+     * @param null|bool|int|string|Mage_Core_Model_Website $id
+     * @return void
+     */
+    public function clearWebsiteCache($id = null)
+    {
+        if (is_null($id)) {
+            $id = $this->getStore()->getWebsiteId();
+        } elseif ($id instanceof Mage_Core_Model_Website) {
+            $id = $id->getId();
+        } elseif ($id === true) {
+            $id = $this->_website->getId();
+        }
+
+        if (!empty($this->_websites[$id])) {
+            $website = $this->_websites[$id];
+
+            unset($this->_websites[$website->getWebsiteId()]);
+            unset($this->_websites[$website->getCode()]);
+        }
     }
 }

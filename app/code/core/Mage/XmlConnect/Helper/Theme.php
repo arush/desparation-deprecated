@@ -20,10 +20,17 @@
  *
  * @category    Mage
  * @package     Mage_XmlConnect
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
+/**
+ * Theme helper
+ *
+ * @category    Mage
+ * @package     Mage_XmlConnect
+ * @author      Magento Core Team <core@magentocommerce.com>
+ */
 class Mage_XmlConnect_Helper_Theme extends Mage_Adminhtml_Helper_Data
 {
     /**
@@ -74,7 +81,7 @@ class Mage_XmlConnect_Helper_Theme extends Mage_Adminhtml_Helper_Data
     /**
      * Returns JSON ready Themes array
      *
-     * @param bool $flushCache -    load defaults
+     * @param bool $flushCache load defaults
      * @return array
      */
     public function getAllThemesArray($flushCache = false)
@@ -88,22 +95,90 @@ class Mage_XmlConnect_Helper_Theme extends Mage_Adminhtml_Helper_Data
     }
 
     /**
+     * Get dropdown select image for theme
+     *
+     * @param string $themeId
+     * @return string Image url
+     */
+    public function getThemeImageUrl($themeId)
+    {
+        $themeImage = array_key_exists($themeId, $this->getDefaultThemes()) ? $themeId : 'user_custom';
+        return Mage::helper('xmlconnect/image')->getSkinImagesUrl('swatch_' . $themeImage . '.gif');
+    }
+
+    /**
+     * Get themes dropdown selector html
+     *
+     * @param string $themeId
+     * @return string
+     */
+    public function getThemesSelector($themeId = '')
+    {
+        if (Mage::registry('current_app') !== null) {
+            $themeId = Mage::registry('current_app')->getData('conf/extra/theme');
+        }
+
+        if (!$themeId) {
+            $themeId = $this->getDefaultThemeName();
+        }
+
+        $currentTheme = $this->getThemeByName($themeId);
+        if ($currentTheme === null) {
+            $themeId = $this->getDefaultThemeName();
+            $currentTheme = $this->getThemeByName($themeId);
+        }
+
+        if (!($currentTheme instanceof Mage_XmlConnect_Model_Theme)) {
+            Mage::throwException(
+                Mage::helper('xmlconnect')->__('Can\'t load selected theme. Please check your media folder permissions.')
+            );
+        }
+
+        $themeList = '';
+        foreach ($this->getAllThemes(true) as $theme) {
+            $themeList .= '<li id="' . $theme->getName() . '">';
+            $themeList .= '<a rel="' . $theme->getName() . '" style="cursor:pointer;">' . $theme->getLabel();
+            $themeList .= '<span>';
+            $themeList .= '<img src="' . $this->getThemeImageUrl($theme->getName()) . '"/>';
+            $themeList .= '</span></a></li>';
+        }
+
+        $themesDdl = <<<EOT
+        <ul class="dropdown theme_selector" id="theme_selector_id">
+            <li class="ddtitle theme_selector">
+                <a style="cursor:pointer;">{$currentTheme->getLabel()}
+                    <span>
+                        <img src="{$this->getThemeImageUrl($themeId)}"/>
+                    </span>
+                </a>
+            </li>
+            <li style="display:none;" class="ddlist">
+                <ul>
+                {$themeList}
+                </ul>
+            </li>
+        </ul>
+EOT;
+        return $themesDdl;
+    }
+
+    /**
      * Reads directory media/xmlconnect/themes/*
      *
      * @param bool $flushCache Reads default color Themes
-     * @return array - (of Mage_XmlConnect_Model_Theme)
+     * @return array contains Mage_XmlConnect_Model_Theme
      */
     public function getAllThemes($flushCache = false)
     {
         if (!$this->_themeArray || $flushCache) {
-            $saveLibxmlErrors = libxml_use_internal_errors(TRUE);
-            $this->_themeArray = array();
-            $themeDir = Mage::getBaseDir('media') . DS . 'xmlconnect' . DS . 'themes';
-            $io = new Varien_Io_File();
-            $io->open(array('path' => $themeDir));
-
+            $saveLibxmlErrors   = libxml_use_internal_errors(true);
+            $this->_themeArray  = array();
+            $themeDir = $this->getMediaThemePath();
+            $ioFile = new Varien_Io_File();
+            $ioFile->checkAndCreateFolder($themeDir);
+            $ioFile->open(array('path' => $themeDir));
             try {
-                $fileList = $io->ls(Varien_Io_File::GREP_FILES);
+                $fileList = $ioFile->ls(Varien_Io_File::GREP_FILES);
                 if (!count($fileList)) {
                     $this->resetTheme();
                     $this->getAllThemes(true);
@@ -115,6 +190,7 @@ class Mage_XmlConnect_Helper_Theme extends Mage_Adminhtml_Helper_Data
                         $this->_themeArray[$theme->getName()] = $theme;
                     }
                 }
+                asort($this->_themeArray);
                 libxml_use_internal_errors($saveLibxmlErrors);
             } catch (Exception $e) {
                 Mage::logException($e);
@@ -124,20 +200,87 @@ class Mage_XmlConnect_Helper_Theme extends Mage_Adminhtml_Helper_Data
     }
 
     /**
+     * Reads default theme directory
+     *
+     * @throws Mage_Core_Exception
+     * @return array contains Mage_XmlConnect_Model_Theme
+     */
+    public function getDefaultThemes()
+    {
+        $saveLibxmlErrors   = libxml_use_internal_errors(true);
+        $defaultThemeArray  = array();
+        $themeDir = $this->_getDefaultThemePath();
+        $ioFile = new Varien_Io_File();
+        $ioFile->open(array('path' => $themeDir));
+        try {
+            $fileList = $ioFile->ls(Varien_Io_File::GREP_FILES);
+            foreach ($fileList as $file) {
+                $src = $themeDir . DS . $file['text'];
+                if (is_readable($src)) {
+                    $theme = Mage::getModel('xmlconnect/theme', $src);
+                    $defaultThemeArray[$theme->getName()] = $theme;
+                }
+            }
+            libxml_use_internal_errors($saveLibxmlErrors);
+        } catch (Exception $e) {
+            Mage::logException($e);
+        }
+        if (!count($defaultThemeArray)) {
+            Mage::throwException(Mage::helper('xmlconnect')->__('Can\'t load default themes.'));
+        }
+        return $defaultThemeArray;
+    }
+
+    /**
+     * Create new custom theme
+     *
+     * @param  $themeName string
+     * @param  $data array
+     * @return Mage_XmlConnect_Model_Theme
+     */
+    public function createNewTheme($themeName, $data)
+    {
+        /** @var $defaultTheme Mage_XmlConnect_Model_Theme */
+        $defaultTheme = $this->getThemeByName($this->getDefaultThemeName());
+        return $defaultTheme->createNewTheme($themeName, $data);
+    }
+
+    /**
+     * Get default theme path: /xmlconnect/etc/themes/*
+     *
+     * @return string
+     */
+    protected function _getDefaultThemePath()
+    {
+        return Mage::getModuleDir('etc', 'Mage_XmlConnect') . DS . 'themes';
+    }
+
+    /**
+     * Get media theme path: media/xmlconnect/themes/*
+     *
+     * @return string
+     */
+    public function getMediaThemePath()
+    {
+        return Mage::getBaseDir('media') . DS . 'xmlconnect' . DS . 'themes';
+    }
+
+    /**
      * Reset themes color changes
      * Copy /xmlconnect/etc/themes/* to media/xmlconnect/themes/*
      *
      * @throws Mage_Core_Exception
-     * @return void
+     * @param null $theme
+     * @return null
      */
     public function resetTheme($theme = null)
     {
-        $themeDir = Mage::getBaseDir('media') . DS . 'xmlconnect' . DS . 'themes';
-        $defaultThemeDir = Mage::getModuleDir('etc', 'Mage_XmlConnect') . DS . 'themes';
+        $themeDir = $this->getMediaThemePath();
+        $defaultThemeDir = $this->_getDefaultThemePath();
 
-        $io = new Varien_Io_File();
-        $io->open(array('path'=>$defaultThemeDir));
-        $fileList = $io->ls(Varien_Io_File::GREP_FILES);
+        $ioFile = new Varien_Io_File();
+        $ioFile->open(array('path' => $defaultThemeDir));
+        $fileList = $ioFile->ls(Varien_Io_File::GREP_FILES);
         foreach ($fileList as $file) {
             $f = $file['text'];
             $src = $defaultThemeDir . DS . $f;
@@ -147,12 +290,10 @@ class Mage_XmlConnect_Helper_Theme extends Mage_Adminhtml_Helper_Data
                 continue;
             }
 
-            if (!$io->cp($src, $dst)) {
-                Mage::throwException(
-                    Mage::helper('xmlconnect')->__('Can\'t copy file "%s" to "%s".', $src, $dst)
-                );
+            if (!$ioFile->cp($src, $dst)) {
+                Mage::throwException(Mage::helper('xmlconnect')->__('Can\'t copy file "%s" to "%s".', $src, $dst));
             } else {
-                $io->chmod($dst, 0755);
+                $ioFile->chmod($dst, 0755);
             }
         }
     }
@@ -198,6 +339,11 @@ class Mage_XmlConnect_Helper_Theme extends Mage_Adminhtml_Helper_Data
     public function getThemeId()
     {
         $themeId = Mage::helper('xmlconnect')->getApplication()->getData('conf/extra/theme');
+
+        if ($this->getThemeByName($themeId) === null) {
+            $themeId = null;
+        }
+
         if (empty($themeId)) {
             $themeId = $this->getDefaultThemeName();
         }
@@ -223,5 +369,23 @@ class Mage_XmlConnect_Helper_Theme extends Mage_Adminhtml_Helper_Data
             }
         }
         return $themeLabel;
+    }
+
+    /**
+     * Delete theme by id
+     *
+     * @param  $themeId
+     * @return bool
+     */
+    public function deleteTheme($themeId)
+    {
+        $result = false;
+        $ioFile = new Varien_Io_File();
+        $ioFile->cd($this->getMediaThemePath());
+        $themeFile = $themeId . '.xml';
+        if ($ioFile->fileExists($themeFile)) {
+            $result = $ioFile->rm($themeFile);
+        }
+        return $result;
     }
 }

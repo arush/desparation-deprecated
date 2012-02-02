@@ -20,11 +20,48 @@
  *
  * @category    Mage
  * @package     Mage_Catalog
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+/**
+ * Enter description here ...
+ *
+ * @method Mage_Catalog_Model_Resource_Product_Indexer_Price _getResource()
+ * @method Mage_Catalog_Model_Resource_Product_Indexer_Price getResource()
+ * @method Mage_Catalog_Model_Product_Indexer_Price setEntityId(int $value)
+ * @method int getCustomerGroupId()
+ * @method Mage_Catalog_Model_Product_Indexer_Price setCustomerGroupId(int $value)
+ * @method int getWebsiteId()
+ * @method Mage_Catalog_Model_Product_Indexer_Price setWebsiteId(int $value)
+ * @method int getTaxClassId()
+ * @method Mage_Catalog_Model_Product_Indexer_Price setTaxClassId(int $value)
+ * @method float getPrice()
+ * @method Mage_Catalog_Model_Product_Indexer_Price setPrice(float $value)
+ * @method float getFinalPrice()
+ * @method Mage_Catalog_Model_Product_Indexer_Price setFinalPrice(float $value)
+ * @method float getMinPrice()
+ * @method Mage_Catalog_Model_Product_Indexer_Price setMinPrice(float $value)
+ * @method float getMaxPrice()
+ * @method Mage_Catalog_Model_Product_Indexer_Price setMaxPrice(float $value)
+ * @method float getTierPrice()
+ * @method Mage_Catalog_Model_Product_Indexer_Price setTierPrice(float $value)
+ *
+ * @category    Mage
+ * @package     Mage_Catalog
+ * @author      Magento Core Team <core@magentocommerce.com>
  */
 class Mage_Catalog_Model_Product_Indexer_Price extends Mage_Index_Model_Indexer_Abstract
 {
+    /**
+     * Data key for matching result to be saved in
+     */
+    const EVENT_MATCH_RESULT_KEY = 'catalog_product_price_match_result';
+
+    /**
+     * Reindex price event type
+     */
+    const EVENT_TYPE_REINDEX_PRICE = 'catalog_reindex_price';
+
     /**
      * Matched Entities instruction array
      *
@@ -35,6 +72,7 @@ class Mage_Catalog_Model_Product_Indexer_Price extends Mage_Index_Model_Indexer_
             Mage_Index_Model_Event::TYPE_SAVE,
             Mage_Index_Model_Event::TYPE_DELETE,
             Mage_Index_Model_Event::TYPE_MASS_ACTION,
+            self::EVENT_TYPE_REINDEX_PRICE,
         ),
         Mage_Core_Model_Config_Data::ENTITY => array(
             Mage_Index_Model_Event::TYPE_SAVE
@@ -110,26 +148,24 @@ class Mage_Catalog_Model_Product_Indexer_Price extends Mage_Index_Model_Indexer_
     public function matchEvent(Mage_Index_Model_Event $event)
     {
         $data       = $event->getNewData();
-        $resultKey = 'catalog_product_price_match_result';
-        if (isset($data[$resultKey])) {
-            return $data[$resultKey];
+        if (isset($data[self::EVENT_MATCH_RESULT_KEY])) {
+            return $data[self::EVENT_MATCH_RESULT_KEY];
         }
 
-        $result = null;
         if ($event->getEntity() == Mage_Core_Model_Config_Data::ENTITY) {
             $data = $event->getDataObject();
-            if (in_array($data->getPath(), $this->_relatedConfigSettings)) {
+            if ($data && in_array($data->getPath(), $this->_relatedConfigSettings)) {
                 $result = $data->isValueChanged();
             } else {
                 $result = false;
             }
         } elseif ($event->getEntity() == Mage_Customer_Model_Group::ENTITY) {
-            $result = $event->getDataObject()->isObjectNew();
+            $result = $event->getDataObject() && $event->getDataObject()->isObjectNew();
         } else {
             $result = parent::matchEvent($event);
         }
 
-        $event->addNewData($resultKey, $result);
+        $event->addNewData(self::EVENT_MATCH_RESULT_KEY, $result);
 
         return $result;
     }
@@ -211,6 +247,7 @@ class Mage_Catalog_Model_Product_Indexer_Price extends Mage_Index_Model_Indexer_
      */
     protected function _registerEvent(Mage_Index_Model_Event $event)
     {
+        $event->addNewData(self::EVENT_MATCH_RESULT_KEY, true);
         $entity = $event->getEntity();
 
         if ($entity == Mage_Core_Model_Config_Data::ENTITY || $entity == Mage_Customer_Model_Group::ENTITY) {
@@ -231,6 +268,9 @@ class Mage_Catalog_Model_Product_Indexer_Price extends Mage_Index_Model_Indexer_
                 case Mage_Index_Model_Event::TYPE_MASS_ACTION:
                     $this->_registerCatalogProductMassActionEvent($event);
                     break;
+                case self::EVENT_TYPE_REINDEX_PRICE:
+                    $event->addNewData('id', $event->getDataObject()->getId());
+                    break;
             }
 
             // call product type indexers registerEvent
@@ -249,6 +289,10 @@ class Mage_Catalog_Model_Product_Indexer_Price extends Mage_Index_Model_Indexer_
     protected function _processEvent(Mage_Index_Model_Event $event)
     {
         $data = $event->getNewData();
+        if ($event->getType() == self::EVENT_TYPE_REINDEX_PRICE) {
+            $this->_getResource()->reindexProductIds($data['id']);
+            return;
+        }
         if (!empty($data['catalog_product_price_reindex_all'])) {
             $this->reindexAll();
         }

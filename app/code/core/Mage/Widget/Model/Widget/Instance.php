@@ -20,12 +20,21 @@
  *
  * @category    Mage
  * @package     Mage_Widget
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 /**
  * Widget Instance Model
+ *
+ * @method Mage_Widget_Model_Resource_Widget_Instance _getResource()
+ * @method Mage_Widget_Model_Resource_Widget_Instance getResource()
+ * @method string getTitle()
+ * @method Mage_Widget_Model_Widget_Instance setTitle(string $value)
+ * @method Mage_Widget_Model_Widget_Instance setStoreIds(string $value)
+ * @method Mage_Widget_Model_Widget_Instance setWidgetParameters(string $value)
+ * @method int getSortOrder()
+ * @method Mage_Widget_Model_Widget_Instance setSortOrder(int $value)
  *
  * @category    Mage
  * @package     Mage_Widget
@@ -78,6 +87,20 @@ class Mage_Widget_Model_Widget_Instance extends Mage_Core_Model_Abstract
             $this->_layoutHandles[$typeId . '_products'] = $layoutHandle;
             $this->_specificEntitiesLayoutHandles[$typeId . '_products'] = self::SINGLE_PRODUCT_LAYOUT_HANLDE;
         }
+    }
+
+     /**
+     * Init mapping array of short fields to
+     * its full names
+     *
+     * @return Varien_Object
+     */
+    protected function _initOldFieldsMap()
+    {
+        $this->_oldFieldsMap = array(
+            'type' => 'instance_type',
+        );
+        return $this;
     }
 
     /**
@@ -137,6 +160,7 @@ class Mage_Widget_Model_Widget_Instance extends Mage_Core_Model_Abstract
         }
         $this->setData('page_groups', $tmpPageGroups);
         $this->setData('page_group_ids', $pageGroupIds);
+
         return parent::_beforeSave();
     }
 
@@ -212,7 +236,6 @@ class Mage_Widget_Model_Widget_Instance extends Mage_Core_Model_Abstract
     public function setPackageTheme($packageTheme)
     {
         $this->setData('package_theme', $packageTheme);
-        $this->_preparePackageTheme();
         return $this;
     }
 
@@ -224,20 +247,18 @@ class Mage_Widget_Model_Widget_Instance extends Mage_Core_Model_Abstract
      */
     public function getPackageTheme()
     {
-        $this->_preparePackageTheme();
         return $this->_getData('package_theme');
     }
 
     /**
      * Replace '_' to '/', if was set from request(GET request)
      *
+     * @deprecated after 1.6.1.0-alpha1
+     *
      * @return Mage_Widget_Model_Widget_Instance
      */
     protected function _preparePackageTheme()
     {
-        if (strpos($this->_getData('package_theme'), '_') >= 0) {
-            $this->setData('package_theme', str_replace('_', '/', $this->_getData('package_theme')));
-        }
         return $this;
     }
 

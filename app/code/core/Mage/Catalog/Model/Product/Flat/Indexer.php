@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Catalog
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -28,12 +28,41 @@
 /**
  * Catalog Product Flat Indexer Model
  *
- * @category   Mage
- * @package    Mage_Catalog
- * @author     Magento Core Team <core@magentocommerce.com>
+ * @method Mage_Catalog_Model_Resource_Product_Flat_Indexer _getResource()
+ * @method Mage_Catalog_Model_Resource_Product_Flat_Indexer getResource()
+ * @method int getEntityTypeId()
+ * @method Mage_Catalog_Model_Product_Flat_Indexer setEntityTypeId(int $value)
+ * @method int getAttributeSetId()
+ * @method Mage_Catalog_Model_Product_Flat_Indexer setAttributeSetId(int $value)
+ * @method string getTypeId()
+ * @method Mage_Catalog_Model_Product_Flat_Indexer setTypeId(string $value)
+ * @method string getSku()
+ * @method Mage_Catalog_Model_Product_Flat_Indexer setSku(string $value)
+ * @method int getHasOptions()
+ * @method Mage_Catalog_Model_Product_Flat_Indexer setHasOptions(int $value)
+ * @method int getRequiredOptions()
+ * @method Mage_Catalog_Model_Product_Flat_Indexer setRequiredOptions(int $value)
+ * @method string getCreatedAt()
+ * @method Mage_Catalog_Model_Product_Flat_Indexer setCreatedAt(string $value)
+ * @method string getUpdatedAt()
+ * @method Mage_Catalog_Model_Product_Flat_Indexer setUpdatedAt(string $value)
+ *
+ * @category    Mage
+ * @package     Mage_Catalog
+ * @author      Magento Core Team <core@magentocommerce.com>
  */
 class Mage_Catalog_Model_Product_Flat_Indexer extends Mage_Core_Model_Abstract
 {
+    /**
+     * Catalog product flat entity for indexers
+     */
+    const ENTITY = 'catalog_product_flat';
+
+    /**
+     * Indexers rebuild event type
+     */
+    const EVENT_TYPE_REBUILD = 'catalog_product_flat_rebuild';
+
     /**
      * Standart model resource initialization
      *
@@ -44,16 +73,6 @@ class Mage_Catalog_Model_Product_Flat_Indexer extends Mage_Core_Model_Abstract
     }
 
     /**
-     * Get resource instance
-     *
-     * @return Mage_Catalog_Model_Resource_Eav_Mysql4_Product_Flat_Indexer
-     */
-    protected function _getResource()
-    {
-        return parent::_getResource();
-    }
-
-    /**
      * Rebuild Catalog Product Flat Data
      *
      * @param mixed $store
@@ -61,7 +80,16 @@ class Mage_Catalog_Model_Product_Flat_Indexer extends Mage_Core_Model_Abstract
      */
     public function rebuild($store = null)
     {
-        $this->_getResource()->rebuild($store);
+        if (is_null($store)) {
+            $this->_getResource()->prepareFlatTables();
+        } else {
+            $this->_getResource()->prepareFlatTable($store);
+        }
+        Mage::getSingleton('index/indexer')->processEntityAction(
+            new Varien_Object(array('id' => $store)),
+            self::ENTITY,
+            self::EVENT_TYPE_REBUILD
+        );
         return $this;
     }
 
@@ -209,7 +237,7 @@ class Mage_Catalog_Model_Product_Flat_Indexer extends Mage_Core_Model_Abstract
             }
             return $this;
         }
-        
+
         $resource = $this->_getResource();
         $resource->beginTransaction();
         try {
@@ -256,5 +284,26 @@ class Mage_Catalog_Model_Product_Flat_Indexer extends Mage_Core_Model_Abstract
     {
         $this->_getResource()->deleteFlatTable($store);
         return $this;
+    }
+
+    /**
+     * Rebuild Catalog Product Flat Data for all stores
+     *
+     * @return Mage_Catalog_Model_Product_Flat_Indexer
+     */
+    public function reindexAll()
+    {
+        $this->_getResource()->reindexAll();
+        return $this;
+    }
+
+    /**
+     * Retrieve list of attribute codes for flat
+     *
+     * @return array
+     */
+    public function getAttributeCodes()
+    {
+        return $this->_getResource()->getAttributeCodes();
     }
 }

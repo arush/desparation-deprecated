@@ -19,7 +19,7 @@
  *
  * @category    design
  * @package     base_default
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 var Checkout = Class.create();
@@ -660,6 +660,7 @@ Payment.prototype = {
     switchMethod: function(method){
         if (this.currentMethod && $('payment_form_'+this.currentMethod)) {
             this.changeVisible(this.currentMethod, true);
+            $('payment_form_'+this.currentMethod).fire('payment-method:switched-off', {method_code : this.currentMethod});
         }
         if ($('payment_form_'+method)){
             this.changeVisible(method, false);
@@ -667,6 +668,9 @@ Payment.prototype = {
         } else {
             //Event fix for payment methods without form like "Check / Money order"
             document.body.fire('payment-method:switched', {method_code : method});
+        }
+        if (method) {
+            this.lastUsedMethod = method;
         }
         this.currentMethod = method;
     },
@@ -677,7 +681,7 @@ Payment.prototype = {
             element = $(el);
             if (element) {
                 element.style.display = (mode) ? 'none' : '';
-                element.select('input', 'select', 'textarea').each(function(field) {
+                element.select('input', 'select', 'textarea', 'button').each(function(field) {
                     field.disabled = mode;
                 });
             }
@@ -798,7 +802,7 @@ Payment.prototype = {
 
         //checkout.setPayment();
     },
- 
+
     initWhatIsCvvListeners: function(){
         $$('.cvv-what-is-this').each(function(element){
             Event.observe(element, 'click', toggleToolTip);
@@ -849,6 +853,7 @@ Review.prototype = {
                 response = {};
             }
             if (response.redirect) {
+                this.isSuccess = true;
                 location.href = response.redirect;
                 return;
             }

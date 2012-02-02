@@ -20,16 +20,16 @@
  *
  * @category    Mage
  * @package     Mage_XmlConnect
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 /**
  * Customer address book xml renderer
  *
- * @category   Mage
- * @package    Mage_XmlConnect
- * @author     Magento Core Team <core@magentocommerce.com>
+ * @category    Mage
+ * @package     Mage_XmlConnect
+ * @author      Magento Core Team <core@magentocommerce.com>
  */
 class Mage_XmlConnect_Block_Customer_Address_List extends Mage_Core_Block_Template
 {
@@ -40,7 +40,7 @@ class Mage_XmlConnect_Block_Customer_Address_List extends Mage_Core_Block_Templa
      */
     protected function _toHtml()
     {
-        $addressXmlObj          = new Mage_XmlConnect_Model_Simplexml_Element('<address></address>');
+        $addressXmlObj          = Mage::getModel('xmlconnect/simplexml_element', '<address></address>');
         $customer               = Mage::getSingleton('customer/session')->getCustomer();
 
         $_billingAddssesId      = $customer->getDefaultBilling();
@@ -81,7 +81,10 @@ class Mage_XmlConnect_Block_Customer_Address_List extends Mage_Core_Block_Templa
      * @param Mage_XmlConnect_Model_Simplexml_Element $item
      * @return array
      */
-    public function prepareAddressData(Mage_Customer_Model_Address $address, Mage_XmlConnect_Model_Simplexml_Element $item)
+    public function prepareAddressData(
+        Mage_Customer_Model_Address $address,
+        Mage_XmlConnect_Model_Simplexml_Element $item
+    )
     {
         if (!$address) {
             return array();
@@ -89,9 +92,7 @@ class Mage_XmlConnect_Block_Customer_Address_List extends Mage_Core_Block_Templa
 
         $attributes = Mage::helper('customer/address')->getAttributes();
 
-        $data = array(
-            'entity_id' => $address->getId()
-        );
+        $data = array('entity_id' => $address->getId());
 
         foreach ($attributes as $attribute) {
             /* @var $attribute Mage_Customer_Model_Attribute */
@@ -107,7 +108,7 @@ class Mage_XmlConnect_Block_Customer_Address_List extends Mage_Core_Block_Templa
                 $dataModel = Mage_Customer_Model_Attribute_Data::factory($attribute, $address);
                 $value     = $dataModel->outputValue(Mage_Customer_Model_Attribute_Data::OUTPUT_FORMAT_ONELINE);
                 if ($attribute->getFrontendInput() == 'multiline') {
-                    $values    = $dataModel->outputValue(Mage_Customer_Model_Attribute_Data::OUTPUT_FORMAT_ARRAY);
+                    $values = $dataModel->outputValue(Mage_Customer_Model_Attribute_Data::OUTPUT_FORMAT_ARRAY);
                     // explode lines
                     foreach ($values as $k => $v) {
                         $key = sprintf('%s%d', $attribute->getAttributeCode(), $k + 1);
@@ -119,9 +120,10 @@ class Mage_XmlConnect_Block_Customer_Address_List extends Mage_Core_Block_Templa
         }
 
         foreach ($data as $key => $value) {
-            if (!empty($value)) {
-                $item->addChild($key, $item->xmlentities($value));
+            if (empty($value)) {
+                continue;
             }
+            $item->addChild($key, $item->xmlentities($value));
         }
     }
 }

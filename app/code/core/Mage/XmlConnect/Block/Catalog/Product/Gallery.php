@@ -20,21 +20,19 @@
  *
  * @category    Mage
  * @package     Mage_XmlConnect
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 /**
  * Product images gallery block
  *
- * @category   Mage
- * @package    Mage_XmlConnect
- * @author     Magento Core Team <core@magentocommerce.com>
+ * @category    Mage
+ * @package     Mage_XmlConnect
+ * @author      Magento Core Team <core@magentocommerce.com>
  */
-
 class Mage_XmlConnect_Block_Catalog_Product_Gallery extends Mage_XmlConnect_Block_Catalog
 {
-
     /**
      * Generate images gallery xml
      *
@@ -43,12 +41,10 @@ class Mage_XmlConnect_Block_Catalog_Product_Gallery extends Mage_XmlConnect_Bloc
     protected function _toHtml()
     {
         $productId = $this->getRequest()->getParam('id', null);
-        $product = Mage::getModel('catalog/product')
-            ->setStoreId(Mage::app()->getStore()->getId())
-            ->load($productId);
+        $product = Mage::getModel('catalog/product')->setStoreId(Mage::app()->getStore()->getId())->load($productId);
         $collection = $product->getMediaGalleryImages();
 
-        $imagesNode = new Mage_XmlConnect_Model_Simplexml_Element('<images></images>');
+        $imagesNode = Mage::getModel('xmlconnect/simplexml_element', '<images></images>');
         $helper = $this->helper('catalog/image');
 
         foreach ($collection as $item) {
@@ -57,9 +53,7 @@ class Mage_XmlConnect_Block_Catalog_Product_Gallery extends Mage_XmlConnect_Bloc
             /**
              * Big image
              */
-            $bigImage = $helper->init($product, 'image', $item->getFile())
-                ->constrainOnly(true)
-                ->keepFrame(false)
+            $bigImage = $helper->init($product, 'image', $item->getFile())->constrainOnly(true)->keepFrame(false)
                 ->resize(Mage::helper('xmlconnect/image')->getImageSizeForContent('product_gallery_big'));
 
             $fileNode = $imageNode->addChild('file');
@@ -74,9 +68,7 @@ class Mage_XmlConnect_Block_Catalog_Product_Gallery extends Mage_XmlConnect_Bloc
             /**
              * Small image
              */
-            $smallImage = $helper->init($product, 'thumbnail', $item->getFile())
-                ->constrainOnly(true)
-                ->keepFrame(false)
+            $smallImage = $helper->init($product, 'thumbnail', $item->getFile())->constrainOnly(true)->keepFrame(false)
                 ->resize(Mage::helper('xmlconnect/image')->getImageSizeForContent('product_gallery_small'));
 
             $fileNode = $imageNode->addChild('file');

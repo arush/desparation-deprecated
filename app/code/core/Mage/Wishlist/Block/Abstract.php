@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Wishlist
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -42,7 +42,7 @@ abstract class Mage_Wishlist_Block_Abstract extends Mage_Catalog_Block_Product_A
     protected $_collection;
 
     /**
-     * Wishlist Model
+     * Store wishlist Model
      *
      * @var Mage_Wishlist_Model_Wishlist
      */
@@ -99,21 +99,7 @@ abstract class Mage_Wishlist_Block_Abstract extends Mage_Catalog_Block_Product_A
      */
     protected function _getWishlist()
     {
-        if (is_null($this->_wishlist)) {
-            if (Mage::registry('shared_wishlist')) {
-                $this->_wishlist = Mage::registry('shared_wishlist');
-            }
-            elseif (Mage::registry('wishlist')) {
-                $this->_wishlist = Mage::registry('wishlist');
-            }
-            else {
-                $this->_wishlist = Mage::getModel('wishlist/wishlist');
-                if ($this->_getCustomerSession()->isLoggedIn()) {
-                    $this->_wishlist->loadByCustomer($this->_getCustomerSession()->getCustomer());
-                }
-            }
-        }
-        return $this->_wishlist;
+        return $this->_getHelper()->getWishlist();
     }
 
     /**
@@ -136,9 +122,7 @@ abstract class Mage_Wishlist_Block_Abstract extends Mage_Catalog_Block_Product_A
     {
         if (is_null($this->_collection)) {
             $this->_collection = $this->_getWishlist()
-                ->getItemCollection()
-                ->addStoreFilter();
-
+                ->getItemCollection();
             $this->_prepareCollection($this->_collection);
         }
 
@@ -160,11 +144,12 @@ abstract class Mage_Wishlist_Block_Abstract extends Mage_Catalog_Block_Product_A
      * Retrieve URL for Removing item from wishlist
      *
      * @param Mage_Catalog_Model_Product|Mage_Wishlist_Model_Item $item
+     *
      * @return string
      */
-    public function getItemRemoveUrl($product)
+    public function getItemRemoveUrl($item)
     {
-        return $this->_getHelper()->getRemoveUrl($product);
+        return $this->_getHelper()->getRemoveUrl($item);
     }
 
     /**
@@ -229,7 +214,7 @@ abstract class Mage_Wishlist_Block_Abstract extends Mage_Catalog_Block_Product_A
     public function getEscapedDescription($item)
     {
         if ($item->getDescription()) {
-            return $this->htmlEscape($item->getDescription());
+            return $this->escapeHtml($item->getDescription());
         }
         return '&nbsp;';
     }
@@ -279,7 +264,7 @@ abstract class Mage_Wishlist_Block_Abstract extends Mage_Catalog_Block_Product_A
      */
     public function getWishlistItemsCount()
     {
-        return $this->getWishlistItems()->count();
+        return $this->_getWishlist()->getItemsCount();
     }
 
     /**
@@ -352,14 +337,27 @@ abstract class Mage_Wishlist_Block_Abstract extends Mage_Catalog_Block_Product_A
      * non-configured products
      *
      * @param Mage_Catalog_Model_Product $product
-     * @param boolean $displayMinimalPrice
+     * @param bool $displayMinimalPrice
      * @param string $idSuffix
+     *
+     * @return string
      */
     public function getPriceHtml($product, $displayMinimalPrice = false, $idSuffix = '')
     {
-        $productType = $product->getTypeId();
-        return $this->_getItemPriceBlock($productType)
-            ->setCleanRenderer($this->_preparePriceRenderer($productType))
+        $type_id = $product->getTypeId();
+        if (Mage::helper('catalog')->canApplyMsrp($product)) {
+            $realPriceHtml = $this->_preparePriceRenderer($type_id)
+                ->setProduct($product)
+                ->setDisplayMinimalPrice($displayMinimalPrice)
+                ->setIdSuffix($idSuffix)
+                ->setIsEmulateMode(true)
+                ->toHtml();
+            $product->setAddToCartUrl($this->getAddToCartUrl($product));
+            $product->setRealPriceHtml($realPriceHtml);
+            $type_id = $this->_mapRenderer;
+        }
+
+        return $this->_preparePriceRenderer($type_id)
             ->setProduct($product)
             ->setDisplayMinimalPrice($displayMinimalPrice)
             ->setIdSuffix($idSuffix)
@@ -369,17 +367,21 @@ abstract class Mage_Wishlist_Block_Abstract extends Mage_Catalog_Block_Product_A
     /**
      * Retrieve URL to item Product
      *
-     * @param  Mage_Wishlist_Model_Item $item
+     * @param  Mage_Wishlist_Model_Item|Mage_Catalog_Model_Product $item
      * @param  array $additional
      * @return string
      */
     public function getProductUrl($item, $additional = array())
     {
+        if ($item instanceof Mage_Catalog_Model_Product) {
+            $product = $item;
+        } else {
+            $product = $item->getProduct();
+        }
         $buyRequest = $item->getBuyRequest();
-        $product    = $item->getProduct();
         if (is_object($buyRequest)) {
             $config = $buyRequest->getSuperProductConfig();
-            if ($config && isset($config['product_id'])) {
+            if ($config && !empty($config['product_id'])) {
                 $product = Mage::getModel('catalog/product')
                     ->setStoreId(Mage::app()->getStore()->getStoreId())
                     ->load($config['product_id']);

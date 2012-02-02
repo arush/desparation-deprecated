@@ -20,21 +20,19 @@
  *
  * @category    Mage
  * @package     Mage_XmlConnect
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 /**
  * Related products block
  *
- * @category   Mage
- * @package    Mage_XmlConnect
+ * @category    Mage
+ * @package     Mage_XmlConnect
  * @author      Magento Core Team <core@magentocommerce.com>
  */
-
 class Mage_XmlConnect_Block_Catalog_Product_Related extends Mage_XmlConnect_Block_Catalog_Product_List
 {
-
     /**
      * Retrieve related products xml object based on current product
      *
@@ -43,25 +41,56 @@ class Mage_XmlConnect_Block_Catalog_Product_Related extends Mage_XmlConnect_Bloc
      */
     public function getRelatedProductsXmlObj()
     {
-        $relatedXmlObj = new Mage_XmlConnect_Model_Simplexml_Element('<related_products></related_products>');
-        if ($this->getParentBlock()->getProduct()->getId() > 0) {
-            $collection = $this->_getProductCollection();
-            if (!$collection) {
-                return $relatedXmlObj;
-            }
-            foreach ($collection->getItems() as $product) {
-                $productXmlObj = $this->productToXmlObject($product);
-                if ($productXmlObj) {
-                    if ($this->getParentBlock()->getChild('product_price')) {
-                        $this->getParentBlock()->getChild('product_price')->setProduct($product)
-                           ->setProductXmlObj($productXmlObj)
-                           ->collectProductPrices();
-                    }
-                    $relatedXmlObj->appendChild($productXmlObj);
+        /** @var $relatedXmlObj Mage_XmlConnect_Model_Simplexml_Element */
+        $relatedXmlObj = Mage::getModel('xmlconnect/simplexml_element', '<related_products></related_products>');
+
+        $productObj = $this->getParentBlock()->getProduct();
+
+        if (is_object(Mage::getConfig()->getNode('modules/Enterprise_TargetRule'))) {
+            Mage::register('product', $productObj);
+
+            $productBlock = $this->getLayout()->addBlock(
+                'enterprise_targetrule/catalog_product_list_related', 'relatedProducts'
+            );
+
+            $collection = $productBlock->getItemCollection();
+        } else {
+            if ($productObj->getId() > 0) {
+                $collection = $this->_getProductCollection();
+                if (!$collection) {
+                    return $relatedXmlObj;
                 }
+                $collection = $collection->getItems();
             }
         }
 
+        $this->_addProductXmlObj($relatedXmlObj, $collection);
+
+        return $relatedXmlObj;
+    }
+
+    /**
+     * Add related products info to xml object
+     *
+     * @param Mage_XmlConnect_Model_Simplexml_Element $relatedXmlObj
+     * @param array $collection
+     * @return Mage_XmlConnect_Model_Simplexml_Element
+     */
+    protected function _addProductXmlObj(Mage_XmlConnect_Model_Simplexml_Element $relatedXmlObj, $collection)
+    {
+        foreach ($collection as $product) {
+            $productXmlObj = $this->productToXmlObject($product);
+
+            if (!$productXmlObj) {
+                continue;
+            }
+
+            if ($this->getParentBlock()->getChild('product_price')) {
+                $this->getParentBlock()->getChild('product_price')->setProduct($product)
+                    ->setProductXmlObj($productXmlObj)->collectProductPrices();
+            }
+            $relatedXmlObj->appendChild($productXmlObj);
+        }
         return $relatedXmlObj;
     }
 
@@ -89,7 +118,6 @@ class Mage_XmlConnect_Block_Catalog_Product_Related extends Mage_XmlConnect_Bloc
              * Add rating and review summary, image attribute, apply sort params
              */
             $this->_prepareCollection($collection);
-
             $this->_productCollection = $collection;
         }
         return $this->_productCollection;

@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_XmlConnect
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -35,36 +35,26 @@ abstract class Mage_XmlConnect_Controller_Action extends Mage_Core_Controller_Fr
 {
     /**
      * Message status `error`
-     *
-     * @var string
      */
     const MESSAGE_STATUS_ERROR      = 'error';
 
     /**
      * Message status `warning`
-     *
-     * @var string
      */
     const MESSAGE_STATUS_WARNING    = 'warning';
 
     /**
      * Message status `success`
-     *
-     * @var string
      */
     const MESSAGE_STATUS_SUCCESS    = 'success';
 
     /**
      * Message type `alert`
-     *
-     * @var string
      */
     const MESSAGE_TYPE_ALERT        = 'alert';
 
     /**
      * Message type `prompt`
-     *
-     * @var string
      */
     const MESSAGE_TYPE_PROMPT       = 'prompt';
 
@@ -72,7 +62,7 @@ abstract class Mage_XmlConnect_Controller_Action extends Mage_Core_Controller_Fr
      * Declare content type header
      * Validate current application
      *
-     * @return void
+     * @return null
      */
     public function preDispatch()
     {
@@ -88,8 +78,7 @@ abstract class Mage_XmlConnect_Controller_Action extends Mage_Core_Controller_Fr
         $screenSize = isset($_COOKIE[$screenSizeCookieName]) ? (string) $_COOKIE[$screenSizeCookieName] : '';
         if (!$appCode) {
             $this->_message(
-                Mage::helper('xmlconnect')->__('Specified invalid app code.'),
-                self::MESSAGE_STATUS_ERROR
+                Mage::helper('xmlconnect')->__('Specified invalid app code.'), self::MESSAGE_STATUS_ERROR
             );
             $this->setFlag('', self::FLAG_NO_DISPATCH, true);
             return;
@@ -101,8 +90,7 @@ abstract class Mage_XmlConnect_Controller_Action extends Mage_Core_Controller_Fr
             && (int)Mage::getStoreConfig('general/restriction/mode') == 0
         ) {
             $this->_message(
-                Mage::helper('xmlconnect')->__('Website is offline.'),
-                self::MESSAGE_STATUS_SUCCESS
+                Mage::helper('xmlconnect')->__('Website is offline.'), self::MESSAGE_STATUS_SUCCESS
             );
             $this->setFlag('', self::FLAG_NO_DISPATCH, true);
             return;
@@ -118,8 +106,7 @@ abstract class Mage_XmlConnect_Controller_Action extends Mage_Core_Controller_Fr
             Mage::register('current_app', $appModel);
         } else {
             $this->_message(
-                Mage::helper('xmlconnect')->__('Specified invalid app code.'),
-                self::MESSAGE_STATUS_ERROR
+                Mage::helper('xmlconnect')->__('Specified invalid app code.'), self::MESSAGE_STATUS_ERROR
             );
             $this->setFlag('', self::FLAG_NO_DISPATCH, true);
             return;
@@ -129,7 +116,7 @@ abstract class Mage_XmlConnect_Controller_Action extends Mage_Core_Controller_Fr
     /**
      * Validate response body
      *
-     * @return void
+     * @return null
      */
     public function postDispatch()
     {
@@ -148,15 +135,20 @@ abstract class Mage_XmlConnect_Controller_Action extends Mage_Core_Controller_Fr
      *
      * @param string $text
      * @param string $status
-     * @param string $type
-     * @param string $action
-     * @return void
+     * @param array $children
+     * @return null
      */
-    protected function _message($text, $status, $type='', $action='')
+    protected function _message($text, $status, $children = array())
     {
+        /** @var $message Mage_XmlConnect_Model_Simplexml_Element */
         $message = Mage::getModel('xmlconnect/simplexml_element', '<message></message>');
-        $message->addChild('status', $status);
-        $message->addChild('text', $text);
+        $message->addCustomChild('status', $status);
+        $message->addCustomChild('text', $text);
+
+        foreach ($children as $node => $value) {
+            $message->addCustomChild($node, $value);
+        }
+
         $this->getResponse()->setBody($message->asNiceXml());
     }
 }

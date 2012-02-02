@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Widget
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -150,9 +150,10 @@ class Mage_Widget_Block_Adminhtml_Widget_Instance_Edit_Tab_Settings
     public function getContinueUrl()
     {
         return $this->getUrl('*/*/*', array(
-            '_current' => true,
-            'type' => '{{type}}',
-            'package_theme' => '{{package_theme}}'
+            '_current'  => true,
+            'type'      => '{{type}}',
+            'package'   => '{{package}}',
+            'theme'     => '{{theme}}'
         ));
     }
 

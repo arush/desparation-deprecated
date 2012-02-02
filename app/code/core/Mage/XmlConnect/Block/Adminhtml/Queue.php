@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_XmlConnect
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -31,8 +31,8 @@
  * @package    Mage_XmlConnect
  * @author     Magento Core Team <core@magentocommerce.com>
  */
- class Mage_XmlConnect_Block_Adminhtml_Queue extends Mage_Adminhtml_Block_Widget_Grid_Container
- {
+class Mage_XmlConnect_Block_Adminhtml_Queue extends Mage_Adminhtml_Block_Widget_Grid_Container
+{
     /**
      * Class constructor
      */
@@ -45,4 +45,4 @@
         parent::__construct();
         $this->removeButton('add');
     }
- }
+}

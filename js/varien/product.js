@@ -19,7 +19,7 @@
  *
  * @category    Varien
  * @package     js
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 if(typeof Product=='undefined') {
@@ -135,6 +135,8 @@ Product.Zoom.prototype = {
         if (overSize) {
             if (this.imageDim.width > this.containerDim.width) {
                 this.imageEl.style.width = (this.imageZoom*this.containerDim.width)+'px';
+            } else if (this.imageDim.height > this.containerDim.height) {
+                this.imageEl.style.height = (this.imageZoom*this.containerDim.height)+'px';
             }
 
             if(this.containerDim.ratio){
@@ -278,12 +280,12 @@ Product.Config.prototype = {
             $(this.settings[i]).nextSetting   = nextSetting;
             childSettings.push(this.settings[i]);
         }
-        
+
         // Set default values - from config and overwrite them by url values
         if (config.defaultValues) {
             this.values = config.defaultValues;
         }
-        
+
         var separatorIndex = window.location.href.indexOf('#');
         if (separatorIndex != -1) {
             var paramsStr = window.location.href.substr(separatorIndex+1);
@@ -299,7 +301,7 @@ Product.Config.prototype = {
         this.configureForValues();
         document.observe("dom:loaded", this.configureForValues.bind(this));
     },
-    
+
     configureForValues: function () {
         if (this.values) {
             this.settings.each(function(element){
@@ -555,8 +557,9 @@ Product.OptionsPrice.prototype = {
         this.productPrice       = config.productPrice;
         this.showIncludeTax     = config.showIncludeTax;
         this.showBothPrices     = config.showBothPrices;
-        this.productPrice       = config.productPrice;
         this.productOldPrice    = config.productOldPrice;
+        this.priceInclTax       = config.priceInclTax;
+        this.priceExclTax       = config.priceExclTax;
         this.skipCalculate      = config.skipCalculate;//@deprecated after 1.5.1.0
         this.duplicateIdSuffix  = config.idSuffix;
         this.specialTaxPrice    = config.specialTaxPrice;
@@ -596,7 +599,7 @@ Product.OptionsPrice.prototype = {
         var nonTaxable = 0;
         var oldPrice = 0;
         var priceInclTax = 0;
-        var currentTax = this.currentTax; 
+        var currentTax = this.currentTax;
         $H(this.optionPrices).each(function(pair) {
             if ('undefined' != typeof(pair.value.price) && 'undefined' != typeof(pair.value.oldPrice)) {
                 price += parseFloat(pair.value.price);
@@ -606,7 +609,7 @@ Product.OptionsPrice.prototype = {
             } else if (pair.key == 'priceInclTax') {
                 priceInclTax += pair.value;
             } else if (pair.key == 'optionsPriceInclTax') {
-                priceInclTax += pair.value * (100 + currentTax) / 100; 
+                priceInclTax += pair.value * (100 + currentTax) / 100;
             } else {
                 price += parseFloat(pair.value);
                 oldPrice += parseFloat(pair.value);
@@ -629,6 +632,7 @@ Product.OptionsPrice.prototype = {
             var _productPrice;
             var _plusDisposition;
             var _minusDisposition;
+            var _priceInclTax;
             if ($(pair.value)) {
                 if (pair.value == 'old-price-'+this.productId && this.productOldPrice != this.productPrice) {
                     _productPrice = this.productOldPrice;
@@ -639,18 +643,21 @@ Product.OptionsPrice.prototype = {
                     _plusDisposition = this.plusDisposition;
                     _minusDisposition = this.minusDisposition;
                 }
+                _priceInclTax = priceInclTax;
 
-                var price = 0;
                 if (pair.value == 'old-price-'+this.productId && optionOldPrice !== undefined) {
                     price = optionOldPrice+parseFloat(_productPrice);
+                } else if (this.specialTaxPrice == 'true' && this.priceInclTax !== undefined && this.priceExclTax !== undefined) {
+                    price = optionPrices+parseFloat(this.priceExclTax);
+                    _priceInclTax += this.priceInclTax;
                 } else {
                     price = optionPrices+parseFloat(_productPrice);
-                    priceInclTax += parseFloat(_productPrice) * (100 + this.currentTax) / 100;
+                    _priceInclTax += parseFloat(_productPrice) * (100 + this.currentTax) / 100;
                 }
 
                 if (this.specialTaxPrice == 'true') {
                     var excl = price;
-                    var incl = priceInclTax;
+                    var incl = _priceInclTax;
                 } else if (this.includeTax == 'true') {
                     // tax = tax included into product price by admin
                     var tax = price / (100 + this.defaultTax) * this.defaultTax;

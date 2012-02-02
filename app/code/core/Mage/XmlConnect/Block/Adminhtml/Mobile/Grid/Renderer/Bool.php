@@ -20,18 +20,19 @@
  *
  * @category    Mage
  * @package     Mage_XmlConnect
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 /**
  * XmlConnect status field grid renderer
  *
- * @category   Mage
- * @package    Mage_XmlConnect
- * @author     Magento Core Team <core@magentocommerce.com>
+ * @category    Mage
+ * @package     Mage_XmlConnect
+ * @author      Magento Core Team <core@magentocommerce.com>
  */
-class Mage_XmlConnect_Block_Adminhtml_Mobile_Grid_Renderer_Bool extends Mage_Adminhtml_Block_Widget_Grid_Column_Renderer_Abstract
+class Mage_XmlConnect_Block_Adminhtml_Mobile_Grid_Renderer_Bool
+    extends Mage_Adminhtml_Block_Widget_Grid_Column_Renderer_Abstract
 {
     /**
      * Render application status image
@@ -45,11 +46,15 @@ class Mage_XmlConnect_Block_Adminhtml_Mobile_Grid_Renderer_Bool extends Mage_Adm
         $status = (int) $row->getData($this->getColumn()->getIndex());
         $options = Mage::helper('xmlconnect')->getStatusOptions();
         if ($status == Mage_XmlConnect_Model_Application::APP_STATUS_SUCCESS) {
-             $result = '<img src="' . Mage::helper('xmlconnect/image')->getSkinImagesUrl('gel_green.png')
-            . '" >&nbsp;' . (isset($options[$status]) ? $options[$status] : '');
+            $result = '<img src="'
+                . Mage::helper('xmlconnect/image')->getSkinImagesUrl('gel_green.png')
+                . '" >&nbsp;'
+                . (isset($options[$status]) ? $options[$status] : '');
         } else if ($status == Mage_XmlConnect_Model_Application::APP_STATUS_INACTIVE) {
-            $result = '<img src="' . Mage::helper('xmlconnect/image')->getSkinImagesUrl('gel_red.png')
-            . '" >&nbsp;' . (isset($options[$status]) ? $options[$status] : '');
+            $result = '<img src="'
+            . Mage::helper('xmlconnect/image')->getSkinImagesUrl('gel_red.png')
+            . '" >&nbsp;'
+            . (isset($options[$status]) ? $options[$status] : '');
         }
         return $result;
     }

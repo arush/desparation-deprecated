@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_GoogleCheckout
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -462,10 +462,12 @@ EOT;
                 if ($mageRateCode != $freeMethod) {
                     continue;
                 }
+
                 $googleRateCode = isset($map['methods'][$mageRateCode]) ? $map['methods'][$mageRateCode] : false;
                 if (false == $googleRateCode || $rate->getPrice() != 0) {
                     continue;
                 }
+
                 $methodName = $map['googleCarrierCompany'] . '/'.  $googleRateCode;
                 if (empty($shippingMethodsList[$methodName])) {
                     continue;
@@ -741,17 +743,21 @@ EOT;
                     foreach ($taxRates as $rate) {
                         $xml .= <<<EOT
                                     <{$type}-tax-rule>
-                                        <tax-area>
+                                        <tax-areas>
 
 EOT;
                         if ($rate['country'] === Mage_Usa_Model_Shipping_Carrier_Abstract::USA_COUNTRY_ID) {
-                            if (!empty($rate['postcode']) && $rate['postcode']!=='*') {
-                                $xml .= <<<EOT
-                                            <us-zip-area>
-                                                <zip-pattern>{$rate['postcode']}</zip-pattern>
-                                            </us-zip-area>
+                            if (!empty($rate['postcode']) && $rate['postcode'] !== '*') {
+                                $rate['postcode'] = Mage::helper('googlecheckout')
+                                    ->zipRangeToZipPattern($rate['postcode']);
+                                foreach ($rate['postcode'] as $postcode) {
+                                    $xml .= <<<EOT
+                                                <us-zip-area>
+                                                    <zip-pattern>$postcode</zip-pattern>
+                                                </us-zip-area>
 
 EOT;
+                                }
                             } else if (!empty($rate['state'])) {
                                 $xml .= <<<EOT
                                             <us-state-area>
@@ -773,7 +779,7 @@ EOT;
                                             <postal-area>
                                                 <country-code>{$rate['country']}</country-code>
 EOT;
-                                if (!empty($rate['postcode']) && $rate['postcode']!=='*') {
+                                if (!empty($rate['postcode']) && $rate['postcode'] !== '*') {
                                     $xml .= <<<EOT
                                                 <postal-code-pattern>{$rate['postcode']}</postal-code-pattern>
 
@@ -786,7 +792,7 @@ EOT;
                             }
                         }
                         $xml .= <<<EOT
-                                        </tax-area>
+                                        </tax-areas>
                                         <rate>{$rate['value']}</rate>
 EOT;
                         if ($shippingTaxed) {
@@ -937,7 +943,7 @@ EOT;
     }
 
     /**
-     * Retrieve yax rules
+     * Retrieve tax rules
      *
      * @return array
      */
@@ -1121,13 +1127,13 @@ EOT;
             'fedex' => array(
                 'googleCarrierCompany' => 'FedEx',
                 'methods' => array(
-                    'FEDEXGROUND'        => Mage::helper('usa')->__('Ground'),
-                    'GROUNDHOMEDELIVERY' => Mage::helper('usa')->__('Home Delivery'),
-                    'FEDEXEXPRESSSAVER'  => Mage::helper('usa')->__('Express Saver'),
-                    'FIRSTOVERNIGHT'     => Mage::helper('usa')->__('First Overnight'),
-                    'PRIORITYOVERNIGHT'  => Mage::helper('usa')->__('Priority Overnight'),
-                    'STANDARDOVERNIGHT'  => Mage::helper('usa')->__('Standard Overnight'),
-                    'FEDEX2DAY'          => Mage::helper('usa')->__('2Day')
+                    'FEDEX_GROUND'        => Mage::helper('usa')->__('Ground'),
+                    'GROUND_HOME_DELIVERY' => Mage::helper('usa')->__('Home Delivery'),
+                    'FEDEX_EXPRESS_SAVER'  => Mage::helper('usa')->__('Express Saver'),
+                    'FIRST_OVERNIGHT'     => Mage::helper('usa')->__('First Overnight'),
+                    'PRIORITY_OVERNIGHT'  => Mage::helper('usa')->__('Priority Overnight'),
+                    'STANDARD_OVERNIGHT'  => Mage::helper('usa')->__('Standard Overnight'),
+                    'FEDEX_2_DAY'          => Mage::helper('usa')->__('2Day')
                 )
             )
         );

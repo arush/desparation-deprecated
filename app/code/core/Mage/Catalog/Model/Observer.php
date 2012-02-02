@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Catalog
- * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -230,5 +230,18 @@ class Mage_Catalog_Model_Observer
         $storeId = $observer->getEvent()->getData('store_id');
         $result  = $observer->getEvent()->getData('result');
         $result->isAllowed = Mage::helper('catalog')->setStoreId($storeId)->isUsingStaticUrlsAllowed();
+    }
+
+    /**
+     * Cron job method for product prices to reindex
+     *
+     * @param Mage_Cron_Model_Schedule $schedule
+     */
+    public function reindexProductPrices(Mage_Cron_Model_Schedule $schedule)
+    {
+        $indexProcess = Mage::getSingleton('index/indexer')->getProcessByCode('catalog_product_price');
+        if ($indexProcess) {
+            $indexProcess->reindexAll();
+        }
     }
 }
