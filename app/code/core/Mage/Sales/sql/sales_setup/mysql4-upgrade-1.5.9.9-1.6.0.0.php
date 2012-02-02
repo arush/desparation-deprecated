@@ -6699,6 +6699,7 @@ $installer->getConnection()->changeColumn(
     )
 );
 */
+/*
 
 $installer->getConnection()->changeColumn(
     $installer->getTable('sales/shipment_track'),
@@ -6710,6 +6711,7 @@ $installer->getConnection()->changeColumn(
         'comment'   => 'Number'
     )
 );
+*/
 
 
 /**
