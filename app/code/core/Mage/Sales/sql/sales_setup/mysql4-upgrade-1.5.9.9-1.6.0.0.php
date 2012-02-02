@@ -6645,6 +6645,7 @@ $installer->getConnection()->changeColumn(
     )
 );
 */
+/*
 
 $installer->getConnection()->changeColumn(
     $installer->getTable('sales/order'),
@@ -6656,6 +6657,8 @@ $installer->getConnection()->changeColumn(
         'comment'   => 'Forced Do Shipment With Invoice'
     )
 );
+
+*/
 
 $installer->getConnection()->changeColumn(
     $installer->getTable('sales/order'),
