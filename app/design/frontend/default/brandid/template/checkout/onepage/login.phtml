@@ -358,6 +358,29 @@ if( !$this->getQuote()->isAllowedGuestCheckout() && $this->helper('customer')->i
                 loginForm.submit();
             }
         }
+        function onepageLogin(button) {
+        if(loginForm.validator && loginForm.validator.validate()){
+            button.disabled = true;
+            loginForm.submit();
+	        }
+	    }
+
     //]]>
     </script>
+    <?php
+    $registerParam = $this->getRequest()->getParam('register');
+    if ($registerParam || $registerParam === ''):
+	?>
+	    <script type="text/javascript">
+	    //<![CDATA[
+	        document.observe("dom:loaded", function() {
+	            if($('login:register')) {
+	                $('login:register').checked = true;
+	                checkout.setMethod();
+	            }
+	        })
+	    //]]>
+	    </script>
+	<?php endif; ?>
+
 </div>
