@@ -29,9 +29,11 @@
  */
 
 /** @var $installer Mage_Sales_Model_Entity_Setup */
+/*
 $installer = $this;
 $connection = $installer->getConnection();
 $connection->createTable($connection->createTableByDdl(
     $installer->getTable('sales/order_aggregated_created'),
     $installer->getTable('sales/order_aggregated_updated')
 ));
+*/
