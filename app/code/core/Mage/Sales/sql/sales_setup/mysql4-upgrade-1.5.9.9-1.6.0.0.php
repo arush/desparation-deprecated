@@ -6632,6 +6632,7 @@ $installer->getConnection()->changeColumn(
 );
 */
 
+/*
 $installer->getConnection()->changeColumn(
     $installer->getTable('sales/invoice'),
     'base_shipping_hidden_tax_amount',
@@ -6643,6 +6644,7 @@ $installer->getConnection()->changeColumn(
         'comment'   => 'Base Shipping Hidden Tax Amount'
     )
 );
+*/
 
 $installer->getConnection()->changeColumn(
     $installer->getTable('sales/order'),
@@ -6665,6 +6667,7 @@ $installer->getConnection()->changeColumn(
     )
 );
 
+/*
 $installer->getConnection()->changeColumn(
     $installer->getTable('sales/order'),
     'base_shipping_hidden_tax_amount',
@@ -6676,6 +6679,7 @@ $installer->getConnection()->changeColumn(
         'comment'   => 'Base Shipping Hidden Tax Amount'
     )
 );
+*/
 
 $installer->getConnection()->changeColumn(
     $installer->getTable('sales/quote_address'),
