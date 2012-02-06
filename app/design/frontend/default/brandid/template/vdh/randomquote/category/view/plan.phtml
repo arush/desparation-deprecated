@@ -11,18 +11,39 @@
 	<?php $counter--;?>
 	<li<?php echo ($counter == 0) ? ' class="last"': ''; ?>>
 		<div class="discount-triangle-container">
-			<span class="discount-number"><?php echo $product->getDiscount() ; ?> % off</span>
+			<span class="discount-number"><?php echo $product->getDiscount(); ?> % off</span>
 			<span class="discount-label">RRP</span>
 		</div>
 
 		<div class="discount-triangle">
 		</div>		
-		<h3><span class="the"></span><span class="plan-category-grid-title"><?php echo $product->getName(); ?></span></h3>
-		<span class="rrp">RRP &pound;<?php echo number_format($product->getPrice(),0);?></span>
-		<span class="special-price">Only &pound;<?php echo number_format($product->getSpecialPrice(),0);?>
-			<span class="per-month">per month</span>
-		</span>
-					
+		
+		<?php if($product->getTypeId() == 'giftcard') { ?>
+		
+			<h3><span class="the"></span><span class="plan-category-grid-title"><?php echo $product->getName(); ?></span></h3>
+			<span class="rrp">RRP <?php
+			
+ 			 $_rrp = $product->getGiftRrp();
+ 			 echo Mage::helper('core')->currency($_rrp,true,false);  
+			 ?></span>
+			<span class="special-price">Gift Price <?php
+			
+			 $_price = $product->getGiftSpecialPrice();
+ 			 echo Mage::helper('core')->currency($_price,true,false);  
+			 ?>
+			</span>
+		
+		<?php } 
+		else { ?>
+				
+			<h3><span class="the"></span><span class="plan-category-grid-title"><?php echo $product->getName(); ?></span></h3>
+			<span class="rrp">RRP &pound;<?php echo number_format($product->getPrice(),0);?></span>
+			<span class="special-price">Only &pound;<?php echo number_format($product->getSpecialPrice(),0);?>
+				<span class="per-month">per month</span>
+			</span>
+		
+		<?php }	?>
+			
 		<a class="choose-plan" href="<?php echo $product->getProductUrl(); ?>">
 			<span class="choose-plan-text"><?php echo $this->__('View plan'); ?></span>
 		</a>
@@ -41,9 +62,16 @@
 			<?php if ($product->getNumShirts() && $product->getNumShirts() > 0): ?><div class="package-desc shirts"><?php echo $product->getNumShirts(); ?>x</div><?php endif; ?>		
 		</div>
 		
+		
 		<div class="plan-checks">
 		<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-' . $product->getSku())->toHtml(); ?>
-		<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-common')->toHtml(); ?>
+		<?php if($product->getTypeId() == 'giftcard') { ?>
+			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-gift')->toHtml(); ?>
+		<?php } 
+		else { ?>
+			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-common')->toHtml(); ?>
+		<?php }	?>
+		
 		</div>
 		
 	</li>
