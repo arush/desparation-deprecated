@@ -3067,6 +3067,20 @@ body, .main {
 	margin: 0 79px 20px 85px;
 }
 
+#checkout-payment-method-load label[for="p_method_free"] {
+	padding:0 0 0 20px;
+}
+
+#checkout-payment-method-load p.note {
+	color: #595959;
+	font-size: 16px;
+	font-family: ProximaNovaLight,Arial,sans-serif;
+	padding:20px;
+}
+
+#checkout-payment-method-load p.note a {
+	color:#d2002b;
+}
 #checkout-step-review {
 	margin-top:20px;
 }
