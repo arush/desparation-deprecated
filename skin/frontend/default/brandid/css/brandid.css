@@ -3032,6 +3032,11 @@ body, .main {
 	padding:10px;
 }
 
+.category-gifts .product-essential {
+	width:448px;
+	padding:0;
+}
+
 #planOther {
 	margin:35px 0;
 }
