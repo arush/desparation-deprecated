@@ -11,7 +11,7 @@
 	<?php $counter--;?>
 	<li<?php echo ($counter == 0) ? ' class="last"': ''; ?>>
 		<div class="discount-triangle-container">
-			<span class="discount-number"><?php echo $_product->getDiscount() ; ?> % off</span>
+			<span class="discount-number"><?php echo $product->getDiscount() ; ?> % off</span>
 			<span class="discount-label">RRP</span>
 		</div>
 
