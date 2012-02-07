@@ -2032,6 +2032,14 @@ width: 231px;
 	margin: 10px 0 0 166px;
 }
 
+.plan.product-info.gift {
+	margin: -34px -13px;
+}
+
+.plan.product-info.gift .discount-triangle-container {
+	margin:22px 0 0 249px;
+}
+
 
 .price-box-bundle .discount-triangle-container span.discount-number, .plans-list .discount-triangle-container span.discount-number,  .plan.product-info .discount-triangle-container span.discount-number, .products-grid .discount-triangle-container span.discount-number {
 	color: white;
@@ -2060,6 +2068,12 @@ clear:both;
 	border-top: 100px solid #D2002B;
 	position:absolute;
 	margin: -21px 0 0 328px;
+}
+
+.plan.product-info.gift .discount-triangle {
+	border-left: 120px solid transparent;
+	border-top: 120px solid #D2002B;
+
 }
 
 .products-grid .discount-triangle {
@@ -2352,12 +2366,24 @@ span.the {
 	
 }
 
-.plan.product-info .price-box span.special-price {
+.plan.product-info .price-box span.special-price, .giftcard-form .price-box span.special-price {
 	color: #d2002b;
 	text-transform: uppercase;
 	font-size: 24px;
 	
 }
+.giftcard-form .price-box span.special-price {
+	background:none;
+	font-family:ProximaNovaBold;
+	clear:both;
+	width:auto;
+	padding:10px 0 25px 10px;
+	letter-spacing: -1px;
+}
+.giftcard-form .price-box span.price {
+	float:left;
+}
+
 
 .plan.product-info .price-box {
 	margin:25px 0 0 25px;
@@ -2436,6 +2462,12 @@ span.the {
 
 }
 
+.gift-media .plan-explanation {
+	margin: 13px 0 41px;
+	padding:0px;
+    text-align: center;
+    width: 421px;
+}
 
 .top-container {
 	width: auto;
@@ -3035,7 +3067,18 @@ body, .main {
 .category-gifts .product-essential {
 	width:448px;
 	padding:0;
+	background: white;
+	margin-bottom: 25px;
 }
+
+#product_addtocart_form button.button.btn-cart {
+	width:100%;
+}
+
+#product_addtocart_form .product-shop {
+	padding:33px;
+}
+
 
 #planOther {
 	margin:35px 0;
@@ -3070,6 +3113,9 @@ body, .main {
 	float:left;
 	clear:both;
 	margin: 0 79px 20px 85px;
+}
+.gift-media #planOther img.plans-item-img {
+	margin:0 43px 20px 17px;
 }
 
 #checkout-payment-method-load label[for="p_method_free"] {

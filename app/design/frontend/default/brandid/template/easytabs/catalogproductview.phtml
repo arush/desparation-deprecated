@@ -192,9 +192,21 @@
 			
 			<?php /* $_nonrefundable = $this->htmlEscape($_product->getResource()->getAttribute('nonrefundable')->getFrontend()->getValue($_product)); ?>
         	<?php if ($_nonrefundable === 'No'):?>Free returns<?php endif; */ ?>
+        
+        
+        	<?php /* change the block for giftcards */ 
         	
-        	<?php $block = Mage::getModel('cms/block')->load('quickie-checkboxes');?>
-            <?php echo $block->getContent(); ?>
+        	if ($_product->getTypeId() != 'giftcard') {
+	        	$block = Mage::getModel('cms/block')->load('quickie-checkboxes');
+    	        echo $block->getContent();
+    	    } else {
+    	    	$block = Mage::getModel('cms/block')->load('plan-text-gift');
+    	        echo $block->getContent();
+    	    
+    	    } ?>
+    	    
+    	    
+    	    
         </div>
         
     <script type="text/javascript">

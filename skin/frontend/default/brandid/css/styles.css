@@ -5111,7 +5111,7 @@ a.minimal-price-link:hover {
 }
 
 #product_addtocart_form button.button.btn-cart {
-	width:100px;
+	width:100%;
 }
 
 .enterprise-giftcardaccount-customer-index .giftcardaccount .btn-only {
@@ -10543,7 +10543,8 @@ a.cat-view-now:hover {
 	float: left;
 	width: 448px;
 	padding: 0;	
-	background: none;
+	background: white;
+	margin: 0 0 25px 0;
 }
 .product-view .product-shop{
 	width: auto;
