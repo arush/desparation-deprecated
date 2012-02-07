@@ -178,20 +178,19 @@
 		
 		?>
 	</div>
-	
-<?php endif; ?>
 
 
-<?php if (count($this->getGalleryImages()) > 0): ?>
-<div class="more-views">
-	<h2><?php echo $this->__('More Views') ?></h2>
-    <ul>
-    <?php foreach ($this->getGalleryImages() as $_image): ?>
-        <li>
-           <a href="<?php echo $this->helper('catalog/image')->init($this->getProduct(), '', $_image->getFile()); ?>" class="highslide" onclick="return hs.expand(this, {slideshowGroup: 'media-group'})"><img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(108, 133); ?>" width="108" height="133" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>" /></a>
-		   <div class="highslide-caption"><?php echo $this->htmlEscape($_image->getLabel()) ?></div>
-        </li>
-    <?php endforeach; ?>
-    </ul>
-</div>
+	<?php if (count($this->getGalleryImages()) > 0): ?>
+	<div class="more-views">
+		<h2><?php echo $this->__('More Views') ?></h2>
+	    <ul>
+	    <?php foreach ($this->getGalleryImages() as $_image): ?>
+	        <li>
+	           <a href="<?php echo $this->helper('catalog/image')->init($this->getProduct(), '', $_image->getFile()); ?>" class="highslide" onclick="return hs.expand(this, {slideshowGroup: 'media-group'})"><img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(108, 133); ?>" width="108" height="133" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>" /></a>
+			   <div class="highslide-caption"><?php echo $this->htmlEscape($_image->getLabel()) ?></div>
+	        </li>
+	    <?php endforeach; ?>
+	    </ul>
+	</div>
+	<?php endif; ?>
 <?php endif; ?>

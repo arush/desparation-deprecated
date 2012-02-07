@@ -91,10 +91,20 @@
 		<remove name="popup_header" />
     </keep_calm_signmeup>
 
+	<keep_calm_getgifted>
+    	<remove name="popup" />
+		<remove name="popup_header" />
+    </keep_calm_getgifted>
+
 	<cms_page_view>
     	<remove name="popup" />
 		<remove name="popup_header" />
     </cms_page_view>
+
+	<catalog_product_view>
+    	<remove name="popup" />
+		<remove name="popup_header" />
+    </catalog_product_view>
 
 
 	<!-- hack because popup isnt looking up cookie properly -->
