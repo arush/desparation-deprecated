@@ -3141,3 +3141,16 @@ font-family: ProximaNovaLight;
 font-size: 14px;
 color: #444;
 }
+
+#product-options-wrapper {
+	padding:0;
+	margin:10px 0 0 0;
+}
+#product-options-wrapper span.price-notice {
+	color:#000;
+	font-size:14px;
+}
+.product-custom-option datetime-picker input-text {
+	padding: 10px;
+    width: 82px;
+}

@@ -32,4 +32,14 @@
     <?php endif;
 */ ?>
 </div>
+
+<script type="text/javascript">
+	// arush added this to make calendars appear on top of form fields
+	var $j = jQuery.noConflict();
+    
+    	$j(document).ready(function () {
+			$j('.calendar').css('z-index','1000');
+	});
+
+</script>
 <script type="text/javascript">decorateGeneric($$('#product-options-wrapper dl'), ['last']);</script>

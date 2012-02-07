@@ -4539,10 +4539,10 @@ a.minimal-price-link:hover {
 }
 
 .product-options dt label {
-  color: rgb(255, 255, 255);
+  color: #5E5E5E;
   font-size: 12px ! important;
   font-weight: normal;
-  text-transform: lowercase;
+  text-transform: uppercase;
 }
 
 .product-options dt .qty-holder {
