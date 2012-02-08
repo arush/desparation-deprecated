@@ -558,6 +558,12 @@ p.title-block-image {
 	background-position:10px 15px;
 	padding-left: 70px;
 	font-size: 46px;
+	letter-spacing: -1px;
+}
+
+.title-block .title .product-title .page-title.gift {
+	background:none;
+	padding-left:0;
 }
 
 .title-block .title .product-description-block {

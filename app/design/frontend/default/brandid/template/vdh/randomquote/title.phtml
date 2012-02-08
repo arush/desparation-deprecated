@@ -26,7 +26,7 @@
 			
 			<?php if($_category) {?>
 				<div class="first-row">
-					<span class="page-title"><?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?></span>
+					<span class="page-title<?php if($_product->getTypeId() == 'giftcard'): echo ' gift'; ?>"><?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?></span>
 				</div>
 				
 				<?php if ($_description) { ?>
