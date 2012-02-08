@@ -63,7 +63,12 @@
 
 <div class="product-left-side">
 	<div class="product-name">
-       <h1><span class="black-title-med"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></span></h1>
+       	<?php if($_product->getTypeId() != 'giftcard') {?>
+	       <h1><span class="black-title-med"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></span></h1>
+    	<?php } else { ?>
+	       <h1><span class="black-title-med"><?php echo 'What will he get?' ?></span></h1>
+    	<?php } ?>
+    	
     </div>
 
     <div class="fb-like-button-prod">
