@@ -1090,3 +1090,25 @@ span.quote.right {
 .what.box.boosters {
 	height:60px;
 }
+
+.subscribe-circle.circle.gift {
+	width:125px;
+	height:125px;
+	margin:0;
+}
+
+a.gift.invisibut {
+	position:absolute;
+	margin:-100px 0 0 0;
+	right:80px;
+	width:137px;
+	height:137px;
+}
+
+.subscribe-circle.circle.gift .sub-detail.detail-1 {
+	margin-top: 25px;
+}
+
+.subscribe-circle.circle.gift .sub-detail.detail-2, .subscribe-circle.circle.gift .sub-detail.detail-3 {
+	margin-top:0;
+}

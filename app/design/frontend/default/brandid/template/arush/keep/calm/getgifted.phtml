@@ -35,9 +35,7 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("gifts.htm
 			
 			
 			<div class="login-signup">
-					<div class="login-signup-but"><a href="/customer/account/login">Login</a>
-					</div>
-					<div class="login-signup-but but-right"><a href="#signmeupnow">Sign Up</a>
+					<div class="login-signup-but"><a href="http://www.getbrandid.com/">Go back to getbrandid.com</a>
 					</div>
 			</div>
 	
@@ -85,15 +83,20 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("gifts.htm
 			<div class="gift-image">
 			</div>
 		</div>
+		
 	</div>
-	
 	
 </div>
 
 <div class="grey-tilt-holder">
 	<div class="grey-tilt clearfix">
 			<div class="grey-tilt-container clearfix">
-				
+				<a class="invisibut" href="#how">
+					<div class="learn-more chevron down">
+						<div class="first-line block">LEARN MORE</div>
+						<div class="chevron-triangle"></div>
+					</div>
+				</a>
 				
 				<div id="how" class="how section">
 						<div class="vision-title">
@@ -172,11 +175,11 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("gifts.htm
 		<div class="share-buttons clearfix">
 				
 				<div class="like-but share-but">
-					<div class="fb-like" data-href="http://www.facebook.com/pages/Brandid/282808678428182" data-send="false" data-layout="button_count" data-width="100" data-show-faces="true"></div>
+					<div class="fb-like" data-href="http://www.facebook.com/pages/Brandid/282808678428182" data-send="true" data-layout="button_count" data-width="100" data-show-faces="true"></div>
 				</div>
 				
 				<div class="share-but twitter">
-					<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.getbrandid.com/" data-text="Men, rally the troops. It's time to take the power back. #shoplikeaman" data-count="horizontal" data-via="getbrandid">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+					<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.getbrandid.com/" data-text="Ladies, join the campaign to clothe our sartorially challenged men #BRANDiD" data-count="horizontal" data-via="getbrandid">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
 				</div>
 				
 				<div class="share-but gplus">
@@ -252,29 +255,7 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("gifts.htm
 				});
 			}	
 
-			
-			if(w > $j("#mags").data("scrolls")[0] && w < $j("#mags").data("scrolls")[1]) {
-      
-		      window.group_rel = w - ($j("#mags").data("scrolls")[0] + 650);
-		      window.group_ratio = (Math.round((window.group_rel / ($j("#mags").data("scrolls")[2] - 650)) * 100) / 25);      
-		    	
 
-		    
-   		      $j(".hood-element").each(function(index) {
-		        if($j(this).data("visible")=="false") {
-		          if(window.group_ratio > index) $j(this).fadeIn(600,
-		          	function() {
-		          		$j(this).data("visible","true");
-								          		
-		          		});
-		        }
-		        else {
-		          if(window.group_ratio < index) $j(this).fadeOut(600,function() {$j(this).data("visible","false")});
-		        }
-		 
-		      });
-		      
-		    }
 		   	
 		   	if(w > $j("#title-block").data("scrolls")[0]) {
 				$j.plax.disable();      			
@@ -336,9 +317,6 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("gifts.htm
  
 	  
 	}
-
-	$j('#signmeupnow').plaxify({"xRange":0,"yRange":30, invert:false});
-	$j.plax.enable();
 	
 	
 	function clearDefault(el) {
