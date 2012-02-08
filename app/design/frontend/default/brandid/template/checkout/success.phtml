@@ -34,73 +34,114 @@
 
 <!-- END Innovate Analytics tracking beacon  -->
 
-<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
-
-<!--
-
-<p class="checkout-success-message"><?php echo $this->__('Congratulations! You are now a fully fledged man…') ?></p></br>
-
--->
-
-<span class="black-title-med">
-    <?php echo $this->__('Done.') ?>
-</span>
-
-
-<p><?php echo $this->__(' Congratulations. You’re now a fully fledged man. Earn yourself some more points and even more hairs on your chest by spreading the word to your fellow man.')?></p></br>
-
-
-   <div class="social-share">
-	        <div class="social-share-images">
-	        <?php /*?><a href="http://www.facebook.com/sharer.php?u=<?php echo $this->getReferralUrl(); ?>" target="_blank"><img class="facebook" src="<?php echo $this-> getSkinUrl(); ?>images/facebook.png" width="48" height="48" title="post this on facebook"/></a><?php */?>
-	        
-	       
-<div class="facebok-share">
-					 
-			<div class="fb-like" data-href="http://www.facebook.com/pages/Brandid/282808678428182" data-send="true" data-layout="button_count" data-width="100" data-show-faces="true"></div>
-			
-			<!--
-		        <div class="f-trans"><a style="display:block;" href"#"></a></div>
-				<div class="f-text">Post this to my wall</div>
-	        -->
-	        </div>
-
-	        
-	        <div class="twitter-share">
-	        <br/>
-	        <a href="https://twitter.com/share"
-	        	class="twitter-share-button"
-	        	data-url="http://www.getbrandid.com"
-	        	data-text="Money, power, auto-delivered undies. I got #BRANDiD. Use my invite"
-	        	data-via="getbrandid"
-	        	data-count="none"
-	        	data-hashtags="BRANDiD">Tweet about your package</a>
-			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-	        	<!--
-<div class="t-trans" style="display:block;"></div>
-				<div class="t-text">Tweet this</div>
-	        	<div class="t-hover" style="display:none;">
-		        	<div id="tbox-triangle"></div><div class="t-box-wrapper"><div id="tbox"></div><span id="follow-placeholder"></span></div>
-	        	</div>
--->
-					
-					
-					
-	        </div>
-	    </div>
-	</div>
+<?php
+	$gift = false;
 	
+	if($this->getOrderId()) {
+		$order = Mage::getModel('sales/order')->load($this->getOrderId());
+		$items = $order->getAllItems();
+		$itemcount=count($items);
+		$name=array();
+		$unitPrice=array();
+		$skus=array();
+		$ids=array();
+		$qty=array();
+		foreach ($items as $itemId => $item)
+		{
+			$name[] = $item->getName();
+			$unitPrice[]=$item->getPrice();
+			$skus[]=$item->getSku();
+			$ids[]=$item->getProductId();
+			$qty[]=$item->getQtyToInvoice();
+		}
+		
+		foreach ($skus as $sku)
+		{
+			$product = Mage::getModel('catalog/product')->loadByAttribute('sku',$sku);
+			if($product->getTypeId == 'giftcard') {
+				$gift = true;
+			}
+		}
+	}
+
+
+<?php echo $this->getMessagesBlock()->getGroupedHtml();
+
+
+	
+	<span class="black-title-med">
+	    <?php echo $this->__('Done.') ?>
+	</span>
+	
+<?php if(!$gift) {?>
+	
+	<p><?php echo $this->__(' Congratulations. You’re now a fully fledged man. Earn yourself some more points and even more hairs on your chest by spreading the word to your fellow man.')?></p></br>
+
+<?php } else { ?>
+
+	<p><?php echo $this->__(' You are one amazing lady. And he is one lucky guy. Thanks for getting him BRANDiD.')?></p></br>
+
+<?php } ?>
+	
+	   <div class="social-share">
+		        <div class="social-share-images">
+		        <?php /*?><a href="http://www.facebook.com/sharer.php?u=<?php echo $this->getReferralUrl(); ?>" target="_blank"><img class="facebook" src="<?php echo $this-> getSkinUrl(); ?>images/facebook.png" width="48" height="48" title="post this on facebook"/></a><?php */?>
+		        
+		       
+	<div class="facebok-share">
+						 
+				<div class="fb-like" data-href="http://www.facebook.com/pages/Brandid/282808678428182" data-send="true" data-layout="button_count" data-width="100" data-show-faces="true"></div>
+				
+				<!--
+			        <div class="f-trans"><a style="display:block;" href"#"></a></div>
+					<div class="f-text">Post this to my wall</div>
+		        -->
+		        </div>
+	
+		        
+		        <div class="twitter-share">
+		        <br/>
+		        <a href="https://twitter.com/share"
+		        	class="twitter-share-button"
+		        	data-url="http://www.getbrandid.com"
+		        	
+				<?php if(!$gift) {?>
+	
+		        	data-text="Money, power, auto-delivered undies. I got #BRANDiD. Use my invite"
+
+				<?php } else { ?>
+
+		        	data-text="I just got my man BRANDiD. Beckham eat your heart out."
+
+				<?php } ?>
+
+		        	
+		        	data-via="getbrandid"
+		        	data-count="none"
+		        	data-hashtags="BRANDiD">Tweet about your package</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+						
+						
+						
+		        </div>
+		    </div>
+		</div>
+		
+	
+
+	
+<?php } ?>
+
 <?php if ($profiles = $this->getRecurringProfiles()):?>
-<p><?php echo $this->__('Your Plans:'); ?></p>
-<ul class="disc">
-<?php foreach($profiles as $profile):?>
-<?php $profileIdHtml = ($this->getCanViewProfiles() ? sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getProfileUrl($profile)), $this->escapeHtml($this->getObjectData($profile, 'reference_id'))) : $this->escapeHtml($this->getObjectData($profile, 'reference_id')));?>
-    <li><?php echo $this->__('Plan # %s: "%s".', $profileIdHtml, $this->escapeHtml($this->getObjectData($profile, 'schedule_description')))?></li>
-<?php endforeach;?>
-</ul>
+	<p><?php echo $this->__('Your Plans:'); ?></p>
+	<ul class="disc">
+	<?php foreach($profiles as $profile):?>
+	<?php $profileIdHtml = ($this->getCanViewProfiles() ? sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getProfileUrl($profile)), $this->escapeHtml($this->getObjectData($profile, 'reference_id'))) : $this->escapeHtml($this->getObjectData($profile, 'reference_id')));?>
+	    <li><?php echo $this->__('Plan # %s: "%s".', $profileIdHtml, $this->escapeHtml($this->getObjectData($profile, 'schedule_description')))?></li>
+	<?php endforeach;?>
+	</ul>
 <?php endif;?>
-
-
+	
 <?php if ($this->getOrderId()):?>
 	<?php if ($this->getCanViewOrder()) :?>
 	    <p><?php echo $this->__('Your order # is: %s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getViewOrderUrl()), $this->escapeHtml($this->getOrderId()))) ?></p>
