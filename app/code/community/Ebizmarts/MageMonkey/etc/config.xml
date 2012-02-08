@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Ebizmarts_MageMonkey>
-             <version>1.0.2</version>
+             <version>1.0.4</version>
         </Ebizmarts_MageMonkey>
     </modules>
     <global>
@@ -199,6 +199,10 @@
     </adminhtml>
     <default>
     	<monkey>
+			<custom_groupings>
+				<customer_grouping_name><![CDATA[MAGE_CUSTOMER_GROUPS]]></customer_grouping_name>
+				<segment_grouping_name><![CDATA[MAGE_CUSTOMER_SEGMENTS]]></segment_grouping_name>
+			</custom_groupings>
     		<general>
 	    		<active>0</active>
 	    		<double_optin>System->Configuration->Customers->Newsletter->Subscription Options->Need to Confirm</double_optin>
@@ -212,7 +216,7 @@
     <crontab>
         <jobs>
             <magemonkey_bulksync_export_subscribers>
-                <schedule><cron_expr>*/15 * * * *</cron_expr></schedule>
+                <schedule><cron_expr>0 * * * *</cron_expr></schedule>
                 <run><model>monkey/cron::processExportJobs</model></run>
             </magemonkey_bulksync_export_subscribers>
             <magemonkey_bulksync_import_subscribers>
