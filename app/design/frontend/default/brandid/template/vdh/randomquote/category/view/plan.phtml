@@ -33,7 +33,12 @@
  			 echo Mage::helper('core')->currency($_price,true,false);  
 			 ?>
 			</span>
-		
+
+			<div class="plan-checks">
+	
+				<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-' . $product->getSku())->toHtml(); ?>
+			</div>
+
 		<?php } 
 		else { ?>
 				
@@ -65,11 +70,11 @@
 		
 		
 		<div class="plan-checks">
-		<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-' . $product->getSku())->toHtml(); ?>
 		<?php if($product->getTypeId() == 'giftcard') { ?>
 			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-gift')->toHtml(); ?>
 		<?php } 
 		else { ?>
+			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-' . $product->getSku())->toHtml(); ?>
 			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-common')->toHtml(); ?>
 		<?php }	?>
 		
