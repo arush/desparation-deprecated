@@ -37,6 +37,8 @@
 <?php
 	$gift = false;
 	
+	/* to do - debug */
+	
 	if($this->getOrderId()) {
 		$order = Mage::getModel('sales/order')->load($this->getOrderId());
 		$items = $order->getAllItems();
@@ -75,7 +77,7 @@
 	
 <?php if(!$gift) {?>
 	
-	<p><?php echo $this->__(' Congratulations. You’re now a fully fledged man. Earn yourself some more points and even more hairs on your chest by spreading the word to your fellow man.')?></p></br>
+	<p><?php echo $this->__(' Congratulations. Job done. Earn yourself some more points and even more hairs on your chest by spreading the word.')?></p></br>
 
 <?php } else { ?>
 
