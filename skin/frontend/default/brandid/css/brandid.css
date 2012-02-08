@@ -563,7 +563,8 @@ p.title-block-image {
 
 .title-block .title .product-title .page-title.gift {
 	background:none;
-	padding-left:0;
+	background-color:black;
+	padding-left:15px;
 }
 
 .title-block .title .product-description-block {
