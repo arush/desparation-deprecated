@@ -1128,9 +1128,12 @@ a.gift.invisibut:hover {
 }
 
 .subscribe-circle.circle.gift .sub-detail.detail-2, .subscribe-circle.circle.gift .sub-detail.detail-3 {
-	margin: 10px 0;
+	margin: 0;
 }
 
 .subscribe-circle.circle.gift .sub-detail.detail-2 {
-	font-size:19px;
+	font-size:36px;
+}
+.subscribe-circle.circle.gift .sub-detail.detail-3 {
+	margin-top:-4px;
 }
