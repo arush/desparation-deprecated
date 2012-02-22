@@ -21,8 +21,6 @@
 		<!--	<action method="addItem"><type>skin_js</type><name>js/scroll/jquery.serialScroll-1.2.2-min.js</name></action>
 -->
 			<action method="addItem"><type>skin_js</type><name>js/jquery-color-min.js</name></action>
-			<action method="addItem"><type>skin_js</type><name>js/plax.js</name></action>
-			<action method="addItem"><type>skin_js</type><name>js/fuckthesystem.js</name></action>
 			<action method="addItem"><type>skin_js</type><name>js/jquery.reject.js</name></action>
 
 			<action method="removeItem"><type>js</type><name>lib/ccard.js</name></action>

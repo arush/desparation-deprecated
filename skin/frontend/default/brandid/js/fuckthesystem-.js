@@ -79,14 +79,7 @@ var $j = jQuery.noConflict();
 		      });
 		      
 		    }
-		   	
-		   	if(w > $j("#title-block").data("scrolls")[0]) {
-				$j.plax.disable();      			
-			}
-			if(w < $j("#title-block").data("scrolls")[0]) {
-				$j.plax.enable();
-			}
-		
+		   			
 		});
 	});
 	
@@ -141,9 +134,6 @@ var $j = jQuery.noConflict();
 	  
 	}
 
-	$j('#signmeupnow').plaxify({"yRange":30, invert:false});
-	$j.plax.enable();
-	
 	
 	function clearDefault(el) {
   		if (el.defaultValue==el.value) el.value = ""
