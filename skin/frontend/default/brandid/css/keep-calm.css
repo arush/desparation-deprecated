@@ -1392,3 +1392,7 @@ oa_social_login_convert {
 .grey-tilt-holder.vision-block {
 	margin-bottom: 55px;
 }
+
+.keep-calm-signmeup .title-block.first {
+	overflow: hidden;
+}
