@@ -20,7 +20,7 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("plans.htm
 			
 			
 			<div class="convert">
-				<a id="header-convert" href="/plans.html" class="convert" style="background:none;text-shadow:none;color:black;">Show me the Plans!</a>
+				<a id="header-convert" href="/plans.html" class="convert" style="background:none;text-shadow:none;">Show me the Plans!</a>
 			</div>
 			<a href="#3" class="header-button">
 				<span class="button-copy">Under the hood</span>
@@ -434,6 +434,7 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("plans.htm
 
 			/* fade the header convert button */
 			if(w > actionSection) {
+				$j("#header-convert").data("green","true");
 				$j("#header-convert").css('background-clip','padding-box');
 				$j("#header-convert").css('background-image','-moz-linear-gradient(center top , #66B84A, #51933A)');
 				$j("#header-convert").css('background-image','-webkit-gradient(linear,left top,left bottom,color-stop(0, #66B84A),color-stop(1, #51933A))');
@@ -444,6 +445,7 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("plans.htm
 				$j("#header-convert").css('text-shadow','0pt -1px 0pt black');
 			}
 			else {
+				$j("#header-convert").data("green","false");
 				$j("#header-convert").css('background','none');
 				$j("#header-convert").css('color','black');
 				$j("#header-convert").css('text-shadow','none');
@@ -637,3 +639,25 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("plans.htm
 			);				
 			
 		</script>
+		
+<script type="text/javascript">
+			// fix hover for header convert button
+				
+			$j('#header-convert').hover(
+				    
+				function () {
+					if($j("#header-convert").data("green")=="false") {
+						$j(this).css('color', '#d2002b');
+					}
+					
+				  }, 
+				  function () {
+					if($j("#header-convert").data("green")=="false") {
+						$j(this).css('color', '#000');
+					}
+				  }
+			);				
+			
+		</script>
+
+

@@ -396,6 +396,10 @@ a.header-button{
 
 }
 
+.header-button span.button-copy:hover {
+	color:#d2002b;
+}
+
 .ghost-header {
 	height:105px;
 	width:100%;
@@ -1269,7 +1273,8 @@ a.convert, button.convert {
 	
 }
 a.convert:hover, button.convert:hover{
-	color: white;
+	color: #d2002b;
+	cursor: pointer;
 	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.2);
 	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 1px 0 rgba(255,255,255,0.2), inset 0 1px 7px rgba(255,255,255,0.6);
 	box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 1px 0 rgba(255,255,255,0.2), inset 0 1px 7px rgba(255,255,255,0.6);
