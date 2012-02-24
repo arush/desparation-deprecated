@@ -33,7 +33,7 @@
         <?php /*?><label for="qty" visibility="hidden"><?php echo $this->__('Qty:') ?></label><?php */?>
         <input type="hidden" name="qty" id="qty" maxlength="12" value="1" title="<?php echo $this->__('Qty') ?>" class="input-text qty"  />
         <?php endif; ?>
-        <button type="button" title="<?php echo $this->__('Add to cart') ?>" class="button btn-cart" onclick="productAddToCartForm.submit()"><strong><span><?php echo $this->__('Add to basket') ?></span></strong></button><br/>
+        <button type="button" title="<?php echo $this->__('Add to cart') ?>" class="convert" onclick="productAddToCartForm.submit()"><strong><span><?php echo $this->__('Add to basket') ?></span></strong></button><br/>
 		<?php echo $this->getChildHtml('addto') ?>
 		
     </div>

@@ -3165,3 +3165,60 @@ color: #444;
 	padding: 10px;
     width: 82px;
 }
+
+/* copied from keep-calm to-do create SASS mixin */
+a.convert, button.convert {
+	font-family: ff-enzo-web,ProximaNovaBold,arial,"lucida grande",Verdana,"Bitstream Vera Sans",Arial,sans-serif;
+	text-align: center;
+	box-shadow: 0pt 1px 0pt rgba(255, 255, 255, 0.5) inset, 0pt 1px 0pt rgba(255, 255, 255, 0.2);
+	background-clip:padding-box;
+	white-space: nowrap;
+	text-decoration: none;
+	font-weight: bold;
+	margin:0;
+	outline:0 none;
+	cursor:default;
+	border:none;
+	text-shadow: 0pt -1px 0pt rgb(0, 0, 0);
+	color:rgb(255, 255, 255);
+	background-image:-moz-linear-gradient(center top , #66B84A, #51933A);
+	background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0, #66B84A),color-stop(1, #51933A));
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#66b84a', EndColorStr='#51933a');
+	-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorStr='#66b84a', EndColorStr='#51933a')";
+	
+	background-color: rgb(81, 147, 58);
+	border-color: rgb(34, 34, 34);
+	vertical-align: middle;
+	padding:0;
+	display: inline-block;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px 5px 5px 5px;
+	font-size:15px;
+	width:201px;
+	line-height: 42px;
+	text-transform: uppercase;
+	
+}
+a.convert:hover, button.convert:hover{
+	color: #FFFFFF;
+	cursor: pointer;
+	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.2);
+	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 1px 0 rgba(255,255,255,0.2), inset 0 1px 7px rgba(255,255,255,0.6);
+	box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 1px 0 rgba(255,255,255,0.2), inset 0 1px 7px rgba(255,255,255,0.6);
+
+}
+a.convert:active, button.convert:active {
+	-webkit-box-shadow: inset 0 3px 9px rgb(0,0,0), 0 1px 0 rgba(255,255,255,0.2);
+	-moz-box-shadow: inset 0 3px 9px rgb(0,0,0), 0 1px 0 rgba(255,255,255,0.2);
+	box-shadow: inset 0 3px 9px rgb(0,0,0), 0 1px 0 rgba(255,255,255,0.2);
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
+	color: white;
+	background: #777;
+	
+}
+/* copied from keep-calm to-do create SASS mixin */
+
+ul.plans-list a.convert, button.convert {
+	width:100%;
+}
