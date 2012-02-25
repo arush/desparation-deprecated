@@ -54,24 +54,132 @@ vdh.queue = {
 		} else {
 			$$('.vdh.content').each(function(obj){
 				obj.setStyle({display: 'block'});
-				obj.innerHTML = '<a class="vdh close"><span>close</span></a>';		
+				
+				
+				/*
+				*  insert cookie based close button
+				*  to do: betalive/suppressbeta is hard coded
+				*/
+				
+				var formAttrs = {
+	                'id'   : 'lightbox_closer',
+	                'name'   : 'lightbox_closer',
+	                'action' : '/popup/form/page/index/betalive/suppressbeta/true'
+	            };
+	            var inputAttrs = {
+	                'id'   : 'lightbox-close-button',
+	                'class' : 'lightbox-close-button',
+	                'type' : 'submit',
+	                'name' : 'submit',
+	                'value' : '""' /*this is needed to remove the default browser text */
+	            };
+				var hiddenInputAttrs = {
+	                'type'   : 'hidden',
+	                'name' : 'suppress',
+	                'value' : 'true'
+	            };
+	
+				var divAttrs = {
+	                'id'   : 'lightbox-close',
+	                'class'   : 'lightbox-close'
+	            };
+				
+				/*
+				*  insert tooltip
+				*  
+				*/
+				
+				var toolDivAttrs = {
+	                'id'   : 'popover',
+	                'class'   : 'popover top'
+	            };
+	            
+	            var arrowDivAttrs = {
+	                'id'   : 'arrow',
+	                'class'   : 'arrow'
+	            };
+				var popInnerAttrs = {
+	                'id'   : 'popover-inner',
+	                'class'   : 'popover-inner'
+	            };
+	            var popTitleAttrs = {
+	                'id'   : 'popover-title',
+	                'class'   : 'popover-title'
+	            };
+	            var popContentAttrs = {
+	                'id'   : 'popover-content',
+	                'class'   : 'popover-content'
+	            };
+				
+	 
+	            var divClose = new Element('div', divAttrs);
+	 			var formClose = new Element('form', formAttrs);
+	 			var inputClose = new Element('input', inputAttrs);
+	 			var hiddenInputClose = new Element('input', hiddenInputAttrs);
+	 			
+	 			// insert close tooltip
+	            var toolDiv = new Element('div', toolDivAttrs);
+	            var arrowDiv = new Element('div', arrowDivAttrs);
+	            var popInnerDiv = new Element('div', popInnerAttrs);
+	            var popTitleDiv = new Element('h3', popTitleAttrs);
+	            popTitleDiv.update('Temporarily close');
+	            var popContentDiv = new Element('p', popContentAttrs);
+				popContentDiv.update('<p>You will be able to return to this notice by clicking on it in the header.</p>');
+
+				// obj.innerHTML = '<a style="display:none;" class="vdh close"><span>close</span></a>';		
+				obj.insert({after:divClose});
+	            $('lightbox-close').insert(formClose);
+				$('lightbox_closer').insert(hiddenInputClose);
+				$('lightbox_closer').insert(inputClose);
+				
+				obj.insert({after:toolDiv});
+				$('popover').insert(arrowDiv);
+				$('popover').insert(popInnerDiv);
+				$('popover-inner').insert(popTitleDiv);
+				$('popover-inner').insert(popContentDiv);
+				
+				/* end insert cookie based close button */
+				
 				obj.insert(transport.responseText);			
 			
 				var dimensions = vdh.windowSize();
 				var offsets = document.viewport.getScrollOffsets();
 			
+				/*content positioning*/
 				var left = ((parseInt(dimensions.width) - parseInt(obj.getStyle('width'))) / 2) + offsets.left + 'px';
 				var top = ((parseInt(dimensions.height) - parseInt(obj.getStyle('height'))) / 2) + offsets.top + 'px';
-	
+				/*close positioning*/				
+				var closeRight = ((parseInt(dimensions.width) - parseInt(obj.getStyle('width'))) / 2) - 10 + offsets.left + 'px';
+				var closeTop = ((parseInt(dimensions.height) - parseInt(obj.getStyle('height'))) / 2) -10 + offsets.top + 'px';
+				/*tooltip positioning*/
+				var toolRight = ((parseInt(dimensions.width) - parseInt(obj.getStyle('width'))) / 2) - (parseInt($('popover').getStyle('width')) / 2) - 4 + offsets.left + 'px';
+				var toolTop = ((parseInt(dimensions.height) - parseInt(obj.getStyle('height'))) / 2) - (parseInt($('popover').getStyle('height'))) - 23 + offsets.top + 'px';
+				
 				obj.setStyle({ opacity: 0 });
 				obj.setStyle({ left: left, top: top });
-	
-				obj.fade({ duration: 0.5, from: 0, to: 1 });
+				$('lightbox-close').setStyle({ right: closeRight, top: closeTop});
+				
+				$('popover').setStyle({right: toolRight, top: toolTop});
+				setTimeout(fadeOutTooltip,5000);
+
+				/* build tooltip hover, to-do: build in prototype, just couldn't do it  */				
+				$j("#lightbox-close").hover(
+				  function () {
+				    $j("#popover").fadeIn(500);
+				  },
+				  function () {
+				    $j("#popover").fadeOut(500);
+				  }
+				);
+								
+				obj.fade({ duration: 0.15, from: 0, to: 1 });
 				
 				
 				vdh.formListener();			
 				vdh.closeListener();							
 			});
+			
+			
 		}
 		vdh.count();
 		vdh.queue.iterate();
@@ -131,8 +239,11 @@ vdh.closeListener = function() {
 
 		Event.observe(obj, 'click', function(){
 			document.body.setStyle({ overflow: 'auto' });
-			this.up().previous().remove();						
+			this.up().previous().remove(); /* remove overlay */		
+			this.up().next().remove(); /*remove cookie based close button */
+			this.up().next().remove(); /*remove cookie based close button */
 			this.up().remove();
+			
 			for(var i = 0; i < vdh.urls.length; i++) {				
 				vdh.urls[i].loaded = false;
 			}					
@@ -150,7 +261,7 @@ vdh.popup = function(suppress) {
 	if (suppress) { return; }
 
 	document.body.insert('<div class="vdh overlay loading"></div>');
-	document.body.insert('<div class="vdh content"><a class="vdh close"><span>close</span></a></div>');	
+	document.body.insert('<div class="vdh content"></div>');	
 	document.body.setStyle({ overflow: 'hidden' });
 
 
@@ -161,11 +272,13 @@ vdh.popup = function(suppress) {
 		obj.setStyle(overlayDimensions);
 		obj.setStyle({ opacity: 0 });
 		obj.setStyle({top:0}); //arush
-		obj.fade({ duration: 0.5, from: 0, to: 0.7 });
+		obj.fade({ duration: 0.15, from: 0, to: 0.7 });
 
 		Event.observe(obj, 'click', function(){
 			document.body.setStyle({ overflow: 'auto' });
-			this.next().remove();						
+			this.next().next().remove(); /* remove tooltip */						
+			this.next().next().remove(); /* remove cookie based close button */						
+			this.next().remove();
 			this.remove();
 			for(var i = 0; i < vdh.urls.length; i++) {				
 				vdh.urls[i].loaded = false;
@@ -198,7 +311,7 @@ vdh.count = function() {
 				var delayHeader = function() { $('popupMessages').setStyle({ display: 'none' });
 				};
 			}
-			setTimeout(delayHeader,5000);
+			setTimeout(delayHeader,2000);
 
 		}
 	});
@@ -214,6 +327,7 @@ document.observe('dom:loaded', function(){
 		}
 
 	});
+
 });
 
 Ajax.Responders.register({
@@ -232,6 +346,13 @@ Ajax.Responders.register({
 		}
 	}
 });
+
+function fadeOutTooltip() {
+    $('popover').fade({ duration: 0.15, from: 1, to: 0 });
+}
+
+
+
 
 function getDocHeight() {
     return Math.max(

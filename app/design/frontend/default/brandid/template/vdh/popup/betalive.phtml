@@ -44,32 +44,32 @@ if (!Mage::getModel('core/cookie')->get('suppressbeta')):
 								<ul>													
 									
 									<li class="panel">
-										<div class="popup-title fadein">
+										<div class="popup-title">
 								 			<span class="revolutionary">Welcome to the BRANDiD Beta</span><br/>
 								 			<span class="revolutionary">BETA? WTF?</span>
 								 		</div>
 
 								 
-								 		<div class="explain fadein">
+								 		<div class="explain">
 								 			<span class="explain-bold">Rome wasn't built in a day. And BRANDiD won't be either.</span><br/>
 								 		</div>
-								 		<div class="explain fadein">
+								 		<div class="explain">
 								 			<span class="explanation">
 								 				We want to build something that men can be proud of, so we need you to tell us what you rate, what you hate and what you’d like us to create. Plans, products, packaging. The lot.
 											</span><br/>
 										</div>
-										<div class="explain fadein">
+										<div class="explain">
 											<span class="explanation">
 												You are one of 300 pioneers (kind of like The Spartans but with better underwear) chosen to get involved early doors to help make buying garms online awesome. 
 											</span><br/>
 										</div>
-										<div class="explain fadein">
+										<div class="explain">
 											<span class="explanation">
 											Not for chicks. For men. Finally.
 											</span><br/>
 								 		</div>
 									
-										<div class="control-box fadein">
+										<div class="control-box">
 											<a id="1-next" class="popup-next" href="#">Ready for War</a>
 										</div>
 									</li>
@@ -179,12 +179,12 @@ Ajax.Responders.register({
 					$j('#popup-slide').animate({
 						marginLeft: left - 790},
 						{
-						duration:  500,
+						duration:  200,
 						easing: 'easeInExpo'
 					});
 					var name = $j(this).attr('id');
 					var delay = function() { doFade(name); };
-					setTimeout(delay,500);
+					setTimeout(delay,200);
 				});
 			});
 			
@@ -194,7 +194,7 @@ Ajax.Responders.register({
 					$j('#popup-slide').animate({
 						marginLeft: left + 790},
 						{
-						duration:  500,
+						duration:  200,
 						easing: 'easeInExpo'
 						});
 				});
@@ -223,7 +223,7 @@ Ajax.Responders.register({
 			 	startFade(target);
 				counter++;
 			 }
-		}, 500);
+		}, 200);
 		
 	}
 
