@@ -122,9 +122,9 @@ vdh.queue = {
 	            var arrowDiv = new Element('div', arrowDivAttrs);
 	            var popInnerDiv = new Element('div', popInnerAttrs);
 	            var popTitleDiv = new Element('h3', popTitleAttrs);
-	            popTitleDiv.update('Temporarily close');
+	            popTitleDiv.update('Close forever');
 	            var popContentDiv = new Element('p', popContentAttrs);
-				popContentDiv.update('<p>You will be able to return to this notice by clicking on it in the header.</p>');
+				popContentDiv.update('<p>Click here to permanently dismiss this dialog.</p>');
 
 				// obj.innerHTML = '<a style="display:none;" class="vdh close"><span>close</span></a>';		
 				obj.insert({after:divClose});
