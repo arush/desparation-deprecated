@@ -11,8 +11,8 @@ if ($products->count() > 0):
 		
 		<li<?php echo $lastClass?>>
 			<h3><? echo $product->getName(); ?></h3>
-			<span class="price">RRP <?php echo Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getSymbol(); ?><?php echo number_format($product->getPrice(), 0)?></span><br />
-			<span class="special-price"><?php echo Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getSymbol(); ?><?php echo number_format($product->getSpecialPrice(), 0)?></span>
+			<span class="price">RRP &pound;<?php echo number_format($product->getPrice(), 0)?></span><br />
+			<span class="special-price">&pound;<?php echo number_format($product->getSpecialPrice(), 0)?></span>
 			<a href="<?php echo $product->getProductUrl() ?>"><?php echo $this->__('View plan'); ?></a>
 		</li>
 	<?php endforeach; ?>
