@@ -125,8 +125,8 @@
 		<div class="discount-triangle">
 		</div>		
 		<div class="price-box">
-			<span class="price"><?php echo 'RRP &pound;' . number_format($_product->getPrice(), 0); ?></span>
-			<span class="special-price"><?php echo 'Plan Price &pound;' . number_format($_product->getSpecialPrice(), 0); ?></span>
+			<span class="price"><?php echo 'RRP ' . Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getSymbol() . number_format($_product->getPrice(), 0); ?></span>
+			<span class="special-price"><?php echo 'Plan Price ' . Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getSymbol() . number_format($_product->getSpecialPrice(), 0); ?></span>
 		</div>
 	
 	    <div class="container2">
