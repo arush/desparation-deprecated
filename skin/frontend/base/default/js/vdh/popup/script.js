@@ -71,7 +71,7 @@ vdh.queue = {
 	                'class' : 'lightbox-close-button',
 	                'type' : 'submit',
 	                'name' : 'submit',
-	                'value' : '""' /*this is needed to remove the default browser text */
+	                'value' : '' /*this is needed to remove the default browser text */
 	            };
 				var hiddenInputAttrs = {
 	                'type'   : 'hidden',
