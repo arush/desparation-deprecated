@@ -76,7 +76,6 @@ body {
 	margin-left:207px;}
 
 
-
 .my-account-links .account-link a {
 	border-bottom: 1px solid #aaa;
 	margin-bottom:10px;
@@ -96,7 +95,7 @@ body {
 	padding: 5px;
 	display: none;
 	z-index: 1001;
-	border: 7px solid #d2002b;
+	border: 10px solid #d2002b;
 }
 .my-account-links ul.links, .my-account-links ul.links li{
 	display: block;
@@ -234,8 +233,8 @@ body {
 	display: block;
 	height: 60px;
 	border: 0px;
-	border-top: solid 7px #cfcfcf;	
-	margin-top: -7px;
+	border-top: solid 10px #000;	
+	margin-top: -10px;
 	padding-top: 20px;	
 	font-family: ff-enzo-web,ProximaNovaBold;
 	text-transform: uppercase;
@@ -250,12 +249,12 @@ body {
 
 .top-header a.header-link:hover
 ,.top-header .catalogLinks a:hover {
-	border-top: solid 7px #000;
+	border-top: solid 10px #d2002b;
 }
 
 .top-header a.header-link.active
 ,.top-header .catalogLinks a.active {
-	border-top: solid 7px #000;	
+	border-top: solid 10px #595959;	
 }
 
 #nav-invite a.header-link {
@@ -294,7 +293,7 @@ padding-left:38px;
 .header-container {
 	width: inherit;
 	background: #fff;
-	border-top: 7px solid #CFCFCF;
+	border-top: 10px solid #000;
 }
 
 .header {
