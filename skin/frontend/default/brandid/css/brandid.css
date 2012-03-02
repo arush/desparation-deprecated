@@ -284,6 +284,7 @@ padding-left:38px;
 /* Overrides and resets */
 #nav-invite {
 	margin: 0px;
+	margin-top:-3px;
 }
 
 .wrapper {
@@ -383,6 +384,7 @@ padding-left:38px;
 	text-align: right;
 	width:120px;
 	padding-left:10px;
+	margin-top: -3px;
 	
 }
 .top-header a.header-link {
