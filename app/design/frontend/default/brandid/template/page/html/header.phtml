@@ -121,7 +121,7 @@
 						<div id="oa_social_login_header"></div>
 						<script type="text/javascript">
 							 oneall.api.plugins.social_login.build("oa_social_login_header", {
-							  'providers' :  ['facebook', 'google', 'twitter', 'yahoo'], 
+							  'providers' :  ['facebook', 'twitter'], 
 							  'callback_uri': '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK); ?>arush-oneall/rpx/token_url/',
 							  'css_theme_uri': '<?php echo $this->getSkinUrl(); ?>css/brandid.css'
 							 });
@@ -130,19 +130,19 @@
 				
 			<?php endif; ?>
 
-		<div class="branding">
-        <?php if ($this->getIsHomePage()):?>
-            <h1 class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
-            <?php else:?>
-            <a href="/plans.html<?php // echo $this->getUrl('p') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
-        <?php endif?>
-        </div>	   			
+			<div class="branding">
+	        <?php if ($this->getIsHomePage()):?>
+	            <h1 class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
+	            <?php else:?>
+	            <a href="/plans.html<?php // echo $this->getUrl('p') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
+	        <?php endif?>
+	        </div>	   			
 			
-		</div>	
+		</div>	<!-- top-header -->
 		 
 		<?php //echo $this->getChildHtml('topMenu') ?>
-    </div>
+    </div> <!-- header-container -->
     
     
-</div>
+</div> <!-- header -->
 
