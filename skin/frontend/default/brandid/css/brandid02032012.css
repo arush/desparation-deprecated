@@ -85,17 +85,17 @@ body {
 .my-account-links .account-link a:hover {
 	border-bottom: 1px solid #aaa;
 	margin-bottom:10px;
-	background-color:#595959;
+	background-color:#d2002b;
 }
 
 .my-account-links{
 	position: absolute;
-	background: white;
+	background: black;
 	top: 75px; right: 0px;
 	padding: 5px;
 	display: none;
 	z-index: 1001;
-	border: 10px solid #d2002b;
+	border: 10px solid #000;
 }
 .my-account-links ul.links, .my-account-links ul.links li{
 	display: block;
@@ -109,7 +109,7 @@ body {
 	padding: 17px 10px;
 }
 .my-account-links a{
-	color: #595959;
+	color: #FFF;
 	width: 200px;
 	height: 33px;
 	padding-top: 13px;
@@ -120,7 +120,7 @@ body {
 	transition: background-color 200ms ease-in;
 }
 .my-account-links a:hover{
-	background-color:#eaeaea;
+	background-color:#d2002b;
 }
 
 .my-account-links .last{margin-bottom:10px;}
@@ -261,6 +261,10 @@ body {
 
 padding-left:38px;
 }
+
+.catalogLinks.blog {
+	float:right;
+	}
 
 
 .top-header .account-link a.header-link {padding-right:56px;padding-bottom: 45px;}
@@ -3172,7 +3176,6 @@ a.convert, button.convert {
 	font-family: ff-enzo-web,ProximaNovaBold,arial,"lucida grande",Verdana,"Bitstream Vera Sans",Arial,sans-serif;
 	text-align: center;
 	box-shadow: 0pt 1px 0pt rgba(255, 255, 255, 0.5) inset, 0pt 1px 0pt rgba(255, 255, 255, 0.2);
-	background-clip:padding-box;
 	white-space: nowrap;
 	text-decoration: none;
 	font-weight: bold;
@@ -3199,7 +3202,9 @@ a.convert, button.convert {
 	width:201px;
 	line-height: 42px;
 	text-transform: uppercase;
-	
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip:padding-box;
 }
 a.convert:hover, button.convert:hover{
 	color: #FFFFFF;
@@ -3218,8 +3223,108 @@ a.convert:active, button.convert:active {
 	background: #777;
 	
 }
+
+a.secondary {
+	background-image: -moz-linear-gradient(center top , #ddd, #aaa);
+	background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0, #ddd),color-stop(1, #aaa));
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#ddd', EndColorStr='#aaa');
+	-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorStr='#ddd', EndColorStr='#aaa')";
+
+	background-color:#ddd;
+	color: #243342;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    
+    border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+    
+    width: 150px;
+    font-size: 13px;
+	border:1px solid #ccc;
+
+}
+
+a.convert.secondary:hover {
+	color:black;
+	border: 1px solid #ddd;
+}
+
+a.convert.lt {
+	display:block;
+	float:left;
+	border-radius: 3px 0 0 3px;
+	-webkit-border-radius: 3px 0 0 3px;
+	-moz-border-radius: 3px 0 0 3px;
+	border: 1px solid #ccc;
+    border-right: 1px solid #ddd;
+    
+}
+
+a.convert.rt {
+	display:block;
+	float:left;
+	border-radius: 0px 3px 3px 0px;
+	-webkit-border-radius: 0px 3px 3px 0px;
+	-moz-border-radius: 0px 3px 3px 0px;
+	border: 1px solid #ccc;
+    border-left: 1px solid #ddd;
+    }
+
+a.convert.mid {
+	display:block;
+	float:left;
+	border-radius: 0;
+	-webkit-border-radius:  0;
+	-moz-border-radius:  0;
+	border: 1px solid #ccc;
+    border-left: 1px solid #ddd;
+	
+
+}
+
+a.convert.active {
+	-webkit-box-shadow: inset 0 3px 9px rgb(0,0,0), 0 1px 0 rgba(255,255,255,0.2);
+	-moz-box-shadow: inset 0 3px 9px rgb(0,0,0), 0 1px 0 rgba(255,255,255,0.2);
+	box-shadow: inset 0 3px 9px rgb(0,0,0), 0 1px 0 rgba(255,255,255,0.2);
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
+	color: white;
+	background: #777;
+	border:1px solid #888;
+}
+
+
 /* copied from keep-calm to-do create SASS mixin */
 
 ul.plans-list a.convert, button.convert {
 	width:100%;
 }
+
+/* frequency chooser */
+.category-plans .breadcrumbs {
+	display:none;
+}
+
+.frequency-chooser-container {
+	background:black;
+	width:100%;	
+}
+.frequency-chooser-section {
+	width:960px;
+	margin:0 auto;
+}
+
+.frequency-chooser {
+	padding:20px;
+}
+
+.frequency-chooser-text {
+	float:left;
+	font-family:ProximaNovaBold,Helvetica,Arial;
+	font-size:13px;
+	color:#eee;
+	font-size: 15px;
+    line-height: 43px;
+    margin-right: 20px;
+}
+
+/* end frequency chooser */

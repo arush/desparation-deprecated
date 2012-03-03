@@ -24,26 +24,66 @@
  * @license     http://www.magentocommerce.com/license/enterprise-edition
  */
 ?>
-<?php if($crumbs && is_array($crumbs)): ?>
-<div class="breadcrumbs">
-	<div class="center">
-    <ul>
-        <?php foreach($crumbs as $_crumbName=>$_crumbInfo): ?>
-            <li class="<?php echo $_crumbName ?>">
-            <?php if($_crumbInfo['link']): ?>
-                <a href="<?php echo $_crumbInfo['link'] ?>" title="<?php echo $this->htmlEscape($_crumbInfo['title']) ?>"><?php echo $this->htmlEscape($_crumbInfo['label']) ?></a>
-            <?php elseif($_crumbInfo['last']): ?>
-                <?php echo $this->htmlEscape($_crumbInfo['label']) ?>
-            <?php else: ?>
-                <?php echo $this->htmlEscape($_crumbInfo['label']) ?>
-            <?php endif; ?>
-            <?php if(!$_crumbInfo['last']): ?>
-                <span>/ </span>
-            <?php endif; ?>
-            </li>
-        <?php endforeach; ?>
-    </ul>
-	</div>
 
-</div>
-<?php endif; ?>
+
+<?php
+	$category = Mage::registry('current_category');
+	
+if($category) {
+	$categoryId = $category->getId(); ?>
+	
+	<div class="frequency-chooser-container">
+		<div class="frequency-chooser-section">
+			
+			<div class="frequency-chooser clearfix">
+				<div class="frequency-chooser-text">
+					<?php if($categoryId !=135){ echo 'Choose a delivery cycle:';} 
+						else {echo 'Or, gift a monthly plan:';} ?>
+					
+				</div>
+				<a class="convert secondary lt <?php if($categoryId ==7){ echo 'active';} ?>" href="<?php echo Mage::getModel("catalog/category")->load(7)->getUrl() ?>">
+					Monthly
+				</a>
+				<a class="convert secondary rt <?php if($categoryId ==137){ echo 'active';} ?>" href="<?php echo Mage::getModel("catalog/category")->load(137)->getUrl() ?>">
+					3 Monthly
+				</a>
+				<!--a class="convert secondary rt <?php // if($categoryId ==144){ echo 'active';} ?>" href="<?php // echo Mage::getModel("catalog/category")->load(144)->getUrl() ?>">
+					6 Monthly
+				</a-->
+				<a class="gift convert secondary right <?php if($categoryId ==135){ echo 'active';} ?>" href="<?php echo Mage::getModel("catalog/category")->load(135)->getUrl() ?>">
+					Gifts
+				</a>
+			</div>
+
+		</div>
+		
+	</div>
+	<div class="clearfix"></div>
+
+<?php } else { ?>
+
+	
+	<?php if($crumbs && is_array($crumbs)): ?>
+	<div class="breadcrumbs">
+		<div class="center">
+	    <ul>
+	        <?php foreach($crumbs as $_crumbName=>$_crumbInfo): ?>
+	            <li class="<?php echo $_crumbName ?>">
+	            <?php if($_crumbInfo['link']): ?>
+	                <a href="<?php echo $_crumbInfo['link'] ?>" title="<?php echo $this->htmlEscape($_crumbInfo['title']) ?>"><?php echo $this->htmlEscape($_crumbInfo['label']) ?></a>
+	            <?php elseif($_crumbInfo['last']): ?>
+	                <?php echo $this->htmlEscape($_crumbInfo['label']) ?>
+	            <?php else: ?>
+	                <?php echo $this->htmlEscape($_crumbInfo['label']) ?>
+	            <?php endif; ?>
+	            <?php if(!$_crumbInfo['last']): ?>
+	                <span>/ </span>
+	            <?php endif; ?>
+	            </li>
+	        <?php endforeach; ?>
+	    </ul>
+		</div>
+	
+	</div>
+	<?php endif; ?>
+<?php } ?>

@@ -20,7 +20,7 @@
 				</action>
 			</block> 
     		<block type="page/html_head" name="typekit" template="typekit.phtml" />
-            <action method="addCss"><stylesheet>css/brandid.css</stylesheet></action>
+            <action method="addCss"><stylesheet>css/brandid02032012.css</stylesheet></action>
             <action method="addCss"><stylesheet>css/svdh.css</stylesheet></action>
 
             <action method="addCss"><stylesheet>fonts/fonts.css</stylesheet></action>            
