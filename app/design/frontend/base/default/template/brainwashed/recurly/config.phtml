@@ -1,0 +1,59 @@
+<?php
+Mage::helper('recurly')->config();
+$customerId = Mage::getSingleton('customer/session')->getId();
+$sku = Mage::helper('recurly')->getSku();
+?>
+<script type="text/javascript">
+Recurly.config({
+	subdomain: '<?php echo Mage::helper('recurly')->getSubdomain(); ?>'
+	, currency: '<?php echo Mage::helper('recurly')->getCurrency(); ?>'
+	, country: '<?php echo Mage::helper('recurly')->getCountry(); ?>'
+});
+
+
+
+
+function loadRecurly() {
+
+	$('co-payment-form').select('input[type="radio"][payment\[method\]]').each(function(obj){
+		if (obj.checked == true && obj.value == 'recurly') {
+		
+		
+			$('payment-buttons-container').hide();
+			
+			$('co-payment-form').insert(new Element('div', { id: 'recurlyDiv' }));
+			Recurly.buildSubscriptionForm({
+		    	target: '#recurlyDiv'
+				, planCode: '<?php echo $sku; ?>'
+				, accountCode: '<?php echo $customerId; ?>'
+				, successURL: '<?php echo Mage::getUrl('/recurly/callback/success'); ?>'
+				, distinguishContactFromBillingInfo: false
+				, collectCompany: true
+
+
+				, account: {
+					  firstName: $('billing:firstname').value
+					, lastName: $('billing:lastname').value
+					, email: $('billing:email').value
+					, phone: $('billing:telephone').value
+					, companyName: $('billing:company').value
+				}
+				, billingInfo: {
+					firstName: $('billing:firstname').value
+					, lastName: $('billing:lastname').value
+					, address1: $('billing:street1').value
+					, address2: $('billing:street2').value
+					, country: $('billing:country_id').value
+					, city: $('billing:city').value
+					, state: $('billing:region').value
+					, zip: $('billing:postcode').value
+				}				
+				, signature: '<?php echo Mage::helper('recurly')->signSubscription($sku, $customerId); ?>'
+			});
+		}
+	});
+			
+}
+
+
+</script>
