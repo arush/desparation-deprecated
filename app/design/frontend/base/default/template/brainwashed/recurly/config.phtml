@@ -45,7 +45,8 @@ function loadRecurly() {
 				, signature: '<?php echo Mage::helper('recurly')->signSubscription($sku, $customerId); ?>'
 			});
 		} else {
-			$('recurlyDiv').remove();
+			if ($('recurlyDiv')) { $('recurlyDiv').remove(); }
+
 		}
 	});
 			
