@@ -10,9 +10,6 @@ Recurly.config({
 	, country: '<?php echo Mage::helper('recurly')->getCountry(); ?>'
 });
 
-
-
-
 function loadRecurly() {
 
 	$('co-payment-form').select('input[type="radio"][payment\[method\]]').each(function(obj){
@@ -34,9 +31,7 @@ function loadRecurly() {
 				, account: {
 					  firstName: $('billing:firstname').value
 					, lastName: $('billing:lastname').value
-					, email: $('billing:email').value
 					, phone: $('billing:telephone').value
-					, companyName: $('billing:company').value
 				}
 				, billingInfo: {
 					firstName: $('billing:firstname').value
