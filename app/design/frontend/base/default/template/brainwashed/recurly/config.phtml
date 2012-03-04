@@ -23,7 +23,7 @@ function loadRecurly() {
 		    	target: '#recurlyDiv'
 				, planCode: '<?php echo $sku; ?>'
 				, accountCode: '<?php echo $customerId; ?>'
-				, successURL: '<?php echo Mage::getBaseUrl('') . '/recurly/callback/success'; ?>'
+				, successURL: '<?php echo Mage::getBaseUrl() . '/recurly/callback/success'; ?>'
 				, distinguishContactFromBillingInfo: false
 				, collectCompany: true
 
