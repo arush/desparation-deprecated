@@ -17,6 +17,10 @@
 				                    <title>STS (Amazon Simple Email Service)</title>
 				                    <action>monkey/adminhtml_transactionalemail/sts</action>
 				                </sts>
+				                <mandrill translate="title" module="monkey">
+				                    <title>Mandrill</title>
+				                    <action>monkey/adminhtml_transactionalemail/mandrill</action>
+				                </mandrill>
 		                    </children>
 		                </transactional_email>
 		                <bulksync translate="title" module="monkey">

@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Ebizmarts_MageMonkey>
-             <version>1.0.4</version>
+             <version>1.0.8</version>
         </Ebizmarts_MageMonkey>
     </modules>
     <global>
@@ -55,11 +55,11 @@
                     <bulksync_import><table>magemonkey_bulksync_import</table></bulksync_import>
                 </entities>
             </monkey_mysql4>
-            <core>
+            <!-- core>
                 <rewrite>
                     <email_template>Ebizmarts_MageMonkey_Model_Email_Template</email_template>
                 </rewrite>
-            </core>
+            </core -->
         </models>
         <resources>
             <monkey_setup>
@@ -119,6 +119,14 @@
             </updates>
         </layout>
         <events>
+			<controller_action_predispatch_onestepcheckout_index_index>
+	           	<observers>
+	               <monkey_subscribe_checkout>
+	                   <class>monkey/observer</class>
+	                   <method>registerCheckoutSubscribe</method>
+	               </monkey_subscribe_checkout>
+	         	</observers>
+	        </controller_action_predispatch_onestepcheckout_index_index>
 			<controller_action_postdispatch_checkout_onepage_saveOrder>
 	           	<observers>
 	               <monkey_subscribe_checkout>
