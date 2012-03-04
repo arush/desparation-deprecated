@@ -18,7 +18,7 @@ function loadRecurly() {
 		
 			$('payment-buttons-container').hide();
 			
-			$('co-payment-form').insert(new Element('div', { id: 'recurlyDiv' }));
+			$('p_method_recurly').up().insert(new Element('div', { id: 'recurlyDiv' }));
 			Recurly.buildSubscriptionForm({
 		    	target: '#recurlyDiv'
 				, planCode: '<?php echo $sku; ?>'
