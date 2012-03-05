@@ -22,7 +22,7 @@
 }
 .recurly .plan .name {
   float: left;
-  font-size: 32px;
+  font-size: 16px;
   min-width: 200px;
   padding-left: 20px;
   padding-right: 40px;
@@ -54,7 +54,7 @@
   padding-right: 20px;
 }
 .recurly .plan .recurring_cost .cost {
-  font-size: 32px;
+  font-size: 16px;
 }
 .recurly .plan .recurring_cost .interval {
   font-size: 12px;
@@ -674,7 +674,7 @@
 	font-weight:normal;
 }
 
-#recurlyDiv .full_name, #recurlyDiv .field.company_name, #recurlyDiv .address_full {
+#recurlyDiv .full_name, #recurlyDiv .field.company_name, #recurlyDiv .address.full {
 	display:none;
 }
 
