@@ -1,6 +1,8 @@
 var $j = jQuery.noConflict();
-    
+
     	$j(document).ready(function () {
+
+if ($j('#slider')) {
 
     var $panels = $j('#slider .scrollContainer > div');
     var $container = $j('#slider .scrollContainer');
@@ -97,4 +99,7 @@ var $j = jQuery.noConflict();
     scrollOptions.duration = 1;
     $j.localScroll.hash(scrollOptions);
 
+
+}
 });
+
