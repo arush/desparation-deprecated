@@ -3249,6 +3249,10 @@ a.convert.secondary:hover {
 	border: 1px solid #ddd;
 }
 
+a.convert.secondary.active:hover {
+	color:white;
+}
+
 a.convert.lt {
 	display:block;
 	float:left;
