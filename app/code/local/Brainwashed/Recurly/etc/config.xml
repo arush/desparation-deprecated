@@ -21,6 +21,36 @@
         		<class>Brainwashed_Recurly_Helper</class>
         	</recurly>
         </helpers>
+        
+    	<events>
+            <controller_action_predispatch_checkout_cart_add>
+                <observers>
+                    <recurly>
+                        <type>singleton</type>
+                        <class>Brainwashed_Recurly_Model_Product_Observer</class>
+                        <method>clearCart</method>
+                    </recurly>
+                </observers>                    
+            </controller_action_predispatch_checkout_cart_add>
+			<checkout_cart_add_product_complete>
+                <observers>
+                    <recurly>
+                        <type>singleton</type>
+                        <class>Brainwashed_Recurly_Model_Product_Observer</class>
+                        <method>redirectToCheckout</method>
+                    </recurly>
+                </observers>
+            </checkout_cart_add_product_complete>            
+			<checkout_cart_product_update_after>
+                <observers>
+                    <recurly>
+                        <type>singleton</type>
+                        <class>Brainwashed_Recurly_Model_Product_Observer</class>
+                        <method>redirectToCheckout</method>
+                    </recurly>
+                </observers>
+            </checkout_cart_product_update_after>
+    	</events>        
     </global>
     <frontend>
         <routers>

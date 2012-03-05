@@ -19,6 +19,13 @@ class Brainwashed_Recurly_Helper_Data extends Mage_Core_Helper_Abstract {
 		return Recurly_js::signSubscription($sku, $account);	
 	}
 	
+	public function verifySubscription($results) {
+	
+		$this->config();
+		$recurly_js = new Recurly_js($results);
+		$recurly_js->verifySubscription();
+	}
+	
 	public function getSubdomain() {
 		return Mage::getStoreConfig('payment/recurly/subdomain');
 	}
