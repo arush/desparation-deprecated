@@ -682,6 +682,10 @@
 	background-color:#000;
 }
 
+#recurlyDiv .footer {
+	background:none;
+}
+
 #recurlyDiv .due_now .title ,
 #recurlyDiv .due_now .cost {
 	font-family: ProximaNovaBold;
@@ -689,9 +693,5 @@
 	color: white;
 	text-transform: uppercase;
 	font-size: 20px;
-
-}
-
-#recurlyDiv .due_now .cost {
 
 }
