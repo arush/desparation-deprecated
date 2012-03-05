@@ -34,7 +34,7 @@ function loadRecurly() {
 				, account: {
 					  firstName: $('billing:firstname') ? $('billing:firstname').value : ''
 					, lastName: $('billing:lastname') ? $('billing:lastname').value : ''
-					, email: $('billing:email') ? $('billing:email').value : ''
+					, email: $('billing:email') ? $('billing:email').value : '<?php echo $customerEmail; ?>'
 					, phone: $('billing:telephone') ? $('billing:telephone').value : ''
 				}
 				, billingInfo: {
