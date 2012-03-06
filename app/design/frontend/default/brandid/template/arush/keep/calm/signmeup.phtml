@@ -505,22 +505,28 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("plans.htm
 
 			
 			if(w > $j("#mags").data("scrolls")[0] && w < $j("#mags").data("scrolls")[1]) {
-      
-		      window.group_rel = w - ($j("#mags").data("scrolls")[0] + 650);
-		      window.group_ratio = (Math.round((window.group_rel / ($j("#mags").data("scrolls")[2] - 650)) * 100) / 25);      
-		    	
+      		 
+      		 var beginning = $j("#mags").data("scrolls")[0];
+      		 var end = $j("#mags").data("scrolls")[1];
+      		 var quarter = (end - beginning)/4;
+      		 
+		      window.group_rel = w - (beginning + 100);
+		      console.log('window group del: '+window.group_rel);
+		      
+		      window.group_ratio = window.group_rel/quarter;      
+		      console.log('window group ratio: '+window.group_ratio);
 
 		    
    		      $j(".hood-element").each(function(index) {
 		        if($j(this).data("visible")=="false") {
-		          if(window.group_ratio > index) $j(this).fadeIn(600,
+		          if(window.group_ratio > index) $j(this).fadeIn(200,
 		          	function() {
 		          		$j(this).data("visible","true");
 								          		
 		          		});
 		        }
 		        else {
-		          if(window.group_ratio < index) $j(this).fadeOut(600,function() {$j(this).data("visible","false")});
+		          if(window.group_ratio < index) $j(this).fadeOut(200,function() {$j(this).data("visible","false")});
 		        }
 		 
 		      });
