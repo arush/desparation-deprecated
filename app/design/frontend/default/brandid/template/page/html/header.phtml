@@ -107,12 +107,13 @@
 			
 			<div class="catalogLinks blog">
 				<span class="widget widget-category-link">
-					<a href="http://blog.getbrandid.com?
-						customerId=<?php echo $customerID ?>
-						&facebook=<?php echo $facebookID ?>
-						&twitter=<?php echo $twitterID ?>
-						&firstname=<?php echo $firstname ?>
-						
+					<a href="http://blog.getbrandid.com
+					<?php if (Mage::getSingleton('customer/session')->isLoggedIn()) {?>
+						?customerId=<?php echo $customerID ?>
+						&facebook=<?php if(isset($facebookID)) {echo $facebookID;} ?>
+						&twitter=<?php if(isset($twitterID)) {echo $twitterID;} ?>
+						&firstname=<?php if(isset($firstname)) {echo $firstname;} ?>
+					<?php }; ?>
 						" title="BRANDiD Blog - Because we are men">
 						<span>Blog</span>
 							<br/>

@@ -17,7 +17,6 @@ class Ebizmarts_MageMonkey_Model_Observer
 	 */
 	public function handleSubscriber(Varien_Event_Observer $observer)
 	{
-
 		if(!Mage::helper('monkey')->canMonkey()){
 			return $observer;
 		}
@@ -259,10 +258,14 @@ class Ebizmarts_MageMonkey_Model_Observer
 								$scopeId = 0;
 							}
 
+
+							//This is to fix lists starting with numbers becuse break XML parsing
+							$safeListId = 'list_' . $list['id'];
+
 							$config
 							->setScope($scope)
 							->setScopeId($scopeId)
-							->setPath('monkey/groupings/' . $list['id'])
+							->setPath('monkey/groupings/' . $safeListId)
 							->setValue($groupingId)
 							->save();
 						}
@@ -306,6 +309,9 @@ class Ebizmarts_MageMonkey_Model_Observer
 
 		$customer = $observer->getEvent()->getCustomer();
 
+		//Handle additional lists subscription on Customer Create Account
+		Mage::helper('monkey')->additionalListsSubscription($customer);
+
 		$oldEmail = $customer->getOrigData('email');
 		if(!$oldEmail){
 			return $observer;
@@ -336,10 +342,15 @@ class Ebizmarts_MageMonkey_Model_Observer
 		if(!Mage::helper('monkey')->canMonkey()){
 			return;
 		}
-		$subscribe = Mage::app()->getRequest()->getPost('magemonkey_subscribe');
 
-		if(!is_null($subscribe)){
-			Mage::getSingleton('core/session')->setMonkeyCheckout($subscribe);
+		if(Mage::app()->getRequest()->isPost()){
+			$subscribe = Mage::app()->getRequest()->getPost('magemonkey_subscribe');
+
+			Mage::getSingleton('core/session')->setMonkeyPost( serialize(Mage::app()->getRequest()->getPost()) );
+
+			if(!is_null($subscribe)){
+				Mage::getSingleton('core/session')->setMonkeyCheckout($subscribe);
+			}
 		}
 	}
 
@@ -354,25 +365,45 @@ class Ebizmarts_MageMonkey_Model_Observer
 		if(!Mage::helper('monkey')->canMonkey()){
 			return;
 		}
-		$sessionFlag = Mage::getSingleton('core/session')->getMonkeyCheckout(TRUE);
 
-		if($sessionFlag){
-			$orderId = (int)current($observer->getEvent()->getOrderIds());
-
-			if($orderId){
-				$order = Mage::getModel('sales/order')->load($orderId);
-				if( $order->getId() ){
-
-						//Guest Checkout
-						if( (int)$order->getCustomerGroupId() === Mage_Customer_Model_Group::NOT_LOGGED_IN_ID ){
-							Mage::helper('monkey')->registerGuestCustomer($order);
-						}
-
-						$subscriber = Mage::getModel('newsletter/subscriber')
-							->subscribe($order->getCustomerEmail());
-				}
-			}
+		$orderId = (int)current($observer->getEvent()->getOrderIds());
+		if($orderId){
+			$order = Mage::getModel('sales/order')->load($orderId);
 		}
+
+		if($order->getId()){
+
+			$sessionFlag = Mage::getSingleton('core/session')->getMonkeyCheckout(TRUE);
+			if($sessionFlag){
+
+				//Guest Checkout
+				if( (int)$order->getCustomerGroupId() === Mage_Customer_Model_Group::NOT_LOGGED_IN_ID ){
+					Mage::helper('monkey')->registerGuestCustomer($order);
+				}
+
+				try{
+					$subscriber = Mage::getModel('newsletter/subscriber')
+						->subscribe($order->getCustomerEmail());
+				}catch(Exception $e){
+					Mage::logException($e);
+				}
+
+			}
+
+			//Multiple lists on checkout
+			$monkeyPost = Mage::getSingleton('core/session')->getMonkeyPost(TRUE);
+			if($monkeyPost){
+
+				$post = unserialize($monkeyPost);
+				$request = new Varien_Object(array('post' => $post));
+				$customer  = new Varien_Object(array('email' => $order->getCustomerEmail()));
+
+				//Handle additional lists subscription on Customer Create Account
+				Mage::helper('monkey')->additionalListsSubscription($customer, $request);
+			}
+
+		}
+
 	}
 
 	/**
