@@ -579,7 +579,6 @@
   color: inherit;
 }
 .recurly .due_now {
-  background: url("../../images/brainwashed/recurly/due_now.png") no-repeat top left;
   clear: both;
   color: #2a3a3c;
   height: 70px;
@@ -614,6 +613,7 @@
 .recurly.submitting .footer {
   background: url("../../images/brainwashed/recurly/submitting.gif") no-repeat 180px 28px;
 }
+/*
 .recurly button.submit {
   height: 46px;
   max-width: 600px;
@@ -624,7 +624,7 @@
   margin-left: 0px;
   border: 1px solid #767674;
   background: #e7a500;
-  border-radius: 10px;
+  border-radius: 3px;
   outline: none;
   box-shadow: inset rgba(255,255,255,0.70) 0px 1px 0px, rgba(0,0,0,0.50) 0px 1px 3px;
   background-image: -webkit-gradient(linear, 0% 20%, 0% 100%, from(#fecd00), to(#ce7b00));
@@ -632,6 +632,7 @@
   text-shadow: rgba(255,255,255,0.50) 0 1px 0;
   padding: 10px 20px;
 }
+
 .recurly button.submit:hover {
   color: #451;
 }
@@ -643,13 +644,9 @@
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ce7b00), to(#fecd00));
   background: -moz-linear-gradient(top, #ce7b00, #fecd00);
   box-shadow: rgba(255,255,255,0.69) 0px -1px 0px inset, rgba(0,0,0,0.26) 0px 2px 3px;
-}
+}*/
 .recurly button.submit[disabled] {
-  position: relative;
-  height: 46px;
-  max-width: 600px;
-  padding: 0 10px;
-  font-weight: 700;
+
   color: #555;
   text-shadow: rgba(255,255,255,0.57) 0 1px 0;
   text-align: center;
