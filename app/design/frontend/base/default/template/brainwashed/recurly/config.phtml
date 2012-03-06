@@ -1,7 +1,7 @@
 <?php
 Mage::helper('recurly')->config();
 $customerId = Mage::getSingleton('customer/session')->getId();
-$customerEmail = Mage::getSingleton('customer/session')->getEmail();
+$customerEmail = Mage::getModel('customer/customer')->load($customerId)->getEmail();
 $sku = Mage::helper('recurly')->getSku();
 $signature = Mage::helper('recurly')->signSubscription($sku, $customerId);
 Mage::getSingleton('core/session')->setSignature($signature);
@@ -26,7 +26,7 @@ function loadRecurly() {
 		    	target: '#recurlyDiv'
 				, planCode: '<?php echo $sku; ?>'
 				, accountCode: '<?php echo $customerId; ?>'
-				, successURL: '<?php echo Mage::getBaseUrl() . 'recurly/callback/success/account/'; ?>'
+				, successURL: '<?php echo Mage::getBaseUrl() . 'recurly/callback/success/'; ?>'
 				, distinguishContactFromBillingInfo: false
 				, collectCompany: true
 
