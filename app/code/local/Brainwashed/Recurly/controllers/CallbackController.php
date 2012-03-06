@@ -8,6 +8,7 @@ class Brainwashed_Recurly_CallbackController extends Mage_Core_Controller_Front_
 			Mage::helper('recurly')->verifySubscription($results);
 			
 			$quote = Mage::getModel('checkout/cart')->getQuote();
+			$quoteId = $quote->getId();
 			
 			$quoteItems = $quote->getAllItems();
 			
@@ -41,9 +42,6 @@ class Brainwashed_Recurly_CallbackController extends Mage_Core_Controller_Front_
 		    $order->place();
 		    $order->save(); 
 		    
-//		    $order->getPayment()->setData(array('last_trans_id' => $results['uuid']))->save();
-		    
-		    
 		    if ($order->canInvoice()) {
 				$invoice = Mage::getModel('sales/service_order', $order)->prepareInvoice();		    
 				
@@ -55,10 +53,13 @@ class Brainwashed_Recurly_CallbackController extends Mage_Core_Controller_Front_
 				 
 				$transactionSave->save();				
 		    }
-		    
-            Mage::getSingleton('checkout/session')->setLastSuccessQuoteId($quote->getId());
+
+            Mage::getSingleton('checkout/session')->setLastSuccessQuoteId($quoteId);
+	        Mage::getSingleton('checkout/session')->setLastQuoteId($quoteId);
+	        Mage::getSingleton('checkout/session')->setLastOrderId($order->getId());
+
             $this->_redirect('checkout/onepage/success');			
-		} catch (Recurly_ForgedQueryStringError $e) {
+		} catch (Exception $e) {
 			print_r($e->getMessage());
 		}		
 	}
