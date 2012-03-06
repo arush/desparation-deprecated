@@ -16,7 +16,7 @@ class Magmi_DefaultAttributeItemProcessor extends Magmi_ItemProcessor
 		return array(
             "name" => "Standard Attribute Import",
             "author" => "Dweeves",
-            "version" => "1.0.0"
+            "version" => "1.0.2"
             );
 	}
 	
@@ -85,6 +85,11 @@ class Magmi_DefaultAttributeItemProcessor extends Magmi_ItemProcessor
 	public function handleDatetimeAttribute($pid,&$item,$storeid,$attrcode,$attrdesc,$ivalue)
 	{
 		$ovalue=deleteifempty(trim($ivalue));
+		//Handle european date format
+		if(preg_match("|(\d){1,2}/(\d){1,2}/(\d){4}|",$ovalue,$matches))
+		{
+			$ovalue=sprintf("%4d-%2d-%2d",$matches[3],$matches[2],$matches[1]);
+		}
 		return $ovalue;
 	}
 
@@ -147,7 +152,7 @@ class Magmi_DefaultAttributeItemProcessor extends Magmi_ItemProcessor
 					{
 						return "__MAGMI_DELETE__";
 					}
-					$oids=$this->_mmi->getOptionIds($attid,$storeid,array($ivalue));
+					$oids=$this->getOptionIds($attid,$storeid,array($ivalue));
 					$ovalue=$oids[0];
 					unset($oids);
 					break;
@@ -166,11 +171,11 @@ class Magmi_DefaultAttributeItemProcessor extends Magmi_ItemProcessor
 	public function handleVarcharAttribute($pid,&$item,$storeid,$attrcode,$attrdesc,$ivalue)
 	{
 
-		if($storeid!==0 && empty($ivalue) && $this->_mmi->mode=="create")
+		if($storeid!==0 && empty($ivalue) && $this->getImportMode()=="create")
 		{
 			return false;
 		}
-		if($ivalue=="" && $this->_mmi->mode=="update")
+		if($ivalue=="" && $this->getImportMode()=="update")
 		{
 			return "__MAGMI_DELETE__";
 		}
@@ -189,7 +194,7 @@ class Magmi_DefaultAttributeItemProcessor extends Magmi_ItemProcessor
 				return "__MAGMI_DELETE__";
 			}
 			//magento uses "," as separator for different multiselect values
-			$sep=Magmi_Config::getInstance()->get("GLOBAL","mutiselect_sep",",");
+			$sep=Magmi_Config::getInstance()->get("GLOBAL","multiselect_sep",",");
 			$multiselectvalues=explode($sep,$ivalue);
 			$oids=$this->getOptionIds($attid,$storeid,$multiselectvalues);
 			$ovalue=implode(",",$oids);

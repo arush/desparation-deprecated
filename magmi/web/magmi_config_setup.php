@@ -43,11 +43,16 @@ if(!$eplconf->hasSection("PLUGINS_DATASOURCES"))
 	<div class="grid_12 col"><h3>Update Magmi Release</h3>
 		<input type="file" name="magmi_package"></input>
 		<input type="submit" value="Upload Magmi Release"></input>
-		<?php if(isset($_SESSION["magmi_install_error"])){?>
-		<div class="plupload_error">
-				<?php echo $_SESSION["magmi_install_error"];?>
+		<?php if(isset($_SESSION["magmi_install"])){
+		$type=$_SESSION["magmi_install"][0];
+		$msg=$_SESSION["magmi_install"][1];
+		?>	
+		<div class="mgupload_<?php echo $type?>">
+				<?php echo $msg;?>
 		</div>
-		<?php }?>
+		<?php 
+			unset($_SESSION["magmi_install"]);
+		}?>
 	</div>
 </form>
 </div>
@@ -58,11 +63,14 @@ if(!$eplconf->hasSection("PLUGINS_DATASOURCES"))
 	<div class="grid_12 col"><h3>Upload New Plugins</h3>
 		<input type="file" name="plugin_package"></input>
 		<input type="submit" value="Upload Plugins"></input>
-<?php if(isset($_SESSION["plugin_install_error"])){?>
-<div class="plupload_error">
-<?php echo $_SESSION["plugin_install_error"];?>
+<?php if(isset($_SESSION["plugin_install"])){
+		$type=$_SESSION["plugin_install"][0];
+		$msg=$_SESSION["plugin_install"][1];
+	?>
+<div class="plupload_$type">
+<?php echo $msg;?>
 </div>
-<?php }?>
+<?php unset($_SESSION["magmi_install"]); }?>
 </div>
 </form>
 <?php } else {?>
@@ -80,8 +88,7 @@ Zip library not available, Upgrade/Upload function are not enabled
 <?php }?>
 </div>
 </div>
-<?php if($conf_ok){?>
-<form method="POST" id="runmagmi" action="magmi.php">
+<form method="POST" id="runmagmi" action="magmi.php" <?php if(!$conf_ok){?>style="display:none"<?php }?>>
 	<input type="hidden" name="run" value="import"></input>
 	<input type="hidden" name="logfile" value="<?php echo Magmi_StateManager::getProgressFile()?>"></input>
 	<div class="container_12">
@@ -108,7 +115,6 @@ Zip library not available, Upgrade/Upload function are not enabled
 		</div>
 		</div>
 </form>
-<?php }?>
 <div class="container_12">
 <div class="grid_12">
 <a href="magmi_utilities.php">Advanced Utilities</a>
@@ -193,7 +199,7 @@ $cansock=true;
 	<ul class="formline">
 		<li class="label">Version:</li>
 		<li class="value"><select name="MAGENTO:version">
-			<?php foreach(array("1.5.x","1.4.x","1.3.x") as $ver){?>
+			<?php foreach(array("1.6.x","1.5.x","1.4.x","1.3.x") as $ver){?>
 				<option value="<?php echo $ver?>" <?php if($conf->get("MAGENTO","version")==$ver){?>selected=selected<?php }?>><?php echo $ver?></option>
 			<?php }?>
 		</select></li>
@@ -214,7 +220,16 @@ $cansock=true;
 		<li class="label">Multiselect value separator:</li>
 		<li class="value"><input type="text" name="GLOBAL:multiselect_sep" size="3" value="<?php echo $conf->get("GLOBAL","multiselect_sep",",")?>"></input></li>
 	</ul>
-	
+	<h3>Dir &amp; File permissions</h3>
+	<ul class="formline" id="dirperms">
+		<li class="label">Directory permissions:</li>
+		<li class="value"><input type="text" name="GLOBAL:dirmask" size="3" value="<?php echo $conf->get("GLOBAL","dirmask","755")?>"></input></li>
+	</ul>
+	<ul class="formline" id="fileperms">
+		<li class="label">File permissions:</li>
+		<li class="value"><input type="text" name="GLOBAL:filemask" size="3" value="<?php echo $conf->get("GLOBAL","filemask","644")?>"></input></li>
+	</ul>
+
 	</div>
 <div class="clear"></div>
 

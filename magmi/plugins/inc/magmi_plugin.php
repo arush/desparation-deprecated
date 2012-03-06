@@ -1,6 +1,6 @@
 <?php
-require_once("../inc/magmi_config.php");
-
+require_once("magmi_config.php");
+require_once("magmi_mixin.php");
 class Magmi_PluginConfig extends ProfileBasedConfig
 {
 	protected $_prefix;
@@ -102,14 +102,14 @@ class Magmi_PluginOptionsPanel
 	}
 }
 
-abstract class Magmi_Plugin
+abstract class Magmi_Plugin extends Magmi_Mixin
 {
-	protected $_mmi=null;
 	protected $_class;
 	protected $_plugintype;
 	protected $_plugindir;
 	protected $_config;
-	
+	protected $_magmiconfig;
+	protected $_pluginmeta;
 	public function __construct()
 	{
 	}
@@ -182,7 +182,7 @@ abstract class Magmi_Plugin
 		{
 			$data="{$pinf["name"]} v{$pinf["version"]} - ".$data;
 		}
-		$this->_mmi->log($data,"plugin;$this->_class;$type");
+		$this->_caller_log($data,"plugin;$this->_class;$type");
 	}
 	
 	public function pluginHello()
@@ -208,17 +208,20 @@ abstract class Magmi_Plugin
 		return $this->_config;
 	}
 	
-	public final function setMmiRef($mmi)
+	public function getMagmiConfig()
 	{
-		$this->_mmi=$mmi;
+		return $this->_magmiconfig;
 	}
-	public final function pluginInit($mmi,$dir,$params=null,$doinit=true,$profile=null)
+	
+	public final function pluginInit($mmi,$meta,$params=null,$doinit=true,$profile=null)
 	{		
-		$this->setMmiRef($mmi);
-		$this->_plugindir=$dir;
+		$this->bind($mmi);
+		$this->_pluginmeta=$meta;
 		$this->_class=get_class($this);
 		$this->_config=new Magmi_PluginConfig(get_class($this),$profile);	
 		$this->_config->load();
+		$this->_magmiconfig=Magmi_Config::getInstance();
+		
 		$this->_params=($params!=null?array_merge($this->_config->getConfig(),$params):$this->_config->getConfig());
 
 		if(isset($mmi))
@@ -232,7 +235,24 @@ abstract class Magmi_Plugin
 		}
 	}
 	
-	
+
+	public function getPluginParamsNoCurrent($params)
+	{
+		$arr=array();
+		$paramkeys=$this->getPluginParamNames();
+		foreach($paramkeys as $pk)
+		{
+			if(isset($params[$pk]))
+			{
+				$arr[$pk]=$params[$pk];
+			}
+			else
+			{
+				$arr[$pk]=0;
+			}	
+		}
+		return $arr;
+	}
 	public function getPluginParams($params)
 	{
 		$arr=array();
@@ -247,7 +267,7 @@ abstract class Magmi_Plugin
 			{
 				if(isset($this->_params[$pk]))
 				{
-					$arr[$pk]=$this->_params[$pk];
+						$arr[$pk]=$this->_params[$pk];
 				}
 			}	
 		}
@@ -299,7 +319,12 @@ abstract class Magmi_Plugin
 	
 	public function getPluginDir()
 	{
-		return $this->_plugindir;
+		return $this->_pluginmeta["dir"];
+	}
+	
+	public function getPluginMeta()
+	{
+		return $this->_pluginmeta;
 	}
 	
 	public function getPluginClass()
@@ -312,15 +337,5 @@ abstract class Magmi_Plugin
 		return array(true,"");
 	}
 	
-	public function __call($data,$arg)
-	{
-		if(method_exists($this->_mmi,$data))
-		{
-		  return call_user_func_array(array($this->_mmi,$data), $arg);
-		}
-		else
-		{
-			die("Invalid Method Call: $data - Not found in Plugin nor associated Magmi engine instance");
-		}
-	}
+
 }

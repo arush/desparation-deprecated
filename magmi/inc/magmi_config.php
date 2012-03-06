@@ -13,6 +13,15 @@ class DirbasedConfig extends Properties
 		$this->_confname=$basedir.DS.$confname;
 	}
 	
+	public function get($secname,$pname,$default=null)
+	{
+		if(!isset($this->_props))
+		{
+			$this->load();
+		}
+		return parent::get($secname, $pname,$default);
+	}
+	
 	public function getConfFile()
 	{
 		return $this->_confname;
@@ -51,7 +60,7 @@ class DirbasedConfig extends Properties
 	{
 		if(!file_exists($newdir))
 		{
-			mkdir($newdir,0775);
+			mkdir($newdir,Magmi_Config::getInstance()->getDirMask());
 		}	
 		$val=parent::save($newdir.DS.basename($this->_confname));
 		$this->_basedir=$newdir;
@@ -76,7 +85,7 @@ class ProfileBasedConfig extends DirbasedConfig
 		$confdir=dirname(dirname(self::$_script)).DS."conf$subdir";
 		if(!file_exists($confdir))
 		{
-			@mkdir($confdir,0777);
+			@mkdir($confdir,Magmi_Config::getInstance()->getDirMask());
 		}
 		return realpath($confdir);
 	}
@@ -115,7 +124,23 @@ class Magmi_Config extends DirbasedConfig
 		
 	}
 	
+	public function getDirMask()
+	{
+		return octdec($this->get("GLOBAL","dirmask","755"));
+	}
 	
+	public function getFileMask()
+	{
+		return octdec($this->get("GLOBAL","filemask","644"));
+		
+	}
+	
+	public function getMagentoDir()
+	{
+		$bd=$this->get("MAGENTO","basedir");
+		$dp=$bd[0]=="."?dirname(__FILE__)."/".$bd:$bd;
+		return realpath($dp);
+	}
 	
 	public static function getInstance()
 	{

@@ -10,8 +10,8 @@
  */
 
 /* use external file for db helper */
-require_once("../inc/magmi_engine.php");
-require_once("../inc/magmi_pluginhelper.php");
+require_once("magmi_engine.php");
+require_once("magmi_pluginhelper.php");
 
 
 /* Magmi ProductImporter is now a Magmi_Engine instance */
@@ -34,7 +34,7 @@ class Magmi_UtilityEngine extends Magmi_Engine
 	
 	public function getEngineInfo()
 	{
-		return array("name"=>"Magmi Utilities Engine","version"=>"1.0","author"=>"dweeves");
+		return array("name"=>"Magmi Utilities Engine","version"=>"1.0.1","author"=>"dweeves");
 	}
 	
 	/**

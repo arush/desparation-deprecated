@@ -18,8 +18,6 @@ abstract class Magmi_Engine extends DbHelper
 	protected $_conf;
 	protected $_initialized=false;
 	protected $_exceptions=array();
-	public $magversion;
-	public $magdir;
 	public $tprefix;
 	protected $_connected;
 	protected $_activeplugins;
@@ -39,15 +37,14 @@ abstract class Magmi_Engine extends DbHelper
 		mb_internal_encoding("UTF-8");
 	}
 	
-
+	
 	public final  function initialize($params=array())
 	{
 		try
 		{
 			$this->_conf=Magmi_Config::getInstance();
 			$this->_conf->load();
-			$this->magversion=$this->_conf->get("MAGENTO","version");
-			$this->magdir=$this->_conf->get("MAGENTO","basedir");
+			
 			$this->tprefix=$this->_conf->get("DATABASE","table_prefix");
 			$this->_excid=0;
 			$this->_initialized=true;
@@ -65,7 +62,11 @@ abstract class Magmi_Engine extends DbHelper
 	 */
 	public function getMagentoDir()
 	{
-		return $this->magdir;
+		return $this->_conf->getMagentoDir();
+	}
+	public function getMagentoVersion()
+	{
+		$this->_conf->get("MAGENTO","version");
 	}
 	
 	public function getPluginFamilies()
@@ -130,6 +131,21 @@ abstract class Magmi_Engine extends DbHelper
 		$this->_builtinplugins[$pfamily]=$pclasses;
 	}
 	
+	public function sortPlugins($p1,$p2)
+	{
+		
+		$m1=$p1->getPluginMeta();
+		if($m1==null)
+		{
+			return 1;
+		}
+		$m2=$p2->getPluginMeta();
+		if($m2==null)
+		{
+			return -1;	
+		}
+		return strcmp($m1["file"],$m2["file"]);
+	}
 	public function createPlugins($profile,$params)
 	{
 		$plhelper=Magmi_PluginHelper::getInstance($profile);
@@ -151,7 +167,9 @@ abstract class Magmi_Engine extends DbHelper
 			foreach($pclasses as $pclass)
 			{
 				$this->_activeplugins[$pfamily][]=$plhelper->createInstance($pfamily,$pclass,$params,$this);
+				
 			}
+			usort($this->_activeplugins[$pfamily],array(&$this,"sortPlugins"));
 		}
 		
 	}
@@ -234,15 +252,18 @@ abstract class Magmi_Engine extends DbHelper
 	 * @param string $data : string to log
 	 * @param string $type : log type
 	 */
+	public function microDateTime()
+	{
+		  list($microSec, $timeStamp) = explode(" ", microtime());
+ 		  return date('Y-m-d h:i:', $timeStamp) . (date('s', $timeStamp) + $microSec);
+	}
+		
 	public function log($data,$type="default",$logger=null)
 	{
-		if($logger==null)
+		$usedlogger=($logger==null?$this->logger:$logger);
+		if(isset($usedlogger))
 		{
-			$logger=$this->logger;
-		}
-		if(isset($logger))
-		{
-			$this->logger->log($data,$type);
+			$usedlogger->log($data,$type);
 		}
 	}
 	
@@ -351,7 +372,10 @@ abstract class Magmi_Engine extends DbHelper
 	public function handleException($e)
 	{
 		$this->logException($e);
-		$this->onEngineException($e);
+		if(method_exists($this, "onEngineException"))
+		{
+			$this->onEngineException($e);
+		}
 	}
 	
 	/**
@@ -400,7 +424,7 @@ abstract class Magmi_Engine extends DbHelper
 	 */
 	public function tablename($magname)
 	{
-		return $this->tprefix!=""?$this->tprefix."_$magname":$magname;
+		return $this->tprefix!=""?$this->tprefix."$magname":$magname;
 	}
 	
 	
