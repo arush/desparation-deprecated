@@ -224,12 +224,12 @@ color:#d2002b;
 
 /* ARUSH UX NICETIES */
 ::selection {
-        background: #4900ef;
-		color: #d2002b;
+		color: white;
+		background: #005aff;
         }
 ::-moz-selection {
-        background: #4900ef;
-		color: #d2002b;
+        color: white;
+		background: #005aff;
 }
 
 /* ARUSH UX NICETIES */
