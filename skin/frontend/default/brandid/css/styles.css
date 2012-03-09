@@ -12874,9 +12874,6 @@ overflow: hidden;
   font-size: 11px;
 }
 
-
-
-
 .top-cart .block-content .block-subtitle .close-btn {
   float: right;
   width: 13px;
@@ -12920,15 +12917,13 @@ overflow: hidden;
 
 /* ARUSH UX NICETIES */
 ::selection {
-        background: #4900ef;
-		color: #d2002b;
+		color: white;
+		background: #005aff;
         }
 ::-moz-selection {
-        background: #4900ef;
-		color: #d2002b;
-
+        color: white;
+		background: #005aff;
 }
-
 
 input.input-text, textarea {
   padding: 10px;
