@@ -1,6 +1,10 @@
 <?php
 class Brainwashed_Recurly_CallbackController extends Mage_Core_Controller_Front_Action {
 
+	function pushAction() {
+		Mage::log($this->getRequest()->getParams(), null, 'recurly.log');
+	}
+
 	function successAction() {
 		$results = $this->getRequest()->getParam('recurly_result');
 		
@@ -60,7 +64,7 @@ class Brainwashed_Recurly_CallbackController extends Mage_Core_Controller_Front_
 
             $this->_redirect('checkout/onepage/success');			
 		} catch (Exception $e) {
-			print_r($e->getMessage());
+			Mage::log($e->getMessage(), null, 'recurly.log');
 		}		
 	}
 	
