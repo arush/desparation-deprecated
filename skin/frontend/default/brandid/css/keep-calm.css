@@ -413,6 +413,74 @@ height: 75px;
 position: fixed;
 }
 
+/* copy my account from brandid.css */
+
+.top-name {
+	display:block;
+	float:right;}
+
+.account-link {
+	text-align: right;
+	width: 120px;
+	padding-left: 10px;
+	margin-top: -3px;
+	float:right;
+	height:35px;
+	margin-right: 9px;
+	
+}
+
+.account-link a.header-link {
+	padding-right: 56px;
+	padding-bottom: 45px;
+	height: auto;
+	margin: -7px 0 0 0;
+	display: block;
+	border: 0px;
+	border-top: solid 10px black;
+	margin-top: -17px;
+	padding-top: 20px;
+	font-family: ff-enzo-web,ProximaNovaBold;
+	text-transform: uppercase;
+	color: black;
+	font-size: 15px;
+	font-weight: 900;
+	line-height: normal;
+	text-align: right;
+	background: transparent;
+	width: 120px;
+	text-decoration: none;
+}
+
+
+a.flname {
+	margin: -45px 0 0 0;
+	padding: 7px 7px 0 0;
+	display: block;
+	float: right;
+	color: #595959;
+	font-family: 'ProximaNovaLight';
+	font-weight: normal;
+	font-size: 12px;
+	text-transform: none;
+	text-decoration: none;
+	text-align: right;
+
+}
+
+.my-account-links {
+	position: absolute;
+	background: black;
+	top: 75px;
+	right: 0px;
+	padding: 5px;
+	display: none;
+	z-index: 1001;
+	border: 10px solid black;
+	text-align: right;
+}
+
+/* end copied my account from brandid.css */
 
 .tie-icon {
 	background: url('../images/tie-icon.png');
@@ -1400,4 +1468,15 @@ oa_social_login_convert {
 
 .keep-calm-signmeup .title-block.first {
 	overflow: hidden;
+}
+
+#header-convert {
+	background-clip: padding-box;
+	background-image: -moz-linear-gradient(center top , #66B84A, #51933A);
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #66B84A),color-stop(1, #51933A));
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#66b84a', EndColorStr='#51933a');
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#66b84a', EndColorStr='#51933a')";
+	background-color: #51933A;
+	color: white;
+	text-shadow: 0pt -1px 0pt black;
 }
