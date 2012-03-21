@@ -45,4 +45,26 @@ class Brainwashed_Recurly_Helper_Data extends Mage_Core_Helper_Abstract {
 		}
 	}
 	
+	public function getInvoice($invoiceNumber){
+		$this->config();
+		
+		return Recurly_Invoice::get($invoiceNumber);
+	}	
+	
+	public function getAccount($accountCode) {
+		$this->config();
+		return Recurly_Account::get($accountCode);			
+	}
+	
+	
+	public function getPlan($planCode) {
+		$this->config();	
+		return Recurly_Plan::get($planCode);	
+	}
+	
+	public function getAccountSubscriptions($accountCode) {
+		$this->config();
+		return Recurly_SubscriptionList::getForAccount($accountCode);	
+	}
+	
 }
