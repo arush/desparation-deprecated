@@ -321,6 +321,7 @@
   padding-bottom: 0;
   overflow: hidden;
   zoom: 1;
+  background: #f5f5f5;
 }
 .recurly .contact_info .title,
 .recurly .billing_info .title,
@@ -585,7 +586,7 @@
   height: 70px;
   line-height: 67px;
   vertical-align: middle;
-  padding: 0 25px;
+  padding: 0 21px;
   width: 544px;
   position: relative;
   left: 0;
