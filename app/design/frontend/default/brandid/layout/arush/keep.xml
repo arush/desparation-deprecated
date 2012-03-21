@@ -2,7 +2,9 @@
 <layout version="0.1.0">
     <keep_calm_signmeup>
         <reference name="head">
-	        <action method="addCss"><stylesheet>css/keep-calm.css</stylesheet></action>
+	        <action method="addCss"><stylesheet>css/keep-calm.css</stylesheet></action>		
+			<block type="page/html" name="bg_css" template="page/keep-calm-base64.phtml"/>
+			
 	        <block type="core/text" name="gplus">
 				<action method="setText">
 					<text><![CDATA[
@@ -13,6 +15,7 @@
 				</action>
 				
 			</block>
+			
 			<action method="addItem"><type>skin_js</type><name>js/jquery-1.7.1.min.js</name></action>
 
 			<action method="addItem"><type>skin_js</type><name>js/scroll/jquery.localscroll-1.2.7-min.js</name></action>
@@ -44,7 +47,7 @@
 			<action method="removeItem"><type>skin_js</type><name>js/evogue/catalogevent.js</name></action>
 			<action method="removeItem"><type>skin_js</type><name>js/jquery-color.js</name></action>
 			<action method="removeItem"><type>skin_js</type><name>js/vdh/popup/script.js</name></action>
-
+			<action method="removeItem"><type>page_html</type><name>bg_css</name></action>
 
 			<action method="removeItem"><type>skin_css</type><name>css/highslide.css</name></action>
 			<action method="removeItem"><type>skin_css</type><name>css/styles.css</name></action>

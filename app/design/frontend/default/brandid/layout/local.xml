@@ -4,7 +4,7 @@
     <default>
     	<reference name="head">
     		
-    		<!-- block type="page/html_head" name="storerestriction" as="storerestriction" template="storerestriction/head.phtml" / -->
+			<block type="page/html" name="bg_css" template="page/base64.phtml"/>
     		<block type="core/text" name="fb-meta">
 				<action method="setText">
 					<text><![CDATA[
@@ -18,11 +18,10 @@
 				          content="Designer essentials on subscription, so you never have to shop again. And everything's at least 30% off. Man up… sign up!"/>
 					]]></text>
 				</action>
-			</block> 
+			</block>
     		<block type="page/html_head" name="typekit" template="typekit.phtml" />
-            <action method="addCss"><stylesheet>css/brandid02032012.css</stylesheet></action>
-            <action method="addCss"><stylesheet>css/svdh.css</stylesheet></action>
-
+            <action method="addCss"><stylesheet>css/brandid.css</stylesheet></action>
+            <action method="addCss"><stylesheet>css/svdh.css</stylesheet></action>			
             <action method="addCss"><stylesheet>fonts/fonts.css</stylesheet></action>            
 			<action method="addItem"><type>skin_js</type><name>js/brandid.js</name></action>    
 			<action method="addItem"><type>skin_js</type><name>js/gauge.js</name></action>    			

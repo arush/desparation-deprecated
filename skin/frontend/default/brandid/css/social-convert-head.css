@@ -26,7 +26,7 @@
 	-moz-border-radius: 5px;
 	border-radius: 5px 5px 5px 5px;
 	font-size:15px;
-	width:295px;
+	width:127px;
 	line-height: 43px;
 	text-transform: uppercase;
 	height:43px;
@@ -51,8 +51,9 @@
 #social_login .footer {display:none;}
 
 .plugin #providers .provider {
-	width:304px;
+	width:127px;
 	padding:0;
+	margin: 0 4px;
 }
 
 #provider_facebook {
@@ -66,25 +67,25 @@
 .plugin #providers .provider #button_facebook {
 	background-color:#8ea9e0;
 	background-image:url('../images/social/social-convert.png');
-	background-position:0px 0px;
+	background-position:-301px -278px;
 }
 .plugin #providers .provider #button_facebook:hover {
-	background-position:0px -45px;
+	background-position:-301px -323px;
 }
 
 .plugin #providers .provider #button_facebook:active {
-	background-position:0px -90px;
+	background-position:-301px -368px;
 }
 
 .plugin #providers .provider #button_twitter {
 	background-color:#8cadf4;
 	background-image:url('../images/social/social-convert.png');
-	background-position:0px -138px;
+	background-position:-301px -138px;
 }
 .plugin #providers .provider #button_twitter:hover {
-	background-position:0px -184px;
+	background-position:-301px -184px;
 }
 
 .plugin #providers .provider #button_twitter:active {
-	background-position:0px -228px;
+	background-position:-301px -228px;
 }

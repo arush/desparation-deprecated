@@ -68,10 +68,22 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("plans.htm
 				
 				</div>
 				
-			<?php }; ?>
+			<?php }
+				else { ?>
+					<div id="oa_social_login_header_convert"></div>
+				<span></span>	
+					<script type="text/javascript">
+						 oneall.api.plugins.social_login.build("oa_social_login_header_convert", {
+						  'providers' :  ['facebook', 'twitter'],
+						  'callback_uri': '<?php echo $this->getUrl('arush-oneall/rpx/token_url', array('_forced_secure' => false)) ?>',
+						  'css_theme_uri': '<?php echo $this->getSkinUrl(); ?>css/social-convert-head.css'
+						 });
+					</script>
+					
+			<?php } ?>
 						
 			<div class="convert">
-				<a id="header-convert" href="/plans.html" class="convert">Show me the Plans!</a>
+				<a id="header-convert" href="/plans.html" class="convert">View Plans</a>
 			</div>
 			<a href="http://blog.getbrandid.com/" class="header-button">
 				<span class="button-copy">Blog</span>
