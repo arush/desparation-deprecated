@@ -4573,6 +4573,8 @@ a.minimal-price-link:hover {
 
 .product-options dd .input-box {
   display: block;
+  height:45px;
+  
 }
 
 .product-options dd input.input-text, textarea {

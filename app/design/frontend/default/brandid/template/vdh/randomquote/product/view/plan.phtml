@@ -1,3 +1,9 @@
+<?php if (!Mage::getSingleton('customer/session')->isLoggedIn()) {
+	Mage::getSingleton('customer/session')->setBeforeAuthUrl($this->helper('core/url')->getCurrentUrl());
+} ?>
+
+
+
 <?php $_product = Mage::getModel('catalog/product')->load(Mage::registry('current_product')->getId());?>
 <?php $_helper = $this->helper('catalog/output'); ?>
 
@@ -129,14 +135,38 @@
 			<span class="special-price"><?php echo 'Plan Price &pound;' . number_format($_product->getSpecialPrice(), 0); ?></span>
 		</div>
 	
+	<?php if (Mage::getSingleton('customer/session')->isLoggedIn()) {?>
+	
 	    <div class="container2">
 	    <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
 	    </div>
-	    
+	<?php } ?>
+    
 	    <div class="bottom-stuff">
 		    <div class="add-to-box">
+		    
+	    	<?php if (Mage::getSingleton('customer/session')->isLoggedIn()) {?>
+
 		        <?php echo $this->getChildHtml('addtocart') ?>
 		        <?php echo $this->getChildHtml('addto') ?>
+
+			<?php } else { ?>
+				
+				<div id="oa_social_login_precheckout"></div>
+				<span></span>	
+					<script type="text/javascript">
+						 oneall.api.plugins.social_login.build("oa_social_login_precheckout", {
+						  'providers' :  ['facebook', 'twitter'],
+						  'callback_uri': '<?php echo $this->getUrl('arush-oneall/rpx/token_url', array('_forced_secure' => false)) ?>',
+						  'css_theme_uri': '<?php echo $this->getSkinUrl(); ?>css/social-convert-precheckout.css'
+						 });
+					</script>
+					
+				<span class="or-text">or</span>
+				<a href="/customer/account/create" class="convert">Register to start!</a>
+				
+			<?php } ?>
+
 				<div class="delivery-date">
 					<?php $profile = Mage::helper('randomquote')->getProfileEasyDate(); /*remove Easy when enabling delivery drops*/?>
 					<?php echo $this->__('This plan delivers between <br/><span class="actual-date">') . $profile['delivery_date'] . $this->__('</span><br/>and<br/><span class="actual-date">') . $profile['delivery_date2'] . $this->__('</span><br/> and every month after that');?>	
@@ -147,6 +177,7 @@
 					<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-common')->toHtml(); ?>
 		    </div>
 	    </div>
+    
     </form>
     
 </div>
@@ -174,6 +205,8 @@ if ($upsells->count() > 0):
 <script type="text/javascript">
 
     //<![CDATA[
+	
+	
 	$('product-options-wrapper').select('label').each(function(obj){
 		if (obj.innerHTML.toLowerCase().indexOf('shoe') >= 0) {
 			obj.up().next().addClassName('sock-bg');

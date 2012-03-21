@@ -1350,6 +1350,19 @@ width:95px;
 	text-align:center;
 }
 
+.account-register button.convert {
+	width: 224px;
+	float: right;
+	margin: 0 23px 0 0;
+}
+
+.account-register span.black-title-med {
+	background-color: white !important;
+	color: black !important;
+	text-transform: none;
+	
+	
+}
 
 /* END REGISTER */
 
@@ -3174,3 +3187,22 @@ ul.plans-list a.convert, button.convert {
 }
 
 /* end frequency chooser */
+
+#oa_social_login_precheckout {
+	margin-top:40px;
+}
+.add-to-box {
+	text-align: center;
+
+}
+.add-to-box span.or-text {
+	font-family: ProximaNovaBold,Arial,sans-serif;
+	font-size: 20px;
+	color: #595959;
+}
+
+.add-to-box a.convert {
+	clear: both;
+	width: 100%;
+	margin: 25px 0;
+}

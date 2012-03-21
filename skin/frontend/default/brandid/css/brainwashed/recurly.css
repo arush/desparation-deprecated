@@ -310,8 +310,9 @@
   opacity: 1;
   -webkit-transition: opacity 0.5s linear;
   -moz-transition: opacity 0.5s linear;
-  margin: 20px 20px;
+  padding: 20px 20px;
   margin-bottom: 0;
+  background:#f5f5f5;
 }
 .recurly .contact_info,
 .recurly .billing_info,
@@ -656,7 +657,7 @@
   background: #e7a500;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
-  border-radius: 10px;
+  border-radius: 5px;
   -webkit-user-select: none;
   -moz-user-select: -moz-none;
   outline: none;
