@@ -11471,11 +11471,6 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
 }
 .payment-box{
 	margin-top: 7px;
-	-moz-box-shadow: 0pt 0px 2px #acacac;
-	-webkit-box-shadow: 0pt 0px 2px #acacac;
-	-khtml-box-shadow: 0pt 0px 2px #acacac;
-	box-shadow: 0pt 0px 2px #acacac;
-	border: 1px solid #acacac\9;
 }
 .payment-box a{color: #d2002b; font-weight: normal;}
 #checkout-review-table td{padding: 10px 10px 5px;}

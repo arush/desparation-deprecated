@@ -9,10 +9,12 @@
   text-align: right;
 }
 .recurly .subscription {
-  border-radius: 9px 9px 0 0;
+  border-radius: 5px 5px 0 0;
   text-shadow: 0 1px 0 #fff;
   padding-top: 20px;
+  margin-top:20px;
   overflow: hidden;
+  background: #f5f5f5;
 }
 .recurly .plan {
   color: #333;
@@ -206,13 +208,13 @@
   text-shadow: none;
 }
 .recurly .add_ons .add_on.selected {
-  background: #fff url("../../images/brainwashed/recurly/check.png") no-repeat 10px center;
+  background: #d2f2d2 url("../../images/brainwashed/recurly/check.png") no-repeat 10px center;
 }
 .recurly .add_ons .add_on.selected .name {
   padding-left: 24px;
 }
 .recurly .add_ons .add_on.selected:hover {
-  background: #fcf5f0 url("../../images/brainwashed/recurly/uncheck.png") no-repeat 10px center;
+  background: #ffe8e8 url("../../images/brainwashed/recurly/uncheck.png") no-repeat 10px center;
 }
 .recurly .add_ons .add_on.selected .quantity {
   display: block;
@@ -291,8 +293,7 @@
   text-shadow: 0 1px 0 #fec;
   background: #ffc;
   border: 1px solid #ba1;
-  box-shadow: 3px 5px 5px 0 rgba(0,0,0,0.10);
-  border-radius: 5px;
+  border-radius: 3px;
   font-size: 13px;
 }
 .recurly .server_errors {
@@ -467,7 +468,7 @@
 }
 .recurly .field.expires .month {
   float: left;
-  width: 120px;
+  width: 147px;
   margin-left: 0;
 }
 .recurly .field.expires .month input[type=text] {
@@ -476,7 +477,7 @@
 .recurly .field.expires .year {
   float: left;
   margin-left: 1px;
-  width: 60px;
+  width: 89px;
 }
 .recurly .field.expires .year input[type=text] {
   width: 48px;
@@ -585,9 +586,9 @@
   line-height: 67px;
   vertical-align: middle;
   padding: 0 25px;
-  width: 549px;
+  width: 544px;
   position: relative;
-  left: -5px;
+  left: 0;
   text-shadow: 0 1px 0 rgba(255,255,255,0.50);
 }
 .recurly .due_now .title {
@@ -599,14 +600,13 @@
   color: #fff;
   float: right;
   font-size: 33px;
-  font-weight: bold;
   letter-spacing: 1px;
   margin: 0;
   position: relative;
   text-shadow: 0px 1px 1px rgba(0,0,0,0.90);
 }
 .recurly .footer {
-  border-radius: 0px 0px 9px 9px;
+  border-radius: 0px 0px 5px 5px;
   margin: 0px;
   padding: 20px;
 }
@@ -653,8 +653,8 @@
   opacity: 0.75;
   border: 1px solid #767674;
   background: #e7a500;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
   border-radius: 10px;
   -webkit-user-select: none;
   -moz-user-select: -moz-none;
@@ -662,8 +662,6 @@
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dbd9d2), to(#999));
   background: -moz-linear-gradient(top, #dbd9d2, #999);
   -webkit-background-clip: padding-box;
-  -webkit-box-shadow: rgba(255,255,255,0.69) 0px 1px 0px inset, rgba(0,0,0,0.26) 0px 2px 3px;
-  box-shadow: rgba(255,255,255,0.70) 0px 1px 0px inset, rgba(0,0,0,0.27) 0px 2px 3px;
 }
 
 #recurlyDiv {
@@ -671,7 +669,7 @@
 	font-weight:normal;
 }
 
-#recurlyDiv .full_name, #recurlyDiv .field.company_name, #recurlyDiv .address.full {
+#recurlyDiv .full_name, #recurlyDiv .field.company_name, #recurlyDiv .address.full, .recurly .contact_info {
 	display:none;
 }
 
@@ -680,7 +678,7 @@
 }
 
 #recurlyDiv .footer {
-	background:none;
+	background:#f5f5f5;
 }
 
 #recurlyDiv .due_now .title ,
@@ -690,5 +688,9 @@
 	color: white;
 	text-transform: uppercase;
 	font-size: 20px;
+	letter-spacing: -1px;
+}
 
+.checkout-onepage-payment-additional-giftcardaccount {
+	display:none;
 }
