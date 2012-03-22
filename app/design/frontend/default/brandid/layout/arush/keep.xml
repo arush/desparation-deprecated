@@ -83,6 +83,7 @@
     <keep_calm_getgifted>
         <reference name="head">
 	        <action method="addCss"><stylesheet>css/getgifted.css</stylesheet></action>
+	        <block type="page/html" name="bg_css" template="page/keep-calm-base64.phtml"/>
 	        <block type="core/text" name="gplus">
 				<action method="setText">
 					<text><![CDATA[
