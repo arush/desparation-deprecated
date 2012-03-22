@@ -9902,10 +9902,6 @@ label#source-label, input#source, label#invite-label, input#invite, label#gender
 }
 #checkout-shipping-method-load .sp-methods dd{
 	background: #ffffff;
-	-moz-box-shadow: 0pt 0px 2px #acacac;
-	-webkit-box-shadow: 0pt 0px 2px #acacac;
-	-khtml-box-shadow: 0pt 0px 2px #acacac;
-	box-shadow: 0pt 0px 2px #acacac;
 	border: 1px solid #acacac\9;
 }
 #checkout-shipping-method-load dl.sp-methods li{
@@ -10061,11 +10057,6 @@ dl.sp-methods li#serversecure{padding-top: 0;}
 
 /*SHIPPING INFORMATION START*/
 #co-shipping-form fieldset{background: #ffffff; padding: 20px; margin-bottom: 20px;
-	-moz-box-shadow: 0pt 0px 2px #acacac;
-	-webkit-box-shadow: 0pt 0px 2px #acacac;
-	-khtml-box-shadow: 0pt 0px 2px #acacac;
-	box-shadow: 0pt 0px 2px #acacac;
-	border: 1px solid #acacac\9;
 }
 .opc .step #co-shipping-form .form-list label{color: #555555;}
 .opc .step .form-list .form-alt .input-box select#shipping-address-select{width: 640px; color: #555555;}

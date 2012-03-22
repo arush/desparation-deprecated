@@ -1266,7 +1266,7 @@ width:95px;
 	width:460px;
 }
 #social_link_container.loading {
-	background: url('../images/ajax-loader.gif') no-repeat 50% 50% #fff;
+	background: url('../images/loader.gif') no-repeat 50% 50% #fff;
 	padding:40px 64px;
 
 }
