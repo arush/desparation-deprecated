@@ -24,7 +24,7 @@ function loadRecurly() {
 			$('p_method_recurly').up('dt').insert(new Element('div', { id: 'recurlyDiv' }));			
 			Recurly.buildSubscriptionForm({
 		    	target: '#recurlyDiv'
-				, planCode: '<?php echo $sku; ?>'
+				, planCode: '<?php echo $sku; ?>' + $('shipping:country_id').value != 'GB' ? '-intl' : '' //workaround for intl shipping
 				, accountCode: '<?php echo $customerId; ?>'
 				, successURL: '<?php echo Mage::getBaseUrl() . 'recurly/callback/success/'; ?>'
 				, distinguishContactFromBillingInfo: false
