@@ -222,8 +222,8 @@ Customer account pages, rendered for all tabs in dashboard
 				<action method="addLink" translate="label" module="customer"><name>account_edit</name><path>customer/account/edit/</path><label>My Info</label></action>
 				<!-- action method="addLink" translate="label" module="customer"><name>address_book</name><path>customer/address/</path><label>Addresses</label></action -->
 				<!-- action method="addLink" translate="label"><name>billing_agreements</name><path>sales/billing_agreement/</path><label>Billing Agreements</label></action-->
-	            <action method="addLink" translate="label"><name>recurring_profiles</name><path>sales/recurring_profile/</path><label>My Plans</label></action>
-	            <action method="addLink" translate="label" module="sales"><name>orders</name><path>sales/order/history/</path><label>My Boosters</label></action>
+	            <!-- action method="addLink" translate="label"><name>recurring_profiles</name><path>sales/recurring_profile/</path><label>My Plans</label></action -->
+	            <action method="addLink" translate="label" module="sales"><name>orders</name><path>sales/order/history/</path><label>My Orders</label></action>
 	            <!-- action method="addLink" translate="label" module="newsletter"><name>newsletter</name><path>newsletter/manage/</path><label>Newsletter</label></action -->
 	            <action method="addLink" translate="label" module="wishlist" ifconfig="wishlist/general/active"><name>wishlist</name><path>wishlist/</path><label>My Wishlist</label></action>
 			</block>
