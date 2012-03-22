@@ -3185,3 +3185,10 @@ ul.plans-list a.convert, button.convert {
 	width: 100%;
 	margin: 25px 0;
 }
+
+#checkoutSteps button.convert {
+	width: 30%;
+	float: right;
+	font-weight:normal;
+	font-family: ff-enzo-web,ProximaNovaBold,Arial,sans-serif;
+}
