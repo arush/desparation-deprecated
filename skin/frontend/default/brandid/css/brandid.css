@@ -1,3 +1,7 @@
+.black-title-bar {
+	padding:10px;
+}
+
 body {
 	background: #cfcfcf;
 }
@@ -58,11 +62,6 @@ body {
 
 .newsletter-manage-index label[for="main-subscription"], .newsletter-manage-index #main-sub {
 	display:none;
-	
-}
-
-.newsletter-manage-index .black-title-bar {
-	padding:10px;
 	
 }
 
@@ -1327,11 +1326,6 @@ width:95px;
 	
 }
 
-
-.customer-account-create .black-title-bar {
-	padding:10px;
-}
-
 .customer-account-create .red-title-bar {
 	float:right;
 	
@@ -1409,10 +1403,6 @@ input#p_method_sagepayserver + label, input#p_method_paypal_billing_agreement + 
 
 .paypal-express-review .page-title {
 	margin:0;
-}
-
-.paypal-express-review .black-title-bar {
-	padding:10px;
 }
 
 .paypal-express-review .box-content {
@@ -1559,11 +1549,6 @@ input#p_method_sagepayserver + label, input#p_method_paypal_billing_agreement + 
 	
 }
 
-
-
-.oneall-rpx-duplicate .black-title-bar {
-	padding:10px;
-}
 
 .oneall-rpx-duplicate .account-login label {
 	width:115px;
@@ -2741,9 +2726,7 @@ margin-top: 411px;
 	width:520px;
 	overflow:hidden;
 }
-.facebook-welcome-landing .black-title-bar {
-	padding:10px;
-}
+
 .facebook-welcome-landing .main {
 	margin:0;
 	padding:0;
@@ -2926,10 +2909,6 @@ body, .main {
 #colright {
 	color:#1c1c1c;
 	margin-left:200px;
-}
-
-.category-plans .black-title-bar {
-	padding:10px;
 }
 
 .category-gifts .product-essential {
