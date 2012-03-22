@@ -25,7 +25,7 @@ class Brainwashed_Recurly_CallbackController extends Mage_Core_Controller_Front_
 			foreach($accountSubscriptions as $accountSubscription) {
 				if ($accountSubscription->state == 'active') {
 					$sku = $accountSubscription->plan->plan_code;
-					break;
+					break; //assuming only one subscription per recurly account
 				}
 			}
 			
@@ -33,9 +33,9 @@ class Brainwashed_Recurly_CallbackController extends Mage_Core_Controller_Front_
 
 			$lastOrder = Mage::getModel('sales/order');
 			
-			$orders = Mage::getModel('sales/order')->getCollection()->addAttributeToFilter('customer_email', $account->email)->addAttributeToSort('created_at', 'desc');
+			// assuming Magento customerId is always Recurly accountCode - meaning only registered Mage customers can checkout
+			$orders = Mage::getModel('sales/order')->getCollection()->addAttributeToFilter('customer_id', $accountCode)->addAttributeToSort('created_at', 'desc');
 			foreach($orders as $order) {
-				$sku = 'recurly';
 				$lineItems = $order->getAllItems();
 				foreach($lineItems as $lineItem) {
 					if ($lineItem->getSku() == $sku) {
