@@ -47,6 +47,9 @@ class Brainwashed_Recurly_CallbackController extends Mage_Core_Controller_Front_
 			}	
 
 			$quoteId = $lastOrder->getQuoteId();
+			$orderDate = explode(' ', $lastOrder->getCreatedAt());
+			$orderDate = $orderDate[0];
+			if ($orderDate == date('Y-m-d')) { return; } // Skip first recurly push
 			$order = $this->_invoiceOrder($quoteId);			
 					
 		} catch (Exception $e) {
