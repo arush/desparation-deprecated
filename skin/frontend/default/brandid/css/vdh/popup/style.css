@@ -6,7 +6,7 @@
 	z-index: 1500;
 }
 .vdh.overlay.loading {
-	background: #000 url('../../../images/vdh/popup/loader.gif') 50% 50% no-repeat;
+	background: #000 url('../../../images/loader.gif') 50% 50% no-repeat;
 }
 .vdh.content {
 	display: none;

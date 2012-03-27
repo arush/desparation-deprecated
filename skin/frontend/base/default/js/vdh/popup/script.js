@@ -8,7 +8,6 @@ vdh.windowSize = function(w) {
     	//docHeight: htmlHeight + 'px',
     	left: offsets.left + 'px',
     	top: offsets.top + 'px'
-    
     }
 }
 vdh.docSize = function(w) {
@@ -163,17 +162,16 @@ vdh.queue = {
 				setTimeout(fadeOutTooltip,5000);
 
 				/* build tooltip hover, to-do: build in prototype, just couldn't do it  */				
-				$j("#lightbox-close").hover(
+				jQuery("#lightbox-close").hover(
 				  function () {
-				    $j("#popover").fadeIn(500);
+				    jQuery("#popover").fadeIn(500);
 				  },
 				  function () {
-				    $j("#popover").fadeOut(500);
+				    jQuery("#popover").fadeOut(500);
 				  }
 				);
 								
 				obj.fade({ duration: 0.15, from: 0, to: 1 });
-				
 				
 				vdh.formListener();			
 				vdh.closeListener();							
