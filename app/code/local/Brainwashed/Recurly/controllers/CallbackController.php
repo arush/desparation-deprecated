@@ -25,7 +25,7 @@ class Brainwashed_Recurly_CallbackController extends Mage_Core_Controller_Front_
 			foreach($accountSubscriptions as $accountSubscription) {
 				if ($accountSubscription->state == 'active') {
 					$sku = $accountSubscription->plan->plan_code;
-					break; //assuming only one subscription per recurly account
+					break;
 				}
 			}
 			
@@ -33,8 +33,7 @@ class Brainwashed_Recurly_CallbackController extends Mage_Core_Controller_Front_
 
 			$lastOrder = Mage::getModel('sales/order');
 			
-			// assuming Magento customerId is always Recurly accountCode - meaning only registered Mage customers can checkout
-			$orders = Mage::getModel('sales/order')->getCollection()->addAttributeToFilter('customer_id', $accountCode)->addAttributeToSort('created_at', 'desc');
+			$orders = Mage::getModel('sales/order')->getCollection()->addAttributeToFilter('customer_email', $account->email)->addAttributeToSort('created_at', 'desc');
 			foreach($orders as $order) {
 				$lineItems = $order->getAllItems();
 				foreach($lineItems as $lineItem) {
@@ -62,8 +61,6 @@ class Brainwashed_Recurly_CallbackController extends Mage_Core_Controller_Front_
 		$results = $this->getRequest()->getParam('recurly_result');
 		
 		try {
-			Mage::helper('recurly')->verifySubscription($results);
-			
 			$quote = Mage::getModel('checkout/cart')->getQuote();
 			$quoteId = $quote->getId();
 			
@@ -71,6 +68,43 @@ class Brainwashed_Recurly_CallbackController extends Mage_Core_Controller_Front_
             Mage::getSingleton('checkout/session')->setLastSuccessQuoteId($quoteId);
 	        Mage::getSingleton('checkout/session')->setLastQuoteId($quoteId);
 	        Mage::getSingleton('checkout/session')->setLastOrderId($order->getId());
+	        
+	        
+            $customerEmail = $quote->getCustomerEmail();
+
+	        $customer = Mage::getModel('customer/customer');
+			$customer->setWebsiteId(Mage::app()->getWebsite()->getId());
+
+			$customer->loadByEmail($quote->getCustomerEmail());			
+			$customer->setWebsiteId(Mage::app()->getWebsite()->getId());			
+			$customer->setEmail($customerEmail);			
+	        if ($quote->getCheckoutMethod() == Mage_Sales_Model_Quote::CHECKOUT_METHOD_REGISTER) {
+	            if ($customer->getId()) {
+	                Mage::throwException(Mage::helper('checkout')->__('There is already a customer registered using this email address. Please login using this email address or enter a different email address to register your account.'));
+	            }
+	        }
+	        if ($quote->getCheckoutMethod()==Mage_Sales_Model_Quote::CHECKOUT_METHOD_REGISTER) {
+	            if (!$quote->isVirtual()) {
+	                $customer->setDefaultShipping($quote->getShippingAddress()->getId());
+	            }
+	            $customer->setDefaultBilling($quote->getBillingAddress()->getId());
+	            
+	            $customer->save();
+	            $quote->setCustomerId($customer->getId());
+	            $order->setCustomerId($customer->getId());
+	            Mage::helper('core')->copyFieldset('customer_account', 'to_order', $customer, $order);
+	
+	            try {
+	                if ($customer->isConfirmationRequired()) {
+	                    $customer->sendNewAccountEmail('confirmation');
+	                }
+	                else {
+	                    $customer->sendNewAccountEmail();
+	                }
+	            } catch (Exception $e) {
+	                Mage::logException($e);
+	            }
+	        }		        
 
             $this->_redirect('checkout/onepage/success');			
 		} catch (Exception $e) {

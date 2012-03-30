@@ -23,6 +23,7 @@
         </helpers>
         
     	<events>
+<!--
             <controller_action_predispatch_checkout_cart_add>
                 <observers>
                     <recurly>
@@ -32,6 +33,7 @@
                     </recurly>
                 </observers>                    
             </controller_action_predispatch_checkout_cart_add>
+-->
 			<checkout_cart_add_product_complete>
                 <observers>
                     <recurly>

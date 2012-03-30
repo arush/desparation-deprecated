@@ -3,65 +3,25 @@ Mage::helper('recurly')->config();
 $customerId = Mage::getSingleton('customer/session')->getId();
 $customerEmail = Mage::getModel('customer/customer')->load($customerId)->getEmail();
 $sku = Mage::helper('recurly')->getSku();
-$signature = Mage::helper('recurly')->signSubscription($sku, $customerId);
+$onceOff = $this->_isOnceOff();
+$signature = $onceOff ? Mage::helper('recurly')->signOneTimeTransaction($customerId)  : Mage::helper('recurly')->signSubscription($sku, $customerId);
 Mage::getSingleton('core/session')->setSignature($signature);
+var_dump($onceOff);
 ?>
 <script type="text/javascript">
-Recurly.config({
-	subdomain: '<?php echo Mage::helper('recurly')->getSubdomain(); ?>'
-	, currency: '<?php echo Mage::helper('recurly')->getCurrency(); ?>'
-	, country: '<?php echo Mage::helper('recurly')->getCountry(); ?>'
+
+document.observe('dom:loaded', function(){
+
+	loadRecurly(
+		'<?php echo Mage::helper('recurly')->getSubdomain(); ?>'
+		, '<?php echo Mage::helper('recurly')->getCurrency(); ?>'
+		, '<?php echo Mage::helper('recurly')->getCountry(); ?>'
+		, '<?php echo $sku; ?>'
+		, '<?php echo $customerId; ?>'
+		, '<?php echo Mage::getBaseUrl() . 'recurly/callback/success/'; ?>'
+		, '<?php echo $customerEmail; ?>'
+		, '<?php echo $signature; ?>'
+		, '<?php echo ($onceOff) ? 'once-off' : 'subscription'; ?>'
+	);
 });
-
-function loadRecurly() {
-
-	var isRecurly = false;
-	$('co-payment-form').select('input[type="radio"][payment\[method\]]').each(function(obj){
-		if (obj.checked == true && obj.value == 'recurly') {
-			isRecurly = true;
-			$('payment-buttons-container').hide();
-			$('opc-review').hide();
-			$('p_method_recurly').up('dt').insert(new Element('div', { id: 'recurlyDiv' }));			
-			Recurly.buildSubscriptionForm({
-		    	target: '#recurlyDiv'
-				, planCode: '<?php echo $sku; ?>' + ($('shipping:country_id').value != 'GB' ? '-intl' : '') //workaround for intl shipping
-				, accountCode: '<?php echo $customerId; ?>'
-				, successURL: '<?php echo Mage::getBaseUrl() . 'recurly/callback/success/'; ?>'
-				, distinguishContactFromBillingInfo: false
-				, collectCompany: true
-
-
-				, account: {
-					  firstName: $('billing:firstname') ? $('billing:firstname').value : ''
-					, lastName: $('billing:lastname') ? $('billing:lastname').value : ''
-					, email: $('billing:email') ? $('billing:email').value : '<?php echo $customerEmail; ?>'
-					, phone: $('billing:telephone') ? $('billing:telephone').value : ''
-				}
-				, billingInfo: {
-					firstName: $('billing:firstname') ? $('billing:firstname').value : ''
-					, lastName: $('billing:lastname') ? $('billing:lastname').value : ''
-					, address1: $('billing:street1') ? $('billing:street1').value : ''
-					, address2: $('billing:street2') ? $('billing:street2').value : ''
-					, country: $('billing:country_id') ? $('billing:country_id').value : ''
-					, city: $('billing:city') ? $('billing:city').value : ''
-					, state: $('billing:region') ? $('billing:region').value : ''
-					, zip: $('billing:postcode') ? $('billing:postcode').value : ''
-				}				
-				, signature: '<?php echo $signature; ?>'
-			});
-			throw $break;
-		}
-	});
-			
-	if (!isRecurly) {
-		$('payment-buttons-container').show();
-		$('opc-review').show();
-		if ($('recurlyDiv')) {
-			$('recurlyDiv').remove();		
-		}
-
-	}
-}
-
-
 </script>
