@@ -9,7 +9,7 @@ class Brainwashed_Recurly_Model_Recurly extends Mage_Payment_Model_Method_Abstra
 	protected $_canUseForMultishipping  = false;
  
 	public function getOrderPlaceRedirectUrl() {
-		return Mage::getUrl('recurly/standard/redirect', array('_secure' => true));
+		return Mage::getUrl('recurly/standard/redirect', array('_forced_secure' => true));
 	}
  
 }

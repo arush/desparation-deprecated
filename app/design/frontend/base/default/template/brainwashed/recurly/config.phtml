@@ -18,7 +18,7 @@ document.observe('dom:loaded', function(){
 		, '<?php echo Mage::helper('recurly')->getCountry(); ?>'
 		, '<?php echo $sku; ?>'
 		, '<?php echo $customerId; ?>'
-		, '<?php echo Mage::getBaseUrl('', array('_nosid' => true, '_forced_secure' => true)) . 'recurly/callback/success/'; ?>'
+		, '<?php echo Mage::getUrl('', array('_secure' => true)) . 'recurly/callback/success/'; ?>'
 		, '<?php echo $customerEmail; ?>'
 		, '<?php echo $signature; ?>'
 		, '<?php echo ($onceOff) ? 'once-off' : 'subscription'; ?>'
