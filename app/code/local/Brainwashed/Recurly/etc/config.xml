@@ -55,6 +55,9 @@
     	</events>        
     </global>
     <frontend>
+    	<secure_url>
+	    	<recurly>/recurly/</recurly>
+	    </secure_url>
         <routers>
             <recurly>
                 <use>standard</use>
