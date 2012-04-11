@@ -46,13 +46,13 @@
 	<meta property="og:url" content="<?php echo $this->getCurrentUrl() ?>"/>
 	<?php endif; ?>
 	<?php // if($_categoryImage = $_category->getImageUrl()): // all category images will show BRANDiD logo ?>
-	<meta property="og:image" content="<?php echo Mage::getUrl('/brandid-square-big.png'); ?>"/>
+	<meta property="og:image" content="<?php echo Mage::getUrl('') . 'brandid-square-big.png'; ?>"/>
 	<?php // endif; ?>
 	<?php if($_description = $_category->getDescription()):?>
 	<meta property="og:description" content="<?php echo htmlspecialchars(strip_tags($_description)) ?>"/>
 	<?php endif; ?>
 <?php elseif (Mage::getSingleton('cms/page')->getId()): ?>
-	<meta property="og:image" content="<?php echo Mage::getUrl('/brandid-square-big.png'); ?>"/>
+	<meta property="og:image" content="<?php echo Mage::getUrl('') . 'brandid-square-big.png'; ?>"/>
 
 	<?php $_page = Mage::getSingleton('cms/page'); ?>
 	<meta property="og:title" content="BRANDiD - Shop. Like a Man."/>
