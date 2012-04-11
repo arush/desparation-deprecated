@@ -12823,8 +12823,6 @@ overflow: hidden;
   text-align: left;
   overflow: hidden;
   cursor: pointer;
-  background: url("../images/bkg_close.gif") no-repeat scroll
-    0pt 0pt transparent;
   position: relative;
   z-index: 1;
 }
