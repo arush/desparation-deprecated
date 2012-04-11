@@ -5,20 +5,6 @@
     	<reference name="head">
     		
 			<block type="page/html" name="bg_css" template="page/base64.phtml"/>
-    		<block type="core/text" name="fb-meta">
-				<action method="setText">
-					<text><![CDATA[
-					
-					<meta property="og:title" content="BRANDiD - Shop. Like a man."/>
-				    <meta property="og:type" content="website"/>
-				    <meta property="og:url" content="http://www.getbrandid.com/"/>
-				    <meta property="og:image" content="http://www.getbrandid.com/brandid-square-big.png"/>
-				    <meta property="fb:admins" content="202908185"/>
-				    <meta property="og:description"
-				          content="Designer essentials on subscription, so you never have to shop again. And everything's at least 30% off. Man up… sign up!"/>
-					]]></text>
-				</action>
-			</block>
     		<block type="page/html_head" name="typekit" template="typekit.phtml" />
             <action method="addCss"><stylesheet>css/brandid.css</stylesheet></action>
             <action method="addCss"><stylesheet>css/svdh.css</stylesheet></action>			
