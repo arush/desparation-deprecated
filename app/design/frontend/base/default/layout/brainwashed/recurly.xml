@@ -2,7 +2,7 @@
 <layout version="0.1.0">
     <checkout_onepage_index translate="label">
 		<reference name="head">
-			<action method="addItem"><type>skin_js</type><name>js/brainwashed/jquery.1.7.1.min.js</name></action>		
+			<!--action method="addItem"><type>skin_js</type><name>js/brainwashed/jquery.1.7.1.min.js</name></action-->		
 			<action method="addItem"><type>skin_js</type><name>js/brainwashed/recurly.js</name></action>
 			<action method="addItem"><type>skin_js</type><name>js/brainwashed/recurly.min.js</name></action>
             <action method="addCss"><stylesheet>css/brainwashed/recurly.css</stylesheet></action>
