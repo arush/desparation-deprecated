@@ -56,7 +56,14 @@ function loadRecurly(recurlySubdomain, mageCurrency, mageCountry, sku, customerI
 				});			
 
 			} else {
-
+				var e = document.getElementById("shipping:country_id");
+				var countryShip = e.options[e.selectedIndex].value;
+				
+				if(countryShip != 'GB') {
+					sku += '-intl';
+				}
+				console.log('countryShip = ' + countryShip);
+				
 				Recurly.buildSubscriptionForm({
 			    	target: '#recurlyDiv'
 					, planCode: sku
