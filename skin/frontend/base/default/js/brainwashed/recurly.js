@@ -2,7 +2,15 @@ jQuery.noConflict();
 
 
 function loadRecurly(recurlySubdomain, mageCurrency, mageCountry, sku, customerId, callBack, customerEmail, recurlySignature, transactionType) {
-
+	
+	var shipField = document.getElementById("shipping:country_id");
+	var countryShip = shipField.options[shipField.selectedIndex].value;
+				
+	if(countryShip != 'GB') {
+		sku += '-intl';
+	}
+	console.log('countryShip = ' + countryShip);
+	
 	$('co-payment-form').on('change', 'input[type="radio"][payment\[method\]]', function(e){
 		loadRecurly(recurlySubdomain, mageCurrency, mageCountry, sku, customerId, callBack, customerEmail, recurlySignature, transactionType);
 	});
@@ -56,13 +64,6 @@ function loadRecurly(recurlySubdomain, mageCurrency, mageCountry, sku, customerI
 				});			
 
 			} else {
-				var e = document.getElementById("shipping:country_id");
-				var countryShip = e.options[e.selectedIndex].value;
-				
-				if(countryShip != 'GB') {
-					sku += '-intl';
-				}
-				console.log('countryShip = ' + countryShip);
 				
 				Recurly.buildSubscriptionForm({
 			    	target: '#recurlyDiv'
