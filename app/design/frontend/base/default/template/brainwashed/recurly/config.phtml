@@ -11,13 +11,15 @@ var_dump($onceOff);
 <script type="text/javascript">
 
 document.observe('dom:loaded', function(){
+	console.log('test 1');
+
 	var shipField = document.getElementById("shipping:country_id");
 	var countryShip = shipField.options[shipField.selectedIndex].value;
 	var intlSku = '';		
 	if(countryShip != 'GB') {
 		intlSku = '-intl';
 	}
-	console.log('countryShip = ' + countryShip);
+	console.log('test 2');
 
 	loadRecurly(
 		'<?php echo Mage::helper('recurly')->getSubdomain(); ?>'
