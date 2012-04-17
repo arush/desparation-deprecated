@@ -11,7 +11,6 @@ var_dump($onceOff);
 <script type="text/javascript">
 
 document.observe('dom:loaded', function(){
-	console.log("test 1");
 
 	var shipField = document.getElementById("shipping:country_id");
 	var countryShip = shipField.options[shipField.selectedIndex].value;
@@ -19,7 +18,6 @@ document.observe('dom:loaded', function(){
 	if(countryShip != 'GB') {
 		intlSku = "-intl";
 	}
-	console.log("intl",intlSku);
 
 	loadRecurly(
 		'<?php echo Mage::helper('recurly')->getSubdomain(); ?>'
@@ -33,4 +31,63 @@ document.observe('dom:loaded', function(){
 		, '<?php echo ($onceOff) ? 'once-off' : 'subscription'; ?>'
 	);
 });
+</script>
+
+<script type="text/javascript">
+	document.observe('dom:loaded', function(){
+
+				/*
+				*  insert tooltip
+				*  
+				*/
+				
+				var toolDivAttrs = {
+	                'id'   : 'popover',
+	                'class'   : 'popover top'
+	            };
+	            
+	            var arrowDivAttrs = {
+	                'id'   : 'arrow',
+	                'class'   : 'arrow'
+	            };
+				var popInnerAttrs = {
+	                'id'   : 'popover-inner',
+	                'class'   : 'popover-inner'
+	            };
+	            var popTitleAttrs = {
+	                'id'   : 'popover-title',
+	                'class'   : 'popover-title'
+	            };
+	            var popContentAttrs = {
+	                'id'   : 'popover-content',
+	                'class'   : 'popover-content'
+	            };
+	 			
+	 			// insert close tooltip
+	            var toolDiv = new Element('div', toolDivAttrs);
+	            var arrowDiv = new Element('div', arrowDivAttrs);
+	            var popInnerDiv = new Element('div', popInnerAttrs);
+	            var popTitleDiv = new Element('h3', popTitleAttrs);
+	            popTitleDiv.update('Return Like a Man&trade; (+£2.49)');
+	            var popContentDiv = new Element('p', popContentAttrs);
+				popContentDiv.update('<p>Choose this and we\'ll arrange a free, fully insured courier to come pick up anything you want to return or exchange. Otherwise, no dramas, just post it back to us yourself if you want to return anything.</p>');
+
+				jQuery('.add_ons.any').prepend(toolDiv);				
+				jQuery('#popover').append(arrowDiv);
+				jQuery('#popover').append(popInnerDiv);
+				jQuery('#popover-inner').append(popTitleDiv);
+				jQuery('#popover-inner').append(popContentDiv);
+
+				jQuery("#popover").css('display','none'); //start hidden
+
+				jQuery(".add_ons.any").hover(
+				  function () {
+				    jQuery("#popover").fadeIn(500);
+				  },
+				  function () {
+				    jQuery("#popover").fadeOut(500);
+				  }
+				);				
+				/* end insert cookie based close button */
+	});
 </script>
