@@ -59,6 +59,11 @@
         <remove name="popup" />
         <remove name="popup_header" />
     </customer_account_forgotpassword>
+
+    <customer_account_resetpassword>
+        <remove name="popup" />
+        <remove name="popup_header" />
+    </customer_account_resetpassword>
  
  	<customer_account_logout>
         <remove name="popup" />

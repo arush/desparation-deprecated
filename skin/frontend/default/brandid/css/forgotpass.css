@@ -1,0 +1,45 @@
+.main-section {
+	margin:5% 0;
+	padding:2%;
+	background-color:#FFF;
+}
+
+.img-container.middle {
+
+	margin-bottom:30px;
+}
+
+span.black-title-small {
+	background-color: #000;
+	text-align: center;
+	font-family: ProximaNovaBold;
+	text-transform: uppercase;
+	color: white;
+	font-size: 16px;
+	padding:10px;
+	font-weight:bold;
+	letter-spacing:-1px;
+	float: right;
+}
+
+.two.columns.offset-by-five {
+	padding-top:10px;
+
+}
+
+button.convert {
+	margin: 0 0 0 10px;
+	width: 216px;
+	height: 41px;
+
+}
+
+li .nine.columns {
+	margin-bottom:20px;
+}
+
+@media only screen and (max-width: 959px) {
+	span.black-title-small { float:left; margin-bottom:10px;}
+	button.convert {
+	margin: 20px 0 20px 0;
+}
