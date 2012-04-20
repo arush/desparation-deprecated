@@ -129,5 +129,9 @@ lang="<?php echo $this->getLang() ?>">             <!--<![endif]-->
     </div>
 </div>
 <?php echo $this->getAbsoluteFooter() ?>
+<!-- Chartbeat module -->
+<?php 	if(Mage::getStoreConfig('analytics/chartbeat/analytics_chartbeat_on')) {
+		echo Mage::getStoreConfig('analytics/chartbeat/analytics_chartbeat_foot_code'); }?>
+<!-- END Chartbeat module -->
 </body>
 </html>
