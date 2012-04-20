@@ -3192,9 +3192,3 @@ ul.plans-list a.convert, button.convert {
 	font-weight:normal;
 	font-family: ff-enzo-web,ProximaNovaBold,Arial,sans-serif;
 }
-
-/* recurly add-on popup tooltip */
-.add_ons.any #popover {
-	margin-left: 140px;
-    margin-top: -170px;
-}
