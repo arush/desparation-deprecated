@@ -14,9 +14,6 @@
 	color:rgb(255, 255, 255);
 	background-image:-moz-linear-gradient(center top , #8ea9e0, #3b5998);
 	background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0, #8ea9e0),color-stop(1, #3b5998));
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#66b84a', EndColorStr='#51933a');
-	-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorStr='#66b84a', EndColorStr='#51933a')";
-	
 	background-color: rgb(81, 147, 58);
 	border-color: rgb(34, 34, 34);
 	vertical-align: middle;

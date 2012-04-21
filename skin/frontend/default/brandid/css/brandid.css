@@ -3046,6 +3046,11 @@ a.convert, button.convert, .recurly button.submit {
 	-webkit-background-clip: padding-box;
 	background-clip:padding-box;
 }
+
+.recurly button.submit {
+	height:42px;
+}
+
 a.convert:hover, button.convert:hover, .recurly button.submit:hover {
 	color: #FFFFFF;
 	cursor: pointer;
@@ -3141,6 +3146,7 @@ a.convert.active {
 
 ul.plans-list a.convert, button.convert {
 	width:100%;
+	height:42px;
 }
 
 /* frequency chooser */
