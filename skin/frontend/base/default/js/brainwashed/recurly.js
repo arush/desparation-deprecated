@@ -66,6 +66,7 @@ function loadRecurly(recurlySubdomain, mageCurrency, mageCountry, sku, customerI
 					, account: accountInfo
 					, billingInfo: billingInfo				
 					, signature: recurlySignature
+					, afterInject: recurlyTooltip
 				});
 				
 			}			
