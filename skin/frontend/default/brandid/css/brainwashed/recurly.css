@@ -666,26 +666,27 @@
   -webkit-background-clip: padding-box;
 }
 
-#recurlyDiv {
-	font-family: ProximaNovaLight,Helvetica,Arial;
+.recurlyDiv {
+	font-family: "proxima-nova",Helvetica,Arial;
 	font-weight:normal;
 }
 
-#recurlyDiv .full_name, #recurlyDiv .field.company_name, #recurlyDiv .address.full, .recurly .contact_info {
+.recurlyDiv .full_name, .recurlyDiv .field.company_name, .recurlyDiv .address.full, .recurly .contact_info {
 	display:none;
 }
 
-#recurlyDiv .due_now {
+.recurlyDiv .due_now {
 	background-color:#000;
 }
 
-#recurlyDiv .footer {
+.recurlyDiv .footer {
 	background:#f5f5f5;
 }
 
-#recurlyDiv .due_now .title ,
-#recurlyDiv .due_now .cost {
-	font-family: ProximaNovaBold;
+.recurlyDiv .due_now .title ,
+.recurlyDiv .due_now .cost {
+	font-family: "proxima-nova";
+  font-weight:900;
 	text-shadow: none;
 	color: white;
 	text-transform: uppercase;

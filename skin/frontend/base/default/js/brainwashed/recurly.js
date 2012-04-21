@@ -41,7 +41,7 @@ function loadRecurly(recurlySubdomain, mageCurrency, mageCountry, sku, customerI
 			isRecurly = true;
 			$('payment-buttons-container').hide();
 			$('opc-review').hide();
-			$('p_method_recurly').up('dt').insert(new Element('div', { id: 'recurlyDiv' }));
+			$('p_method_recurly').up('dt').insert(new Element('div', { id: 'recurlyDiv', 'class': 'recurlyDiv' }));
 			if (transactionType == 'once-off') {
 				Recurly.buildTransactionForm({
 			    	target: '#recurlyDiv'
