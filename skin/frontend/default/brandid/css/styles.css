@@ -10052,7 +10052,9 @@ dl.sp-methods li#serversecure{padding-top: 0;}
 .opc .step .form-list .form-alt .input-box, .opc .step .form-list .form-alt .input-box select#billing-address-select{width: 640px; color: #555555;}
 .opc .step .form-list .form-alt .input-box select#billing-address-select{border: 1px solid #ababab;} 
 #co-billing-form .form-list input.input-text{width: 371px; background: #f1f1f1; color: #555555; border: 1px solid #ababab;}
+.lte9 #co-billing-form .form-list input.input-text, .lte9 #co-shipping-form .form-list input.input-text {width:351px;}
 #co-billing-form .form-list select{width: 383px; background: #f1f1f1; color: #555555; border: 1px solid #ababab;}
+.ie7 #co-billing-form .form-list .add-field .input-box, .ie7 #co-shipping-form .form-list .add-field .input-box {margin-left:121px;}
 /*BILLING INFORMATION END*/
 
 /*SHIPPING INFORMATION START*/
