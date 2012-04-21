@@ -3178,6 +3178,10 @@ ul.plans-list a.convert, button.convert {
     margin-right: 20px;
 }
 
+.ie7 .frequency-chooser a.convert.secondary {
+	filter:none;
+}
+
 /* end frequency chooser */
 
 #oa_social_login_precheckout {
