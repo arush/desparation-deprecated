@@ -59,31 +59,3 @@
 </dl>
 <?php endif; ?>
 
-
-
-<script type="text/javascript">
-	
-	// return like a man and free shipping mods
-	
-	var $j = jQuery.noConflict();
-    	
-	var firstLabel = $j('#checkout-shipping-method-load dl dd ul li label')[0];
-	
-	if(firstLabel.innerHTML.indexOf('Return') >= 0) {
-		var priceSpan = $j('#checkout-shipping-method-load dl dd ul li label').find('span');
-		firstLabel.innerHTML = 'Recorded Delivery & Return Like a Man™'+ '<span class="price">' + priceSpan.html() + '</span>';
-	} 
-	
-</script>
-
-<script type="text/javascript">
-	// caption
-	var $j = jQuery.noConflict();
-	  
-	$j(document).ready(function () {
-		foundin = $j('#checkout-shipping-method-load dl dd ul li:contains("Return")');
-		$j(foundin).append('<br/><br/><span style="padding:0 150px 0 18px;display:block;colour:#444;" class="returns-caption">You\'re welcome to pay for your own return postage, but Return Like a Man™ means we take on the costs and do all the dirty work.<br/><br/>Just call customer support and we will arrange for your items to be picked up and/or replaced in no time - no worries.</span>');
-		$j(foundin).css("height","auto");
-	});
-	
-</script>
