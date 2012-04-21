@@ -2,7 +2,6 @@ jQuery.noConflict();
 
 
 function loadRecurly(recurlySubdomain, mageCurrency, mageCountry, sku, customerId, callBack, customerEmail, recurlySignature, transactionType) {
-	console.log("recurly.js function");
 	$('co-payment-form').on('change', 'input[type="radio"][payment\[method\]]', function(e){
 		loadRecurly(recurlySubdomain, mageCurrency, mageCountry, sku, customerId, callBack, customerEmail, recurlySignature, transactionType);
 	});
@@ -68,13 +67,15 @@ function loadRecurly(recurlySubdomain, mageCurrency, mageCountry, sku, customerI
 					, billingInfo: billingInfo				
 					, signature: recurlySignature
 				});
-			
+				
 			}			
 
 			throw $break;
 		}
 	});
-			
+
+	
+
 	if (!isRecurly) {
 		$('payment-buttons-container').show();
 		$('opc-review').show();
