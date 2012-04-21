@@ -58,7 +58,7 @@ a:hover {
 }
 
 input, select, textarea, button {
-  font: 16px ProximaNovaLight,Helvetica,sans-serif;
+  font: 16px "proxima-nova",Helvetica,sans-serif;
   vertical-align: middle;
   color: rgb(68, 68, 68);
 }
@@ -166,7 +166,7 @@ input.input-text, select, textarea {
 }
 .footer-content, .footer-block.footer-block-left-line p {
 	float: left;
-	font-family: 'ProximaNovaLight';
+	font-family: "proxima-nova";font-weight:300;
 	font-size: 14px;
 	color: #777;
 }
@@ -187,7 +187,7 @@ input.input-text, select, textarea {
 }
 
 #footer-links a {
-	font-family: 'ProximaNovaLight';
+	font-family: "proxima-nova";font-weight:300;
 	font-size: 14px;
 	color: #777;
 }
@@ -202,7 +202,7 @@ color:#d2002b;
 }
 #footer-links .link-column h4 {
   color: #444;
-  font-family: ProximaNovaLight;
+  font-family: "proxima-nova";font-weight:300;
   font-weight: bold;
   padding-bottom: 10px;
 }
@@ -255,7 +255,7 @@ float:right;}
 .footer-cms-block-title {
 	padding: 7px 12px;
 	margin-right: 15px;
-	font-family: 'ProximaNovaBold';
+	font-family: "proxima-nova";font-weight:600;
 	color: white;
 	background-color:#000000;
 	font-size: 22px;
@@ -370,7 +370,7 @@ span.apostrophe2 {
 
 .login-signup-but a {
 	width:88px;
-	font-family: ProximaNovaLight, Arial;
+	font-family: "proxima-nova", Arial;
 	font-size: 14px;
 	letter-spacing: -1px;
 	color: #595959;
@@ -397,7 +397,7 @@ span.apostrophe2 {
 
 .keep-calm-signmeup .title span {
 	padding:10px 17px;
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova";font-weight:600;
 	font-size:44px;
 	background-color:#000;
 	color:#fff;
@@ -518,7 +518,7 @@ a.invisibut, a.invisibutred {
 
 .keep-calm-signmeup button {
 	text-transform: uppercase;
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova";font-weight:600;
 	font-size: 13px;
 	color: white;
 	background: #000;
@@ -590,7 +590,7 @@ a.invisibut, a.invisibutred {
 }
 
 .commitment-caption {
-	font-family: ProximaNovaLight;
+	font-family: "proxima-nova";font-weight:300;
 	font-size: 18px;
 	color: #595959;
 	margin:55px auto 75px;
@@ -601,7 +601,7 @@ a.invisibut, a.invisibutred {
 .vision-title-text {
 	padding: 10px;
 	background: black;
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova";font-weight:600;
 	text-transform: uppercase;
 	color: white;
 	font-size: 20px;
@@ -621,7 +621,7 @@ a.invisibut, a.invisibutred {
 	width: 410px;
 	height: 130px;
 	padding: 30px;
-	font-family: proximanovalight;
+	font-family: "proxima-nova";font-weight:300;
 	color: #595959;
 	font-size: 16px;
 	float:left;
@@ -634,7 +634,7 @@ a.invisibut, a.invisibutred {
 
 .keep-calm-signmeup .vision-sub-title {
 	text-transform: uppercase;
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova";font-weight:600;
 	color:black;
 	letter-spacing: -1px;
 	font-size: 23px;
@@ -664,7 +664,7 @@ a.invisibut, a.invisibutred {
 
 .select-title {
 	text-align: center;
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova";font-weight:600;
 	text-transform: uppercase;
 	color: white;
 	margin: 37px 0;
@@ -697,7 +697,7 @@ a.invisibut, a.invisibutred {
 .subscribe-circle {
 	background-color: #d2002b;
 	text-align: center;
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova";font-weight:900;
 	text-transform: lowercase;
 	color: white;
 	
@@ -710,7 +710,7 @@ a.invisibut, a.invisibutred {
 
 .sub-detail.detail-1 {
 	margin:31px 0 0 0;
-	font-family: proximanovalight;
+	font-family: "proxima-nova";font-weight:300;
 }
 .sub-detail.detail-2 {
 	font-size:29px;
@@ -718,7 +718,7 @@ a.invisibut, a.invisibutred {
 }
 
 .sub-detail.detail-3 {
-	font-family: proximanovalight;
+	font-family: "proxima-nova";font-weight:300;
 }
 
 
@@ -784,7 +784,7 @@ a.invisibut, a.invisibutred {
 	font-weight: 600;
 	color: black;
 	font-size: 20px;
-	font-family: ff-enzo-web,ProximaNovaBold, sans-serif;
+	font-family: ff-enzo-web,"proxima-nova", sans-serif;
 	display:block;
 }
 
@@ -820,7 +820,7 @@ a.invisibut, a.invisibutred {
 .product-sub-title span, .hood-sub-title span {
 	background-color: #000;
 	text-align: center;
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova";font-weight:900;
 	text-transform: uppercase;
 	color: white;
 	font-size: 30px;
@@ -829,14 +829,14 @@ a.invisibut, a.invisibutred {
 }
 
 .price-compare .note {
-	font-family: ProximaNovaLight;
+	font-family: "proxima-nova";font-weight:300;
 	clear:both;
 }
 
 .price-compare .comparison {
 	float:left;
 	clear: both;
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova";font-weight:600;
 	text-transform: uppercase;
 	color: #595959;
 	font-size: 15px;
@@ -876,7 +876,7 @@ a.invisibut, a.invisibutred {
 }
 
 .hood-explanation {
-	font-family: proximanovalight;
+	font-family: "proxima-nova";font-weight:300;
 	color: #595959;
 	font-size: 16px;
 	margin-top: 10px;
@@ -906,7 +906,7 @@ a.invisibut, a.invisibutred {
 
 
 .final-share.section .box {
-	font-family: proximanovalight;
+	font-family: "proxima-nova";font-weight:300;
 	color: #595959;
 	font-size: 16px;
 	float: left;
@@ -1038,8 +1038,9 @@ span.quote.right {
 }
 
 .gift-blurb span.blurb-text {
-	font-size:14px;
+	font-size:16px;
 	color:#595959;
+	font-family:"proxima-nova", sans-serif;
 	text-align: left;
 }
 
@@ -1093,7 +1094,7 @@ span.quote.right {
 }
 
 a.convert, button.convert {
-	font-family: ff-enzo-web,ProximaNovaBold,arial,"lucida grande",Verdana,"Bitstream Vera Sans",Arial,sans-serif;
+	font-family: ff-enzo-web,arial,sans-serif;
 	text-align: center;
 	box-shadow: 0pt 1px 0pt rgba(255, 255, 255, 0.5) inset, 0pt 1px 0pt rgba(255, 255, 255, 0.2);
 	background-clip:padding-box;

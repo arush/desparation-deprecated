@@ -34,7 +34,7 @@ body {
 	height: 40px;
 	line-height: 41px;
 	text-align: center;
-	font-family: ProximaNovaLight;
+	font-family: "proxima-nova";font-weight:300;
 	font-size: 12px;
 	text-transform: uppercase;
 	float: left;
@@ -56,7 +56,7 @@ body {
 .account-link a{
 	display: block;
 	text-transform: uppercase;
-	font-family: ProximaNovaLight;
+	font-family: "proxima-nova";font-weight:300;
 	font-size: 14px;
 }
 
@@ -143,7 +143,7 @@ body {
 	padding: 11px 0;
 }
 .login-header a, .register-header a{
-	font-family: ProximaNovaBold,sans-serif;
+	font-family: "proxima-nova",sans-serif;font-weight:900;
 	font-size: 16px;
 	color: white;
 	background-color: black;
@@ -181,7 +181,7 @@ body {
 }
 
 .top-header .connect{
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova";font-weight:bold;
 	color: black;
 	padding: 32px 0;
 	text-transform: uppercase;
@@ -194,7 +194,7 @@ body {
 .top-header p{
 	float: right;
 	color: #ccc;
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova";font-weight:bold;
 	font-size: 12px;
 	padding: 12px 0;
 	text-transform: uppercase;
@@ -235,7 +235,7 @@ body {
 	border-top: solid 10px #000;	
 	margin-top: -10px;
 	padding-top: 20px;	
-	font-family: ff-enzo-web,ProximaNovaBold;
+	font-family: ff-enzo-web,"proxima-nova";font-weight:bold;
 	text-transform: uppercase;
 	color: #000;
 	font-size: 15px;
@@ -332,7 +332,7 @@ padding-left:38px;
 	display: block;
 	float: right;
 	color: #595959;
-	font-family: 'ProximaNovaLight';
+	font-family: "proxima-nova";font-weight:300;
 	font-weight: normal;
 	font-size: 12px;
 	text-transform: none;
@@ -352,7 +352,7 @@ padding-left:38px;
 .top-cart .block-title strong {
 	padding: 7px 7px 0 0;
 	color: #595959;
-	font-family: 'ProximaNovaLight';
+	font-family: "proxima-nova";font-weight:300;
 	font-weight: normal;
 	text-transform: none;	
 
@@ -443,7 +443,7 @@ float:right;}
 .footer-cms-block-title {
 	padding: 7px 12px;
 	margin-right: 15px;
-	font-family: 'ProximaNovaBold';
+	font-family: "proxima-nova";font-weight:bold;
 	color: white;
 	background-color:#000000;
 	font-size: 22px;
@@ -506,7 +506,7 @@ float:right;}
 
 
 .title-block .title {
-	font-family: 'ProximaNovaBold';
+	font-family: "proxima-nova";font-weight:bold;
 	font-size: 50px;
 	color: #fff;
 	text-transform: uppercase;
@@ -537,7 +537,7 @@ float:right;}
 	color:#595959;
 	font-size:16px;
 	text-transform:none;
-	font-family: ProximaNovaLight;
+	font-family: "proxima-nova";font-weight:300;
 	
 }
 
@@ -632,7 +632,7 @@ html[xmlns] .invite-options {
 }
 
 .invite-options h3 {
-	font-family: 'ProximaNovaLight';
+	font-family: "proxima-nova";font-weight:300;
 	font-size: 18px;
 	font-weight: 200;
 	color: #595959;
@@ -649,7 +649,7 @@ html[xmlns] .invite-options {
 	text-align: center;
 	text-transform: uppercase;
 	padding-top: 25px;
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova";font-weight:bold;
 	color: black;
 }
 
@@ -708,7 +708,7 @@ html[xmlns] .invite-options {
 	font-weight: 600;
 	color: #000;
 	font-size: 20px;
-	font-family: ff-enzo-web,ProximaNovaBold, sans-serif;
+	font-family: ff-enzo-web,"proxima-nova", sans-serif;
 }
 
 .random-quote .caption {
@@ -729,7 +729,7 @@ html[xmlns] .invite-options {
 	color: #595959;
 	padding: 20px;
 	display:block;
-	font-family: ProximaNovaLight;
+	font-family: "proxima-nova";font-weight:300;
 	font-size:16px;
 }
 
@@ -795,7 +795,7 @@ html[xmlns] .invite-options {
 }
 
 .send-now-box-left {
-	font-family: ProximaNovaLight;
+	font-family: "proxima-nova";font-weight:300;
 	color: #aaa;
 }
 
@@ -818,7 +818,7 @@ html[xmlns] .invite-options {
 span.secure-note {
 	color: #aaa;
 	float:left;
-	font-family: ProximaNovaLight, sans-serif;
+	font-family: "proxima-nova", sans-serif;
 	padding-top: 6px;
 }
 
@@ -826,7 +826,7 @@ span.secure-note {
 
 
 .black-title-small, .black-title-med, .black-title-bar {
-	font-family: ProximaNovaBold,sans-serif;
+	font-family: "proxima-nova",sans-serif;font-weight:900;
 	letter-spacing: -1px;
 	padding-left:5px;
 	color: white  !important;
@@ -866,7 +866,7 @@ a.red-title-button {
 	padding: 7px;
 	color: white;
 	font-size: 11px;
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova";font-weight:bold;
 	background-color: #d2002b;
 	float: right;
 	
@@ -889,7 +889,7 @@ a.red-title-med-button {
 	padding: 6px;
 	color: white;
 	font-size: 11px;
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova";font-weight:bold;
 	background-color: #d2002b;
 }
 
@@ -961,7 +961,7 @@ span.change-pw-label {
 	text-align:left;
 	padding:0;
 	margin: 0 0 0 10px;
-	font-family:ProximaNovaLight;
+	font-family:"proxima-nova";font-weight:300;
 	color:#595959;
 	font-size:16px;
 }
@@ -1050,7 +1050,7 @@ span.change-pw-label {
 .urlcode-input-box, .invitation-instructions, .f-text, .t-text {
 	padding: 10px;
 	font-size: 16px;
-	font-family:ProximaNovaLight, Helvetica, sans-serif;
+	font-family:"proxima-nova", Helvetica, sans-serif;
 	color: 4a4a4a;
 }
 
@@ -1183,7 +1183,7 @@ width:95px;
 .not-member a, .account-login button.button {
 	text-transform: uppercase;
 	letter-spacing: -1px;
-	font-family: ProximaNovaLight;
+	font-family: "proxima-nova";font-weight:300;
 	font-size:13px;
 	color:white;
 	
@@ -1338,7 +1338,7 @@ width:95px;
 
 .customer-account-create .register-copy {
 	padding: 25px;
-	font-family:ProximaNovaLight;
+	font-family:"proxima-nova";font-weight:300;
 	color:#595959;
 	font-size:16px;
 	text-align:center;
@@ -1408,7 +1408,7 @@ input#p_method_sagepayserver + label, input#p_method_paypal_billing_agreement + 
 .paypal-express-review .box-content {
 	color: #595959;
 	font-size: 16px;
-	font-family: ProximaNovaLight, Arial,sans-serif;
+	font-family: "proxima-nova", Arial,sans-serif;
 	
 }
 
@@ -1445,7 +1445,7 @@ input#p_method_sagepayserver + label, input#p_method_paypal_billing_agreement + 
 
 .paypal-express-review #review_button span span {
 	
-	font: 11px/20px ProximaNovaBold;
+	font: 11px/20px "proxima-nova";font-weight:bold;
 	padding: 12px 38px;
 	
 }
@@ -1512,7 +1512,7 @@ input#p_method_sagepayserver + label, input#p_method_paypal_billing_agreement + 
 
 .oneall-register #reg-now span span {
 	padding:0;
-	font: 11px/20px ProximaNovaBold;
+	font: 11px/20px "proxima-nova";font-weight:bold;
 	
 }
 
@@ -1602,7 +1602,7 @@ input#p_method_sagepayserver + label, input#p_method_paypal_billing_agreement + 
 
 #forgotpass-response {
 	color: #595959;
-	font-family: ProximaNovaLight;
+	font-family: "proxima-nova";font-weight:300;
 	font-size:16px;
 	float:left;
 	margin-left: 6px;
@@ -1658,7 +1658,8 @@ input#p_method_sagepayserver + label, input#p_method_paypal_billing_agreement + 
 .black-title-xsmall {
 	padding:5px;
 	background-color: black;
-	font-family: ProximaNovaBold,Helvetica,sans-serif;
+	font-family: "proxima-nova",Helvetica,sans-serif;
+	font-weight:900;
 	text-transform: uppercase;
 	color:white;
 	letter-spacing: -1px;
@@ -1683,7 +1684,7 @@ border: none;
 }
 
 .category-products .product-brand {
-	font-family: ProximaNovaBold,sans-serif;
+	font-family: "proxima-nova",sans-serif;font-weight:900;
 	letter-spacing: -1px;
 	padding-left:5px;
 	color: white  !important;
@@ -1730,7 +1731,7 @@ width: 231px;
 .products-grid .price-box{
 	height: 34px;
 	padding: 0;
-	font-family: ProximaNovaLight;
+	font-family: "proxima-nova";font-weight:300;
 	padding: 0pt 10px 5px 0pt;
 }
 
@@ -1758,7 +1759,7 @@ width: 231px;
     color: #D2002B;
     font-size: 24px;
     letter-spacing: -1px;
-    font-family: ProximaNovaBold;
+    font-family: "proxima-nova";font-weight:bold;
     padding:15px;    
 }
 
@@ -1823,7 +1824,7 @@ width: 231px;
 	text-align: center;
 	line-height: 90px;
 	font-size: 17px;
-	font-family: ProximaNovaLight;
+	font-family: "proxima-nova";font-weight:300;
 	display: block\9;
 	background: URL('../images/grid_rollover.png')\9;
 }
@@ -1864,7 +1865,7 @@ width: 231px;
 	color: #d2002b;
 	font-size: 12px;
 	padding: 59px 0 0 171px;
-	font-family: ProximaNovaLight;
+	font-family: "proxima-nova";font-weight:300;
 }
 
 /*CATEGORY GRID PRODUCT IMAGE ROLLOVER 2011-05-24 BY FLO END*/
@@ -1884,7 +1885,7 @@ width: 231px;
 
 .price-box span.price-label, .product-view .product-shop .price-box .price-as-configured .price, .product-view .product-shop .price-box .price {
 	color:#d2002b;
-	font-family:ProximaNovaBold;
+	font-family:"proxima-nova";font-weight:bold;
 	font-size:26px;
 	letter-spacing: -1px;
 	text-transform:uppercase;
@@ -1910,7 +1911,7 @@ width: 231px;
 	font-size: 14px;
 	margin: -9px 0 0 366px;
 	z-index: 1;
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova";font-weight:bold;
 	letter-spacing: -1px;
 	text-transform: uppercase;
 	height:44px;
@@ -2019,7 +2020,7 @@ clear:both;
 .lucky-dip-black {
 	float:left;
 	background-color:black;
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova";font-weight:bold;
 	text-transform: uppercase;
 	text-align:center;
 	color:white;
@@ -2044,13 +2045,13 @@ clear:both;
 	color:white;
 	padding:15px 66px 25px 324px;
 	font-size: 16px;
-	font-family: ProximaNovaLight;
+	font-family: "proxima-nova";font-weight:300;
 	height:54px;
 }
 
 
 .lucky-dip-red span.lucky-dip-red-title {
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova";font-weight:bold;
 	display:block;
 }
 
@@ -2099,7 +2100,7 @@ clear:both;
 	font-size: 14px;
 	margin: -90px 0 0 909px;
 	z-index: 1;
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova";font-weight:bold;
 	letter-spacing: -1px;
 	text-transform: uppercase;
 	height:44px;
@@ -2123,7 +2124,7 @@ clear:both;
 	margin-bottom:25px;
 }
 .plan-category-grid-title {
-	font-family: ff-enzo-web,proximaNovaBold,sans-serif;
+	font-family: ff-enzo-web,"proxima-nova",sans-serif;font-weight:900;
 	font-size: 22px;
 	color:black;
 	text-transform:uppercase;
@@ -2135,14 +2136,14 @@ clear:both;
 	padding: 15px 30px;
 	color: white;
 	text-transform:uppercase;
-	font-family; ProximaNovaBold;
+	font-family; "proxima-nova";font-weight:bold;
 	-webkit-transition: background-color 200ms ease-in;
 	-moz-transition: background-color 200ms ease-in;
 	-o-transition: background-color 200ms ease-in;
 	transition: background-color 200ms ease-in;
 	display:block;
 	font-size:14px;
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova";font-weight:bold;
 	text-align:center;
 	letter-spacing: -1px;
 	
@@ -2150,7 +2151,7 @@ clear:both;
 
 .plans-list .rrp{
 	color: #595959;
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova";font-weight:bold;
 	font-size: 18px;
 	text-align: left;
 	display:block;
@@ -2167,7 +2168,8 @@ clear:both;
 	margin:10px 0 20px 0px;
 	color: #d2002b;
 	text-transform: uppercase;
-	font-family: proximanovabold, arial, sans-serif;
+	font-family: "proxima-nova", arial, sans-serif;
+	font-weight:900;
 	font-size: 24px;
 	letter-spacing: -1px;
 	display:block;
@@ -2195,6 +2197,7 @@ clear:both;
 	padding-left:80px;
 	background-position: 65% 50%;
 	float:none;
+	font-weight:900;
 }
 
 .plans-list .plan-checks {
@@ -2209,7 +2212,8 @@ clear:both;
 .sliders .plan-item-rrp, .plan.product-info .price-box span.price, .plan.product-info .price-box span.special-price {
 	display:block;
 	color: #595959;
-	font-family: ProximaNovaBold, arial, sans-serif;
+	font-family: "proxima-nova", arial, sans-serif;
+	font-weight:bold;
 	font-size: 12px;
 	letter-spacing: -1px;
 	margin-top:10px;
@@ -2245,7 +2249,7 @@ clear:both;
 }
 .giftcard-form .price-box span.special-price {
 	background:none;
-	font-family:ProximaNovaBold;
+	font-family:"proxima-nova";font-weight:bold;
 	clear:both;
 	width:auto;
 	padding:10px 0 25px 10px;
@@ -2282,7 +2286,8 @@ clear:both;
 	padding:20px;
 	text-align:center;
 	color:white;
-	font-family: ProximaNovaBold, arial, sans-serif;
+	font-family: "proxima-nova", arial, sans-serif;
+	font-weight:bold;
 	text-transform: uppercase;
 	margin:10px 0 15px 0;
 
@@ -2315,7 +2320,7 @@ clear:both;
 
 .price-box-bundle span.price span.each {
 	font-size: 18px;
-	font-family: ProximaNovaLight;
+	font-family: "proxima-nova";font-weight:300;
 	color: #595959;
 }
 
@@ -2327,7 +2332,7 @@ clear:both;
 	padding:30px;
 	float:left;
 	font-size: 16px;
-	font-family: ProximaNovaLight;
+	font-family: "proxima-nova";font-weight:300;
 	color: #595959;
 	background-color:white;
 
@@ -2382,7 +2387,7 @@ clear:both;
 }	
 .sub-cat-listing li h3 {
 	color: #fff;
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova";font-weight:bold;
 	font-size: 33px;
 	margin-top: 38px;
 	font-weight:normal;
@@ -2390,7 +2395,7 @@ clear:both;
 
 .sub-cat-listing a:hover {
 	color: #fff;
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova";font-weight:bold;
 	font-size: 33px;
 	margin-top: 38px;
 	font-weight:normal;
@@ -2407,7 +2412,7 @@ clear:both;
 .countdown .title {
 	background: #000;
 	float: left;
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova";font-weight:bold;
 	font-size: 18px;
 	color: #fff;
 	text-transform: uppercase;
@@ -2431,7 +2436,7 @@ clear:both;
 	text-align: left;
 	width: 215px;
 	height: 78px;
-	font-family: ProximaNovaLight;
+	font-family: "proxima-nova";font-weight:300;
 	font-size: 14px;
 	color: #474747;
 }
@@ -2543,6 +2548,7 @@ margin-top: 411px;
 
 .rewardsref-customer-index .title-block .title span.page-title {
 	font-size: 46px;
+	font-weight:900;
 	
 }
 
@@ -2582,13 +2588,13 @@ margin-top: 411px;
 	display: block;
 	margin-top: 10px;
 	color: #595959;
-	font-family: ProximaNovaLight;
+	font-family: "proxima-nova";font-weight:300;
 	font-size: 16px;
 
 }
 .invite-gauge span.total-signups {
 	color:#cfcfcf;
-	font-family:ProximaNovaBold;
+	font-family:"proxima-nova";font-weight:bold;
 	position:absolute;
 	margin: -74px 0 0 189px;
 	font-size: 14px;
@@ -2801,7 +2807,7 @@ body, .main {
 
 .rewardsref-customer-index .group-select ul li label {
 	color: #595959;
-    font-family: ProximaNovaLight;
+    font-family: "proxima-nova";font-weight:300;
     font-size: 16px;
     font-weight: normal;
     margin-left: 10px;
@@ -2900,7 +2906,7 @@ body, .main {
 	text-align: center;
     text-transform: uppercase;
 	padding:10px 50px 10px 10px;
-    font-family: ProximaNovaBold;
+    font-family: "proxima-nova";font-weight:bold;
     color:#fff;
     
     
@@ -2941,7 +2947,7 @@ body, .main {
 #planOther .brands-list span.context {
 	color:#595959;
 	text-transform: uppercase;
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova";font-weight:bold;
 	font-size: 16px;
 	text-align: center;
 }
@@ -2949,7 +2955,7 @@ body, .main {
 #planOther .brands-list span.brands {
 	background-color: #000;
 	text-align: center;
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova";font-weight:bold;
 	text-transform: uppercase;
 	color: white;
 	font-size: 16px;
@@ -2972,7 +2978,7 @@ body, .main {
 #checkout-payment-method-load p.note {
 	color: #595959;
 	font-size: 16px;
-	font-family: ProximaNovaLight,Arial,sans-serif;
+	font-family: "proxima-nova",Arial,sans-serif;
 	padding:20px;
 }
 
@@ -2984,7 +2990,7 @@ body, .main {
 }
 
 #checkout-review-table {
-font-family: ProximaNovaLight;
+font-family: "proxima-nova";font-weight:300;
 font-size: 14px;
 color: #444;
 }
@@ -3007,7 +3013,7 @@ color: #444;
 
 /* copied from keep-calm to-do create SASS mixin */
 a.convert, button.convert, .recurly button.submit {
-	font-family: ff-enzo-web,ProximaNovaBold,arial,"lucida grande",Verdana,"Bitstream Vera Sans",Arial,sans-serif;
+	font-family: ff-enzo-web,"proxima-nova",arial,sans-serif;
 	text-align: center;
 	box-shadow: 0pt 1px 0pt rgba(255, 255, 255, 0.5) inset, 0pt 1px 0pt rgba(255, 255, 255, 0.2);
 	white-space: nowrap;
@@ -3157,7 +3163,8 @@ ul.plans-list a.convert, button.convert {
 
 .frequency-chooser-text {
 	float:left;
-	font-family:ProximaNovaBold,Helvetica,Arial;
+	font-family:"proxima-nova",Helvetica,Arial;
+	font-weight:bold;
 	font-size:13px;
 	color:#eee;
 	font-size: 15px;
@@ -3175,7 +3182,8 @@ ul.plans-list a.convert, button.convert {
 
 }
 .add-to-box span.or-text {
-	font-family: ProximaNovaBold,Arial,sans-serif;
+	font-family: "proxima-nova",Arial,sans-serif;
+	font-weight:900;
 	font-size: 20px;
 	color: #595959;
 }
@@ -3190,7 +3198,7 @@ ul.plans-list a.convert, button.convert {
 	width: 30%;
 	float: right;
 	font-weight:normal;
-	font-family: ff-enzo-web,ProximaNovaBold,Arial,sans-serif;
+	font-family: ff-enzo-web,"proxima-nova",Arial,sans-serif;
 }
 
 /* recurly add-on popup tooltip */
