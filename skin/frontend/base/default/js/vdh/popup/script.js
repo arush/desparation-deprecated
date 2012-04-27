@@ -318,13 +318,16 @@ vdh.count = function() {
 vdh.popupCount = 0;
 
 document.observe('dom:loaded', function(){
-	Event.observe($('popupMessages'), 'click', function(){
-		if (vdh.popupCount > 0) {
-			clearTimeout(vdh.timeOut);
-			vdh.popup(false);			
-		}
+	
+	if($('popupMessages')) {
+		Event.observe($('popupMessages'), 'click', function(){
+			if (vdh.popupCount > 0) {
+				clearTimeout(vdh.timeOut);
+				vdh.popup(false);			
+			}
 
-	});
+		});
+	}
 
 });
 

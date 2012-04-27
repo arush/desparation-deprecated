@@ -54,27 +54,3 @@
     </td>
 </tr>
 <?php endforeach; ?>
-
-<?php /*  arush hacking the plans totals table  */ ?>
-<script type="text/javascript">
-
-	var $j = jQuery.noConflict();
-    
-$j('#shopping-cart-totals-table tfoot').find('tr:first-child').hide(); //hide grand total
-	$j('#shopping-cart-totals-table tfoot tr th').hide(); //rename nominal item
-	$j('#shopping-cart-totals-table tfoot').find('tr:nth-child')[3].hide(); //hide tax
-	$j('#shopping-cart-totals-table tfoot tr.summary-details.summary-details-nominal-0.summary-details-first').hide();
-
-</script>
-
-
-<script type="text/javascript">
-
-	var $j = jQuery.noConflict();
-    
-    	$j(document).ready(function () {
-			
-			$j('#shopping-cart-totals-table tbody').hide(); //hide subtotal
-		});
-
-</script>
