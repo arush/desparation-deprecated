@@ -31,7 +31,19 @@
  * @see Mage_Customer_Block_Form_Register
  */
 ?>
-<?php //echo $this->getLayout()->createBlock('cms/block')->setBlockId('login-bg')->toHtml() ?>
+<?php 
+	if(!isset($_SESSION[’referrer’])){ //has it been set before?
+		//get the referrer
+		if ($_SERVER[’HTTP_REFERER’]){
+			$referrer = $_SERVER[’HTTP_REFERER’];
+		} else {
+			$referrer = “unknown”;
+		}
+		//save it in a session
+		$_SESSION[’referrer’] = $referrer; // store session data
+	}
+?>
+
 
 <div class="black-title-bar">Register<a class="red-title-button" href="/customer/account/login">Already a member?</a></div>
 <div class="register-copy">Girls Girls Girls (actually more like Pants Pants Pants. And socks and stuff.)<br/><br/>You’re just a few seconds away from shopping like a man. For a few seconds. Before doing something more important instead.</div>
@@ -75,7 +87,7 @@
 
 		<?php echo $this->getChildHtml('form_fields_before')?>
 		<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
-		<form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="form-validate" enctype="multipart/form-data">
+		<form action="<?php echo $this->getPostActionUrl() ?>" class="register-email" method="post" id="form-validate" enctype="multipart/form-data">
 			<div class="fieldset">
 				<input type="hidden" name="success_url" value="<?php echo $this->getSuccessUrl() ?>" />
 				<input type="hidden" name="error_url" value="<?php echo $this->getErrorUrl() ?>" />
@@ -121,6 +133,13 @@
 					<?php echo $customerAttributes->toHtml()?>
 				<?php endif;?>
 			
+				<script type="text/javascript">
+					// set referrer to source field
+					if(jQuery('#source')) {
+						jQuery('#source').val('<?php echo $referrer; ?>');
+					}
+				</script>
+
 			<li class="passwords-fields">
 						<div class="field">
 							<!--
@@ -158,7 +177,6 @@
 							<input type="checkbox" name="is_subscribed" title="<?php echo $this->__('Email Reminders') ?>" value="0" id="is_subscribed"<?php // if($this->getFormData()->getIsSubscribed()): ?> <?php // checked="checked" endif; ?> class="checkbox" />
 						</div>
 						<p id="reminder-text">Send me important updates by email</p>
-						<!-- input type="hidden" name="is_general" id="is_general" value="1" / -->
 		 <!--************* EBIZMARTS MAILCHIMP HERE ************************-->
 
             		<?php echo $this->getChildHtml('generalNewsletter') ?>
@@ -170,7 +188,7 @@
 				</ul>			
 				<div class="buttons-set form-buttons">
 					<p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
-					<button type="submit" class="convert" title="<?php echo $this->__('Register!') ?>"><span><span><?php echo $this->__('Register!') ?></span></span></button>
+					<button id="registration" type="submit" class="convert" title="<?php echo $this->__('Register!') ?>"><span><span><?php echo $this->__('Register!') ?></span></span></button>
 					<p id="policy-text">By clicking register you agree to our <a href="/terms-of-use">terms of use</a></p>
 				</div>
 				<?php /* ?><p class="required"><?php echo $this->__('* Required Fields') ?></p><?php */ ?>

@@ -8,7 +8,7 @@
     		<block type="page/html_head" name="typekit" template="typekit.phtml" />
             <action method="addCss"><stylesheet>css/brandid.css</stylesheet></action>
             <action method="addCss"><stylesheet>css/svdh.css</stylesheet></action>			
-			<action method="addItem"><type>skin_js</type><name>js/brandid.js</name></action>    
+			<action method="addItem"><type>skin_js</type><name>js/brandid.js</name></action>
 			<action method="addItem"><type>skin_js</type><name>js/gauge.js</name></action>    			
 			<action method="addItem"><type>skin_js</type><name>js/flipcounter.min.js</name></action>    		
 			

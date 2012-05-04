@@ -80,5 +80,4 @@ function startFade(el) {
 			opacity: 1
 			},500);
 
-	}	
-	
+	}

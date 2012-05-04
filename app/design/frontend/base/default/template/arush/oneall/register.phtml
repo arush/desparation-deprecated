@@ -1,3 +1,16 @@
+<?php 
+    if(!isset($_SESSION[’referrer’])){ //has it been set before?
+        //get the referrer
+        if ($_SERVER[’HTTP_REFERER’]){
+            $referrer = $_SERVER[’HTTP_REFERER’];
+        } else {
+            $referrer = “unknown”;
+        }
+        //save it in a session
+        $_SESSION[’referrer’] = $referrer; // store session data
+    }
+?>
+
 <div class="oneall-register">
 <div class="account-register">
 <span class="black-title-med"><?php echo $this->__('Just to confirm…') ?></span>
@@ -5,7 +18,7 @@
 
     <?php echo $this->getChildHtml('form_fields_before')?>
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
-    <form action="<?php echo Mage::getUrl('arush-oneall/rpx/createPost') ?>" method="post" id="form-validate" enctype="multipart/form-data">
+    <form action="<?php echo Mage::getUrl('arush-oneall/rpx/createPost') ?>" method="post" id="form-validate" class="register-social-connect" enctype="multipart/form-data">
         <div class="fieldset">
             <input type="hidden" name="success_url" value="<?php echo $this->getSuccessUrl() ?>" />
             <input type="hidden" name="error_url" value="<?php echo $this->getErrorUrl() ?>" />
@@ -45,6 +58,14 @@
                 <?php $this->restoreSessionData($customerAttributes->getForm());?>
                 <?php echo $customerAttributes->toHtml()?>
             <?php endif;?>
+
+            <script type="text/javascript">
+                // set referrer to source field
+                if(jQuery('#source')) {
+                    jQuery('#source').val('<?php echo $referrer; ?>');
+                }
+            </script>
+                
             </ul>
         </div>
         <div class="divider"></div>
