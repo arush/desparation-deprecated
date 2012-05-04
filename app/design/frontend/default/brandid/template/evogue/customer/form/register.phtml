@@ -32,15 +32,16 @@
  */
 ?>
 <?php 
-	if(!isset($_SESSION['referer'])) { //has it been set before?
+	
+	if(!isset(Mage::getSingleton('core/session')->getReferer()) {
 		//get the referrer
-		if ($_SERVER['HTTP_REFERER']){
+		if (isset($_SERVER['HTTP_REFERER'])) {
 			$referer = $_SERVER['HTTP_REFERER'];
 		} else {
 			$referer = "unknown";
 		}
-		//save it in a session
-		$_SESSION['referer'] = $referer; // store session data
+		//save it in a session variable
+		Mage::getSingleton('core/session')->setReferer($referer); // store session data
 	}
 ?>
 
