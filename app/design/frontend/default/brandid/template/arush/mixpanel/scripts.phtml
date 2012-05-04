@@ -21,25 +21,25 @@
 
 		// generic tracks
 		<?php 
-			if(!isset($_SESSION['referrer'])){ //has it been set before?
+			if(!isset($_SESSION['referer'])) { //has it been set before?
 				//get the referrer
 				if ($_SERVER['HTTP_REFERER']){
-					$referrer = $_SERVER['HTTP_REFERER'];
+					$referer = $_SERVER['HTTP_REFERER'];
 				} else {
-					$referrer = "unknown";
+					$referer = "unknown";
 				}
 				//save it in a session
-				$_SESSION['referrer'] = $referrer; // store session data
+				$_SESSION['referer'] = $referer; // store session data
 			}
 		?>
 		// track first touch / original referrer
 		mixpanel.register_once({
 			'first touch landing page': window.location.href
-			,'first touch referrer': <?php echo $referrer; ?>
+			,'first touch referrer': <?php echo $referer; ?>
 	 	});
 	 	// track current referrer
 	 	mixpanel.register({
-			'current referrer': <?php echo $referrer; ?>
+			'current referrer': <?php echo $referer; ?>
 			,'paying customer': <?php echo $payer ?>
 	 	});
 

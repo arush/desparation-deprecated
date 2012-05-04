@@ -1,13 +1,13 @@
 <?php 
-    if(!isset($_SESSION['referrer'])){ //has it been set before?
+    if(!isset($_SESSION['referer'])) { //has it been set before?
         //get the referrer
         if ($_SERVER['HTTP_REFERER']){
-            $referrer = $_SERVER['HTTP_REFERER'];
+            $referer = $_SERVER['HTTP_REFERER'];
         } else {
-            $referrer = "unknown";
+            $referer = "unknown";
         }
         //save it in a session
-        $_SESSION['referrer'] = $referrer; // store session data
+        $_SESSION['referer'] = $referer; // store session data
     }
 ?>
 
@@ -62,7 +62,7 @@
             <script type="text/javascript">
                 // set referrer to source field
                 if(jQuery('#source')) {
-                    jQuery('#source').val('<?php echo $referrer; ?>');
+                    jQuery('#source').val('<?php echo $referer; ?>');
                 }
             </script>
                 
