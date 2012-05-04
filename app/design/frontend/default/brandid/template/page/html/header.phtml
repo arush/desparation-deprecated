@@ -1,4 +1,19 @@
 	<?php
+	$referer = false;
+	if(Mage::getSingleton('core/session')->getReferer()) {
+		$refererSet = true;
+	}
+
+	if(!$refererSet) {
+		//get the referrer
+		if (isset($_SERVER['HTTP_REFERER'])) {
+			$referer = $_SERVER['HTTP_REFERER'];
+		} else {
+			$referer = "unknown";
+		}
+		//save it in a session variable
+		Mage::getSingleton('core/session')->setReferer($referer); // store session data
+	}
 ?>
 
 

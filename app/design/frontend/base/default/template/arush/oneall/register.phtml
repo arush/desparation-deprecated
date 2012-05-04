@@ -1,15 +1,10 @@
 <?php 
-    if(!isset($_SESSION['referer'])) { //has it been set before?
-        //get the referrer
-        if ($_SERVER['HTTP_REFERER']){
-            $referer = $_SERVER['HTTP_REFERER'];
-        } else {
-            $referer = "unknown";
-        }
-        //save it in a session
-        $_SESSION['referer'] = $referer; // store session data
+    $referer = "unknown";
+    if(Mage::getSingleton('core/session')->getReferer()) {
+        $referer = Mage::getSingleton('core/session')->getReferer();
     }
 ?>
+
 
 <div class="oneall-register">
 <div class="account-register">
