@@ -32,8 +32,12 @@
  */
 ?>
 <?php 
-	
-	if(!isset(Mage::getSingleton('core/session')->getReferer()) {
+	$refererSet = false;
+	if(Mage::getSingleton('core/session')->getReferer()) {
+		$refererSet = true;
+	}
+
+	if($refererSet) {
 		//get the referrer
 		if (isset($_SERVER['HTTP_REFERER'])) {
 			$referer = $_SERVER['HTTP_REFERER'];
