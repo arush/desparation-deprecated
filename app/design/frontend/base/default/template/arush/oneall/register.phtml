@@ -1,13 +1,13 @@
 <?php 
-    if(!isset($_SESSION[’referrer’])){ //has it been set before?
+    if(!isset($_SESSION['referrer'])){ //has it been set before?
         //get the referrer
-        if ($_SERVER[’HTTP_REFERER’]){
-            $referrer = $_SERVER[’HTTP_REFERER’];
+        if ($_SERVER['HTTP_REFERER']){
+            $referrer = $_SERVER['HTTP_REFERER'];
         } else {
-            $referrer = “unknown”;
+            $referrer = "unknown";
         }
         //save it in a session
-        $_SESSION[’referrer’] = $referrer; // store session data
+        $_SESSION['referrer'] = $referrer; // store session data
     }
 ?>
 
