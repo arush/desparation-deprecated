@@ -37,7 +37,7 @@
 		$refererSet = true;
 	}
 
-	if($refererSet) {
+	if(!$refererSet) {
 		//get the referrer
 		if (isset($_SERVER['HTTP_REFERER'])) {
 			$referer = $_SERVER['HTTP_REFERER'];
