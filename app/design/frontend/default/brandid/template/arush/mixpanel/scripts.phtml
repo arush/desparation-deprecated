@@ -35,12 +35,12 @@
 		// track first touch / original referrer
 		mixpanel.register_once({
 			'first touch landing page': window.location.href
-			,'first touch referrer': <?php echo $referer; ?>
+			,'first touch referrer': '<?php echo $referer; ?>'
 	 	});
 	 	// track current referrer
 	 	mixpanel.register({
-			'current referrer': <?php echo $referer; ?>
-			,'paying customer': <?php echo $payer ?>
+			'current referrer': '<?php echo $referer; ?>'
+			,'paying customer': '<?php echo $payer ?>'
 	 	});
 
 		// custom actions
