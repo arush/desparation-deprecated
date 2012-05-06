@@ -5,7 +5,7 @@
     		<block type="core/template" name="mixpanel" as="mixpanelscripts" template="arush/mixpanel/header-script.phtml"/>
     	</reference>
         <reference name="before_body_end">
-            <block type="core/template" name="mixpanel" as="mixpanelscripts" template="arush/mixpanel/scripts.phtml"/>
+            <block type="core/template" name="mixpanel-brandid" as="mixpanel-brandid" template="arush/mixpanel/scripts.phtml"/>
         </reference>
     </default>
     
