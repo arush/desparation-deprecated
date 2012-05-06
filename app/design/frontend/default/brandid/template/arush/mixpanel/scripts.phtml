@@ -30,7 +30,12 @@
 				}
 				//save it in a session
 				$_SESSION['referer'] = $referer; // store session data
+
 			}
+			else {
+				$referer = $_SESSION['referer']; // store session data
+			}
+
 		?>
 		// track first touch / original referrer
 		mixpanel.register_once({
