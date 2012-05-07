@@ -17,7 +17,7 @@ font-weight: bold;margin-top: -33px;padding: 0 8px;}*/
 .invitation-link{margin-right: 25px;float:left;}
 .send-now-box .secure{color: #848484; font-weight: bold; margin: 85px 22px 0 139px;}
 
-.referrals h4.legend{color:#2e2e2e; font-family: HelveticaNeueLight; font-size: 15px; font-weight: normal;}
+.referrals h4.legend{color:#2e2e2e; font-family: "proxima-nova"; font-size: 15px; font-weight: normal;}
 .referrals label{color:#444444;}
 .send-now-box-right textarea{background: #eaeaea; color: #4a4a4a; border: 1px solid #a1a1a1;}
 input#referral_url{padding: 10px 10px 11px 10px; background: #eaeaea; color: #4a4a4a !important; border: 1px solid #a1a1a1;}
@@ -98,7 +98,8 @@ input#referral_url{margin-right: 20px;margin-bottom:2px;}
 .plaxo-link, .sendinvitations, .savepreferences{
 	height: 38px;
 	text-align: center;
-	font-family: ProximaNovaLight;
+	font-family: "proxima-nova", sans-serif;
+	font-weight:300;
 	display: block;
 	line-height: 38px;
 	text-transform: uppercase;
