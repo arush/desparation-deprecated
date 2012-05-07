@@ -311,7 +311,8 @@ a#earn:hover {
 	padding: 20px;
 	background: #fff;
 	color: #595959;
-	font-family: ProximaNovaLight;
+	font-family: "proxima-nova";
+	font-weight:300;
 	font-size: 14px;
 }
 
