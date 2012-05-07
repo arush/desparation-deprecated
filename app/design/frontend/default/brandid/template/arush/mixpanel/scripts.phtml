@@ -23,7 +23,7 @@
 		<?php 
 			if(!isset($_SESSION['referer'])) { //has it been set before?
 				//get the referrer
-				if ($_SERVER['HTTP_REFERER']){
+				if (isset($_SERVER['HTTP_REFERER'])) {
 					$referer = $_SERVER['HTTP_REFERER'];
 				} else {
 					$referer = "unknown";
