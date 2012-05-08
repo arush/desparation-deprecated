@@ -1364,8 +1364,10 @@ button.convert:hover {
 	font-family: "proxima-nova",Arial
 }
 
-.action-section .convert-main.clearfix {
-	margin:0 80px 0 92px;
+.convert-main.clearfix {
+	width: 300px;
+	margin: 0 auto;
+	font-size: 68px;
 }
 
 .action-section a.convert {
