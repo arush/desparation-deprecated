@@ -742,6 +742,12 @@ a.invisibut, a.invisibutred {
 	width: 450px;
 	text-align: center;
 }
+.upper-box .commitment-caption {
+	margin:40px auto;
+}
+.upper-box .commitment-caption .caption {
+	font-size:16px;
+}
 .commitment-caption .caption-small {
 	font-family: "proxima-nova";
 	font-weight:900;
@@ -1377,7 +1383,8 @@ button.convert:hover {
   	background-clip: padding-box;
   	background-image: url(../images/specialoffer/bigdeal.png);
   	background-repeat: no-repeat;
-  	width:300px;
+  	margin: 0 auto;
+	width: 60%;
 }
 .coupon-card .upper-box{
 	margin:20px auto;
