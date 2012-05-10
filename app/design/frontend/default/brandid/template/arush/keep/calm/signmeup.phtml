@@ -501,7 +501,7 @@ $referer = false;
 				
 		$j(window).scroll(function() {
 			w = $j(this).scrollTop();
-			var howTop = $j("#how").offset().top;
+			var howTop = $j("#1").offset().top;
 			var bigLogoTop = $j("#big-fuckoff-logo").offset().top - 100;
 			var actionSection = $j("#action-section").offset().top - 30;
 			
@@ -520,14 +520,14 @@ $referer = false;
 			/* end fade the logo */
 
 			
-			if(w > $j("#how").data("scrolls")[0] && w < $j("#how").data("scrolls")[1]) {
+			if(w > $j("#1").data("scrolls")[0] && w < $j("#1").data("scrolls")[1]) {
 	      	      
-		      window.meeting_rel = w - ($j("#how").data("scrolls")[1] - 750);
+		      window.meeting_rel = w - ($j("#1").data("scrolls")[1] - 750);
 		      
-		      window.meeting_ratio = (Math.round((window.meeting_rel / ($j("#how").data("scrolls")[2] )) * 100 ) / 40);
+		      window.meeting_ratio = (Math.round((window.meeting_rel / ($j("#1").data("scrolls")[2] )) * 100 ) / 40);
 			
 /* 			console.log("w: %d",w); */
-/* 			console.log("del: %d / scroll2: %d = ratio: %d",window.meeting_rel, $j("#how").data("scrolls")[2], window.meeting_ratio);    */
+/* 			console.log("del: %d / scroll2: %d = ratio: %d",window.meeting_rel, $j("#1").data("scrolls")[2], window.meeting_ratio);    */
 
 		      $j(".moveable").each(function(index) {
 		      				      		
