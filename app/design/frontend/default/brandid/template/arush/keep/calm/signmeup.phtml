@@ -111,7 +111,7 @@ $referer = false;
 			<a id="why" href="#2" class="header-button">
 				<span class="button-copy">Why?</span>
 			</a>
-			<a id="how" href="#1" class="header-button">
+			<a id="how-but" href="#1" class="header-button">
 				<span class="button-copy">How?</span>
 			</a>
 				
@@ -398,13 +398,12 @@ $referer = false;
 							BRANDiD is a subscription service for designer basics… and a whole lot more. We love quality gear, big discounts and good humour. We hate fashionistas.
 						</div>
 					</div>
-					
+					<span id="3"></span>
+
 				</div>
 			</div> <!-- end grey tilt container -->
 		</div> <!-- end grey tilt -->
-	</div>
-	<span id="3"></span>
-	
+	</div>	
 	
 
 	<div class="title-block first">
@@ -501,34 +500,25 @@ $referer = false;
 				
 		$j(window).scroll(function() {
 			w = $j(this).scrollTop();
-			var howTop = $j("#1").offset().top;
 			var bigLogoTop = $j("#big-fuckoff-logo").offset().top - 100;
 			var actionSection = $j("#action-section").offset().top - 30;
 			
 			/* fade the logo */
 			if(w > bigLogoTop) {
 				$j("#logo").fadeIn(500);
-				
-				
-				
 			}
 			else {
 				$j("#logo").fadeOut(500);
-				
-				
 			}
 			/* end fade the logo */
 
 			
-			if(w > $j("#1").data("scrolls")[0] && w < $j("#1").data("scrolls")[1]) {
+			if(w > $j("#how").data("scrolls")[0] && w < $j("#how").data("scrolls")[1]) {
 	      	      
-		      window.meeting_rel = w - ($j("#1").data("scrolls")[1] - 750);
+		      window.meeting_rel = w - ($j("#how").data("scrolls")[1] - 750);
 		      
-		      window.meeting_ratio = (Math.round((window.meeting_rel / ($j("#1").data("scrolls")[2] )) * 100 ) / 40);
+		      window.meeting_ratio = (Math.round((window.meeting_rel / ($j("#how").data("scrolls")[2] )) * 100 ) / 40);
 			
-/* 			console.log("w: %d",w); */
-/* 			console.log("del: %d / scroll2: %d = ratio: %d",window.meeting_rel, $j("#1").data("scrolls")[2], window.meeting_ratio);    */
-
 		      $j(".moveable").each(function(index) {
 		      				      		
 			      	var resetMargin = $j(this).data("original")[0];
