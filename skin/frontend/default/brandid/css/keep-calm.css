@@ -686,47 +686,27 @@ a.invisibut, a.invisibutred {
 
 .grey-tilt {
 	background-color:#cfcfcf;
-	/*
--moz-transform: rotate(2deg);
-	-webkit-transform: rotate(2deg);
-	-o-transform: rotate(2deg);
-	-ms-transform: rotate(2deg);
-*/
+	
 	width:100%;
 	margin: 0 auto;
 	padding: 20px 0;
 }
 
 .grey-tilt-container {
-	/*
--moz-transform: rotate(-2deg);
-	-webkit-transform: rotate(-2deg);
-	-o-transform: rotate(-2deg);
-	-ms-transform: rotate(-2deg);
-*/
+	
 	margin:0 auto;
 	width: 970px;
 }
 
 
 .grey-tilt.right-tilt {
-	/*
--moz-transform: rotate(-2deg);
-	-webkit-transform: rotate(-2deg);
-	-o-transform: rotate(-2deg);
-	-ms-transform: rotate(-2deg);
-*/
+	
 	padding:0 0 30px 0;
 	height:650px;
 }
 
 .hood.section {
-	/*
--moz-transform: rotate(2deg);
-	-webkit-transform: rotate(2deg);
-	-o-transform: rotate(2deg);
-	-ms-transform: rotate(2deg);	
-*/
+	
 	padding: 50px 0;
 }
 
@@ -759,7 +739,7 @@ a.invisibut, a.invisibutred {
 
 .green-box .commitment-caption {
 	float: left;
-	margin: 10px;
+	margin: 25px 10px;
 	height: 60px;
 	width:59%;
 	line-height: 60px;
@@ -773,7 +753,7 @@ a.invisibut, a.invisibutred {
 }
 .green-box .convert-main {
 	float:right;
-	margin:10px;
+	margin:25px 10px;
 }
 
 .vision-title-text {
