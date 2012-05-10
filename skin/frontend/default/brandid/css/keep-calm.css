@@ -742,6 +742,14 @@ a.invisibut, a.invisibutred {
 	width: 450px;
 	text-align: center;
 }
+.commitment-caption .caption-small {
+	font-family: "proxima-nova";
+	font-weight:900;
+}
+
+.commitment-caption .caption-small {
+	font-size: 12px;
+}
 
 .vision-title-text {
 	padding: 10px;
@@ -1349,19 +1357,31 @@ button.convert:hover {
 	margin:20px 0 30px 0;
 }
 
-.action-section .convert-main {
-	float:left;
+
+
+#big-body-convert {
+	height: 80px;
 	width: 300px;
-	height: 100px;
+	line-height: 78px;
+	font-size: 18px;
 }
 
-.action-section .convert-middle {
-	float:left;
-	width:100px;
-	height:100px;
-	line-height: 100px;
-	font-size: 20px;
-	font-family: "proxima-nova",Arial
+.coupon-card {
+	background-color:#f6f5f4;
+	border:1px solid #e2e0e0;
+	-webkit-border-radius: 12px;
+    border-radius: 12px; 
+  	-moz-background-clip: padding;
+  	-webkit-background-clip:
+  	padding-box;
+  	background-clip: padding-box;
+  	background-image: url(../images/specialoffer/bigdeal.png);
+  	background-repeat: no-repeat;
+  	width:300px;
+}
+.coupon-card .upper-box{
+	margin:20px auto;
+
 }
 
 .convert-main.clearfix {

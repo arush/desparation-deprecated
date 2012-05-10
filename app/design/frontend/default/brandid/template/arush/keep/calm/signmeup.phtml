@@ -145,9 +145,7 @@ $referer = false;
 					<span class="first">I'm a man.</span><br/>
 					<span id="signmeupnow" class="second">I don't read instructions.</span>
 				</div>
-				<div class="convert-main clearfix">
-					<a id="big-body-convert" href="/plans.html" class="convert">Take me to the Plans Now!</a>
-				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -157,26 +155,33 @@ $referer = false;
 		
 		<div id="action-section" class="action-section clearfix">
 			
-			<div class="commitment-caption">
-				<span class="caption">No commitment or credit card required, just balls.</span>
+			<div class="coupon-card">
+				<div class="upper-box">
+					<div class="commitment-caption">
+						<span="caption">Use the coupon code:</span>
+						<br/>
+						<span="caption-strong">FREEDOUBLE</span>
+						<br/>
+						<span="caption">at checkout for a FREE double pack in your first month<sup>*</sup></span>
+						<br/>
+						<br/>
+						<br/>
+						<span="caption-small"><sup>*</sup>Not redeemable with any other offers, valid until May 31st, 2012.</span>
+
+					</div>
+				</div>
+				<div class="green-box">
+					<div class="commitment-caption">
+						<span class="caption">No commitment or credit card required, just balls.</span>
+					</div>
+					<div class="convert-main clearfix">
+						<a id="big-body-convert" href="/plans.html" class="convert">Show Me The Plans Now!</a>
+					</div>
+				</div>
 			</div>
 
-			<!-- <div class="convert-middle">
-				<span>OR</span>
-			</div>
-			<div class="convert-main">
-				<div id="oa_social_login_convert"></div>
-				<span></span>	
-					<script type="text/javascript">
-						 oneall.api.plugins.social_login.build("oa_social_login_convert", {
-						  'providers' :  ['facebook', 'twitter'],
-						  'callback_uri': '<?php // echo $this->getUrl('arush-oneall/rpx/token_url', array('_forced_secure' => false)) ?>',
-						  'css_theme_uri': '<?php // echo $this->getSkinUrl(); ?>css/social-convert.css'
-						 });
-					</script>
-			</div> -->
 		</div>
-		
+
 		<div class="commitment-caption reg section">
 			<div class="reg-form">
 				<div class="commitment-caption section ">
@@ -187,7 +192,7 @@ $referer = false;
 				
 				<form action="/customer/account/create" method="get">
 				  <input id="3" type="text" name="email" value="Register with your email address…" onFocus="clearDefault(this)"/>
-				  <button class="convert" type="submit">Register Free</button>
+				  <button class="convert" type="submit">Stay in touch</button>
 				</form>
 			</div>
 		</div>
