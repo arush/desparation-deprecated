@@ -743,18 +743,37 @@ a.invisibut, a.invisibutred {
 	text-align: center;
 }
 .upper-box .commitment-caption {
-	margin:40px auto;
+	margin:0px auto;
 }
 .upper-box .commitment-caption .caption {
 	font-size:16px;
 }
-.commitment-caption .caption-small {
+.commitment-caption .caption-strong {
 	font-family: "proxima-nova";
 	font-weight:900;
 }
 
 .commitment-caption .caption-small {
 	font-size: 12px;
+}
+
+.green-box .commitment-caption {
+	float: left;
+	margin: 10px;
+	height: 60px;
+	width:59%;
+	line-height: 60px;
+}
+.green-box .commitment-caption .caption{
+	font-weight: bold;
+	color: #2B4B0E;
+	letter-spacing: -1px;
+	font-size:16px;
+
+}
+.green-box .convert-main {
+	float:right;
+	margin:10px;
 }
 
 .vision-title-text {
@@ -1366,10 +1385,10 @@ button.convert:hover {
 
 
 #big-body-convert {
-	height: 80px;
-	width: 300px;
-	line-height: 78px;
-	font-size: 18px;
+	height: 60px;
+	width: 195px;
+	line-height: 60px;
+	font-size: 16px;
 }
 
 .coupon-card {
@@ -1386,9 +1405,19 @@ button.convert:hover {
   	margin: 0 auto;
 	width: 60%;
 }
-.coupon-card .upper-box{
+.coupon-card .upper-box {
 	margin:20px auto;
 
+}
+
+.coupon-card .green-box {
+	background-color: #E6F2DF;
+	-webkit-border-bottom-right-radius: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+	-moz-border-radius-bottomright: 10px;
+	-moz-border-radius-bottomleft: 10px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
 }
 
 .convert-main.clearfix {
