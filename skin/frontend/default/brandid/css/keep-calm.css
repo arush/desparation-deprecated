@@ -1358,6 +1358,10 @@ button.convert:hover {
 	color:#243342;
 }
 
+.reg-form button.convert {
+	width:198px;
+}
+
 .action-section {
 	margin:20px 0 30px 0;
 }
