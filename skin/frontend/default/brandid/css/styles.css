@@ -10850,8 +10850,12 @@ a.cat-view-now:hover {
 	}
 	.my-account .info-box .box-content, .my-account .info-box{
 		color: #595959;
-		font-family: "proxima-nova";font-weight:300;
+		font-family: "proxima-nova";
+    font-weight:300;
 		font-size: 14px;
+    padding: 20px;
+    background-color: #EDEDED;
+    margin-top: 20px;
 
 	}
 	.my-account .order-info li.current{
