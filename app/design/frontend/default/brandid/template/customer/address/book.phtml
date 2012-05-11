@@ -31,10 +31,9 @@
  */
 ?>
 <div class="address-book">
-<div class="black-title-bar">
+<div class="page-title title-buttons">
     <h4><?php echo $this->__('Address Book') ?></h4>
-    <a title="Add New Address" class="red-title-button" onclick="window.location='https://www.getbrandid.com/customer/address/new/';">Add New Address</a>
-    <a title="<?php echo $this->__('Add New Address') ?>" class="red-title-button" onclick="window.location='<?php echo $this->getAddAddressUrl() ?>';">Add New Address</a>
+    <button type="button" title="<?php echo $this->__('Add New Address') ?>" class="button" onclick="window.location='<?php echo $this->getAddAddressUrl() ?>';"><span>Add New Address</span></button>
 </div>
 <div class="address-account">
 <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
@@ -44,7 +43,7 @@
         <ol>
         <?php if($_pAddsses = Mage::getSingleton('customer/session')->getCustomer()->getDefaultBilling()): ?>
             <li class="info-box">
-                <h4 class="box-title"><?php echo $this->__('Default Billing Address') ?> <a class="red-title-button" href="<?php echo $this->getAddressEditUrl(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>"><?php echo $this->__('Change Billing Address') ?></a></h4>
+                <h4 class="box-title"><?php echo $this->__('Default Billing Address') ?> <span class="separator">|</span> <a href="<?php echo $this->getAddressEditUrl(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>"><?php echo $this->__('Change Billing Address') ?></a></h4>
                 <address class="box-content">
                 <?php echo $this->getAddressHtml(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>
                 </address>
