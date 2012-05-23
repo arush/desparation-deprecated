@@ -1,10 +1,11 @@
 <?php  if(Mage::getStoreConfig('mixpanel/track/mixpanel_on')) {
-	$payer = 'not paying'; // default for non paying customers
 ?>
 	<!-- start Mixpanel BRANDiD code -->
 	<script type="text/javascript">
 		
-		<?php if(Mage::getSingleton('customer/session')->isLoggedIn()) {
+
+		<?php /* Identify user */
+		if(Mage::getSingleton('customer/session')->isLoggedIn()) {
 			$customer = Mage::getSingleton('customer/session')->getCustomer();
 			$customerID = $customer->getId();
 			$customerTag = $customer->getEmail();
@@ -12,15 +13,23 @@
 			// we use group id to tell if a customer has paid us before or not
 			$groupId = Mage::getSingleton('customer/session')->getCustomerGroupId();
 			if($groupId != 1) {
-				$payer = 'paying customer';
+				$payer = 'has purchased';
 			}
-		 ?>
-			mixpanel.identify("<?php echo $customerID; ?>");
-			mixpanel.name_tag('<?php echo $customerTag; ?>');
-		<?php } ?>
+			else {
+				$payer = 'not purchased';
+			}
 
-		// generic tracks
-		<?php 
+		 ?>
+		<?php /* Otherwise set as guest */
+		} else {
+			$customerID = 'guest';
+			$customerTag = 'guest';
+			$payer = 'guest';
+		} ?>
+
+		
+		<?php /* Find original referer */
+
 			if(!isset($_SESSION['referer'])) { //has it been set before?
 				//get the referrer
 				if (isset($_SERVER['HTTP_REFERER'])) {
@@ -37,51 +46,129 @@
 			}
 
 		?>
-		// track first touch / original referrer
-		mixpanel.register_once({
-			'first touch landing page': window.location.href
-			,'first touch referrer': '<?php echo $referer; ?>'
-	 	});
-	 	// track current referrer
+		
+
+		<?php /* What page is this */
+			
+			// cms page
+			if (Mage::app()->getFrontController()->getRequest()->getRouteName() == 'cms') {
+			    $pageType = "cms";
+			    $pageTitle = Mage::getSingleton('cms/page')->getTitle();
+			}
+
+			// product
+			else if($product = Mage::registry('current_product')) { 
+				$pageType = "product";
+				$pageTitle = $product->getName();
+			}
+
+			// category
+			else if($catalog = Mage::app()->getRequest()->getControllerName() == 'category') { 
+				$pageType = "category";
+			    $pageTitle = $catalog->getName();
+			}
+			
+			// custom gift page
+			else if($this->getRequest()->getActionName() == 'getgifted') {
+				$pageType = "landing";
+				$pageTitle = "gift";
+			}
+
+			// custom home page
+			else if($this->getRequest()->getActionName() == 'signmeup') { 
+				$pageType = "landing";
+				$pageTitle = "home";
+			}
+
+			// catchall
+			else {
+				$pageType = $this->getRequest()->getModuleName();
+				$pageTitle = $this->getRequest()->getControllerName();
+			}
+
+		?>
+		// set global properties for every event
 	 	mixpanel.register({
-			'current referrer': '<?php echo $referer; ?>'
-			,'paying customer': '<?php echo $payer ?>'
+			'paying customer': '<?php echo $payer ?>'
 	 	});
+
+		// track original referrer
+		mixpanel.register_once({
+			'first touch landing page': window.location.href,
+			'first touch referrer': '<?php echo $referer; ?>'
+	 	});
+
+		// who is it
+		mixpanel.identify("<?php echo $customerID; ?>");
+		mixpanel.name_tag('<?php echo $customerTag; ?>');
+
+		// page
+		var page_properties = {
+		    'page_type': "<?php echo $pageType; ?>",
+		    'page_title': "<?php echo $pageTitle; ?>"
+		};
+		mixpanel.track('PageViewed', page_properties);
+
 
 		// custom actions
 		document.observe('dom:loaded', function(){
-			if(jQuery('#header-convert')) {
-				jQuery("#header-convert").click(function() {
-				    mixpanel.track("Landing Page - View Plans Header clicked");
-				});
-			}
 			
-			if(jQuery('#header-convert')) {
-				jQuery("#big-body-convert").click(function() {
-				    mixpanel.track("Landing Page - Big View Plans clicked");
-				});
-			}
+			// navigating around homepage
+			mixpanel.track_links(
+				".header-button a",
+				"soft nav clicked",
+				function(ele) {
+					return {
+						'button_id': jQuery(ele).attr('id'),
+						'page_type': "<?php echo $pageType; ?>",
+						'page_title': "<?php echo $pageTitle; ?>",
+						'mp_note': "User clicked on " + jQuery(ele).attr('id') + " on the <?php echo $pageType; ?> page"
+					}
+				}
+			);
 			
-			if(jQuery('#gift-button')) {
-				jQuery("#gift-button").click(function() {
-				    mixpanel.track("Landing Page - Gift button clicked");
-				});
-			}
+			// view plans
+			mixpanel.track_links(
+				"#header-convert",
+				"viewed plans",
+				function(ele) {
+					return {
+						'button_id': jQuery(ele).attr('id'),
+						'button_size': "small header button",
+						'page_type': "<?php echo $pageType; ?>",
+						'page_title': "<?php echo $pageTitle; ?>",
+						'mp_note': "User clicked on View Plans from the header nav on the <?php echo $pageType; ?> page"
+					}
+				}
+			);
 			
-			if(jQuery('#gift-landing-page-convert')) {
-				jQuery("#gift-landing-page-convert").click(function() {
-				    mixpanel.track("Gift Landing Page - Convert button clicked");
-				});
-			}
+			// view plans main button
+			mixpanel.track_links(
+				"#big-body-convert",
+				"viewed plans",
+				function(ele) {
+					return {
+						'button_id': jQuery(ele).attr('id'),
+						'button_size': "big body button",
+						'page_type': "<?php echo $pageType; ?>",
+						'page_title': "<?php echo $pageTitle; ?>",
+						'mp_note': "User clicked on View Plans from the body of the <?php echo $pageType; ?> page"
+					}
+				}
+			);
 
-			if(jQuery('#form-validate.register-email')) {
-				mixpanel.track_forms("#form-validate.register-email", "Registered with email address");
-
-			}
-			
-			if(jQuery('#form-validate.register-social-connect')) {
-				mixpanel.track_forms("#form-validate.register-social-connect", "Registered with social connect");
-			}
+			mixpanel.track_forms(
+				"#form-validate.register-email",
+				"completed form",
+				function(ele) {
+					return {
+						'form_class': jQuery(ele).attr('class'),
+						'page_type': "<?php echo $pageType; ?>",
+						'page_title': "<?php echo $pageTitle; ?>",
+						'mp_note': "User filled out a form on the <?php echo $pageType; ?> page"
+					}
+				}
+			);
 
 		});
 
