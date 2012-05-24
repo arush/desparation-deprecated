@@ -31,9 +31,9 @@
  */
 ?>
 <div class="address-book">
-<div class="page-title title-buttons black-title-bar">
+<div class="black-title-bar">
 <?php echo $this->__('Address Book') ?>
-    <button type="button" title="<?php echo $this->__('Add New Address') ?>" class="button" onclick="window.location='<?php echo $this->getAddAddressUrl() ?>';"><span>Add New Address</span></button>
+    <a type="button" title="<?php echo $this->__('Add New Address') ?>" class="red-title-button" onclick="window.location='<?php echo $this->getAddAddressUrl() ?>';"><span>Add New Address</span></a>
 </div>
 <div class="address-account">
 <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>

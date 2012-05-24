@@ -1,4 +1,4 @@
-  * {
+* {
   margin: 0pt;
   padding: 0pt;
 }
@@ -2663,7 +2663,7 @@ ul.disc li {
 }
 
 .info-box .box-title a {
-  color: rgb(253, 252, 229);
+  color: #d2002b;
   font-size: 11px;
   text-transform: lowercase;
 }
@@ -2682,6 +2682,13 @@ ul.disc li {
   text-decoration: underline;
 }
 
+.address-account .info-box {
+  padding-left:20px;
+}
+
+.col-2.addresses-additional li.item.empty {
+  padding:20px;
+}
 
 .sidebar .block-layered-nav {
   background: none repeat scroll
@@ -10848,11 +10855,11 @@ a.cat-view-now:hover {
 		font-size: 13px;
 		font-weight: bold;
 	}
-	.my-account .info-box .box-content, .my-account .info-box{
+	.my-account .info-box .box-content, .my-account .info-box {
 		color: #595959;
-		font-family: "proxima-nova";font-weight:300;
+		font-family: "proxima-nova";
+    font-weight:300;
 		font-size: 14px;
-
 	}
 	.my-account .order-info li.current{
 		background: #fff;
