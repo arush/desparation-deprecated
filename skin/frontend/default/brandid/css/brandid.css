@@ -1258,7 +1258,7 @@ width:95px;
 }
 .refer.info-box {
 	margin-left:2%;
-	width: 48%;
+	width: 49%;
 	float:left;
 	background-color: white;
 	overflow:hidden;
@@ -1266,7 +1266,7 @@ width:95px;
 	margin-top:20px;
 }
 .refer.info-box .black-title-bar {
-	margin-left:10px;
+	padding-left:10px;
 }
 .refer.info-box p {
 	font-family:"proxima-nova",Helvetica,Arial;
@@ -1276,11 +1276,11 @@ width:95px;
 	padding:13px;
 	padding-left:20px;
 }
-.refer.info-box button.convert {
+.refer.info-box a.convert {
 	width:91%; 
 	height:70px;
 	margin-left:20px;
-
+	line-height:70px;
 }
 
 .social-link .black-title-bar {
