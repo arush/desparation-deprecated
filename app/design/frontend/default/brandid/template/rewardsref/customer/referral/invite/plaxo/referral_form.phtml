@@ -2,7 +2,7 @@
 <?php if ($this->showSendReferralForm()): ?>
 <div class="send-now black-title-bar"><?php echo $this->__('Stage an Intervention') ?></div>
    <div class="send-now-box"> 
-    <form action="<?php echo $this->getUrl('rewardsref/customer/invites/', array('_forced_secure' => true)) ?>" method="post" id="form-validates">
+    <form action="<?php echo $this->getUrl('rewardsref/customer/invites/') ?>" method="post" id="form-validates">
         <?php /*?><?php if ($this->hasPredictedSignupPoints()): ?>
             <?php echo $this->__("You could earn up to %s when your referral signs up.", $this->getPredictedSignupPoints()); ?>
         <?php endif; ?>
