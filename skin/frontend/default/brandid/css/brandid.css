@@ -1251,17 +1251,44 @@ width:95px;
 
 .social-link.info-box {
 	margin-top:20px;
-	width: 100%;
+	width: 49%;
 	float:left;
 	background-color: white;
 	overflow:hidden;
 }
+.refer.info-box {
+	margin-left:2%;
+	width: 48%;
+	float:left;
+	background-color: white;
+	overflow:hidden;
+	height:199px;
+	margin-top:20px;
+}
+.refer.info-box .black-title-bar {
+	margin-left:10px;
+}
+.refer.info-box p {
+	font-family:"proxima-nova",Helvetica,Arial;
+	color: #595959;
+	font-weight: 300;
+	font-size: 14px;
+	padding:13px;
+	padding-left:20px;
+}
+.refer.info-box button.convert {
+	width:91%; 
+	height:70px;
+	margin-left:20px;
+
+}
+
 .social-link .black-title-bar {
 	padding: 10px;
 }
 
 #social_link_container {
-	margin:25px 250px;
+	margin:25px;
 	background-color:white;
 	width:460px;
 }
@@ -1271,6 +1298,9 @@ width:95px;
 
 }
 
+#oa_social_login_container.loading {
+	background: url('../images/loader.gif') no-repeat 50% 50% #fff;
+}
 
 /* END LOGIN */
 

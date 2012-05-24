@@ -1476,3 +1476,7 @@ oa_social_login_convert {
 	color: white;
 	text-shadow: 0pt -1px 0pt black;
 }
+#social_link_container.loading, #oa_social_login_container.loading, #oa_social_login_header_convert.loading {
+	background: url('../images/loader.gif') no-repeat 50% 50% #fff;
+
+}

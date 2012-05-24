@@ -86,13 +86,16 @@ $referer = false;
 				
 			<?php }
 				else { ?>
-					<div id="oa_social_login_header_convert"></div>
+					<div id="oa_social_login_header_convert" class="loading"></div>
 				<span></span>	
 					<script type="text/javascript">
 						 oneall.api.plugins.social_login.build("oa_social_login_header_convert", {
 						  'providers' :  ['facebook', 'twitter'],
 						  'callback_uri': '<?php echo $this->getUrl('arush-oneall/rpx/token_url', array('_forced_secure' => false)) ?>',
-						  'css_theme_uri': '<?php echo $this->getSkinUrl(); ?>css/social-convert-head.css'
+						  'css_theme_uri': '<?php echo $this->getSkinUrl(); ?>css/social-convert-head.css',
+						  'events' :{
+							        'onload' : function(){jQuery('#oa_social_login_header_convert').removeClass('loading');}   
+							      } 
 						 });
 					</script>
 					
