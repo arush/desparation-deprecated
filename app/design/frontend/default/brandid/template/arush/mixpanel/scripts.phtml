@@ -56,16 +56,41 @@
 			    $pageTitle = Mage::getSingleton('cms/page')->getTitle();
 			}
 
-			// product
+			// product must come before category, so else if doesnt trigger category whilst on product page
 			else if($product = Mage::registry('current_product')) { 
 				$pageType = "product";
 				$pageTitle = $product->getName();
+				$productSku = $product->getSku();
+				$productCat = Mage::registry('current_category')->getName();
+				
+				/* start js */ ?> 
+
+				var page_properties = {
+				    'product_title': "<?php echo $pageTitle; ?>",
+				    'product_sku': "<?php echo $productSku; ?>",
+				    'product_category': "<?php echo $productCat; ?>"
+				};
+
+				mixpanel.track('ProductViewed', page_properties);
+
+				<?php /* end js */
 			}
 
 			// category
 			else if($catalog = Mage::app()->getRequest()->getControllerName() == 'category') { 
 				$pageType = "category";
-			    $pageTitle = $catalog->getName();
+			    $pageTitle = Mage::registry('current_category')->getUrlKey(); // get name doesn't help cos its always 'Plans'
+
+			    /* start js */ ?> 
+
+				var page_properties = {
+				    'category_title': "<?php echo $pageTitle; ?>",
+				};
+
+				mixpanel.track('CategoryViewed', page_properties);
+
+				<?php /* end js */
+
 			}
 			
 			// custom gift page
@@ -101,13 +126,6 @@
 		// who is it
 		mixpanel.identify("<?php echo $customerID; ?>");
 		mixpanel.name_tag('<?php echo $customerTag; ?>');
-
-		// page
-		var page_properties = {
-		    'page_type': "<?php echo $pageType; ?>",
-		    'page_title': "<?php echo $pageTitle; ?>"
-		};
-		mixpanel.track('PageViewed', page_properties);
 
 
 		// custom actions
