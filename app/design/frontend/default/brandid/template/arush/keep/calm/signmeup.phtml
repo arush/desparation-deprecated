@@ -114,7 +114,15 @@ $referer = false;
 			<a id="how-but" href="#1" class="header-button">
 				<span class="button-copy">How?</span>
 			</a>
-				
+			<?php if (!Mage::getSingleton('customer/session')->isLoggedIn()) {?>
+				<span style="
+				    float: right;
+				    clear: both;
+				    margin-top: -23px;
+				    margin-right: 14px;
+					" class="login">or <a style="text-decoration:underline;" href="/customer/account/login">Login</a>
+				</span>
+			<?php } ?>
 	
 		</div>
 		
@@ -191,7 +199,7 @@ $referer = false;
 				
 				<form action="/customer/account/create" method="get">
 				  <input type="text" name="email" value="Enter your email address…" onFocus="clearDefault(this)"/>
-				  <button class="convert" type="submit">Get our Newsletter!</button>
+				  <button class="convert" type="submit">Keep me in the loop!</button>
 				</form>
 			</div>
 		</div>
