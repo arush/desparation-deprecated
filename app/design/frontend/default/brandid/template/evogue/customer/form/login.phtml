@@ -62,14 +62,17 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("plans.htm
 							<div class="gigya-block">
 								
 								<!-- The provider login will be embedded in this div //-->
-									<div id="oa_social_login_container"></div>
+									<div id="oa_social_login_container" class="loading"></div>
 								
 									<script type="text/javascript">
 										 oneall.api.plugins.social_login.build("oa_social_login_container", {
 										  'providers' :  ['facebook', 'google', 'twitter', 'yahoo'], 
 										  
 										  'callback_uri': '<?php echo $this->getUrl('arush-oneall/rpx/token_url', array('_forced_secure' => true)) ?>',
-										  'css_theme_uri': 'https://cdn.oneall.com/css/api/socialize/themes/connect_vertical.css'
+										  'css_theme_uri': 'https://cdn.oneall.com/css/api/socialize/themes/connect_vertical.css',
+										  'events' :{
+										        'onload' : function(){jQuery('#oa_social_login_container').removeClass('loading');}   
+										      } 
 										 });
 									</script>
 									
