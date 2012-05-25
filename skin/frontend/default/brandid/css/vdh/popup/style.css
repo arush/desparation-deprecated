@@ -69,7 +69,7 @@ a.vdh.close {
 
 .popup-title span {
 	padding:10px 17px;
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova",Arial,sans-serif;font-weight:900;
 	font-size:24px;
 	background-color:#000;
 	color:#fff;
@@ -114,7 +114,7 @@ a.vdh.close {
 }
 
 .vdh.content .explain {
-	font-family: ProximaNovaLight;
+	font-family: "proxima-nova";font-weight:300;
 	font-size:18px;
 	color:#595959;
 	text-transform: none;
@@ -123,7 +123,7 @@ a.vdh.close {
 }
 
 .vdh.content .explain-bold {
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova",Arial,sans-serif;font-weight:900;
 }
 
 
@@ -178,7 +178,7 @@ li.plans .popup-title {
 .tie-details span.detail {
 	background-color: #000;
 	text-align: left;
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova",Arial,sans-serif;font-weight:900;
 	text-transform: uppercase;
 	color: white;
 	font-size: 12px;
@@ -201,7 +201,7 @@ li.plans .popup-title {
     background-color: #D2002B;
     color: white;
     cursor: pointer;
-    font-family: proximanovabold;
+    font-family: "proxima-nova",Arial,sans-serif;font-weight:900;
     margin-top: 0;
     padding: 14px 17px;
     text-transform: uppercase;
@@ -240,7 +240,7 @@ li.loyalty .popup-col.explain {
 .popup-col.brands-list span.brands {
 	background-color: #000;
 	text-align: center;
-	font-family: ProximaNovaBold;
+	font-family: "proxima-nova",Arial,sans-serif;font-weight:900;
 	text-transform: uppercase;
 	color: white;
 	font-size: 15px;
