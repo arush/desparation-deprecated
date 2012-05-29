@@ -11,4 +11,9 @@ class Arush_Keep_CalmController extends Mage_Core_Controller_Front_Action
     $this->loadLayout();
     $this->renderLayout();
     }
+
+    public function itsfathersdayAction(){
+    $this->loadLayout();
+    $this->renderLayout();
+    }
 }
