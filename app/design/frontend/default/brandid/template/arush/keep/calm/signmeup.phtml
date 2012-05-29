@@ -3,6 +3,7 @@
 Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("plans.html"));
 
 $referer = false;
+	$refererSet = false;
 	if(Mage::getSingleton('core/session')->getReferer()) {
 		$refererSet = true;
 	}
