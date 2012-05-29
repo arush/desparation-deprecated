@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<global>
+        <helpers>
+            <subscribe>
+                <class>Arush_Subscribe_Helper</class>
+            </subscribe>
+        </helpers>
+	</global>
+	
+	<modules>
+		<Arush_Subscribe>
+			<version>0.0.1</version>
+		</Arush_Subscribe>
+	</modules>
+	
+	 <frontend>
+        <routers>
+            <subscribe>
+                <use>standard</use>
+                <args>
+                    <module>Arush_Subscribe</module>
+                    <frontName>subscribe</frontName>
+                </args>
+            </subscribe>
+        </routers>
+        
+        <layout>
+    		<updates>
+	    		<subscribe>
+	    			<file>arush/subscribe.xml</file>
+	    		</subscribe>
+	    	</updates>
+    	</layout>
+	</frontend>
+</config>
