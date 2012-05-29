@@ -104,6 +104,11 @@
 		<remove name="popup_header" />
     </keep_calm_getgifted>
 
+    <keep_calm_itsfathersday>
+        <remove name="popup" />
+        <remove name="popup_header" />
+    </keep_calm_itsfathersday>
+
 	<cms_page_view>
     	<remove name="popup" />
 		<remove name="popup_header" />
