@@ -54,7 +54,7 @@
 							I sense a loneliness in you, young Spartan. Like a wolf without a pack. Like a pint of Guinness without the head. Like Tony Montana after he shoots Mani. A promising, yet primitive man, still waiting for your other half to fill your pants drawer.<br/><br/>Fear not, young protégé, for this is normal. First women giveth, then women taketh away. Your wardrobe likely requires a trip to the dreaded high street, the home of screaming incompetent infants, money-guzzling wives and insolent parking attendants with no respect for the bro-code. But it doesn't have to be that way, pal. Oh no. The future is here. BRANDiD now takes care of all your shopping woes; join the rest of us Spartans and help free men of this farcicle chore.
 						</div>
 						<div class="row">
-							  <a href="#" class="hello-message-button convert">I'm sold, let's get started</a>
+							  <a href="/customer/account/create" class="hello-message-button convert">I'm sold, let's get started</a>
 						</div>
 					</div>
 					<div class="toggle-button">
@@ -67,17 +67,17 @@
 					<span class="convinced-label row">I'm interested, but don't think I'm ready yet.</span>
 					<div class="subscribe-form clearfix">
 					  	<form action="/subscribe/newbie" method="post">
-						  <input type="email" name="email" value="Enter your email address…" onFocus="clearDefault(this)" onblur="restoreText(this)"/>
+						  <input id="sub-email" type="email" name="email" value="Enter your email address…" onFocus="clearDefault(this)" onBlur="restoreText(this)"/>
 						  <input type="hidden" name="source" value="<?php if(isset($referer)) { echo $referer; } ?>"/>
 						  <button id="subscribe_btn" class="convinced-label-button convert secondary" type="submit">Keep me in the loop!</button>
 						</form>
-						<div id="subscribe-response"></div>
+						<div id="subscribe-response">
+						</div>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
-
 
 <script type="text/javascript">
 	
@@ -126,7 +126,7 @@
 		            if(retval.status == 1) {
           				$('subscribe-response').removeClassName('loading');
 						$('subscribe-response').innerHTML="Almost there - we need you to confirm your email so we sent you a confirmation link";
-						document.getElementById("subscribe_btn").value = 'Done!';
+						$('subscribe_btn').innerHTML='Confirmation Sent!';
 
 		            }
 		            else if(retval.status == 214) {

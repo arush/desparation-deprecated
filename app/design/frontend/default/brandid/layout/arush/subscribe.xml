@@ -1,13 +1,12 @@
 <?xml version="1.0"?>
 <layout version="0.1.0">
-    <default>
+    <catalog_category_view>
         <reference name="head">
             <action method="addCss"><stylesheet>css/arush/subscribe/style.css</stylesheet></action>
             <action method="addCss"><stylesheet>css/skeleton/skeleton.css</stylesheet></action>
             <action method="addCss"><stylesheet>css/skeleton/base.css</stylesheet></action>
             <action method="addCss"><stylesheet>css/skeleton/layout.css</stylesheet></action>
             <action method="addItem"><type>skin_js</type><name>js/arush/subscribe/jquery.cookie.js</name></action>
-            <action method="addItem"><type>skin_js</type><name>js/arush/jquery.mailcheck.min.js</name></action>
         </reference>
 		<reference name="after_body_start">
 				<block type="core/template" name="subscribe_header" template="arush/subscribe/header.phtml"/>			
@@ -16,19 +15,17 @@
 				<block type="core/template" name="subscribe" template="arush/subscribe/script.phtml"/>			
 		</reference --> 
 
-    </default>
+    </catalog_category_view>
     
 
    <customer_account_login>
         <remove name="subscribe" />
         <remove name="subscribe_header" />
-        <action method="removeItem"><type>skin_js</type><name>js/arush/subscribe/script.js</name></action>
     </customer_account_login>
  
  	<customer_account_create>
         <remove name="subscribe" />
         <remove name="subscribe_header" />
-        <action method="removeItem"><type>skin_js</type><name>js/arush/subscribe/script.js</name></action>
     </customer_account_create>
  	
  	<oneall_rpx_duplicate>

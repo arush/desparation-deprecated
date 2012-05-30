@@ -61,7 +61,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feefb3', end
 	min-height:82px;
 	overflow:hidden;
 	display:block;
-
     overflow:   hidden;
     
          -o-transition: all;
@@ -84,7 +83,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feefb3', end
      -khtml-transition-timing-function: ease-in-out;
     -webkit-transition-timing-function: ease-in-out;
             transition-timing-function: ease-in-out;
-
 }
 
 .hello-message-span.expanded {
