@@ -1,0 +1,149 @@
+<?php
+	$refererSet = false;
+	if(Mage::getSingleton('core/session')->getReferer()) {
+		$refererSet = true;
+	}
+
+	if($refererSet) {
+		//get the referrer
+		if (isset($_SERVER['HTTP_REFERER'])) {
+			$referer = $_SERVER['HTTP_REFERER'];
+		} else {
+			$referer = "unknown";
+		}
+		//save it in a session variable
+		Mage::getSingleton('core/session')->setReferer($referer); // store session data
+	}
+	else {
+		$referer = Mage::getSingleton('core/session')->getReferer();
+	}
+?>
+
+<?php if (!Mage::getSingleton('customer/session')->isLoggedIn()) {  // if not logged in
+?>
+
+<script type="text/javascript">
+	
+	function clearDefault(el) {
+  		if (el.defaultValue==el.value) {
+  			el.value = "";
+		    $('subscribe_btn').removeClassName('disabled');
+		}
+	}
+	function restoreText(el) {
+		if (el.value == "") {
+			el.value = el.defaultValue;
+		}
+	}
+</script>
+
+	<div id="popupSubscribe">
+		<div class="container">
+			<div class="hello-title sixteen columns">
+				<span class="hello-title-span">
+					Hello there, wandering visitor
+				</span>
+				<span class="hello-login">Hey wait a second, I ain't no visitor! <a title="login" href="/customer/account/login">Login</a></span> <!--a href="#" class="close-button">
+				</a-->
+			</div>
+			<div class="hello-section eight columns">
+				
+				<div class="hello-message">
+					<div id="long-welcome-msg" class="hello-message-span">
+						<div class="row">
+							I sense a loneliness in you, young Spartan. Like a wolf without a pack. Like a pint of Guinness without the head. Like Tony Montana after he shoots Mani. A promising, yet primitive man, still waiting for your other half to fill your pants drawer.<br/><br/>Fear not, young protégé, for this is normal. First women giveth, then women taketh away. Your wardrobe likely requires a trip to the dreaded high street, the home of screaming incompetent infants, money-guzzling wives and insolent parking attendants with no respect for the bro-code. But it doesn't have to be that way, pal. Oh no. The future is here. BRANDiD now takes care of all your shopping woes; join the rest of us Spartans and help free men of this farcicle chore.
+						</div>
+						<div class="row">
+							  <a href="#" class="hello-message-button convert">I'm sold, let's get started</a>
+						</div>
+					</div>
+					<div class="toggle-button">
+						<a href="#" id="less-more" value="Toggle">read more</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="subscribe-section row eight columns">
+					<span class="convinced-label row">I'm interested, but don't think I'm ready yet.</span>
+					<div class="subscribe-form clearfix">
+					  	<form action="/subscribe/newbie" method="post">
+						  <input type="email" name="email" value="Enter your email address…" onFocus="clearDefault(this)" onblur="restoreText(this)"/>
+						  <input type="hidden" name="source" value="<?php if(isset($referer)) { echo $referer; } ?>"/>
+						  <button id="subscribe_btn" class="convinced-label-button convert secondary" type="submit">Keep me in the loop!</button>
+						</form>
+						<div id="subscribe-response"></div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+<script type="text/javascript">
+	
+	//jQuery(document).ready(function () {
+	//toggle paragraph
+		var trig = jQuery('#less-more');
+		trig.data('open', false);
+		var div  = jQuery('#long-welcome-msg');
+
+		trig.click(function(e){
+		    div.toggleClass('expanded');
+		    trig.toggleClass('expanded');
+		    if(trig.data('open') == true) {
+		    	trig.text('read more');
+		    	trig.data('open',false);
+		    }
+		    else { 
+		    	trig.data('open',true);
+		    	trig.text('read less');}
+		});
+	//});
+</script>
+
+<script type="text/javascript">
+	var $j = jQuery.noConflict();
+	function hasClosed() {
+		if($j.cookie('')) {
+
+		}
+	}
+</script>
+
+<script type="text/javascript">
+    //<![CDATA[
+		$('subscribe_btn').observe('click', function(e){
+		    Event.stop(e);
+		    $('subscribe-response').addClassName('loading');
+			$('subscribe-response').innerHTML = 'Adding you to our mailing list…';
+		    $('subscribe_btn').addClassName('disabled');
+
+		    var ajax = this.form.request({
+		        onSuccess: function(transport) {
+		        
+					var retval = JSON.parse(transport.responseText);
+
+		            if(retval.status == 1) {
+          				$('subscribe-response').removeClassName('loading');
+						$('subscribe-response').innerHTML="Almost there - we need you to confirm your email so we sent you a confirmation link";
+						document.getElementById("subscribe_btn").value = 'Done!';
+
+		            }
+		            else if(retval.status == 214) {
+		            	$('subscribe-response').removeClassName('loading');
+						$('subscribe-response').innerHTML='Wait a sec, we\'ve already got you on our list! Maybe our emails are going to spam? To stop us going to spam, please add <strong>help@getbrandid.com</strong> to your address book.';
+					    $('subscribe_btn').removeClassName('disabled');
+		            }
+		            else {
+          				$('subscribe-response').removeClassName('loading');
+						$('subscribe-response').innerHTML=retval.message;
+					    $('subscribe_btn').removeClassName('disabled');
+
+		            }
+		        }
+		    });
+		});
+    //]]>
+    </script>
+
+<?php } ?>

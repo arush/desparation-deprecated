@@ -54,7 +54,7 @@
 ================================================== */
 	body {
 		background: #fff;
-		font: 14px/21px "ProximaNovaLight", Helvetica, Arial, sans-serif;
+		font: 14px/21px "proxima-nova", Helvetica, Arial, sans-serif;
 		color: #444;
 		-webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
 		-webkit-text-size-adjust: 100%;
@@ -65,7 +65,7 @@
 ================================================== */
 	h1, h2, h3, h4, h5, h6 {
 		color: #181818;
-		font-family: "ProximaNovaBold", Helvetica, Arial, sans-serif;
+		font-family: "proxima-nova", Helvetica, Arial, sans-serif;
 		letter-spacing:-1px;
 		font-weight: normal; }
 	h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-weight: inherit; }
@@ -159,7 +159,7 @@
 	  margin-bottom: 20px;
 	  line-height: normal;
 	  padding: 8px 10px;
-	  font-family: "ProximaNovaLight", Helvetica, Arial, sans-serif; 
+	  font-family: "proxima-nova", Helvetica, Arial, sans-serif; 
 
 
 	}
@@ -213,7 +213,7 @@
 	}
 
 	a.convert, button.convert, .recurly button.submit {
-	font-family: ff-enzo-web,ProximaNovaBold,arial,"lucida grande",Verdana,"Bitstream Vera Sans",Arial,sans-serif;
+	font-family: ff-enzo-web,"proxima-nova",arial,"lucida grande",Verdana,"Bitstream Vera Sans",Arial,sans-serif;
 	text-align: center;
 	box-shadow: 0pt 1px 0pt rgba(255, 255, 255, 0.5) inset, 0pt 1px 0pt rgba(255, 255, 255, 0.2);
 	white-space: nowrap;
@@ -235,9 +235,9 @@
 	vertical-align: middle;
 	padding:0;
 	display: inline-block;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px 3px 3px 3px;
 	font-size:15px;
 	width:201px;
 	line-height: 42px;
@@ -336,7 +336,14 @@ a.convert.active {
 	border:1px solid #888;
 }
 
-
+button.disabled, a.disabled {
+	background-color:#cccccc !important;
+	background-image: none !important;
+	background-image:none !important;
+	-ms-filter:none !important;
+	cursor:default !important;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false) !important;
+}
 
 /* #Tabs (activate in tabs.js)
 ================================================== */
@@ -425,7 +432,7 @@ a.convert.active {
 		-moz-border-radius: 2px;
 		-webkit-border-radius: 2px;
 		border-radius: 2px;
-		font: 13px "ProximaNovaLight", Helvetica, Arial, sans-serif;
+		font: 13px "proxima-nova", Helvetica, Arial, sans-serif;
 		color: #777;
 		margin: 0;
 		width: 210px;
@@ -442,7 +449,7 @@ a.convert.active {
 	legend {
 		display: block;
 		font-weight: normal;
-		font-family:ProximaNovaBold,Helvetica,Arial,sans-serif;
+		font-family:"proxima-nova",Helvetica,Arial,sans-serif;
 		letter-spacing: -1px;
 		font-size: 16px;  }
 	select {
@@ -514,9 +521,9 @@ a:hover {
 }
 
 input, select, textarea, button {
-  font: 16px ProximaNovaLight,Helvetica,sans-serif;
+  font: 16px proxima-nova,Helvetica,sans-serif;
   vertical-align: middle;
-  height:24px;
+  height:26px;
   color: rgb(68, 68, 68);
 }
 
@@ -531,7 +538,6 @@ input {
 	border-color: #D9D9D9;
 	border-style: solid;
 	border-width: 1px;
-	width: 200px;
 	-webkit-transition: color 200ms ease-in;
 	-moz-transition: color 200ms ease-in;
 	-o-transition: color 200ms ease-in;

@@ -2,13 +2,12 @@
 
 Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("plans.html"));
 
-$referer = false;
 	$refererSet = false;
 	if(Mage::getSingleton('core/session')->getReferer()) {
 		$refererSet = true;
 	}
 
-	if(!$refererSet) {
+	if($refererSet) {
 		//get the referrer
 		if (isset($_SERVER['HTTP_REFERER'])) {
 			$referer = $_SERVER['HTTP_REFERER'];
@@ -17,6 +16,9 @@ $referer = false;
 		}
 		//save it in a session variable
 		Mage::getSingleton('core/session')->setReferer($referer); // store session data
+	}
+	else {
+		$referer = Mage::getSingleton('core/session')->getReferer();
 	}
 	
 ?>
@@ -202,7 +204,7 @@ $referer = false;
 				</div>
 				
 				<form action="/customer/account/create" method="get">
-				  <input type="text" name="email" value="Enter your email address…" onFocus="clearDefault(this)"/>
+				  <input type="text" name="email" value="Enter your email address…" onFocus="clearDefault(this)" onBlur="restoreText(this)"/>
 				  <button class="convert" type="submit">Keep me in the loop!</button>
 				</form>
 			</div>
@@ -658,6 +660,9 @@ $referer = false;
 	function clearDefault(el) {
   		if (el.defaultValue==el.value) el.value = ""
 	}
+	function restoreText(el) {
+			if (el.value == "") el.value = el.defaultValue;
+		}
 
 	
 
