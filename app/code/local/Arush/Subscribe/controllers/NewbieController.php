@@ -3,13 +3,9 @@ class Arush_Subscribe_NewbieController extends Mage_Core_Controller_Front_Action
 {
 	public function indexAction(){
 		if($this->getRequest()->isPost()){
-			$int1 = $this->getRequest()->getPost('int1');
-			$int2 = $this->getRequest()->getPost('int2');
-			$result = $int1 * $int2;
-			Mage::getSingleton('customer/session')->addSuccess("$int1 * $int2 = $result");
-		}
-		else {
 			
+			$email = $this->getRequest()->getPost('email');
+
 			// get standard values for mailchimp api call
 			$storeId = Mage::app()->getStore()->getId();			
 			$listId = Mage::helper('monkey')->getDefaultList($storeId);
@@ -18,8 +14,7 @@ class Arush_Subscribe_NewbieController extends Mage_Core_Controller_Front_Action
 
 			// get variable values
 			$source = 'unknown';
-			$email = 'uckshit@getbrandid.com';
-			
+
 			// put them all in an array
 			$mergeVars = array(
 							'STATUS' => 'interested',
@@ -27,14 +22,14 @@ class Arush_Subscribe_NewbieController extends Mage_Core_Controller_Front_Action
 							'OPTIN_IP' => $ip,
 							'OPTIN_TIME' => $time
 							);
-
-			print_r(json_encode(
-				array(
-					'list id' => $listId,
-					'email' => $email,
-					'mergeVars' => $mergeVars
-					)
-				));
+			// debug
+			// print_r(json_encode(
+			// 	array(
+			// 		'list id' => $listId,
+			// 		'email' => $email,
+			// 		'mergeVars' => $mergeVars
+			// 		)
+			// 	));
 
 			// call ebizmarts api
 			$api = Mage::getSingleton('monkey/api');
@@ -54,7 +49,7 @@ class Arush_Subscribe_NewbieController extends Mage_Core_Controller_Front_Action
 					array(
 						'status' => $api->errorCode,
 						'state' => "failed",
-						'errorMessage' => $api->errorMessage
+						'message' => $api->errorMessage
 						)
 				));
 
@@ -70,6 +65,17 @@ class Arush_Subscribe_NewbieController extends Mage_Core_Controller_Front_Action
 
 		
 			}
+
+		}
+		else {
+			
+			print_r(json_encode(
+				array(
+					'status' => 0,
+					'errorMessage' => "nice try asshole"				
+					)
+				));
+
 
 		}
 		
