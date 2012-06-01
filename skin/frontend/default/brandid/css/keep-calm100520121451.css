@@ -1397,12 +1397,9 @@ button.convert:hover {
 
 .coupon-card .green-box {
 	background-color: #E6F2DF;
-	-webkit-border-bottom-right-radius: 10px;
-	-webkit-border-bottom-left-radius: 10px;
-	-moz-border-radius-bottomright: 10px;
-	-moz-border-radius-bottomleft: 10px;
-	border-bottom-right-radius: 10px;
-	border-bottom-left-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
 }
 
 .convert-main.clearfix {
