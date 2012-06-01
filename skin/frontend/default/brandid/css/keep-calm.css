@@ -868,6 +868,9 @@ a.invisibut, a.invisibutred {
 	margin:31px 0 0 0;
 	font-family: "proxima-nova";font-weight:300;
 }
+.sub-detail.detail-1.fathersday {
+	font-size:10px;
+}
 .sub-detail.detail-2 {
 	font-size:29px;
 	text-transform: uppercase;
