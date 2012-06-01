@@ -516,6 +516,7 @@ float:right;}
 
 .title-block .title .first-row {
 	margin-bottom:15px;
+	line-height: 54px;
 	
 }
 .title-block .title .second-row {
@@ -693,6 +694,10 @@ html[xmlns] .invite-options {
 	position: absolute;
 	margin: -47px 0 0 -20px;
 	letter-spacing: -6px;
+}
+
+.footer-container .random-quote .apostrophe {
+	line-height: 50px;
 }
 .random-quote .quote {
 	background: #f1f1f1;
