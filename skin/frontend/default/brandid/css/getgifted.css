@@ -1120,7 +1120,7 @@ a.convert, button.convert {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px 5px 5px 5px;
-	font-size:25px;
+	font-size:20px;
 	width:100%;
 	line-height: 54px;
 	text-transform: uppercase;
@@ -1142,4 +1142,12 @@ a.convert:active, button.convert:active {
 	color: white;
 	background: #777;
 	
+}
+
+h1.gift-blurb-title {
+	font-family: "proxima-nova",Arial;
+	font-size: 30px;
+	color: black;
+	letter-spacing: -1px;
+	margin-bottom: 12px;
 }
