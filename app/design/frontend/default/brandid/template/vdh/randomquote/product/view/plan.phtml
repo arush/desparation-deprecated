@@ -129,8 +129,8 @@
 		<div class="price-box">
 			<!--span class="price"><?php // echo 'RRP &pound;' . number_format($_product->getPrice(), 0); ?></span-->
 			<span class="special-price"><?php echo 'Plan Price &pound;<span id="final-price">' . number_format($_product->getSpecialPrice(), 0) . '</span>'; ?></span>
-			<div id="upgrade_tees-text" style="float:none;display:none" class="product-detail-checkbox"></div>
-			<div id="upgrade_shirts-text" style="float:none;display:none" class="product-detail-checkbox"></div>
+			<div id="upgrade_tees-text" style="float:none;display:none" class="product-detail-checkbox">T-Shirts upgraded</div>
+			<div id="upgrade_shirts-text" style="float:none;display:none" class="product-detail-checkbox">Shirts Upgraded</div>
 		</div>
 	
 	<?php if (Mage::getSingleton('customer/session')->isLoggedIn()) {?>
