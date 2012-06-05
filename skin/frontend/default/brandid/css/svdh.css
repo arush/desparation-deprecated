@@ -113,6 +113,11 @@
 	color: #fff;
 }
 
+.option-number.additional {
+	font-size: 18px;
+	line-height: 37px;
+}
+
 
 .plan .product-options dd select {
 	width: 140px;

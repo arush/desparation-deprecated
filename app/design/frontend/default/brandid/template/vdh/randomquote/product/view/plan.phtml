@@ -128,7 +128,7 @@
 		</div>		
 		<div class="price-box">
 			<span class="price"><?php echo 'RRP &pound;' . number_format($_product->getPrice(), 0); ?></span>
-			<span class="special-price"><?php echo 'Plan Price &pound;' . number_format($_product->getSpecialPrice(), 0); ?></span>
+			<span class="special-price"><?php echo 'Plan Price &pound;<span id="final-price">' . number_format($_product->getSpecialPrice(), 0) . '</span>'; ?></span>
 		</div>
 	
 	<?php if (Mage::getSingleton('customer/session')->isLoggedIn()) {?>
@@ -216,7 +216,13 @@ if ($upsells->count() > 0):
 		} else if (obj.innerHTML.toLowerCase().indexOf('shirt') >= 0) {
 			obj.up().next().addClassName('shirt-bg');	
 			obj.up().next().innerHTML += '<span class="option-number"><?php echo $_product->getNumShirts(); ?>x</span>';
-				
+		//upgrades
+		} else if (obj.innerHTML.toLowerCase().indexOf('tee') >= 0) {
+			obj.up().next().addClassName('tshirt-bg');	
+			obj.up().next().innerHTML += '<span class="option-number additional">Style:</span>';
+		} else if (obj.innerHTML.toLowerCase().indexOf('shirt upgrade') >= 0) {
+			obj.up().next().addClassName('tshirt-bg');	
+			obj.up().next().innerHTML += '<span class="option-number additional">Style:</span>';
 		}
 	});
 
