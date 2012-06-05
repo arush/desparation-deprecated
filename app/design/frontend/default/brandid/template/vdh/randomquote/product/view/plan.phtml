@@ -214,7 +214,7 @@ if ($upsells->count() > 0):
 		} else if (obj.innerHTML.toLowerCase().indexOf('boxer') >= 0) {
 			obj.up().next().addClassName('boxer-bg');		
 			obj.up().next().innerHTML += '<span class="option-number"><?php echo $_product->getNumBoxers(); ?>x</span>';			
-		} else if (obj.innerHTML.toLowerCase().indexOf('shirt') >= 0) {
+		} else if (obj.innerHTML.toLowerCase().indexOf('shirt size') >= 0) {
 			obj.up().next().addClassName('shirt-bg');	
 			obj.up().next().innerHTML += '<span class="option-number"><?php echo $_product->getNumShirts(); ?>x</span>';
 		//upgrades
@@ -233,13 +233,20 @@ if ($upsells->count() > 0):
 					jQuery('#upgrade_tees-text').show();
 				}
 			}
-		} else if (obj.innerHTML.toLowerCase().indexOf('shirt upgrade') >= 0) {
+		} else if (obj.innerHTML.toLowerCase().indexOf('shirt style') >= 0) {
 			obj.up().next().addClassName('shirt-bg upgrade select');
 			obj.up().next().innerHTML += '<span class="option-number additional">Choose style:</span>';
 			var selection = jQuery('.shirt-bg.upgrade select');
 			var selectedValue = jQuery.cookie("upgrade_shirts_val");
 			if(jQuery.cookie("upgrade_shirts_val")) {
-				selection.val(selectedValue).attr("selected","selected");
+				optionToSelect = jQuery('.shirt-bg.upgrade option:eq('+selectedValue+')');
+				optionToSelect.attr("selected","selected");
+				// if the selected value has 
+				optionPrice = parseInt(optionToSelect.attr("price"));
+				if(optionPrice > 0) {
+					addToPrice(optionPrice,"upgrade_shirts");
+					jQuery('#upgrade_shirts-text').show();
+				}
 			}
 		}
 	});
