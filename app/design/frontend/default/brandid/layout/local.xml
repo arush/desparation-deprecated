@@ -31,6 +31,7 @@
 
     <checkout_onepage_index>
         <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/arush/plan-upgrades.js</name></action>            
             <action method="addItem"><type>skin_js</type><name>js/arush/subscribe/jquery.cookie.js</name></action>
         </reference>
     </checkout_onepage_index>

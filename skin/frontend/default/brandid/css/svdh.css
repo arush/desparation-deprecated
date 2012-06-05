@@ -102,6 +102,10 @@
 	background: #595959 url('../images/plans-bg-shirt.png') no-repeat 55px 50%;	
 }
 
+.product-options dd.tshirt-bg.upgrade, .product-options dd.shirt-bg.upgrade {
+	background-image:none;
+	margin:0 0 15px !important;
+}
 .option-number {
 	display: block;
 	position: absolute;
@@ -114,8 +118,8 @@
 }
 
 .option-number.additional {
-	font-size: 18px;
-	line-height: 37px;
+	font-size: 14px;
+	line-height: 28px;
 }
 
 

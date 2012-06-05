@@ -34,14 +34,6 @@ document.observe('dom:loaded', function(){
 </script>
 
 <script type="text/javascript">
-	function recurlyUpgrades() {
-		if($j.cookie('upgrade_tees')) {
-			$j('.add_on_upgrade-tees').click();
-		}
-		if($j.cookie('upgrade_shirts')) {
-			$j('.add_on_upgrade-shirts').click()
-		}
-	};
 
 	function recurlyTooltip(d){
 
@@ -89,7 +81,7 @@ document.observe('dom:loaded', function(){
 
 		jQuery("#popover").css('display','none'); //start hidden
 
-		jQuery(".add_ons.any").hover(
+		jQuery(".add_on_return-like-a-man").hover(
 		  function () {
 		    jQuery("#popover").fadeIn(500);
 		  },
@@ -99,7 +91,13 @@ document.observe('dom:loaded', function(){
 		);				
 		/* end insert cookie based close button */
 
-		recurlyUpgrades();
+		/* preselect addons based on cookies */
+		if(jQuery.cookie('upgrade_tees') > 0) {
+			jQuery('.add_on_upgradetees').click();
+		}
+		if(jQuery.cookie('upgrade_shirts') > 0) {
+			jQuery('.add_on_upgradeshirts').click();
+		}
 	};
 	
 

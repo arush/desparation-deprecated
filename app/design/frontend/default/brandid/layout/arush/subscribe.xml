@@ -6,17 +6,15 @@
             <action method="addCss"><stylesheet>css/skeleton/skeleton.css</stylesheet></action>
             <action method="addCss"><stylesheet>css/skeleton/base.css</stylesheet></action>
             <action method="addCss"><stylesheet>css/skeleton/layout.css</stylesheet></action>
-            <action method="addItem"><type>skin_js</type><name>js/arush/subscribe/jquery.cookie.js</name></action>
         </reference>
 		<reference name="after_body_start">
-				<block type="core/template" name="subscribe_header" template="arush/subscribe/header.phtml"/>			
+			<block type="core/template" name="subscribe_header" template="arush/subscribe/header.phtml"/>			
 		</reference>
 		<!-- reference name="before_body_end">			
 				<block type="core/template" name="subscribe" template="arush/subscribe/script.phtml"/>			
 		</reference --> 
 
     </catalog_category_view>
-    
 
    <customer_account_login>
         <remove name="subscribe" />
