@@ -1,116 +1,94 @@
-<?php if (!Mage::getSingleton('customer/session')->isLoggedIn()) {
-	Mage::getSingleton('customer/session')->setBeforeAuthUrl($this->helper('core/url')->getCurrentUrl());
-} ?>
-
-
-
 <?php $_product = Mage::getModel('catalog/product')->load(Mage::registry('current_product')->getId());?>
 <?php $_helper = $this->helper('catalog/output'); ?>
-
+<?php $_productName = strtolower($_product->getName());
+if($_productName == 'godfather') {
+	$_earner = 3;
+} else if($_productName == 'boss') {
+	$_earner = 2;
+} else {
+	$_earner = 1;
+} ?>
 
 
 <div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
 
 <div class="sliders">
-<div class="black-title-bar">What's in the plan?</div>
-
-
-<?php /*
-
 <div class="plan-explanation">
 	<?php $block = Mage::getModel('cms/block')->load('plan-randomness-explanation');?>
     <?php echo $block->getContent(); ?>
 </div>
-*/
-
+<?php
+$pieces = array(
+	'Socks'		=> 'SOCKS',
+	'Boxers'	=> 'BOXERS',
+	'T-Shirts'	=> 'T-SHIRT',
+	'Shirts'	=> 'SHIRT'
+);
+$relatedProductIds = array();
+foreach($_product->getRelatedLinkCollection() as $related) 	{
+	$relatedProductIds[] = $related->getLinkedProductId();
+}
 ?>
-	<?php /* the code below is also in the media page because we need it to appear for giftcard products, catalog/product/view/media.phtml */ ?>
-	
-	<?php if($_product->getData('num_socks') > 0)  { ?>
-	<div id="planOther" class="clearfix">
+<?php
+foreach ($pieces as $k => $v) {
+	$products = Mage::getModel('catalog/product')
+		->getCollection()
+		->addAttributeToSelect('rmscategory')
+		->addAttributeToSelect('season')
+		->addAttributeToSelect('brand')
+		->addAttributeToFilter('rmscategory', $v)
+		->addAttributeToFilter('entity_id', array('in' => $relatedProductIds));	
 
-		<div class="item-pic-left"><img class="plans-item-img" src="<?php echo Mage::getDesign()->getSkinUrl('images/plans/socks.jpg');?>" />
-		</div>
+if ($products->count() > 0){
+	$counter = 1;
+ ?>
+<div class="planOther">
+	<h1 class="black-title-bar main-view"><?php echo $this->__($k);?></h1>
+	<div class="style-chooser clearfix">
+		<?php if(strtolower($k) == 'socks' || strtolower($k) == 'boxers') { ?>
+			<a title="Classic" onclick="handleClick(this);" class="convert secondary lt <?php echo $this->__(strtolower($k));?>" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Classic</a>
+			<a title="Disco" onclick="handleClick(this);" class="convert secondary lt mid <?php echo $this->__(strtolower($k));?>" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Disco</a>
+			<a title="Both" onclick="handleClick(this);" class="convert secondary lt rt <?php echo $this->__(strtolower($k));?> active" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Both</a>
+		<?php } else if(strtolower($k) == 't-shirts') { ?>
+			<a title="Designer T-shirts" onclick="handleClick(this);" class="convert secondary lt <?php echo $this->__(strtolower($k));?> active" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Designer Tee</a>
+			<a title="Designer Polos +£30" onclick="handleClick(this);" class="convert secondary rt <?php echo $this->__(strtolower($k));?>" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Designer Polo (+£30)</a>
+		<?php } else if(strtolower($k) == 'shirts') { ?>
+			<a title="Work Shirts" onclick="handleClick(this);" class="convert secondary lt <?php echo $this->__(strtolower($k));?> active" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Work Shirts</a>
+			<a title="Designer Shirts +£40" onclick="handleClick(this);" class="convert secondary rt <?php echo $this->__(strtolower($k));?>" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Designer Shirts (+£40)</a>
+		<?php } ?>
 		
-		<div class="brands-list">
-			<span class="context"><?php echo $_product->getData('num_socks'); ?> x Socks From:</span><br/><br/>
-			<span class="brands">Ralph Lauren</span><br/>
-			<span class="brands">Calvin Klein</span><br/>
-			<span class="brands">Hugo Boss</span><br/>
-			<span class="brands">Ted Baker</span><br/>
-			<span class="brands">…and similar</span><br/><br/>
-			<!--span class="context">Minimum RRP: £12</span-->
-		</div>
 	</div>
-		<?php 
-		};
-	
-	?>
-	
-	<?php if($_product->getData('num_boxers') > 0)  { ?>
-	<div id="planOther" class="clearfix">
 
-		<div class="item-pic-left"><img class="plans-item-img" src="<?php echo Mage::getDesign()->getSkinUrl('images/plans/underwear.jpg');?>" />
+	<?php /*Both*/ ?>
+	<div class="holder">
+		<div class="slider">
+			<ul class="box-content">
+			<?php foreach($products as $product): ?>
+				<li>
+					<img class="filterable <?php echo strtolower($k) .' '. strtolower($product->getSeason()); /* 'season' is the attribute code for style */?>" src="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize(191, 155);?>" width="191" height="155" />
+					<div class="plan-item-details">
+						<span class="black-title-small"><?php echo $product->getAttributeText('brand'); ?></span>
+						<!-- span class="plan-item-rrp"><?php // echo 'RRP &pound;' . number_format($product->getPrice(),0); ?></span -->
+					</div>
+				</li>
+			<?php endforeach; ?>
+			</ul>
 		</div>
-		
-		<div class="brands-list">
-			<span class="context"><?php echo $_product->getData('num_boxers'); ?> x Boxers From:</span><br/><br/>
-			<span class="brands">Calvin Klein</span><br/>
-			<span class="brands">Ralph Lauren</span><br/>
-			<span class="brands">Diesel</span><br/>
-			<span class="brands">Hugo Boss</span><br/>
-			<span class="brands">…and similar</span><br/><br/>
-			<!--span class="context">Minimum RRP: £25</span-->
-		</div>
+		<div class="left <?php echo strtolower($k); ?>-prev-btn" id="prev-btn"></div>		
+		<div class="right <?php echo strtolower($k); ?>-next-btn" id="next-btn"></div>	
 	</div>
-		<?php 
-		};
-	
-	?>
-	
-	<?php if($_product->getData('num_tshirts') > 0)  { ?>
-	<div id="planOther" class="clearfix">
+	<script type="text/javascript">
+		jQuery('.t-shirts-prev-btn').hide();
+		jQuery('.t-shirts-next-btn').hide();
+		jQuery('.shirts-prev-btn').hide();
+		jQuery('.shirts-next-btn').hide();
+	</script>
 
-		<div class="item-pic-left"><img class="plans-item-img" src="<?php echo Mage::getDesign()->getSkinUrl('images/plans/tee.jpg');?>" />
-		</div>
-		
-		<div class="brands-list">
-			<span class="context"><?php echo $_product->getData('num_tshirts'); ?> x T-shirt From:</span><br/><br/>
-			<span class="brands">Calvin Klein</span><br/>
-			<span class="brands">Hugo Boss</span><br/>
-			<span class="brands">G-Star</span><br/>
-			<span class="brands">Replay</span><br/>
-			<span class="brands">…and similar</span><br/><br/>
-			<!--span class="context">Minimum RRP: £40</span-->
-		</div>
-	</div>
-		<?php 
-		};
-	
-	?>
-	
-	<?php if($_product->getData('num_shirts') > 0)  { ?>
-	<div id="planOther" class="clearfix">
-
-		<div class="item-pic-left"><img class="plans-item-img" src="<?php echo Mage::getDesign()->getSkinUrl('images/plans/shirt.jpg');?>" />
-		</div>
-		
-		<div class="brands-list">
-			<span class="context"><?php echo $_product->getData('num_shirts'); ?> x Shirt From:</span><br/><br/>
-			<span class="brands">Hugo Boss</span><br/>
-			<span class="brands">Calvin Klein</span><br/>
-			<span class="brands">Paul Smith</span><br/>
-			<span class="brands">Ted Baker</span><br/>
-			<span class="brands">…and similar</span><br/><br/>
-			<!--span class="context">Minimum RRP: £90</span-->
-		</div>
-	</div>
-		<?php 
-		};
-	
-	?>
-	
-
+</div>
+<?php 
+	};
+}
+?>
 </div>
 <div class="plan product-info">
     <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
@@ -119,52 +97,41 @@
             <input type="hidden" name="related_product" id="related-products-field" value="" />
         </div>
 
-		<!--div class="discount-triangle-container">
-			<span class="discount-number"><?php // echo $_product->getDiscount() ; ?> % off</span>
-			<span class="discount-label">RRP</span>
+		<div class="discount-triangle-container">
+			<span class="discount-number"<?php if($_earner == 1) {echo ' style="margin:0 0 0 8px;"';} ?>><?php echo $_earner; ?>x POINT<?php if($_earner > 1) {echo 'S';} ?></span>
+			<span class="discount-label">PER £1</span>
 		</div>
 
 		<div class="discount-triangle">
-		</div-->		
+		</div>		
+		
 		<div class="price-box">
-			<!--span class="price"><?php // echo 'RRP &pound;' . number_format($_product->getPrice(), 0); ?></span-->
+			<h3><span class="the"></span><span class="plan-category-grid-title"><?php echo $_product->getName(); ?></span></h3>
+			<div class="clearfix"></div>
+			<!-- span class="price"><?php // echo 'RRP &pound;' . number_format($_product->getPrice(), 0); ?></span-->
 			<span class="special-price"><?php echo 'Plan Price &pound;<span id="final-price">' . number_format($_product->getSpecialPrice(), 0) . '</span>'; ?></span>
-			<div id="upgrade_tees-text" style="float:none;display:none" class="product-detail-checkbox">T-Shirts upgraded</div>
-			<div id="upgrade_shirts-text" style="float:none;display:none" class="product-detail-checkbox">Shirts Upgraded</div>
+			<div id="socks_style-text" style="float:none;" class="product-detail-checkbox nobg">Socks style: <span>choose</span></div>
+			<div id="boxers_style-text" style="float:none;" class="product-detail-checkbox nobg">Boxers style: <span>choose</span></div>
+			<?php 
+			if($_productName == 'boss' || $_productName == 'godfather') {
+			?>
+				<div id="t-shirts_style-text" style="float:none;" class="product-detail-checkbox nobg">T-Shirt style: <span>choose</span></div>
+			<?php }
+			
+			if($_productName == 'godfather') {
+			?>
+				<div id="shirts_style-text" style="float:none;" class="product-detail-checkbox nobg">Shirt style: <span>choose</span></div>
+			<?php } ?>
 		</div>
-	
-	<?php if (Mage::getSingleton('customer/session')->isLoggedIn()) {?>
 	
 	    <div class="container2">
 	    <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
 	    </div>
-	<?php } ?>
-    
+	    
 	    <div class="bottom-stuff">
 		    <div class="add-to-box">
-		    
-	    	<?php if (Mage::getSingleton('customer/session')->isLoggedIn()) {?>
-
 		        <?php echo $this->getChildHtml('addtocart') ?>
 		        <?php echo $this->getChildHtml('addto') ?>
-
-			<?php } else { ?>
-				
-				<div id="oa_social_login_precheckout"></div>
-				<span></span>	
-					<script type="text/javascript">
-						 oneall.api.plugins.social_login.build("oa_social_login_precheckout", {
-						  'providers' :  ['facebook', 'twitter'],
-						  'callback_uri': '<?php echo $this->getUrl('arush-oneall/rpx/token_url', array('_forced_secure' => false)) ?>',
-						  'css_theme_uri': '<?php echo $this->getSkinUrl(); ?>css/social-convert-precheckout.css'
-						 });
-					</script>
-					
-				<span class="or-text">or</span>
-				<a href="/customer/account/create" class="convert">Register to start!</a>
-				
-			<?php } ?>
-
 				<div class="delivery-date">
 					<?php $profile = Mage::helper('randomquote')->getProfileEasyDate(); /*remove Easy when enabling delivery drops*/?>
 					<?php echo $this->__('This plan delivers between <br/><span class="actual-date">') . $profile['delivery_date'] . $this->__('</span><br/>and<br/><span class="actual-date">') . $profile['delivery_date2'] . $this->__('</span><br/> and every month after that');?>	
@@ -175,7 +142,6 @@
 					<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-common')->toHtml(); ?>
 		    </div>
 	    </div>
-    
     </form>
     
 </div>
@@ -205,52 +171,80 @@ if ($upsells->count() > 0):
     //<![CDATA[
 	
 	$('product-options-wrapper').select('label').each(function(obj){
-		if (obj.innerHTML.toLowerCase().indexOf('shoe') >= 0) {
+		if (obj.innerHTML.toLowerCase().indexOf('shoe size') >= 0) {
 			obj.up().next().addClassName('sock-bg');
 			obj.up().next().innerHTML += '<span class="option-number"><?php echo $_product->getNumSocks(); ?>x</span>';
-		} else if (obj.innerHTML.toLowerCase().indexOf('t-shirt') >= 0) {
-			obj.up().next().addClassName('tshirt-bg');	
+		} else if (obj.innerHTML.toLowerCase().indexOf('t-shirt size') >= 0) {
+			obj.up().next().addClassName('t-shirt-bg');	
 			obj.up().next().innerHTML += '<span class="option-number"><?php echo $_product->getNumTshirts(); ?>x</span>';			
-		} else if (obj.innerHTML.toLowerCase().indexOf('boxer') >= 0) {
+		} else if (obj.innerHTML.toLowerCase().indexOf('boxer size') >= 0) {
 			obj.up().next().addClassName('boxer-bg');		
 			obj.up().next().innerHTML += '<span class="option-number"><?php echo $_product->getNumBoxers(); ?>x</span>';			
 		} else if (obj.innerHTML.toLowerCase().indexOf('shirt size') >= 0) {
 			obj.up().next().addClassName('shirt-bg');	
 			obj.up().next().innerHTML += '<span class="option-number"><?php echo $_product->getNumShirts(); ?>x</span>';
 		//upgrades
-		} else if (obj.innerHTML.toLowerCase().indexOf('tee') >= 0) {
-			obj.up().next().addClassName('tshirt-bg upgrade');	
-			obj.up().next().innerHTML += '<span class="option-number additional">Choose style:</span>';
-			var selection = jQuery('.tshirt-bg.upgrade select');
-			var selectedValue = jQuery.cookie("upgrade_tees_val");
-			if(jQuery.cookie("upgrade_tees_val")) {
-				optionToSelect = jQuery('.tshirt-bg.upgrade option:eq('+selectedValue+')');
-				optionToSelect.attr("selected","selected");
-				// if the selected value has 
-				optionPrice = parseInt(optionToSelect.attr("price"));
-				if(optionPrice > 0) {
-					addToPrice(optionPrice,"upgrade_tees");
-					jQuery('#upgrade_tees-text').show();
-				}
-			}
+		} else if (obj.innerHTML.toLowerCase().indexOf('boxer style') >= 0) {
+			obj.up().next().addClassName('boxer-bg style');
+			jQuery('.boxer-bg.style input').val('Both');
+		} else if (obj.innerHTML.toLowerCase().indexOf('sock style') >= 0) {
+			obj.up().next().addClassName('sock-bg style');
+			jQuery('.sock-bg.style input').val('Both');	
+		} else if (obj.innerHTML.toLowerCase().indexOf('t-shirt style') >= 0) {
+			obj.up().next().addClassName('t-shirt-bg style');
+			jQuery('.t-shirt-bg.style input').val('Designer T-shirts');	
 		} else if (obj.innerHTML.toLowerCase().indexOf('shirt style') >= 0) {
-			obj.up().next().addClassName('shirt-bg upgrade select');
+			obj.up().next().addClassName('shirt-bg style');	
+			jQuery('.shirt-bg.style input').val('Work Shirts');	
+
+		} else if (obj.innerHTML.toLowerCase().indexOf('t-shirt upgrade') >= 0) {
+			obj.up().next().addClassName('t-shirt-bg upgrade');	
 			obj.up().next().innerHTML += '<span class="option-number additional">Choose style:</span>';
-			var selection = jQuery('.shirt-bg.upgrade select');
-			var selectedValue = jQuery.cookie("upgrade_shirts_val");
-			if(jQuery.cookie("upgrade_shirts_val")) {
-				optionToSelect = jQuery('.shirt-bg.upgrade option:eq('+selectedValue+')');
-				optionToSelect.attr("selected","selected");
-				// if the selected value has 
-				optionPrice = parseInt(optionToSelect.attr("price"));
-				if(optionPrice > 0) {
-					addToPrice(optionPrice,"upgrade_shirts");
-					jQuery('#upgrade_shirts-text').show();
-				}
-			}
+			
+		} else if (obj.innerHTML.toLowerCase().indexOf('shirt upgrade') >= 0) {
+			obj.up().next().addClassName('shirt-bg upgrade');
+			obj.up().next().innerHTML += '<span class="option-number additional">Choose style:</span>';
+			
 		}
 	});
+	//hide all inputs
+	jQuery('.style input').parent().parent().hide();
+	jQuery('.upgrade select').parent().parent().hide();
+
+	<?php 
+			if($_productName == 'godfather') {
+			?>
+				//add correct names and prices to buttons. assuming 2 options
+				var c=1;
+				while(c < 3) {
+					var realTeeText = jQuery('.t-shirt-bg.upgrade select option:eq('+c+')').text();
+					jQuery('#t-shirts_option_'+c).attr('title',realTeeText);
+					jQuery('#t-shirts_option_'+c).text(realTeeText);
+
+					var realShirtText = jQuery('.shirt-bg.upgrade select option:eq('+c+')').text();
+					jQuery('#shirts_option_'+c).attr('title',realShirtText);
+					jQuery('#shirts_option_'+c).text(realShirtText);
+
+					c++;
+				}
+			<?php }
+			
+			if($_productName == 'boss') {
+				//add correct names and prices to buttons. assuming 2 options
+				var c=1;
+				while(c < 3) {
+					var realTeeText = jQuery('.t-shirt-bg.upgrade select option:eq('+c+')').text();
+					jQuery('#t-shirts_option_'+c).attr('title',realTeeText);
+					jQuery('#t-shirts_option_'+c).text(realTeeText);
+
+					c++;
+				}
+			?>
+			<?php } ?>
+
 	
+	
+
 
     var productAddToCartForm = new VarienForm('product_addtocart_form');
     productAddToCartForm.submit = function(button, url) {

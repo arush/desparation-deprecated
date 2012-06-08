@@ -1978,9 +1978,10 @@ width: 231px;
 	color: white;
 	position: absolute;
 	font-size: 14px;
-clear:both;
+	clear:both;
 
 }
+.plans-list .discount-triangle-container span.discount-number {font-size:13px;}
 
 .price-box-bundle .discount-triangle-container span.discount-label, .plans-list .discount-triangle-container span.discount-label, .plan.product-info .discount-triangle-container span.discount-label, .products-grid .discount-triangle-container span.discount-label {
 	margin: 17px 0 0 19px;
@@ -1988,9 +1989,10 @@ clear:both;
 	clear:both;
 	display:block;
 }
+.plans-list .discount-triangle-container span.discount-label {font-size:13px;}
 
 .plans-list .discount-triangle-container span.discount-label {
-	margin: 17px 0 0 26px;
+	margin: 17px 0 0 19px;
 }
 
 .price-box-bundle .discount-triangle, .plans-list .discount-triangle, .plan.product-info .discount-triangle, .products-grid .discount-triangle {
@@ -1998,14 +2000,14 @@ clear:both;
 	height: 0;
 	border-left: 100px solid transparent;
 	border-right: 0px solid transparent;
-	border-top: 100px solid #D2002B;
+	border-top: 100px solid #005AFF;
 	position:absolute;
 	margin: -21px 0 0 328px;
 }
 
 .plan.product-info.gift .discount-triangle {
 	border-left: 120px solid transparent;
-	border-top: 120px solid #D2002B;
+	border-top: 120px solid #005AFF;
 
 }
 
@@ -2220,6 +2222,9 @@ clear:both;
 	margin:10px;
 	float:left;
 }
+
+.product-detail-checkbox.nobg {background-image:none;}
+.product-detail-checkbox.nobg span {color:#d2002b;}
 
 .plans-list .plan-graphics {
 	padding:20px 0;
@@ -2968,18 +2973,18 @@ body, .main {
 }
 
 
-#planOther {
+.planOther {
 	margin:35px 0;
 }
 
-#planOther .brands-list {
+.planOther .brands-list {
 	margin-top: 18px;
 	float:left;
 	text-align:center;
 	
 }
 
-#planOther .brands-list span.context {
+.planOther .brands-list span.context {
 	color:#595959;
 	text-transform: uppercase;
 	font-family: "proxima-nova";font-weight:bold;
@@ -2987,7 +2992,7 @@ body, .main {
 	text-align: center;
 }
 
-#planOther .brands-list span.brands {
+.planOther .brands-list span.brands {
 	background-color: #000;
 	text-align: center;
 	font-family: "proxima-nova";font-weight:bold;
@@ -2997,12 +3002,18 @@ body, .main {
 	padding:6px;
 }
 
-#planOther img.plans-item-img {
+.planOther img.plans-item-img {
 	float:left;
 	clear:both;
 	margin: 0 79px 20px 85px;
 }
-.gift-media #planOther img.plans-item-img {
+
+.planOther .style-chooser {
+	margin: 35px auto;
+	width:306px;
+}
+
+.gift-media .planOther img.plans-item-img {
 	margin:0 43px 20px 17px;
 }
 
@@ -3104,7 +3115,7 @@ a.convert:active, button.convert:active, .recurly button.submit:active {
 	
 }
 
-a.secondary {
+a.secondary, input.convert.secondary {
 	background-image: -moz-linear-gradient(center top , #ddd, #aaa);
 	background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0, #ddd),color-stop(1, #aaa));
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#ddd', EndColorStr='#aaa');
@@ -3165,6 +3176,9 @@ a.convert.mid {
 	
 
 }
+
+.planOther a.convert { width:100px;font-size:11px;}
+.planOther a.convert.t-shirts, a.convert.shirts { width:151px;font-size:11px;}
 
 a.convert.active {
 	-webkit-box-shadow: inset 0 3px 9px rgb(0,0,0), 0 1px 0 rgba(255,255,255,0.2);
