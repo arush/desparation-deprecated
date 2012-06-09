@@ -5,6 +5,17 @@
 ?>    
 <?php if($_productCollection->count()): ?>
 <?php $counter = $_productCollection->count(); ?>
+
+<?php /* gift page */
+	$category = Mage::registry('current_category');
+	$giftCategory = false;
+	if($category) {
+		$categoryId = $category->getId();
+		if($categoryId ==135){ $giftCategory = true;}
+	}
+?>
+
+
 <?php // echo  $this->getLayout()->createBlock('cms/block')->setBlockId('next-delivery-drop')->toHtml() ; ?>
 
 
@@ -32,7 +43,7 @@
 		</div-->		
 		
 		
-		<?php if($product->getTypeId() == 'giftcard') { ?>
+		<?php if($giftCategory == true) { ?>
 		
 			<h3><span class="plan-category-grid-title"><?php echo $product->getName(); ?></span></h3>
 			<!-- span class="rrp">RRP <?php /*
@@ -41,11 +52,7 @@
  			 echo Mage::helper('core')->currency($_rrp,true,false);  
 			 */
 			 ?></span-->
-			<span class="special-price">Gift Price <?php
-			
-			 $_price = $product->getGiftSpecialPrice();
- 			 echo Mage::helper('core')->currency($_price,true,false);  
-			 ?>
+			<span class="special-price">Gift Price &pound;<?php echo number_format($product->getSpecialPrice(),0);?>
 			</span>
 
 			<div class="plan-checks clearfix">
@@ -53,8 +60,8 @@
 			</div>
 
 		<?php } 
-		else { ?>
-				
+		else { echo 'gift category:' . $giftCategory; ?>
+			
 			<h3><span class="the"></span><span class="plan-category-grid-title"><?php echo $product->getName(); ?></span></h3>
 			<!--span class="rrp">RRP &pound;<?php // echo number_format($product->getPrice(),0);?></span-->
 			<span class="special-price">From &pound;<?php echo number_format($product->getSpecialPrice(),0);?>
@@ -83,7 +90,7 @@
 		
 		
 		<div class="plan-checks">
-		<?php if($product->getTypeId() == 'giftcard') { ?>
+		<?php if($giftCategory == true) { ?>
 			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-gift')->toHtml(); ?>
 		<?php } 
 		else { ?>
