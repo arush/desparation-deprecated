@@ -46,15 +46,15 @@ if ($products->count() > 0){
 	<h1 class="black-title-bar main-view"><?php echo $this->__($k);?></h1>
 	<div class="style-chooser clearfix">
 		<?php if(strtolower($k) == 'socks' || strtolower($k) == 'boxers') { ?>
-			<a title="Classic" onclick="handleClick(this);" class="convert secondary lt <?php echo $this->__(strtolower($k));?>" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Classic</a>
-			<a title="Disco" onclick="handleClick(this);" class="convert secondary lt mid <?php echo $this->__(strtolower($k));?>" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Disco</a>
-			<a title="Both" onclick="handleClick(this);" class="convert secondary lt rt <?php echo $this->__(strtolower($k));?> active" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Both</a>
+			<a title="classic" onclick="handleClick(this);" class="convert secondary lt <?php echo $this->__(strtolower($k));?>" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Classic</a>
+			<a title="disco" onclick="handleClick(this);" class="convert secondary lt mid <?php echo $this->__(strtolower($k));?>" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Disco</a>
+			<a title="both" onclick="handleClick(this);" class="convert secondary lt rt <?php echo $this->__(strtolower($k));?> active" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Both</a>
 		<?php } else if(strtolower($k) == 't-shirts') { ?>
-			<a title="Designer T-shirts" onclick="handleClick(this);" class="convert secondary lt <?php echo $this->__(strtolower($k));?> active" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Designer Tee</a>
-			<a title="Designer Polos +£30" onclick="handleClick(this);" class="convert secondary rt <?php echo $this->__(strtolower($k));?>" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Designer Polo (+£30)</a>
+			<a title="designer-tee" onclick="handleClick(this);" class="convert secondary lt <?php echo $this->__(strtolower($k));?>" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>"></a>
+			<a title="designer-polo" onclick="handleClick(this);" class="convert secondary rt <?php echo $this->__(strtolower($k));?>" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>"></a>
 		<?php } else if(strtolower($k) == 'shirts') { ?>
-			<a title="Work Shirts" onclick="handleClick(this);" class="convert secondary lt <?php echo $this->__(strtolower($k));?> active" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Work Shirts</a>
-			<a title="Designer Shirts +£40" onclick="handleClick(this);" class="convert secondary rt <?php echo $this->__(strtolower($k));?>" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Designer Shirts (+£40)</a>
+			<a title="work-shirt" onclick="handleClick(this);" class="convert secondary lt <?php echo $this->__(strtolower($k));?>" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>"></a>
+			<a title="designer-shirt" onclick="handleClick(this);" class="convert secondary rt <?php echo $this->__(strtolower($k));?>" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>"></a>
 		<?php } ?>
 		
 	</div>
@@ -65,7 +65,7 @@ if ($products->count() > 0){
 			<ul class="box-content">
 			<?php foreach($products as $product): ?>
 				<li>
-					<img class="filterable <?php echo strtolower($k) .' '. strtolower($product->getSeason()); /* 'season' is the attribute code for style */?>" src="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize(191, 155);?>" width="191" height="155" />
+					<img class="filterable <?php echo strtolower($k) .' '. strtolower($product->getSeason()); /* 'season' is the attribute code for style */?>" src="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize(191, 229);?>" width="191" height="229" />
 					<div class="plan-item-details">
 						<span class="black-title-small"><?php echo $product->getAttributeText('brand'); ?></span>
 						<!-- span class="plan-item-rrp"><?php // echo 'RRP &pound;' . number_format($product->getPrice(),0); ?></span -->
@@ -77,12 +77,6 @@ if ($products->count() > 0){
 		<div class="left <?php echo strtolower($k); ?>-prev-btn" id="prev-btn"></div>		
 		<div class="right <?php echo strtolower($k); ?>-next-btn" id="next-btn"></div>	
 	</div>
-	<script type="text/javascript">
-		jQuery('.t-shirts-prev-btn').hide();
-		jQuery('.t-shirts-next-btn').hide();
-		jQuery('.shirts-prev-btn').hide();
-		jQuery('.shirts-next-btn').hide();
-	</script>
 
 </div>
 <?php 
@@ -170,6 +164,16 @@ if ($upsells->count() > 0):
 
     //<![CDATA[
 	
+    // clear the cookies on page load
+	if(jQuery.cookie("upgrade_tees") != null) {
+		jQuery.cookie("upgrade_tees",null,{ path: '/'});
+		jQuery.cookie("upgrade_tees_val",null,{ path: '/'});
+	}
+	if(jQuery.cookie("upgrade_shirts") != null) {
+		jQuery.cookie("upgrade_shirts",null,{ path: '/'});
+		jQuery.cookie("upgrade_shirts_val",null,{ path: '/'});
+	}
+	
 	$('product-options-wrapper').select('label').each(function(obj){
 		if (obj.innerHTML.toLowerCase().indexOf('shoe size') >= 0) {
 			obj.up().next().addClassName('sock-bg');
@@ -211,39 +215,18 @@ if ($upsells->count() > 0):
 	jQuery('.style input').parent().parent().hide();
 	jQuery('.upgrade select').parent().parent().hide();
 
-	<?php 
-			if($_productName == 'godfather') {
-			?>
-				//add correct names and prices to buttons. assuming 2 options
-				var c=1;
-				while(c < 3) {
-					var realTeeText = jQuery('.t-shirt-bg.upgrade select option:eq('+c+')').text();
-					jQuery('#t-shirts_option_'+c).attr('title',realTeeText);
-					jQuery('#t-shirts_option_'+c).text(realTeeText);
+	<?php /* add correct names and prices to filter buttons */
+		if($_productName == 'godfather') {
+		?>
+			correctNames('t-shirt');
+			correctNames('shirt');
+		<?php }
+		
+		if($_productName == 'boss') { ?>
 
-					var realShirtText = jQuery('.shirt-bg.upgrade select option:eq('+c+')').text();
-					jQuery('#shirts_option_'+c).attr('title',realShirtText);
-					jQuery('#shirts_option_'+c).text(realShirtText);
-
-					c++;
-				}
-			<?php }
-			
-			if($_productName == 'boss') {
-				//add correct names and prices to buttons. assuming 2 options
-				var c=1;
-				while(c < 3) {
-					var realTeeText = jQuery('.t-shirt-bg.upgrade select option:eq('+c+')').text();
-					jQuery('#t-shirts_option_'+c).attr('title',realTeeText);
-					jQuery('#t-shirts_option_'+c).text(realTeeText);
-
-					c++;
-				}
-			?>
-			<?php } ?>
-
-	
-	
+		?>
+		<?php }
+	?>
 
 
     var productAddToCartForm = new VarienForm('product_addtocart_form');

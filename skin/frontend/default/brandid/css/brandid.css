@@ -2224,7 +2224,8 @@ clear:both;
 }
 
 .product-detail-checkbox.nobg {background-image:none;}
-.product-detail-checkbox.nobg span {color:#d2002b;}
+.product-detail-checkbox.nobg span {color:#d2002b; text-transform:capitalize;}
+.product-detail-checkbox span {color:#51933A; text-transform:capitalize;}
 
 .plans-list .plan-graphics {
 	padding:20px 0;

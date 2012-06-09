@@ -9,6 +9,15 @@
 // 	$j.cookie("upgrade_shirts", null);
 // }
 
+function correctNames(g) {
+	var c=1;
+	while(c < 3) {
+		var realText = jQuery('.'+g+'-bg.upgrade select option:eq('+c+')').text();
+		jQuery('#'+g+'s_option_'+c).text(realText);
+		c++;
+	}
+}
+
 function handleClick(el) {
 	// find the item being chosen
 	var e = $j(el);
@@ -30,44 +39,44 @@ function handleClick(el) {
 	e.addClass('active');
 
 	// filter the images
-	if(style == 'Classic') {
+	if(style == 'classic') {
 		$j('img.filterable.'+item).filter('.disco').parent().fadeOut();
 		$j('img.filterable.'+item).filter('.classic').parent().fadeIn();
 		$j('.'+item+'-prev-btn').hide();
 		$j('.'+item+'-next-btn').hide();
 
 	}
-	else if(style == 'Disco') {
+	else if(style == 'disco') {
 		$j('img.filterable.'+item).filter('.classic').parent().fadeOut();
 		$j('img.filterable.'+item).filter('.disco').parent().fadeIn();	
 		$j('.'+item+'-prev-btn').hide();
 		$j('.'+item+'-next-btn').hide();
 	}
-	else if(style == 'Designer T-shirts') {
+	else if(style == 'designer-tee') {
 		$j('img.filterable.'+item).filter('.designer-polo').parent().fadeOut();
 		$j('img.filterable.'+item).filter('.designer-tee').parent().fadeIn();	
 		$j('.'+item+'-prev-btn').hide();
 		$j('.'+item+'-next-btn').hide();
 	}
-	else if(style == 'Designer Polos +£30') {
+	else if(style == 'designer-polo') {
 		$j('img.filterable.'+item).filter('.designer-tee').parent().fadeOut();
 		$j('img.filterable.'+item).filter('.designer-polo').parent().fadeIn();	
 		$j('.'+item+'-prev-btn').hide();
 		$j('.'+item+'-next-btn').hide();
 	}
-	else if(style == 'Work shirts') {
+	else if(style == 'work-shirt') {
 		$j('img.filterable.'+item).filter('.designer-shirt').parent().fadeOut();
 		$j('img.filterable.'+item).filter('.work-shirt').parent().fadeIn();	
 		$j('.'+item+'-prev-btn').hide();
 		$j('.'+item+'-next-btn').hide();
 	}
-	else if(style == 'Designer Shirts +£40') {
+	else if(style == 'designer-shirt') {
 		$j('img.filterable.'+item).filter('.work-shirt').parent().fadeOut();
 		$j('img.filterable.'+item).filter('.designer-shirt').parent().fadeIn();	
 		$j('.'+item+'-prev-btn').hide();
 		$j('.'+item+'-next-btn').hide();
 	}
-	else if(style == 'Both') {
+	else if(style == 'both') {
 		$j('img.filterable.'+item).filter('.classic').parent().fadeIn();
 		$j('img.filterable.'+item).filter('.disco').parent().fadeIn();
 		$j('.'+item+'-prev-btn').show();
@@ -78,7 +87,8 @@ function handleClick(el) {
 		$j('.'+itemNoS+'-bg.style input').val(style);
 		
 		//rewrite summary
-		$j('#'+item+'_style-text span').text(style);
+		var spanText = style.replace("-"," ");
+		$j('#'+item+'_style-text span').text(spanText);
 		$j('#'+item+'_style-text').removeClass('nobg');
 
 	// select the dropdown equivalent
