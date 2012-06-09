@@ -93,10 +93,21 @@ document.observe('dom:loaded', function(){
 
 		/* preselect addons based on cookies */
 		if(jQuery.cookie('upgrade_tees') > 0) {
-			jQuery('.add_on_upgradetees').click();
+			if(jQuery('.add_on_upgradetees').length > 0) {
+				jQuery('.add_on_upgradetees').click();
+			}
+			else if(jQuery('.add_on_upgrade-tees').length > 0) {
+				jQuery('.add_on_upgrade-tees').click();
+			}
 		}
 		if(jQuery.cookie('upgrade_shirts') > 0) {
-			jQuery('.add_on_upgradeshirts').click();
+			if(jQuery('.add_on_upgradeshirts').length > 0) {
+				jQuery('.add_on_upgradeshirts').click();
+			}
+			else if(jQuery('.add_on_upgrade-shirts').length > 0) {
+				jQuery('.add_on_upgrade-shirts').click();
+			}
+			
 		}
 	};
 	
