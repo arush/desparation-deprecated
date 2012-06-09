@@ -2975,7 +2975,7 @@ body, .main {
 
 
 .planOther {
-	margin:35px 0;
+	margin:20px 0;
 }
 
 .planOther .brands-list {
@@ -3010,8 +3010,19 @@ body, .main {
 }
 
 .planOther .style-chooser {
-	margin: 35px auto;
+	margin: 16px auto;
 	width:306px;
+}
+
+.planOther .helptext {
+	background-image: url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAAEAYABgAAD//gAfTEVBRCBUZWNobm9sb2dpZXMgSW5jLiBWMS4wMQD/2wBDAAICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgL/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsBAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKCxAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6EQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/wAARCAARABEDAREAAhEAAxEA/9oADAMBAAIRAxEAPwD9sfid48vvAGl6Pe6foE2vXOra9YaLHbxy+RHG12XYBpAj4nuRGbezVgsZuHVpH2p5cgB6UDwCRtOASDjI9jjjjpxxQAtAGJ4i8P6b4o0XUNB1eEzWGow+VIFOyWF1ZZILm3kHMVzazpHcW8o+5NGjYIBBAPPvA1l8WdL16803xfqGjat4TsNMW00jVYUEWsajcxSwrbXd5GGeQXD2nnLqXntsa5WJ7Zpd0s0gB65QAUAFABQB/9k=);
+	padding-left:20px;
+	background-repeat:no-repeat;
+	font-family:"proxima-nova",Arial,sans-serif;
+	font-size:14px;
+	color:#999;
+	width:64%;
+	margin:0 auto;
 }
 
 .gift-media .planOther img.plans-item-img {

@@ -33,6 +33,7 @@ foreach($_product->getRelatedLinkCollection() as $related) 	{
 foreach ($pieces as $k => $v) {
 	$products = Mage::getModel('catalog/product')
 		->getCollection()
+		->addAttributeToSelect('image')
 		->addAttributeToSelect('rmscategory')
 		->addAttributeToSelect('season')
 		->addAttributeToSelect('brand')
@@ -49,12 +50,15 @@ if ($products->count() > 0){
 			<a title="classic" onclick="handleClick(this);" class="convert secondary lt <?php echo $this->__(strtolower($k));?>" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Classic</a>
 			<a title="disco" onclick="handleClick(this);" class="convert secondary lt mid <?php echo $this->__(strtolower($k));?>" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Disco</a>
 			<a title="both" onclick="handleClick(this);" class="convert secondary lt rt <?php echo $this->__(strtolower($k));?> active" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Both</a>
+
 		<?php } else if(strtolower($k) == 't-shirts') { ?>
 			<a title="designer-tee" onclick="handleClick(this);" class="convert secondary lt <?php echo $this->__(strtolower($k));?>" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>"></a>
 			<a title="designer-polo" onclick="handleClick(this);" class="convert secondary rt <?php echo $this->__(strtolower($k));?>" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>"></a>
+
 		<?php } else if(strtolower($k) == 'shirts') { ?>
 			<a title="work-shirt" onclick="handleClick(this);" class="convert secondary lt <?php echo $this->__(strtolower($k));?>" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>"></a>
 			<a title="designer-shirt" onclick="handleClick(this);" class="convert secondary rt <?php echo $this->__(strtolower($k));?>" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>"></a>
+
 		<?php } ?>
 		
 	</div>
@@ -75,7 +79,18 @@ if ($products->count() > 0){
 			</ul>
 		</div>
 		<div class="left <?php echo strtolower($k); ?>-prev-btn" id="prev-btn"></div>		
-		<div class="right <?php echo strtolower($k); ?>-next-btn" id="next-btn"></div>	
+		<div class="right <?php echo strtolower($k); ?>-next-btn" id="next-btn"></div>
+
+		<?php /* discover call text */
+		if(strtolower($k) == 'socks') { ?>
+			<div class="helptext">Prefer long/short/don't care? Tell us more on the discovery call.</div>	
+		<?php } else if(strtolower($k) == 'boxers') { ?>
+			<div class="helptext">Prefer a particular brand? Tell us more on the discovery call.</div>	
+		<?php } else if(strtolower($k) == 't-shirts') { ?>
+			<div class="helptext">Crew? V-neck? Graphic tees? Tell us more on the discovery call.</div>	
+		<?php } else if(strtolower($k) == 'shirts') { ?>
+			<div class="helptext">Slim? Classic? Double-cuff? Tell us more on the discovery call.</div>	
+		<?php } ?>
 	</div>
 
 </div>

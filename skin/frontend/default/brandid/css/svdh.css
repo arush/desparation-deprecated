@@ -6,14 +6,14 @@
 }
 .sliders .holder {
 	width: 630px;
-	height: 210px;
+	height: 296px;
 	overflow: hidden;
 
 }
 
 .sliders .holder .slider {
 	position: relative;
-	height: 210px;
+	height: 274px;
 	left: 0px;
 	margin: 0 27px;
 }
@@ -21,7 +21,7 @@
 .sliders .holder .slider ul li {
 	display: block;
 	width: 191px;
-	height: 210px;
+	height: 254px;
 	float: left;
 	background: #fff;
 }
@@ -29,7 +29,7 @@
 .sliders .holder .left {
 	position: absolute;
 	width: 34px;
-	height: 210px;
+	height: 254px;
 	margin-top: -210px;	
 	background: url('../images/slider-left.png') no-repeat 50% 50%;
 	cursor: pointer;
@@ -37,9 +37,9 @@
 
 .sliders .holder .right {
 	position: absolute;
-	margin-left: 596px;
+	margin-left: 590px;
 	width: 34px;
-	height: 210px;	
+	height: 254px;	
 	margin-top: -210px;
 	background: url('../images/slider-right.png') no-repeat 50% 50%;
 	cursor: pointer;
