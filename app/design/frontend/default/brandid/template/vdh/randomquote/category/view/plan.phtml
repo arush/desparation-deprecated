@@ -23,13 +23,13 @@
 
 	<?php $counter--;?>
 	<li<?php echo ($counter == 0) ? ' class="last"': ''; ?>>
-		<div class="discount-triangle-container">
-			<span class="discount-number"<?php if($_earner == 1) {echo ' style="margin:0 0 0 8px;"';} ?>><?php echo $_earner; ?>x POINT<?php if($_earner > 1) {echo 'S';} ?></span>
+		<!-- div class="discount-triangle-container">
+			<span class="discount-number"<?php // if($_earner == 1) {echo ' style="margin:0 0 0 8px;"';} ?>><?php // echo $_earner; ?>x POINT<?php // if($_earner > 1) {echo 'S';} ?></span>
 			<span class="discount-label">PER £1</span>
 		</div>
 
 		<div class="discount-triangle">
-		</div>		
+		</div-->		
 		
 		
 		<?php if($product->getTypeId() == 'giftcard') { ?>
