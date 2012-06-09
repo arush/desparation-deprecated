@@ -11,11 +11,21 @@
 
 <ul class="plans-list">
 	<?php foreach($_productCollection as $product):?>
+	
+	<?php $_productName = strtolower($product->getName());
+	if($_productName == 'godfather') {
+		$_earner = 3;
+	} else if($_productName == 'boss') {
+		$_earner = 2;
+	} else {
+		$_earner = 1;
+	} ?>
+
 	<?php $counter--;?>
 	<li<?php echo ($counter == 0) ? ' class="last"': ''; ?>>
 		<div class="discount-triangle-container">
-			<span class="discount-number"><?php echo $product->getDiscount() ; ?> % off</span>
-			<span class="discount-label">RRP</span>
+			<span class="discount-number"<?php if($_earner == 1) {echo ' style="margin:0 0 0 8px;"';} ?>><?php echo $_earner; ?>x POINT<?php if($_earner > 1) {echo 'S';} ?></span>
+			<span class="discount-label">PER £1</span>
 		</div>
 
 		<div class="discount-triangle">
@@ -25,11 +35,12 @@
 		<?php if($product->getTypeId() == 'giftcard') { ?>
 		
 			<h3><span class="plan-category-grid-title"><?php echo $product->getName(); ?></span></h3>
-			<span class="rrp">RRP <?php
+			<!-- span class="rrp">RRP <?php /*
 			
  			 $_rrp = $product->getGiftRrp();
  			 echo Mage::helper('core')->currency($_rrp,true,false);  
-			 ?></span>
+			 */
+			 ?></span-->
 			<span class="special-price">Gift Price <?php
 			
 			 $_price = $product->getGiftSpecialPrice();
@@ -45,8 +56,8 @@
 		else { ?>
 				
 			<h3><span class="the"></span><span class="plan-category-grid-title"><?php echo $product->getName(); ?></span></h3>
-			<span class="rrp">RRP &pound;<?php echo number_format($product->getPrice(),0);?></span>
-			<span class="special-price">Only &pound;<?php echo number_format($product->getSpecialPrice(),0);?>
+			<!--span class="rrp">RRP &pound;<?php // echo number_format($product->getPrice(),0);?></span-->
+			<span class="special-price">From &pound;<?php echo number_format($product->getSpecialPrice(),0);?>
 				<span class="per-month">per delivery</span>
 			</span>
 		
