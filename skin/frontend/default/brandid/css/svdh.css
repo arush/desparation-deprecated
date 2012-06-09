@@ -6,14 +6,14 @@
 }
 .sliders .holder {
 	width: 630px;
-	height: 210px;
+	height: 296px;
 	overflow: hidden;
 
 }
 
 .sliders .holder .slider {
 	position: relative;
-	height: 210px;
+	height: 274px;
 	left: 0px;
 	margin: 0 27px;
 }
@@ -21,7 +21,7 @@
 .sliders .holder .slider ul li {
 	display: block;
 	width: 191px;
-	height: 210px;
+	height: 254px;
 	float: left;
 	background: #fff;
 }
@@ -29,7 +29,7 @@
 .sliders .holder .left {
 	position: absolute;
 	width: 34px;
-	height: 210px;
+	height: 254px;
 	margin-top: -210px;	
 	background: url('../images/slider-left.png') no-repeat 50% 50%;
 	cursor: pointer;
@@ -37,9 +37,9 @@
 
 .sliders .holder .right {
 	position: absolute;
-	margin-left: 596px;
+	margin-left: 590px;
 	width: 34px;
-	height: 210px;	
+	height: 254px;	
 	margin-top: -210px;
 	background: url('../images/slider-right.png') no-repeat 50% 50%;
 	cursor: pointer;
@@ -92,7 +92,7 @@
 .sock-bg {
 	background: #595959 url('../images/plans-bg-socks.png') no-repeat 55px 50%;	
 }
-.tshirt-bg {
+.t-shirt-bg {
 	background: #595959 url('../images/plans-bg-tshirt.png') no-repeat 55px 50%;	
 }
 .boxer-bg {
@@ -102,6 +102,10 @@
 	background: #595959 url('../images/plans-bg-shirt.png') no-repeat 55px 50%;	
 }
 
+.product-options dd.t-shirt-bg.upgrade, .product-options dd.shirt-bg.upgrade {
+	background-image:none;
+	margin:0 0 15px !important;
+}
 .option-number {
 	display: block;
 	position: absolute;
@@ -111,6 +115,11 @@
 	margin-left: 15px;
 	margin-top: -35px;
 	color: #fff;
+}
+
+.option-number.additional {
+	font-size: 14px;
+	line-height: 28px;
 }
 
 

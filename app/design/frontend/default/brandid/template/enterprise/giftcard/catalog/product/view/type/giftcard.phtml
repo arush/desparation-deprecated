@@ -40,27 +40,28 @@
     <?php if (!$this->isOpenAmountAvailable($_product) && (count($this->getAmounts($_product)) == 1)): ?>
         <?php $_amount = $this->getAmounts($_product); $_amount = array_shift($_amount); ?>
         <div class="plan product-info gift">
-	        <div class="discount-triangle-container">
-				<span class="discount-number"><?php echo $_product->getDiscount() ; ?> % off</span>
+	        <!--div class="discount-triangle-container">
+				<span class="discount-number"><?php // echo $_product->getDiscount() ; ?> % off</span>
 				<span class="discount-label">RRP</span>
-			</div>
-			<div class="discount-triangle">
-			</div>	
+			</div-->
+			<!--div class="discount-triangle">
+			</div-->	
 
 		</div>
 				
         <div class="price-box">
             
-            <span class="price">RRP <?php
+            <!-- span class="price">RRP <?php /*
 			
  			 $_rrp = $_product->getGiftRrp();
  			 echo Mage::helper('core')->currency($_rrp,true,false);  
-			 ?></span>
+			 */?></span-->
 			<span class="special-price">Gift Price <?php
 			
 			 $_price = $_product->getGiftSpecialPrice();
  			 echo Mage::helper('core')->currency($_price,true,false);  
-			 ?>
+			 
+             ?>
 			</span>
             
             
