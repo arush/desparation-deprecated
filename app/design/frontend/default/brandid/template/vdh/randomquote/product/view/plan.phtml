@@ -231,13 +231,19 @@ if ($upsells->count() > 0):
 	jQuery('.upgrade select').parent().parent().hide();
 
 	<?php /* add correct names and prices to filter buttons */
-		if($_productName == 'godfather') {
+		
+		$god   = 'godfather';
+		$boss = 'boss';
+		$containsGod = strpos($$_productName, $god);
+		$containsBoss = strpos($$_productName, $boss);
+
+		if($containsGod !== false) {
 		?>
 			correctNames('t-shirt');
 			correctNames('shirt');
 		<?php }
 		
-		if($_productName == 'boss') { ?>
+		if($containsBoss !== false) { ?>
 			correctNames('t-shirt');
 		<?php }
 	?>
