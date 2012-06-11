@@ -109,6 +109,11 @@
         <remove name="popup_header" />
     </keep_calm_itsfathersday>
 
+    <keep_calm_wearepros>
+        <remove name="popup" />
+        <remove name="popup_header" />
+    </keep_calm_wearepros>
+
 	<cms_page_view>
     	<remove name="popup" />
 		<remove name="popup_header" />
