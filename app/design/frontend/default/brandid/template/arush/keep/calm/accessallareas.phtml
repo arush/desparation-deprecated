@@ -1,0 +1,370 @@
+<?php 
+
+Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("plans.html"));
+
+	$refererSet = false;
+	if(Mage::getSingleton('core/session')->getReferer()) {
+		$refererSet = true;
+	}
+
+	if($refererSet) {
+		//get the referrer
+		if (isset($_SERVER['HTTP_REFERER'])) {
+			$referer = $_SERVER['HTTP_REFERER'];
+		} else {
+			$referer = "unknown";
+		}
+		//save it in a session variable
+		Mage::getSingleton('core/session')->setReferer($referer); // store session data
+	}
+	else {
+		$referer = Mage::getSingleton('core/session')->getReferer();
+	}
+	
+?>
+
+<div class="ghost-header"></div>
+<div class="share-header clearfix">
+	<div class="trans-back"></div>
+	<div class="share-header-container container clearfix">
+			<a id="logo" href="/" class="logo-button">
+				<div class="gift-logo">
+				</div>
+			</a>
+		<nav>
+			<select onchange="window.open(this.options[this.selectedIndex].value,'_top')">
+			    <option value="" selected="selected">Navigate</option>
+			    <option value="/">Home</option>
+			    <option value="http://www.getbrandid.com/customer/account/login">Login</option>
+			    <option value="/keep/calm/wearepros">Who</option>
+			    <option value="http://blog.getbrandid.com/">Blog</option>
+			  </select>
+		</nav>
+
+		<div id="wide-nav">
+			<?php if (Mage::getSingleton('customer/session')->isLoggedIn()) {?>
+				<div class="top-name">
+					
+					<!--oneall thumbnail -->
+					<?php // TODO put this in the module code
+					
+					$customerID = Mage::getSingleton('customer/session')->getId();
+					//check if user has a Facebook ID or twitter ID
+					$model = Mage::getModel('oneall/identifiers');
+					$collection = $model->getCollection()
+						->addFieldToFilter('customer_id',$customerID)
+						->addFieldToFilter('provider',array('in' => array('Facebook','twitter')));
+					foreach($collection as $item) {
+					   if($item['provider'] === 'Facebook') {
+			   				$facebookID = $item['identifier'];
+			   			}
+			   			else if($item['provider'] === 'twitter') {
+			   				$twitterID = $item['profile_name'];
+			   			};
+					   
+					}
+					
+					
+					if(isset($facebookID)) { ?>
+						<img class="oaimg" width="50" height="50" src="https://graph.facebook.com/<?php echo $facebookID ?>/picture?type=square" />
+					<?php  } else if(isset($twitterID)) { ?>
+						<img class="oaimg" width="50" height="50" src="https://api.twitter.com/1/users/profile_image?screen_name=<?php echo $twitterID ?>&size=normal" />
+					<?php
+					} else {
+					?><style type"text/css">.top-header .account-link a.header-link { padding-right:0px; }</style><?php
+					}
+					?>
+					
+					<?php // Mage::helper('oneall')->getThumbnailUrl(); ?>
+					<!--oneall thumbnail -->
+					
+
+				</div>
+
+				<div class="account-link">
+					<a class="header-link" href="/customer/account/index/">My Account</a>
+					<?php $customerName = Mage::helper('customer')->getCustomerName(); 
+						$names = explode(" ",$customerName, 2);
+						$firstname = $names[0];
+					
+					?> 						
+					<a class="flname" href="#">Hi <?php echo $firstname; ?></a>						
+										
+				
+				</div>
+				
+			<?php }
+				else { ?>
+					<div id="oa_social_login_header_convert" class="loading"></div>
+				<span></span>	
+					<script type="text/javascript">
+						 oneall.api.plugins.social_login.build("oa_social_login_header_convert", {
+						  'providers' :  ['facebook', 'twitter'],
+						  'callback_uri': '<?php echo $this->getUrl('arush-oneall/rpx/token_url', array('_forced_secure' => false)) ?>',
+						  'css_theme_uri': '<?php echo $this->getSkinUrl(); ?>css/social-convert-head.css',
+						  'events' :{
+							        'onload' : function(){jQuery('#oa_social_login_header_convert').removeClass('loading');}   
+							      } 
+						 });
+					</script>
+					
+			<?php } ?>
+						
+			<div class="convert">
+				<a id="header-convert" href="/plans.html" class="convert">View Plans</a>
+			</div>
+			<a id="blog" href="http://blog.getbrandid.com/" class="header-button">
+				<span class="button-copy">Blog</span>
+			</a>
+			<a id="who" href="/keep/calm/wearepros" class="header-button">
+				<span class="button-copy">Who?</span>
+			</a>
+			<a id="what" href="/keep/calm/signmeup#mags" class="header-button">
+				<span class="button-copy">What?</span>
+			</a>
+			<a id="how-but" href="/keep/calm/signmeup#1" class="header-button">
+				<span class="button-copy">How?</span>
+			</a>
+			<?php if (!Mage::getSingleton('customer/session')->isLoggedIn()) {?>
+				<span style="
+				    float: right;
+				    clear: both;
+				    margin-top: -23px;
+				    margin-right: 14px;
+					" class="login">or <a style="text-decoration:underline;" href="/customer/account/login">Login</a>
+				</span>
+			<?php } ?>
+		</div>
+	</div>
+	
+</div>
+
+<div class="sixteen columns title-block first">
+	<div class="title-block-inner clearfix">
+		<div class="title-block-container clearfix">		
+			<div class="title">
+				<span class="first">Press Pass.</span><br/>
+				<span class="second">Access All Areas.</span>
+			</div>
+			
+		</div>
+	</div>
+</div>
+<div class="container">
+
+	<div class="sixteen columns commitment-caption">
+		<div class="commitment-caption">
+			<span class="caption">Here you find our latest announcements, high resolution images and other media resources. 
+			If you have any press or speaker enquiries, please get in touch with us:</span>
+		</div>
+	</div>
+	<span class="vision-title-text">Contact Details</span>
+	<div class="row">
+		<br/>
+	</div>
+	<div class="row">
+		
+		<div class="one-third column">
+			<div class="teampic">
+				<div class="backpic-square">
+					<img src="http://brandid.s3.amazonaws.com/philsquare.jpg" width="150" height="150" alt="Team Photo of Philip Sheldrake"/>
+				</div>
+				<div class="picframe">
+					<img src="<?php echo $this->getSkinUrl('images/arush/circleframe.png');?>"/>
+				</div>
+			</div>
+			<span class="vision-title-text">
+				Philip Sheldrake
+			</span>
+			<div class="commitment-caption">
+				<span class="caption jobtitle">All Press Inquiries</span><br/>
+				<a href="https://twitter.com/intent/tweet?screen_name=sheldrake" class="twitter-mention-button" data-related="getbrandid">Tweet to @sheldrake</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+				<br/><a href="mailto:philip@andmeanwhile.com">philip@andmeanwhile.com</a>
+			</div>
+			
+		</div>
+
+		<div class="one-third column">
+			<div class="teampic">
+				<div class="backpic-square">
+					<img src="http://brandid.s3.amazonaws.com/ankushsquare.jpg" width="150" height="150" alt="Team Photo of Ankush Sehgal"/>
+				</div>
+				<div class="picframe">
+					<img src="<?php echo $this->getSkinUrl('images/arush/circleframe.png');?>" alt="Team Photo of Ankush Sehgal"/>
+				</div>
+			</div>
+			<span class="vision-title-text">
+				Ankush Sehgal
+			</span>
+			<div class="commitment-caption">
+				<span class="caption jobtitle">Co-founder / CEO / Buying / Sales</span><br/>
+				<a href="https://twitter.com/intent/tweet?screen_name=4nkush" class="twitter-mention-button" data-related="getbrandid">Tweet to @4nkush</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+				<br/><a href="mailto:as@getbrandid.com">as@getbrandid.com</a>
+			</div>
+		</div>
+		
+		<div class="one-third column">
+			<div class="teampic">
+				<div class="backpic-square">
+					<img src="http://brandid.s3.amazonaws.com/arushsquare.jpg" alt="Team Photo of Arush Sehgal"/>
+				</div>
+				<div class="picframe">
+					<img src="<?php echo $this->getSkinUrl('images/arush/circleframe.png');?>" alt="Team Photo of Arush Sehgal"/>
+				</div>
+			</div>
+			<span class="vision-title-text">
+				Arush Sehgal
+			</span>
+			<div class="commitment-caption">
+				<span class="caption jobtitle">Co-founder / CTO / Design / Engineering </span><br/>
+				<a href="https://twitter.com/intent/tweet?screen_name=ldn_tech_exec" class="twitter-mention-button" data-related="getbrandid">Tweet to @ldn_tech_exec</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+				<br/><a href="mailto:arush@getbrandid.com">arush@getbrandid.com</a>
+			</div>
+		</div>
+
+
+
+	</div>
+		
+	<div class="row">
+		<br/><br/>
+	</div>
+	<span class="vision-title-text">Press Releases</span>
+	<div class="row">
+		<br/><br/>
+	</div>
+	<img class="four columns" src="<?php echo $this->getSkinUrl('images/arush/news.jpg');?>" alt="press releases"/>
+	<div id="st-accordion" class="st-accordion twelve columns">
+	    <ul>
+	        <li>
+	            <a href="#">
+	                BRANDiD launches subscription designer basics for men. Select, subscribe, sorted.<br/>
+	                <span class="st-arrow">Open or Close</span>
+	                <div class="article-date">London, 11th June 2012.</div>
+
+	            </a>
+	            <div class="st-content">
+	                
+	                After many months tinkering in the garage, tweaking the service with our early customers, BRANDiD is stepping out and stepping up. Here’s what you need to know:
+	                
+	                Check it out at <a href="http://www.getbrandid.com">www.getbrandid.com</a>.<br/><br/>
+	                Men don’t like shopping. And while men want to look good, most wouldn’t claim to be interested in fashion. What’s more, when it comes to clothing, ecommerce for men is too often just ecommerce for women with the pinks turned blue.<br/><br/>
+	                BRANDiD is an online subscription service for all the things men need, starting with designer basics such as underwear, socks, tees and shirts from the likes of Calvin Klein, Hugo Boss and Ralph Lauren. Select, subscribe, sorted.<br/><br/>
+	                Co-founder, full-time man and CEO Ankush Sehgal says: "In the time it takes to take a leak, BRANDiD sorts a man’s designer basics for life. We focus on great customer service, competitive pricing and attitude."<br/><br/>
+
+	                <a href="https://twitter.com/intent/tweet?screen_name=getbrandid" class="twitter-mention-button" data-related="ldn_tech_exec,4nkush">Tweet to @getbrandid</a>
+					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	            </div>
+	        </li>
+	    </ul>
+
+	</div>
+	<div class="row">
+		<br/><br/>
+	</div>
+	
+</div>
+
+
+
+
+
+	<div class="grey-tilt-holder vision-block">
+		<div class="grey container">
+			<div class="row">
+				<br/><br/>
+			</div>
+			<span class="vision-title-text">Logo</span>
+			<div class="row">
+				<br/><br/>
+			</div>
+			<div class="one-third column logo-box">
+				<a href="http://brandid.s3.amazonaws.com/brandid-square-big.png"><img class="scale-with-grid" src="http://brandid.s3.amazonaws.com/brandid-square-big.png" alt="large square logo"/></a>
+			</div>
+			<div class="two-thirds column logo-box">
+				<div class="what-is box">
+					<span class="logo-caption">
+							These assets are hosted on highly available, fast and globaly distributed servers, so it's always best to use the links provided:<br/><br/>
+						</span>
+					
+					<span class="vision-sub-title">Large</span><br/>
+					<span class="logo-caption small">
+							You can copy and paste this code into your site, it includes a special trackable link back to our homepage.<br/><br/>
+						</span>
+						
+							<textarea class="logo-field" type="textarea" name="large-logo" readonly="readonly"><a href="http://www.getbrandid.com/press"><img class="scale-with-grid" src="http://brandid.s3.amazonaws.com/brandid-square-big.png" alt="BRANDiD - Shop. Like a Man."/></a></textarea>
+							<a href="http://brandid.s3.amazonaws.com/brandid-square-big.png">Download Large Logo (7kb) PNG Format</a><br/><br/>
+					<span class="vision-sub-title">Vector</span><br/>
+					
+					<span class="logo-caption small">
+							...coming soon<br/><br/>
+						</span>
+						
+							<textarea class="logo-field" type="textarea" name="large-logo" readonly="readonly">If you need a vector or hi-res image urgently for print, please contact arush@getbrandid.com</textarea>
+							<a href="#">Download coming soon...</a>
+
+				</div>
+
+			</div>
+			<div class="row">
+				<br/><br/>
+			</div>
+			<div class="row">
+				<br/><br/>
+			</div>
+			<span class="vision-title-text">Hi-Res Images</span>
+			<div class="row">
+				<br/><br/>
+			</div>
+			
+			<div class="one-third column">
+				<span class="vision-title-text">
+					Packed by a Man&trade;
+				</span>
+				<br/><br/>
+
+				<a href="http://brandid.s3.amazonaws.com/press/package%202.jpg"><img class="scale-with-grid" src="http://brandid.s3.amazonaws.com/press/package%202.jpg" alt="BRANDiD package"/></a>
+			</div>
+			<div class="one-third column">
+				<span class="vision-title-text">
+					Product Page Screenshot
+				</span>
+				<br/><br/>
+				<a href="http://brandid.s3.amazonaws.com/press/godfather-screenshot.png"><img class="scale-with-grid" src="http://brandid.s3.amazonaws.com/press/godfather-thumb.png" alt="BRANDiD Godfather screenshot"/><a/>
+			</div>
+			<div class="one-third column">
+				<span class="vision-title-text">
+					Co-founders
+				</span>
+				<br/><br/>
+				<a href="http://brandid.s3.amazonaws.com/press/BRANDiD-founders-1.jpg"><img class="scale-with-grid" src="http://brandid.s3.amazonaws.com/press/BRANDiD-founders-1-thumb.jpg" alt="BRANDiD Co-founders"/><a/>
+			</div>
+			<div class="row">
+				<br/><br/>
+			</div>
+			<div class="row">
+				<br/><br/>
+			</div>
+
+		</div>
+		<div class="row">
+				<br/><br/>
+			</div>
+			<div class="row">
+				<br/><br/>
+			</div>
+	</div>
+
+
+<script type="text/javascript">
+	jQuery(function() {
+			
+				jQuery('#st-accordion').accordion({
+					oneOpenedItem	: true
+				});
+				
+            });
+</script>
