@@ -2,7 +2,7 @@
 <layout version="0.1.0">
     <keep_calm_signmeup>
         <reference name="head">
-	        <action method="addCss"><stylesheet>css/keep-calm110620120611.css</stylesheet></action>		
+	        <action method="addCss"><stylesheet>css/keep-calm110620120612.css</stylesheet></action>		
 			<block type="page/html" name="bg_css" template="page/keep-calm-base64.phtml"/>
 			<block type="core/text" name="fb-meta">
 				<action method="setText">
@@ -254,7 +254,7 @@
 	        <action method="addCss"><stylesheet>css/skeleton/base.css</stylesheet></action>
 	        <action method="addCss"><stylesheet>css/skeleton/layout.css</stylesheet></action>
 	        <action method="addCss"><stylesheet>css/skeleton/skeleton.css</stylesheet></action>
-	        <action method="addCss"><stylesheet>css/keep-calm110620120611.css</stylesheet></action>		
+	        <action method="addCss"><stylesheet>css/keep-calm110620120612.css</stylesheet></action>		
 
 			<action method="addItem"><type>skin_js</type><name>js/jquery-1.7.1.min.js</name></action>
 
@@ -325,7 +325,7 @@
 	        <action method="addCss"><stylesheet>css/skeleton/base.css</stylesheet></action>
 	        <action method="addCss"><stylesheet>css/skeleton/layout.css</stylesheet></action>
 	        <action method="addCss"><stylesheet>css/skeleton/skeleton.css</stylesheet></action>
-	        <action method="addCss"><stylesheet>css/keep-calm110620120611.css</stylesheet></action>		
+	        <action method="addCss"><stylesheet>css/keep-calm110620120612.css</stylesheet></action>		
 
 			<action method="addItem"><type>skin_js</type><name>js/jquery-1.7.1.min.js</name></action>
 
