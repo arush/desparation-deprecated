@@ -1592,8 +1592,14 @@ nav select {
 	font-size:14px;
 }
 textarea.logo-field {
-	width:97%;
+	width:96%;
 	height:100px;
+	padding: 10px;
+	font-family: courier;
+	font-size: 14px;
+	color: #595959;
+	background: #EEE;
+	height: 60px;
 }
 .image-title-text {
 	font-family: ff-enzo-web, helvetica,sans-serif;
