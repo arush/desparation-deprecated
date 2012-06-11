@@ -61,7 +61,6 @@ Default layout, loads most of the pages
 <action method="addItem"><type>skin_js</type><name>js/jquery.carouFredSel-4.3.3-packed.js</name><params/></action>
 		
 -->
-		<action method="addItem"><type>skin_js</type><name>js/jquery.easing.1.3.js</name><params/></action>
 		<action method="addItem"><type>skin_js</type><name>js/date.js</name><params/></action>
 		<!-- END COUNTDOWN MODULE -->
 

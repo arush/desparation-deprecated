@@ -27,17 +27,17 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("plans.htm
 <div class="share-header clearfix">
 	<div class="trans-back"></div>
 	<div class="share-header-container container clearfix">
-			<a id="logo" href="#top" class="logo-button">
+			<a id="logo" href="/" class="logo-button">
 				<div class="gift-logo">
 				</div>
 			</a>
 		<nav>
-			<select>
-			    <option value="" selected="selected">Navigate</option> 
-			    <option value="http://www.getbrandid.com/">Home</option>
+			<select onchange="window.open(this.options[this.selectedIndex].value,'_top')">
+			    <option value="" selected="selected">Navigate</option>
+			    <option value="/">Home</option>
+			    <option value="http://www.getbrandid.com/customer/account/login">Login</option>
+			    <option value="/keep/calm/accessallareas">Press</option>
 			    <option value="http://blog.getbrandid.com/">Blog</option>
-			    <option value="http://www.getbrandid.com/plans.html">Press</option>
-			    <option value="http://www.getbrandid.com/keep/calm/getgifted/">Who?</option>
 			  </select>
 		</nav>
 
@@ -119,10 +119,10 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("plans.htm
 			<a id="who" href="/keep/calm/wearepros" class="header-button">
 				<span class="button-copy">Who?</span>
 			</a>
-			<a id="what" href="#mags" class="header-button">
+			<a id="what" href="/keep/calm/signmeup#mags" class="header-button">
 				<span class="button-copy">What?</span>
 			</a>
-			<a id="how-but" href="#1" class="header-button">
+			<a id="how-but" href="/keep/calm/signmeup#1" class="header-button">
 				<span class="button-copy">How?</span>
 			</a>
 			<?php if (!Mage::getSingleton('customer/session')->isLoggedIn()) {?>
@@ -185,10 +185,10 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("plans.htm
 		<div class="one-third column">
 			<div class="teampic">
 				<div class="backpic-square">
-					<img src="http://brandid.s3.amazonaws.com/arushsquare.jpg" alt="Team Photo of Ankush Sehgal"/>
+					<img src="http://brandid.s3.amazonaws.com/arushsquare.jpg" alt="Team Photo of Arush Sehgal"/>
 				</div>
 				<div class="picframe">
-					<img src="<?php echo $this->getSkinUrl('images/arush/circleframe.png');?>" alt="Team Photo of Ankush Sehgal"/>
+					<img src="<?php echo $this->getSkinUrl('images/arush/circleframe.png');?>" alt="Team Photo of Arush Sehgal"/>
 				</div>
 			</div>
 			<span class="vision-title-text">
@@ -376,33 +376,5 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("plans.htm
 			</div> <!-- end grey tilt -->
 		</div>
 	</div>
-<script type="text/javascript">
-
-	$j(document).ready(function () {
-		$j.localScroll();
-
-	});
-
-</script>
-
-<script type="text/javascript">
-			// fix hover for header convert button
-				
-			$j('#header-convert').hover(
-				    
-				function () {
-					if($j("#header-convert").data("green")=="false") {
-						$j(this).css('color', '#d2002b');
-					}
-					
-				  }, 
-				  function () {
-					if($j("#header-convert").data("green")=="false") {
-						$j(this).css('color', '#000');
-					}
-				  }
-			);				
-			
-		</script>
 
 

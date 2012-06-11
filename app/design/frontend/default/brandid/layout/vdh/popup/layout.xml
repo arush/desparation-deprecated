@@ -114,6 +114,11 @@
         <remove name="popup_header" />
     </keep_calm_wearepros>
 
+    <keep_calm_accessallareas>
+        <remove name="popup" />
+        <remove name="popup_header" />
+    </keep_calm_accessallareas>
+
 	<cms_page_view>
     	<remove name="popup" />
 		<remove name="popup_header" />
