@@ -1,5 +1,5 @@
 /* essentials */
-  * {
+* {
   margin: 0pt;
   padding: 0pt;
 }
@@ -9,7 +9,7 @@ html {
 }
 
 body {
-	background: #f4f4ed none repeat scroll 0% 0%;
+	background: #FFF none repeat scroll 0% 0%;
 	color: #C1C1C1;
 	font: normal normal normal 0.75em/1.35 Arial, Helvetica, sans-serif;
 	height: 100%;
@@ -35,7 +35,6 @@ a:hover {
 }
 
 .wrapper {
-  background: url("../images/background-new.png") repeat-x scroll #f4f4ed;
   position: relative;
 }
 
@@ -521,11 +520,13 @@ a.flname {
 	margin: 80px auto;
 	text-align: center;
 }
+
 .big-fuckoff .title {
 	margin: 40px auto 80px;
 }
 
-.keep-calm-signmeup .title span {
+.keep-calm-signmeup .title span,
+.keep-calm-wearepros .title span {
 	padding:10px 17px;
 	font-family: "proxima-nova";font-weight:900;
 	font-size:44px;
@@ -790,7 +791,7 @@ a.invisibut, a.invisibutred {
 	margin: 0 0 30px 0;
 }
 
-.keep-calm-signmeup .vision-sub-title {
+.keep-calm-signmeup .vision-sub-title, .keep-calm-wearepros .vision-sub-title {
 	text-transform: uppercase;
 	font-family: "proxima-nova";font-weight:900;
 	color:black;
@@ -798,7 +799,7 @@ a.invisibut, a.invisibutred {
 	font-size: 23px;
 }
 
-.keep-calm-signmeup .vision-sub-title .red-text {
+.keep-calm-signmeup .vision-sub-title .red-text, .keep-calm-wearepros .vision-sub-title .red-text {
 	color:#d2002b;
 }
 
@@ -1418,8 +1419,9 @@ button.convert:hover {
 
 .action-section 
 
-.keep-calm-signmeup .title-block.first {
+.keep-calm-signmeup .title-block.first, .keep-calm-wearepros .title-block.first {
 	margin-top: -21px;
+	overflow:hidden;
 }
 
 .keep-calm-signmeup .title-block.first .title {
@@ -1473,3 +1475,103 @@ oa_social_login_convert {
 	background: url('../images/loader.gif') no-repeat 50% 50% #fff;
 
 }
+
+/* we are pros */
+
+.keep-calm-wearepros .grey-tilt {
+	margin-top:25px;
+}
+.keep-calm-wearepros .title {
+	text-align:center;
+	margin:20px auto;
+}
+
+.keep-calm-wearepros .vision.box {
+	width:100%;
+}
+
+.keep-calm-wearepros .grey-tilt-holder.vision-block {
+	background-color:#CFCFCF;
+}
+
+.keep-calm-wearepros .vision .box {
+	height:auto;
+	width:auto;
+	margin:20px 0;
+	min-height:136px;
+}
+
+.keep-calm-wearepros .commitment-caption {
+	margin: 30px auto;
+	width: auto;
+}
+
+.keep-calm-wearepros #fb-root {
+	display:none;
+} 
+.keep-calm-wearepros .vision-title-text {
+	letter-spacing: -1px;
+}
+
+.caption.jobtitle {
+	text-transform: uppercase;
+	font-weight:bold;
+	letter-spacing: -1px;
+	font-size: 14px;
+	color: black;
+}
+
+.teampic {
+	margin:0 auto 10px;
+	width: 150px;
+	height: 150px;
+}
+
+.backpic-square {
+	height:150px;
+	width:150px;
+	overflow:hidden;
+	position:absolute;
+	z-index:1;
+}
+
+.backpic-square.hire {
+	font-size: 48px;
+	font-weight: bold;
+	line-height: 100[x;
+	line-height: 156px;
+	background-color: #D2002B;
+	color: white;
+}
+
+.picframe {
+	height:150px;
+	width:150px;
+	position:absolute;
+	z-index:10;
+}
+
+.jobtitle-container {
+	text-align:left;
+}
+
+nav select {
+	float:right;
+	margin:15px 10px;
+	width:25%;
+  display: none;
+}
+
+span.login a {color:#d2002b;text-decoration:underline;}
+
+@media only screen and (max-width: 959px) {
+	#wide-nav {display:none;}
+	nav select { display: inline-block; }
+}
+@media only screen and (max-width: 767px) {
+	.keep-calm-wearepros .title span {
+		font-size:29px;
+	}
+}
+
+
