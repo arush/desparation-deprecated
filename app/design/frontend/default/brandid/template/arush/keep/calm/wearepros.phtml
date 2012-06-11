@@ -33,15 +33,14 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("plans.htm
 			</a>
 		<nav>
 			<select>
-			    <option value="" selected="selected">Select</option> 
-
-			    <option value="/">Blog</option>
-			    <option value="http://www.getbrandid.com/keep/calm/signmeup/">What is BRANDiD?</option>
-			    <option value="http://www.getbrandid.com/plans.html">Plans</option>
-			    <option value="http://www.getbrandid.com/keep/calm/getgifted/">Gifts</option>
+			    <option value="" selected="selected">Navigate</option> 
+			    <option value="http://www.getbrandid.com/">Home</option>
+			    <option value="http://blog.getbrandid.com/">Blog</option>
+			    <option value="http://www.getbrandid.com/plans.html">Press</option>
+			    <option value="http://www.getbrandid.com/keep/calm/getgifted/">Who?</option>
 			  </select>
 		</nav>
-					
+
 		<div id="wide-nav">
 			<?php if (Mage::getSingleton('customer/session')->isLoggedIn()) {?>
 				<div class="top-name">
@@ -117,12 +116,11 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("plans.htm
 			<a id="blog" href="http://blog.getbrandid.com/" class="header-button">
 				<span class="button-copy">Blog</span>
 			</a>
-			
+			<a id="who" href="/keep/calm/wearepros" class="header-button">
+				<span class="button-copy">Who?</span>
+			</a>
 			<a id="what" href="#mags" class="header-button">
 				<span class="button-copy">What?</span>
-			</a>
-			<a id="why" href="#2" class="header-button">
-				<span class="button-copy">Why?</span>
 			</a>
 			<a id="how-but" href="#1" class="header-button">
 				<span class="button-copy">How?</span>
