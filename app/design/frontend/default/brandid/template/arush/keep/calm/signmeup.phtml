@@ -160,41 +160,15 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("plans.htm
 					<span class="first">I'm a Man.</span><br/>
 					<span id="signmeupnow" class="second">I don't read instructions.</span>
 				</div>
-				
+				<div class="convert-button">
+					<a id="middle-body-convert" href="/plans.html" class="convert">Show Me The Plans Now!</a>
+				</div>
 			</div>
 		</div>
 	</div>
 			
 		
 	<div class="signmeupnow-container section clearfix">
-		
-		<div id="action-section" class="action-section clearfix">
-			
-			<div class="coupon-card">
-				<!--div class="upper-box">
-					<div class="commitment-caption">
-						<span class="caption">Use the coupon code:</span>
-						<br/>
-						<span class="caption-strong">FREEDOUBLE</span>
-						<br/>
-						<span class="caption">at checkout for a FREE double pack in your first month<sup>*</sup></span>
-						<br/>
-						<br/>
-						<span class="caption-small"><sup>*</sup>Not redeemable with any other offers, valid until May 31st, 2012.</span>
-
-					</div>
-				</div-->
-				<div class="green-box clearfix">
-					<div class="commitment-caption">
-						<span class="caption">No commitment or credit card required, just balls.</span>
-					</div>
-					<div class="convert-main">
-						<a id="big-body-convert" href="/plans.html" class="convert">Show Me The Plans!</a>
-					</div>
-				</div>
-			</div>
-
-		</div>
 
 		<!-- div class="commitment-caption reg section">
 			<div class="reg-form">
@@ -262,7 +236,34 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("plans.htm
 		<span class="caption-small">Around since 1974</span></div>
 		
 	</div>			
-					
+	<div id="action-section" class="action-section clearfix">
+			
+		<div class="coupon-card">
+			<!--div class="upper-box">
+				<div class="commitment-caption">
+					<span class="caption">Use the coupon code:</span>
+					<br/>
+					<span class="caption-strong">FREEDOUBLE</span>
+					<br/>
+					<span class="caption">at checkout for a FREE double pack in your first month<sup>*</sup></span>
+					<br/>
+					<br/>
+					<span class="caption-small"><sup>*</sup>Not redeemable with any other offers, valid until May 31st, 2012.</span>
+
+				</div>
+			</div-->
+			<div class="green-box clearfix">
+				<div class="commitment-caption">
+					<span class="caption">No commitment or credit card required, just balls.</span>
+				</div>
+				<div class="convert-main">
+					<a id="body-convert-1" href="/plans.html" class="convert">Show Me The Plans Now!</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
 	<div class="commitment-caption section">
 		<div class="commitment-caption">
 			<span class="caption">Plans? Whoa there buddy... we just met.</span>
@@ -285,6 +286,97 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("plans.htm
 			<span id="1" class="caption">That's OK. Let us explain what's going on.</span>
 		</div>
 	</div>
+	
+	<div class="grey-tilt-holder">
+		<div class="grey-tilt right-tilt clearfix">
+			<div id="mags" class="hood section clearfix">
+				
+			<?php
+			     echo  $this->getLayout()->createBlock('cms/block')->setBlockId('under-the-hood')->toHtml() ;
+			?>
+				
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="action-section-2" class="action-section clearfix">
+			
+		<div class="coupon-card">
+			<!--div class="upper-box">
+				<div class="commitment-caption">
+					<span class="caption">Use the coupon code:</span>
+					<br/>
+					<span class="caption-strong">FREEDOUBLE</span>
+					<br/>
+					<span class="caption">at checkout for a FREE double pack in your first month<sup>*</sup></span>
+					<br/>
+					<br/>
+					<span class="caption-small"><sup>*</sup>Not redeemable with any other offers, valid until May 31st, 2012.</span>
+
+				</div>
+			</div-->
+			<div class="green-box clearfix">
+				<div class="commitment-caption">
+					<span class="caption">No commitment or credit card required, just balls.</span>
+				</div>
+				<div class="convert-main">
+					<a id="body-convert-2" href="/plans.html" class="convert">Show Me The Plans Now!</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<?php /* ?>
+	<div class="grey-tilt-holder vision-block">
+		<div class="grey-tilt clearfix">
+			<div class="grey-tilt-container clearfix">
+				<div class="vision section clearfix">
+					<div class="vision-title">
+						<span class="vision-title-text">Our Vision</span>
+					</div>
+					<div class="mandate box">
+						<span class="vision-sub-title">Our <span class="red-text">Man</span>date</span>
+						<div class="mandate-one-line block">
+							We are reinventing shopping for men because the industry has forgotten about us.
+							Why should we have to sift through poncy female-focused fashionista content just to get our clothes delivered? It's time to <a href="https://www.youtube.com/watch?v=aaas7GFbLHk&feature=related" target="_blank">take the power back.</a>
+							<!-- if you're reading this, watch this one from '92! http://www.youtube.com/watch?v=cPHEgpWhkuQ&feature=related -->
+						</div>
+					</div>
+					<div class="what-is box">
+						<span class="vision-sub-title">What is BRANDiD?</span>
+						<div class="what-is-oneliner">
+							BRANDiD is a subscription service for designer basics… and a whole lot more. We love quality gear, great service and good humour.
+						</div>
+					</div>
+					<span id="3"></span>
+
+				</div>
+			</div> <!-- end grey tilt container -->
+		</div> <!-- end grey tilt -->
+	</div>	
+	<?php */ ?>
+
+	<div class="title-block first">
+		<div class="title-block-inner clearfix">
+			<div class="title-block-container section clearfix">		
+				<div id="bigtop-title" class="title section">
+					<span class="first">I'm a man.</span><br/>
+					<span class="second">Explain it in three words.</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- div class="price-compare section">
+		
+		<?php
+		    // echo  $this->getLayout()->createBlock('cms/block')->setBlockId('signup-products')->toHtml() ;
+		?>
+
+	</div-->
 	
 	
 	<div class="grey-tilt-holder">
@@ -358,9 +450,35 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("plans.htm
 						
 					</div> <!-- end how section -->
 					
-						<div class="plans-img">
+						<!-- div class="plans-img">
+						</div-->
+						<div id="action-section-3" class="action-section clearfix">
+								
+							<div class="coupon-card">
+								<!--div class="upper-box">
+									<div class="commitment-caption">
+										<span class="caption">Use the coupon code:</span>
+										<br/>
+										<span class="caption-strong">FREEDOUBLE</span>
+										<br/>
+										<span class="caption">at checkout for a FREE double pack in your first month<sup>*</sup></span>
+										<br/>
+										<br/>
+										<span class="caption-small"><sup>*</sup>Not redeemable with any other offers, valid until May 31st, 2012.</span>
+
+									</div>
+								</div-->
+								<div class="green-box clearfix">
+									<div class="commitment-caption">
+										<span class="caption">No commitment or credit card required, just balls.</span>
+									</div>
+									<div class="convert-main">
+										<a id="body-convert-3" href="/plans.html" class="convert">Show Me The Plans Now!</a>
+									</div>
+								</div>
+							</div>
+
 						</div>
-						
 					</div>
 					
 					
@@ -387,77 +505,16 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("plans.htm
 				</div> <!-- end grey tilt container -->
 		</div> <!-- end grey tilt -->
 	</div>
-	<?php /* ?>
-	<div class="grey-tilt-holder vision-block">
-		<div class="grey-tilt clearfix">
-			<div class="grey-tilt-container clearfix">
-				<div class="vision section clearfix">
-					<div class="vision-title">
-						<span class="vision-title-text">Our Vision</span>
-					</div>
-					<div class="mandate box">
-						<span class="vision-sub-title">Our <span class="red-text">Man</span>date</span>
-						<div class="mandate-one-line block">
-							We are reinventing shopping for men because the industry has forgotten about us.
-							Why should we have to sift through poncy female-focused fashionista content just to get our clothes delivered? It's time to <a href="https://www.youtube.com/watch?v=aaas7GFbLHk&feature=related" target="_blank">take the power back.</a>
-							<!-- if you're reading this, watch this one from '92! http://www.youtube.com/watch?v=cPHEgpWhkuQ&feature=related -->
-						</div>
-					</div>
-					<div class="what-is box">
-						<span class="vision-sub-title">What is BRANDiD?</span>
-						<div class="what-is-oneliner">
-							BRANDiD is a subscription service for designer basics… and a whole lot more. We love quality gear, great service and good humour.
-						</div>
-					</div>
-					<span id="3"></span>
 
-				</div>
-			</div> <!-- end grey tilt container -->
-		</div> <!-- end grey tilt -->
-	</div>	
-	<?php */ ?>
-
-	<div class="title-block first">
-		<div class="title-block-inner clearfix">
-			<div class="title-block-container section clearfix">		
-				<div id="bigtop-title" class="title section">
-					<span class="first">I'm a man.</span><br/>
-					<span class="second">Show me what's under the hood.</span>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	
-	<!-- div class="price-compare section">
-		
-		<?php
-		    // echo  $this->getLayout()->createBlock('cms/block')->setBlockId('signup-products')->toHtml() ;
-		?>
-
-	</div-->
-	<div class="grey-tilt-holder">
-		<div class="grey-tilt right-tilt clearfix">
-			<div id="mags" class="hood section clearfix">
-				
-			<?php
-			     echo  $this->getLayout()->createBlock('cms/block')->setBlockId('under-the-hood')->toHtml() ;
-			?>
-				
-			</div>
-	
-		</div>
-	</div>
-	
 	<div class="chev-group-wrap section">
 		<div class="chevron-group final">
-			<a class="invisibutred" href="#signmeupnow">
+			<!-- <a class="invisibutred" href="#signmeupnow">
 				<div class="chevron-triangle up red"></div>
 				<div class="chevron up red">
 					<div class="first-line block red">keep calm and</div>
 					<div class="second-line block red">Sign me up!</div>
 				</div>	
-			</a>
+			</a> -->
 			<a class="invisibut" href="#notaman">
 				<div class="chevron down black">
 					<div class="first-line block">Sounds cool, but it's just</div>
