@@ -1595,6 +1595,15 @@ textarea.logo-field {
 	width:97%;
 	height:100px;
 }
+.image-title-text {
+	font-family: ff-enzo-web, helvetica,sans-serif;
+	font-weight: 600;
+	text-transform: uppercase;
+	color: #595959;
+	font-size: 16px;
+	text-shadow: 0 1px 0 white;
+	letter-spacing:-1px;
+}
 /* accordion */
 .st-accordion{
     width:100%;
