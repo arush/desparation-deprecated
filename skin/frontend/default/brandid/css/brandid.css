@@ -2816,28 +2816,6 @@ span.apostrophe2 {
 	margin-left:-14px;
 }
 
-@media screen and (max-width: 520px)
-
-{ /* facebook adjustments here */
-
-body, .main {
-	background:#fff;
-}
-.header-container, .customer-navigation, .social-link.info-box, .footer-before-container, .footer, .my-account, .main-bottom
-{ display:none; visibility: hidden; }
-
-.customer-account-index .my-points, .customer-account-index .invite-gauge { float:left;}
-.invite-gauge {clear:both;}
-
-.main.col1-layout {
-	width:520px;
-	padding:0;
-	margin:0;
-}
-
-}
-
-
 /* ff basket fixes */
 
 .top-cart .block-content .truncated a.details { clear:both; float:right; }
