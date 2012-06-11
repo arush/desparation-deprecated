@@ -1073,7 +1073,7 @@ a.invisibut, a.invisibutred {
 }
 
 .chevron-group.final {
-	margin-top: -93px;
+	margin-top: 0;
 }
 
 .final-share.section .share-buttons {
@@ -1413,14 +1413,16 @@ button.convert:hover {
 }
 
 .action-section a.convert {
-	line-height: 100px;
+	line-height: 60px;
 	font-size: 18px;
-	height: 100px;
+	height: 60px;
 	width:300px;
 	float:left;
 }
 
-.action-section 
+#action-section-3 .coupon-card {
+	width:86%;
+}
 
 .keep-calm-signmeup .title-block.first,
 .keep-calm-wearepros .title-block.first,
@@ -1479,6 +1481,15 @@ oa_social_login_convert {
 #social_link_container.loading, #oa_social_login_container.loading, #oa_social_login_header_convert.loading {
 	background: url('../images/loader.gif') no-repeat 50% 50% #fff;
 
+}
+
+.convert-button {
+	width:250px;
+	margin:0 auto;
+}
+
+.convert-button a {
+	width:250px;
 }
 
 /* we are pros */
@@ -1544,7 +1555,7 @@ oa_social_login_convert {
 .backpic-square.hire {
 	font-size: 48px;
 	font-weight: bold;
-	line-height: 100[x;
+	line-height: 100px;
 	line-height: 156px;
 	background-color: #D2002B;
 	color: white;
