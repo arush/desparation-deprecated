@@ -720,7 +720,7 @@ a.invisibut, a.invisibutred {
 	font-family: "proxima-nova";font-weight:300;
 	font-size: 18px;
 	color: #595959;
-	margin:60px auto;
+	margin:80px auto;
 	width: 450px;
 	text-align: center;
 }
@@ -1723,6 +1723,7 @@ span.login a {color:#d2002b;text-decoration:underline;}
 	.keep-calm-wearepros .title span, .keep-calm-accessallareas .title span {
 		font-size:29px;
 	}
+
 }
 @media only screen and (max-width: 479px) {
 	.keep-calm-wearepros .title span, .keep-calm-accessallareas .title span {
