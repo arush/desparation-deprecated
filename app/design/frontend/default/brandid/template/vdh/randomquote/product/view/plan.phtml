@@ -122,12 +122,17 @@ if ($products->count() > 0){
 			<div id="socks_style-text" style="float:none;" class="product-detail-checkbox nobg">Socks style: <span>choose</span></div>
 			<div id="boxers_style-text" style="float:none;" class="product-detail-checkbox nobg">Boxers style: <span>choose</span></div>
 			<?php 
-			if($_productName == 'boss' || $_productName == 'godfather') {
+			$god   = 'godfather';
+			$boss = 'boss';
+			$containsGod = strpos($_productName, $god);
+			$containsBoss = strpos($_productName, $boss);
+
+			if($containsGod !== false || $containsBoss !== false) {
 			?>
 				<div id="t-shirts_style-text" style="float:none;" class="product-detail-checkbox nobg">T-Shirt style: <span>choose</span></div>
 			<?php }
 			
-			if($_productName == 'godfather') {
+			if($containsGod !== false) {
 			?>
 				<div id="shirts_style-text" style="float:none;" class="product-detail-checkbox nobg">Shirt style: <span>choose</span></div>
 			<?php } ?>
