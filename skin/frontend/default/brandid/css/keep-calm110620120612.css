@@ -1041,7 +1041,7 @@ a.invisibut, a.invisibutred {
 }
 
 .hood-sub-title span {
-	font-size:20px;
+	font-size:18px;
 }
 
 .final.title.section {
@@ -1711,7 +1711,9 @@ textarea.logo-field {
 }
 
 
-
+img.founders {
+	max-wi
+}
 
 span.login a {color:#d2002b;text-decoration:underline;}
 
