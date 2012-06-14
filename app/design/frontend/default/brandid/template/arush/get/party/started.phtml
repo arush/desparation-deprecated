@@ -1,0 +1,87 @@
+<?php 
+
+Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("gifts.html"));
+
+	$refererSet = false;
+	if(Mage::getSingleton('core/session')->getReferer()) {
+		$refererSet = true;
+	}
+
+	if($refererSet) {
+		//get the referrer
+		if (isset($_SERVER['HTTP_REFERER'])) {
+			$referer = $_SERVER['HTTP_REFERER'];
+		} else {
+			$referer = "unknown";
+		}
+		//save it in a session variable
+		Mage::getSingleton('core/session')->setReferer($referer); // store session data
+	}
+	else {
+		$referer = Mage::getSingleton('core/session')->getReferer();
+	}
+
+?>
+<div id="male-status">
+	<div id="male-header" class="male-header">
+		<div class="container">
+			<div class="one-third column">
+				<a id="logo" href="/" class="logo-button">
+					<div class="gift-logo">
+					</div>
+				</a>
+			</div>
+			<div class="one-third column male-round">
+				<div class="male-holder">
+					<div id="male-colour" class="male-loading">
+					</div>
+					<img src="<?php echo $this->getSkinUrl('images/male/male-round.png'); ?>" alt="MALE" class="male-round ani" title="feed the male"/>
+					<div class="male-label-box">
+						<span id="male-label">MALE&trade;</span>
+					</div>
+				</div>
+				<div id="status">Establishing Connection</div>
+
+			</div>
+			<div class="one-third column">
+				<div class="title-skip">
+					<div class="male-title">
+						Feed the Male&trade;
+					</div>
+					<a class="skip-this" href="#">Skip this</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="eight columns offset-by-four">
+			<div class="conversation">
+				<span id="male-speak-1">What's happenin' buddy? MALE&trade; here. </span><br/><span id="male-speak-2">What's your name? </span>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	function loaded(){
+				jQuery('#male-status').addClass('online');
+				jQuery('.male-header').addClass('flyup');
+				jQuery('#male-colour').removeClass('male-loading');
+				jQuery('#male-colour').addClass('male-back');
+				jQuery('#status').text('Connected');
+				setTimeout(function() {
+						jQuery("#male-speak-1").css('color','#75e333')
+						jQuery("#male-speak-1").typewriter();
+						setTimeout(function() {
+							jQuery("#male-speak-2").css('color','#75e333')
+							jQuery("#male-speak-2").typewriter();
+						},3500);
+					},2000);
+				
+
+		}
+
+	jQuery(document).ready(function() {
+		setTimeout("loaded()", 5000);
+	});
+
+</script>

@@ -118,6 +118,12 @@
         <remove name="popup" />
         <remove name="popup_header" />
     </keep_calm_accessallareas>
+    
+    <get_party_started>
+        <remove name="popup" />
+        <remove name="popup_header" />
+    </get_party_started>
+
 
 	<cms_page_view>
     	<remove name="popup" />

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <arush_get>
+            <version>0.0.1</version>
+        </arush_get>
+    </modules>
+    <global>
+	    <blocks>
+	        <adminhtml>
+	            <rewrite>
+	            </rewrite>
+	        </adminhtml>
+	    </blocks>
+     	<helpers>
+        	<get>
+        		<class>Arush_Get_Helper</class>
+        	</get>
+        </helpers>
+    </global>
+    <adminhtml>
+      <acl>
+          <resources>
+              <admin>
+                  <children>
+                      <system>
+                          <children>
+                              <config>
+                                  <children>
+                                      <get>
+                                          <title>Get Party</title>
+                                      </get>
+                                  </children>
+                              </config>
+                          </children>
+                      </system>
+                  </children>
+              </admin>
+          </resources>
+      </acl>
+      <events></events> 
+      <translate></translate>
+  </adminhtml> 
+  
+    <frontend>
+     	<layout>
+            <updates>
+                <get>
+                    <file>arush/get.xml</file>
+                </get>
+            </updates>
+        </layout>
+        <routers>
+            <get>
+                <use>standard</use>
+                <args>
+                    <module>Arush_Get</module>
+                    <frontName>get</frontName>
+                </args>
+            </get>
+        </routers>   
+    </frontend>
+    
+    <admin>
+       <routers>
+          <get>
+              <use>admin</use>
+              <args>
+                  <module>Arush_Get</module>
+                  <frontName>get</frontName>
+              </args>
+          </get>
+      </routers>
+  </admin>
+
+
+    <default>
+        <get>
+            <options>
+                <!-- fbpageid></fbpageid-->
+            </options>
+        </get>
+    </default>
+</config>
