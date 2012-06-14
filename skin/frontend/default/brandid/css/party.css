@@ -1,0 +1,290 @@
+body {background-color:#333;}
+#fb-root {display:none;}
+.gift-logo {
+	background: url('../images/logo.png') no-repeat 0 0;
+	width:181px;
+	height:75px;
+	float:left;
+	margin-right:73px;
+	margin-top:50px;
+	opacity: 0;
+	-moz-opacity: 0;
+	filter:alpha(opacity=0);:none;
+}
+.online .gift-logo, .online .title-skip {
+	opacity: 1;
+	-moz-opacity: 1;
+	filter:alpha(opacity=1);:none;
+
+		-webkit-transition: all 1s ease-in-out;
+	   -moz-transition: all 1s ease-in-out;
+	     -o-transition: all 1s ease-in-out;
+	    -ms-transition: all 1s ease-in-out;
+	        transition: all 1s ease-in-out;
+}
+.male-header {
+	background: white;
+	border-top: 10px solid black;
+	width:100%;
+	z-index: 50;
+	padding: 10px 10px 0 10px;
+	-webkit-box-shadow: #666 0px 3px 10px;
+	-moz-box-shadow: #666 0px 3px 10px;
+	box-shadow: #666 0px 3px 10px;
+	behavior: url('PIE.htc');
+	height:1000px;
+}
+
+.conversation {
+	padding:30px 0 0 0;
+	color:#333;
+	font-family:courier,serif;
+	font-sizE:16px;
+	letter-spacing:-1px;
+	font-weight:bold;
+	text-align:left;
+}
+
+img.male-round, .male-back, .male-loading, .male-label-box {
+	height:115px;
+	width:115px;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:2000;
+}
+.male-back, .male-loading, .male-label-box {
+	background-color:#FFF;
+	z-index: 1;
+}
+.male-label-box {
+	z-index:5000;
+	background:none;
+	margin:0 auto;
+	font-family:ff-enzo-web,helvetica,sans-serif;
+	font-size: 12px;
+	color: #777;
+	text-shadow: 0 1px 0 white;
+	padding: 45px 0 0 4px;
+}
+#status {
+	margin-top:15px;
+}
+.male-holder {
+	position:relative;
+	height:115px;
+	width:115px;
+	margin:100px auto 0;
+}
+.online .male-holder {
+	margin:18px auto 0;
+	-webkit-transition: all 0.5s ease-in-out;
+	   -moz-transition: all 0.5s ease-in-out;
+	     -o-transition: all 0.5s ease-in-out;
+	    -ms-transition: all 0.5s ease-in-out;
+	        transition: all 0.5s ease-in-out;
+}
+
+.male-loading {
+	background:#FFF;
+	overflow:hidden;
+	-webkit-animation:loading 5s ease-in-out;
+	-moz-animation:loading 5s ease-in-out;
+	animation:loading 5s ease-in-out;
+	animation-iteration-count:2;
+}
+
+@-webkit-keyframes loading {
+	0% { background-color:#FFF; }
+	50% { background-color:#d2002b; }
+	100% { background-color:#FFF; }
+}
+
+@-moz-keyframes loading {
+	0% { background-color:#FFF; }
+	50% { background-color:#d2002b; }
+	100% { background-color:#FFF; }
+}
+
+.male-back {
+	background:#FFF;
+	overflow:hidden;
+	-webkit-animation:loaded 3s 500 ease-in-out;
+	-moz-animation:loaded 3s 500 ease-in-out;
+	animation:loaded 3s 500 ease-in-out;
+	animation-iteration-count:infinite;
+}
+
+@-webkit-keyframes loaded {
+	0% { background-color:#67c522; }
+	20% { background-color:#b9e74b; }
+	50% { background-color:#8de74b; }
+	100% { background-color:#67c522; }
+}
+
+@-moz-keyframes loaded {
+	0% { background-color:#b9e74b; }
+	50% { background-color:#bde74b; }
+	100% { background-color:#67c522; }
+}
+
+
+
+.ani {
+
+	-webkit-animation: 1s ease-in-out;
+	   -moz-animation: 1s ease-in-out;
+	    -ms-animation: 1s ease-in-out;
+	     -o-animation: 1s ease-in-out;
+	        animation: 1s ease-in-out;
+	        
+-webkit-animation-fill-mode: forwards;
+	   -moz-animation-fill-mode: forwards;
+	    -ms-animation-fill-mode: forwards;
+	     -o-animation-fill-mode: forwards;
+	        animation-fill-mode: forwards;
+}
+
+
+@-webkit-keyframes male-online {
+	
+	-webkit-transform: translateZ(0);
+	0% {
+		opacity: 0;
+		-webkit-transform: translateY(200px);
+	}
+	60% {
+		opacity: 1;
+		-webkit-transform: translateY(-100px);
+	}
+	80% {
+		-webkit-transform: translateY(50px);
+	}
+	100% {
+		-webkit-transform: translateY(-10px);
+	}
+}
+@-moz-keyframes male-online {
+	0% {
+		opacity: 0;
+		-moz-transform: translateY(200px);
+	}
+	60% {
+		opacity: 1;
+		-moz-transform: translateY(-100px);
+	}
+	80% {
+		-moz-transform: translateY(50px);
+	}
+	100% {
+		-moz-transform: translateY(-10px);
+	}
+}
+@-ms-keyframes male-online {
+	0% {
+		opacity: 0;
+		-ms-transform: translateY(200px);
+	}
+	60% {
+		opacity: 1;
+		-ms-transform: translateY(-100px);
+	}
+	80% {
+		-ms-transform: translateY(50px);
+	}
+	100% {
+		-ms-transform: translateY(-10px);
+	}
+}
+@-o-keyframes male-online {
+	0% {
+		opacity: 0;
+		-o-transform: translateY(200px);
+	}
+	60% {
+		opacity: 1;
+		-o-transform: translateY(-100px);
+	}
+	80% {
+		-o-transform: translateY(50px);
+	}
+	100% {
+		-o-transform: translateY(-10px);
+	}
+}
+@keyframes male-online {
+	0% {
+		opacity: 0;
+		-moz-transform: translateY(200px);
+	}
+	60% {
+		opacity: 1;
+		-moz-transform: translateY(-100px);
+	}
+	80% {
+		-moz-transform: translateY(50px);
+	}
+	100% {
+		-moz-transform: translateY(-10px);
+	}
+}
+
+.male-header.flyup {
+	height:194px;
+
+	-webkit-transition: all 1s ease-in-out;
+	   -moz-transition: all 1s ease-in-out;
+	     -o-transition: all 1s ease-in-out;
+	    -ms-transition: all 1s ease-in-out;
+	        transition: all 1s ease-in-out;
+
+
+}
+.male-online {
+	-webkit-animation-name: male-online;
+	-moz-animation-name: male-online;
+	-ms-animation-name: male-online;
+	-o-animation-name: male-online;
+	animation-name: male-online;
+}
+
+.title-skip {
+	opacity: 0;
+	margin-top:42px;
+	-moz-opacity: 0;
+	filter:alpha(opacity=0);:none;
+}
+.title-skip .male-title {
+	font-family: ff-enzo-web, helvetica,sans-serif;
+	font-size:18px;
+	font-weight:bold;
+	letter-spacing:-1px;
+	text-transform:uppercase;
+}
+.skip-this {
+	-webkit-border-radius: 3px;
+    border-radius: 3px; 
+  	-moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+	background-color:#d7d7d7;
+	color:#939393;
+	padding:8px;
+	width:41%;
+	display: block;
+	margin: 10px auto;
+	font-weight: bold;
+	text-tranform: uppercase;
+	text-transform: uppercase;
+	font-size: 12px;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio:2) {
+	.gift-logo { background-image:url('../images/logo-2x.png'); background-size:154px 58px; }
+}
+
+@media only screen and (max-width: 959px) {
+	.gift-logo {float:none;margin: 0 auto;}
+	.title-skip {margin:60px auto 5px;}
+	.male-header.flyup {
+	height: auto;
+	min-height: 400px;}
+}
