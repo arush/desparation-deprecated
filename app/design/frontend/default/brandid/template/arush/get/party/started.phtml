@@ -54,13 +54,33 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("gifts.htm
 		</div>
 	</div>
 	<div class="container">
-		<div class="eight columns offset-by-four">
-			<div class="conversation">
-				<span id="male-speak-1">What's happenin' buddy? MALE&trade; here. </span><br/><span id="male-speak-2">What's your name? </span>
-			</div>
-		</div>
-	</div>
+<!-- 		<div class="ten columns offset-by-three">
+ -->			<div id="console"></div>
+<!-- 		</div>
+ -->	</div>
 </div>
+<script>
+      jQuery(function () {
+        var jqconsole = jQuery('#console').jqconsole('Wattup dude, MALE here, what\'s your name?\n', '>>>');
+        var emailPrompt = function () {
+          // Start the prompt with history enabled.
+          jqconsole.Prompt(true, function (input) {
+            // Output input with the class jqconsole-output.
+            jqconsole.Write('You entered:' + input + '\nI\'m going to spam the hell out of you', 'jqconsole-output');
+          });
+        };
+        var startPrompt = function () {
+          // Start the prompt with history enabled.
+          jqconsole.Prompt(true, function (input) {
+            // Output input with the class jqconsole-output.
+            jqconsole.Write('Hmm... '+ input + '. That\'s an awesome name.\nYou must be an awesome person.\n\nWhat\'s your email address?\n', 'jqconsole-output');
+            // Restart the prompt.
+            emailPrompt();
+          });
+        };
+        startPrompt();
+      });
+</script>
 <script type="text/javascript">
 	function loaded(){
 				jQuery('#male-status').addClass('online');
@@ -68,16 +88,7 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("gifts.htm
 				jQuery('#male-colour').removeClass('male-loading');
 				jQuery('#male-colour').addClass('male-back');
 				jQuery('#status').text('Connected');
-				setTimeout(function() {
-						jQuery("#male-speak-1").css('color','#75e333')
-						jQuery("#male-speak-1").typewriter();
-						setTimeout(function() {
-							jQuery("#male-speak-2").css('color','#75e333')
-							jQuery("#male-speak-2").typewriter();
-						},3500);
-					},2000);
-				
-
+				setTimeout("loaded()", 5000);	
 		}
 
 	jQuery(document).ready(function() {
@@ -85,3 +96,4 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("gifts.htm
 	});
 
 </script>
+
