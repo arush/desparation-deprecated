@@ -1,4 +1,52 @@
 body {background-color:#333;}
+
+/* console */
+#console {
+      position: absolute;
+      /* width: 400px; */
+      height: 500px;
+      background-color:black;
+      font-family:courier,sans-serif;
+      text-align:left;
+      margin-top:25px;
+      width:100%;
+    }
+    /* The inner console element. */
+    .jqconsole {
+        padding: 10px;
+    }
+    /* The cursor. */
+    .jqconsole-cursor {
+        background-color: gray;
+    }
+    /* The cursor color when the console looses focus. */
+    .jqconsole-blurred .jqconsole-cursor {
+        background-color: #666;
+    }
+    /* The current prompt text color */
+    .jqconsole-prompt {
+        color: #0d0;
+    }
+    /* The command history */
+    .jqconsole-old-prompt {
+        color: #0b0;
+        font-weight: normal;
+    }
+    /* The text color when in input mode. */
+    .jqconsole-input {
+        color: #dd0;
+    }
+    /* Previously entered input. */
+    .jqconsole-old-input {
+        color: #bb0;
+        font-weight: normal;
+    }
+    /* The text color of the output. */
+    .jqconsole-output {
+        color: white;
+    }
+/* end console */
+
 #fb-root {display:none;}
 .gift-logo {
 	background: url('../images/logo.png') no-repeat 0 0;
@@ -35,15 +83,6 @@ body {background-color:#333;}
 	height:1000px;
 }
 
-.conversation {
-	padding:30px 0 0 0;
-	color:#333;
-	font-family:courier,serif;
-	font-sizE:16px;
-	letter-spacing:-1px;
-	font-weight:bold;
-	text-align:left;
-}
 
 img.male-round, .male-back, .male-loading, .male-label-box {
 	height:115px;
@@ -285,6 +324,7 @@ img.male-round, .male-back, .male-loading, .male-label-box {
 	.gift-logo {float:none;margin: 0 auto;}
 	.title-skip {margin:60px auto 5px;}
 	.male-header.flyup {
-	height: auto;
-	min-height: 400px;}
+		height: auto;
+		min-height: 400px;
+	}
 }
