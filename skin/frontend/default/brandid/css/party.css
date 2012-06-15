@@ -1,25 +1,63 @@
 body {background-color:#333;}
 
+/* Source: http://snipplr.com/view/10979/css-cross-browser-word-wrap */
+.wordwrap, .jqconsole-header span { 
+   white-space: pre-wrap;      /* CSS3 */   
+   white-space: -moz-pre-wrap; /* Firefox */    
+   white-space: -pre-wrap;     /* Opera <7 */   
+   white-space: -o-pre-wrap;   /* Opera 7 */    
+   word-wrap: break-word;      /* IE */
+}
+
 /* console */
 #console {
       position: absolute;
       /* width: 400px; */
       height: 500px;
-      background-color:black;
+      background-color:#FFF;
       font-size:16px;
       font-family:courier,sans-serif;
       text-align:left;
       margin-top:25px;
       width:100%;
+	  -webkit-border-radius: 5px; 
+      border-radius: 5px; 
+  	  -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+  	  max-height:300px;
     }
     /* The inner console element. */
     .jqconsole {
         padding: 10px;
+        box-shadow:0px 0px 20px 10px rgba(0,0,0,0.7);
+        max-height: 300px;
+		overflow-y: scroll;
+		-webkit-box-shadow:0px 0px 20px 10px rgba(0,0,0,0.7);
+		-moz-box-shadow:0px 0px 20px 10px rgba(0,0,0,0.7);
+		-webkit-transition: all 0.5s ease-in-out;
+		-moz-transition: all 1s ease-in-out;
+	     -o-transition: all 1s ease-in-out;
+	    -ms-transition: all 1s ease-in-out;
+	        transition: all 1s ease-in-out;
     }
     /* The cursor. */
     .jqconsole-cursor {
-        background-color: gray;
+        background-color: #CFCFCF;
+        -webkit-animation:cursor 0.3s 9999 ease-in-out;
+		-moz-animation:cursor 0.3s 9999 ease-in-out;
+		animation:cursor 0.3s 9999 ease-in-out;
+		animation-iteration-count:infinite;
     }
+	@-webkit-keyframes cursor {
+		0% { background-color:#CFCFCF; }
+		50% { background-color:#444; }
+		100% { background-color:#CFCFCF; }
+	}
+
+	@-moz-keyframes cursor {
+		0% { background-color:#CFCFCF; }
+		50% { background-color:#444; }
+		100% { background-color:#CFCFCF; }
+	}
     .jqconsole-header {
     	color:white;
     }
@@ -29,27 +67,66 @@ body {background-color:#333;}
     }
     /* The current prompt text color */
     .jqconsole-prompt {
-        color: #0d0;
+        color: #257801;
+        padding:20px;
+        background-color: white;
+        display:block;
     }
     /* The command history */
     .jqconsole-old-prompt {
-        color: #0b0;
+        color: #ccc;
         font-weight: normal;
+		padding: 20px;
+		display: block;
     }
     /* The text color when in input mode. */
     .jqconsole-input {
-        color: #dd0;
+        color: #ccc;
     }
     /* Previously entered input. */
     .jqconsole-old-input {
-        color: #bb0;
+        color: #ccc;
         font-weight: normal;
     }
     /* The text color of the output. */
     .jqconsole-output {
-        color: white;
+        color: #444;
     }
 /* end console */
+
+/* custom skinning */
+.jqconsole-header span {
+	background-color:#e9e9e9;
+	color:#e9e9e9;
+	padding:20px;
+	display:block;
+}
+.jqconsole-output span {
+	padding: 20px;
+	color: #e9e9e9;
+	background-color: #E9E9E9;
+	display: block;
+}
+.jqconsole-blurred {
+	opacity: 0.7;
+	-moz-opacity: 0.7;
+	filter:alpha(opacity=7);
+	box-shadow:none;
+	-webkit-box-shadow:none;
+	-moz-box-shadow:none;
+    background-color:#CFCFCF;
+}
+
+.jqconsole-blurred span {
+	text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.9);
+   	opacity: 0.5;
+	-moz-opacity: 0.5;
+	filter:alpha(opacity=5);
+	color:#aaa !important;
+	background-color:#cfcfcf !important;
+}
+
+/* end custom skinning */
 
 #fb-root {display:none;}
 .gift-logo {
@@ -79,7 +156,7 @@ body {background-color:#333;}
 	border-top: 10px solid black;
 	width:100%;
 	z-index: 50;
-	padding: 10px 10px 0 10px;
+	padding: 10px 0 0 0;
 	-webkit-box-shadow: #666 0px 3px 10px;
 	-moz-box-shadow: #666 0px 3px 10px;
 	box-shadow: #666 0px 3px 10px;
@@ -138,6 +215,8 @@ img.male-round, .male-back, .male-loading, .male-label-box, .male-loader {
 	        transition: all 0.5s ease-in-out;
 }
 
+
+
 .male-loading {
 	background:#FFF;
 	overflow:hidden;
@@ -162,9 +241,9 @@ img.male-round, .male-back, .male-loading, .male-label-box, .male-loader {
 .male-back {
 	background:#FFF;
 	overflow:hidden;
-	-webkit-animation:loaded 3s 500 ease-in-out;
-	-moz-animation:loaded 3s 500 ease-in-out;
-	animation:loaded 3s 500 ease-in-out;
+	-webkit-animation:loaded 2s 9999 ease-in-out;
+	-moz-animation:loaded 2s 9999 ease-in-out;
+	animation:loaded 2s 9999 ease-in-out;
 	animation-iteration-count:infinite;
 }
 
