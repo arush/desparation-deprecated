@@ -35,6 +35,9 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("gifts.htm
 				<div class="male-holder">
 					<div id="male-colour" class="male-loading">
 					</div>
+					<div id="male-loader" class="male-loader">
+					</div>
+					
 					<img src="<?php echo $this->getSkinUrl('images/male/male-round.png'); ?>" alt="MALE" class="male-round ani" title="feed the male"/>
 					<div class="male-label-box">
 						<span id="male-label">MALE&trade;</span>
@@ -60,35 +63,62 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("gifts.htm
  -->	</div>
 </div>
 <script>
-      jQuery(function () {
-        var jqconsole = jQuery('#console').jqconsole('Wattup dude, MALE here, what\'s your name?\n', '>>>');
+	var $j = jQuery.noConflict();
+
+	function typeit() {
+		/* types the latest element of the matched object passed */
+		e = $j('.jqconsole-output');
+		
+		var count = e.length -1;
+		var randomId = 'male' + (Math.floor(Math.random()*10000000)+1);
+		var s = $j(e).find('span')[count];
+		$j(s).attr('id',randomId);
+        
+        $j('#'+randomId).typewriter();
+		$j('#'+randomId).css('color', '#444');
+		
+	}
+	function startConsole() {
+      //$j(function {
+        var jqconsole = $j('#console').jqconsole('Greetings earthling. MALE here, what\'s your name?\n', '>>> ');
+        $j('.jqconsole-header span').attr('id','male-welcome-msg');
+        $j('#male-welcome-msg').typewriter();
+        $j('#male-welcome-msg').css('color', '#444');
+
         var emailPrompt = function () {
           // Start the prompt with history enabled.
           jqconsole.Prompt(true, function (input) {
             // Output input with the class jqconsole-output.
-            jqconsole.Write('You entered:' + input + '\nI\'m going to spam the hell out of you', 'jqconsole-output');
+            jqconsole.Write('You entered:' + input + '\nI\'m going to spam the hell out of you ', 'jqconsole-output wordwrap');
+            typeit();
           });
         };
         var startPrompt = function () {
           // Start the prompt with history enabled.
           jqconsole.Prompt(true, function (input) {
             // Output input with the class jqconsole-output.
-            jqconsole.Write('Hmm... '+ input + '. That\'s an awesome name.\nYou must be an awesome person.\n\nWhat\'s your email address?\n', 'jqconsole-output');
+            jqconsole.Write('Hmm... '+ input + '. That\'s an awesome name.\nYou must be an awesome person.\n\nWhat\'s your email address?\n', 'jqconsole-output wordwrap');
+            typeit();
             // Restart the prompt.
             emailPrompt();
           });
         };
         startPrompt();
-      });
+		jqconsole.Focus;
+
+        //give the header an id, this saves complications down the line
+     // });
+	}
+
 </script>
 <script type="text/javascript">
 	function loaded(){
-				jQuery('#male-status').addClass('online');
-				jQuery('.male-header').addClass('flyup');
-				jQuery('#male-colour').removeClass('male-loading');
-				jQuery('#male-colour').addClass('male-back');
-				jQuery('#status').text('Connected');
-				setTimeout("loaded()", 5000);	
+			jQuery('#male-status').addClass('online');
+			jQuery('.male-header').addClass('flyup');
+			jQuery('#male-colour').removeClass('male-loading');
+			jQuery('#male-colour').addClass('male-back');
+			jQuery('#status').text('');
+			setTimeout("startConsole()", 300);
 		}
 
 	jQuery(document).ready(function() {
