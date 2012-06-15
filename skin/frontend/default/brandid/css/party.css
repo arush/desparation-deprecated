@@ -6,6 +6,7 @@ body {background-color:#333;}
       /* width: 400px; */
       height: 500px;
       background-color:black;
+      font-size:16px;
       font-family:courier,sans-serif;
       text-align:left;
       margin-top:25px;
@@ -18,6 +19,9 @@ body {background-color:#333;}
     /* The cursor. */
     .jqconsole-cursor {
         background-color: gray;
+    }
+    .jqconsole-header {
+    	color:white;
     }
     /* The cursor color when the console looses focus. */
     .jqconsole-blurred .jqconsole-cursor {
@@ -84,7 +88,7 @@ body {background-color:#333;}
 }
 
 
-img.male-round, .male-back, .male-loading, .male-label-box {
+img.male-round, .male-back, .male-loading, .male-label-box, .male-loader {
 	height:115px;
 	width:115px;
 	position:absolute;
@@ -95,6 +99,16 @@ img.male-round, .male-back, .male-loading, .male-label-box {
 .male-back, .male-loading, .male-label-box {
 	background-color:#FFF;
 	z-index: 1;
+}
+.male-loader {
+	z-index:1000;
+	background-image:url('../images/male/male-loader.gif');
+	opacity: 0.4;
+	-moz-opacity: 0.4;
+	filter:alpha(opacity=4);
+}
+.online .male-loader {
+	background-image:url('../images/male/loaded-spokes.png');
 }
 .male-label-box {
 	z-index:5000;
@@ -135,13 +149,13 @@ img.male-round, .male-back, .male-loading, .male-label-box {
 
 @-webkit-keyframes loading {
 	0% { background-color:#FFF; }
-	50% { background-color:#d2002b; }
+	50% { background-color:#b9e74b; }
 	100% { background-color:#FFF; }
 }
 
 @-moz-keyframes loading {
 	0% { background-color:#FFF; }
-	50% { background-color:#d2002b; }
+	50% { background-color:#b9e74b; }
 	100% { background-color:#FFF; }
 }
 
@@ -269,7 +283,7 @@ img.male-round, .male-back, .male-loading, .male-label-box {
 }
 
 .male-header.flyup {
-	height:194px;
+	height:184px;
 
 	-webkit-transition: all 1s ease-in-out;
 	   -moz-transition: all 1s ease-in-out;
@@ -292,6 +306,7 @@ img.male-round, .male-back, .male-loading, .male-label-box {
 	margin-top:42px;
 	-moz-opacity: 0;
 	filter:alpha(opacity=0);:none;
+	padding-right: 20px;
 }
 .title-skip .male-title {
 	font-family: ff-enzo-web, helvetica,sans-serif;
@@ -300,6 +315,7 @@ img.male-round, .male-back, .male-loading, .male-label-box {
 	letter-spacing:-1px;
 	text-transform:uppercase;
 }
+.male-title {text-align:right;}
 .skip-this {
 	-webkit-border-radius: 3px;
     border-radius: 3px; 
@@ -309,22 +325,26 @@ img.male-round, .male-back, .male-loading, .male-label-box {
 	padding:8px;
 	width:41%;
 	display: block;
-	margin: 10px auto;
 	font-weight: bold;
 	text-tranform: uppercase;
 	text-transform: uppercase;
 	font-size: 12px;
+	float:right;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio:2) {
 	.gift-logo { background-image:url('../images/logo-2x.png'); background-size:154px 58px; }
+	.male-loader {background-image:url('../images/male/male-loader-2x.gif');}
+	.online .male-loader {background-image:url('../images/male/loaded-spokes-2x.png');}
 }
 
 @media only screen and (max-width: 959px) {
 	.gift-logo {float:none;margin: 0 auto;}
-	.title-skip {margin:60px auto 5px;}
+	.title-skip {margin:60px auto 5px;padding-right: 0}
 	.male-header.flyup {
 		height: auto;
 		min-height: 400px;
 	}
+	.skip-this {float:none;margin:0 auto;}
+	.male-title {text-align: center;}
 }

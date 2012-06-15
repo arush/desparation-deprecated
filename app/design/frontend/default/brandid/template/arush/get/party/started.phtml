@@ -35,6 +35,9 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("gifts.htm
 				<div class="male-holder">
 					<div id="male-colour" class="male-loading">
 					</div>
+					<div id="male-loader" class="male-loader">
+					</div>
+					
 					<img src="<?php echo $this->getSkinUrl('images/male/male-round.png'); ?>" alt="MALE" class="male-round ani" title="feed the male"/>
 					<div class="male-label-box">
 						<span id="male-label">MALE&trade;</span>
@@ -60,8 +63,8 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("gifts.htm
  -->	</div>
 </div>
 <script>
-      jQuery(function () {
-        var jqconsole = jQuery('#console').jqconsole('Wattup dude, MALE here, what\'s your name?\n', '>>>');
+      jQuery(function startConsole() {
+        var jqconsole = jQuery('#console').jqconsole('Greetings earthling. MALE here, what\'s your name?\n', '>>> ');
         var emailPrompt = function () {
           // Start the prompt with history enabled.
           jqconsole.Prompt(true, function (input) {
@@ -87,8 +90,8 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("gifts.htm
 				jQuery('.male-header').addClass('flyup');
 				jQuery('#male-colour').removeClass('male-loading');
 				jQuery('#male-colour').addClass('male-back');
-				jQuery('#status').text('Connected');
-				setTimeout("loaded()", 5000);	
+				jQuery('#status').text('');
+				setTimeout("startConsole()", 5000);	
 		}
 
 	jQuery(document).ready(function() {
