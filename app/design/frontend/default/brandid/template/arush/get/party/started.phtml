@@ -1,7 +1,5 @@
-<?php 
 
-Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("gifts.html"));
-
+<?php
 	$refererSet = false;
 	if(Mage::getSingleton('core/session')->getReferer()) {
 		$refererSet = true;
@@ -20,16 +18,17 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("gifts.htm
 	else {
 		$referer = Mage::getSingleton('core/session')->getReferer();
 	}
-
 ?>
 <div id="male-status">
 	<div id="male-header" class="male-header">
 		<div class="container">
 			<div class="one-third column">
 				<a id="logo" href="/" class="logo-button">
-					<div class="gift-logo">
-					</div>
+					<img class="gift-logo scale-with-grid" alt="BRANDiD logo" src="<?php echo $this->getSkinUrl('images/logo-beta.png')?>" title="BRANDiD Logo"/>
 				</a>
+				<div class="title-skip mobile">
+					<a class="skip-this" href="#">Skip this</a>
+				</div>
 			</div>
 			<div class="one-third column male-round">
 				<div class="male-holder">
@@ -48,9 +47,9 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("gifts.htm
 			</div>
 			<div class="one-third column">
 				<div class="title-skip">
-					<div class="male-title">
+					<!-- <div class="male-title">
 						Feed the Male&trade;
-					</div>
+					</div> -->
 					<a class="skip-this" href="#">Skip this</a>
 				</div>
 			</div>
@@ -62,55 +61,94 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("gifts.htm
 <!-- 		</div>
  -->	</div>
 </div>
-<script>
+<script type="text/javascript">
 	var $j = jQuery.noConflict();
 
-	function typeit() {
-		/* types the latest element of the matched object passed */
-		e = $j('.jqconsole-output');
+	punter = new Object();
+	
+	function offside() {
 		
-		var count = e.length -1;
-		var randomId = 'male' + (Math.floor(Math.random()*10000000)+1);
-		var s = $j(e).find('span')[count];
-		$j(s).attr('id',randomId);
-        
-        $j('#'+randomId).typewriter();
-		$j('#'+randomId).css('color', '#444');
-		
+	    // fade
+		if($j('.console-fade').length == 0) { $j('#console').prepend('<div class="console-fade"></div>'); };
+
+		var s = getLatestSpan();
+
+		var delay = getDelayRequired();
+
+		typeit();
+
+		var url = new Array(
+						"<?php echo $this->getSkinUrl('images/male/offside.jpg'); ?>"
+						);
+		var caption = "Which player is offside?\n\na. I'm a man. Player A is offside.\nb. I'm a woman who knows her football. Player A is offside.\nc. I'm a woman. Just show me a picture of Beckham.\n\nType [a], [b] or [c] and press [ENTER] ";
+		var imageString = printImage(url,"offside",caption);
+		performAppend(s, delay, imageString);
+
+		offsideAnswer();
 	}
+	
 	function startConsole() {
-      //$j(function {
-        var jqconsole = $j('#console').jqconsole('Greetings earthling. MALE here, what\'s your name?\n', '>>> ');
+        jqconsole = $j('#console').jqconsole('Greetings earthling. MALE here, what\'s your name?\n', '>>> ');
+        
+        //give the header an id, this saves complications down the line
         $j('.jqconsole-header span').attr('id','male-welcome-msg');
         $j('#male-welcome-msg').typewriter();
         $j('#male-welcome-msg').css('color', '#444');
 
-        var emailPrompt = function () {
-          // Start the prompt with history enabled.
-          jqconsole.Prompt(true, function (input) {
-            // Output input with the class jqconsole-output.
-            jqconsole.Write('You entered:' + input + '\nI\'m going to spam the hell out of you ', 'jqconsole-output wordwrap');
-            typeit();
-          });
-        };
-        var startPrompt = function () {
-          // Start the prompt with history enabled.
-          jqconsole.Prompt(true, function (input) {
-            // Output input with the class jqconsole-output.
-            jqconsole.Write('Hmm... '+ input + '. That\'s an awesome name.\nYou must be an awesome person.\n\nWhat\'s your email address?\n', 'jqconsole-output wordwrap');
-            typeit();
-            // Restart the prompt.
-            emailPrompt();
-          });
-        };
         startPrompt();
+        // need this otherwise window flys around on load
+        window.scrollTo(0,0);
 		jqconsole.Focus;
 
-        //give the header an id, this saves complications down the line
-     // });
 	}
 
 </script>
+
+<script type="text/javascript">
+	function registerUser(emailAd, firstname) {
+		
+		jqconsole.Write('Saving your progress... ', 'jqconsole-output wordwrap');
+		typeit();
+		var s = getLatestSpan();
+		$(s).addClassName('loading');
+
+	    $j.ajax({
+		  type: "POST",
+		  url: "/subscribe/newbie",
+		  data: {
+		  	email: emailAd,
+		  	fname: firstname,
+		  	source: '<?php echo $referer; ?>'
+		  },
+		  success: function(data) {
+			alert('message: '+data);
+			var retval = JSON.parse(data);
+
+			if(retval.status == 1) {
+				$j(s).removeClass('loading');
+				$j(s).removeClass('red');
+
+				$j(s).text('Almost there - we need you to confirm your email. Click on the link we just sent you. ');
+				typeit();
+	        }
+	        else if(retval.status == 214) {
+	        	$j(s).removeClass('loading');
+				$j(s).removeClass('red');
+				$j(s).text('Wait a sec, we\'ve already got you saved. Are you not receiving our emails? To stop our emails going to spam, please add <strong>help@getbrandid.com</strong> to your address book.');
+				typeit();
+	        }
+	        else {
+				$j(s).removeClass('loading');
+				$j(s).addClass('red');
+				$j(s).text(retval.message+'\nTry again: ');
+				typeit();
+				emailPrompt();
+	        }
+		  }
+		});
+	}
+</script>
+
 <script type="text/javascript">
 	function loaded(){
 			jQuery('#male-status').addClass('online');
@@ -119,10 +157,11 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("gifts.htm
 			jQuery('#male-colour').addClass('male-back');
 			jQuery('#status').text('');
 			setTimeout("startConsole()", 300);
+
 		}
 
 	jQuery(document).ready(function() {
-		setTimeout("loaded()", 5000);
+		setTimeout("loaded()", 500);
 	});
 
 </script>
