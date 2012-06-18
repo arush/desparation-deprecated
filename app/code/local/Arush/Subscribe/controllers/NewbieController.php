@@ -6,6 +6,23 @@ class Arush_Subscribe_NewbieController extends Mage_Core_Controller_Front_Action
 			
 			$email = $this->getRequest()->getPost('email');
 
+			// this is sent when user enters firstname as an option
+			if($this->getRequest()->getPost('fname')) {
+				$fname = $this->getRequest()->getPost('fname');
+			}
+			else {
+				$fname = '';
+			}
+
+			// this is sent when user enters gender as an option
+			if($this->getRequest()->getPost('gender')) {
+				$gender = $this->getRequest()->getPost('gender');
+			}
+			else {
+				$gender = '';
+			}
+
+
 			// get standard values for mailchimp api call
 			$storeId = Mage::app()->getStore()->getId();			
 			$listId = Mage::helper('monkey')->getDefaultList($storeId);
@@ -18,18 +35,12 @@ class Arush_Subscribe_NewbieController extends Mage_Core_Controller_Front_Action
 			// put them all in an array
 			$mergeVars = array(
 							'STATUS' => 'interested',
+							'FNAME' => $fname,
+							'GENDER' => $gender,
 							'SOURCE' => $source,
 							'OPTIN_IP' => $ip,
 							'OPTIN_TIME' => $time
 							);
-			// debug
-			// print_r(json_encode(
-			// 	array(
-			// 		'list id' => $listId,
-			// 		'email' => $email,
-			// 		'mergeVars' => $mergeVars
-			// 		)
-			// 	));
 
 			// call ebizmarts api
 			$api = Mage::getSingleton('monkey/api');
