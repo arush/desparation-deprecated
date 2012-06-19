@@ -132,6 +132,10 @@ body {background-color:#333;}
 	background-color:#cfcfcf !important;
 }
 
+.jqconsole-output.instruction span{
+	background-color:#f7f5c1;
+	color:#7e7b14 !important;
+}
 .jqconsole-output.red span{
 	background-color:#f6dddd;
 	color:#991e1e !important;

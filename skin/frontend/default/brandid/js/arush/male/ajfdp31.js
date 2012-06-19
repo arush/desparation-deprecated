@@ -2,6 +2,58 @@ typingDelay = 30; // global variable  // match this to text-effects.js
 
 var $j = jQuery.noConflict();
 
+function createPunter() {
+		//global punter object
+		punter = new Object();
+		if($j.cookie('punter') != null) {
+			punter = JSON.parse($j.cookie("punter"));
+		}
+	}
+
+function registerUser(emailAd, firstname) {
+	
+	jqconsole.Write('Saving your progress... ', 'jqconsole-output wordwrap');
+	typeit();
+	var s = getLatestSpan();
+	var referer = getReferer();
+	$j(s).addClassName('loading');
+
+    $j.ajax({
+	  type: "POST",
+	  url: "/subscribe/newbie",
+	  data: {
+	  	email: emailAd,
+	  	fname: firstname,
+	  	source: referer
+	  },
+	  success: function(data) {
+		alert('message: '+data);
+		var retval = JSON.parse(data);
+
+		if(retval.status == 1) {
+			$j(s).removeClass('loading');
+			$j(s).removeClass('red');
+
+			$j(s).text('Almost there - we need you to confirm your email. Click on the link we just sent you. ');
+			typeit();
+        }
+        else if(retval.status == 214) {
+        	$j(s).removeClass('loading');
+			$j(s).removeClass('red');
+			$j(s).text('Wait a sec, we\'ve already got you saved. Are you not receiving our emails? To stop our emails going to spam, please add <strong>help@getbrandid.com</strong> to your address book.');
+			typeit();
+        }
+        else {
+			$j(s).removeClass('loading');
+			$j(s).addClass('red');
+			$j(s).text(retval.message+'\nTry again: ');
+			typeit();
+			emailPrompt();
+        }
+	  }
+	});
+}
+
 function offsideAnswer() {
 	jqconsole.Prompt(true, function (input) {
 			var genderAnswer = $j.trim(input);
@@ -9,21 +61,24 @@ function offsideAnswer() {
 			switch(genderAnswer) {
 				case 'a':
 					punter.gender = 'Male';
+					saveProgress();
 					jqconsole.Write('That is correct. You are clearly a man. ', 'jqconsole-output wordwrap');
 					typeit();
-					setTimeout('saveProgress();',1500+500);
+					setTimeout('startEmail();',1500+500);
 					break;
 				case 'b':
 					punter.gender = 'Female';
+					saveProgress();
 					jqconsole.Write('Correct! Wow, that\'s hot. Just kidding. I\'m a machine. ', 'jqconsole-output wordwrap');
 					typeit();
-					setTimeout('saveProgress();',1500+500);
+					setTimeout('startEmail();',1500+500);
 					break;
 				case 'c':
 					punter.gender = 'Female';
+					saveProgress();
 					jqconsole.Write('IMAGE OF BECKHAM\n. ', 'jqconsole-output readable wordwrap');
 					typeit();
-					setTimeout('saveProgress();',1500);
+					setTimeout('startEmail();',1500);
 					break;
 				default:
 					jqconsole.Write('Are you having trouble with your keyboard?\nTry again: ', 'jqconsole-output red wordwrap');
@@ -36,6 +91,47 @@ function offsideAnswer() {
 }
 
 function saveProgress() {
+	alert("saving cookie: "+ JSON.stringify(punter));
+	$j.cookie('punter', JSON.stringify(punter), { expires: 1, path: '/' });
+}
+
+function clearProgress() {
+	$j.cookie('punter', null, { expires: 1, path: '/' });
+	createPunter();
+	punter.fname = undefined; //this is as good as deleting punter, but leaves the ability to check against punter.fname later
+}
+
+function dropBackIn() {
+ /* TO DO: FIND OUT WHICH STEP USER IS AT AND CONTINUE THE PROCESS */
+
+}
+
+function returningVisitor() {
+	jqconsole.Write('Just to confirm:\na. Yes, it\'s me, '+punter.fname+', lets continue where we left off.\nb. I was just fooling around, let\'s start again.', 'jqconsole-output wordwrap');
+	typeit();
+	jqconsole.Prompt(true, function (input) {
+		switch(input) {
+			case 'a':
+				dropBackIn();
+				break;
+			case 'b':
+				clearProgress();
+				jqconsole.Reset();
+				jQuery('#console').html('');
+				jqconsole = null;
+				startConsole();
+				break;
+			default:
+				jqconsole.Write('What, no [a] and [b] on your keyboard?\nTry again: ', 'jqconsole-output red wordwrap');
+				typeit();
+				setTimeout('returningVisitor();',1500);
+				break;
+		}
+	});
+}
+
+function startEmail() {
+
 	jqconsole.Write('So, '+ punter.fname + ', let\'s save your progress so you don\'t have to go through this again.\nWhat\'s your email address: ', 'jqconsole-output wordwrap');
 	typeit();
 	emailPrompt();
@@ -46,7 +142,6 @@ function emailPrompt() {
 	jqconsole.Prompt(true, function (input) {
 		punter.email = input;
 		registerUser(punter.email,punter.fname);
-
 	});
 }
 function getDelayRequired() {
@@ -114,7 +209,13 @@ function typeit() {
 		$j('#'+randomId).css('color', '#444');
 	}
 
+function printInstructions() {
+	jqconsole.Write('Type your FIRSTNAME and press ENTER, for example:\n\n >>> Steve ', 'jqconsole-output instruction wordwrap');
+}
+
 var startPrompt = function () {
+
+	setTimeout("printInstructions()",2000);
 
   	jqconsole.Prompt(true, function (input) {
 
@@ -125,10 +226,11 @@ var startPrompt = function () {
 	  	if(!smallName) {
 	      	// strip whitespace, capitalise and save the name
 	      	punter.fname = name;
+	      	punter.sexGuess = genderGuess(name);
+	      	saveProgress();
 
-	      	var sex = genderGuess(name);
 	        // Output input with the class jqconsole-output.
-	        if(sex == 'female') {
+	        if(punter.sexGuess == 'female') {
 	        	jqconsole.Write('Hmm... '+ input + '. Forgive me if I\'m wrong, but that sounds like a girl\'s name.\n\nJust to be sure, I need you to answer this question: ', 'jqconsole-output wordwrap');
 	        }
 	        else {
@@ -153,10 +255,19 @@ function genderGuess(str) {
 	str = str.toLowerCase();
 	var last = str.charAt(str.length-1);
 	if(
-		last == 'a'
+		(last == 'a'
 		|| last == 'e'
 		|| last == 'y'
 		|| str == 'helen'
+		|| str == 'sarah'
+		|| str == 'hannah'
+		|| str == 'megan'
+		|| str == 'alison')
+		&&
+		(str != 'steve'
+		&& str != 'bryce' 
+		&& str != 'mike' )
+
 	) {
 		return 'female';
 	}

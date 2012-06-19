@@ -63,9 +63,9 @@
 </div>
 <script type="text/javascript">
 	var $j = jQuery.noConflict();
-
-	punter = new Object();
 	
+	createPunter();
+		
 	function offside() {
 		
 	    // fade
@@ -86,66 +86,42 @@
 
 		offsideAnswer();
 	}
-	
-	function startConsole() {
-        jqconsole = $j('#console').jqconsole('Greetings earthling. MALE here, what\'s your name?\n', '>>> ');
-        
-        //give the header an id, this saves complications down the line
+	function initiate() {
+		//give the header an id, this saves complications down the line
         $j('.jqconsole-header span').attr('id','male-welcome-msg');
         $j('#male-welcome-msg').typewriter();
         $j('#male-welcome-msg').css('color', '#444');
+    	window.scrollTo(0,0);
+    	jqconsole.Focus;
+	}
+	function startConsole() {
 
-        startPrompt();
-        // need this otherwise window flys around on load
-        window.scrollTo(0,0);
-		jqconsole.Focus;
+		if(punter.fname != undefined) {
+	        var backMessage = new Array(", I thought you were gone forever! ", ", missing me already, eh? ", ", I knew you\'d be back. I could feel it. ");
+	        var i = Math.floor(Math.random()*3);
+        	jqconsole = $j('#console').jqconsole('Hey '+punter.fname+backMessage[i], ' >>> ');
+        	
+        	setTimeout('returningVisitor();',1500);
+        	initiate();
+        }
+        else {
+        	jqconsole = $j('#console').jqconsole('Greetings earthling. MALE here, what\'s your name? ', ' >>> ');	
+	        $j('#male-welcome-msg').typewriter();
+	        $j('#male-welcome-msg').css('color', '#444');
+			startPrompt();
+			initiate();
+
+        }
 
 	}
 
 </script>
 
 <script type="text/javascript">
-	function registerUser(emailAd, firstname) {
-		
-		jqconsole.Write('Saving your progress... ', 'jqconsole-output wordwrap');
-		typeit();
-		var s = getLatestSpan();
-		$(s).addClassName('loading');
-
-	    $j.ajax({
-		  type: "POST",
-		  url: "/subscribe/newbie",
-		  data: {
-		  	email: emailAd,
-		  	fname: firstname,
-		  	source: '<?php echo $referer; ?>'
-		  },
-		  success: function(data) {
-			alert('message: '+data);
-			var retval = JSON.parse(data);
-
-			if(retval.status == 1) {
-				$j(s).removeClass('loading');
-				$j(s).removeClass('red');
-
-				$j(s).text('Almost there - we need you to confirm your email. Click on the link we just sent you. ');
-				typeit();
-	        }
-	        else if(retval.status == 214) {
-	        	$j(s).removeClass('loading');
-				$j(s).removeClass('red');
-				$j(s).text('Wait a sec, we\'ve already got you saved. Are you not receiving our emails? To stop our emails going to spam, please add <strong>help@getbrandid.com</strong> to your address book.');
-				typeit();
-	        }
-	        else {
-				$j(s).removeClass('loading');
-				$j(s).addClass('red');
-				$j(s).text(retval.message+'\nTry again: ');
-				typeit();
-				emailPrompt();
-	        }
-		  }
-		});
+	function getReferer() {
+		var referer;
+		referer = '<?php echo $referer; ?>';
+		return referer;
 	}
 </script>
 
@@ -157,11 +133,11 @@
 			jQuery('#male-colour').addClass('male-back');
 			jQuery('#status').text('');
 			setTimeout("startConsole()", 300);
-
 		}
 
 	jQuery(document).ready(function() {
-		setTimeout("loaded()", 500);
+		window.scrollTo(0,0);
+		setTimeout("loaded()", 1000);
 	});
 
 </script>
