@@ -132,9 +132,17 @@ body {background-color:#333;}
 	background-color:#cfcfcf !important;
 }
 
+.jqconsole-output.instruction span{
+	background-color:#f7f5c1;
+	color:#7e7b14 !important;
+}
 .jqconsole-output.red span{
 	background-color:#f6dddd;
 	color:#991e1e !important;
+}
+.jqconsole-output.green span{
+	background-color:#d2f2d2;
+	color:#467c46 !important;
 }
 .jqconsole-output.readable span{
 	color:#444 !important;
