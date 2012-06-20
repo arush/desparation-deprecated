@@ -2,13 +2,133 @@ typingDelay = 30; // global variable  // match this to text-effects.js
 
 var $j = jQuery.noConflict();
 
-function createPunter() {
-		//global punter object
-		punter = new Object();
-		if($j.cookie('punter') != null) {
-			punter = JSON.parse($j.cookie("punter"));
+function teamMenu() {
+	jqconsole.Write('a. Open the team page in a new window\nb. Who is MALE™?\nc. Return to the Secret Menu ', 'jqconsole-output wordwrap');
+	var s = getLatestSpan();
+	$j(s).css('color', '#444');
+	teamAnswer();
+}
+
+function teamAnswer() {
+	jqconsole.Prompt(true, function (input) {
+		var answer = $j.trim(input);
+		answer = answer.toLowerCase();
+		switch(answer) {
+			case 'a':
+				window.open("/keep/calm/wearepros","_blank");
+				setTimeout('teamMenu();',1000);
+				break;
+			case 'b':
+				jqconsole.Write('My true identity can never be revealed. However I can tell you this:\n\nMALE™ is the Masculine Algorithmic Learning Engine. MALE™ is learning all the time. When you signup, when you feedback on your deliveries, when you upgrade/downgrade or need new stuff, MALE™ learns exactly what you need, exactly when you need it. ', 'jqconsole-output wordwrap');
+				typeit();
+				setTimeout('investorMenu();',10000);
+				break;
+			case 'c':
+				investorMenu();
+				break;
+			default:
+				jqconsole.Write('No comprendes, partner. Gotta choose one of the options.\nTry again: ', 'jqconsole-output red wordwrap');
+				typeit();
+				setTimeout('teamAnswer();',1500);
+				break;
 		}
+	});
+}
+
+function investorMenuAnswer() {
+	jqconsole.Prompt(true, function (input) {
+		var answer = $j.trim(input);
+		answer = answer.toLowerCase();
+		switch(answer) {
+			case 'a':
+				jqconsole.Write('Our team is the perfect mix of tech startup, retail, fashion, branding and comms entrepreneurs.\nAnd we are deadly serious about solving clothing shopping for men. Forever. ', 'jqconsole-output wordwrap');
+				typeit();
+				setTimeout('teamMenu();',6000);
+				break;
+			case 'b':
+				jqconsole.Write('Men don’t like shopping. And while men want to look good, most wouldn’t claim to be interested in fashion. Ecommerce for men is too often just ecommerce for women with the pinks turned blue.\n\nWant to know more? Download our deck (option d). ', 'jqconsole-output wordwrap');
+				typeit();
+				investorMenu();
+				break;
+			case 'c':
+				jqconsole.Write('BRANDiD is an online subscription service for all the things men need, starting with designer basics such as underwear, socks, tees and shirts from the likes of Dior, Calvin Klein and Ralph Lauren.\n\nBRANDiD is specifically designed for the way men want to shop – no hassle, no fuss, no fluff. Your average man only shops to solve a problem, and once dealt with, never wants to deal with it again. Select, subscribe, sorted.\n\nWant to know more? Download our deck (option d). ', 'jqconsole-output readable wordwrap');
+				typeit();
+				investorMenu();
+				break;
+			case 'd':
+				window.open("https://www.dropbox.com/s/ymle0o62nw5cje3/angel%20deck.pdf","_blank");
+				setTimeout('investorMenu();',1000);
+				break;
+			default:
+				jqconsole.Write('Sorry buddy, gotta choose one of the options.\nTry again: ', 'jqconsole-output red wordwrap');
+				typeit();
+				setTimeout('investorMenu();',4000);
+				break;
+		}
+
+	});
+}
+
+function investorMenu() {
+	jqconsole.Write('Secret Menu:\na. Team\nb. What problem are you solving?\nc. What\'s the answer?\nd. Download the investor deck ', 'jqconsole-output wordwrap');
+	var s = getLatestSpan();
+	$j(s).css('color', '#444');
+	investorMenuAnswer();
+}
+
+function investorPass() {
+	jqconsole.Prompt(true, function (input) {
+		var password = $j.trim(input);
+		password = password.toLowerCase();
+		
+		jqconsole.Write('Gimme a sec... ', 'jqconsole-output wordwrap');
+		typeit();
+
+		var s = getLatestSpan();
+
+		$j.ajax({
+		  type: "POST",
+		  url: "/get/party/password",
+		  data: {
+		  	pword: password
+		  },
+		  success: function(data) {
+			var retval = JSON.parse(data);
+
+			switch(retval.status) {
+				case true:
+					jqconsole.Write('That is correct.\nYou know, all this intelligence of mine requires a lot of power. I always need more.\nBut my bosses keep saying \"in this country, first you gotta get the money, then you get the power...\"\n\nThey always do it in a funny accent. Anyways... I hope you can help us get the money so I can get some power. ', 'jqconsole-output green wordwrap');
+					typeit();
+					setTimeout('investorMenu();',9500);
+					break;
+				default:
+					jqconsole.Write('Computer says \"no\". Try another password: ', 'jqconsole-output red wordwrap');
+					typeit();
+					setTimeout('investorPass();',1000); 
+					break;
+			}
+		  }
+		});
+
+
+		
+
+	});
+}
+
+function investorAsk() {
+	jqconsole.Write('So, you\'re an investor? What\'s the password: ', 'jqconsole-output wordwrap');
+	typeit();
+	investorPass();
+}
+
+function createPunter() {
+	//global punter object
+	punter = new Object();
+	if($j.cookie('punter') != null) {
+		punter = JSON.parse($j.cookie("punter"));
 	}
+}
 
 function registerUser(emailAd, firstname) {
 	
@@ -16,7 +136,7 @@ function registerUser(emailAd, firstname) {
 	typeit();
 	var s = getLatestSpan();
 	var referer = getReferer();
-	$j(s).addClassName('loading');
+	$j(s).addClass('loading');
 
     $j.ajax({
 	  type: "POST",
@@ -33,8 +153,8 @@ function registerUser(emailAd, firstname) {
 		if(retval.status == 1) {
 			$j(s).removeClass('loading');
 			$j(s).removeClass('red');
-
-			$j(s).text('Almost there - we need you to confirm your email. Click on the link we just sent you. ');
+			$j(s).addClass('green');
+			$j(s).text('Awesome. We sent you confirmation link, you\'ll need to click that now. ');
 			typeit();
         }
         else if(retval.status == 214) {
@@ -57,12 +177,12 @@ function registerUser(emailAd, firstname) {
 function offsideAnswer() {
 	jqconsole.Prompt(true, function (input) {
 			var genderAnswer = $j.trim(input);
-			genderAnswer = input.toLowerCase();
+			genderAnswer = genderAnswer.toLowerCase();
 			switch(genderAnswer) {
 				case 'a':
 					punter.gender = 'Male';
 					saveProgress();
-					jqconsole.Write('That is correct. You are clearly a man. ', 'jqconsole-output wordwrap');
+					jqconsole.Write('That is correct. You are clearly a man. ', 'jqconsole-output green wordwrap');
 					typeit();
 					setTimeout('startEmail();',1500+500);
 					break;
@@ -223,7 +343,10 @@ var startPrompt = function () {
 	      	name = capitaliseFirstLetter(name);
 	    var smallName = name.length <= 1;
 	  	// <= 1 char?
-	  	if(!smallName) {
+	  	if(input.toLowerCase() == 'investor') {
+	    	investorAsk();
+	    }
+	    else if(!smallName) {
 	      	// strip whitespace, capitalise and save the name
 	      	punter.fname = name;
 	      	punter.sexGuess = genderGuess(name);
