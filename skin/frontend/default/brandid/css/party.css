@@ -32,7 +32,7 @@ body {background-color:#333;}
         max-height: 650px;
 		overflow-y: scroll;
 	    -webkit-overflow-scrolling: touch;
-		padding-bottom: 450px;
+		padding-bottom: 180px;
 		-webkit-box-shadow:0px 0px 20px 10px rgba(0,0,0,0.7);
 		-moz-box-shadow:0px 0px 20px 10px rgba(0,0,0,0.7);
 		-webkit-transition: all 0.5s ease-in-out;
@@ -148,6 +148,37 @@ body {background-color:#333;}
 	color:#444 !important;
 }
 
+.mobile-buttons {
+	display:none;
+}
+.mobile-buttons a {
+	width:100%;
+	margin:0 0 20px 0;
+	min-height:60px;
+	line-height:60px;
+	float:left;
+	letter-spacing:-1px;
+}
+
+.mobile-buttons a.first {
+	margin:20px 0;
+}
+
+.mobile-buttons a.smalltext {
+	font-size:20px;
+	line-height:30px;
+	padding-top:12px;
+}
+
+.mobile-buttons a.smalltext span.button-caption {
+	font-size:12px;
+	line-height:14px;
+	display:block;
+	clear:both;
+	text-shadow:none;
+	font-weight:normal;
+	letter-spacing:0;
+}
 
 .console-fade {
 	width:100%;
@@ -163,6 +194,26 @@ body {background-color:#333;}
 .jqconsole-blurred:before .console-fade {
 	background:none;
 }
+
+.jqconsole-output.loading-flash span {
+        background-color: #CFCFCF;
+        -webkit-animation:bg-load 1s 9999 ease-in-out;
+		-moz-animation:bg-load 1s 9999 ease-in-out;
+		animation:bg-load 1s 9999 ease-in-out;
+		animation-iteration-count:infinite;
+    }
+	@-webkit-keyframes bg-load {
+		0% { background-color:#CFCFCF; }
+		50% { background-color:#d2f2d2; }
+		100% { background-color:#CFCFCF; }
+	}
+
+	@-moz-keyframes bg-load {
+		0% { background-color:#CFCFCF; }
+		50% { background-color:#d2f2d2; }
+		100% { background-color:#CFCFCF; }
+	}
+
 /* end custom skinning */
 
 #fb-root {display:none;}
@@ -313,6 +364,68 @@ img.male-round, .male-back, .male-loading, .male-label-box, .male-loader {
 	        animation-fill-mode: forwards;
 }
 
+.offside img {
+	margin-left: 25%;
+	margin-top: 25px;
+}
+.img-container {
+	float: left;
+	border: 1px solid #CCC;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	margin: 1%;
+	background: white;
+
+	border-bottom: none;
+	-moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+
+	box-shadow: 0px 0px 15px #AAA;
+	-moz-box-shadow:0px 0px 15px #AAA;
+	-webkit-box-shadow: 0px 0px 15px #AAA;;
+}
+
+.img-container.offside {
+	width:100%;
+	margin:0;
+}
+.img-container.work-image {
+	width:22.5%;
+	text-align: center;
+
+}
+.image-question.three .img-container {
+	width:22%;
+}
+
+.image-question.four .img-container {
+	width:22%;
+}
+
+.image-question .img-container .image-caption {
+	display:block;
+	width:100%;
+	float:left;
+	padding:20px 0;
+	color: #444;
+	font-family: courier, sans-serif;
+	font-weight: normal;
+	text-align: center;
+	background-color: white;
+	border-top: none;
+
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+
+	-webkit-border-top-left-radius: 0px;
+	-webkit-border-top-right-radius: 0px;
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	font-size: 14px;
+	-moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+
+}
 
 @-webkit-keyframes male-online {
 	
@@ -479,6 +592,15 @@ img.male-round, .male-back, .male-loading, .male-label-box, .male-loader {
 		height: auto;
 		min-height: 220px;
 	}
+	.mobile-buttons {display:block;}
+	.offside img {
+		margin-left: 0;
+		width: 100%;
+	}
+	.img-container.work-image {
+		width:47%;max-width:47%;margin: 20px 1%;
+	}
+	.jqconsole-output.question {display:none;}
 	.skip-this {float:none;margin:0 auto;}
 	.male-title {text-align: center;}
 }
@@ -490,10 +612,14 @@ img.male-round, .male-back, .male-loading, .male-label-box, .male-loader {
 	.title-skip {display:none;}
 	.title-skip.mobile {display:block;}
 	.title-skip.mobile .skip-this {float:right;margin-top:5px;}
+	.img-container.work-image {
+		width:100%;max-width:100%;margin: 20px 0;
+	}
 
 }
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) {
+
 	#logo {width:48%;}
 	.title-skip.mobile .skip-this {width: 38%;	margin: 0 0 0 12%;}
 }

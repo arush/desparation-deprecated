@@ -4,6 +4,9 @@
         <Arush_Get>
             <active>true</active>
             <codePool>local</codePool>
+            <depends>
+                <Ebizmarts_MageMonkey />
+            </depends>
         </Arush_Get>
     </modules>
 </config>

@@ -65,7 +65,23 @@
 	var $j = jQuery.noConflict();
 	
 	createPunter();
-		
+	
+	function workImages(appendTo) {
+	
+		var delay = getDelayRequired();
+		// type has to go after, otherwise the delay counts only one or two chars
+		typeit();
+
+		var images = new Array();
+		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/work/1.jpg'); ?>", "work-image", "a. Smart");
+		images[1] = new Array("<?php echo $this->getSkinUrl('images/male/work/2.jpg'); ?>", "work-image", "b. Casual");
+		images[2] = new Array("<?php echo $this->getSkinUrl('images/male/work/3.jpg'); ?>", "work-image", "c. Hacker");
+		images[3] = new Array("<?php echo $this->getSkinUrl('images/male/work/4.jpg'); ?>", "work-image", "d. Gorilla Suit");
+
+		var imageString = printImage(images);
+		performAppend(appendTo, delay, imageString);
+	}
+
 	function offside() {
 		
 	    // fade
@@ -77,14 +93,12 @@
 
 		typeit();
 
-		var url = new Array(
-						"<?php echo $this->getSkinUrl('images/male/offside.jpg'); ?>"
-						);
-		var caption = "Which player is offside?\n\na. I'm a man. Player A is offside.\nb. I'm a woman who knows her football. Player A is offside.\nc. I'm a woman. Just show me a picture of Beckham.\n\nType [a], [b] or [c] and press [ENTER] ";
-		var imageString = printImage(url,"offside",caption);
-		performAppend(s, delay, imageString);
+		var images = new Array();
+		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/offside.jpg'); ?>","offside", "Which player is offside?");
 
-		offsideAnswer();
+		var imageString = printImage(images);
+		performAppend(s, delay, imageString);
+		setTimeout('offsideQ()',delay);
 	}
 	function initiate() {
 		//give the header an id, this saves complications down the line
@@ -105,7 +119,7 @@
         	initiate();
         }
         else {
-        	jqconsole = $j('#console').jqconsole('Greetings earthling. MALE here, what\'s your name? ', ' >>> ');	
+        	jqconsole = $j('#console').jqconsole('Greetings earthling. MALE™ here, what\'s your name? ', ' >>> ');	
 	        $j('#male-welcome-msg').typewriter();
 	        $j('#male-welcome-msg').css('color', '#444');
 			startPrompt();

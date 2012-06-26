@@ -31,10 +31,23 @@
  * @see Mage_Customer_Block_Form_Register
  */
 ?>
-<?php 
-	$referer = "unknown";
+<?php
+	$referer = false;
+	$refererSet = false;
 	if(Mage::getSingleton('core/session')->getReferer()) {
+		$refererSet = true;
 		$referer = Mage::getSingleton('core/session')->getReferer();
+	}
+
+	if(!$refererSet) {
+		//get the referrer
+		if (isset($_SERVER['HTTP_REFERER'])) {
+			$referer = $_SERVER['HTTP_REFERER'];
+		} else {
+			$referer = "unknown";
+		}
+		//save it in a session variable
+		Mage::getSingleton('core/session')->setReferer($referer); // store session data
 	}
 ?>
 
