@@ -1,13 +1,12 @@
-<?php 
-
-Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("plans.html"));
-
+<?php
+	$referer = false;
 	$refererSet = false;
 	if(Mage::getSingleton('core/session')->getReferer()) {
 		$refererSet = true;
+		$referer = Mage::getSingleton('core/session')->getReferer();
 	}
 
-	if($refererSet) {
+	if(!$refererSet) {
 		//get the referrer
 		if (isset($_SERVER['HTTP_REFERER'])) {
 			$referer = $_SERVER['HTTP_REFERER'];
@@ -17,11 +16,8 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("plans.htm
 		//save it in a session variable
 		Mage::getSingleton('core/session')->setReferer($referer); // store session data
 	}
-	else {
-		$referer = Mage::getSingleton('core/session')->getReferer();
-	}
-	
 ?>
+
 
 <div class="ghost-header"></div>
 <div class="share-header clearfix">

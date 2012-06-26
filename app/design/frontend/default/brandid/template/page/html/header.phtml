@@ -1,8 +1,9 @@
-	<?php
+<?php
 	$referer = false;
 	$refererSet = false;
 	if(Mage::getSingleton('core/session')->getReferer()) {
 		$refererSet = true;
+		$referer = Mage::getSingleton('core/session')->getReferer();
 	}
 
 	if(!$refererSet) {
