@@ -318,7 +318,7 @@ span.apostrophe2 {
 
 .share-buttons {
 	float:left;
-	margin: 0 0 30px 147px;
+	margin: 0 0 30px 228px;
 }
 
 .share-but {
@@ -741,6 +741,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', end
 	width: 800px;
 	text-align: center;
 }
+
+.commitment-caption.middle {
+	margin:100px auto;
+}
+
 .upper-box .commitment-caption {
 	margin:0px auto;
 }
@@ -760,7 +765,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', end
 .green-box .commitment-caption {
 	float: left;
 	margin: 25px auto;
-	height: 60px;
 	width:100%;
 }
 .green-box .commitment-caption .caption{
@@ -773,6 +777,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', end
 .green-box .convert-main {
 	float:right;
 	margin:25px 10px;
+}
+
+.green-box .convert-button {
+	width:300px;
+}
+
+
+#mags .green-box .convert-button {
+	width:250px;
+}
+#mags .green-box {
+	margin:20px 0;
 }
 
 .vision-title-text {
@@ -1731,9 +1747,6 @@ img.founders {
 	max-wi
 }
 
-.green-box .convert-button {
-	width:300px;
-}
 
 span.login a {color:#d2002b;text-decoration:underline;}
 
