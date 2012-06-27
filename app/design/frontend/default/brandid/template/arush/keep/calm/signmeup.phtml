@@ -26,7 +26,7 @@
 		<div class="trans-back"></div>
 		<div class="share-header-container section clearfix">
 	
-			<a id="logo" href="#top" class="logo-button" style="display:none;">
+			<a id="logo" href="#top" class="logo-button">
 				<div class="gift-logo">
 				</div>
 			</a>
@@ -84,7 +84,13 @@
 				
 			<?php }
 				else { ?>
-					<div id="oa_social_login_header_convert" class="loading"></div>
+					
+					<div class="convert">
+						<a id="gift-header-convert" href="/keep/calm/getgifted" class="convert secondary">Gift a Plan</a>
+					</div>
+
+					<!-- social login -->
+					<!-- div id="oa_social_login_header_convert" class="loading"></div>
 				<span></span>	
 					<script type="text/javascript">
 						 oneall.api.plugins.social_login.build("oa_social_login_header_convert", {
@@ -95,7 +101,7 @@
 							        'onload' : function(){jQuery('#oa_social_login_header_convert').removeClass('loading');}   
 							      } 
 						 });
-					</script>
+					</script -->
 					
 			<?php } ?>
 						
@@ -109,11 +115,11 @@
 				<span class="button-copy">Who?</span>
 			</a>
 
-			<a id="what" href="#2" class="header-button">
+			<a id="what" href="#body-convert-2" class="header-button">
 				<span class="button-copy">What?</span>
 			</a>
 
-			<a id="how-but" href="#1" class="header-button">
+			<a id="how-but" href="#middle-body-convert" class="header-button">
 				<span class="button-copy">How?</span>
 			</a>
 			<?php if (!Mage::getSingleton('customer/session')->isLoggedIn()) {?>
@@ -132,55 +138,27 @@
 	
 	
 	
-	<div class="big-fuckoff section">
-		<div id="big-fuckoff-logo" class="logo section">
-		</div>
-		<a id="gift-button" class="gift invisibut" href="/keep/calm/getgifted">
-			<div class="subscribe-circle circle gift">
-				<div id="gift1" class="sub-detail detail-1 fathersday">not a man?</div>
-				<div id="gift2" class="sub-detail detail-2">GIFT</div>
-				<div id="gift3" class="sub-detail detail-3">a plan</div>
-			</div>
-		</a>
-		
-		
-		<div class="shadow section">
-		</div>
-
 	</div>
 	<div class="title-block first">
 		<div class="title-block-inner clearfix">
 			<div class="title-block-container section clearfix">		
 				<div class="title section">
 					<span class="first">I'm a Man.</span><br/>
-					<span id="signmeupnow" class="second">I don't read instructions.</span>
+					<span id="signmeupnow" class="second">I don't fucking do shopping.</span>
 				</div>
-				<div class="convert-button">
+				<!-- div class="convert-button">
 					<a id="middle-body-convert" href="/plans.html" class="convert">Show Me The Plans Now!</a>
-				</div>
+				</div -->
 			</div>
 		</div>
 	</div>
-			
-		
-	<div class="signmeupnow-container section clearfix">
-
-		<!-- div class="commitment-caption reg section">
-			<div class="reg-form">
-				<div class="commitment-caption section ">
-					<div class="commitment-caption">
-						<span class="caption">Not ready for a plan? Register below and we'll be in touch when we have more cool stuff to tell you about.</span>
-					</div>
-				</div>
-				
-				<form action="/customer/account/create" method="get">
-				  <input type="text" name="email" value="Enter your email address…" onFocus="clearDefault(this)" onBlur="restoreText(this)"/>
-				  <button class="convert" type="submit">Keep me in the loop!</button>
-				</form>
+	<div class="commitment-caption section">
+		<div class="commitment-caption section">
+			<span class="caption">BRANDiD is an online subscription service for all the things men need, starting with designer basics such as underwear, socks, tees and shirts from the likes of Calvin Klein, Hugo Boss and Ralph Lauren. We'll send your gear every month so your boxers are always box fresh. Select. Subscribe. Sorted. Capiche?</span>
+			<div class="convert-button clearfix">
+				<a id="middle-body-convert" href="/plans.html" class="convert">Show Me The Plans Now!</a>
 			</div>
-		</div -->
-
-		<div class="share-buttons">
+			<div class="share-buttons">
 			
 			<div class="like-but share-but">
 				<div class="fb-like" data-href="http://www.facebook.com/pages/Brandid/282808678428182" data-send="false" data-layout="button_count" data-width="100" data-show-faces="true"></div>
@@ -200,10 +178,46 @@
 			</div>
 
 		</div>
+		</div>
+	</div>
+	<div class="signmeupnow-container section clearfix">
+
+		<!-- div class="commitment-caption reg section">
+			<div class="reg-form">
+				<div class="commitment-caption section ">
+					<div class="commitment-caption">
+						<span class="caption">Not ready for a plan? Register below and we'll be in touch when we have more cool stuff to tell you about.</span>
+					</div>
+				</div>
+				
+				<form action="/customer/account/create" method="get">
+				  <input type="text" name="email" value="Enter your email address…" onFocus="clearDefault(this)" onBlur="restoreText(this)"/>
+				  <button class="convert" type="submit">Keep me in the loop!</button>
+				</form>
+			</div>
+		</div -->
+
+		
 		
 		
 		
 	</div>
+	
+
+	<div class="grey-tilt-holder">
+		<div class="grey-tilt right-tilt clearfix">
+			<div id="mags" class="hood section clearfix">
+				
+			<?php
+			     echo  $this->getLayout()->createBlock('cms/block')->setBlockId('under-the-hood')->toHtml() ;
+			?>
+				
+			</div>
+	
+		</div>
+	</div>
+		
+	
 	<div class="quotes section clearfix">
 
 		<div class="quote-box">
@@ -251,72 +265,7 @@
 				<div class="commitment-caption">
 					<span class="caption">No commitment or credit card required, just balls.</span>
 				</div>
-				<div class="convert-main">
-					<a id="body-convert-1" href="/plans.html" class="convert">Show Me The Plans Now!</a>
-				</div>
-			</div>
-		</div>
-
-	</div>
-
-	<div class="commitment-caption section">
-		<div class="commitment-caption">
-			<span id="1" class="caption">Plans? Whoa there buddy... we just met.</span>
-		</div>
-	</div>
-
-	<div class="title-block first">
-		<div class="title-block-inner clearfix">
-			<div class="title-block-container section clearfix">		
-				<div class="title section">
-					<span class="first">I'm a man.</span><br/>
-					<span class="second">I have commitment issues.</span>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<div class="commitment-caption section">
-		<div class="commitment-caption section">
-			<span class="caption">That's OK. Let us explain what's going on.</span>
-		</div>
-	</div>
-	
-	<div class="grey-tilt-holder">
-		<div class="grey-tilt right-tilt clearfix">
-			<div id="mags" class="hood section clearfix">
-				
-			<?php
-			     echo  $this->getLayout()->createBlock('cms/block')->setBlockId('under-the-hood')->toHtml() ;
-			?>
-				
-			</div>
-	
-		</div>
-	</div>
-
-	<div id="action-section-2" class="action-section clearfix">
-			
-		<div class="coupon-card">
-			<!--div class="upper-box">
-				<div class="commitment-caption">
-					<span class="caption">Use the coupon code:</span>
-					<br/>
-					<span class="caption-strong">FREEDOUBLE</span>
-					<br/>
-					<span class="caption">at checkout for a FREE double pack in your first month<sup>*</sup></span>
-					<br/>
-					<br/>
-					<span class="caption-small"><sup>*</sup>Not redeemable with any other offers, valid until May 31st, 2012.</span>
-
-				</div>
-			</div-->
-			<div class="green-box clearfix">
-				<div class="commitment-caption">
-					<span id="2"></span>
-					<span class="caption">No commitment or credit card required, just balls.</span>
-				</div>
-				<div class="convert-main">
+				<div class="convert-button clearfix">
 					<a id="body-convert-2" href="/plans.html" class="convert">Show Me The Plans Now!</a>
 				</div>
 			</div>
@@ -353,12 +302,18 @@
 	</div>	
 	<?php */ ?>
 
+
+	<div class="commitment-caption section">
+		<div class="commitment-caption">
+			<span id="1" class="caption">Plans? Whoa there buddy... we just met.</span>
+		</div>
+	</div>
 	<div class="title-block first">
 		<div class="title-block-inner clearfix">
 			<div class="title-block-container section clearfix">		
 				<div id="bigtop-title" class="title section">
 					<span class="first">I'm a man.</span><br/>
-					<span class="second">Tell it to me straight.</span>
+					<span class="second">I have commitment issues</span>
 				</div>
 			</div>
 		</div>
@@ -379,9 +334,9 @@
 				<div class="grey-tilt-container clearfix">
 					<div class="vision section clearfix" id="take-to-plans">
 						<div class="vision-title">
-							<span class="vision-title-text">What is BRANDiD?</span>
+							<span class="vision-title-text">What are plans?</span>
 						</div>
-						<div class="what box plans">BRANDiD is an online subscription service for all the things men need, starting with designer basics such as underwear, socks, tees and shirts from the likes of Calvin Klein, Hugo Boss and Ralph Lauren. We'll send your gear every month so your boxers are always box fresh. Select. Subscribe. Sorted. Capiche?
+						<div class="what box plans">Every man needs a plan, right? Well this is where you get yours. Choose the plan that suits you and let BRANDiD do the hard graft. We'll send your gear every month so your boxers are always box fresh. Select. Subscribe. Sorted. Capiche?
 						</div>
 						
 						<div id="how" class="how section">
@@ -447,7 +402,7 @@
 					
 						<!-- div class="plans-img">
 						</div-->
-						<div id="action-section-3" class="action-section clearfix">
+						<div id="action-section-2" class="action-section clearfix">
 								
 							<div class="coupon-card">
 								<!--div class="upper-box">
@@ -467,8 +422,8 @@
 									<div class="commitment-caption">
 										<span class="caption">No commitment or credit card required, just balls.</span>
 									</div>
-									<div class="convert-main">
-										<a id="body-convert-3" href="/plans.html" class="convert">Show Me The Plans Now!</a>
+									<div class="convert-button clearfix">
+										<a id="body-convert-2" href="/plans.html" class="convert">Show Me The Plans Now!</a>
 									</div>
 								</div>
 							</div>
@@ -512,7 +467,7 @@
 			</a> -->
 			<a class="invisibut" href="#notaman">
 				<div class="chevron down black">
-					<div class="first-line block">Sounds cool, but it's just</div>
+					<div id="notaman" class="first-line block">Sounds cool, but it's just</div>
 					<div class="second-line block">Not for me.</div>
 					<div class="chevron-triangle"></div>
 				</div>
@@ -520,16 +475,16 @@
 		</div>
 	</div>
 	
-	<div id="notaman" class="final title section">
+	<div  class="final title section">
 		<span class="first">I'm not a man.</span><br/>
 		<a href="http://www.barbie.com/"><span class="second red">Get me the heck out of here.</a></span>
 	</div>
 	<div class="final-share section">
 		<div class="vision-title">
-			<span class="vision-title-text">Know someone who will like this?</span>
+			<span class="vision-title-text">Know someone who'll like this?</span>
 		</div>
 		<div class="box">
-			We're a small team with big ambitions, please help us spread the word.
+			Let them know using the buttons below.
 		</div>
 		
 		<div class="share-buttons clearfix">
@@ -563,17 +518,6 @@
 				
 		$j(window).scroll(function() {
 			w = $j(this).scrollTop();
-			var bigLogoTop = $j("#big-fuckoff-logo").offset().top - 100;
-			var actionSection = $j("#action-section").offset().top - 30;
-			
-			/* fade the logo */
-			if(w > bigLogoTop) {
-				$j("#logo").fadeIn(500);
-			}
-			else {
-				$j("#logo").fadeOut(500);
-			}
-			/* end fade the logo */
 
 			
 			if(w > $j("#how").data("scrolls")[0] && w < $j("#how").data("scrolls")[1]) {
@@ -623,33 +567,6 @@
 			
 				});
 			}	
-
-			
-			if(w > $j("#mags").data("scrolls")[0] && w < $j("#mags").data("scrolls")[1]) {
-      		 
-      		 var beginning = $j("#mags").data("scrolls")[0];
-      		 var end = $j("#mags").data("scrolls")[1];
-      		 var quarter = (end - beginning)/4;
-      		 
-		      window.group_rel = w - (beginning + 100);
-		      window.group_ratio = window.group_rel/quarter;      
-
-		    
-   		      $j(".hood-element").each(function(index) {
-		        if($j(this).data("visible")=="false") {
-		          if(window.group_ratio > index) $j(this).fadeIn(200,
-		          	function() {
-		          		$j(this).data("visible","true");
-								          		
-		          		});
-		        }
-		        else {
-		          if(window.group_ratio < index) $j(this).fadeOut(200,function() {$j(this).data("visible","false")});
-		        }
-		 
-		      });
-		      
-		    }
 		   			
 		});
 	});
@@ -681,7 +598,7 @@
 	  $j(".moveable").each(function(){
 		var marginBig;
 		marginBig = parseInt($j(this).css('marginLeft').replace("px", ""),10);
-	    marginBig += 30;
+	    marginBig += 29;
 	    marginBig += "px";
 	    
 	    var original = new Array()
@@ -696,14 +613,7 @@
 	function init() {
 	  set_section_scrolls();
 	  $j(window).resize(set_section_scrolls);
-	  	
-	  $j(".hood-element").each(function(){
-	    $j(this).hide();
-	    $j(this).data("visible","false");
-	  });
-	  
-	  $j("#logo").data("visible","false"); 
-	  
+	  	  
 	}	
 	
 	function clearDefault(el) {
@@ -729,62 +639,4 @@
 });
 
 </script>
-<script type="text/javascript">
-			
-				
-			$j('a.gift.invisibut').hover(
-				    
-				function () {
-					$j('#gift1').css('-webkit-transform','rotate(0deg)');
-					$j('#gift1').css('-moz-transform','rotate(0deg)');
-					$j('#gift1').css('-ms-transform','rotate(0deg)');
-					$j('#gift1').css('-0-transform','rotate(0deg)');
-					$j('#gift1').css('transform','rotate(0deg)');
-
-				    $j('.gift.invisibut').find('.subscribe-circle').css('background-color','#d2002b');
-				    
-				    $j('#action-section').find('a.convert').css('background-image','-moz-linear-gradient(center top , #bbb, #aaa)');
-				    $j('#action-section').find('a.convert').css('background-image','-webkit-gradient(linear,left top,left bottom,color-stop(0, #bbb),color-stop(1, #aaa))');
-				    $j('#action-section').find('a.convert').css('filter','progid:DXImageTransform.Microsoft.gradient(startColorStr=\'#bbb\', EndColorStr=\'#aaa\')');
-				    $j('#action-section').find('a.convert').css('-ms-filter','"progid:DXImageTransform.Microsoft.gradient(startColorStr=\'#bbb\', EndColorStr=\'#aaa\')"');
-				  }, 
-				  function () {
-					$j('#gift1').css('-webkit-transform','rotate(180deg)');
-					$j('#gift1').css('-moz-transform','rotate(180deg)');
-					$j('#gift1').css('-ms-transform','rotate(180deg)');
-					$j('#gift1').css('-0-transform','rotate(180deg)');
-					$j('#gift1').css('transform','rotate(180deg)');
-					
-				    $j('.gift.invisibut').find('.subscribe-circle').css('background-color','#333');
-				    
-				    $j('#action-section').find('a.convert').css('background-image','-moz-linear-gradient(center top , #66B84A, #51933A)');
-				    $j('#action-section').find('a.convert').css('background-image','-webkit-gradient(linear,left top,left bottom,color-stop(0, #66B84A),color-stop(1, #51933A))');
-				    $j('#action-section').find('a.convert').css('filter','progid:DXImageTransform.Microsoft.gradient(startColorStr=\'#66B84A\', EndColorStr=\'#51933A\')');
-				    $j('#action-section').find('a.convert').css('-ms-filter','"progid:DXImageTransform.Microsoft.gradient(startColorStr=\'#66b84a\', EndColorStr=\'#51933a\')"');
-
-				  }
-			);				
-			
-		</script>
-		
-<script type="text/javascript">
-			// fix hover for header convert button
-				
-			$j('#header-convert').hover(
-				    
-				function () {
-					if($j("#header-convert").data("green")=="false") {
-						$j(this).css('color', '#d2002b');
-					}
-					
-				  }, 
-				  function () {
-					if($j("#header-convert").data("green")=="false") {
-						$j(this).css('color', '#000');
-					}
-				  }
-			);				
-			
-		</script>
-
 
