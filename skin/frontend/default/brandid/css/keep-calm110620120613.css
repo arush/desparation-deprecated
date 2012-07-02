@@ -318,7 +318,7 @@ span.apostrophe2 {
 
 .share-buttons {
 	float:left;
-	margin: 0 0 30px 228px;
+	margin: 0 0 30px 151px;
 }
 
 .share-but {
@@ -347,7 +347,7 @@ span.apostrophe2 {
 	top: 0;
 	width:100%;
 	z-index: 50;
-	padding: 10px 10px 0 10px;
+	padding: 10px 10px 0 0;
 	-webkit-box-shadow: #666 0px 3px 10px;
 	-moz-box-shadow: #666 0px 3px 10px;
 	box-shadow: #666 0px 3px 10px;
@@ -517,7 +517,7 @@ a.flname {
 	margin-top: 40px;
 
 }
-.keep-calm-signmeup .title {
+.title {
 	margin: 80px auto;
 	text-align: center;
 }
@@ -526,9 +526,7 @@ a.flname {
 	margin: 40px auto 80px;
 }
 
-.keep-calm-signmeup .title span,
-.keep-calm-wearepros .title span,
-.keep-calm-accessallareas .title span {
+.title span {
 	padding:10px 17px;
 	font-family: "proxima-nova";font-weight:900;
 	font-size:30px;
@@ -536,6 +534,7 @@ a.flname {
 	color:#fff;
 	text-transform: uppercase;
 	clear:both;
+	line-height:44px;
 	letter-spacing: -1px;
 }
 
@@ -559,13 +558,13 @@ a.invisibut, a.invisibutred {
 	cursor: pointer;
 }
 
-.keep-calm-signmeup a.invisibut.red .chevron .block {
+a.invisibut.red .chevron .block {
 	background-color:#d2002b;
 }
 
 
-.keep-calm-signmeup .chevron {
-	font-family: Gotham-book, Gotham,arial, sans-serif;
+.chevron {
+	font-family: "proxima-nova",arial, sans-serif;
 	text-transform: uppercase;
 	font-weight: bold;
 	letter-spacing: -2px;
@@ -579,16 +578,16 @@ a.invisibut, a.invisibutred {
 
 }
 
-.keep-calm-signmeup .chevron {
+.chevron {
 	margin: 0 auto;
 	width: 233px;
 }
 
-.keep-calm-signmeup .chevron .block {
+.chevron .block {
 	background:#000;
 }
 
-.keep-calm-signmeup .chevron .first-line {
+.chevron .first-line {
 	padding-top:10px;
 	font-size: 11px;
 	letter-spacing: 0;
@@ -598,6 +597,7 @@ a.invisibut, a.invisibutred {
 }
 
 #gift-header-convert {
+	color:white;
 	background: #7d7e7d; /* Old browsers */
 background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzdkN2U3ZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM0YzRjNGMiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
 background: -moz-linear-gradient(top,  #7d7e7d 0%, #4c4c4c 100%); /* FF3.6+ */
@@ -615,12 +615,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', end
 	filter:none;
 }
 
-.keep-calm-signmeup .chevron .second-line {
+.chevron .second-line {
 	font-size: 30px;
+	padding: 10px;
 }
 
-.signmeup-now.chevron .second-line {
-	color:black;
+.second-line {
+	color:white;
 }
 
 .signmeup-now.chevron .first-line {
@@ -631,16 +632,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', end
 	
 }
 
-.keep-calm-signmeup .title-block {
-	margin-top: -10px;
-}
-
-.keep-calm-signmeup .reg-form {
+.reg-form {
 	float:left;
 	margin:0;
 }
 
-.keep-calm-signmeup .reg-form input {
+.reg-form input {
 	padding: 13px;
 	float: left;
 	background: none repeat scroll whiteSmoke;
@@ -659,24 +656,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', end
 
 }
 
-.keep-calm-signmeup .reg-form input:focus {
+.reg-form input:focus {
 	-moz-box-shadow: inset 0 0 5px #888;
 	-webkit-box-shadow: inset 0 0 5px #888;
 	box-shadow: inner 0 0 5px #888;
 	border-color: #000 ! important;
 	color: #D2002B ! important;
-}
-
-.keep-calm-signmeup button {
-	text-transform: uppercase;
-	font-family: "proxima-nova";font-weight:300;
-	font-size: 13px;
-	color: white;
-	background: #000;
-	padding: 16px 35px;
-	margin: 0 0 0 15px;
-	border:none;
-	
 }
 
 .title-block-container {
@@ -914,11 +899,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', end
 	font-family: "proxima-nova";font-weight:300;
 }
 
-.keep-calm-signmeup .first-line.block.red {
+.first-line.block.red {
 	background-color:#d2002b;
 	padding: 0 0 10px 0;
 }
-.keep-calm-signmeup .second-line.block.red {
+.second-line.block.red {
+	color:white;
 	background-color:#d2002b;
 	padding: 0 0 14px 0;
 }
@@ -928,7 +914,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', end
 	position:absolute;
 }
 
-.keep-calm-signmeup .quotes {
+.quotes {
 	margin:57px auto 50px;
 }
 
@@ -936,7 +922,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', end
 	width: 233px;
 }
 
-.keep-calm-signmeup span.quote {
+span.quote {
 	display: block;
 	font-family: 'georgia';
 	font-style: italic;
@@ -944,28 +930,29 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', end
 	text-align: center;
 }
 
-.keep-calm-signmeup .quote-box {
+.quote-box {
 	width:303px;
 	float:left;
 	margin-right: 30px;
 }
 
-.keep-calm-signmeup .quote {
+.quote {
 	background: #F1F1F1;
 	padding: 30px 40px;
 	color: #444;
 	font-size: 17px;
 }
 
-.keep-calm-signmeup .apostrophe {
+.apostrophe {
 	font-size: 200px;
 	font-family: "Times New Roman", Times, serif;
 	font-weight: normal;
 	font-style: italic;
 	color: #DF778C;
 	position: absolute;
-	margin: -85px 0 0 -50px;
-	letter-spacing: -6px;
+	margin: 0 0 0 -50px;
+	letter-spacing: -23px;
+	line-height:93px;
 }
 
 .quotes .author {
@@ -1421,7 +1408,8 @@ button.convert:hover {
   	-webkit-background-clip:
   	padding-box;
   	background-clip: padding-box;
-  	background-image: url(../images/specialoffer/bigdeal.png);
+/* kind of a big deal */
+/* background-image: url(../images/specialoffer/bigdeal.png); */
   	background-repeat: no-repeat;
   	margin: 0 auto;
 	width: 60%;
@@ -1432,7 +1420,7 @@ button.convert:hover {
 }
 
 .coupon-card .green-box {
-	background-color: #E6F2DF;
+	/* background-color: #E6F2DF; */
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
@@ -1456,14 +1444,14 @@ button.convert:hover {
 	width:86%;
 }
 
-.keep-calm-signmeup .title-block.first,
-.keep-calm-wearepros .title-block.first,
-.keep-calm-accessallareas .title-block.first {
+.title-block.first,
+.title-block.first,
+.title-block.first {
 	margin-top: -21px;
 	overflow:hidden;
 }
 
-.keep-calm-signmeup .title-block.first .title {
+.title-block.first .title {
 	margin: 30px auto;
 }
 
@@ -1496,7 +1484,7 @@ oa_social_login_convert {
 	width:580px;
 }
 
-.keep-calm-signmeup .title-block.first {
+.title-block.first {
 	overflow: hidden;
 }
 
@@ -1744,8 +1732,94 @@ textarea.logo-field {
 
 
 img.founders {
-	max-wi
 }
+
+/* Random Quote */
+
+#randomQuotePreview {
+	margin: 20px 20px 0 20px;
+}
+
+.random-quote span {
+	display: block;
+	font-family: 'georgia';
+	
+}
+.random-quote .apostrophe {
+	font-size: 113px;
+	font-family: "Times New Roman", Times, serif;
+	font-weight: normal;
+	font-style: italic;
+	color: #df778c;
+	position: absolute;
+	margin: -47px 0 0 -20px;
+	letter-spacing: -23px;
+	line-height:93px;
+}
+
+.catalog-category-view .footer-container .random-quote .apostrophe {
+	line-height: 139px;
+}
+.random-quote .quote {
+	background: #f1f1f1;
+	padding: 30px 40px;
+	color: #444;
+	font-size: 18px;
+	font-style: italic;
+}
+.random-quote .author {
+	padding-left: 70px;
+	padding-top: 10px;
+	letter-spacing: -1px;
+	font-weight: 600;
+	color: #000;
+	font-size: 20px;
+	font-family: ff-enzo-web,"proxima-nova", sans-serif;
+}
+
+.random-quote .caption {
+	padding-left: 70px;
+	padding-top: 5px;		
+	color: #4a4a4a;
+	font-size: 14px;	
+	font-family: 'georgia';	
+	font-style: italic;
+}
+
+
+.quote-triangle {
+ 	width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #eee;
+
+	-moz-transform:rotate(90deg);
+	-webkit-transform:rotate(90deg);
+	-o-transform:rotate(90deg);
+	-ms-transform:rotate(90deg);
+	margin: -11px 0 0 52px;
+
+}
+
+/* RANDOMQUOTE FOOTER */
+	
+.footer.quote-footer {
+	background-color:white;
+	padding:20px;
+
+}
+
+.quote-footer .footer-container {
+	margin: 21px auto;
+	width: 655px;
+	padding:0;
+}
+
+
+/* END RANDOMQUOTE FOOTER */
+
+
 
 
 span.login a {color:#d2002b;text-decoration:underline;}
