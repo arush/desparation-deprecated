@@ -282,7 +282,7 @@ float:right;}
 
 
 
-.title-block {
+/*.title-block {
 	background: #d2002b url('../images/red-gradient-top.png') repeat-x 0% 0%;
 	padding-top: 18px;
 	text-align: left;
@@ -292,7 +292,24 @@ float:right;}
  	background: url('../images/red-gradient-bottom.png') repeat-x 0% 100%; 
 	min-height: 64px;
 	padding-bottom: 24px;
+}*/
+
+/* new title styles */
+
+.title-block {
+	background: #000;
+	padding-top: 18px;
+	text-align: left;
 }
+
+.title-block-inner {
+ 	background: #000; 
+	min-height: 64px;
+	padding-bottom: 24px;
+}
+
+
+
 
 span.apostrophe2 {
 	margin-left:-14px;
@@ -395,7 +412,7 @@ span.apostrophe2 {
 	margin: 40px auto 80px;
 }
 
-.keep-calm-signmeup .title span {
+/*.keep-calm-signmeup .title span {
 	padding:10px 17px;
 	font-family: "proxima-nova";font-weight:600;
 	font-size:44px;
@@ -404,8 +421,23 @@ span.apostrophe2 {
 	text-transform: uppercase;
 	clear:both;
 	letter-spacing: -1px;
+}*/
+.title span {
+	text-align: center;
+	font-size: 35px;
+	font-family: "ff-enzo-web","proxima-nova",helvetica;
+	font-weight: bold;
+	letter-spacing: -1px;
+	color: white;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#999));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	line-height:40px;
 }
 
+.title-block-container .title {
+	text-align: center;
+}
 
 #signmeupnow .block{
 background:none;

@@ -276,6 +276,20 @@ h4.description-copy, h4 strong {
 	        animation-fill-mode: forwards;
 }
 
+.title-block.last {
+	margin:100px auto;
+
+}
+
+.title-block.last a span.red {
+	color:#d2002b;
+	-webkit-text-fill-color: #d2002b;
+}
+
+.final .title span {
+	-webkit-text-fill-color: transparent;
+}
+
 /* fade everything */
 @-webkit-keyframes fade-everything {
 	0% {
