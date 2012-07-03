@@ -64,7 +64,7 @@ a.convert.step.inactive {
 	width:100%;
 }
 
-#middle-body-convert, #body-convert-2 {
+#middle-body-convert, #body-convert-2, .convert a.convert {
 	font-family:"proxima-nova";
 	font-size:12px;
 }
