@@ -115,13 +115,15 @@
 				<span class="button-copy">Who?</span>
 			</a>
 
+			<a id="how-but" href="#1" class="header-button">
+				<span class="button-copy">How?</span>
+			</a>
+
 			<a id="what" href="#2" class="header-button">
 				<span class="button-copy">What?</span>
 			</a>
 
-			<a id="how-but" href="#1" class="header-button">
-				<span class="button-copy">How?</span>
-			</a>
+			
 			<?php if (!Mage::getSingleton('customer/session')->isLoggedIn()) {?>
 				<span style="
 				    float: right;
@@ -139,7 +141,7 @@
 	
 	
 	</div>
-	<div id="1" class="title-block first calendar-container">
+	<div class="title-block first calendar-container">
 		<div class="title-block-inner clearfix">
 			<div class="title-block-container clearfix">		
 				<div class="calendar container">
@@ -346,25 +348,28 @@
 					</div>
 
 					<div class="copy">
-						<div class="sixteen columns row">
-							<h1 class="one-liner">Designer essentials. Auto-delivered.</h1>
+						<div class="sixteen columns">
+							<h1 class="one-liner">We've got your arse covered.</h1>
 						</div>
 						<div class="description ten columns offset-by-three row">
-							<h4 class="description-copy"><strong>BRANDiD</strong> is the designer basics subscription service that learns what you like. <br/>We do all the shopping so you don't have to.</h4>
+							<h4 class="description-copy">Designer essentials. Auto-delivered monthly or quarterly.</h4>
 						</div>
 						
 						<div class="process">
 							<div class="one-third column">
 								<img src="<?php echo $this->getSkinUrl('images/arush/home/small-mag-plan.png'); ?>" alt="choose a clothing subscription" title="choose a clothing subscription"/>
 								<a href="/plans.html" class="convert step">Step 1. Choose a plan</a>
+								<div class="step-caption"><span id="2">Are you a Soldier, Boss or Godfather? Tees or polos? Work shirts or designer shirts?</span></div>
 							</div>
 							<div class="one-third column">
 								<img src="<?php echo $this->getSkinUrl('images/arush/home/small-mag-male.png'); ?>" alt="we feed the MALE™" title="we feed the MALE™"/>
 								<a href="#" class="convert step inactive">Step 2. We feed the MALE™</a>
+								<div class="step-caption">The MALE™ is like every good woman. It learns what you like.</div>
 							</div>
 							<div class="one-third column">
 								<img src="<?php echo $this->getSkinUrl('images/arush/home/small-mag-pack.png'); ?>" alt="we feed the MALE™" title="we feed the MALE™"/>
-								<a href="#" class="convert step inactive">Step 3. Receive your monthly pack</a>
+								<a href="#" class="convert step inactive">Step 3. Get BRANDiD</a>
+								<div class="step-caption">Now you're rockin' fresh garms, time to do something more important instead.</div>
 							</div>
 						</div>
 					</div>
@@ -375,6 +380,9 @@
 	</div>
 	<div class="commitment-caption section">
 		<div class="commitment-caption section">
+			<div class="vision-title">
+				<span class="vision-title-text">What is BRANDiD?</span>
+			</div>
 			<span class="caption">BRANDiD is an online subscription service for all the things men need, starting with designer basics such as underwear, socks, tees and shirts from the likes of Calvin Klein, Hugo Boss and Ralph Lauren. We'll send your gear every month so your boxers are always box fresh. Select. Subscribe. Sorted. Capiche?</span>
 			<div class="convert-button clearfix">
 				<a id="middle-body-convert" href="/plans.html" class="convert">Step 1. Choose a Plan</a>
@@ -393,7 +401,7 @@
 				<div class="share-but">
 					<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.getbrandid.com/" data-text="Dirty boxers never got anyone laid. Designer brands auto-delivered for MEN. get #BRANDiD" data-count="horizontal" data-via="getbrandid">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
 				</div>
-								
+
 				<div class="share-but gp">
 					<g:plusone size="medium" href="https://www.getbrandid.com"></g:plusone>
 				</div>
@@ -511,7 +519,7 @@
 
 	<div class="commitment-caption middle section">
 		<div class="commitment-caption">
-			<span id="2" class="caption">Plans? Whoa there buddy... we just met.</span>
+			<span id="1" class="caption">Plans? Whoa there buddy... we just met.</span>
 		</div>
 	</div>
 	<div class="title-block first">
@@ -540,11 +548,51 @@
 				<div class="grey-tilt-container clearfix">
 					<div class="vision section clearfix" id="take-to-plans">
 						<div class="vision-title">
-							<span class="vision-title-text">What are plans?</span>
-						</div>
-						<div class="what box plans">Every man needs a plan, right? Well this is where you get yours. Choose the plan that suits you and let BRANDiD do the hard graft. We'll send your gear every month so your boxers are always box fresh. Select. Subscribe. Sorted. Capiche?
+							<span class="vision-title-text">How do I know you're right for me?</span>
 						</div>
 						
+
+						<div class="container">
+							<div class="male-explanation row">That's why we built MALE™.
+							</div>
+
+							<div class="one-third column">
+								
+								<div class="fade">
+
+									<img id="step-1-feed" class="scale-with-grid male-explanation-img" src="<?php echo $this->getSkinUrl('images/arush/home/step-1-feed.png'); ?>" alt="the MALE™ learns what you like" title="the MALE™ learns what you like"/>
+
+									<div>
+										<img id="step-2-feed" class="scale-with-grid male-explanation-img" src="<?php echo $this->getSkinUrl('images/arush/home/step-2-feed.png'); ?>" alt="the MALE™ learns what you like" title="the MALE™ learns what you like"/>
+									</div>
+								</div>
+
+							</div>
+							<div class="one-third column">
+								<div class="male-explanation">Your data gets punched into BRANDiD’s proprietary Masculine Algorithmic Learning Engine (MALE™).</div>
+								<img src="<?php echo $this->getSkinUrl('images/arush/home/small-mag-male.png'); ?>" alt="the MALE™ learns what you like" title="the MALE™ learns what you like"/>
+								<div class="male-explanation">We built MALE™ from the pixel up to learn what you like. It eats feedback and sh*ts great garms.</div>
+
+							</div>
+							<div class="one-third column">
+
+								<div class="fade">
+
+									<img id="step-1-clothes" class="scale-with-grid male-explanation-img" src="<?php echo $this->getSkinUrl('images/arush/home/step-1-clothes.jpg'); ?>" alt="the MALE™ learns what you like" title="the MALE™ learns what you like"/>
+									
+									<div>
+										<img id="step-2-clothes" class="scale-with-grid male-explanation-img" src="<?php echo $this->getSkinUrl('images/arush/home/step-2-clothes.jpg'); ?>" alt="the MALE™ learns what you like" title="the MALE™ learns what you like"/>
+									</div>
+								</div>
+							</div>
+
+							<div class="twelve columns offset-by-two">
+								
+							</div>
+						</div>
+
+						<?php /* ?>
+
 						<div id="how" class="how section">
 						
 						
@@ -605,7 +653,7 @@
 						
 						
 					</div> <!-- end how section -->
-					
+					<?php */ ?>
 						<!-- div class="plans-img">
 						</div-->
 						<div id="action-section-2" class="action-section clearfix">
@@ -717,6 +765,36 @@
 	</div>
 </div>
 
+<script type="text/javascript">
+
+	var $j = jQuery.noConflict();
+	function fade1() {
+		// find the element we want to fade *up*
+	    var fade = $j('> div', $j('div.fade'));
+	    // fade in quickly
+	      fade.fadeIn(1000);
+	
+	    setTimeout('fade2()',2500);
+	}
+	function fade2() {
+	    // on hovering out, fade the element out
+	    var fade = $j('> div', $j('div.fade'));
+	    // fade away slowly
+	    fade.fadeOut(1000);
+		  
+		setTimeout('fade1()',2500);
+    }
+
+
+	// when the DOM is ready:
+	$j(document).ready(function () {
+
+	  	setTimeout('fade2()',3000);
+	 
+	});
+
+</script>
+
 
 <script type="text/javascript">
 
@@ -728,7 +806,7 @@
 	$j(function() {
 		init();
 		
-				
+		/* remove select subscribe sorted animation
 		$j(window).scroll(function() {
 			w = $j(this).scrollTop();
 
@@ -782,6 +860,7 @@
 			}	
 		   			
 		});
+		*/
 	});
 	
 	function set_section_scrolls() {

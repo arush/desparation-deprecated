@@ -555,15 +555,13 @@ a.flname {
 */
 .title span {
 	text-align: center;
-	font-size: 35px;
-	font-family: "ff-enzo-web","proxima-nova",helvetica;
+	font-size: 40px;
+	font-family: "proxima-nova",helvetica;
 	font-weight: bold;
-	letter-spacing: -1px;
+	letter-spacing: -2px;
 	color: white;
-	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#999));
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
 	line-height:40px;
+	text-transform: uppercase;
 }
 
 

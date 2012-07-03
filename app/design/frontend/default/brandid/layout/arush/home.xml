@@ -33,6 +33,7 @@
     <action method="addItem"><type>skin_js</type><name>js/jquery-1.7.1.min.js</name></action>
     <action method="addItem"><type>skin_js</type><name>js/scroll/jquery.localscroll-1.2.7-min.js</name></action>
     <action method="addItem"><type>skin_js</type><name>js/scroll/jquery.scrollTo-1.4.2-min.js</name></action>
+    <action method="addItem"><type>skin_js</type><name>js/arush/home.js</name></action>
 <!--    <action method="addItem"><type>skin_js</type><name>js/scroll/jquery.serialScroll-1.2.2-min.js</name></action>
 -->
     <action method="addItem"><type>skin_js</type><name>js/jquery-color-min.js</name></action>
