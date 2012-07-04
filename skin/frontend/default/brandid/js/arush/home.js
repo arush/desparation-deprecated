@@ -3,9 +3,7 @@
 var $j = jQuery.noConflict();
 
 
-	function closeReject() {
-		$j('#rejecter').remove();
-	}
+	
 
 	function fade1() {
 		// find the element we want to fade *up*
@@ -57,6 +55,9 @@ var $j = jQuery.noConflict();
 
 	  	setTimeout('fade2()',3000);
 	  	if(Modernizr.cssanimations) {
+	  		return;
+		}
+		else {
 			var w = document.body.offsetWidth;
 			var h = document.body.offsetHeight;
 			$j('#jr_overlay').css('width',w);
@@ -64,9 +65,6 @@ var $j = jQuery.noConflict();
 			$j('body').css('overflow','hidden');
 			$j('#jr_wrap').css('top',200);
 			$j('#jr_wrap').css('left',0);
-		}
-		else {
-
 			window.setTimeout('aniMonth()', 200);
 		}
 	 
