@@ -765,36 +765,6 @@
 	</div>
 </div>
 
-<script type="text/javascript">
-
-	var $j = jQuery.noConflict();
-	function fade1() {
-		// find the element we want to fade *up*
-	    var fade = $j('> div', $j('div.fade'));
-	    // fade in quickly
-	      fade.fadeIn(1000);
-	
-	    setTimeout('fade2()',2500);
-	}
-	function fade2() {
-	    // on hovering out, fade the element out
-	    var fade = $j('> div', $j('div.fade'));
-	    // fade away slowly
-	    fade.fadeOut(1000);
-		  
-		setTimeout('fade1()',2500);
-    }
-
-
-	// when the DOM is ready:
-	$j(document).ready(function () {
-
-	  	setTimeout('fade2()',3000);
-	 
-	});
-
-</script>
-
 
 <script type="text/javascript">
 

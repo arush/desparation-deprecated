@@ -218,13 +218,11 @@ color:#d2002b;
 /* brandid.css */
 
 /* ARUSH UX NICETIES */
-::selection {
-		color: white;
-		background: #005aff;
-        }
-::-moz-selection {
-        color: white;
-		background: #005aff;
+* {
+    &::-moz-selection { color: white;
+		background: #005aff; }
+    &::selection { color: white;
+		background: #005aff; }
 }
 
 /* ARUSH UX NICETIES */
@@ -425,14 +423,12 @@ span.apostrophe2 {
 .title span {
 	text-align: center;
 	font-size: 35px;
-	font-family: "ff-enzo-web","proxima-nova",helvetica;
+	font-family: "proxima-nova",helvetica;
 	font-weight: bold;
 	letter-spacing: -1px;
 	color: white;
-	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#999));
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
 	line-height:40px;
+	text-transform: uppercase;
 }
 
 .title-block-container .title {
