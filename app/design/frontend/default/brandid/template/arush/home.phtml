@@ -766,6 +766,66 @@
 </div>
 
 
+
+<div id="rejecter">
+	<div id="jr_overlay" style="background-color: rgb(0, 0, 0); opacity: 0.8; background-position: initial initial; background-repeat: initial initial; ">
+	</div>
+	<div id="jr_wrap">
+		<div id="jr_inner" style="min-width: 420px; max-width: 420px; width: auto; ">
+			<h1 id="jr_header">You're using a really old browser!</h1>
+			<p>
+				We tried our best, but we really can't afford to support old browsers like this.
+			</p>
+			<p>
+				Please install one of these awesome browsers instead:
+			</p>
+			<ul>
+				<li id="jr_firefox" style="background-image: url(<?php echo $this->getSkinUrl('images/reject/background_browser.gif'); ?>); background-attachment: scroll; background-color: transparent; background-position: 0% 0%; background-repeat: no-repeat no-repeat; ">
+					<a href="http://www.mozilla.com/firefox/">
+						<div class="jr_icon" style="background-image: url(<?php echo $this->getSkinUrl('images/reject/browser_firefox.gif'); ?>); background-attachment: scroll; background-color: transparent; background-position: 0% 0%; background-repeat: no-repeat no-repeat; ">
+						</div>
+						<div>
+							Firefox
+						</div>
+					</a>
+				</li>
+				<li id="jr_chrome" style="background-image: url(<?php echo $this->getSkinUrl('images/reject/background_browser.gif'); ?>); background-attachment: scroll; background-color: transparent; background-position: 0% 0%; background-repeat: no-repeat no-repeat; ">
+					<a href="http://www.google.com/chrome/">
+						<div class="jr_icon" style="background-image: url(<?php echo $this->getSkinUrl('images/reject/browser_chrome.gif'); ?>); background-attachment: scroll; background-color: transparent; background-position: 0% 0%; background-repeat: no-repeat no-repeat; ">
+						</div>
+						<div>
+							Chrome
+						</div>
+					</a>
+				</li>
+				<li id="jr_safari" style="background-image: url(<?php echo $this->getSkinUrl('images/reject/background_browser.gif'); ?>); background-attachment: scroll; background-color: transparent; background-position: 0% 0%; background-repeat: no-repeat no-repeat; ">
+					<a href="http://www.apple.com/safari/download/">
+						<div class="jr_icon" style="background-image: url(<?php echo $this->getSkinUrl('images/reject/browser_safari.gif'); ?>); background-attachment: scroll; background-color: transparent; background-position: 0% 0%; background-repeat: no-repeat no-repeat; ">
+						</div>
+						<div>
+							Safari
+						</div>
+					</a>
+				</li>
+			</ul>
+			<div id="jr_close">
+				<a onclick="closeReject()" href="#">Close This Window</a>
+				<p>
+					By closing the window, you can still use the site, but may not have the best experience.
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	function closeReject() {
+		$j('#rejecter').remove();
+		$j('body').css('overflow','scroll');
+	}
+</script>
+
+
 <script type="text/javascript">
 
 	var $j = jQuery.noConflict();

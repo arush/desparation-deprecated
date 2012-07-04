@@ -1,5 +1,6 @@
 @import "compass/css3/opacity";
 @import "calendar.scss";
+@import "jquery.reject.scss";
 
 body.cms-index-index
 {
@@ -17,7 +18,7 @@ body.cms-index-index
   position:absolute;
   z-index:2;
   @include opacity(0);
-  
+
   -webkit-animation:fade-in .5s 1 ease-in 5s;
   -moz-animation:fade-in .5s 1 ease-in 5s;
   -ms-animation:fade-in .5s 1 ease-in 5s;
