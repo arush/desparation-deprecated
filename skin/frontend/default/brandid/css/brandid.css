@@ -725,6 +725,22 @@ html[xmlns] .invite-options {
 	font-style: italic;
 }
 
+
+.quote-triangle {
+ 	width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #eee;
+
+	-moz-transform:rotate(90deg);
+	-webkit-transform:rotate(90deg);
+	-o-transform:rotate(90deg);
+	-ms-transform:rotate(90deg);
+	margin: -11px 0 0 52px;
+
+}
+
 .intervention-box .caption {
 	margin-bottom: 20px;
 }
@@ -751,21 +767,6 @@ html[xmlns] .invite-options {
 	background: url('../images/ajax-loader.gif') no-repeat 0% 50%;
 }
 
-
-.quote-triangle {
- 	width: 0;
-    height: 0;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-top: 20px solid #eee;
-
-	-moz-transform:rotate(90deg);
-	-webkit-transform:rotate(90deg);
-	-o-transform:rotate(90deg);
-	-ms-transform:rotate(90deg);
-	margin: -11px 0 0 52px;
-
-}
 
 .providers .provider-logos {
 	background: url("../images/emailproviders.png") no-repeat scroll -10px 0 transparent;

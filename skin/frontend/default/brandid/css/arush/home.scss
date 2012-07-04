@@ -1,0 +1,207 @@
+@import "compass/css3/opacity";
+@import "calendar.scss";
+@import "jquery.reject.scss";
+
+body.cms-index-index
+{
+  background:#FFF;
+}
+
+.std
+{
+  display:none;
+}
+
+.copy
+{
+  margin:38px 0 0;
+  position:absolute;
+  z-index:2;
+  @include opacity(0);
+
+  -webkit-animation:fade-in .5s 1 ease-in 5s;
+  -moz-animation:fade-in .5s 1 ease-in 5s;
+  -ms-animation:fade-in .5s 1 ease-in 5s;
+  -o-animation:fade-in .5s 1 ease-in 5s;
+  animation:fade-in .5s 1 ease-in 5s;
+  -webkit-animation-fill-mode:both;
+  -moz-animation-fill-mode:both;
+  -ms-animation-fill-mode:both;
+  -o-animation-fill-mode:both;
+  animation-fill-mode:both;
+}
+
+.process
+{
+  margin:20px 0 0;
+}
+
+.one-third
+{
+  text-align:center;
+}
+
+.step-caption
+{
+  color:#aaa;
+  font-weight:700;
+  width:80%;
+  margin:0 auto;
+}
+
+a.convert.step
+{
+  float:left;
+  font-size:12px;
+  font-family:proxima-nova,arial,sans-serif;
+  height:40px;
+  line-height:40px;
+  width:200px;
+  margin:20px 50px;
+}
+
+a.convert.step.inactive
+{
+  float:left;
+  font-size:12px;
+  font-family:proxima-nova,arial,sans-serif;
+  margin:20px auto;
+  height:40px;
+  line-height:40px;
+  background:none;
+  box-shadow:none;
+  -webkit-box-shadow:none;
+  cursor:default;
+  width:100%;
+}
+.lte9 a.convert.step.inactive {
+	filter:none;
+}
+
+
+#middle-body-convert,#body-convert-2,.convert a.convert
+{
+  font-family:proxima-nova;
+  font-size:12px;
+}
+
+#middle-body-convert
+{
+  width:100%;
+}
+
+.male-explanation
+{
+  font-family:proxima-nova;
+  font-weight:300;
+  color:#595959;
+  font-size:16px;
+  margin:24px 0;
+}
+
+.male-explanation-img
+{
+  margin:40px auto;
+}
+
+.fade div
+{
+  margin-top:-360px;
+}
+
+#gift-header-convert
+{
+  text-shadow:0 -1px 0 #000;
+}
+
+.process
+{
+  margin:12px 0 0;
+  position:relative;
+  display:inline;
+  float:left;
+}
+
+.process .one-third
+{
+  margin:0;
+}
+
+.description
+{
+  margin:0 0 35px;
+}
+
+h4.description-copy,h4 strong
+{
+  color:#FFF;
+  text-align:center;
+  font-size:23px;
+  font-family:proxima-nova,helvetica,arial,sans-serif;
+}
+
+.one-liner
+{
+  text-align:center;
+  font-size:40px;
+  font-family:proxima-nova,helvetica;
+  font-weight:700;
+  letter-spacing:-2px;
+  color:#FFF;
+  text-transform:uppercase;
+}
+
+.title-block.last
+{
+  margin:100px auto;
+}
+
+.title-block.last a span.red
+{
+  color:#d2002b;
+}
+
+
+@keyframes fade-in {
+	0%{
+	  @include opacity(0);
+	}
+
+	100%
+	{
+	  @include opacity(1);
+	}  
+}
+
+@-webkit-keyframes fade-in {
+	0%{
+	  @include opacity(0);
+	}
+
+	100%
+	{
+	  @include opacity(1);
+	}  
+}
+
+@-moz-keyframes fade-in {
+	0%{
+	  @include opacity(0);
+	}
+
+	100%
+	{
+	  @include opacity(1);
+	}  
+}
+
+@-ms-keyframes fade-in {
+	0%{
+	  @include opacity(0);
+	}
+
+	100%
+	{
+	  @include opacity(1);
+	}  
+}

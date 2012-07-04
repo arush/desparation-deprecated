@@ -34,6 +34,10 @@
 		<remove name="popup_header" />
     </popup_form_page>
     
+    <cms_index_index>
+        <remove name="popup" />
+        <remove name="popup_header" />
+    </cms_index_index>
 
    <customer_account_login>
         <remove name="popup" />
