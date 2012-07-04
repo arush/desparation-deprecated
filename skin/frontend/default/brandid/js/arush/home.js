@@ -48,10 +48,11 @@ var $j = jQuery.noConflict();
 	$j(document).ready(function () {
 
 	  	setTimeout('fade2()',3000);
-	  	if(!Modernizr.cssanimations) {
+	  	if(Modernizr.cssanimations) {
+			return;
+		}
+		else {
 			window.setTimeout('aniMonth()', 200);
-
-
 		}
 	 
 	});
