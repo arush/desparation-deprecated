@@ -1,0 +1,111 @@
+/* essentials */
+* {
+  margin: 0pt;
+  padding: 0pt;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+	background: #FFF none repeat scroll 0% 0%;
+	color: #C1C1C1;
+	font: normal normal normal 0.75em/1.35 Arial, Helvetica, sans-serif;
+	height: 100%;
+	text-align: center;
+}
+
+img {
+  border: 0pt none;
+  vertical-align: top;
+}
+
+a {
+  color: #d2002b;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+:focus {
+  outline: 0pt none;
+}
+
+.wrapper {
+  position: relative;
+}
+
+.page {
+  text-align: center;
+}
+
+
+.main {
+  margin: 0pt auto;
+  padding: 0pt 8px;
+  text-align: left;
+  width: 960px;
+}
+
+input, select, textarea, button {
+  font: 16px "proxima-nova",Helvetica,sans-serif;
+  vertical-align: middle;
+  color: rgb(68, 68, 68);
+}
+
+input.input-text, select, textarea {
+  border: 1px solid rgb(199,
+    199, 199);
+}
+
+.product-options dt:after, #bundleProduct:after, .events-slider:after, .product-image-popup .nav:after,
+.gift-item:after, .block-content:after, .block-list li.item:after, .block-poll li:after,
+.currently li:after, .order-info:after, .top-cart .actions:after, .header .quick-access:after,
+.product-view .box-related li.item:after, .bundle-summary .product:after, .collateral-tabs:after,
+.block-cart .block-content .item:after, .clearer:after, .header-container:after,
+.header-container .top-container:after, .header:after, .header-panel:after, #nav:after,
+.main:after, .footer-before-container:after, .footer-container:after, .footer:after,
+.col-main:after, .col2-set:after, .col3-set:after, .col4-set:after, .search-autocomplete li:after,
+.block li.item:after, .block .actions:after, .mini-products-list li:after, .cms-index-index .block-featured li.item:after,
+.title-buttons:after, .pager:after, .sorter:after, .ratings:after, .add-to-box:after,
+.add-to-cart:after, .products-grid:after, .products-list li.item:after, .product-view:after,
+.product-view .product-img-box .more-views ul:after, .product-view .box-tags .form-add-tags:after,
+.product-options .options-list li:after, .options-container-small .product-options:after,
+.product-options-bottom:after, .product-review:after, .box-collateral:after, .box-collateral .box-content:after,
+.account-login:after, .cart .cart-collaterals:after, .cart:after, .opc .step-title:after,
+.checkout-progress:after, .form-list li:after, .form-list li.fields .field:after,
+.clearfix:after, .buttons-set:after, .buttons-set2:after, .page-print .print-head:after,
+.new-product-spotlight .more-new .item:after, .addresses-list .col-2 li:after {
+  display: block;
+  content: ".";
+  clear: both;
+  font-size: 0pt;
+  line-height: 0pt;
+  height: 0pt;
+  overflow: hidden;
+}
+
+.col1-layout a {
+	color: #d2002b;
+	-webkit-transition: color 200ms ease-in;
+	-moz-transition: color 200ms ease-in;
+	-o-transition: color 200ms ease-in;
+	transition: color 200ms ease-in;
+}
+
+.col1-layout a:hover{
+	color:#000;
+}
+
+.clearfix {
+	float: none;
+	clear: both;
+}
+.iescrollbarfix {
+  overflow: hidden;
+}
+
+/* end essentials */

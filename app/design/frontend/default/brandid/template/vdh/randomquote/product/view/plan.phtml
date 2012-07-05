@@ -47,20 +47,20 @@ if ($products->count() > 0){
 	<h1 class="black-title-bar main-view"><?php echo $this->__($k);?></h1>
 	<div class="style-chooser clearfix">
 		<?php if(strtolower($k) == 'socks' || strtolower($k) == 'boxers') { ?>
-			<a title="classic" onclick="handleClick(this);" class="convert secondary lt <?php echo $this->__(strtolower($k));?>" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Classic</a>
-			<a title="disco" onclick="handleClick(this);" class="convert secondary lt mid <?php echo $this->__(strtolower($k));?>" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Disco</a>
-			<a title="both" onclick="handleClick(this);" class="convert secondary lt rt <?php echo $this->__(strtolower($k));?> active" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Both</a>
+			<a title="classic" onclick="handleClick(this);" class="convert secondary lt <?php echo $this->__(strtolower($k));?>" id="large_<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Classic</a>
+			<a title="disco" onclick="handleClick(this);" class="convert secondary lt mid <?php echo $this->__(strtolower($k));?>" id="large_<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Disco</a>
+			<a title="both" onclick="handleClick(this);" class="convert secondary lt rt <?php echo $this->__(strtolower($k));?> active" id="large_<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Both</a>
 
 		<?php } else if(strtolower($k) == 't-shirts') { ?>
-			<a title="designer-tee" onclick="handleClick(this);" class="convert secondary lt <?php echo $this->__(strtolower($k));?>" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>"></a>
-			<a title="designer-polo" onclick="handleClick(this);" class="convert secondary rt <?php echo $this->__(strtolower($k));?>" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>"></a>
+			<a title="designer-tee" onclick="handleClick(this);" class="convert secondary lt <?php echo $this->__(strtolower($k));?>" id="large_<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>"></a>
+			<a title="designer-polo" onclick="handleClick(this);" class="convert secondary rt <?php echo $this->__(strtolower($k));?>" id="large_<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>"></a>
 
 		<?php } else if(strtolower($k) == 'shirts') { ?>
-			<a title="work-shirt" onclick="handleClick(this);" class="convert secondary lt <?php echo $this->__(strtolower($k));?>" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>"></a>
-			<a title="designer-shirt" onclick="handleClick(this);" class="convert secondary rt <?php echo $this->__(strtolower($k));?>" id="<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>"></a>
+			<a title="work-shirt" onclick="handleClick(this);" class="convert secondary lt <?php echo $this->__(strtolower($k));?>" id="large_<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>"></a>
+			<a title="designer-shirt" onclick="handleClick(this);" class="convert secondary rt <?php echo $this->__(strtolower($k));?>" id="large_<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>"></a>
 
 		<?php } ?>
-		
+
 	</div>
 
 	<?php /*Both*/ ?>
@@ -120,7 +120,21 @@ if ($products->count() > 0){
 			<!-- span class="price"><?php // echo 'RRP &pound;' . number_format($_product->getPrice(), 0); ?></span-->
 			<span class="special-price"><?php echo 'Plan Price &pound;<span id="final-price">' . number_format($_product->getSpecialPrice(), 0) . '</span>'; ?></span>
 			<div id="socks_style-text" style="float:none;" class="product-detail-checkbox nobg">Socks style: <span>choose</span></div>
+
+			<div class="style-chooser clearfix">
+				<a title="classic" onclick="handleClick(this);" class="convert secondary lt socks" id="small_socks_option_1">Classic</a>
+				<a title="disco" onclick="handleClick(this);" class="convert secondary lt mid socks" id="small_socks_option_2">Disco</a>
+				<a title="both" onclick="handleClick(this);" class="convert secondary lt rt socks active" id="small_socks_option_3">Both</a>
+			</div>
+
 			<div id="boxers_style-text" style="float:none;" class="product-detail-checkbox nobg">Boxers style: <span>choose</span></div>
+
+			<div class="style-chooser clearfix">
+				<a title="classic" onclick="handleClick(this);" class="convert secondary lt boxers" id="small_boxers_option_1">Classic</a>
+				<a title="disco" onclick="handleClick(this);" class="convert secondary lt mid boxers" id="small_boxers_option_2">Disco</a>
+				<a title="both" onclick="handleClick(this);" class="convert secondary lt rt boxers active" id="small_boxers_option_3">Both</a>
+			</div>
+
 			<?php 
 			$god   = 'godfather';
 			$boss = 'boss';
@@ -130,11 +144,20 @@ if ($products->count() > 0){
 			if($containsGod !== false || $containsBoss !== false) {
 			?>
 				<div id="t-shirts_style-text" style="float:none;" class="product-detail-checkbox nobg">T-Shirt style: <span>choose</span></div>
+				<div class="style-chooser clearfix">
+					<a title="designer-tee" onclick="handleClick(this);" class="convert secondary lt t-shirts" id="small_t-shirts_option_1"></a>
+					<a title="designer-polo" onclick="handleClick(this);" class="convert secondary rt t-shirts" id="small_t-shirts_option_2"></a>
+				</div>
+
 			<?php }
 			
 			if($containsGod !== false) {
 			?>
 				<div id="shirts_style-text" style="float:none;" class="product-detail-checkbox nobg">Shirt style: <span>choose</span></div>
+				<div class="style-chooser clearfix">
+					<a title="work-shirt" onclick="handleClick(this);" class="convert secondary lt shirts" id="small_shirts_option_1"></a>
+					<a title="designer-shirt" onclick="handleClick(this);" class="convert secondary rt shirts" id="small_shirts_option_2"></a>
+				</div>
 			<?php } ?>
 		</div>
 	
