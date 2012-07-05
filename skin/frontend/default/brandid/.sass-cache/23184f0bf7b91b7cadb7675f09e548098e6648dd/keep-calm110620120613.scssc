@@ -1,7 +1,7 @@
 3.1.19 (Brainy Betty)
-ba25e38be2c8d42019f649062e9ca3ee5cc0e782
+291470b1c091296b8623dcbc9d9a4962cc1d77cd
 o:Sass::Tree::RootNode
-:@template"åv@import "arush/uxniceties";
+:@template"çv@import "arush/ux-niceties";
 @import "magento/essentials";
 @import "magento/footer";
 
@@ -266,7 +266,7 @@ a.flname {
 
 }
 .title {
-	margin: 80px auto;
+	margin: 40px auto;
 	text-align: center;
 }
 
@@ -1618,7 +1618,7 @@ span.login a {color:#d2002b;text-decoration:underline;}
 
 :
 @linei:@options{ :@has_childrenT:@children[¯o:Sass::Tree::ImportNode
-;0;i;@:@imported_filename"arush/uxniceties;
+;0;i;@:@imported_filename"arush/ux-niceties;
 [ o;
 ;0;i;@;"magento/essentials;
 [ o;
@@ -1912,7 +1912,7 @@ width;i ;
 [ o;;;;o;; ;!;"	40px;@;i;@;["margin-top;i ;
 [ o;;[".title;i	;o;;" ;i	;[o;;[o;;@ÿ;i	;[o;;@ÿ;i	;["
 title;@;	T;i ;
-[o;;;;o;; ;!;"80px auto;@;i
+[o;;;;o;; ;!;"40px auto;@;i
 ;@;["margin;i ;
 [ o;;;;o;; ;!;"center;@;i;@;["text-align;i ;
 [ o;;[".big-fuckoff .title;i;o;;" ;i;[o;;[o;;@Ú;i;[o;;@Ú;i;["big-fuckoffo;;@Ú;i;[o;;@Ú;i;["
