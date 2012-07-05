@@ -13,7 +13,8 @@ function correctNames(g) {
 	var c=1;
 	while(c < 3) {
 		var realText = jQuery('.'+g+'-bg.upgrade select option:eq('+c+')').text();
-		jQuery('#'+g+'s_option_'+c).text(realText);
+		jQuery('#large_'+g+'s_option_'+c).text(realText);
+		jQuery('#small_'+g+'s_option_'+c).text(realText);
 		c++;
 	}
 }
@@ -23,7 +24,8 @@ function handleClick(el) {
 	var e = $j(el);
 	var id = e.attr('id');
 	var t = id.split("_");
-	var item = t[0];
+	var item = t[1];
+
 	// remove 's' from item so can do a comparison between t-shirts and tshirt
 	var lastChar = item.substr(item.length - 1);
 	if(lastChar == 's') {
@@ -34,9 +36,19 @@ function handleClick(el) {
 	var index = t[0];
 	// find the style being chosen
 	var style = e.attr('title');
-	// find the dropdown equivalent
+
 	$j('.style-chooser .'+item+'.active').removeClass('active');
 	e.addClass('active');
+
+	// mirror the active styles in the other element
+	if(id.substring(0,6) === 'large_') {
+		var newId = 'small_' + id.substring(6);
+	}
+	else {
+		var newId = 'large_' + id.substring(6);
+	}
+	$j('#'+newId).addClass('active');
+
 
 	// filter the images
 	if(style == 'classic') {
@@ -95,7 +107,9 @@ function handleClick(el) {
 	if($j('.'+itemNoS+'-bg.upgrade select').length != 0) {
 		dropdownElem = $j('.'+itemNoS+'-bg.upgrade select');
 		dropId = dropdownElem.attr('id');
+
 		$j('#'+dropId+' option').eq(index).attr("selected","selected");
+
 		document.getElementById(dropId).onchange();
 	}
 	

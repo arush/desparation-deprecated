@@ -1,0 +1,147 @@
+/* FLO FOOTER START 7.9.2011*/
+.footer {
+  background: none repeat scroll #CFCFCF;
+  min-width: 980px;
+}
+.footer-container {
+  margin: 0pt auto 0;
+  position: relative;
+  text-align: left;
+  width: 972px;
+  z-index: 1;
+  padding-top: 20px;
+  padding-bottom: 16px;
+}
+
+.absolute-foot {
+	background-color:#595959;
+	color: #cfcfcf;
+}
+
+.footer-block.footer-madein, .footer-block.footer-joinus {
+	color:#aaa;
+	float: left;
+}
+
+.absolute-foot .footer-block {
+	margin-top: 10px;
+}
+
+.footer-block.footer-joinus {margin-left:185px;}
+.footer-block.footer-joinus a {
+	color:#eee;
+	text-decoration: underline;
+  	-webkit-transition: color 200ms ease-in;
+	-moz-transition: color 200ms ease-in;
+	-o-transition: color 200ms ease-in;
+	transition: color 200ms ease-in;
+
+}
+.footer-block.footer-joinus a:hover {
+	color:#d2002b;
+}
+
+#bg-footer {
+  position: absolute;
+  right: 0px;
+  top: 50px;
+  z-index: -1;
+}
+.footer-content, .footer-block.footer-block-left-line p {
+	float: left;
+	font-family: "proxima-nova";font-weight:300;
+	font-size: 14px;
+	color: #777;
+}
+.footer-content {width: 960px;}
+
+.footer-content a {
+  	color: #777;
+  	-webkit-transition: color 200ms ease-in;
+	-moz-transition: color 200ms ease-in;
+	-o-transition: color 200ms ease-in;
+	transition: color 200ms ease-in;
+}
+
+.footer-content #footer-links {
+  float: left;
+  width: 972px;
+  padding-bottom: 10px;
+}
+
+#footer-links a {
+	font-family: "proxima-nova";font-weight:300;
+	font-size: 14px;
+	color: #777;
+}
+#footer-links a:hover {
+text-decoration:underline;
+color:#d2002b;
+}
+
+#footer-links .link-column {
+  float: left;
+  width: 132px;
+}
+#footer-links .link-column h4 {
+  color: #444;
+  font-family: "proxima-nova";font-weight:300;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+#footer-links .link-column ul {
+}
+#footer-links .link-column ul li {
+}
+
+/* FLO FOOTER END*/
+
+/* GENERAL - FOOTER */
+.footer-right{width: 300px; float: right;}
+.footer-cards{padding-top: 10px;}
+
+
+.footer-block {
+  padding: 10px;
+  float:left;
+}
+
+.footer-block-right-line {
+  border-right: 1px solid #aaa;
+  padding:0px;
+  float:left;
+}
+
+.footer-block-middle {
+  margin-left: 20px;
+}
+
+.footer-block-right {
+float:right;}
+
+.footer-cms-block-title {
+  padding: 7px 12px;
+  margin-right: 15px;
+  font-family: "proxima-nova", sans-serif;
+  font-weight:600;
+  color: white;
+  background-color:#000000;
+  font-size: 22px;
+  display: block;
+}
+
+
+.footer-cms-block-title-caption {
+  padding: 10px;
+  display:block;
+}
+
+.footer-block-padder {
+  padding: 20px 0;
+}
+
+.footer-all-link {
+  padding: 10px;
+  
+}
+/* GENERAL - FOOTER END */
