@@ -1,767 +1,624 @@
-<?php
-	$referer = false;
-	$refererSet = false;
-	if(Mage::getSingleton('core/session')->getReferer()) {
-		$refererSet = true;
-		$referer = Mage::getSingleton('core/session')->getReferer();
-	}
-
-	if(!$refererSet) {
-		//get the referrer
-		if (isset($_SERVER['HTTP_REFERER'])) {
-			$referer = $_SERVER['HTTP_REFERER'];
-		} else {
-			$referer = "unknown";
-		}
-		//save it in a session variable
-		Mage::getSingleton('core/session')->setReferer($referer); // store session data
-	}
-?>
-
-
 <div id="top" class="keep-calm-signup-container">
-	
-	<div class="ghost-header"></div>
-	<div class="share-header clearfix">
-		<div class="trans-back"></div>
-		<div class="share-header-container section clearfix">
-	
-			<a id="logo" href="#top" class="logo-button">
-				<div class="gift-logo">
-				</div>
-			</a>
-			
-			<?php if (Mage::getSingleton('customer/session')->isLoggedIn()) {?>
-				<div class="top-name">
-					
-					<!--oneall thumbnail -->
-					<?php // TODO put this in the module code
-					
-					$customerID = Mage::getSingleton('customer/session')->getId();
-					//check if user has a Facebook ID or twitter ID
-					$model = Mage::getModel('oneall/identifiers');
-					$collection = $model->getCollection()
-						->addFieldToFilter('customer_id',$customerID)
-						->addFieldToFilter('provider',array('in' => array('Facebook','twitter')));
-					foreach($collection as $item) {
-					   if($item['provider'] === 'Facebook') {
-			   				$facebookID = $item['identifier'];
-			   			}
-			   			else if($item['provider'] === 'twitter') {
-			   				$twitterID = $item['profile_name'];
-			   			};
-					   
-					}
-					
-					
-					if(isset($facebookID)) { ?>
-						<img class="oaimg" width="50" height="50" src="https://graph.facebook.com/<?php echo $facebookID ?>/picture?type=square" />
-					<?php  } else if(isset($twitterID)) { ?>
-						<img class="oaimg" width="50" height="50" src="https://api.twitter.com/1/users/profile_image?screen_name=<?php echo $twitterID ?>&size=normal" />
-					<?php
-					} else {
-					?><style type"text/css">.top-header .account-link a.header-link { padding-right:0px; }</style><?php
-					}
-					?>
-					
-					<?php // Mage::helper('oneall')->getThumbnailUrl(); ?>
-					<!--oneall thumbnail -->
-					
+	<?php echo $this->getChildHtml('landing_header'); ?>
 
-				</div>
+</div>
 
-				<div class="account-link">
-					<a class="header-link" href="/customer/account/index/">My Account</a>
-					<?php $customerName = Mage::helper('customer')->getCustomerName(); 
-						$names = explode(" ",$customerName, 2);
-						$firstname = $names[0];
-					
-					?> 						
-					<a class="flname" href="#">Hi <?php echo $firstname; ?></a>						
-										
+
+<div class="title-block first calendar-container">
+	<div class="title-block-inner clearfix">
+		<div class="title-block-container clearfix">		
+			<div class="calendar container">
 				
-				</div>
-				
-			<?php }
-				else { ?>
-					
-					<div class="convert">
-						<a id="gift-header-convert" href="/keep/calm/getgifted" class="convert secondary">Gift a Plan</a>
+				<!-- start calendar -->
+				<div class="months">
+
+					<div class="month jan">
+						<div class="month-title">
+							Jan
+						</div>
+						<div class="package">
+							<div class="sock-small-icon package-icon">
+							</div>
+							<div class="sock-small-icon package-icon">
+							</div>
+							<div class="sock-small-icon package-icon">
+							</div>
+							<div class="boxer-small-icon package-icon">
+							</div>
+							<div class="boxer-small-icon package-icon">
+							</div>
+							<div class="boxer-small-icon package-icon">
+							</div>
+							<div class="tshirt-small-icon package-icon">
+							</div>
+							<div class="tshirt-small-icon package-icon">
+							</div>
+							<div class="tshirt-small-icon package-icon">
+							</div>
+							<div class="shirt-small-icon package-icon">
+							</div>
+							<div class="shirt-small-icon package-icon">
+							</div>
+							<div class="shirt-small-icon package-icon">
+							</div>
+						</div>
 					</div>
+					<div class="month feb">
+						<div class="month-title">
+							Feb
+						</div>
+						<div class="package">
+							<div class="sock-small-icon package-icon">
+							</div>
+							<div class="boxer-small-icon package-icon">
+							</div>
+						</div>
+					</div>
+					<div class="month mar">
+						<div class="month-title">
+							Mar
+						</div>
+						<div class="package">
+							<div class="sock-small-icon package-icon">
+							</div>
+							<div class="boxer-small-icon package-icon">
+							</div>
+							<div class="tshirt-small-icon package-icon">
+							</div>
+							<div class="tshirt-small-icon package-icon">
+							</div>
+							<div class="tshirt-small-icon package-icon">
+							</div>
+						</div>
+					</div>
+					<div class="month apr">
+						<div class="month-title">
+							Apr
+						</div>
+						<div class="package">
+							<div class="sock-small-icon package-icon">
+							</div>
+							<div class="boxer-small-icon package-icon">
+							</div>
+						</div>
+					</div>
+					<div class="month may">
+						<div class="month-title">
+							May
+						</div>
+						<div class="package">
+							<div class="sock-small-icon package-icon">
+							</div>
+							<div class="boxer-small-icon package-icon">
+							</div>
+							<div class="shirt-small-icon package-icon">
+							</div>
+							<div class="shirt-small-icon package-icon">
+							</div>
+							<div class="shirt-small-icon package-icon">
+							</div>
+						</div>
+					</div>
+					<div class="month jun">
+						<div class="month-title">
+							Jun
+						</div>
+						<div class="package">
+							<div class="sock-small-icon package-icon">
+							</div>
+							<div class="boxer-small-icon package-icon">
+							</div>
+						</div>
+					</div>
+					<div class="month jul">
+						<div class="month-title">
+							Jul
+						</div>
+						<div class="package">
+							<div class="sock-small-icon package-icon">
+							</div>
+							<div class="sock-small-icon package-icon">
+							</div>
+							<div class="sock-small-icon package-icon">
+							</div>
+							<div class="boxer-small-icon package-icon">
+							</div>
+							<div class="boxer-small-icon package-icon">
+							</div>
+							<div class="boxer-small-icon package-icon">
+							</div>
+							<div class="tshirt-small-icon package-icon">
+							</div>
+							<div class="tshirt-small-icon package-icon">
+							</div>
+							<div class="tshirt-small-icon package-icon">
+							</div>
+							<div class="shirt-small-icon package-icon">
+							</div>
+							<div class="shirt-small-icon package-icon">
+							</div>
+							<div class="shirt-small-icon package-icon">
+							</div>
+						</div>
+					</div>
+					<div class="month aug">
+						<div class="month-title">
+							Aug
+						</div>
+						<div class="package">
+							<div class="sock-small-icon package-icon">
+							</div>
+							<div class="boxer-small-icon package-icon">
+							</div>
+						</div>
+					</div>
+					<div class="month sep">
+						<div class="month-title">
+							Sep
+						</div>
+						<div class="package">
+							<div class="sock-small-icon package-icon">
+							</div>
+							<div class="boxer-small-icon package-icon">
+							</div>
+							<div class="tshirt-small-icon package-icon">
+							</div>
+							<div class="tshirt-small-icon package-icon">
+							</div>
+							<div class="tshirt-small-icon package-icon">
+							</div>
+						</div>
+					</div>
+					<div class="month oct">
+						<div class="month-title">
+							Oct
+						</div>
+						<div class="package">
+							<div class="sock-small-icon package-icon">
+							</div>
+							<div class="boxer-small-icon package-icon">
+							</div>
+						</div>
+					</div>
+					<div class="month nov">
+						<div class="month-title">
+							Nov
+						</div>
+						<div class="package">
+							<div class="sock-small-icon package-icon">
+							</div>
+							<div class="boxer-small-icon package-icon">
+							</div>
+							<div class="shirt-small-icon package-icon">
+							</div>
+							<div class="shirt-small-icon package-icon">
+							</div>
+							<div class="shirt-small-icon package-icon">
+							</div>
+						</div>
+					</div>
+					<div class="month dec">
+						<div class="month-title">
+							Dec
+						</div>
+						<div class="package">
+							<div class="sock-small-icon package-icon">
+							</div>
+							<div class="boxer-small-icon package-icon">
+							</div>
+						</div>
+					</div>
+				</div>
 
-					<!-- social login -->
-					<!-- div id="oa_social_login_header_convert" class="loading"></div>
-				<span></span>	
-					<script type="text/javascript">
-						 oneall.api.plugins.social_login.build("oa_social_login_header_convert", {
-						  'providers' :  ['facebook', 'twitter'],
-						  'callback_uri': '<?php echo $this->getUrl('arush-oneall/rpx/token_url', array('_forced_secure' => false)) ?>',
-						  'css_theme_uri': '<?php echo $this->getSkinUrl(); ?>css/social-convert-head.css',
-						  'events' :{
-							        'onload' : function(){jQuery('#oa_social_login_header_convert').removeClass('loading');}   
-							      } 
-						 });
-					</script -->
+				<div class="copy">
+					<div class="sixteen columns">
+						<h1 class="one-liner">A package to keep your package well packaged.</h1>
+					</div>
+					<div class="description ten columns offset-by-three row">
+						<h4 class="description-copy">Designer essentials. Auto-delivered monthly or quarterly.</h4>
+					</div>
 					
-			<?php } ?>
-						
-			<div class="convert">
-				<a id="header-convert" href="/plans.html" class="convert">Step 1. choose a plan</a>
+					<div class="process">
+						<div class="one-third column">
+							<img src="<?php echo $this->getSkinUrl('images/arush/home/small-mag-plan.png'); ?>" alt="choose a clothing subscription" title="choose a clothing subscription"/>
+							<a href="/plans.html" class="convert step">Step 1. Choose a plan</a>
+							<div class="step-caption"><span id="2">Are you a Soldier, Boss or Godfather? Tees, Vees or Polos? Shirts for Monday morning or Saturday night?</span></div>
+						</div>
+						<div class="one-third column">
+							<img src="<?php echo $this->getSkinUrl('images/arush/home/small-mag-male.png'); ?>" alt="we feed the MALE™" title="we feed the MALE™"/>
+							<a href="#1" class="convert step inactive">Step 2. We feed the MALE™</a>
+							<div class="step-caption">MALE™ is our Masculine Algorithmic Learning Engine. It learns what you like.</div>
+						</div>
+						<div class="one-third column">
+							<img src="<?php echo $this->getSkinUrl('images/arush/home/small-mag-pack.png'); ?>" alt="we feed the MALE™" title="we feed the MALE™"/>
+							<a href="#" class="convert step inactive">Step 3. Get BRANDiD</a>
+							<div class="step-caption">Now you're rockin' fresh garms, time to do something more important instead.</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<a id="blog" href="http://blog.getbrandid.com/" class="header-button">
-				<span class="button-copy">Blog</span>
-			</a>
-			<a id="who" href="/keep/calm/wearepros" class="header-button">
-				<span class="button-copy">Who?</span>
-			</a>
-
-			<a id="how-but" href="#1" class="header-button">
-				<span class="button-copy">How?</span>
-			</a>
-
-			<a id="what" href="#2" class="header-button">
-				<span class="button-copy">What?</span>
-			</a>
-
 			
-			<?php if (!Mage::getSingleton('customer/session')->isLoggedIn()) {?>
-				<span style="
-				    float: right;
-				    clear: both;
-				    margin-top: -23px;
-				    margin-right: 14px;
-					" class="login">or <a style="text-decoration:underline;" href="/customer/account/login">Login</a>
-				</span>
-			<?php } ?>
-	
-		</div>
-		
-	</div>
-	
-	
-	
-	</div>
-	<div class="title-block first calendar-container">
-		<div class="title-block-inner clearfix">
-			<div class="title-block-container clearfix">		
-				<div class="calendar container">
-					
-					<!-- start calendar -->
-					<div class="months">
-
-						<div class="month jan">
-							<div class="month-title">
-								Jan
-							</div>
-							<div class="package">
-								<div class="sock-small-icon package-icon">
-								</div>
-								<div class="sock-small-icon package-icon">
-								</div>
-								<div class="sock-small-icon package-icon">
-								</div>
-								<div class="boxer-small-icon package-icon">
-								</div>
-								<div class="boxer-small-icon package-icon">
-								</div>
-								<div class="boxer-small-icon package-icon">
-								</div>
-								<div class="tshirt-small-icon package-icon">
-								</div>
-								<div class="tshirt-small-icon package-icon">
-								</div>
-								<div class="tshirt-small-icon package-icon">
-								</div>
-								<div class="shirt-small-icon package-icon">
-								</div>
-								<div class="shirt-small-icon package-icon">
-								</div>
-								<div class="shirt-small-icon package-icon">
-								</div>
-							</div>
-						</div>
-						<div class="month feb">
-							<div class="month-title">
-								Feb
-							</div>
-							<div class="package">
-								<div class="sock-small-icon package-icon">
-								</div>
-								<div class="boxer-small-icon package-icon">
-								</div>
-							</div>
-						</div>
-						<div class="month mar">
-							<div class="month-title">
-								Mar
-							</div>
-							<div class="package">
-								<div class="sock-small-icon package-icon">
-								</div>
-								<div class="boxer-small-icon package-icon">
-								</div>
-								<div class="tshirt-small-icon package-icon">
-								</div>
-								<div class="tshirt-small-icon package-icon">
-								</div>
-								<div class="tshirt-small-icon package-icon">
-								</div>
-							</div>
-						</div>
-						<div class="month apr">
-							<div class="month-title">
-								Apr
-							</div>
-							<div class="package">
-								<div class="sock-small-icon package-icon">
-								</div>
-								<div class="boxer-small-icon package-icon">
-								</div>
-							</div>
-						</div>
-						<div class="month may">
-							<div class="month-title">
-								May
-							</div>
-							<div class="package">
-								<div class="sock-small-icon package-icon">
-								</div>
-								<div class="boxer-small-icon package-icon">
-								</div>
-								<div class="shirt-small-icon package-icon">
-								</div>
-								<div class="shirt-small-icon package-icon">
-								</div>
-								<div class="shirt-small-icon package-icon">
-								</div>
-							</div>
-						</div>
-						<div class="month jun">
-							<div class="month-title">
-								Jun
-							</div>
-							<div class="package">
-								<div class="sock-small-icon package-icon">
-								</div>
-								<div class="boxer-small-icon package-icon">
-								</div>
-							</div>
-						</div>
-						<div class="month jul">
-							<div class="month-title">
-								Jul
-							</div>
-							<div class="package">
-								<div class="sock-small-icon package-icon">
-								</div>
-								<div class="sock-small-icon package-icon">
-								</div>
-								<div class="sock-small-icon package-icon">
-								</div>
-								<div class="boxer-small-icon package-icon">
-								</div>
-								<div class="boxer-small-icon package-icon">
-								</div>
-								<div class="boxer-small-icon package-icon">
-								</div>
-								<div class="tshirt-small-icon package-icon">
-								</div>
-								<div class="tshirt-small-icon package-icon">
-								</div>
-								<div class="tshirt-small-icon package-icon">
-								</div>
-								<div class="shirt-small-icon package-icon">
-								</div>
-								<div class="shirt-small-icon package-icon">
-								</div>
-								<div class="shirt-small-icon package-icon">
-								</div>
-							</div>
-						</div>
-						<div class="month aug">
-							<div class="month-title">
-								Aug
-							</div>
-							<div class="package">
-								<div class="sock-small-icon package-icon">
-								</div>
-								<div class="boxer-small-icon package-icon">
-								</div>
-							</div>
-						</div>
-						<div class="month sep">
-							<div class="month-title">
-								Sep
-							</div>
-							<div class="package">
-								<div class="sock-small-icon package-icon">
-								</div>
-								<div class="boxer-small-icon package-icon">
-								</div>
-								<div class="tshirt-small-icon package-icon">
-								</div>
-								<div class="tshirt-small-icon package-icon">
-								</div>
-								<div class="tshirt-small-icon package-icon">
-								</div>
-							</div>
-						</div>
-						<div class="month oct">
-							<div class="month-title">
-								Oct
-							</div>
-							<div class="package">
-								<div class="sock-small-icon package-icon">
-								</div>
-								<div class="boxer-small-icon package-icon">
-								</div>
-							</div>
-						</div>
-						<div class="month nov">
-							<div class="month-title">
-								Nov
-							</div>
-							<div class="package">
-								<div class="sock-small-icon package-icon">
-								</div>
-								<div class="boxer-small-icon package-icon">
-								</div>
-								<div class="shirt-small-icon package-icon">
-								</div>
-								<div class="shirt-small-icon package-icon">
-								</div>
-								<div class="shirt-small-icon package-icon">
-								</div>
-							</div>
-						</div>
-						<div class="month dec">
-							<div class="month-title">
-								Dec
-							</div>
-							<div class="package">
-								<div class="sock-small-icon package-icon">
-								</div>
-								<div class="boxer-small-icon package-icon">
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="copy">
-						<div class="sixteen columns">
-							<h1 class="one-liner">A package to keep your package well packaged.</h1>
-						</div>
-						<div class="description ten columns offset-by-three row">
-							<h4 class="description-copy">Designer essentials. Auto-delivered monthly or quarterly.</h4>
-						</div>
-						
-						<div class="process">
-							<div class="one-third column">
-								<img src="<?php echo $this->getSkinUrl('images/arush/home/small-mag-plan.png'); ?>" alt="choose a clothing subscription" title="choose a clothing subscription"/>
-								<a href="/plans.html" class="convert step">Step 1. Choose a plan</a>
-								<div class="step-caption"><span id="2">Are you a Soldier, Boss or Godfather? Tees or polos? Work shirts or designer shirts?</span></div>
-							</div>
-							<div class="one-third column">
-								<img src="<?php echo $this->getSkinUrl('images/arush/home/small-mag-male.png'); ?>" alt="we feed the MALE™" title="we feed the MALE™"/>
-								<a href="#1" class="convert step inactive">Step 2. We feed the MALE™</a>
-								<div class="step-caption">Behind every great man, there's a great MALE™. It learns what you like.</div>
-							</div>
-							<div class="one-third column">
-								<img src="<?php echo $this->getSkinUrl('images/arush/home/small-mag-pack.png'); ?>" alt="we feed the MALE™" title="we feed the MALE™"/>
-								<a href="#" class="convert step inactive">Step 3. Get BRANDiD</a>
-								<div class="step-caption">Now you're rockin' fresh garms, time to do something more important instead.</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-			</div>
 		</div>
 	</div>
+</div>
+
+<div class="commitment-caption section">
 	<div class="commitment-caption section">
-		<div class="commitment-caption section">
-			<div class="vision-title">
-				<span class="vision-title-text">What is BRANDiD?</span>
-			</div>
-			<span class="caption">BRANDiD is an online subscription service for all the things men need, starting with designer basics such as underwear, socks, tees and shirts from the likes of Calvin Klein, Hugo Boss and Ralph Lauren. We'll send your gear every month so your boxers are always box fresh. Select. Subscribe. Sorted. Capiche?</span>
-			<div class="convert-button clearfix">
-				<a id="middle-body-convert" href="/plans.html" class="convert">Step 1. Choose a Plan</a>
-			</div>
-			<div class="share-buttons">
-			
-				<div class="like-but share-but">
-					<div class="fb-like" data-href="http://www.facebook.com/pages/Brandid/282808678428182" data-send="false" data-layout="button_count" data-width="100" data-show-faces="true"></div>
-				</div>
-			
-				<div class="share-but follow">
-					<a href="https://twitter.com/getbrandid" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @getbrandid</a>
-					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-				</div>
-				
-				<div class="share-but">
-					<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.getbrandid.com/" data-text="Dirty boxers never got anyone laid. Designer brands auto-delivered for MEN. get #BRANDiD" data-count="horizontal" data-via="getbrandid">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
-				</div>
-
-				<div class="share-but gp">
-					<g:plusone size="medium" href="https://www.getbrandid.com"></g:plusone>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="signmeupnow-container section clearfix">
-
-		<!-- div class="commitment-caption reg section">
-			<div class="reg-form">
-				<div class="commitment-caption section ">
-					<div class="commitment-caption">
-						<span class="caption">Not ready for a plan? Register below and we'll be in touch when we have more cool stuff to tell you about.</span>
-					</div>
-				</div>
-				
-				<form action="/customer/account/create" method="get">
-				  <input type="text" name="email" value="Enter your email address…" onFocus="clearDefault(this)" onBlur="restoreText(this)"/>
-				  <button class="convert" type="submit">Keep me in the loop!</button>
-				</form>
-			</div>
-		</div -->
-
-		
-		
-		
-		
-	</div>
-	
-	<?php /*  ?>
-	<div class="grey-tilt-holder">
-		<div class="grey-tilt right-tilt clearfix">
-			<div id="mags" class="hood section clearfix">
-				
-			<?php
-			     echo  $this->getLayout()->createBlock('cms/block')->setBlockId('under-the-hood')->toHtml() ;
-			?>
-			
-			<div class="green-box clearfix">
-				<div class="commitment-caption">
-					<span class="caption">No commitment or credit card required, just balls.</span>
-				</div>
-				<div class="convert-button clearfix">
-					<a id="body-convert-2" href="/plans.html" class="convert">Show Me The Plans Now!</a>
-				</div>
-			</div>
-
-			
-
-
-			</div>
-	
-		</div>
-	</div>
-	<?php */ ?>
-	
-	<div class="quotes section clearfix">
-
-		<div class="quote-box">
-		<div class="apostrophe"><span>&lsquo;</span><span class="apostrophe2">&lsquo;</span></div>
-		<span class="quote left">BRANDiD makes the hairs on my hairs stand up.</span>
-		<div class="quote-triangle"></div>
-		<span class="author">Wolverine</span>
-		<span class="caption-small">aka Logan of the X-Men</span>
-		<span class="caption-small">Man since… nobody knows</span></div>
-		
-		<div class="quote-box">
-		<div class="apostrophe"><span>&lsquo;</span><span class="apostrophe2">&lsquo;</span></div>
-		<span class="quote middle">I may have gotten fat in my later years, but I always wore sexy pants.</span>
-		<div class="quote-triangle"></div>
-		<span class="author">Henry VIII</span>
-		<span class="caption-small">King of England</span>
-		<span class="caption-small">Man since 1491</span></div>
-		
-		<div class="quote-box last">
-		<div class="apostrophe"><span>&lsquo;</span><span class="apostrophe2">&lsquo;</span></div>
-		<span class="quote right">It's not for me.</span>
-		<div class="quote-triangle"></div>
-		<span class="author">Gok Wan</span>
-		<span class="caption-small">Not sure why he's famous</span>
-		<span class="caption-small">Around since 1974</span></div>
-		
-	</div>			
-
-
-	<?php /* ?>
-	<div class="grey-tilt-holder vision-block">
-		<div class="grey-tilt clearfix">
-			<div class="grey-tilt-container clearfix">
-				<div class="vision section clearfix">
-					<div class="vision-title">
-						<span class="vision-title-text">Our Vision</span>
-					</div>
-					<div class="mandate box">
-						<span class="vision-sub-title">Our <span class="red-text">Man</span>date</span>
-						<div class="mandate-one-line block">
-							We are reinventing shopping for men because the industry has forgotten about us.
-							Why should we have to sift through poncy female-focused fashionista content just to get our clothes delivered? It's time to <a href="https://www.youtube.com/watch?v=aaas7GFbLHk&feature=related" target="_blank">take the power back.</a>
-							<!-- if you're reading this, watch this one from '92! http://www.youtube.com/watch?v=cPHEgpWhkuQ&feature=related -->
-						</div>
-					</div>
-					<div class="what-is box">
-						<span class="vision-sub-title">What is BRANDiD?</span>
-						<div class="what-is-oneliner">
-							BRANDiD is a subscription service for designer basics… and a whole lot more. We love quality gear, great service and good humour.
-						</div>
-					</div>
-
-				</div>
-			</div> <!-- end grey tilt container -->
-		</div> <!-- end grey tilt -->
-	</div>	
-	<?php */ ?>
-
-
-	<div class="commitment-caption middle section">
-		<div class="commitment-caption">
-			<span id="1" class="caption">Plans? Whoa there buddy... we just met.</span>
-		</div>
-	</div>
-	<div class="title-block first">
-		<div class="title-block-inner clearfix">
-			<div class="title-block-container section clearfix">		
-				<div id="bigtop-title" class="title section">
-					<span class="first">I'm a man.</span><br/>
-					<span class="second">I have commitment issues.</span>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	
-	<!-- div class="price-compare section">
-		
-		<?php
-		    // echo  $this->getLayout()->createBlock('cms/block')->setBlockId('signup-products')->toHtml() ;
-		?>
-
-	</div-->
-	
-	
-	<div class="grey-tilt-holder">
-		<div class="grey-tilt clearfix">
-				<div class="grey-tilt-container clearfix">
-					<div class="vision section clearfix" id="take-to-plans">
-						<div class="vision-title">
-							<span class="vision-title-text">How do I know you're right for me?</span>
-						</div>
-						
-
-						<div class="container">
-							<div class="male-explanation row">That's why we built MALE™.
-							</div>
-
-							<div class="one-third column">
-								
-								<div class="fade">
-
-									<img id="step-1-feed" class="scale-with-grid male-explanation-img" src="<?php echo $this->getSkinUrl('images/arush/home/step-1-feed.png'); ?>" alt="the MALE™ learns what you like" title="the MALE™ learns what you like"/>
-
-									<div>
-										<img id="step-2-feed" class="scale-with-grid male-explanation-img" src="<?php echo $this->getSkinUrl('images/arush/home/step-2-feed.png'); ?>" alt="the MALE™ learns what you like" title="the MALE™ learns what you like"/>
-									</div>
-								</div>
-
-							</div>
-							<div class="one-third column">
-								<div class="male-explanation">Your data gets punched into BRANDiD’s proprietary Masculine Algorithmic Learning Engine (MALE™).</div>
-								<img src="<?php echo $this->getSkinUrl('images/arush/home/small-mag-male.png'); ?>" alt="the MALE™ learns what you like" title="the MALE™ learns what you like"/>
-								<div class="male-explanation">We built MALE™ from the pixel up to learn what you like. It eats feedback and sh*ts great garms.</div>
-
-							</div>
-							<div class="one-third column">
-
-								<div class="fade">
-
-									<img id="step-1-clothes" class="scale-with-grid male-explanation-img" src="<?php echo $this->getSkinUrl('images/arush/home/step-1-clothes.jpg'); ?>" alt="the MALE™ learns what you like" title="the MALE™ learns what you like"/>
-									
-									<div>
-										<img id="step-2-clothes" class="scale-with-grid male-explanation-img" src="<?php echo $this->getSkinUrl('images/arush/home/step-2-clothes.jpg'); ?>" alt="the MALE™ learns what you like" title="the MALE™ learns what you like"/>
-									</div>
-								</div>
-							</div>
-
-							<div class="twelve columns offset-by-two">
-								
-							</div>
-						</div>
-
-						<?php /* ?>
-
-						<div id="how" class="how section">
-						
-						
-						
-						<div class="how-to-process">
-							<div class="how-to-box">
-								<div class="select-title">
-									<span class="select-title-text">Select</span>
-								</div>
-								<div class="select-circle circle">
-								</div>
-								<div class="select-title red-title">
-									<span class="select-title-text">Select a monthly plan</span>
-								</div>
-								
-								<div class="select-triangle vert-chevron">
-									<div class="select-triangle white moveable">
-									</div>
-									<div class="select-triangle grey">
-									</div>
-								</div>
-							</div> <!-- end how to box -->
-							
-							<div class="how-to-box">
-								<div class="select-title">
-									<span class="select-title-text">Subscribe</span>
-								</div>
-								<div class="subscribe-circle circle">
-									<div class="sub-detail detail-1">plans start at only</div>
-									<div class="sub-detail detail-2">£19</div>
-									<div class="sub-detail detail-3">monthly or quarterly</div>
-								</div>
-								<div class="select-title red-title">
-									<span class="select-title-text">Automatic monthly billing</span>
-								</div>
-								
-								<div class="subscribe-triangle vert-chevron">
-									<div class="subscribe-triangle white moveable">
-									</div>
-									<div class="subscribe-triangle grey">
-									</div>
-								</div>
-							</div> <!-- end how to box -->
-				
-							<div id="third-how" class="how-to-box last">
-								<div class="select-title">
-									<span class="select-title-text">Sorted</span>
-								</div>
-								<div id="sorted-cal" class="sorted-circle circle">
-								</div>
-								<div class="select-title red-title">
-									<span class="select-title-text">Automatic monthly delivery</span>
-								</div>
-								
-							</div> <!-- end how to box -->
-							
-						</div> <!-- end how to process -->						
-						
-						
-					</div> <!-- end how section -->
-					<?php */ ?>
-						<!-- div class="plans-img">
-						</div-->
-						<div id="action-section-2" class="action-section clearfix">
-								
-							<div class="coupon-card">
-								<!--div class="upper-box">
-									<div class="commitment-caption">
-										<span class="caption">Use the coupon code:</span>
-										<br/>
-										<span class="caption-strong">FREEDOUBLE</span>
-										<br/>
-										<span class="caption">at checkout for a FREE double pack in your first month<sup>*</sup></span>
-										<br/>
-										<br/>
-										<span class="caption-small"><sup>*</sup>Not redeemable with any other offers, valid until May 31st, 2012.</span>
-
-									</div>
-								</div-->
-								<div class="green-box clearfix">
-									<div class="commitment-caption">
-										<span class="caption">No commitment or credit card required, just balls.</span>
-									</div>
-									<div class="convert-button clearfix">
-										<a id="body-convert-2" href="/plans.html" class="convert">Step 1. Choose a Plan</a>
-									</div>
-								</div>
-							</div>
-
-						</div>
-					</div>
-					
-					
-					
-					<!--div class="vision section clearfix">
-						<div class="vision-title">
-							<span class="vision-title-text">Boosters (coming soon)</span>
-						</div>
-						<div class="what box boosters">Because men shop to solve a problem.<br/>
-						Delivered immediately in large quantities and with bulk discounts,
-						Boosters ensure you're not in this situation again any time soon.<br/>
-						If you're not the shopping type, choose Lucky Dip and we'll shop for you.
-						</div>
-
-						<div class="boosters-img first">
-						</div>
-						<div class="boosters-img second">
-						</div>
-						<div class="boosters-img third">
-						</div>
-
-						
-					</div-->
-				</div> <!-- end grey tilt container -->
-		</div> <!-- end grey tilt -->
-	</div>
-
-	<div class="chev-group-wrap section">
-		<div class="chevron-group final">
-			<!-- <a class="invisibutred" href="#signmeupnow">
-				<div class="chevron-triangle up red"></div>
-				<div class="chevron up red">
-					<div class="first-line block red">keep calm and</div>
-					<div class="second-line block red">Sign me up!</div>
-				</div>	
-			</a> -->
-			<a class="invisibut" href="#notaman">
-				<div class="chevron down black">
-					<div id="notaman" class="first-line block">Sounds cool, but it's just</div>
-					<div class="second-line block">Not for me</div>
-					<div class="chevron-triangle"></div>
-				</div>
-			</a>
-		</div>
-	</div>
-	
-	<div class="final title-block last">
-		<div class="title-block-inner clearfix">
-			<div class="title-block-container section clearfix">		
-				<div id="bigtop-title" class="title section">
-					<span class="first">I'm not a man.</span><br/>
-					<a href="http://www.barbie.com"><span class="second red">Get me the heck out of here.</span></a>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="final-share section">
 		<div class="vision-title">
-			<span class="vision-title-text">Know someone who'll like this?</span>
+			<span class="vision-title-text">What is BRANDiD?</span>
 		</div>
-		<div class="box">
-			Let them know using the buttons below.
+		<span class="caption">BRANDiD is an online subscription service for all the things men need, starting with designer basics such as underwear, socks, tees and shirts from the likes of Calvin Klein, Hugo Boss and Ralph Lauren. We'll send your gear every month so your boxers are always box fresh. Select. Subscribe. Sorted. Capiche?</span>
+		<div class="convert-button clearfix">
+			<a id="middle-body-convert" href="/plans.html" class="convert">Step 1. Choose a Plan</a>
 		</div>
+		<div class="share-buttons">
 		
-		<div class="share-buttons clearfix">
-				
-				<div class="like-but share-but">
-					<div class="fb-like" data-href="http://www.facebook.com/pages/Brandid/282808678428182" data-send="false" data-layout="button_count" data-width="100" data-show-faces="true"></div>
-				</div>
-				
-				<div class="share-but twitter">
-					<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.getbrandid.com/" data-text="Men, rally the troops. It's time to take the power back. #shoplikeaman" data-count="horizontal" data-via="getbrandid">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
-				</div>
-				
-				<div class="share-but gplus">
-					<g:plusone size="medium" href="https://www.getbrandid.com/"></g:plusone>
-				</div>
+			<div class="like-but share-but">
+				<div class="fb-like" data-href="http://www.facebook.com/pages/Brandid/282808678428182" data-send="false" data-layout="button_count" data-width="100" data-show-faces="true"></div>
+			</div>
+		
+			<div class="share-but follow">
+				<a href="https://twitter.com/getbrandid" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @getbrandid</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+			</div>
+			
+			<div class="share-but">
+				<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.getbrandid.com/" data-text="Dirty boxers never got anyone laid. Designer brands auto-delivered for MEN. get #BRANDiD" data-count="horizontal" data-via="getbrandid">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+			</div>
+
+			<div class="share-but gp">
+				<g:plusone size="medium" href="https://www.getbrandid.com"></g:plusone>
+			</div>
 		</div>
+	</div>
+</div>
+<div class="signmeupnow-container section clearfix">
+
+	<!-- div class="commitment-caption reg section">
+		<div class="reg-form">
+			<div class="commitment-caption section ">
+				<div class="commitment-caption">
+					<span class="caption">Not ready for a plan? Register below and we'll be in touch when we have more cool stuff to tell you about.</span>
+				</div>
+			</div>
+			
+			<form action="/customer/account/create" method="get">
+			  <input type="text" name="email" value="Enter your email address…" onFocus="clearDefault(this)" onBlur="restoreText(this)"/>
+			  <button class="convert" type="submit">Keep me in the loop!</button>
+			</form>
+		</div>
+	</div -->
+
+	
+	
+	
+	
+</div>
+
+<?php /*  ?>
+<div class="grey-tilt-holder">
+	<div class="grey-tilt right-tilt clearfix">
+		<div id="mags" class="hood section clearfix">
+			
+		<?php
+		     echo  $this->getLayout()->createBlock('cms/block')->setBlockId('under-the-hood')->toHtml() ;
+		?>
+		
+		<div class="green-box clearfix">
+			<div class="commitment-caption">
+				<span class="caption">No commitment or credit card required, just balls.</span>
+			</div>
+			<div class="convert-button clearfix">
+				<a id="body-convert-2" href="/plans.html" class="convert">Show Me The Plans Now!</a>
+			</div>
+		</div>
+
+		
+
+
+		</div>
+
+	</div>
+</div>
+<?php */ ?>
+
+<div class="quotes section clearfix">
+
+	<div class="quote-box">
+	<div class="apostrophe"><span>&lsquo;</span><span class="apostrophe2">&lsquo;</span></div>
+	<span class="quote left">BRANDiD makes the hairs on my hairs stand up.</span>
+	<div class="quote-triangle"></div>
+	<span class="author">Wolverine</span>
+	<span class="caption-small">aka Logan of the X-Men</span>
+	<span class="caption-small">Man since… nobody knows</span></div>
+	
+	<div class="quote-box">
+	<div class="apostrophe"><span>&lsquo;</span><span class="apostrophe2">&lsquo;</span></div>
+	<span class="quote middle">I may have gotten fat in my later years, but I always wore sexy pants.</span>
+	<div class="quote-triangle"></div>
+	<span class="author">Henry VIII</span>
+	<span class="caption-small">King of England</span>
+	<span class="caption-small">Man since 1491</span></div>
+	
+	<div class="quote-box last">
+	<div class="apostrophe"><span>&lsquo;</span><span class="apostrophe2">&lsquo;</span></div>
+	<span class="quote right">It's not for me.</span>
+	<div class="quote-triangle"></div>
+	<span class="author">Gok Wan</span>
+	<span class="caption-small">Not sure why he's famous</span>
+	<span class="caption-small">Around since 1974</span></div>
+	
+</div>			
+
+
+<?php /* ?>
+<div class="grey-tilt-holder vision-block">
+	<div class="grey-tilt clearfix">
+		<div class="grey-tilt-container clearfix">
+			<div class="vision section clearfix">
+				<div class="vision-title">
+					<span class="vision-title-text">Our Vision</span>
+				</div>
+				<div class="mandate box">
+					<span class="vision-sub-title">Our <span class="red-text">Man</span>date</span>
+					<div class="mandate-one-line block">
+						We are reinventing shopping for men because the industry has forgotten about us.
+						Why should we have to sift through poncy female-focused fashionista content just to get our clothes delivered? It's time to <a href="https://www.youtube.com/watch?v=aaas7GFbLHk&feature=related" target="_blank">take the power back.</a>
+						<!-- if you're reading this, watch this one from '92! http://www.youtube.com/watch?v=cPHEgpWhkuQ&feature=related -->
+					</div>
+				</div>
+				<div class="what-is box">
+					<span class="vision-sub-title">What is BRANDiD?</span>
+					<div class="what-is-oneliner">
+						BRANDiD is a subscription service for designer basics… and a whole lot more. We love quality gear, great service and good humour.
+					</div>
+				</div>
+
+			</div>
+		</div> <!-- end grey tilt container -->
+	</div> <!-- end grey tilt -->
+</div>	
+<?php */ ?>
+
+
+<div class="commitment-caption middle section">
+	<div class="commitment-caption">
+		<span id="1" class="caption">Plans? Whoa there buddy... we just met.</span>
+	</div>
+</div>
+<div class="title-block first">
+	<div class="title-block-inner clearfix">
+		<div class="title-block-container section clearfix">		
+			<div id="bigtop-title" class="title section">
+				<span class="first">I'm a man.</span><br/>
+				<span class="second">I have commitment issues.</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- div class="price-compare section">
+	
+	<?php
+	    // echo  $this->getLayout()->createBlock('cms/block')->setBlockId('signup-products')->toHtml() ;
+	?>
+
+</div-->
+
+
+<div class="grey-tilt-holder">
+	<div class="grey-tilt clearfix">
+			<div class="grey-tilt-container clearfix">
+				<div class="vision section clearfix" id="take-to-plans">
+					<div class="vision-title">
+						<span class="vision-title-text">How do I know you're right for me?</span>
+					</div>
+					
+
+					<div class="container">
+						<div class="male-explanation row">That's why we built MALE™. Our proprietary AAI (Artificial Artificial Intelligence).
+						</div>
+
+						<div class="one-third column">
+							
+							<div class="fade">
+
+								<img id="step-1-feed" class="scale-with-grid male-explanation-img" src="<?php echo $this->getSkinUrl('images/arush/home/step-1-feed.png'); ?>" alt="the MALE™ learns what you like" title="the MALE™ learns what you like"/>
+
+								<div>
+									<img id="step-2-feed" class="scale-with-grid male-explanation-img" src="<?php echo $this->getSkinUrl('images/arush/home/step-2-feed.png'); ?>" alt="the MALE™ learns what you like" title="the MALE™ learns what you like"/>
+								</div>
+							</div>
+
+						</div>
+						<div class="one-third column">
+							<div class="male-explanation">Your data gets punched into BRANDiD’s proprietary Masculine Algorithmic Learning Engine (MALE™).</div>
+							<img src="<?php echo $this->getSkinUrl('images/arush/home/small-mag-male.png'); ?>" alt="the MALE™ learns what you like" title="the MALE™ learns what you like"/>
+							<div class="male-explanation">We built MALE™ from the pixel up to learn what you like. It eats feedback and sh*ts great garms.</div>
+
+						</div>
+						<div class="one-third column">
+
+							<div class="fade">
+
+								<img id="step-1-clothes" class="scale-with-grid male-explanation-img" src="<?php echo $this->getSkinUrl('images/arush/home/step-1-clothes.jpg'); ?>" alt="the MALE™ learns what you like" title="the MALE™ learns what you like"/>
+								
+								<div>
+									<img id="step-2-clothes" class="scale-with-grid male-explanation-img" src="<?php echo $this->getSkinUrl('images/arush/home/step-2-clothes.jpg'); ?>" alt="the MALE™ learns what you like" title="the MALE™ learns what you like"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="twelve columns offset-by-two">
+							
+						</div>
+					</div>
+
+					<?php /* ?>
+
+					<div id="how" class="how section">
+					
+					
+					
+					<div class="how-to-process">
+						<div class="how-to-box">
+							<div class="select-title">
+								<span class="select-title-text">Select</span>
+							</div>
+							<div class="select-circle circle">
+							</div>
+							<div class="select-title red-title">
+								<span class="select-title-text">Select a monthly plan</span>
+							</div>
+							
+							<div class="select-triangle vert-chevron">
+								<div class="select-triangle white moveable">
+								</div>
+								<div class="select-triangle grey">
+								</div>
+							</div>
+						</div> <!-- end how to box -->
+						
+						<div class="how-to-box">
+							<div class="select-title">
+								<span class="select-title-text">Subscribe</span>
+							</div>
+							<div class="subscribe-circle circle">
+								<div class="sub-detail detail-1">plans start at only</div>
+								<div class="sub-detail detail-2">£19</div>
+								<div class="sub-detail detail-3">monthly or quarterly</div>
+							</div>
+							<div class="select-title red-title">
+								<span class="select-title-text">Automatic monthly billing</span>
+							</div>
+							
+							<div class="subscribe-triangle vert-chevron">
+								<div class="subscribe-triangle white moveable">
+								</div>
+								<div class="subscribe-triangle grey">
+								</div>
+							</div>
+						</div> <!-- end how to box -->
+			
+						<div id="third-how" class="how-to-box last">
+							<div class="select-title">
+								<span class="select-title-text">Sorted</span>
+							</div>
+							<div id="sorted-cal" class="sorted-circle circle">
+							</div>
+							<div class="select-title red-title">
+								<span class="select-title-text">Automatic monthly delivery</span>
+							</div>
+							
+						</div> <!-- end how to box -->
+						
+					</div> <!-- end how to process -->						
+					
+					
+				</div> <!-- end how section -->
+				<?php */ ?>
+					<!-- div class="plans-img">
+					</div-->
+					<div id="action-section-2" class="action-section clearfix">
+							
+						<div class="coupon-card">
+							<!--div class="upper-box">
+								<div class="commitment-caption">
+									<span class="caption">Use the coupon code:</span>
+									<br/>
+									<span class="caption-strong">FREEDOUBLE</span>
+									<br/>
+									<span class="caption">at checkout for a FREE double pack in your first month<sup>*</sup></span>
+									<br/>
+									<br/>
+									<span class="caption-small"><sup>*</sup>Not redeemable with any other offers, valid until May 31st, 2012.</span>
+
+								</div>
+							</div-->
+							<div class="green-box clearfix">
+								<div class="commitment-caption">
+									<span class="caption">No commitment or credit card required, just balls.</span>
+								</div>
+								<div class="convert-button clearfix">
+									<a id="body-convert-2" href="/plans.html" class="convert">Step 1. Choose a Plan</a>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				
+				
+				
+				<!--div class="vision section clearfix">
+					<div class="vision-title">
+						<span class="vision-title-text">Boosters (coming soon)</span>
+					</div>
+					<div class="what box boosters">Because men shop to solve a problem.<br/>
+					Delivered immediately in large quantities and with bulk discounts,
+					Boosters ensure you're not in this situation again any time soon.<br/>
+					If you're not the shopping type, choose Lucky Dip and we'll shop for you.
+					</div>
+
+					<div class="boosters-img first">
+					</div>
+					<div class="boosters-img second">
+					</div>
+					<div class="boosters-img third">
+					</div>
+
+					
+				</div-->
+			</div> <!-- end grey tilt container -->
+	</div> <!-- end grey tilt -->
+</div>
+
+<div class="chev-group-wrap section">
+	<div class="chevron-group final">
+		
+		<a class="invisibut" href="#notaman">
+			<div class="chevron down black">
+				<div id="notaman" class="first-line block">Sounds cool, but it's just</div>
+				<div class="second-line block">Not for me</div>
+				<div class="chevron-triangle"></div>
+			</div>
+		</a>
+	</div>
+</div>
+
+<div class="final title-block last">
+	<div class="title-block-inner clearfix">
+		<div class="title-block-container section clearfix">		
+			<div id="bigtop-title" class="title section">
+				<span class="first">I'm not a man.</span><br/>
+				<a href="http://www.barbie.com"><span class="second red">Get me the heck out of here.</span></a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="final-share section">
+	<div class="vision-title">
+		<span class="vision-title-text">Know someone who'll like this?</span>
+	</div>
+	<div class="box">
+		Let them know using the buttons below.
+	</div>
+	
+	<div class="share-buttons clearfix">
+			
+			<div class="like-but share-but">
+				<div class="fb-like" data-href="http://www.facebook.com/pages/Brandid/282808678428182" data-send="false" data-layout="button_count" data-width="100" data-show-faces="true"></div>
+			</div>
+			
+			<div class="share-but twitter">
+				<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.getbrandid.com/" data-text="Men, rally the troops. It's time to take the power back. #shoplikeaman" data-count="horizontal" data-via="getbrandid">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+			</div>
+			
+			<div class="share-but gplus">
+				<g:plusone size="medium" href="https://www.getbrandid.com/"></g:plusone>
+			</div>
 	</div>
 </div>
 
@@ -829,122 +686,6 @@
 <script type="text/javascript">
 
 	var $j = jQuery.noConflict();
-	var w;
-	var w_height;
-	var image_bg_pause = 1;
-		
-	$j(function() {
-		init();
-		
-		/* remove select subscribe sorted animation
-		$j(window).scroll(function() {
-			w = $j(this).scrollTop();
-
-			
-			if(w > $j("#how").data("scrolls")[0] && w < $j("#how").data("scrolls")[1]) {
-	      	      
-		      window.meeting_rel = w - ($j("#how").data("scrolls")[1] - 750);
-		      
-		      window.meeting_ratio = (Math.round((window.meeting_rel / ($j("#how").data("scrolls")[2] )) * 100 ) / 40);
-			
-		      $j(".moveable").each(function(index) {
-		      				      		
-			      	var resetMargin = $j(this).data("original")[0];
-			      	var fullMargin = $j(this).data("original")[1];
-			      					   	if($j(this).data("moved")=="false") {
-			          if(window.meeting_ratio > index) {
-			          		$j(this).stop().animate({
-			          			marginLeft: fullMargin
-			          		},200,function() {
-			          				$j(this).data("moved","true");
-			          				$j("#third-how").animate({
-			          					backgroundColor: "#d2002b"
-			          				  }, 500 );
-							        new Effect.Morph('sorted-cal', {
-							            style: 'background-position:-2425px 0px',
-							            duration: 10
-							        });
-
-							    });
-									
-			          	}
-			        }
-			        else {
-						if(window.meeting_ratio < index) {
-			          		$j(this).stop().animate({
-			          			marginLeft: resetMargin
-			          		},200,function() {
-			          				$j(this).data("moved","false");
-			          				$j("#third-how").animate({
-			          					backgroundColor: "#fff"
-			          				  }, 200 );
-			          				new Effect.Morph('sorted-cal', {
-							            style: 'background-position: 0px 0px',
-							            duration: .2
-							        });
-			          			});
-			          	}
-			        }
-			
-				});
-			}	
-		   			
-		});
-		*/
-	});
-	
-	function set_section_scrolls() {
-	  w_height = $j(window).height();
-	  $j(".section").each(function(){
-	    var scrolls = new Array()
-	    scrolls[0] = $j(this).offset().top - w_height;
-	    scrolls[1] = $j(this).offset().top /* + $j(this).height() */;
-	    scrolls[2] = scrolls[1] - scrolls[0];
-	    $j(this).data("scrolls",scrolls);
-	  });
-	  
-	  $j("#vision").each(function(){
-	    var scrolls = new Array()
-	    scrolls[0] = $j(this).offset().top - w_height;
-	    scrolls[1] = $j(this).offset().top + $j(this).height();
-	    scrolls[2] = scrolls[1] - scrolls[0];
-	    $j(this).data("scrolls",scrolls);
-	  });
-	  
-	  $j("#title-block").each(function(){
-	    var scrolls = new Array()
-	    scrolls[0] = $j(this).offset().top;
-	    $j(this).data("scrolls",scrolls);
-	  });
-	  
-	  $j(".moveable").each(function(){
-		var marginBig;
-		marginBig = parseInt($j(this).css('marginLeft').replace("px", ""),10);
-	    marginBig += 29;
-	    marginBig += "px";
-	    
-	    var original = new Array()
-	    original[0] = $j(this).css('marginLeft');
-	    original[1] = marginBig;
-	    $j(this).data("original",original);
-	    $j(this).data("moved","false");
-	  });
-	  
-	}
-	
-	function init() {
-	  set_section_scrolls();
-	  $j(window).resize(set_section_scrolls);
-	  	  
-	}	
-	
-	function clearDefault(el) {
-  		if (el.defaultValue==el.value) el.value = ""
-	}
-	function restoreText(el) {
-			if (el.value == "") el.value = el.defaultValue;
-		}
-
 	
 
 	$j(document).ready(function () {
@@ -956,8 +697,6 @@
 			function() {
 				$j(this).removeClass('red');
 			});				
-		
-
 });
 
 </script>
