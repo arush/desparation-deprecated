@@ -66,9 +66,9 @@
             <block type="core/template" name="get_party_started" template="arush/get/party/started.phtml"></block>
         </reference>
 
-        <reference name="before_body_end">
-            <!-- block type="core/template" name="parse" as="parsecode" template="arush/parse/code.phtml"/ -->
-        </reference>
+        <!--reference name="before_body_end">
+            <block type="core/template" name="parse" as="parsecode" template="arush/parse/code.phtml"/>
+        </reference-->
     </get_party_started>
 
 </layout>

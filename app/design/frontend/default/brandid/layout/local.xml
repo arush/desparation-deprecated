@@ -227,6 +227,10 @@
    <cms_index_index>
         <reference name="head">
             <action method="addCss"><stylesheet>css/arush/home.css</stylesheet></action>     
+            <action method="addCss"><stylesheet>css/arush/calendar.css</stylesheet></action>     
+            <action method="addCss"><stylesheet>css/skeleton/base.css</stylesheet></action>     
+            <action method="addCss"><stylesheet>css/skeleton/skeleton.css</stylesheet></action>     
+            <action method="addCss"><stylesheet>css/skeleton/layout.css</stylesheet></action>     
             <block type="page/html" name="bg_css" template="page/keep-calm-base64.phtml"/>
             <block type="core/text" name="fb-meta">
                 <action method="setText">
@@ -256,9 +260,10 @@
             <action method="addItem"><type>skin_js</type><name>js/jquery-1.7.1.min.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/scroll/jquery.localscroll-1.2.7-min.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/scroll/jquery.scrollTo-1.4.2-min.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/arush/home-ck.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/arush/modernizr.2.5.3.min.js</name></action>
         <!--    <action method="addItem"><type>skin_js</type><name>js/scroll/jquery.serialScroll-1.2.2-min.js</name></action>
--->
-            <action method="addItem"><type>skin_js</type><name>js/jquery-color-min.js</name></action>
+        -->
             <action method="addItem"><type>skin_js</type><name>js/jquery.reject.js</name></action>
 
             <action method="removeItem"><type>js</type><name>lib/ccard.js</name></action>
@@ -288,7 +293,7 @@
             <action method="removeItem"><type>skin_css</type><name>css/styles.css</name></action>
             <action method="removeItem"><type>skin_css</type><name>css/widgets.css</name></action>
             <action method="removeItem"><type>skin_css</type><name>css/brandid.css</name></action>
-            <action method="removeItem"><type>skin_css</type><name>css/svdh.css</name></action>
+            <!--action method="removeItem"><type>skin_css</type><name>css/svdh.css</name></action-->
             <action method="removeItem"><type>skin_css</type><name>rewards/css/skin.css</name></action>
             <action method="removeItem"><type>skin_css</type><name>rewards/css/catalog.css</name></action>
             <action method="removeItem"><type>skin_css</type><name>css/vdh/popup/style.css</name></action>
@@ -300,11 +305,12 @@
         </reference>
 
         <remove name="header"/>
-
         <reference name="content">
-            <block type="core/template" name="keep_calm_signmeup" template="arush/home.phtml"></block>
+            <block type="core/template" name="homepage" template="arush/home.phtml">
+                <block type="core/template" name="landing_header" as="landing_header" template="arush/landing-header.phtml"/>
+            </block>
         </reference>
-   </cms_index_index>
+    </cms_index_index>
 
 
 	<catalog_product_view>

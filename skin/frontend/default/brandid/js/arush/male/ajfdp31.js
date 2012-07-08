@@ -350,7 +350,6 @@ function offsideA() {
 function saveProgress(progress) {
 	//progress parameter is name of the function of the next step
 	punter.progress = progress;
-	alert("saving cookie: "+ JSON.stringify(punter));
 	$j.cookie('punter', JSON.stringify(punter), { expires: 1, path: '/' });
 }
 
