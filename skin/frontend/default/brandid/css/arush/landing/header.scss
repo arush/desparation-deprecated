@@ -1,3 +1,18 @@
+.trans-back {
+	position: absolute;
+	width: 100%;
+	background: white;
+	opacity: .89;
+	height: 100%;
+	z-index: -1;
+	margin: -10px 0 0 0;
+	opacity:.93;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=93)";
+
+  filter: alpha(opacity=93);
+  -moz-opacity: 0.93;
+  -khtml-opacity: 0.93;
+}
 
 .share-header {
 	background: none;
@@ -6,7 +21,7 @@
 	top: 0;
 	width:100%;
 	z-index: 50;
-	padding: 10px 10px 0 0;
+	padding: 10px 0 0 0;
 	-webkit-box-shadow: #666 0px 3px 10px;
 	-moz-box-shadow: #666 0px 3px 10px;
 	box-shadow: #666 0px 3px 10px;
@@ -146,3 +161,12 @@ a.flname {
 	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
 	filter:none;
 }
+
+	/* Smaller than standard 960 (devices and browsers) */
+	@media only screen and (max-width: 959px) {
+		span.login {display:none;}
+		nav select {display:block;}
+		.share-header-container .convert, .share-header-container .header-button {display:none;}
+		.share-header, a.logo-button {position:absolute;}
+
+	}
