@@ -1,16 +1,18 @@
 /* FLO FOOTER START 7.9.2011*/
 .footer {
   background: none repeat scroll #CFCFCF;
-  min-width: 980px;
 }
 .footer-container {
   margin: 0pt auto 0;
   position: relative;
   text-align: left;
-  width: 972px;
   z-index: 1;
   padding-top: 20px;
   padding-bottom: 16px;
+  font-family: "proxima-nova";
+  font-weight: 300;
+  font-size: 14px;
+  color: #777;
 }
 
 .absolute-foot {
@@ -20,14 +22,16 @@
 
 .footer-block.footer-madein, .footer-block.footer-joinus {
 	color:#aaa;
-	float: left;
+  text-align:center;
 }
 
+.footer-block.footer-madein {
+  text-align: left;
+}
 .absolute-foot .footer-block {
 	margin-top: 10px;
 }
 
-.footer-block.footer-joinus {margin-left:185px;}
 .footer-block.footer-joinus a {
 	color:#eee;
 	text-decoration: underline;
@@ -40,6 +44,10 @@
 .footer-block.footer-joinus a:hover {
 	color:#d2002b;
 }
+.footer-html5-img {
+  background-repeat: no-repeat;
+  background-position: 260px 0;
+}
 
 #bg-footer {
   position: absolute;
@@ -47,13 +55,12 @@
   top: 50px;
   z-index: -1;
 }
-.footer-content, .footer-block.footer-block-left-line p {
+.footer-block.footer-block-left-line p {
 	float: left;
 	font-family: "proxima-nova";font-weight:300;
 	font-size: 14px;
 	color: #777;
 }
-.footer-content {width: 960px;}
 
 .footer-content a {
   	color: #777;
@@ -65,8 +72,11 @@
 
 .footer-content #footer-links {
   float: left;
-  width: 972px;
   padding-bottom: 10px;
+}
+
+#footer-links {
+  padding-top:12px;
 }
 
 #footer-links a {
@@ -89,9 +99,8 @@ color:#d2002b;
   font-weight: bold;
   padding-bottom: 10px;
 }
-#footer-links .link-column ul {
-}
-#footer-links .link-column ul li {
+#footer-links .footer-block {
+  text-align:right;
 }
 
 /* FLO FOOTER END*/
@@ -100,24 +109,10 @@ color:#d2002b;
 .footer-right{width: 300px; float: right;}
 .footer-cards{padding-top: 10px;}
 
-
-.footer-block {
-  padding: 10px;
-  float:left;
-}
-
 .footer-block-right-line {
-  border-right: 1px solid #aaa;
   padding:0px;
   float:left;
 }
-
-.footer-block-middle {
-  margin-left: 20px;
-}
-
-.footer-block-right {
-float:right;}
 
 .footer-cms-block-title {
   padding: 7px 12px;
@@ -141,7 +136,27 @@ float:right;}
 }
 
 .footer-all-link {
-  padding: 10px;
+  padding: 15px 0 15px 15px;
   
 }
+#fb-root {display:none;}
+
 /* GENERAL - FOOTER END */
+
+@media only screen and (max-width: 959px) {
+  .footer-html5-img {background-position:0 0;}
+  .footer-block.footer-joinus {text-align:left;}
+}
+@media only screen and (max-width: 959px) and (min-width: 768px) {
+  .footer-html5-img {background-position: 196px 0;}
+}
+
+@media only screen and (max-width: 767px) {
+  #footer-links .footer-block {
+    text-align:left;
+  }
+  .footer-all-link {
+    padding: 15px 15px 15px 0px;
+    
+  }
+}

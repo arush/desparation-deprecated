@@ -80,12 +80,18 @@ a.convert.step.inactive
 }
 
 
-#middle-body-convert,#body-convert-2,.convert a.convert
+#middle-body-convert,#body-convert-2
 {
   font-family:proxima-nova;
   font-size:12px;
 }
-
+#body-convert-2 {
+  width:100%;
+}
+.green-box .convert-button {
+   width: 90%;
+  margin: 5% 5%;
+}
 #middle-body-convert
 {
   width:100%;
@@ -205,4 +211,44 @@ h4.description-copy,h4 strong
 	{
 	  @include opacity(1);
 	}  
+}
+
+@media only screen and (max-width: 959px) {
+  .one-liner {
+    font-size:29px;
+  }
+  h4.description-copy {
+    font-size:21px;
+  }
+  .oct,.nov,.dec {display:none;}
+  a.convert.step {margin:20px 18px;}
+  .quote-footer .footer-container {width:100%;}
+}
+
+@media only screen and (max-width: 767px) {
+  .one-liner {
+    font-size:31px;
+    letter-spacing:-1px;
+  }
+  h4.description-copy {
+    font-size:18px;
+  }
+  .jun,.jul,.aug,.sep {display:none;}
+  a.convert.step {
+    margin:20px 110px;
+  }
+  .step-caption {margin-bottom:20px}
+  .calendar-container .title-block-inner {height:1054px;}
+
+  .quote-box {margin-bottom:43px;}
+
+}
+@media only screen and (max-width: 479px) {
+  .one-liner {
+    font-size:27px;
+    line-height:27px;
+    padding:9px;
+  }
+  .apr, .may {display:none;}
+  a.convert.step {margin:20px 48px;}
 }

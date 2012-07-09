@@ -157,7 +157,7 @@ span.apostrophe2 {
 	font-size: 16px;
 	color: #595959;
 	margin:31px auto;
-	width: 800px;
+
 	text-align: center;
 }
 
@@ -196,10 +196,6 @@ span.apostrophe2 {
 .green-box .convert-main {
 	float:right;
 	margin:25px 10px;
-}
-
-.green-box .convert-button {
-	width:300px;
 }
 
 
@@ -567,13 +563,6 @@ span.quote.right {
 	font-size: 68px;
 }
 
-.action-section a.convert {
-	line-height: 60px;
-	font-size: 16px;
-	height: 60px;
-	width:300px;
-	float:left;
-}
 
 #action-section-3 .coupon-card {
 	width:86%;
@@ -592,22 +581,6 @@ span.quote.right {
 
 #oa_social_login_convert {
 	width:400px;
-}
-
-.trans-back {
-	position: absolute;
-	width: 100%;
-	background: white;
-	opacity: .89;
-	height: 100%;
-	z-index: -1;
-	margin: -10px;
-	opacity:.93;
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=93)";
-
-  filter: alpha(opacity=93);
-  -moz-opacity: 0.93;
-  -khtml-opacity: 0.93;
 }
 
 .reg-form .commitment-caption.section {
@@ -955,23 +928,28 @@ img.founders {
 
 /* END RANDOMQUOTE FOOTER */
 
-
+.hood-explanation {
+	font-family: "proxima-nova";
+	font-size: 14px;
+	color: #444;
+}
 
 
 span.login a {color:#d2002b;text-decoration:underline;}
 
 @media only screen and (max-width: 959px) {
 	#wide-nav {display:none;}
-	nav select { display: inline-block; }
+	nav select { display: inline-block;}
+	.quote-footer .footer-container {width:100%;}
 }
 @media only screen and (max-width: 767px) {
-	.keep-calm-wearepros .title span, .keep-calm-accessallareas .title span {
+	.title span, .title span {
 		font-size:29px;
 	}
 
 }
 @media only screen and (max-width: 479px) {
-	.keep-calm-wearepros .title span, .keep-calm-accessallareas .title span {
+	.title span, .title span {
 		font-size:18px;
 		line-height:27px;
 		padding:9px;

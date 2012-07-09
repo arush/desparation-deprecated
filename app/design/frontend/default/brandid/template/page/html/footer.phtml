@@ -25,26 +25,21 @@
  */
 ?>
 <div class="footer">
-	<div class="footer-container">		
-		<div class="footer-content">
-			<div id="footer-links">
-				<div class="footer-block-right-line"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-cms-block')->toHtml() ?></div>
-				<div class="footer-block-padder">
-					<div class="footer-block footer-block-middle"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-all-links')->toHtml() ?></div>
-					<div class="footer-block footer-block-right"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('brandid-copyright')->toHtml() ?></div>
-				</div>
+	<div class="footer-container container">
+		<div class="footer-block-right-line one-third column"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-cms-block')->toHtml() ?></div>
+			<div id="footer-links" class="two-thirds column">
+				<div class="footer-block footer-block-middle"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-all-links')->toHtml() ?></div>
+				<div class="footer-block footer-block-right"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('brandid-copyright')->toHtml() ?></div>
 			</div>
 			<div style="clear:both;"></div>
-			
-		</div>
 	</div>
 </div>
 <div class="footer absolute-foot">
-	<div class="footer-container">		
+	<div class="footer-container container">		
 		<div class="footer-content">
-				<div class="footer-block footer-madein"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-madein')->toHtml() ?></div>
-				<div class="footer-block footer-joinus"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-joinus')->toHtml() ?></div>
-				<div class="footer-html5-img"></div>
+				<div class="one-third column footer-block footer-madein"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-madein')->toHtml() ?></div>
+				<div class="one-third column footer-block footer-joinus"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-joinus')->toHtml() ?></div>
+				<div class="one-third column footer-html5-img"></div>
 		</div>
 	</div>
 </div>
