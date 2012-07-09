@@ -111,7 +111,17 @@
 				</script -->
 				
 		<?php } ?>
-					
+
+
+		<?php /* get homepage links */ 
+			$urlmodifier = "/";
+			if(Mage::getSingleton('cms/page')->getIdentifier() == 'home'  &&
+				Mage::app()->getFrontController()->getRequest()->getRouteName() == 'cms' 
+				) {
+				$urlmodifier = "";
+			}
+		?>
+
 		<div class="convert">
 			<a id="header-convert" href="/plans.html" class="convert">Step 1. choose a plan</a>
 		</div>
@@ -122,11 +132,11 @@
 			<span class="button-copy">Who?</span>
 		</a>
 
-		<a id="how-but" href="#1" class="header-button">
+		<a id="how-but" href="<?php echo $urlmodifier; ?>#1" class="header-button">
 			<span class="button-copy">How?</span>
 		</a>
 
-		<a id="what" href="#2" class="header-button">
+		<a id="what" href="<?php echo $urlmodifier; ?>#2" class="header-button">
 			<span class="button-copy">What?</span>
 		</a>
 
