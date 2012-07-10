@@ -2656,8 +2656,8 @@ margin-top: 411px;
 }
 
 #checkout-step-login .register-on-checkout {
-	float:left;
-	margin:0 0 60px 200px;
+	float:right;
+	margin:0 8px 60px 0;
 
 }
 
@@ -2668,11 +2668,16 @@ margin-top: 411px;
 
 #checkout-step-login .register-on-checkout span.checkout-login-title {
 	margin-right:10px;
+	float:left;
+	line-height: 47px;
 }
 
+#checkout-step-login .login-normal button.convert {
+	float:left;
+}
 
 #opc-login .col-1 { 
-	width:408px;
+	width:379px;
 }
 
 #checkout-step-login .scrollContainer div.panel {
