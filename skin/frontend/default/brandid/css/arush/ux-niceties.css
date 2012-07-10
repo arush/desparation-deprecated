@@ -1,0 +1,35 @@
+/* ARUSH UX NICETIES */
+*::-moz-selection {
+  color: white;
+  background: #005aff; }
+*::selection {
+  color: white;
+  background: #005aff; }
+
+input.input-text, textarea {
+  padding: 10px;
+  -webkit-transition: color 200ms ease-in;
+  -webkit-transition: border-color 200ms ease-in;
+  -webkit-transition: box-shadow 200ms ease-in;
+  -moz-transition: color 200ms ease-in;
+  -moz-transition: border-color 200ms ease-in;
+  -moz-transition: box-shadow 200ms ease-in;
+  -o-transition: color 200ms ease-in;
+  -o-transition: border-color 200ms ease-in;
+  -o-transition: box-shadow 200ms ease-in;
+  transition: color 200ms ease-in;
+  transition: border-color 200ms ease-in;
+  transition: box-shadow 200ms ease-in; }
+
+input.input-text:focus, textarea:focus {
+  -moz-box-shadow: inset 0 0 5px #888;
+  -webkit-box-shadow: inset 0 0 5px #888;
+  box-shadow: inner 0 0 5px #888;
+  border-color: #d2002b !important;
+  color: #d2002b !important; }
+
+/*GENERAL */
+.form-list input.input-text, .form-list textarea {
+  padding: 10px; }
+
+/* END ARUSH UX NICETIES */

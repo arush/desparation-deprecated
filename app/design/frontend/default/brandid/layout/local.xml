@@ -226,11 +226,7 @@
 
    <cms_index_index>
         <reference name="head">
-            <action method="addCss"><stylesheet>css/arush/home.css</stylesheet></action>     
-            <action method="addCss"><stylesheet>css/arush/calendar.css</stylesheet></action>     
-            <action method="addCss"><stylesheet>css/skeleton/base.css</stylesheet></action>     
-            <action method="addCss"><stylesheet>css/skeleton/skeleton.css</stylesheet></action>     
-            <action method="addCss"><stylesheet>css/skeleton/layout.css</stylesheet></action>     
+            <action method="addCss"><stylesheet>css/arush/landing.css</stylesheet></action>     
             <block type="page/html" name="bg_css" template="page/keep-calm-base64.phtml"/>
             <block type="core/text" name="fb-meta">
                 <action method="setText">

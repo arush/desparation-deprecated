@@ -7377,7 +7377,7 @@ transition: color 200ms ease-in;
 
 .account-login .btn-only , .account-login .form-buttons .button{
   position: relative;
-  margin: 0px 0px 0px 110px;
+  margin: 0px 0px 0px 170px;
   text-transform: uppercase;
   *right: 17px;
 }
@@ -7452,7 +7452,7 @@ div.validation-passed {
 }
 
 .account-login .scrollContainer div.panel, #checkout-step-login .scrollContainer div.panel {
-  width: 350px; /* change to 560px if not using JS to remove rh.scroll */
+  width: 100%; /* change to 560px if not using JS to remove rh.scroll */
   padding-bottom: 25px;
   padding-left: 2px;
   padding-top:8px;
@@ -11442,7 +11442,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
   font-weight: normal;
   text-transform: lowercase;
 }
-#checkoutSteps button span{color: #fff; padding: 13px 38px; font-family: "proxima-nova";font-weight:900;}
+#checkoutSteps button span{color: #fff; padding: 13px 38px; font-family: "proxima-nova";font-weight:900; background:none;}
 #checkoutSteps button span span{padding: 0;}
 #checkoutSteps .form-buttons{width: 657px;}
 #checkoutSteps p.required{width: 605px;}
@@ -12405,19 +12405,17 @@ color:#d2002b;
 .customer-account-login .col-main, .customer-account-forgotpassword .col-main , .customer-account-create .col-main{
 	background: #fff;
 	margin-top: 20px;
-  	-moz-box-shadow: 0pt 0px 3px #acacac;
-	-webkit-box-shadow: 0pt 0px 3px #acacac;
-	-khtml-box-shadow: 0pt 0px 3px #acacac;
-	box-shadow: 0pt 0px 3px #acacac;
-	border: 1px solid #acacac\9;
 }
 
 .login-oneall, .registered-users{
-	padding: 0 40px 40px 40px;
-	margin: 15px;
 	float: left;
+  width:49%;
+  background-color:white;
+  min-height:350px;
 }
-.account-login .registered-users{padding: 0 40px 40px 40px; margin: 15px;}
+.registered-users{
+  margin-left:2%;
+}
 .account-login h1{
 	font-family: "proxima-nova";font-weight:900;
 	color: #d2002b;
@@ -12449,11 +12447,6 @@ overflow: hidden;
 	color: #444;
 }
 
-.account-login .divider {
-
-		width:1px;
-		height: 330px;
-	}
 
 
 /* REGISTER PAGE START*/
