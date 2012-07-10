@@ -184,36 +184,53 @@ function insertButtons() {
 
 function workQ(mobile) {
 	saveProgress('workQ');
-	if(mobile) {jqconsole.AbortPrompt();}
+	if(mobile) {
+		if(jqconsole.GetState() == "prompt") {
+			jqconsole.AbortPrompt();
+		}
+	}
 	clearMobileButtons();
 
-	jqconsole.Write('What do you wear for work? ', 'jqconsole-output wordwrap');
+	jqconsole.Write('Right, I\'m gonna ask you some quick questions so I can recommend a plan for you.\n\nFirstly, what do you wear for work? ', 'jqconsole-output wordwrap');
 	typeit();
 	var s = getLatestSpan();
 	//s = $j(s).parent();
-	workImages(s);
+	workImages(s, mobile);
+}
 
-	
+function playQ(mobile) {
+	saveProgress('playQ');
 	if(mobile) {
-		var buttons = new Array();
-		buttons[0] = new Array("convert","Smart", "workAa(true)");
-		buttons[1] = new Array("convert","Casual", "workAb(true)");
-		buttons[2] = new Array("convert","Hacker", "workAc(true)");
-		buttons[3] = new Array("convert","Gorilla Suit", "workAd(true)");
-		insertImageButtons(buttons,"work-image");
+		if(jqconsole.GetState() == "prompt") {
+			jqconsole.AbortPrompt();
+		}
 	}
-	else {
-		workA();
-	}
+	clearMobileButtons();
+
+	jqconsole.Write('So, what do you wear for play?','jqconsole-output wordwrap');
+	typeit();
+
+	var s = getLatestSpan();
+	playImages(s, mobile);
+
 }
 
 function workAa(mobile) {
 
 }
 
-function workA() {
-	jqconsole.Write('a. Smart (shirt, suit, trousers...)\nb. Casual (shirt, jeans, shoes)\nc. Hacker (tee, jeans, trainers)\nd. Gorilla Suit ', 'jqconsole-output question wordwrap');
+
+
+function workAd(mobile) {
+	
+	jqconsole.Write('It is hard for the ape to believe he descended from man.\n- H. L. Mencken, American Author, Man Since 1880.\n\n','jqconsole-output wordwrap');
 	typeit();
+	setTimeout('playQ();',2500);
+}
+
+function workA() {
+	jqconsole.Write('a. Smart (shirt, suit, trousers...)\nb. Casual (shirt, jeans, shoes)\nc. Laid Back (tee, jeans, trainers)\nd. Gorilla Suit ', 'jqconsole-output question wordwrap');
+	setTimeout('typeit();',3000);
 	jqconsole.Prompt(true, function (input) {
 		var answer = $j.trim(input);
 		answer = answer.toLowerCase();
@@ -239,6 +256,36 @@ function workA() {
 
 	});
 }
+
+function playA() {
+	jqconsole.Write('a. Shirts\nb. Polos\nc. Tees\nd. Elvis Outfit ', 'jqconsole-output question wordwrap');
+	setTimeout('typeit();',3000);
+	jqconsole.Prompt(true, function (input) {
+		var answer = $j.trim(input);
+		answer = answer.toLowerCase();
+		switch(answer) {
+			case 'a':
+				playAa(false);
+				break;
+			case 'b':
+				playAb(false);
+				break;
+			case 'c':
+				playAc(false);
+				break;
+			case 'd':
+				playAd(false);
+				break;
+			default:
+				jqconsole.Write('Choose one of the letters above.\nTry again: ', 'jqconsole-output red wordwrap');
+				typeit();
+				setTimeout('workA();',1500); 
+				break;
+		}
+
+	});
+}
+
 
 function resendConfirmation() {
 	if(mobile) {jqconsole.AbortPrompt();}
@@ -270,7 +317,7 @@ function confirmationA() {
 				setTimeout('resendConfirmation(false);',1500+500);
 				break;
 			case 'b':
-				workQ();
+				workQ(false);
 				break;
 			default:
 				jqconsole.Write('Are you having trouble with your keyboard?\nTry again: ', 'jqconsole-output red wordwrap');
@@ -366,7 +413,7 @@ if(mobile) {
 	jqconsole.AbortPrompt();
  }
  var go = String(punter.progress);
- window[punter.progress]();
+ window[punter.progress](mobile);
 
 }
 
@@ -411,7 +458,7 @@ function returningVisitor() {
 
 function startEmail() {
 
-	jqconsole.Write('Cool.\n\nNow, I\'m going to ask you some quickfire questions because...\n\nLet\'s save your progress now so you don\'t have to go through this again.\nWhat\'s your email address: ', 'jqconsole-output wordwrap');
+	jqconsole.Write('Cool.\n\nLet\'s save your progress now so you don\'t have to go through this again.\nWhat\'s your email address: ', 'jqconsole-output wordwrap');
 	typeit();
 	emailPrompt();
 }
@@ -458,13 +505,15 @@ function insertImageButtons(buttons, imageClass) {
 		*/
 	var n = buttons.length;
 	var i = 0;
-	var s = $j('.'+imageClass);
 
 	for (i=0; i<n; i++) {
 		var className = buttons[i][0];
 		var string = "<div class=\"mobile-buttons\"><a class=\""+className+"\" onclick=\""+buttons[i][2]+"\">"+buttons[i][1]+"</a></div>";
-		var el = $j(s).eq(i).children('img');
-		performAppend(el,0,string);
+		
+		//find the image for this button and print it
+		var s = $j('#'+imageClass+'-option'+(i+1));
+		alert('#'+imageClass+'-option'+(i+1));
+		performAppend(s,0,string);
 	}
 }
 
@@ -516,7 +565,7 @@ function printImage(images) {
 	}
 
 	for (i=0; i<n; i++) {
-		string += "<div class=\"img-container "+columns+" "+images[i][1]+"\"><img class=\"scale-with-grid\" src=\""+images[i][0]+"\" alt=\"image option"+(i+1)+"\"/><span class=\"image-caption\">"+images[i][2]+"</span></div>";
+		string += "<div class=\"img-container "+columns+" "+images[i][1]+"\"><img class=\"scale-with-grid\" src=\""+images[i][0]+"\" id=\""+images[i][1]+"-option"+(i+1)+"\" alt=\"image option"+(i+1)+"\"/><span class=\"image-caption\">"+images[i][2]+"</span></div>";
 	}
 
 	string += "</div>";
@@ -568,6 +617,7 @@ var startPrompt = function () {
 	      	saveProgress('offside');
 	      	window.scrollTo(0,200);
 	        if(punter.sexGuess == 'female') {
+	        	jqconsole.ClearPromptText();
 	        	jqconsole.Write('Hmm... '+ punter.fname + '. Forgive me if I\'m wrong, but that sounds like a girl\'s name.\n\nJust to be sure, I need you to answer this question: ', 'jqconsole-output wordwrap');
 	        }
 	        else {

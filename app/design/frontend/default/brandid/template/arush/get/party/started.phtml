@@ -66,7 +66,7 @@
 	
 	createPunter();
 	
-	function workImages(appendTo) {
+	function workImages(appendTo, mobile) {
 	
 		var delay = getDelayRequired();
 		// type has to go after, otherwise the delay counts only one or two chars
@@ -75,11 +75,49 @@
 		var images = new Array();
 		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/work/1.jpg'); ?>", "work-image", "a. Smart");
 		images[1] = new Array("<?php echo $this->getSkinUrl('images/male/work/2.jpg'); ?>", "work-image", "b. Casual");
-		images[2] = new Array("<?php echo $this->getSkinUrl('images/male/work/3.jpg'); ?>", "work-image", "c. Hacker");
+		images[2] = new Array("<?php echo $this->getSkinUrl('images/male/work/3.jpg'); ?>", "work-image", "c. Laid Back");
 		images[3] = new Array("<?php echo $this->getSkinUrl('images/male/work/4.jpg'); ?>", "work-image", "d. Gorilla Suit");
 
 		var imageString = printImage(images);
 		performAppend(appendTo, delay, imageString);
+		if(mobile) {
+			var buttons = new Array();
+			buttons[0] = new Array("convert","Smart", "workAa(true)");
+			buttons[1] = new Array("convert","Casual", "workAb(true)");
+			buttons[2] = new Array("convert","Laid Back", "workAc(true)");
+			buttons[3] = new Array("convert","Gorilla Suit", "workAd(true)");
+			insertImageButtons(buttons,"work-image");
+		}
+		else {
+			workA();
+		}
+	}
+
+	function playImages(appendTo, mobile) {
+	
+		var delay = getDelayRequired();
+		// type has to go after, otherwise the delay counts only one or two chars
+		typeit();
+
+		var images = new Array();
+		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/play/1.jpg'); ?>", "play-image", "a. Shirts");
+		images[1] = new Array("<?php echo $this->getSkinUrl('images/male/play/2.jpg'); ?>", "play-image", "b. Polos");
+		images[2] = new Array("<?php echo $this->getSkinUrl('images/male/play/3.jpg'); ?>", "play-image", "c. Tees");
+		images[3] = new Array("<?php echo $this->getSkinUrl('images/male/play/4.jpg'); ?>", "play-image", "d. Elvis Outfit");
+
+		var imageString = printImage(images);
+		performAppend(appendTo, delay, imageString);
+		if(mobile) {
+			var buttons = new Array();
+			buttons[0] = new Array("convert","Suave", "playAa(true)");
+			buttons[1] = new Array("convert","Polos", "playAb(true)");
+			buttons[2] = new Array("convert","Tees", "playAc(true)");
+			buttons[3] = new Array("convert","Elvis Outfit", "playAd(true)");
+			insertImageButtons(buttons,"play-image");
+		}
+		else {
+			playA();
+		}
 	}
 
 	function offside() {
