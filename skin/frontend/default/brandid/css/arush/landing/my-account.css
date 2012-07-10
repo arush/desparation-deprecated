@@ -1,0 +1,59 @@
+.top-name {
+  display: block;
+  float: right; }
+
+.account-link {
+  text-align: right;
+  width: 120px;
+  padding-left: 10px;
+  margin-top: -3px;
+  float: right;
+  height: 35px;
+  margin-right: 9px; }
+
+.account-link a.header-link {
+  padding-right: 56px;
+  padding-bottom: 45px;
+  height: auto;
+  margin: -7px 0 0 0;
+  display: block;
+  border: 0px;
+  border-top: solid 10px black;
+  margin-top: -17px;
+  padding-top: 20px;
+  font-family: ff-enzo-web,"proxima-nova";
+  font-weight: 300;
+  text-transform: uppercase;
+  color: black;
+  font-size: 15px;
+  font-weight: 900;
+  line-height: normal;
+  text-align: right;
+  background: transparent;
+  width: 120px;
+  text-decoration: none; }
+
+a.flname {
+  margin: -45px 0 0 0;
+  padding: 7px 7px 0 0;
+  display: block;
+  float: right;
+  color: #595959;
+  font-family: "proxima-nova";
+  font-weight: 300;
+  font-weight: normal;
+  font-size: 12px;
+  text-transform: none;
+  text-decoration: none;
+  text-align: right; }
+
+.my-account-links {
+  position: absolute;
+  background: black;
+  top: 75px;
+  right: 0px;
+  padding: 5px;
+  display: none;
+  z-index: 1001;
+  border: 10px solid black;
+  text-align: right; }

@@ -34,11 +34,54 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("checkout/
 <?php echo $this->getChildHtml('login_before')?>
 <div class="col2-set<?php if (!$this->helper('customer')->isRegistrationAllowed() && !$this->getQuote()->isAllowedGuestCheckout()) echo ' login-only' ?>">
     
+    <?php if ( $this->getQuote()->isAllowedGuestCheckout() || $this->helper('customer')->isRegistrationAllowed() ): ?>
+    
+    
+    
+    
+      <!-- div class="checkout-register-rightcol"-->
+      <div class="register-on-checkout">
+        <span class="checkout-login-title">
+            <?php if( $this->getQuote()->isAllowedGuestCheckout() && $this->helper('customer')->isRegistrationAllowed() ): ?>
+                <?php echo $this->__('Checkout as a Guest or Register') ?>
+            <?php elseif ( $this->getQuote()->isAllowedGuestCheckout() && !$this->helper('customer')->isRegistrationAllowed() ): ?>
+                <?php echo $this->__('Checkout as a Guest') ?>
+            <?php else: ?>
+                <?php echo $this->__('Not a member?') ?>
+            <?php endif; ?>
+        </span>
+        
+       
+        
+        <?php if( $this->getQuote()->isAllowedGuestCheckout() ): ?>
+            <ul class="form-list form-alt">
+                <?php if( $this->getQuote()->isAllowedGuestCheckout() ): ?>
+                <li>
+                    <input type="radio" name="checkout_method" id="login:guest" value="guest"<?php if($this->getQuote()->getCheckoutMethod()==Mage_Checkout_Model_Type_Onepage::METHOD_GUEST): ?> checked="checked"<?php endif; ?> class="radio" />
+                    <label for="login:guest"><?php echo $this->__('Checkout as Guest') ?></label>
+                </li>
+                <?php endif; ?>
+                <?php if( $this->helper('customer')->isRegistrationAllowed() ): ?>
+                <li>
+                    <input type="radio" name="checkout_method" id="login:register" value="register"<?php if($this->getQuote()->getCheckoutMethod()==Mage_Checkout_Model_Type_Onepage::METHOD_REGISTER || !$this->getQuote()->isAllowedGuestCheckout()): ?> checked="checked"<?php endif ?> class="radio" />
+                    <label for="login:register"><?php echo $this->__('Register') ?></label>
+                </li>
+                <?php endif; ?>
+            </ul>
+        <?php else: ?>
+            <input type="hidden" name="checkout_method" id="login:register" value="register" checked="checked" />
+        <?php endif; ?>
+       
+        	<button type="button" class="convert" onclick="checkout.setMethod();"><span><span><?php echo ($this->getQuote()->isAllowedGuestCheckout() ? $this->__('Continue') : $this->__('Checkout as Guest')) ?></span></span></button>
+       </div>   
+    
+    
+    <?php endif; ?>
     
     
     <div class="login-oneall">
 				
-				<div class="black-title-med">Connect</div>
+				<div class="checkout-login-title"><span class="register-red-or">...or</span> connect</div>
 			
 				<form action="<?php echo Mage::getUrl('oneall/rpx/loginpost') ?>" method="post" id="login-form">
 					<div class="fieldset" id="gigya-fieldset">
@@ -73,7 +116,7 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("checkout/
 		
 			<div class="col-1 registered-users">
 			
-				<div class="black-title-med">Login via email</div>
+				<div class="checkout-login-title"><span class="register-red-or">...or</span> login via email</div>
 								
 				<div id="register">
 				
@@ -111,7 +154,7 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("checkout/
 										<div class="buttons-set form-buttons btn-only">
 											<div class="forgotpass-back-link"><a href="#forgotpass">Forgot your password?</a></div>
 
-											<button type="submit" class="button" name="send" id="send2"><span><span class="cufon"><?php echo $this->__('Sign in') ?></span></span></button>
+											<button type="submit" class="convert" name="send" id="send2"><span><span class="cufon"><?php echo $this->__('Sign in') ?></span></span></button>
 										</div>
 										
 										<div style="clear: both;"><!-- --></div>
@@ -139,7 +182,7 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("checkout/
 													</ul>
 													<div class="buttons-set form-buttons">
 														<div class="forgotpass-back-link"><a href="#login-box">return to login</a></div>
-														<button type="submit" name="submit" class="button" id="submit_btn" value="Send"><span><span class="cufon"><?php echo $this->__('Reset Password') ?></span></span></button>
+														<button type="submit" name="submit" class="convert" id="submit_btn" value="Send"><span><span class="cufon"><?php echo $this->__('Reset Password') ?></span></span></button>
 														
 														<div style="clear: both;"><!-- --></div>
 													
@@ -206,146 +249,6 @@ Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl("checkout/
     //]]>
     </script>
  
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <?php /* ?/
- <!--
-   <div class="col-1">
-      <div class="checkout-register-leftcol">
-        <h4><?php echo $this->__('Login') ?></h4>
-        <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
-        <form id="login-form" action="<?php echo $this->getPostAction() ?>" method="post">
-	        <fieldset>
-	            <p><?php echo $this->__('Already registered?') ?> <?php echo $this->__('Please log in below:') ?></p>
-	            <ul class="form-list">
-	                <li>
-	                    <label for="login-email"><?php echo $this->__('Email Address') ?></label>
-	                    <div class="input-box">
-	                        <input type="text" class="input-text required-entry validate-email" id="login-email" name="login[username]" value="<?php echo $this->htmlEscape($this->getUsername()) ?>" />
-	                    </div>
-	                </li>
-	                <li>
-	                    <label for="login-password"><?php echo $this->__('Password') ?></label>
-	                    <div class="input-box">
-	                        <input type="password" class="input-text validate-password required-entry" id="login-password" name="login[password]" />
-	                    </div>
-	                </li>
-	            </ul>
-	        </fieldset>
-        </form>
-      </div>
-	  
-	  <div class="forgotpassword-checkout">
-		  <a href="<?php echo $this->getUrl('customer/account/forgotpassword') ?>"><?php echo $this->__('Forgot your password?') ?></a>
-	  </div>
-        
-    </div>
--->
-    
-    <?php */ ?>
-    
-    
-    <?php if ( $this->getQuote()->isAllowedGuestCheckout() || $this->helper('customer')->isRegistrationAllowed() ): ?>
-    
-    
-    
-    
-      <!-- div class="checkout-register-rightcol"-->
-      <div class="register-on-checkout">
-        <span class="black-title-med">
-            <?php if( $this->getQuote()->isAllowedGuestCheckout() && $this->helper('customer')->isRegistrationAllowed() ): ?>
-                <?php echo $this->__('Checkout as a Guest or Register') ?>
-            <?php elseif ( $this->getQuote()->isAllowedGuestCheckout() && !$this->helper('customer')->isRegistrationAllowed() ): ?>
-                <?php echo $this->__('Checkout as a Guest') ?>
-            <?php else: ?>
-                <?php echo $this->__('Not a member?') ?>
-            <?php endif; ?>
-        </span>
-        
-        
-        <?php /*
-if( !$this->getQuote()->isAllowedGuestCheckout() && $this->helper('customer')->isRegistrationAllowed() ): ?>
-
-            <?php echo $this->__('...and get:') ?></p>
-            <ul>
-                <li><?php echo $this->__('bullet 1') ?></li>
-                <li><?php echo $this->__('bullet 2') ?></li>
-                <li><?php echo $this->__('bullet 3') ?></li>
-            </ul>
-        <?php elseif( $this->getQuote()->isAllowedGuestCheckout() && $this->helper('customer')->isRegistrationAllowed() ): ?>
-            <p><?php echo $this->__('Register with us for future convenience:') ?></p>
-        <?php endif
-*/ ?>
-
-        
-        <?php if( $this->getQuote()->isAllowedGuestCheckout() ): ?>
-            <ul class="form-list form-alt">
-                <?php if( $this->getQuote()->isAllowedGuestCheckout() ): ?>
-                <li>
-                    <input type="radio" name="checkout_method" id="login:guest" value="guest"<?php if($this->getQuote()->getCheckoutMethod()==Mage_Checkout_Model_Type_Onepage::METHOD_GUEST): ?> checked="checked"<?php endif; ?> class="radio" />
-                    <label for="login:guest"><?php echo $this->__('Checkout as Guest') ?></label>
-                </li>
-                <?php endif; ?>
-                <?php if( $this->helper('customer')->isRegistrationAllowed() ): ?>
-                <li>
-                    <input type="radio" name="checkout_method" id="login:register" value="register"<?php if($this->getQuote()->getCheckoutMethod()==Mage_Checkout_Model_Type_Onepage::METHOD_REGISTER || !$this->getQuote()->isAllowedGuestCheckout()): ?> checked="checked"<?php endif ?> class="radio" />
-                    <label for="login:register"><?php echo $this->__('Register') ?></label>
-                </li>
-                <?php endif; ?>
-            </ul>
-        <?php else: ?>
-            <input type="hidden" name="checkout_method" id="login:register" value="register" checked="checked" />
-        <?php endif; ?>
-       
-        	<button type="button" class="button" onclick="checkout.setMethod();"><span><span><?php echo ($this->getQuote()->isAllowedGuestCheckout() ? $this->__('Continue') : $this->__('Register on Checkout')) ?></span></span></button>
-       </div>   
-    
-    
-    
-    
-    
-    <!--
-<div class="buttons-set form-buttons btn-only">
-
-        <button type="button" class="button" onclick="loginForm.submit()"><span><span><?php echo $this->__('Login') ?></span></span></button>
-
-    </div>
--->
-    
-    
-    
-    <?php endif; ?>
-    
-    
     
     
     <script type="text/javascript">

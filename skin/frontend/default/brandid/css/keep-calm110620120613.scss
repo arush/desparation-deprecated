@@ -596,29 +596,12 @@ span.quote.right {
 	overflow: hidden;
 }
 
-#header-convert {
-	background-clip: padding-box;
-	background-image: -moz-linear-gradient(center top , #66B84A, #51933A);
-	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #66B84A),color-stop(1, #51933A));
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#66b84a', EndColorStr='#51933a');
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#66b84a', EndColorStr='#51933a')";
-	background-color: #51933A;
-	color: white;
-	text-shadow: 0pt -1px 0pt black;
-}
+
 #social_link_container.loading, #oa_social_login_container.loading, #oa_social_login_header_convert.loading {
 	background: url('../images/loader.gif') no-repeat 50% 50% #fff;
 
 }
 
-.convert-button {
-	width:250px;
-	margin: 20px auto;
-}
-
-.convert-button a {
-	width:250px;
-}
 
 /* we are pros */
 
@@ -863,7 +846,7 @@ img.founders {
 	position: absolute;
 	margin: -47px 0 0 -20px;
 	letter-spacing: -23px;
-	line-height:93px;
+	line-height:127px;
 }
 
 .catalog-category-view .footer-container .random-quote .apostrophe {
