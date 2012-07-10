@@ -11442,7 +11442,7 @@ li.active .step-title .number, li.active .step-title h2{cursor: default;}
   font-weight: normal;
   text-transform: lowercase;
 }
-#checkoutSteps button span{color: #fff; padding: 13px 38px; font-family: "proxima-nova";font-weight:900; background:none;}
+#checkoutSteps button span{color: #fff; padding: 13px 38px; font-family: "proxima-nova";font-weight:normal; background:none;font-size: 13px;}
 #checkoutSteps button span span{padding: 0;}
 #checkoutSteps .form-buttons{width: 657px;}
 #checkoutSteps p.required{width: 605px;}
