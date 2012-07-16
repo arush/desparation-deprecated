@@ -1,0 +1,298 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Arush_OrderComplete>
+            <version>0.1.0</version>
+        </Arush_OrderComplete>
+    </modules>
+    <!-- <admin>
+        <routers>
+            <ordertriggeradmin>
+                <use>admin</use>
+                <args>
+                    <module>Arush_OrderComplete</module>
+                    <frontName>ordertriggeradmin</frontName>
+                </args>
+            </ordertriggeradmin>
+        </routers>
+    </admin> -->
+    <frontend>
+        <!-- routers>
+            <ordertrigger>
+                <use>standard</use>
+                <args>
+                    <module>Arush_OrderComplete</module>
+                    <frontName>ordertrigger</frontName>
+                </args>
+            </ordertrigger>
+        </routers -->
+        <!-- layout>
+            <updates>
+                <ordertrigger>
+                    <file>ordertrigger.xml</file>
+                </ordertrigger>
+            </updates>
+        </layout -->
+        <!-- translate>
+            <modules>
+                <Arush_OrderComplete>
+                    <files>
+                        <default>Arush_OrderComplete.csv</default>
+                    </files>
+                </Arush_OrderComplete>
+            </modules>
+        </translate -->
+        
+        <events>
+            <checkout_onepage_controller_success_action>
+                <observers>
+                    <Arush_OrderComplete_Model_Observer_Refer>
+                        <type>singleton</type>
+                        <class>Arush_OrderComplete_Model_Observer_Refer</class>
+                        <method>distributeRewards</method>
+                    </Arush_OrderComplete_Model_Observer_Refer>
+                </observers>
+            </checkout_onepage_controller_success_action>
+        </events>
+    </frontend>
+    <!-- global>
+        <events>
+            <sales_order_invoice_pay>
+                <observers>
+                    <tbt_ordertriggererral_model_observer_sales_order_invoice_pay>
+                        <type>singleton</type>
+                        <class>ordertrigger/observer_sales_order_invoice_pay</class>
+                        <method>approvePoints</method>
+                    </tbt_ordertriggererral_model_observer_sales_order_invoice_pay>
+                </observers>
+            </sales_order_invoice_pay>
+            <controller_action_predispatch_customer_account_createpost>
+                <observers>
+                    <ordertrigger_before_createaccount>
+                        <type>singleton</type>
+                        <class>ordertrigger/observer_createaccount</class>
+                        <method>beforeCreate</method>
+                    </ordertrigger_before_createaccount>
+                </observers>
+            </controller_action_predispatch_customer_account_createpost>
+            <controller_action_predispatch_checkout_onepage_saveBilling>
+                <observers>
+                    <ordertrigger_before_onepage_billingsave>
+                        <type>singleton</type>
+                        <class>ordertrigger/observer_createaccount</class>
+                        <method>beforeSaveBilling</method>
+                    </ordertrigger_before_onepage_billingsave>
+                </observers>
+            </controller_action_predispatch_checkout_onepage_saveBilling>
+            <controller_action_predispatch_rewardsadmin_manage_diagnostics_reinstalldb>
+                <observers>
+                    <ordertrigger_before_rewards_manage_diagnostics_reinstalldb>
+                        <type>singleton</type>
+                        <class>ordertrigger/observer_rewards_diagnostics</class>
+                        <method>reinstalldb</method>
+                    </ordertrigger_before_rewards_manage_diagnostics_reinstalldb>
+                </observers>
+            </controller_action_predispatch_rewardsadmin_manage_diagnostics_reinstalldb>
+            
+            <core_block_abstract_prepare_layout_after>
+                <observers>
+                    <tbt_ordertrigger_model_observer_sales_order_edit_tab>
+                        <type>singleton</type>
+                        <class>ordertrigger/observer_sales_order_edit_tab</class>
+                        <method>addTab</method>
+                    </tbt_ordertrigger_model_observer_sales_order_edit_tab>
+                </observers>
+            </core_block_abstract_prepare_layout_after>
+
+            <core_block_abstract_to_html_after>
+                <observers>
+                    <tbt_ordertrigger_model_observer_block_register>
+                        <type>singleton</type>
+                        <class>ordertrigger/observer_block_register</class>
+                        <method>afterOutput</method>
+                    </tbt_ordertrigger_model_observer_block_register>
+                </observers>
+            </core_block_abstract_to_html_after>
+            
+        </events>
+    </global -->
+    
+    <!-- <adminhtml>
+        <translate>
+            <modules>
+                <Arush_OrderComplete>
+                    <files>
+                        <default>Arush_OrderComplete.csv</default>
+                    </files>
+                </Arush_OrderComplete>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <ordertrigger>
+                    <file>ordertrigger.xml</file>
+                </ordertrigger>
+            </updates>
+        </layout>
+        <menu>
+            <rewards translate="title" module="ordertrigger">
+                <children>
+                    <referrals translate="title" module="ordertrigger">
+                        <title>Customer Referrals</title>
+                        <sort_order>50</sort_order>
+                        <action>ordertriggeradmin/manage_referrals</action>
+                    </referrals>
+                </children>
+            </rewards>
+        </menu>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <rewards module="ordertrigger" translate="title">
+                            <children>
+                                <referrals module="ordertrigger" translate="title">
+                                    <title>Customer Referrals</title>
+                                    <sort_order>50</sort_order>
+                                </referrals>
+                            </children>
+                        </rewards>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>  -->  
+    
+    <!-- <global>
+        <models>
+            <ordertrigger>
+                <class>Arush_OrderComplete_Model</class>
+                <resourceModel>ordertrigger_mysql4</resourceModel>
+            </ordertrigger>
+            <ordertrigger_mysql4>
+                <class>Arush_OrderComplete_Model_Mysql4</class>
+                <entities>
+                    <ordertrigger_referral> -->
+                        <!-- AVOID using this method! -->
+                    <!-- <table>ordertrigger_referral</table>
+                    </ordertrigger_referral>
+                    <referral>
+                        <table>ordertrigger_referral</table>
+                    </referral>
+                </entities>
+            </ordertrigger_mysql4>
+        </models> -->
+        
+        <!-- <resources>
+            <ordertrigger_setup>
+                <setup>
+                    <module>Arush_OrderComplete</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </ordertrigger_setup>
+            <ordertrigger_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </ordertrigger_write>
+            <ordertrigger_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </ordertrigger_read>
+        </resources> -->
+        <!-- <blocks>
+            <ordertrigger>
+                <class>Arush_OrderComplete_Block</class>
+            </ordertrigger>                
+        </blocks> -->
+        <!-- <helpers>
+            <ordertrigger>
+                <class>Arush_OrderComplete_Helper</class>
+            </ordertrigger>
+        </helpers> -->
+        
+        <!-- <template>
+            <email> 
+                <rewards_referral_subscription_email_template translate="label"	module="ordertrigger">
+                    <label>Customer Referral Invitation</label>
+                    <file>ordertrigger/referral_subscribe.html</file>
+                    <type>html</type>
+                </rewards_referral_subscription_email_template>
+                <rewards_referral_confirmation_email_template translate="label"	module="ordertrigger">
+                    <label>Customer Referral New Earnings Notification</label>
+                    <file>ordertrigger/referral_confirm.html</file>
+                    <type>html</type>
+                </rewards_referral_confirmation_email_template>
+            </email>
+        </template> 
+        
+    </global> -->
+	
+    <!-- <rewards>
+        <special>
+            <referral_signup>
+                <config>ordertrigger/special_signup</config>
+            </referral_signup>
+            <referral_firstorder>
+                <config>ordertrigger/special_firstorder</config>
+            </referral_firstorder>
+            <referral_order>
+                <config>ordertrigger/special_order</config>
+            </referral_order>
+        </special>
+        <transfer>
+            <reference>
+                <referral_order>ordertrigger/transfer_reference_referral_order</referral_order>
+                <referral>ordertrigger/transfer_reference_referral</referral>
+            </reference>
+            <reason>
+                <referral_signup>ordertrigger/transfer_reason_signup</referral_signup>
+                <referral_firstorder>ordertrigger/transfer_reason_firstorder</referral_firstorder>
+                <referral_order>ordertrigger/transfer_reason_order</referral_order>
+            </reason>            
+        </transfer>
+    </rewards> -->
+    
+    <!-- <default>
+        <rewards>
+            <autointegration>
+                <customer_register_referral_field>1</customer_register_referral_field>
+                <onepage_billing_register_referral_field>1</onepage_billing_register_referral_field>
+            </autointegration>
+            <referral>
+                <referral_show>1</referral_show>
+                <subscription_email_template>rewards_referral_subscription_email_template</subscription_email_template>
+                <subscription_email_identity>support</subscription_email_identity>
+                <subscription_email_use_sender_email>1</subscription_email_use_sender_email>
+                <confirmation_email_template>rewards_referral_confirmation_email_template</confirmation_email_template>
+                <confirmation_email_identity>support</confirmation_email_identity>
+                <show_in_onepage_checkout>1</show_in_onepage_checkout>
+                <show_in_register>1</show_in_register>
+                <show_referral_email>1</show_referral_email>
+                <show_referral_code>1</show_referral_code>
+                <show_referral_short_code>0</show_referral_short_code>
+                <show_referral_url>1</show_referral_url>
+                <show_invite_form>1</show_invite_form>
+                <show_preferences>1</show_preferences>
+                <show_history>1</show_history>
+                <affiliate_redirect_url></affiliate_redirect_url>                
+            </referral>
+            <transferComments>
+                <referralSignup>A referred customer signed up to the site.</referralSignup>
+                <referralFirstOrder>A referred customer made a first order.</referralFirstOrder>
+                <referralOrder>Commission received from an order that a referred customer made.</referralOrder>
+            </transferComments>
+            <InitialTransferStatus>
+                <ReferralSignup>5</ReferralSignup>
+                <ReferralFirstOrder>4</ReferralFirstOrder>
+                <ReferralOrder>4</ReferralOrder>
+            </InitialTransferStatus>
+        </rewards>
+    </default> -->
+</config>

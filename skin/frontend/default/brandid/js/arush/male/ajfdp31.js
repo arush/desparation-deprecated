@@ -56,7 +56,7 @@ function investorMenuAnswer() {
 				investorMenu();
 				break;
 			case 'd':
-				window.open("https://www.dropbox.com/s/ymle0o62nw5cje3/angel%20deck.pdf","_blank");
+				window.open("http://f.cl.ly/items/0C0F3k0e2F3E2A150B2u/angel%20deck.pdf","_blank");
 				setTimeout('investorMenu();',1000);
 				break;
 			default:
