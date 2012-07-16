@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+     <config>
+       <modules>
+         <Arush_OrderComplete>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <TBT_RewardsReferral/>
+            </depends>
+        </Arush_OrderComplete>
+      </modules>
+   </config>
