@@ -1,29 +1,34 @@
-typingDelay = 20; // global variable  // match this to text-effects.js
+function genderGuess(str) {
 
-var $j = jQuery.noConflict();
+	//check last letter
+	str = str.toLowerCase();
+	var last = str.charAt(str.length-1);
+	if(
+		(last == 'a'
+		|| last == 'e'
+		|| last == 'y'
+		|| str == 'helen'
+		|| str == 'sarah'
+		|| str == 'hannah'
+		|| str == 'megan'
+		|| str == 'alison')
+		&&
+		(str != 'steve'
+		&& str != 'bryce' 
+		&& str != 'mike'
+		&& str != 'harry' )
 
-// @codekit-append "core/email.js"
-// @codekit-append "core/helper.js"
-// @codekit-append "core/images.js"
-// @codekit-append "core/buttons.js"
-// @codekit-append "core/punter.js"
+	) {
+		return 'female';
+	}
+	else {
+		return 'male';
+	}
+}
 
-// @codekit-append "questions/name.js"
-// @codekit-append "questions/offside.js"
-// @codekit-append "questions/investor.js"
-// @codekit-append "questions/work.js"
-// @codekit-append "questions/play.js"
-
-
-var startPrompt = function () {
-
-	setTimeout("printInstructions()",2000);
-
-  	jqconsole.Prompt(true, function (input) {
-
-	  	nameCheck();
-	  });
-};
+function printInstructions() {
+	jqconsole.Write('Type your FIRSTNAME and press ENTER, for example:\n\n >>> Steve ', 'jqconsole-output instruction wordwrap');
+}
 
 function nameCheck() {
 	var name = $j.trim(input);
