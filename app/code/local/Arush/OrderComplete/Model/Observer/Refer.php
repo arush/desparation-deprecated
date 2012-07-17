@@ -18,19 +18,17 @@ class Arush_OrderComplete_Model_Observer_Refer extends Varien_Object {
         
         return $this;
     }
-
-
     
-
     public function createCoupon() {
         // check if unused coupon exists
         // create coupon on the fly
+        // output coupon code to javascript 
     }
     
     public function brandReferrer() {
         // get parent referrer name
         // display name and discount amount in header 
+        // set coupon applicable to true (not cookie based)
     }
-
 
 }
