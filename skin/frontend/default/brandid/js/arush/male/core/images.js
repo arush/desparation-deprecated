@@ -13,7 +13,7 @@ function insertImageButtons(buttons, imageClass) {
 		//find the image for this button and print it
 		var s = $j('#'+imageClass+'-option'+(i+1));
 		alert('#'+imageClass+'-option'+(i+1));
-		performAppend(s,0,string);
+		performAppend(s,string);
 	}
 }
 

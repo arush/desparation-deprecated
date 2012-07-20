@@ -39,3 +39,20 @@ function confirmationA() {
 
 	});
 }
+
+
+function startEmail() {
+
+	jqconsole.Write('Cool.\n\nLet\'s save your progress now so you don\'t have to go through this again.\nWhat\'s your email address: ', 'jqconsole-output wordwrap');
+	typeit();
+	emailPrompt();
+}
+
+function emailPrompt() {
+	jqconsole.Focus;
+	jqconsole.Prompt(true, function (input) {
+		punter.email = input;
+		saveProgress('registerUser');
+		registerUser();
+	});
+}

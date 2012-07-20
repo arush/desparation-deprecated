@@ -1,11 +1,40 @@
-function performAppend(span, delay, string) {
+function initiate() {
+		//give the header an id, this saves complications down the line
+        $j('.jqconsole-header span').attr('id','male-welcome-msg');
+        $j('#male-welcome-msg').typewriter();
+        $j('#male-welcome-msg').css('color', '#444');
+    	window.scrollTo(0,0);
+    	jqconsole.Focus;
+}
+
+function correctResponse(responseString) {
+		jqconsole.Write(responseString, 'jqconsole-output green wordwrap');
+		typeit();
+}
+
+function wipeConsole(mobile) {
+	if(mobile) {
+	 	jqconsole.AbortPrompt();
+	 }
+	clearProgress();
+	jqconsole.Reset();
+	jQuery('#console').html('');
+	jqconsole = null;
+}
+
+function newQ(q) {
+	jqconsole = $j('#console').jqconsole(q, ' >>> ');
+	initiate();
+
+	$j('#male-welcome-msg').typewriter();
+    $j('#male-welcome-msg').css('color', '#444');
+}
+
+function performAppend(span, string) {
 	// get length of span, multiply by typeDelay to get delay required to display image
 	var s = span;
-	var delayRequired = delay;
-	
-	setTimeout(function(){
-		$j(s).parent().append(string);
-	}, delayRequired);
+
+	$j(s).parent().append(string);
 }
 
 function getLatestSpan() {
@@ -38,13 +67,6 @@ function capitaliseFirstLetter(string)
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-
-function stopScrolling() {
-	clearInterval(scroller);
-}
-function scrollPre() {
-	$j("#console pre").animate({ scrollTop: $j("#console pre").prop("scrollHeight") - $j('#console pre').height() }, 1000);
-}
 function clearMobileButtons() {
 	$j('.mobile-buttons').remove();
 }

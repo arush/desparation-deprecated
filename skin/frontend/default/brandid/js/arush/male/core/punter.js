@@ -1,6 +1,5 @@
 function createPunter() {
-	//global punter object
-	punter = new Object();
+	
 	if($j.cookie('punter') != null) {
 		punter = JSON.parse($j.cookie("punter"));
 	}
@@ -69,8 +68,6 @@ function clearProgress() {
 	punter.fname = undefined; //this is as good as deleting punter, but leaves the ability to check against punter.fname later
 }
 
-
-
 function dropBackIn(mobile) {
 if(mobile) {
 	jqconsole.AbortPrompt();
@@ -81,14 +78,8 @@ if(mobile) {
 }
 
 function startAgain(mobile) {
-	if(mobile) {
-	 	jqconsole.AbortPrompt();
-	 }
-	clearProgress();
-	jqconsole.Reset();
-	jQuery('#console').html('');
-	jqconsole = null;
-	startConsole();
+	wipeConsole(mobile);
+	startMale();
 }
 
 function returningVisitor() {

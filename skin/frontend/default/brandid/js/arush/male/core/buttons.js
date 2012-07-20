@@ -20,5 +20,5 @@ function insertButtons(buttons) {
 		string += "<a class=\""+className+"\" onclick=\""+buttons[i][2]+"\">"+buttons[i][1]+"</a>";
 	}
 	string += "</div>";
-	performAppend(s,0,string);
+	performAppend(s,string);
 }

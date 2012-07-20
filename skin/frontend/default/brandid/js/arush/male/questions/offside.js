@@ -1,50 +1,87 @@
+function offside(fname) {
 
+		wipeConsole();
+		
+		var q;
+		if(punter.sexGuess === 'female') {
+        	q = 'Hmm... '+ fname + '. Forgive me if I\'m wrong, but that sounds like a girl\'s name.\n\nJust to be sure, I need you to answer this question: ';
+        }
+        else {
+        	q = 'Hmm... '+ fname + '. That sounds like a good solid man\'s name.\n\nJust to be sure, I need you to answer this question: ';
+        }
+    	newQ(q);
+
+		typeit();
+
+		setTimeout('offsideQ()',2000);
+	}
 
 function offsideQ() {
-	jqconsole.Write('a. I\'m a man. Player A is offside.\nb. I\'m a woman who knows her football. Player A is offside.\nc. I\'m a woman. Just show me a picture of Beckham.\n\nType [a], [b] or [c] and press [ENTER] ','jqconsole-output question wordwrap');
-	scrollPre();
-	var s = getLatestSpan();
-	$j(s).css('color','#444');
-	var buttons = new Array();
-	buttons[0] = new Array("smalltext convert","I'm a Man<br/><span class=\"button-caption\">Player A is offside</span>", "offsideAa(true)");
-	buttons[1] = new Array("smalltext convert","I'm a woman<br/><span class=\"button-caption\">I know my football, its Player A</span>", "offsideAb(true)");
-	buttons[2] = new Array("smalltext convert","I'm a woman<br/><span class=\"button-caption\">just show me a picture of Beckham</span>", "offsideAc(true)");
-	insertButtons(buttons);
-	offsideA();
-}
+		
+		// this only works on a setTimeout
+		setTimeout('attach()',1000);
+
+		jqconsole.Write('a. I\'m a man. Player A is offside.\nb. I\'m a woman who knows her football. Player A is offside.\nc. I\'m a woman. Just show me a picture of Beckham.\n\nType [a], [b] or [c] and press [ENTER] ','jqconsole-output question wordwrap');
+		
+		
+		var buttons = new Array();
+		buttons[0] = new Array("smalltext convert","I'm a Man<br/><span class=\"button-caption\">Player A is offside</span>", "offsideAa(true)");
+		buttons[1] = new Array("smalltext convert","I'm a woman<br/><span class=\"button-caption\">I know my football, its Player A</span>", "offsideAb(true)");
+		buttons[2] = new Array("smalltext convert","I'm a woman<br/><span class=\"button-caption\">just show me a picture of Beckham</span>", "offsideAc(true)");
+		
+		setTimeout(function(){insertButtons(buttons)}, 1000);
+		
+		offsideA();
+	}
 
 function offsideAa(mobile) {
-	if(mobile) {jqconsole.AbortPrompt();}
-	clearMobileButtons();
+	wipeConsole();
+	
 	punter.gender = 'Male';
 	saveProgress('startEmail');
-	jqconsole.Write('That is correct. You are clearly a man. ', 'jqconsole-output green wordwrap');
-	typeit();
-	setTimeout('startEmail();',1500+500);
+	
+	var q = 'You said: You are a man, Player A is offside ';
+
+	newQ(q);
+
+	setTimeout(function(){correctResponse('That is correct. You are clearly a man. ')}, 2000);
+
+	setTimeout('startEmail();',3500);
 }
 function offsideAb(mobile) {
-	if(mobile) {jqconsole.AbortPrompt();}
-	clearMobileButtons();
+	wipeConsole();
+
 	punter.gender = 'Female';
 	saveProgress('startEmail');
-	jqconsole.Write('Correct! Wow, that\'s hot. Just kidding. I\'m a machine. ', 'jqconsole-output wordwrap');
-	typeit();
-	setTimeout('startEmail();',1500+500);
+	
+	var q = 'You said: You are a woman, Player A is offside ';
+
+	newQ(q);
+	setTimeout(function(){correctResponse('Correct! Wow, that\'s hot. Just kidding. I\'m a machine. ')}, 2000);
+
+	setTimeout('startEmail();',3500);
 }
 function offsideAc(mobile) {
-	if(mobile) {jqconsole.AbortPrompt();}
-	clearMobileButtons();
+	wipeConsole();
+
 	punter.gender = 'Female';
 	saveProgress('startEmail');
-	jqconsole.Write('IMAGE OF BECKHAM\n. ', 'jqconsole-output readable wordwrap');
-	typeit();
+	
+	var q = 'Romance is in the air... ';
+
+	newQ(q);
+	
+	setTimeout(function(){beckham()},1500);
+
 	setTimeout('startEmail();',1500);
 }
 
 function offsideA() {
+	
 	jqconsole.Prompt(true, function (input) {
 		var genderAnswer = $j.trim(input);
 		genderAnswer = genderAnswer.toLowerCase();
+		
 		switch(genderAnswer) {
 			case 'a':
 				offsideAa(false);
@@ -62,22 +99,5 @@ function offsideA() {
 				break;
 		}
 
-	});
-}
-
-
-function startEmail() {
-
-	jqconsole.Write('Cool.\n\nLet\'s save your progress now so you don\'t have to go through this again.\nWhat\'s your email address: ', 'jqconsole-output wordwrap');
-	typeit();
-	emailPrompt();
-}
-
-function emailPrompt() {
-
-	jqconsole.Prompt(true, function (input) {
-		punter.email = input;
-		saveProgress('registerUser');
-		registerUser();
 	});
 }

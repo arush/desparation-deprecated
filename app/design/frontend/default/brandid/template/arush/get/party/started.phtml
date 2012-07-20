@@ -26,9 +26,6 @@
 				<a id="logo" href="/" class="logo-button">
 					<img class="gift-logo scale-with-grid" alt="BRANDiD logo" src="<?php echo $this->getSkinUrl('images/logo-beta.png')?>" title="BRANDiD Logo"/>
 				</a>
-				<div class="title-skip mobile">
-					<a class="skip-this" href="#">Skip this</a>
-				</div>
 			</div>
 			<div class="one-third column male-round">
 				<div class="male-holder">
@@ -45,27 +42,57 @@
 				<div id="status">Establishing Connection</div>
 
 			</div>
-			<div class="one-third column">
-				<div class="title-skip">
-					<!-- <div class="male-title">
-						Feed the Male&trade;
-					</div> -->
-					<a class="skip-this" href="#">Skip this</a>
-				</div>
-			</div>
 		</div>
 	</div>
-	<div class="container">
-<!-- 		<div class="ten columns offset-by-three">
- -->			<div id="console"></div>
-<!-- 		</div>
- -->	</div>
+	<div class="progress-bar">
+		<div class="container">
+				<div class="one-third column">
+					<div class="progress-content active">
+						<div class="circle-back">
+						</div>
+						<div class="circle">
+							<div class="circle-text">
+								1
+							</div>
+						</div>
+						<div class="progress-sub">Feed the MALE™</div>
+					</div>
+				</div>
+				<div class="one-third column">
+					<div class="progress-content">
+						<div class="circle-back">
+						</div>
+						<div class="circle">
+							<div class="circle-text">
+								2
+							</div>
+						</div>
+						<div class="progress-sub">Confirm Plan</div>
+					</div>
+				</div>
+				<div class="one-third column">
+					<div class="progress-content">
+						<div class="circle-back">
+						</div>
+						<div class="circle">
+							<div class="circle-text">
+								3
+							</div>
+						</div>
+						<div class="progress-sub">Checkout</div>
+					</div>
+				</div>
+		</div>
+	</div>
+	<div class="male-console container">
+			<div id="console"></div>
+	</div>
 </div>
 <script type="text/javascript">
 	var $j = jQuery.noConflict();
-	
+	//global punter object
+	var punter = new Object();
 	createPunter();
-	
 	function workImages(appendTo, mobile) {
 	
 		var delay = getDelayRequired();
@@ -79,7 +106,7 @@
 		images[3] = new Array("<?php echo $this->getSkinUrl('images/male/work/4.jpg'); ?>", "work-image", "d. Gorilla Suit");
 
 		var imageString = printImage(images);
-		performAppend(appendTo, delay, imageString);
+		performAppend(appendTo, imageString);
 		if(mobile) {
 			var buttons = new Array();
 			buttons[0] = new Array("convert","Smart", "workAa(true)");
@@ -92,6 +119,7 @@
 			workA();
 		}
 	}
+
 
 	function playImages(appendTo, mobile) {
 	
@@ -106,7 +134,7 @@
 		images[3] = new Array("<?php echo $this->getSkinUrl('images/male/play/4.jpg'); ?>", "play-image", "d. Elvis Outfit");
 
 		var imageString = printImage(images);
-		performAppend(appendTo, delay, imageString);
+		performAppend(appendTo, imageString);
 		if(mobile) {
 			var buttons = new Array();
 			buttons[0] = new Array("convert","Suave", "playAa(true)");
@@ -119,50 +147,47 @@
 			playA();
 		}
 	}
-
-	function offside() {
-		
-	    // fade
-		if($j('.console-fade').length == 0) { $j('#console').prepend('<div class="console-fade"></div>'); };
-
-		var s = getLatestSpan();
-
-		var delay = getDelayRequired();
-
-		typeit();
-
+	
+	var attach;
+	attach = function() {
 		var images = new Array();
 		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/offside.jpg'); ?>","offside", "Which player is offside?");
 
 		var imageString = printImage(images);
-		performAppend(s, delay, imageString);
-		setTimeout('offsideQ()',delay);
+		$j('#male-welcome-msg').append(imageString);
+
+		//make question text appear
+		var s = getLatestSpan();
+		$j(s).css('color','#444');
 	}
-	function initiate() {
-		//give the header an id, this saves complications down the line
-        $j('.jqconsole-header span').attr('id','male-welcome-msg');
-        $j('#male-welcome-msg').typewriter();
-        $j('#male-welcome-msg').css('color', '#444');
-    	window.scrollTo(0,0);
-    	jqconsole.Focus;
+
+	function beckham() {
+		var images = new Array();
+		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/offside/beckham.jpeg'); ?>","offside beckham", '"We should have gone to BRANDiD"');
+
+		var imageString = printImage(images);
+		$j('#male-welcome-msg').append(imageString);
 	}
-	function startConsole() {
+
+
+	function startMale() {
 
 		if(punter.fname != undefined) {
 	        var backMessage = new Array(", I thought you were gone forever! ", ", missing me already, eh? ", ", I knew you\'d be back. I could feel it. ");
 	        var i = Math.floor(Math.random()*3);
-        	jqconsole = $j('#console').jqconsole('Hey '+punter.fname+backMessage[i], ' >>> ');
+        	
+        	var q = 'Hey '+punter.fname+backMessage[i];
+        	newQ(q);
         	
         	setTimeout('returningVisitor();',1500);
         	initiate();
         }
         else {
-        	jqconsole = $j('#console').jqconsole('Greetings earthling. MALE™ here, what\'s your name? ', ' >>> ');	
-	        $j('#male-welcome-msg').typewriter();
-	        $j('#male-welcome-msg').css('color', '#444');
-			startPrompt();
-			initiate();
 
+        	var q = 'Greetings earthling. MALE™ here, what\'s your name? ';
+        	newQ(q);
+
+			nameA();
         }
 
 	}
@@ -184,7 +209,7 @@
 			jQuery('#male-colour').removeClass('male-loading');
 			jQuery('#male-colour').addClass('male-back');
 			jQuery('#status').text('');
-			setTimeout("startConsole()", 300);
+			setTimeout("startMale()", 300);
 		}
 
 	jQuery(document).ready(function() {
