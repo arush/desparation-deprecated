@@ -77,7 +77,7 @@
 					<div class="subscribe-form clearfix">
 					  	<form action="/subscribe/newbie" method="post">
 						  <input id="sub-email" type="email" name="email" value="Enter your email address…" onFocus="clearDefault(this)" onBlur="restoreText(this)"/>
-						  <input type="hidden" name="source" value="merrill lynch<?php // if(isset($referer)) { echo $referer; } ?>"/>
+						  <input type="hidden" name="source" value="<?php if(isset($referer)) { echo $referer; } ?>"/>
 						  <button id="subscribe_btn" class="convinced-label-button convert secondary" type="submit">Keep me in the loop!</button>
 						</form>
 						<div id="subscribe-response">
