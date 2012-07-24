@@ -1,12 +1,13 @@
-typingDelay = 20; // global variable  // match this to text-effects.js
+typingDelay = 15; // global variable  // match this to text-effects.js
 
 var $j = jQuery.noConflict();
 
+// @codekit-append "core/punter.js"
 // @codekit-append "core/email.js"
 // @codekit-append "core/helper.js"
 // @codekit-append "core/images.js"
 // @codekit-append "core/buttons.js"
-// @codekit-append "core/punter.js"
+
 
 // @codekit-append "questions/name.js"
 // @codekit-append "questions/offside.js"

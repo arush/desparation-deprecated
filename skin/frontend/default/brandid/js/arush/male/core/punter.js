@@ -6,7 +6,10 @@ function createPunter() {
 }
 
 function registerUser() {
-	
+	wipeConsole();
+	newQ(punter.email+' ');
+	$j('#male-welcome-msg').css('color','#444444');
+
 	jqconsole.Write('Saving...  ', 'jqconsole-output loading-flash wordwrap');
 	var s = getLatestSpan();
 	$j(s).parent().removeClass('red');
@@ -78,7 +81,8 @@ if(mobile) {
 }
 
 function startAgain(mobile) {
-	wipeConsole(mobile);
+	wipeConsole();
+	clearProgress();
 	startMale();
 }
 

@@ -12,12 +12,12 @@ function insertImageButtons(buttons, imageClass) {
 		
 		//find the image for this button and print it
 		var s = $j('#'+imageClass+'-option'+(i+1));
-		alert('#'+imageClass+'-option'+(i+1));
+
 		performAppend(s,string);
 	}
 }
 
-function printImage(images) {
+function printImage(images, link) {
 	//url is an array with n number of urls
 
 	var string = "<div class=\"image-question clearfix\">";
@@ -41,7 +41,7 @@ function printImage(images) {
 	}
 
 	for (i=0; i<n; i++) {
-		string += "<div class=\"img-container "+columns+" "+images[i][1]+"\"><img class=\"scale-with-grid\" src=\""+images[i][0]+"\" id=\""+images[i][1]+"-option"+(i+1)+"\" alt=\"image option"+(i+1)+"\"/><span class=\"image-caption\">"+images[i][2]+"</span></div>";
+		string += "<a href=\"#\" onclick=\""+images[i][3]+"\"><div class=\"img-container "+columns+" "+images[i][1]+"\"><img class=\"scale-with-grid\" src=\""+images[i][0]+"\" id=\""+images[i][1]+"-option"+(i+1)+"\" alt=\"image option"+(i+1)+"\"/><span class=\"image-caption\">"+images[i][2]+"</span></div></a>";
 	}
 
 	string += "</div>";

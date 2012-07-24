@@ -100,10 +100,10 @@
 		typeit();
 
 		var images = new Array();
-		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/work/1.jpg'); ?>", "work-image", "a. Smart");
-		images[1] = new Array("<?php echo $this->getSkinUrl('images/male/work/2.jpg'); ?>", "work-image", "b. Casual");
-		images[2] = new Array("<?php echo $this->getSkinUrl('images/male/work/3.jpg'); ?>", "work-image", "c. Laid Back");
-		images[3] = new Array("<?php echo $this->getSkinUrl('images/male/work/4.jpg'); ?>", "work-image", "d. Gorilla Suit");
+		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/work/1.jpg'); ?>", "work-image", "a. Smart", "workAa(true)");
+		images[1] = new Array("<?php echo $this->getSkinUrl('images/male/work/2.jpg'); ?>", "work-image", "b. Casual", "workAb(true)");
+		images[2] = new Array("<?php echo $this->getSkinUrl('images/male/work/3.jpg'); ?>", "work-image", "c. Laid Back", "workAc(true)");
+		images[3] = new Array("<?php echo $this->getSkinUrl('images/male/work/4.jpg'); ?>", "work-image", "d. Gorilla Suit", "workAd(true)");
 
 		var imageString = printImage(images);
 		performAppend(appendTo, imageString);
@@ -128,10 +128,10 @@
 		typeit();
 
 		var images = new Array();
-		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/play/1.jpg'); ?>", "play-image", "a. Shirts");
-		images[1] = new Array("<?php echo $this->getSkinUrl('images/male/play/2.jpg'); ?>", "play-image", "b. Polos");
-		images[2] = new Array("<?php echo $this->getSkinUrl('images/male/play/3.jpg'); ?>", "play-image", "c. Tees");
-		images[3] = new Array("<?php echo $this->getSkinUrl('images/male/play/4.jpg'); ?>", "play-image", "d. Elvis Outfit");
+		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/play/1.jpg'); ?>", "play-image", "a. Shirts", "playAa(true)");
+		images[1] = new Array("<?php echo $this->getSkinUrl('images/male/play/2.jpg'); ?>", "play-image", "b. Polos", "playAb(true)");
+		images[2] = new Array("<?php echo $this->getSkinUrl('images/male/play/3.jpg'); ?>", "play-image", "c. Tees", "playAc(true)");
+		images[3] = new Array("<?php echo $this->getSkinUrl('images/male/play/4.jpg'); ?>", "play-image", "d. Elvis Outfit", "playAd(true)");
 
 		var imageString = printImage(images);
 		performAppend(appendTo, imageString);
@@ -150,8 +150,15 @@
 	
 	var attach;
 	attach = function() {
+
+		
+		var imageUrl = '<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('offside_pic')->toHtml(); ?>';
+			//must be format <p><img src="..." /></p>
+
+		var imageUrl = imageUrl.split('\"');
+
 		var images = new Array();
-		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/offside.jpg'); ?>","offside", "Which player is offside?");
+		images[0] = new Array(imageUrl[1],"offside", "Which player is offside?");
 
 		var imageString = printImage(images);
 		$j('#male-welcome-msg').append(imageString);

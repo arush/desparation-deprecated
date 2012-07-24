@@ -1,35 +1,64 @@
 function workQ(mobile) {
-	saveProgress('workQ');
-	if(mobile) {
-		if(jqconsole.GetState() == "prompt") {
-			jqconsole.AbortPrompt();
-		}
-	}
-	clearMobileButtons();
+	wipeConsole();
 
-	jqconsole.Write('Right, I\'m gonna ask you some quick questions so I can recommend a plan for you.\n\nFirstly, what do you wear for work? ', 'jqconsole-output wordwrap');
+	var q = 'I need to get to know you first before I can recommend a plan for you.\n\nWhat do you wear for work? '
+	newQ(q);
 	typeit();
-	var s = getLatestSpan();
+
+	var s = $j('#male-welcome-msg');
 	//s = $j(s).parent();
-	workImages(s, mobile);
+	setTimeout(function(){workImages(s, mobile)}, 2000); 
 }
 
+function workDone(q, mobile) {
+	newQ(q);
+	typeit();
+	setTimeout(function(){playQ(mobile)}, 2500); 
 
+}
 
 function workAa(mobile) {
+	punter.work = 'suit';
 
+	wipeConsole();
+	var q = 'Ladies love the suits.\n\n';
+	workDone(q, mobile);
 }
 
+function workAb(mobile) {
+	punter.work = 'casual';
+
+	wipeConsole();
+	var q = 'Nice. Suits are for losers anyway.\n\n';
+	
+	workDone(q, mobile);
+}
+
+function workAc(mobile) {
+	punter.work = 'laid back';
+
+	wipeConsole();
+	var q = 'Nice. Real bosses wear jeans and tee to work.\n\n';
+	
+	workDone(q, mobile);
+}
 
 
 function workAd(mobile) {
+	punter.work = 'gorilla suit';
+
+	wipeConsole();
+	var q = 'It is hard for the ape to believe he descended from man.\n- H. L. Mencken, American Author, Man Since 1880.\n\n';
 	
-	jqconsole.Write('It is hard for the ape to believe he descended from man.\n- H. L. Mencken, American Author, Man Since 1880.\n\n','jqconsole-output wordwrap');
-	typeit();
-	setTimeout('playQ();',2500);
+	workDone(q, mobile);
+	
 }
 
 function workA() {
+
+	//fix container height
+	$j('.male-console').css('height','640px');
+
 	jqconsole.Write('a. Smart (shirt, suit, trousers...)\nb. Casual (shirt, jeans, shoes)\nc. Laid Back (tee, jeans, trainers)\nd. Gorilla Suit ', 'jqconsole-output question wordwrap');
 	setTimeout('typeit();',3000);
 	jqconsole.Prompt(true, function (input) {

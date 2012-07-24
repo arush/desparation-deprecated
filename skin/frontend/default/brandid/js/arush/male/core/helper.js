@@ -12,14 +12,14 @@ function correctResponse(responseString) {
 		typeit();
 }
 
-function wipeConsole(mobile) {
-	if(mobile) {
+function wipeConsole() {
+	if(jqconsole.GetState() === 'prompt') {
 	 	jqconsole.AbortPrompt();
-	 }
-	clearProgress();
+	}
 	jqconsole.Reset();
 	jQuery('#console').html('');
 	jqconsole = null;
+	window.scrollTo(0,0);
 }
 
 function newQ(q) {

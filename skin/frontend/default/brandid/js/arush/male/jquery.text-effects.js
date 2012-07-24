@@ -51,7 +51,7 @@
             var timer = setInterval(function() {
                 $ele.text(str.substring(0, progress++) + (progress & 1 ? '_' : ''));
                 if (progress >= str.length) clearInterval(timer);
-            }, 20);
+            }, 15);
         });
         return this;
     };

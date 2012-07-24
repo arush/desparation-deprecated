@@ -4,25 +4,28 @@ function offside(fname) {
 		
 		var q;
 		if(punter.sexGuess === 'female') {
-        	q = 'Hmm... '+ fname + '. Forgive me if I\'m wrong, but that sounds like a girl\'s name.\n\nJust to be sure, I need you to answer this question: ';
+        	q = 'Hmm... '+ punter.fname + '. Forgive me if I\'m wrong, but that sounds like a girl\'s name.\n\nJust to be sure, I need you to answer this question: ';
         }
         else {
-        	q = 'Hmm... '+ fname + '. That sounds like a good solid man\'s name.\n\nJust to be sure, I need you to answer this question: ';
+        	q = 'Hmm... '+ punter.fname + '. That sounds like a good solid man\'s name.\n\nJust to be sure, I need you to answer this question: ';
         }
     	newQ(q);
 
 		typeit();
 
 		setTimeout('offsideQ()',2000);
+		// offsideQ();
 	}
 
 function offsideQ() {
 		
 		// this only works on a setTimeout
-		setTimeout('attach()',1000);
+		// setTimeout('attach()',500);
+		attach();
 
 		jqconsole.Write('a. I\'m a man. Player A is offside.\nb. I\'m a woman who knows her football. Player A is offside.\nc. I\'m a woman. Just show me a picture of Beckham.\n\nType [a], [b] or [c] and press [ENTER] ','jqconsole-output question wordwrap');
 		
+		typeit();
 		
 		var buttons = new Array();
 		buttons[0] = new Array("smalltext convert","I'm a Man<br/><span class=\"button-caption\">Player A is offside</span>", "offsideAa(true)");

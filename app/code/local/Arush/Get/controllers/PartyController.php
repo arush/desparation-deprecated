@@ -5,10 +5,28 @@ class Arush_Get_PartyController extends Mage_Core_Controller_Front_Action
 	public function subscribeAction() {
 		if($this->getRequest()->isPost()){
 		//this is comes directly from MALE
-			$email = $this->getRequest()->getPost('email');
-			$fname = $this->getRequest()->getPost('fname');
-			$gender = $this->getRequest()->getPost('gender');
-			$source = $this->getRequest()->getPost('source');
+			
+			$email = 'not yet known';
+			$fname = 'not yet known';
+			$gender = 'not yet known';
+			$source = 'not yet known';
+
+			if(array_key_exists('email',$this->getRequest()->getPost())) {
+				$email = $this->getRequest()->getPost('email');
+			}
+			
+			if(array_key_exists('fname',$this->getRequest()->getPost())) {
+				$fname = $this->getRequest()->getPost('fname');
+			}
+			
+			if(array_key_exists('gender',$this->getRequest()->getPost())) {
+				$gender = $this->getRequest()->getPost('gender');
+			}
+			
+			if(array_key_exists('source',$this->getRequest()->getPost())) {
+				$source = $this->getRequest()->getPost('source');
+			}
+			
 
 			$params = array($fname, $email, $gender, $source);
 			$this->_redirect('subscribe/newbie', $params);
@@ -16,7 +34,6 @@ class Arush_Get_PartyController extends Mage_Core_Controller_Front_Action
 		else {
 			echo json_encode('nice try asshole');
 		}
-
 
 	}
     public function existsAction() {
