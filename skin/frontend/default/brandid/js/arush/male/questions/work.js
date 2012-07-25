@@ -13,7 +13,7 @@ function workQ(mobile) {
 function workDone(q, mobile) {
 	newQ(q);
 	typeit();
-	setTimeout(function(){playQ(mobile)}, 2500); 
+	setTimeout(function(){playQ(mobile)}, 1500); 
 
 }
 
@@ -57,7 +57,7 @@ function workAd(mobile) {
 function workA() {
 
 	//fix container height
-	$j('.male-console').css('height','640px');
+	adjustHeight('work');
 
 	jqconsole.Write('a. Smart (shirt, suit, trousers...)\nb. Casual (shirt, jeans, shoes)\nc. Laid Back (tee, jeans, trainers)\nd. Gorilla Suit ', 'jqconsole-output question wordwrap');
 	setTimeout('typeit();',3000);

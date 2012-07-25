@@ -1,10 +1,17 @@
 function initiate() {
 		//give the header an id, this saves complications down the line
         $j('.jqconsole-header span').attr('id','male-welcome-msg');
+        $j('pre.jqconsole').css('position','relative');
         $j('#male-welcome-msg').typewriter();
         $j('#male-welcome-msg').css('color', '#444');
     	window.scrollTo(0,0);
-    	jqconsole.Focus;
+    	// jqconsole.Focus;
+    	$j('pre').attr('disabled','true');
+    	$j('pre').attr('readonly','readonly');
+}
+
+function stopKeyboard(e){
+	e.stopPropagation();
 }
 
 function correctResponse(responseString) {
@@ -22,10 +29,52 @@ function wipeConsole() {
 	window.scrollTo(0,0);
 }
 
+function clearDefaultJ(el) {
+	/* jquery version of clearDefault defined elsewhere */
+  		if (el.defaultValue===el.value) {
+  			el.value = "";
+		    $j('#subscribe_btn').removeClass('disabled');
+		}
+	}
+function restoreTextJ(el) {
+	/* jquery version of restoreText defined elsewhere */
+	if (el.value === "") {
+		el.value = el.defaultValue;
+	}
+}
+
+
+
+function adjustHeight(step) {
+	return false;
+	switch(step) {
+		case 'work':
+			$j('.male-console').css('height','640px');
+			break;
+		case 'beckham':
+			var newHeight = parseInt($j('.img-container.one.offside.beckham').css('height')) + 120;
+			newHeight += 'px';
+			$j('.male-console').css('height',newHeight);
+			break;
+		case 'email':
+			var newHeight = parseInt($j('#male-welcome-msg').css('height')) + 20;
+			newHeight += 'px';
+			alert(newHeight);
+			$j('.male-console').css('height',newHeight);
+		default:
+			var newHeight;
+			newHeight = parseInt($j('.mobile-buttons').css('height')) + parseInt($j('.jqconsole-header').css('height')) + 100;
+			newHeight += 'px';
+			$j('.male-console').css('height',newHeight);
+			break;
+	}
+	
+}
+
 function newQ(q) {
 	jqconsole = $j('#console').jqconsole(q, ' >>> ');
 	initiate();
-
+	adjustHeight('new');
 	$j('#male-welcome-msg').typewriter();
     $j('#male-welcome-msg').css('color', '#444');
 }

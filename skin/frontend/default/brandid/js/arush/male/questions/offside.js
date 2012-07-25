@@ -4,23 +4,22 @@ function offside(fname) {
 		
 		var q;
 		if(punter.sexGuess === 'female') {
-        	q = 'Hmm... '+ punter.fname + '. Forgive me if I\'m wrong, but that sounds like a girl\'s name.\n\nJust to be sure, I need you to answer this question: ';
+        	q = 'Hmm... '+ punter.fname + '. Now remember, I\'m AAI (Artificial Artificial Intelligence), so I may be wrong, but that sounds like a woman\'s name.\n\nJust to be sure, can you tell me which player is offside: ';
         }
         else {
-        	q = 'Hmm... '+ punter.fname + '. That sounds like a good solid man\'s name.\n\nJust to be sure, I need you to answer this question: ';
+        	q = 'Hmm... '+ punter.fname + '. Now remember, I\'m AAI (Artificial Artificial Intelligence), so I may be wrong, but that sounds like a good solid man\'s name.\n\nJust to be sure, can you tell me which player is offside: ';
         }
     	newQ(q);
 
 		typeit();
 
-		setTimeout('offsideQ()',2000);
+		setTimeout('offsideQ()',4500);
 		// offsideQ();
 	}
 
 function offsideQ() {
 		
-		// this only works on a setTimeout
-		// setTimeout('attach()',500);
+
 		attach();
 
 		jqconsole.Write('a. I\'m a man. Player A is offside.\nb. I\'m a woman who knows her football. Player A is offside.\nc. I\'m a woman. Just show me a picture of Beckham.\n\nType [a], [b] or [c] and press [ENTER] ','jqconsole-output question wordwrap');
@@ -31,9 +30,8 @@ function offsideQ() {
 		buttons[0] = new Array("smalltext convert","I'm a Man<br/><span class=\"button-caption\">Player A is offside</span>", "offsideAa(true)");
 		buttons[1] = new Array("smalltext convert","I'm a woman<br/><span class=\"button-caption\">I know my football, its Player A</span>", "offsideAb(true)");
 		buttons[2] = new Array("smalltext convert","I'm a woman<br/><span class=\"button-caption\">just show me a picture of Beckham</span>", "offsideAc(true)");
-		
-		setTimeout(function(){insertButtons(buttons)}, 1000);
-		
+
+		insertButtons(buttons)
 		offsideA();
 	}
 
@@ -49,7 +47,7 @@ function offsideAa(mobile) {
 
 	setTimeout(function(){correctResponse('That is correct. You are clearly a man. ')}, 2000);
 
-	setTimeout('startEmail();',3500);
+	setTimeout('startEmail();',4000);
 }
 function offsideAb(mobile) {
 	wipeConsole();
@@ -62,7 +60,7 @@ function offsideAb(mobile) {
 	newQ(q);
 	setTimeout(function(){correctResponse('Correct! Wow, that\'s hot. Just kidding. I\'m a machine. ')}, 2000);
 
-	setTimeout('startEmail();',3500);
+	setTimeout('startEmail();',4500);
 }
 function offsideAc(mobile) {
 	wipeConsole();
@@ -76,7 +74,8 @@ function offsideAc(mobile) {
 	
 	setTimeout(function(){beckham()},1500);
 
-	setTimeout('startEmail();',1500);
+
+	setTimeout('startEmail();',3500);
 }
 
 function offsideA() {

@@ -12,6 +12,11 @@ var nameA = function () {
 	  	if(input.toLowerCase() === 'investor') {
 	    	investorAsk();
 	    }
+	    else if(input.toLowerCase() === 'male') {
+	    	jqconsole.Write(name + '? Really? Somehow I doubt that. Try again: ', 'jqconsole-output red wordwrap');
+            typeit();
+            startPrompt();
+	    }
 	    else if(!smallName) {
 	      	// strip whitespace, capitalise and save the name
 	      	punter.fname = name;
@@ -34,20 +39,31 @@ function genderGuess(str) {
 	//check last letter
 	str = str.toLowerCase();
 	var last = str.charAt(str.length-1);
+	var last2 = str.charAt(str.length-2)+last;
+
 	if(
+		/* rules */
 		(last == 'a'
 		|| last == 'e'
 		|| last == 'y'
-		|| str == 'helen'
-		|| str == 'sarah'
-		|| str == 'hannah'
-		|| str == 'megan'
-		|| str == 'alison')
+		|| last2 == 'in'
+		|| last2 == 'ah'
+		|| last2 == 'en'
+		|| last2 == 'an'
+		|| last2 == 'yn'
+		|| last2 == 'er')
 		&&
+		/* exceptions */
 		(str != 'steve'
+		&& str != 'sean'
+		&& str != 'sachin'
+		&& str != 'edwin'
+		&& str != 'nitin'
+		&& str != 'ian' 
 		&& str != 'bryce' 
 		&& str != 'mike'
-		&& str != 'harry' )
+		&& str != 'harry'
+		&& str != 'male' )
 
 	) {
 		return 'female';

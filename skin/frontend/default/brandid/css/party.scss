@@ -1,4 +1,5 @@
 @import "buttons.scss";
+@import "forms.scss";
 @import "skeleton/base.scss";
 @import "skeleton/skeleton.scss";
 @import "skeleton/layout.scss";
@@ -28,7 +29,7 @@ body {background-color:#FFF;}
    word-wrap: break-word;      /* IE */
 }
 .male-console {
-	height:800px;
+	height:auto;
 }
 /* console */
 #console {
@@ -167,9 +168,6 @@ body {background-color:#FFF;}
 	color:#444 !important;
 }
 
-.mobile-buttons {
-	display:none;
-}
 .mobile-buttons a {
 	width:100%;
 	margin:0 0 20px 0;
@@ -447,7 +445,7 @@ img.male-round, .male-back, .male-loading, .male-label-box, .male-loader {
 	margin-top: 25px;
 }
 
-.offside.beckham img {
+.offside-beckham img {
 	margin-left:34%;
 }
 
@@ -611,6 +609,27 @@ img.male-round, .male-back, .male-loading, .male-label-box, .male-loader {
 	float:left;
 }
 
+.jqconsole-output.question, .jqconsole-prompt, .jqconsole-input {display:none;}
+
+.mobile-buttons.saving input, .mobile-buttons.saving a {
+	float:left;
+}
+
+.mobile-buttons.saving {
+	margin:10px;
+}
+.mobile-buttons.saving input {
+	width: 63%;
+	@include input-field;
+	padding: 10px 2%;
+	height:41px;
+	font-size:21px;
+}
+
+.mobile-buttons.saving a {
+	width:30%;
+	float:right;
+}
 
 @media only screen and (-webkit-min-device-pixel-ratio:2) {
 	.gift-logo { background-image:url('../images/logo-2x.png'); background-size:154px 58px; }
@@ -625,14 +644,13 @@ img.male-round, .male-back, .male-loading, .male-label-box, .male-loader {
 		min-height: 71px;
 	}
 	.mobile-buttons {display:block;}
-	.offside img {
+	.offside img, .offside-beckham img {
 		margin-left: 0;
 		width: 100%;
 	}
 	.img-container.work-image, .img-container.play-image  {
 		width:47%;max-width:47%;margin: 20px 1%;
 	}
-	.jqconsole-output.question, .jqconsole-prompt {display:none;}
 	.skip-this {float:none;margin:0 auto;}
 	.male-title {text-align: center;}
 }
@@ -647,11 +665,13 @@ img.male-round, .male-back, .male-loading, .male-label-box, .male-loader {
 	.img-container.work-image {
 		width:100%;max-width:100%;margin: 20px 0;
 	}
-
+	.mobile-buttons.saving input {font-size: 16px; }
 }
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) {
 
 	#logo {width:48%;}
 	.title-skip.mobile .skip-this {width: 38%;	margin: 0 0 0 12%;}
+	.mobile-buttons.saving input {font-size: 14px; width:96%;margin-bottom:10px;}
+	.mobile-buttons.saving a {width:100%;float:left;}
 }

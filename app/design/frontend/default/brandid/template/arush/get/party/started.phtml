@@ -1,10 +1,12 @@
 <?php
+	$referer = false;
 	$refererSet = false;
 	if(Mage::getSingleton('core/session')->getReferer()) {
 		$refererSet = true;
+		$referer = Mage::getSingleton('core/session')->getReferer();
 	}
 
-	if($refererSet) {
+	if(!$refererSet) {
 		//get the referrer
 		if (isset($_SERVER['HTTP_REFERER'])) {
 			$referer = $_SERVER['HTTP_REFERER'];
@@ -13,9 +15,6 @@
 		}
 		//save it in a session variable
 		Mage::getSingleton('core/session')->setReferer($referer); // store session data
-	}
-	else {
-		$referer = Mage::getSingleton('core/session')->getReferer();
 	}
 ?>
 
@@ -170,10 +169,11 @@
 
 	function beckham() {
 		var images = new Array();
-		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/offside/beckham.jpeg'); ?>","offside beckham", '"We should have gone to BRANDiD"');
+		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/offside/beckham.jpeg'); ?>","offside-beckham", '"We should have gone to BRANDiD"');
 
 		var imageString = printImage(images);
 		$j('#male-welcome-msg').append(imageString);
+		adjustHeight('beckham');
 	}
 
 
@@ -191,7 +191,7 @@
         }
         else {
 
-        	var q = 'Greetings earthling. MALE™ here, what\'s your name? ';
+        	var q = 'What\'s happenin\' buddy! MALE™ here, what\'s your name? ';
         	newQ(q);
 
 			nameA();

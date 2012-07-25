@@ -1,5 +1,7 @@
 function resendConfirmation() {
-	if(mobile) {jqconsole.AbortPrompt();}
+	if(jqconsole.GetState() === 'prompt') {
+	 	jqconsole.AbortPrompt();
+	}
 		clearMobileButtons();
 	jqconsole.Write('Resending confirmation email to '+punter.email+'.\nAdd help@getbrandid.com to your address book to make sure our emails don\'t go to spam.  ', 'jqconsole-output instruction wordwrap');
 	registerUser();
@@ -42,17 +44,27 @@ function confirmationA() {
 
 
 function startEmail() {
-
-	jqconsole.Write('Cool.\n\nLet\'s save your progress now so you don\'t have to go through this again.\nWhat\'s your email address: ', 'jqconsole-output wordwrap');
-	typeit();
-	emailPrompt();
+	wipeConsole();
+	var q = 'Cool.\n\nLet\'s save your progress now so you don\'t have to go through this again.\nWhat\'s your email address: ';
+	newQ(q);
+	adjustHeight('email');
+	//typeit();
+	insertEmailButton();
 }
 
-function emailPrompt() {
-	jqconsole.Focus;
-	jqconsole.Prompt(true, function (input) {
-		punter.email = input;
-		saveProgress('registerUser');
-		registerUser();
-	});
+function emailPrompt(emailEntered) {
+	punter.email = emailEntered;
+	saveProgress('registerUser');
+	registerUser();
+}
+
+
+function handleEmailSubmit() {
+
+		var emailToSave;
+
+		emailToSave = $j('#email-to-save').val();
+	 	emailPrompt(emailToSave);
+		$j('.mobile-buttons.saving-email').remove();
+	
 }

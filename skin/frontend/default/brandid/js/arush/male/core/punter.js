@@ -51,7 +51,7 @@ function registerUser() {
         else {
 			$j(s).parent().addClass('red');
 			$j(s).text(retval.message+'\nTry another email address: ');
-			emailPrompt();
+			insertEmailButton();
         }
 		clearInterval(loading);
         typeit();
@@ -72,9 +72,9 @@ function clearProgress() {
 }
 
 function dropBackIn(mobile) {
-if(mobile) {
-	jqconsole.AbortPrompt();
- }
+if(jqconsole.GetState() === 'prompt') {
+	 	jqconsole.AbortPrompt();
+	}
  var go = String(punter.progress);
  window[punter.progress](mobile);
 
@@ -97,19 +97,19 @@ function returningVisitor() {
 	buttons[1] = new Array("convert","Continue", "dropBackIn(true)");
 	insertButtons(buttons);
 
-	jqconsole.Prompt(true, function (input) {
-		switch(input) {
-			case 'a':
-				dropBackIn(false);
-				break;
-			case 'b':
-				startAgain(false);
-				break;
-			default:
-				jqconsole.Write('What, no [a] and [b] on your keyboard?\nTry again: ', 'jqconsole-output red wordwrap');
-				typeit();
-				setTimeout('returningVisitor();',1500);
-				break;
-		}
-	});
+	// jqconsole.Prompt(true, function (input) {
+	// 	switch(input) {
+	// 		case 'a':
+	// 			dropBackIn(false);
+	// 			break;
+	// 		case 'b':
+	// 			startAgain(false);
+	// 			break;
+	// 		default:
+	// 			jqconsole.Write('What, no [a] and [b] on your keyboard?\nTry again: ', 'jqconsole-output red wordwrap');
+	// 			typeit();
+	// 			setTimeout('returningVisitor();',1500);
+	// 			break;
+	// 	}
+	// });
 }

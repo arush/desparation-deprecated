@@ -13,7 +13,7 @@ function playQ(mobile) {
 function playDone(mobile) {
 	newQ('Got it. ');
 	typeit();
-	setTimeout(function(){playQ(mobile)}, 2500); 
+	setTimeout(function(){playQ(mobile)}, 1500); 
 
 }
 
@@ -37,7 +37,7 @@ function playAc(mobile) {
 	wipeConsole();
 	playDone(mobile);
 }
-
+	
 function playAd(mobile) {
 	punter.play = 'elvis';
 
