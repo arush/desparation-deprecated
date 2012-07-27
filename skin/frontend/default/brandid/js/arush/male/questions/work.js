@@ -1,88 +1,56 @@
-function workQ(mobile) {
+function workQ() {
 	wipeConsole();
 
+	saveProgress('workQ');
 	var q = 'I need to get to know you first before I can recommend a plan for you.\n\nWhat do you wear for work? '
 	newQ(q);
 	typeit();
 
 	var s = $j('#male-welcome-msg');
 	//s = $j(s).parent();
-	setTimeout(function(){workImages(s, mobile)}, 2000); 
+	workImages(s);
 }
 
-function workDone(q, mobile) {
+function workDone(q) {
 	newQ(q);
 	typeit();
-	setTimeout(function(){playQ(mobile)}, 1500); 
+	setTimeout(function(){insertContinue('playQ()')},500);
 
 }
 
-function workAa(mobile) {
+function workAa() {
 	punter.work = 'suit';
 
 	wipeConsole();
 	var q = 'Ladies love the suits.\n\n';
-	workDone(q, mobile);
+	workDone(q);
 }
 
-function workAb(mobile) {
+function workAb() {
 	punter.work = 'casual';
 
 	wipeConsole();
 	var q = 'Nice. Suits are for losers anyway.\n\n';
 	
-	workDone(q, mobile);
+	workDone(q);
 }
 
-function workAc(mobile) {
+function workAc() {
 	punter.work = 'laid back';
 
 	wipeConsole();
 	var q = 'Nice. Real bosses wear jeans and tee to work.\n\n';
 	
-	workDone(q, mobile);
+	workDone(q);
 }
 
 
-function workAd(mobile) {
+function workAd() {
 	punter.work = 'gorilla suit';
 
 	wipeConsole();
-	var q = 'It is hard for the ape to believe he descended from man.\n- H. L. Mencken, American Author, Man Since 1880.\n\n';
+	var q = 'It is hard for the ape to believe he descended from man.\n- H. L. Mencken, American Author\nMan Since 1880.\n\n';
 	
-	workDone(q, mobile);
+	workDone(q);
 	
-}
-
-function workA() {
-
-	//fix container height
-	adjustHeight('work');
-
-	jqconsole.Write('a. Smart (shirt, suit, trousers...)\nb. Casual (shirt, jeans, shoes)\nc. Laid Back (tee, jeans, trainers)\nd. Gorilla Suit ', 'jqconsole-output question wordwrap');
-	setTimeout('typeit();',3000);
-	jqconsole.Prompt(true, function (input) {
-		var answer = $j.trim(input);
-		answer = answer.toLowerCase();
-		switch(answer) {
-			case 'a':
-				workAa(false);
-				break;
-			case 'b':
-				workAb(false);
-				break;
-			case 'c':
-				workAc(false);
-				break;
-			case 'd':
-				workAd(false);
-				break;
-			default:
-				jqconsole.Write('Cat got your keyboard?\nTry again: ', 'jqconsole-output red wordwrap');
-				typeit();
-				setTimeout('workA();',1500); 
-				break;
-		}
-
-	});
 }

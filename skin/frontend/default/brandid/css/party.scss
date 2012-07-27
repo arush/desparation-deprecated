@@ -427,11 +427,11 @@ img.male-round, .male-back, .male-loading, .male-label-box, .male-loader {
 
 .ani {
 
-	-webkit-animation: 1s ease-in-out;
-	   -moz-animation: 1s ease-in-out;
-	    -ms-animation: 1s ease-in-out;
-	     -o-animation: 1s ease-in-out;
-	        animation: 1s ease-in-out;
+	-webkit-animation: 500ms ease-in-out;
+	   -moz-animation: 500ms ease-in-out;
+	    -ms-animation: 500ms ease-in-out;
+	     -o-animation: 500ms ease-in-out;
+	        animation: 500ms ease-in-out;
 	        
 -webkit-animation-fill-mode: forwards;
 	   -moz-animation-fill-mode: forwards;
@@ -448,7 +448,9 @@ img.male-round, .male-back, .male-loading, .male-label-box, .male-loader {
 .offside-beckham img {
 	margin-left:34%;
 }
-
+.offside-beckham span {
+	display:none;
+}
 .img-container {
 	float: left;
 	
@@ -456,7 +458,10 @@ img.male-round, .male-back, .male-loading, .male-label-box, .male-loader {
 	background: white;
 }
 
-.img-container.offside {
+.continue.convert {
+	margin-top:20px;
+}
+.img-container.offside-beckham, .img-container.offside {
 	width:100%;
 	margin:20px 0 0 0;
 }
@@ -617,15 +622,25 @@ img.male-round, .male-back, .male-loading, .male-label-box, .male-loader {
 
 .mobile-buttons.saving {
 	margin:10px;
+	-webkit-animation-fill-mode: forwards;
+	   -moz-animation-fill-mode: forwards;
+	    -ms-animation-fill-mode: forwards;
+	     -o-animation-fill-mode: forwards;
+	        animation-fill-mode: forwards;
 }
 .mobile-buttons.saving input {
 	width: 63%;
 	@include input-field;
+	color:#9f9f9f;
 	padding: 10px 2%;
 	height:41px;
 	font-size:21px;
+	font-family:courier, monospace;
 }
 
+.mobile-buttons.saving input:focus {
+	color:#444;
+}
 .mobile-buttons.saving a {
 	width:30%;
 	float:right;

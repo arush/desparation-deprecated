@@ -1,76 +1,47 @@
-function playQ(mobile) {
+function playQ() {
 	wipeConsole();
 
 	saveProgress('playQ');
 	var q = 'What do you wear for play? ';
 	newQ(q);
+	typeit();
 
 	var s = $j('#male-welcome-msg');
-	playImages(s, mobile);
+	playImages(s);
 
 }
 
-function playDone(mobile) {
+function playDone() {
 	newQ('Got it. ');
 	typeit();
-	setTimeout(function(){playQ(mobile)}, 1500); 
+	setTimeout(function(){insertContinue('rollQ()')},500);
 
 }
 
-function playAa(mobile) {
+function playAa() {
 	punter.play = 'shirts';
 
 	wipeConsole();
-	playDone(mobile);
+	playDone();
 }
 
-function playAb(mobile) {
+function playAb() {
 	punter.play = 'polos';
 
 	wipeConsole();
-	playDone(mobile);
+	playDone();
 }
 
-function playAc(mobile) {
+function playAc() {
 	punter.play = 'tees';
 
 	wipeConsole();
-	playDone(mobile);
+	playDone();
 }
 	
-function playAd(mobile) {
+function playAd() {
 	punter.play = 'elvis';
 
 	wipeConsole();	
-	playDone(mobile);
-}
-
-function playA() {
-	window.scrollTo(0,0);
-	jqconsole.Write('a. Shirts\nb. Polos\nc. Tees\nd. Elvis Outfit ', 'jqconsole-output question wordwrap');
-	setTimeout('typeit();',3000);
-	jqconsole.Prompt(true, function (input) {
-		var answer = $j.trim(input);
-		answer = answer.toLowerCase();
-		switch(answer) {
-			case 'a':
-				playAa(false);
-				break;
-			case 'b':
-				playAb(false);
-				break;
-			case 'c':
-				playAc(false);
-				break;
-			case 'd':
-				playAd(false);
-				break;
-			default:
-				jqconsole.Write('Choose one of the letters above.\nTry again: ', 'jqconsole-output red wordwrap');
-				typeit();
-				setTimeout('workA();',1500); 
-				break;
-		}
-
-	});
+	playDone();
 }

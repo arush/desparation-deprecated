@@ -1,4 +1,5 @@
 function offside(fname) {
+		saveProgress('offside');
 
 		wipeConsole();
 		
@@ -13,7 +14,7 @@ function offside(fname) {
 
 		typeit();
 
-		setTimeout('offsideQ()',4500);
+		setTimeout('offsideQ()',5000);
 		// offsideQ();
 	}
 
@@ -27,79 +28,46 @@ function offsideQ() {
 		typeit();
 		
 		var buttons = new Array();
-		buttons[0] = new Array("smalltext convert","I'm a Man<br/><span class=\"button-caption\">Player A is offside</span>", "offsideAa(true)");
-		buttons[1] = new Array("smalltext convert","I'm a woman<br/><span class=\"button-caption\">I know my football, its Player A</span>", "offsideAb(true)");
-		buttons[2] = new Array("smalltext convert","I'm a woman<br/><span class=\"button-caption\">just show me a picture of Beckham</span>", "offsideAc(true)");
+		buttons[0] = new Array("smalltext convert","I'm a Man<br/><span class=\"button-caption\">Player A is offside</span>", "offsideAa()");
+		buttons[1] = new Array("smalltext convert","I'm a woman<br/><span class=\"button-caption\">I know my football, its Player A</span>", "offsideAb()");
+		buttons[2] = new Array("smalltext convert","I'm a woman<br/><span class=\"button-caption\">just show me a picture of Beckham</span>", "offsideAc()");
 
-		insertButtons(buttons)
-		offsideA();
+		insertButtons(buttons);
 	}
 
-function offsideAa(mobile) {
+function offsideAa() {
 	wipeConsole();
 	
 	punter.gender = 'Male';
-	saveProgress('startEmail');
 	
 	var q = 'You said: You are a man, Player A is offside ';
 
 	newQ(q);
 
 	setTimeout(function(){correctResponse('That is correct. You are clearly a man. ')}, 2000);
+	setTimeout(function(){insertContinue('startEmail()')},2000);
 
-	setTimeout('startEmail();',4000);
 }
-function offsideAb(mobile) {
+function offsideAb() {
 	wipeConsole();
 
 	punter.gender = 'Female';
-	saveProgress('startEmail');
 	
-	var q = 'You said: You are a woman, Player A is offside ';
+	var q = 'You said: You are a woman who knows her sport, Player A is offside ';
 
 	newQ(q);
 	setTimeout(function(){correctResponse('Correct! Wow, that\'s hot. Just kidding. I\'m a machine. ')}, 2000);
-
-	setTimeout('startEmail();',4500);
+	setTimeout(function(){insertContinue('startEmail()')},2000);
 }
-function offsideAc(mobile) {
+function offsideAc() {
 	wipeConsole();
 
 	punter.gender = 'Female';
-	saveProgress('startEmail');
 	
-	var q = 'Romance is in the air... ';
+	var q = 'These guys should have gone to BRANDiD... ';
 
 	newQ(q);
 	
-	setTimeout(function(){beckham()},1500);
-
-
-	setTimeout('startEmail();',3500);
-}
-
-function offsideA() {
-	
-	jqconsole.Prompt(true, function (input) {
-		var genderAnswer = $j.trim(input);
-		genderAnswer = genderAnswer.toLowerCase();
-		
-		switch(genderAnswer) {
-			case 'a':
-				offsideAa(false);
-				break;
-			case 'b':
-				offsideAb(false);
-				break;
-			case 'c':
-				offsideAc(false);
-				break;
-			default:
-				jqconsole.Write('Choose an option [a], [b] or [c] and press [ENTER]?\nTry again: ', 'jqconsole-output red wordwrap');
-				typeit();
-				setTimeout('offsideA();',1500); 
-				break;
-		}
-
-	});
+	setTimeout(function(){beckham()},1000);
+	setTimeout(function(){insertContinue('startEmail()')},1000);
 }

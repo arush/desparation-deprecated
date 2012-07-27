@@ -1,5 +1,5 @@
 function teamMenu() {
-	jqconsole.Write('a. Open the team page in a new window\nb. Who is MALE™?\nc. Return to the Secret Menu ', 'jqconsole-output wordwrap');
+	jqconsole.Write('a. Open the team page in a new window\nb. Who is M.A.L.E™?\nc. Return to the Secret Menu ', 'jqconsole-output wordwrap');
 	var s = getLatestSpan();
 	$j(s).css('color', '#444');
 	teamAnswer();
@@ -15,7 +15,7 @@ function teamAnswer() {
 				setTimeout('teamMenu();',1000);
 				break;
 			case 'b':
-				jqconsole.Write('My true identity can never be revealed. However I can tell you this:\n\nMALE™ is the Masculine Algorithmic Learning Engine. MALE™ is learning all the time. When you signup, when you feedback on your deliveries, when you upgrade/downgrade or need new stuff, MALE™ learns exactly what you need, exactly when you need it. ', 'jqconsole-output wordwrap');
+				jqconsole.Write('My true identity can never be revealed. However I can tell you this:\n\nM.A.L.E™ is the Masculine Algorithmic Learning Engine. M.A.L.E™ is learning all the time. When you signup, when you feedback on your deliveries, when you upgrade/downgrade or need new stuff, M.A.L.E™ learns exactly what you need, exactly when you need it. ', 'jqconsole-output wordwrap');
 				typeit();
 				setTimeout('teamMenu();',10000);
 				break;
@@ -112,5 +112,17 @@ function investorPass() {
 function investorAsk() {
 	jqconsole.Write('So, you\'re an investor? What\'s the password: ', 'jqconsole-output wordwrap');
 	typeit();
-	investorPass();
+	insertPasswordButton();
+}
+
+function insertPasswordButton() {
+
+	var s = $j("#console");
+
+	var string = '<div class=\"mobile-buttons saving clearfix\">';
+	string += '<input id="password-to-save" type="password" name="password" value="" onFocus="clearDefaultJ(this)" onBlur="restoreTextJ(this)"/><a id="submit_email" class="convert" onclick="handlePasswordSubmit(); return false;">Attempt Access</a>';
+	
+	string += "</div>";
+	
+	setTimeout(function(){performAppend(s,string)},2000);
 }

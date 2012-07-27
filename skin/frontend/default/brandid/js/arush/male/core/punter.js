@@ -40,13 +40,20 @@ function registerUser() {
 			// save new requires email confirmation
 			$j(s).parent().addClass('instruction');
 			$j(s).text(retval.message);
-			setTimeout('confirmationQ();',3500);
+			setTimeout('confirmationQ();',2500);
         }
         else if(retval.status == 2) {
         	// save existing
         	$j(s).parent().addClass('green');
 			$j(s).text(retval.message);
-			setTimeout('workQ();',1000);
+			
+			if(punter.gender === 'Female') {
+				setTimeout('giftQ();',1000);	
+			}
+			else {
+				setTimeout('workQ();',1000);	
+			}
+			
         }
         else {
 			$j(s).parent().addClass('red');

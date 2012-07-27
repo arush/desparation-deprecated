@@ -1,12 +1,16 @@
-function insertButtons(buttons) {
-	/* buttons[0][0] = class
-		buttons[0][1] = text
-		buttons[0][2] = onclick function
-		*/
+function insertButtons(buttons, target) {
+	// set default value incase target is not passed
+	target = typeof target !== 'undefined' ? target : 'default_target';
 
 	var n = buttons.length;
 	var i;
-	var s = getLatestSpan();
+	
+	if(target === 'default_target') {
+		var s = getLatestSpan();
+	}
+	else {
+		var s = $j(target);
+	}
 	s = $j(s).parent();
 
 	var string = "<div class=\"mobile-buttons clearfix\">";
@@ -24,34 +28,12 @@ function insertButtons(buttons) {
 	adjustHeight();
 }
 
-function insertEmailButton() {
+function insertContinue(nextStep) {
+	// stop automatic continue from happening
+	clearTimeout(punter.currentTimer);
+	var string = "<div class=\"mobile-buttons clearfix\"><a class=\"continue convert\" onclick=\""+nextStep+"\">Continue</a></div>";
 
-	var s = $j("#console");
-
-	var string = '<div class=\"mobile-buttons saving clearfix\">';
-	string += '<input id="email-to-save" type="email" name="email" value="Enter your email address…" onFocus="clearDefaultJ(this)" onBlur="restoreTextJ(this)"/><a id="submit_email" class="convert" onclick="handleEmailSubmit(); return false;">Save Progress</a>';
-	
-	string += "</div>";
-	
-	setTimeout(function(){performAppend(s,string)},2000);
-	setTimeout(function(){bindSaveHandler('email')},2200);
-
-	
-
-}
-
-function insertNameButton() {
-
-	var s = $j("#console");
-
-	var string = '<div class=\"mobile-buttons saving clearfix\">';
-	string += '<input id="name-to-save" type="text" name="firstname" value="e.g. Steve" onFocus="clearDefaultJ(this)" onBlur="restoreTextJ(this)"/><a id="submit_email" class="convert" onclick="handleNameSubmit(); return false;">Feed the Male™</a>';
-	
-	string += "</div>";
-	
-	setTimeout(function(){performAppend(s,string)},2000);
-	setTimeout(function(){bindSaveHandler('email')},2200);
-
-	
-
+	var s = $j('#male-welcome-msg').parent();
+	performAppend(s,string);
+	adjustHeight();
 }

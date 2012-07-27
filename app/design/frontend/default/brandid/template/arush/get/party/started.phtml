@@ -33,9 +33,9 @@
 					<div id="male-loader" class="male-loader">
 					</div>
 					
-					<img src="<?php echo $this->getSkinUrl('images/male/male-round.png'); ?>" alt="MALE" class="male-round ani" title="feed the male"/>
+					<img src="<?php echo $this->getSkinUrl('images/male/male-round.png'); ?>" alt="M.A.L.E." class="male-round ani" title="feed the male"/>
 					<div class="male-label-box">
-						<span id="male-label">MALE&trade;</span>
+						<span id="male-label">M.A.L.E.&trade;</span>
 					</div>
 				</div>
 				<div id="status">Establishing Connection</div>
@@ -54,7 +54,7 @@
 								1
 							</div>
 						</div>
-						<div class="progress-sub">Feed the MALE™</div>
+						<div class="progress-sub">Feed the M.A.L.E.™</div>
 					</div>
 				</div>
 				<div class="one-third column">
@@ -92,59 +92,53 @@
 	//global punter object
 	var punter = new Object();
 	createPunter();
-	function workImages(appendTo, mobile) {
+	function workImages(appendTo) {
 	
 		var delay = getDelayRequired();
 		// type has to go after, otherwise the delay counts only one or two chars
 		typeit();
 
 		var images = new Array();
-		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/work/1.jpg'); ?>", "work-image", "a. Smart", "workAa(true)");
-		images[1] = new Array("<?php echo $this->getSkinUrl('images/male/work/2.jpg'); ?>", "work-image", "b. Casual", "workAb(true)");
-		images[2] = new Array("<?php echo $this->getSkinUrl('images/male/work/3.jpg'); ?>", "work-image", "c. Laid Back", "workAc(true)");
-		images[3] = new Array("<?php echo $this->getSkinUrl('images/male/work/4.jpg'); ?>", "work-image", "d. Gorilla Suit", "workAd(true)");
+		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/work/1.jpg'); ?>", "work-image", "suit, maybe a tie", "workAa()");
+		images[1] = new Array("<?php echo $this->getSkinUrl('images/male/work/2.jpg'); ?>", "work-image", "shirt, jeans, shoes", "workAb()");
+		images[2] = new Array("<?php echo $this->getSkinUrl('images/male/work/3.jpg'); ?>", "work-image", "tee, jeans, sneakers", "workAc()");
+		images[3] = new Array("<?php echo $this->getSkinUrl('images/male/work/4.jpg'); ?>", "work-image", "au naturalle", "workAd()");
 
 		var imageString = printImage(images);
 		performAppend(appendTo, imageString);
-		if(mobile) {
+		
 			var buttons = new Array();
-			buttons[0] = new Array("convert","Smart", "workAa(true)");
-			buttons[1] = new Array("convert","Casual", "workAb(true)");
-			buttons[2] = new Array("convert","Laid Back", "workAc(true)");
-			buttons[3] = new Array("convert","Gorilla Suit", "workAd(true)");
+			buttons[0] = new Array("convert","Smart", "workAa()");
+			buttons[1] = new Array("convert","Casual", "workAb()");
+			buttons[2] = new Array("convert","Laid Back", "workAc()");
+			buttons[3] = new Array("convert","Gorilla Suit", "workAd()");
 			insertImageButtons(buttons,"work-image");
-		}
-		else {
-			workA();
-		}
+		
 	}
 
 
-	function playImages(appendTo, mobile) {
+	function playImages(appendTo) {
 	
 		var delay = getDelayRequired();
 		// type has to go after, otherwise the delay counts only one or two chars
 		typeit();
 
 		var images = new Array();
-		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/play/1.jpg'); ?>", "play-image", "a. Shirts", "playAa(true)");
-		images[1] = new Array("<?php echo $this->getSkinUrl('images/male/play/2.jpg'); ?>", "play-image", "b. Polos", "playAb(true)");
-		images[2] = new Array("<?php echo $this->getSkinUrl('images/male/play/3.jpg'); ?>", "play-image", "c. Tees", "playAc(true)");
-		images[3] = new Array("<?php echo $this->getSkinUrl('images/male/play/4.jpg'); ?>", "play-image", "d. Elvis Outfit", "playAd(true)");
+		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/play/1.jpg'); ?>", "play-image", "shirt, jeans", "playAa()");
+		images[1] = new Array("<?php echo $this->getSkinUrl('images/male/play/2.jpg'); ?>", "play-image", "polos", "playAb()");
+		images[2] = new Array("<?php echo $this->getSkinUrl('images/male/play/3.jpg'); ?>", "play-image", "tees", "playAc()");
+		images[3] = new Array("<?php echo $this->getSkinUrl('images/male/play/4.jpg'); ?>", "play-image", "elvis outfit", "playAd()");
 
 		var imageString = printImage(images);
 		performAppend(appendTo, imageString);
-		if(mobile) {
+
 			var buttons = new Array();
-			buttons[0] = new Array("convert","Suave", "playAa(true)");
-			buttons[1] = new Array("convert","Polos", "playAb(true)");
-			buttons[2] = new Array("convert","Tees", "playAc(true)");
-			buttons[3] = new Array("convert","Elvis Outfit", "playAd(true)");
+			buttons[0] = new Array("convert","Suave", "playAa()");
+			buttons[1] = new Array("convert","Clubhouse", "playAb()");
+			buttons[2] = new Array("convert","Whatever", "playAc()");
+			buttons[3] = new Array("convert","King", "playAd()");
 			insertImageButtons(buttons,"play-image");
-		}
-		else {
-			playA();
-		}
+		
 	}
 	
 	var attach;
@@ -169,7 +163,7 @@
 
 	function beckham() {
 		var images = new Array();
-		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/offside/beckham.jpeg'); ?>","offside-beckham", '"We should have gone to BRANDiD"');
+		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/offside/beckham.jpeg'); ?>","offside-beckham", '');
 
 		var imageString = printImage(images);
 		$j('#male-welcome-msg').append(imageString);
@@ -191,10 +185,10 @@
         }
         else {
 
-        	var q = 'What\'s happenin\' buddy! MALE™ here, what\'s your name? ';
+        	var q = 'Well hello there.\n\nM.A.L.E.™ here, what\'s your name? ';
         	newQ(q);
 
-			nameA();
+			insertNameButton();
         }
 
 	}

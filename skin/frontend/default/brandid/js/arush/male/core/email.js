@@ -13,37 +13,35 @@ function confirmationQ() {
 	typeit();
 
 	var buttons = new Array();
-	buttons[0] = new Array("convert secondary","Resend confirmation", "resendConfirmation(true)");
-	buttons[1] = new Array("convert","Continue", "workQ(true)");
+	buttons[0] = new Array("convert secondary","Resend confirmation", "resendConfirmation()");
+	
+	if(punter.gender === 'Female') {
+		buttons[1] = new Array("convert","Continue", "giftQ()");	
+	}
+	else {
+		buttons[1] = new Array("convert","Continue", "workQ()");	
+	}
+	
 	insertButtons(buttons);
-	confirmationA();
+	// confirmationA();
 	
 }
-function confirmationA() {
-	jqconsole.Prompt(true, function (input) {
-		var answer = $j.trim(input);
-		answer = answer.toLowerCase();
-		switch(answer) {
-			case 'a':
-				jqconsole.Write('', 'jqconsole-output green wordwrap');
-				typeit();
-				setTimeout('resendConfirmation(false);',1500+500);
-				break;
-			case 'b':
-				workQ(false);
-				break;
-			default:
-				jqconsole.Write('Are you having trouble with your keyboard?\nTry again: ', 'jqconsole-output red wordwrap');
-				typeit();
-				setTimeout('confirmationA();',1500); 
-				break;
-		}
 
-	});
+function insertEmailButton() {
+
+	var s = $j("#console");
+
+	var string = '<div class=\"mobile-buttons saving clearfix\">';
+	string += '<input id="email-to-save" type="email" name="email" value="Enter your email address…" onFocus="clearDefaultJ(this)" onBlur="restoreTextJ(this)"/><a id="submit_email" class="convert" onclick="handleEmailSubmit(); return false;">Save Progress</a>';
+	
+	string += "</div>";
+	
+	setTimeout(function(){performAppend(s,string)},2000);
 }
 
 
 function startEmail() {
+	saveProgress('email');
 	wipeConsole();
 	var q = 'Cool.\n\nLet\'s save your progress now so you don\'t have to go through this again.\nWhat\'s your email address: ';
 	newQ(q);
@@ -65,6 +63,6 @@ function handleEmailSubmit() {
 
 		emailToSave = $j('#email-to-save').val();
 	 	emailPrompt(emailToSave);
-		$j('.mobile-buttons.saving-email').remove();
+		$j('.mobile-buttons.saving').remove();
 	
 }
