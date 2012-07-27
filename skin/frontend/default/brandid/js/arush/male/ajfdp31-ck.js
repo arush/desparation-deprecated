@@ -70,12 +70,7 @@ function registerUser() {
         	$j(s).parent().addClass('green');
 			$j(s).text(retval.message);
 			
-			if(punter.gender === 'Female') {
-				setTimeout('giftQ();',1000);	
-			}
-			else {
-				setTimeout('workQ();',1000);	
-			}
+			window[punter.goAfterSave]();
 			
         }
         else {
@@ -105,8 +100,7 @@ function dropBackIn(mobile) {
 if(jqconsole.GetState() === 'prompt') {
 	 	jqconsole.AbortPrompt();
 	}
- var go = String(punter.progress);
- window[punter.progress](mobile);
+ window[punter.progress]();
 
 }
 
@@ -203,6 +197,13 @@ function startEmail() {
 function emailPrompt(emailEntered) {
 	punter.email = emailEntered;
 	saveProgress('registerUser');
+
+	if(punter.gender === 'Female') {
+		punter.goAfterSave = 'giftQ';
+	}
+	else {
+		punter.goAfterSave = 'workQ';
+	}
 	registerUser();
 }
 
@@ -232,6 +233,9 @@ function initiate() {
     	// jqconsole.Focus;
     	$j('pre').attr('disabled','true');
     	$j('pre').attr('readonly','readonly');
+    	/mobile/i.test(navigator.userAgent) && setTimeout(function () {
+		  window.scrollTo(0, 1);
+		}, 1000);
 }
 
 function stopKeyboard(e){
@@ -433,10 +437,11 @@ function insertButtons(buttons, target) {
 	adjustHeight();
 }
 
-function insertContinue(nextStep) {
-	// stop automatic continue from happening
-	clearTimeout(punter.currentTimer);
-	var string = "<div class=\"mobile-buttons clearfix\"><a class=\"continue convert\" onclick=\""+nextStep+"\">Continue</a></div>";
+function insertContinue(nextStep, buttonText) {
+	// default button text is 'continue'
+	buttonText = typeof buttonText !== 'undefined' ? buttonText : 'continue';
+
+	var string = "<div class=\"mobile-buttons clearfix\"><a class=\"continue convert\" onclick=\""+nextStep+"\">"+buttonText+"</a></div>";
 
 	var s = $j('#male-welcome-msg').parent();
 	performAppend(s,string);
@@ -538,6 +543,7 @@ function genderGuess(str) {
 		&& str != 'ayman'
 		&& str != 'sachin'
 		&& str != 'edwin'
+		&& str != 'justin'
 		&& str != 'nitin'
 		&& str != 'bryce' 
 		&& str != 'mike'
@@ -775,7 +781,7 @@ function workQ() {
 	wipeConsole();
 
 	saveProgress('workQ');
-	var q = 'I need to get to know you first before I can recommend a plan for you.\n\nWhat do you wear for work? '
+	var q = 'I need to get to know you first before I can recommend a plan for you.\n\nWhat do you wear for work most of the time? '
 	newQ(q);
 	typeit();
 
@@ -787,7 +793,7 @@ function workQ() {
 function workDone(q) {
 	newQ(q);
 	typeit();
-	setTimeout(function(){insertContinue('playQ()')},500);
+	insertContinue('playQ()');
 
 }
 
@@ -848,8 +854,7 @@ function playQ() {
 function playDone() {
 	newQ('Got it. ');
 	typeit();
-	setTimeout(function(){insertContinue('rollQ()')},500);
-
+	insertContinue('rollQ()');
 }
 
 function playAa() {
@@ -904,33 +909,31 @@ function playAd() {
   root.rollDone = function() {
     newQ("Got it. ");
     typeit();
-    return setTimeout((function() {
-      return insertContinue("rollQ()");
-    }), 500);
+    return insertContinue("emailPrompt(punter.email)", "save progress");
   };
 
   root.rollAa = function() {
-    punter.roll = "shirts";
+    punter.roll = "private jet";
     wipeConsole();
-    return rollDone;
+    return rollDone();
   };
 
   root.rollAb = function() {
-    punter.roll = "polos";
+    punter.roll = "business class";
     wipeConsole();
-    return rollDone;
+    return rollDone();
   };
 
   root.rollAc = function() {
-    punter.roll = "tees";
+    punter.roll = "economy";
     wipeConsole();
-    return rollDone;
+    return rollDone();
   };
 
   root.rollAd = function() {
-    punter.roll = "elvis";
+    punter.roll = "bus";
     wipeConsole();
-    return rollDone;
+    return rollDone();
   };
 
 }).call(this);
@@ -958,7 +961,7 @@ function playAd() {
     buttons = [giftBut1, giftBut2];
     return setTimeout((function() {
       return insertButtons(buttons, "#male-welcome-msg");
-    }), 1500);
+    }), 3500);
   };
 
   root.giftAa = function() {
@@ -967,8 +970,8 @@ function playAd() {
     newQ("I wish I had a fembot like you.\n\nThe link below will take you to the gift page. If you don't like what you see, just use your browser's back button to continue M.A.L.E.™ where you left off. ");
     typeit();
     return setTimeout((function() {
-      return insertContinue("window.location('/keep/calm/getgifted');");
-    }), 2000);
+      return insertContinue("window.location.href='/keep/calm/getgifted'", "Go to Gifts Page");
+    }), 3000);
   };
 
   root.giftAb = function() {

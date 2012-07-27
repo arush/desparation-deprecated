@@ -28,10 +28,11 @@ function insertButtons(buttons, target) {
 	adjustHeight();
 }
 
-function insertContinue(nextStep) {
-	// stop automatic continue from happening
-	clearTimeout(punter.currentTimer);
-	var string = "<div class=\"mobile-buttons clearfix\"><a class=\"continue convert\" onclick=\""+nextStep+"\">Continue</a></div>";
+function insertContinue(nextStep, buttonText) {
+	// default button text is 'continue'
+	buttonText = typeof buttonText !== 'undefined' ? buttonText : 'continue';
+
+	var string = "<div class=\"mobile-buttons clearfix\"><a class=\"continue convert\" onclick=\""+nextStep+"\">"+buttonText+"</a></div>";
 
 	var s = $j('#male-welcome-msg').parent();
 	performAppend(s,string);

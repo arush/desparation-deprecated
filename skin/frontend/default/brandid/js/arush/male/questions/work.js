@@ -2,7 +2,7 @@ function workQ() {
 	wipeConsole();
 
 	saveProgress('workQ');
-	var q = 'I need to get to know you first before I can recommend a plan for you.\n\nWhat do you wear for work? '
+	var q = 'I need to get to know you first before I can recommend a plan for you.\n\nWhat do you wear for work most of the time? '
 	newQ(q);
 	typeit();
 
@@ -14,7 +14,7 @@ function workQ() {
 function workDone(q) {
 	newQ(q);
 	typeit();
-	setTimeout(function(){insertContinue('playQ()')},500);
+	insertContinue('playQ()');
 
 }
 

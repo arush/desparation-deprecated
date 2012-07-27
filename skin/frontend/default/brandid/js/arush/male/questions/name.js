@@ -89,6 +89,7 @@ function genderGuess(str) {
 		&& str != 'ayman'
 		&& str != 'sachin'
 		&& str != 'edwin'
+		&& str != 'justin'
 		&& str != 'nitin'
 		&& str != 'bryce' 
 		&& str != 'mike'

@@ -53,6 +53,13 @@ function startEmail() {
 function emailPrompt(emailEntered) {
 	punter.email = emailEntered;
 	saveProgress('registerUser');
+
+	if(punter.gender === 'Female') {
+		punter.goAfterSave = 'giftQ';
+	}
+	else {
+		punter.goAfterSave = 'workQ';
+	}
 	registerUser();
 }
 

@@ -8,24 +8,24 @@ root.rollQ = ->
   s = $j("#male-welcome-msg")
   rollImages s
 root.rollDone = ->
-  newQ "Got it. "
+  newQ "All good. Let's save your progress again. "
   typeit()
   setTimeout (->
-    insertContinue "rollQ()"
-  ), 500
+    insertContinue "emailPrompt(punter.email)", "save progress"
+  ), 1500
 root.rollAa = ->
-  punter.roll = "shirts"
+  punter.roll = "private jet"
   wipeConsole()
-  rollDone
+  rollDone()
 root.rollAb = ->
-  punter.roll = "polos"
+  punter.roll = "business class"
   wipeConsole()
-  rollDone
+  rollDone()
 root.rollAc = ->
-  punter.roll = "tees"
+  punter.roll = "economy"
   wipeConsole()
-  rollDone
+  rollDone()
 root.rollAd = ->
-  punter.roll = "elvis"
+  punter.roll = "bus"
   wipeConsole()
-  rollDone
+  rollDone()

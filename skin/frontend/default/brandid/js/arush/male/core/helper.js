@@ -8,6 +8,9 @@ function initiate() {
     	// jqconsole.Focus;
     	$j('pre').attr('disabled','true');
     	$j('pre').attr('readonly','readonly');
+    	/mobile/i.test(navigator.userAgent) && setTimeout(function () {
+		  window.scrollTo(0, 1);
+		}, 1000);
 }
 
 function stopKeyboard(e){

@@ -19,8 +19,8 @@ root.giftAa = ->
   newQ "I wish I had a fembot like you.\n\nThe link below will take you to the gift page. If you don't like what you see, just use your browser's back button to continue M.A.L.E.™ where you left off. "
   typeit()
   setTimeout (->
-    insertContinue "window.location('/keep/calm/getgifted');"
-  ), 2000
+    insertContinue "window.location.href='/keep/calm/getgifted'", "Go to Gifts Page"
+  ), 3000
 root.giftAb = ->
   punter.gift = "impersonator"
   wipeConsole()

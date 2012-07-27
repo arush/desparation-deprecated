@@ -93,10 +93,6 @@
 	var punter = new Object();
 	createPunter();
 	function workImages(appendTo) {
-	
-		var delay = getDelayRequired();
-		// type has to go after, otherwise the delay counts only one or two chars
-		typeit();
 
 		var images = new Array();
 		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/work/1.jpg'); ?>", "work-image", "suit, maybe a tie", "workAa()");
@@ -118,10 +114,6 @@
 
 
 	function playImages(appendTo) {
-	
-		var delay = getDelayRequired();
-		// type has to go after, otherwise the delay counts only one or two chars
-		typeit();
 
 		var images = new Array();
 		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/play/1.jpg'); ?>", "play-image", "shirt, jeans", "playAa()");
@@ -138,6 +130,29 @@
 			buttons[2] = new Array("convert","Whatever", "playAc()");
 			buttons[3] = new Array("convert","King", "playAd()");
 			insertImageButtons(buttons,"play-image");
+	}
+
+	function rollImages(appendTo) {
+	
+		var delay = getDelayRequired();
+		// type has to go after, otherwise the delay counts only one or two chars
+		typeit();
+
+		var images = new Array();
+		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/roll/1.jpg'); ?>", "roll-image", "", "rollAa()");
+		images[1] = new Array("<?php echo $this->getSkinUrl('images/male/roll/2.jpg'); ?>", "roll-image", "", "rollAb()");
+		images[2] = new Array("<?php echo $this->getSkinUrl('images/male/roll/3.jpg'); ?>", "roll-image", "", "rollAc()");
+		images[3] = new Array("<?php echo $this->getSkinUrl('images/male/roll/4.jpg'); ?>", "roll-image", "", "rollAd()");
+
+		var imageString = printImage(images);
+		performAppend(appendTo, imageString);
+
+		var buttons = new Array();
+		buttons[0] = new Array("convert","Private Jet", "rollAa()");
+		buttons[1] = new Array("convert","Business Class", "rollAb()");
+		buttons[2] = new Array("convert","Economy", "rollAc()");
+		buttons[3] = new Array("convert","Bus", "rollAd()");
+		insertImageButtons(buttons,"roll-image");
 		
 	}
 	

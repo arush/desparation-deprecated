@@ -16,35 +16,35 @@
   };
 
   root.rollDone = function() {
-    newQ("Got it. ");
+    newQ("All good. Let's save your progress again. ");
     typeit();
     return setTimeout((function() {
-      return insertContinue("rollQ()");
-    }), 500);
+      return insertContinue("emailPrompt(punter.email)", "save progress");
+    }), 1500);
   };
 
   root.rollAa = function() {
-    punter.roll = "shirts";
+    punter.roll = "private jet";
     wipeConsole();
-    return rollDone;
+    return rollDone();
   };
 
   root.rollAb = function() {
-    punter.roll = "polos";
+    punter.roll = "business class";
     wipeConsole();
-    return rollDone;
+    return rollDone();
   };
 
   root.rollAc = function() {
-    punter.roll = "tees";
+    punter.roll = "economy";
     wipeConsole();
-    return rollDone;
+    return rollDone();
   };
 
   root.rollAd = function() {
-    punter.roll = "elvis";
+    punter.roll = "bus";
     wipeConsole();
-    return rollDone;
+    return rollDone();
   };
 
 }).call(this);

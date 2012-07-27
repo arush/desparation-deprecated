@@ -14,8 +14,7 @@ function playQ() {
 function playDone() {
 	newQ('Got it. ');
 	typeit();
-	setTimeout(function(){insertContinue('rollQ()')},500);
-
+	insertContinue('rollQ()');
 }
 
 function playAa() {

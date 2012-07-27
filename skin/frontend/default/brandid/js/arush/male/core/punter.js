@@ -47,12 +47,7 @@ function registerUser() {
         	$j(s).parent().addClass('green');
 			$j(s).text(retval.message);
 			
-			if(punter.gender === 'Female') {
-				setTimeout('giftQ();',1000);	
-			}
-			else {
-				setTimeout('workQ();',1000);	
-			}
+			window[punter.goAfterSave]();
 			
         }
         else {
@@ -82,8 +77,7 @@ function dropBackIn(mobile) {
 if(jqconsole.GetState() === 'prompt') {
 	 	jqconsole.AbortPrompt();
 	}
- var go = String(punter.progress);
- window[punter.progress](mobile);
+ window[punter.progress]();
 
 }
 
