@@ -20,6 +20,7 @@ function workDone(q) {
 
 function workAa() {
 	punter.work = 'suit';
+	punter.workShirts = true;
 
 	wipeConsole();
 	var q = 'Ladies love the suits.\n\n';
@@ -28,6 +29,7 @@ function workAa() {
 
 function workAb() {
 	punter.work = 'casual';
+	punter.workShirts = true;
 
 	wipeConsole();
 	var q = 'Nice. Suits are for losers anyway.\n\n';
@@ -37,6 +39,7 @@ function workAb() {
 
 function workAc() {
 	punter.work = 'laid back';
+	punter.workShirts = false;
 
 	wipeConsole();
 	var q = 'Nice. Real bosses wear jeans and tee to work.\n\n';
@@ -47,7 +50,8 @@ function workAc() {
 
 function workAd() {
 	punter.work = 'gorilla suit';
-
+	punter.workShirts = false;
+	
 	wipeConsole();
 	var q = 'It is hard for the ape to believe he descended from man.\n- H. L. Mencken, American Author\nMan Since 1880.\n\n';
 	
