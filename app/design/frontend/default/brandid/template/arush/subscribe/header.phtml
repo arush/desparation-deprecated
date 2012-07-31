@@ -1,10 +1,12 @@
 <?php
+	$referer = false;
 	$refererSet = false;
 	if(Mage::getSingleton('core/session')->getReferer()) {
 		$refererSet = true;
+		$referer = Mage::getSingleton('core/session')->getReferer();
 	}
 
-	if($refererSet) {
+	if(!$refererSet) {
 		//get the referrer
 		if (isset($_SERVER['HTTP_REFERER'])) {
 			$referer = $_SERVER['HTTP_REFERER'];
@@ -13,9 +15,6 @@
 		}
 		//save it in a session variable
 		Mage::getSingleton('core/session')->setReferer($referer); // store session data
-	}
-	else {
-		$referer = Mage::getSingleton('core/session')->getReferer();
 	}
 ?>
 
@@ -77,7 +76,7 @@
 					<div class="subscribe-form clearfix">
 					  	<form action="/subscribe/newbie" method="post">
 						  <input id="sub-email" type="email" name="email" value="Enter your email address…" onFocus="clearDefault(this)" onBlur="restoreText(this)"/>
-						  <input type="hidden" name="source" value="merrill lynch<?php // if(isset($referer)) { echo $referer; } ?>"/>
+						  <input type="hidden" name="source" value="<?php if(isset($referer)) { echo $referer; } ?>"/>
 						  <button id="subscribe_btn" class="convinced-label-button convert secondary" type="submit">Keep me in the loop!</button>
 						</form>
 						<div id="subscribe-response">

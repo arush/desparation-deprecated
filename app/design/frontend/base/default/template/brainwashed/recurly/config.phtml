@@ -6,31 +6,47 @@ $sku = Mage::helper('recurly')->getSku();
 $onceOff = $this->_isOnceOff();
 $signature = $onceOff ? Mage::helper('recurly')->signOneTimeTransaction($customerId)  : Mage::helper('recurly')->signSubscription($sku, $customerId);
 Mage::getSingleton('core/session')->setSignature($signature);
-var_dump($onceOff);
+
 ?>
 <script type="text/javascript">
 
 document.observe('dom:loaded', function(){
+	
+	preLoadRecurly();
+	
+});
 
+function preLoadRecurly() {
 	var shipField = document.getElementById("shipping:country_id");
 	var countryShip = shipField.options[shipField.selectedIndex].value;
-	var intlSku = "";		
+	
+
+	var recurlySubdomain = '<?php echo Mage::helper('recurly')->getSubdomain(); ?>';
+	var recurlyCurrency = '<?php echo Mage::helper('recurly')->getCurrency(); ?>';
+	var recurlyCountry = '<?php echo Mage::helper('recurly')->getCountry(); ?>';
+	var recurlySku = '<?php echo $sku; ?>';
+	var recurlyCustomer = '<?php echo $customerId; ?>';
+	var recurlyCallback = '<?php echo Mage::getUrl('', array('_secure' => true)) . 'recurly/callback/success/'; ?>';
+	var recurlyEmail =  '<?php echo $customerEmail; ?>';
+	var recurlySig = '<?php echo $signature; ?>';
+	var recurlyOnceoff = '<?php echo ($onceOff) ? 'once-off' : 'subscription'; ?>';
+
 	if(countryShip != 'GB') {
-		intlSku = "-intl";
+		recurlySku += "-intl";
 	}
 
 	loadRecurly(
-		'<?php echo Mage::helper('recurly')->getSubdomain(); ?>'
-		, '<?php echo Mage::helper('recurly')->getCurrency(); ?>'
-		, '<?php echo Mage::helper('recurly')->getCountry(); ?>'
-		, '<?php echo $sku; ?>' + intlSku
-		, '<?php echo $customerId; ?>'
-		, '<?php echo Mage::getUrl('', array('_secure' => true)) . 'recurly/callback/success/'; ?>'
-		, '<?php echo $customerEmail; ?>'
-		, '<?php echo $signature; ?>'
-		, '<?php echo ($onceOff) ? 'once-off' : 'subscription'; ?>'
+		recurlySubdomain
+		, recurlyCurrency
+		, recurlyCountry
+		, recurlySku
+		, recurlyCustomer
+		, recurlyCallback
+		, recurlyEmail
+		, recurlySig
+		, recurlyOnceoff
 	);
-});
+}
 </script>
 
 <script type="text/javascript">

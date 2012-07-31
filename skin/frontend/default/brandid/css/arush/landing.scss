@@ -1,13 +1,12 @@
 @import "compass/css3/opacity";
 @import "calendar.scss";
 
-@import "skeleton/base.scss";
-@import "skeleton/skeleton.scss";
-@import "skeleton/layout.scss";
-
 @import "jquery.reject.scss";
-@import "keep-calm110620120613.scss";
+@import "../keep-calm110620120613.scss";
 
+.quotes.container {
+  margin-top:40px;
+}
 
 body.cms-index-index
 {

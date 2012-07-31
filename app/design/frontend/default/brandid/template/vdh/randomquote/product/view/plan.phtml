@@ -141,7 +141,7 @@ if ($products->count() > 0){
 			$containsGod = strpos($_productName, $god);
 			$containsBoss = strpos($_productName, $boss);
 
-			if($containsGod !== false || $containsBoss !== false) {
+			if($containsBoss !== false) {
 			?>
 				<div id="t-shirts_style-text" style="float:none;" class="product-detail-checkbox nobg">T-Shirt style: <span>choose</span></div>
 				<div class="style-chooser clearfix">
@@ -267,7 +267,6 @@ if ($upsells->count() > 0):
 
 		if($containsGod !== false) {
 		?>
-			correctNames('t-shirt');
 			correctNames('shirt');
 		<?php }
 		

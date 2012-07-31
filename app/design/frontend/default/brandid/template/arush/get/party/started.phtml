@@ -1,11 +1,12 @@
-
 <?php
+	$referer = false;
 	$refererSet = false;
 	if(Mage::getSingleton('core/session')->getReferer()) {
 		$refererSet = true;
+		$referer = Mage::getSingleton('core/session')->getReferer();
 	}
 
-	if($refererSet) {
+	if(!$refererSet) {
 		//get the referrer
 		if (isset($_SERVER['HTTP_REFERER'])) {
 			$referer = $_SERVER['HTTP_REFERER'];
@@ -15,29 +16,24 @@
 		//save it in a session variable
 		Mage::getSingleton('core/session')->setReferer($referer); // store session data
 	}
-	else {
-		$referer = Mage::getSingleton('core/session')->getReferer();
-	}
 ?>
+
 <div id="male-status">
 	<div id="male-header" class="male-header">
-		<div class="container">
-			<div class="one-third column">
-				<a id="logo" href="/" class="logo-button">
+		<div class="container app">
+			<div class="logo-container">
+				<a id="logo" href="/" class="header-logo">
 					<img class="gift-logo scale-with-grid" alt="BRANDiD logo" src="<?php echo $this->getSkinUrl('images/logo-beta.png')?>" title="BRANDiD Logo"/>
 				</a>
-				<div class="title-skip mobile">
-					<a class="skip-this" href="#">Skip this</a>
-				</div>
 			</div>
-			<div class="one-third column male-round">
+			<div class="male-round">
 				<div class="male-holder">
 					<div id="male-colour" class="male-loading">
 					</div>
 					<div id="male-loader" class="male-loader">
 					</div>
 					
-					<img src="<?php echo $this->getSkinUrl('images/male/male-round.png'); ?>" alt="MALE" class="male-round ani" title="feed the male"/>
+					<img src="<?php echo $this->getSkinUrl('images/male/male-round.png'); ?>" alt="M.A.L.E." class="male-round ani" title="feed the male"/>
 					<div class="male-label-box">
 						<span id="male-label">MALE&trade;</span>
 					</div>
@@ -45,124 +41,175 @@
 				<div id="status">Establishing Connection</div>
 
 			</div>
-			<div class="one-third column">
-				<div class="title-skip">
-					<!-- <div class="male-title">
-						Feed the Male&trade;
-					</div> -->
-					<a class="skip-this" href="#">Skip this</a>
+		</div>
+	</div>
+	<div class="container app">
+		<div class="view">
+			<div class="progress-bar">
+				<div class="progress-item first">
+					<div class="circles active">
+						<div class="circle-back back">
+						</div>
+						<div class="circle-back">
+						</div>
+						<div class="circle">
+							<div class="circle-text">
+								1
+							</div>
+						</div>
+					</div>
+					<div class="progress-sub">Feed the M.A.L.E.™</div>
+					
 				</div>
+				<div class="progress-item">
+					<div class="circles">
+						<div class="circle-back">
+						</div>
+						<div class="circle">
+							<div class="circle-text">
+								2
+							</div>
+						</div>
+					</div>
+					<div class="progress-sub">Confirm Plan</div>
+				</div>
+				<div class="progress-item">
+					<div class="circles">
+						<div class="circle-back">
+						</div>
+						<div class="circle">
+							<div class="circle-text">
+								3
+							</div>
+						</div>
+					</div>
+					<div class="progress-sub">Checkout</div>
+				</div>
+			</div>
+
+			<div class="male-console">
+					<div id="console"></div>
 			</div>
 		</div>
 	</div>
-	<div class="container">
-<!-- 		<div class="ten columns offset-by-three">
- -->			<div id="console"></div>
-<!-- 		</div>
- -->	</div>
 </div>
 <script type="text/javascript">
 	var $j = jQuery.noConflict();
-	
+	//global punter object
+	var punter = new Object();
 	createPunter();
-	
-	function workImages(appendTo, mobile) {
-	
-		var delay = getDelayRequired();
-		// type has to go after, otherwise the delay counts only one or two chars
-		typeit();
+	function workImages(appendTo) {
 
 		var images = new Array();
-		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/work/1.jpg'); ?>", "work-image", "a. Smart");
-		images[1] = new Array("<?php echo $this->getSkinUrl('images/male/work/2.jpg'); ?>", "work-image", "b. Casual");
-		images[2] = new Array("<?php echo $this->getSkinUrl('images/male/work/3.jpg'); ?>", "work-image", "c. Laid Back");
-		images[3] = new Array("<?php echo $this->getSkinUrl('images/male/work/4.jpg'); ?>", "work-image", "d. Gorilla Suit");
+		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/work/1.jpg'); ?>", "work-image", "suit, maybe a tie", "workAa()");
+		images[1] = new Array("<?php echo $this->getSkinUrl('images/male/work/2.jpg'); ?>", "work-image", "shirt, jeans, shoes", "workAb()");
+		images[2] = new Array("<?php echo $this->getSkinUrl('images/male/work/3.jpg'); ?>", "work-image", "tee, jeans, sneakers", "workAc()");
+		images[3] = new Array("<?php echo $this->getSkinUrl('images/male/work/4.jpg'); ?>", "work-image", "au naturalle", "workAd()");
 
 		var imageString = printImage(images);
-		performAppend(appendTo, delay, imageString);
-		if(mobile) {
-			var buttons = new Array();
-			buttons[0] = new Array("convert","Smart", "workAa(true)");
-			buttons[1] = new Array("convert","Casual", "workAb(true)");
-			buttons[2] = new Array("convert","Laid Back", "workAc(true)");
-			buttons[3] = new Array("convert","Gorilla Suit", "workAd(true)");
-			insertImageButtons(buttons,"work-image");
-		}
-		else {
-			workA();
-		}
-	}
-
-	function playImages(appendTo, mobile) {
-	
-		var delay = getDelayRequired();
-		// type has to go after, otherwise the delay counts only one or two chars
-		typeit();
-
-		var images = new Array();
-		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/play/1.jpg'); ?>", "play-image", "a. Shirts");
-		images[1] = new Array("<?php echo $this->getSkinUrl('images/male/play/2.jpg'); ?>", "play-image", "b. Polos");
-		images[2] = new Array("<?php echo $this->getSkinUrl('images/male/play/3.jpg'); ?>", "play-image", "c. Tees");
-		images[3] = new Array("<?php echo $this->getSkinUrl('images/male/play/4.jpg'); ?>", "play-image", "d. Elvis Outfit");
-
-		var imageString = printImage(images);
-		performAppend(appendTo, delay, imageString);
-		if(mobile) {
-			var buttons = new Array();
-			buttons[0] = new Array("convert","Suave", "playAa(true)");
-			buttons[1] = new Array("convert","Polos", "playAb(true)");
-			buttons[2] = new Array("convert","Tees", "playAc(true)");
-			buttons[3] = new Array("convert","Elvis Outfit", "playAd(true)");
-			insertImageButtons(buttons,"play-image");
-		}
-		else {
-			playA();
-		}
-	}
-
-	function offside() {
+		performAppend(appendTo, imageString);
 		
-	    // fade
-		if($j('.console-fade').length == 0) { $j('#console').prepend('<div class="console-fade"></div>'); };
+			var buttons = new Array();
+			buttons[0] = new Array("convert","Smart", "workAa()");
+			buttons[1] = new Array("convert","Casual", "workAb()");
+			buttons[2] = new Array("convert","Laid Back", "workAc()");
+			buttons[3] = new Array("convert","Gorilla Suit", "workAd()");
+			insertImageButtons(buttons,"work-image");
+		
+	}
 
-		var s = getLatestSpan();
 
+	function playImages(appendTo) {
+
+		var images = new Array();
+		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/play/1.jpg'); ?>", "play-image", "shirt, jeans", "playAa()");
+		images[1] = new Array("<?php echo $this->getSkinUrl('images/male/play/2.jpg'); ?>", "play-image", "polos", "playAb()");
+		images[2] = new Array("<?php echo $this->getSkinUrl('images/male/play/3.jpg'); ?>", "play-image", "tees", "playAc()");
+		images[3] = new Array("<?php echo $this->getSkinUrl('images/male/play/4.jpg'); ?>", "play-image", "elvis outfit", "playAd()");
+
+		var imageString = printImage(images);
+		performAppend(appendTo, imageString);
+
+			var buttons = new Array();
+			buttons[0] = new Array("convert","Suave", "playAa()");
+			buttons[1] = new Array("convert","Clubhouse", "playAb()");
+			buttons[2] = new Array("convert","Whatever", "playAc()");
+			buttons[3] = new Array("convert","King", "playAd()");
+			insertImageButtons(buttons,"play-image");
+	}
+
+	function rollImages(appendTo) {
+	
 		var delay = getDelayRequired();
-
+		// type has to go after, otherwise the delay counts only one or two chars
 		typeit();
 
 		var images = new Array();
-		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/offside.jpg'); ?>","offside", "Which player is offside?");
+		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/roll/1.jpg'); ?>", "roll-image", "", "rollAa()");
+		images[1] = new Array("<?php echo $this->getSkinUrl('images/male/roll/2.jpg'); ?>", "roll-image", "", "rollAb()");
+		images[2] = new Array("<?php echo $this->getSkinUrl('images/male/roll/3.jpg'); ?>", "roll-image", "", "rollAc()");
+		images[3] = new Array("<?php echo $this->getSkinUrl('images/male/roll/4.jpg'); ?>", "roll-image", "", "rollAd()");
 
 		var imageString = printImage(images);
-		performAppend(s, delay, imageString);
-		setTimeout('offsideQ()',delay);
+		performAppend(appendTo, imageString);
+
+		var buttons = new Array();
+		buttons[0] = new Array("convert","Private Jet", "rollAa()");
+		buttons[1] = new Array("convert","Business Class", "rollAb()");
+		buttons[2] = new Array("convert","Economy", "rollAc()");
+		buttons[3] = new Array("convert","Bus", "rollAd()");
+		insertImageButtons(buttons,"roll-image");
+		
 	}
-	function initiate() {
-		//give the header an id, this saves complications down the line
-        $j('.jqconsole-header span').attr('id','male-welcome-msg');
-        $j('#male-welcome-msg').typewriter();
-        $j('#male-welcome-msg').css('color', '#444');
-    	window.scrollTo(0,0);
-    	jqconsole.Focus;
+	
+	var attach;
+	attach = function() {
+
+		
+		var imageUrl = '<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('offside_pic')->toHtml(); ?>';
+			//must be format <p><img src="..." /></p>
+
+		var imageUrl = imageUrl.split('\"');
+
+		var images = new Array();
+		images[0] = new Array(imageUrl[1],"offside", "Which player is offside?");
+
+		var imageString = printImage(images);
+		$j('#male-welcome-msg').append(imageString);
+
+		//make question text appear
+		var s = getLatestSpan();
+		$j(s).css('color','#444');
 	}
-	function startConsole() {
+
+	function beckham() {
+		var images = new Array();
+		images[0] = new Array("<?php echo $this->getSkinUrl('images/male/offside/beckham.jpeg'); ?>","offside-beckham", '');
+
+		var imageString = printImage(images);
+		$j('#male-welcome-msg').append(imageString);
+		adjustHeight('beckham');
+	}
+
+
+	function startMale() {
 
 		if(punter.fname != undefined) {
 	        var backMessage = new Array(", I thought you were gone forever! ", ", missing me already, eh? ", ", I knew you\'d be back. I could feel it. ");
 	        var i = Math.floor(Math.random()*3);
-        	jqconsole = $j('#console').jqconsole('Hey '+punter.fname+backMessage[i], ' >>> ');
+        	
+        	var q = 'Hey '+punter.fname+backMessage[i];
+        	newQ(q);
         	
         	setTimeout('returningVisitor();',1500);
         	initiate();
         }
         else {
-        	jqconsole = $j('#console').jqconsole('Greetings earthling. MALE™ here, what\'s your name? ', ' >>> ');	
-	        $j('#male-welcome-msg').typewriter();
-	        $j('#male-welcome-msg').css('color', '#444');
-			startPrompt();
-			initiate();
 
+        	var q = 'Well hello there.\n\nM.A.L.E.™ here, what\'s your name? ';
+        	newQ(q);
+
+			insertNameButton();
         }
 
 	}
@@ -184,12 +231,12 @@
 			jQuery('#male-colour').removeClass('male-loading');
 			jQuery('#male-colour').addClass('male-back');
 			jQuery('#status').text('');
-			setTimeout("startConsole()", 300);
+			setTimeout("startMale()", 300);
 		}
 
 	jQuery(document).ready(function() {
 		window.scrollTo(0,0);
-		setTimeout("loaded()", 3000);
+		setTimeout("loaded()", 1000);
 	});
 
 </script>

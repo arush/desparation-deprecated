@@ -3,9 +3,9 @@
 @import "magento/footer";
 @import "buttons.scss";
 @import "arush/landing/gifted.scss";
-@import "skeleton/base.css";
-@import "skeleton/skeleton.css";
-@import "skeleton/layout.css";
+@import "skeleton/base.scss";
+@import "skeleton/skeleton.scss";
+@import "skeleton/layout.scss";
 
 /* brandid.css */
 
@@ -483,6 +483,9 @@ span.quote.right {
 	float:left;
 	margin-right:73px;
 }
+
+
+img.gift-logo {background:none;}
 
 .up-down-controller {
 	position:absolute;
