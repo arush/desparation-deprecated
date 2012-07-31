@@ -24,7 +24,7 @@ root.giftAa = ->
 root.giftAb = ->
   punter.gift = "impersonator"
   wipeConsole()
-  newQ "I know, I know, your man is too lazy to do this himself. What would he do without you.\n\nLet's continue the questions pretending you're him... "
+  newQ "You're amazing. What would he do without you?\n\nLet's continue the questions pretending you're him... "
   typeit()
   setTimeout (->
   	insertContinue "workQ()"

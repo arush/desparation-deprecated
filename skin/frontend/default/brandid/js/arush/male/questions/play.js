@@ -19,6 +19,7 @@ function playDone() {
 
 function playAa() {
 	punter.play = 'shirts';
+	punter.playShirts = true;
 
 	wipeConsole();
 	playDone();
@@ -26,6 +27,8 @@ function playAa() {
 
 function playAb() {
 	punter.play = 'polos';
+	punter.playShirts = false;
+	punter.playTees = "polos";
 
 	wipeConsole();
 	playDone();
@@ -33,6 +36,8 @@ function playAb() {
 
 function playAc() {
 	punter.play = 'tees';
+	punter.playShirts = false;
+	punter.playTees = "tees";
 
 	wipeConsole();
 	playDone();
@@ -40,6 +45,8 @@ function playAc() {
 	
 function playAd() {
 	punter.play = 'elvis';
+	punter.playShirts = false;
+	punter.playTees = "elvis";
 
 	wipeConsole();	
 	playDone();

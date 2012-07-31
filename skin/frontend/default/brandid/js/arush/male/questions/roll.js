@@ -18,9 +18,7 @@
   root.rollDone = function() {
     newQ("All good. Let's save your progress again. ");
     typeit();
-    return setTimeout((function() {
-      return insertContinue("emailPrompt(punter.email)", "save progress");
-    }), 1500);
+    return insertContinue("shirtsQ()", "continue");
   };
 
   root.rollAa = function() {

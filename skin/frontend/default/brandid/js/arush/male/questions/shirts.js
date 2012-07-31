@@ -16,7 +16,7 @@
         } else {
           q += ".";
         }
-      } else if (punter.playshirts) {
+      } else if (punter.playShirts) {
         q = "So you wear shirts for play.";
       }
       q += "\n\nWhat kind of shirts do you wear? ";

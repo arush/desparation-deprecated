@@ -10,9 +10,7 @@ root.rollQ = ->
 root.rollDone = ->
   newQ "All good. Let's save your progress again. "
   typeit()
-  setTimeout (->
-    insertContinue "emailPrompt(punter.email)", "save progress"
-  ), 1500
+  insertContinue "shirtsQ()", "continue"
 root.rollAa = ->
   punter.roll = "private jet"
   wipeConsole()
