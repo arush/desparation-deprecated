@@ -24,7 +24,7 @@ var nameA = function (input) {
 	        offside(punter.fname);
 	    }
 	    else {
-	    	jqconsole.Write(name + '? Really? That\'s what mamma named you, huh?\n\nTry again smarty pants: ', 'jqconsole-output red wordwrap');
+	    	jqconsole.Write(name + '? Really? That\'s what mamma named you, huh?\n\nTry again buddy: ', 'jqconsole-output red wordwrap');
 	            typeit();
 	            insertNameButton();
 	    }

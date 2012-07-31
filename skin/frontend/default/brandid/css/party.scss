@@ -5,6 +5,7 @@
 @import "skeleton/layout.scss";
 @import "compass/css3/opacity";
 
+$borderColour: #ddd;
 
 @mixin circle($radius: 10px,$color: #000) {
   	width: $radius;
@@ -30,7 +31,10 @@ body {background-color:#FFF;}
 }
 .male-console {
 	height:auto;
+	float:left;
+	width:84.5%;
 }
+
 /* console */
 #console {
       position: relative;
@@ -233,13 +237,22 @@ body {background-color:#FFF;}
 
 /* end custom skinning */
 
+
+/* header */
+
 #fb-root {display:none;}
+
+.male-header .container.app {
+	height:45px;
+}
 .gift-logo {
-	width:175px;
-	height:59px;
-	float:left;
-	margin:0;
+	width:115px;
+	margin:0 auto;
 	@include opacity(0);
+}
+.logo-container {
+	margin:0 auto;
+	text-align:center;
 }
 .online .gift-logo, .online .title-skip {
 	@include opacity(1);
@@ -255,51 +268,74 @@ body {background-color:#FFF;}
 	background: white;
 	width:100%;
 	z-index: 50;
-	border-top: 10px solid black;
-	padding: 10px 0 0 0;
+	border-bottom:1px solid $borderColour;
+	padding: 8px 0 0 0;
 	behavior: url('PIE.htc');
-	height:71px;
+	height:45px;
 }
-.male-header.flyup {
-	height:71px;
 
-	-webkit-transition: all 1s ease-in-out;
-	   -moz-transition: all 1s ease-in-out;
-	     -o-transition: all 1s ease-in-out;
-	    -ms-transition: all 1s ease-in-out;
-	        transition: all 1s ease-in-out;
+.view {
+	float:left;
+	width:100%;
 }
 .progress-bar {
-	width:100%;
-	background:black;
+	width:15%;
+	background:#FFFFFF;
 	display:none;
+	float:left;
+	height:100%;
+	border-right:1px solid $borderColour;
 }
 .progress-sub {
-	line-height:40px;
-	color:#fff;
-	padding:0 0 0 60px;
+	line-height:120px;
+	color:#adadad;
+	padding:0;
 	font-weight:bold;
 	text-transform:uppercase;
+	font-size:10px;
+	clear:both;
 }
-.progress-bar .progress-content {
-	padding:20px;
-	height:40px;
+.progress-item {
+	width:100%;
+	text-align:center;
+	clear:both;
 }
+.progress-item.first {
+	margin:29px 0 0 0;
+}
+.circles {
+	margin:0 auto;
+	width:46px;
+}
+
 .progress-bar .circle-back {
 	@include circle(46px, #000);
-	margin:-3px 0 0 -3px;
 	position:absolute;
-	z-index:0;
+	z-index:1;
 }
 
 .progress-bar .active .circle-back {
 	@include circle(46px, #FFF);
+	margin: 2px 0 0 2px;
 }
+
+.progress-bar .active .circle-back.back {
+	@include circle(50px, #d2002b);
+	z-index:0;
+	margin: 0;
+}
+
 
 .progress-bar .circle {
 	@include circle(40px, #000);
 	position:absolute;
-	z-index: 1;
+	margin: 3px 0 0 3px;
+	z-index: 2;
+
+}
+.progress-bar .active .circle {
+	margin: 5px 0 0 5px;
+
 }
 
 .progress-bar .active .circle {
@@ -465,8 +501,8 @@ img.male-round, .male-back, .male-loading, .male-label-box, .male-loader {
 	width:100%;
 	margin:20px 0 0 0;
 }
-.img-container.work-image, .img-container.play-image {
-	width:22.5%;
+.img-container.work-image, .img-container.play-image, .img-container.roll-image {
+	width:47%;
 	text-align: center;
 
 }
@@ -503,99 +539,6 @@ img.male-round, .male-back, .male-loading, .male-label-box, .male-loader {
 	-moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
 
 }
-
-@-webkit-keyframes male-online {
-	
-	-webkit-transform: translateZ(0);
-	0% {
-		opacity: 0;
-		-webkit-transform: translateY(200px);
-	}
-	60% {
-		opacity: 1;
-		-webkit-transform: translateY(-100px);
-	}
-	80% {
-		-webkit-transform: translateY(50px);
-	}
-	100% {
-		-webkit-transform: translateY(-10px);
-	}
-}
-@-moz-keyframes male-online {
-	0% {
-		opacity: 0;
-		-moz-transform: translateY(200px);
-	}
-	60% {
-		opacity: 1;
-		-moz-transform: translateY(-100px);
-	}
-	80% {
-		-moz-transform: translateY(50px);
-	}
-	100% {
-		-moz-transform: translateY(-10px);
-	}
-}
-@-ms-keyframes male-online {
-	0% {
-		opacity: 0;
-		-ms-transform: translateY(200px);
-	}
-	60% {
-		opacity: 1;
-		-ms-transform: translateY(-100px);
-	}
-	80% {
-		-ms-transform: translateY(50px);
-	}
-	100% {
-		-ms-transform: translateY(-10px);
-	}
-}
-@-o-keyframes male-online {
-	0% {
-		opacity: 0;
-		-o-transform: translateY(200px);
-	}
-	60% {
-		opacity: 1;
-		-o-transform: translateY(-100px);
-	}
-	80% {
-		-o-transform: translateY(50px);
-	}
-	100% {
-		-o-transform: translateY(-10px);
-	}
-}
-@keyframes male-online {
-	0% {
-		opacity: 0;
-		-moz-transform: translateY(200px);
-	}
-	60% {
-		opacity: 1;
-		-moz-transform: translateY(-100px);
-	}
-	80% {
-		-moz-transform: translateY(50px);
-	}
-	100% {
-		-moz-transform: translateY(-10px);
-	}
-}
-
-
-.male-online {
-	-webkit-animation-name: male-online;
-	-moz-animation-name: male-online;
-	-ms-animation-name: male-online;
-	-o-animation-name: male-online;
-	animation-name: male-online;
-}
-
 
 .male-title {text-align:right;}
 
@@ -647,17 +590,26 @@ img.male-round, .male-back, .male-loading, .male-label-box, .male-loader {
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio:2) {
-	.gift-logo { background-image:url('../images/logo-2x.png'); background-size:154px 58px; }
+	
 	.male-loader {background-image:url('../images/male/male-loader-2x.gif'); background-size:115px 115px; }
 	.online .male-loader {background-image:url('../images/male/loaded-spokes-2x.png'); background-size:115px 115px; }
 }
 
+
+/* iPads (landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+/* Styles */
+	.male-console {width: 80%;}
+	.progress-bar {width:19%;}
+	.container.app {width: 1024px;}
+}
+
 /* Smaller than standard 960 (devices and browsers) */
 @media only screen and (max-width: 959px) {
-	.male-header.flyup {
-		height: auto;
-		min-height: 71px;
-	}
+
 	.mobile-buttons {display:block;}
 	.offside img, .offside-beckham img {
 		margin-left: 0;
@@ -668,12 +620,21 @@ img.male-round, .male-back, .male-loading, .male-label-box, .male-loader {
 	}
 	.skip-this {float:none;margin:0 auto;}
 	.male-title {text-align: center;}
+	.container.app {width:100%;}
+	.male-console {width:84%;}
 }
+
+
+/* small screens */
+@media only screen and (max-width: 959px) and (min-width: 768px) {
+	.male-console {width: 80%;}
+	.progress-bar {width:19%;}
+}
+
 
 /* All Mobile Sizes (devices and browser) */
 @media only screen and (max-width: 767px) {
-	#logo {float:left;}
-	.gift-logo {float:none;margin: 0 auto;}
+	
 	.title-skip {display:none;}
 	.title-skip.mobile {display:block;}
 	.title-skip.mobile .skip-this {float:right;margin-top:5px;}
@@ -681,12 +642,30 @@ img.male-round, .male-back, .male-loading, .male-label-box, .male-loader {
 		width:100%;max-width:100%;margin: 20px 0;
 	}
 	.mobile-buttons.saving input {font-size: 16px; }
+	.male-console { width: 79.5%;}
+	.progress-bar {width:20%;}
 }
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) {
-
 	#logo {width:48%;}
 	.title-skip.mobile .skip-this {width: 38%;	margin: 0 0 0 12%;}
 	.mobile-buttons.saving input {font-size: 14px; width:96%;margin-bottom:10px;}
 	.mobile-buttons.saving a {width:100%;float:left;}
+	
+
+	.progress-bar {margin-left:-20%}
+	.male-console {width: 99.5%;}
 }
+
+/* Smartphones (landscape) ----------- */
+@media only screen 
+and (min-width : 321px) {
+/* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen 
+and (max-width : 320px) {
+/* Styles */
+}
+

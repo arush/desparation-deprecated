@@ -20,13 +20,13 @@
 
 <div id="male-status">
 	<div id="male-header" class="male-header">
-		<div class="container">
-			<div class="one-third column">
-				<a id="logo" href="/" class="logo-button">
+		<div class="container app">
+			<div class="logo-container">
+				<a id="logo" href="/" class="header-logo">
 					<img class="gift-logo scale-with-grid" alt="BRANDiD logo" src="<?php echo $this->getSkinUrl('images/logo-beta.png')?>" title="BRANDiD Logo"/>
 				</a>
 			</div>
-			<div class="one-third column male-round">
+			<div class="male-round">
 				<div class="male-holder">
 					<div id="male-colour" class="male-loading">
 					</div>
@@ -35,7 +35,7 @@
 					
 					<img src="<?php echo $this->getSkinUrl('images/male/male-round.png'); ?>" alt="M.A.L.E." class="male-round ani" title="feed the male"/>
 					<div class="male-label-box">
-						<span id="male-label">M.A.L.E.&trade;</span>
+						<span id="male-label">MALE&trade;</span>
 					</div>
 				</div>
 				<div id="status">Establishing Connection</div>
@@ -43,10 +43,13 @@
 			</div>
 		</div>
 	</div>
-	<div class="progress-bar">
-		<div class="container">
-				<div class="one-third column">
-					<div class="progress-content active">
+	<div class="container app">
+		<div class="view">
+			<div class="progress-bar">
+				<div class="progress-item first">
+					<div class="circles active">
+						<div class="circle-back back">
+						</div>
 						<div class="circle-back">
 						</div>
 						<div class="circle">
@@ -54,11 +57,12 @@
 								1
 							</div>
 						</div>
-						<div class="progress-sub">Feed the M.A.L.E.™</div>
 					</div>
+					<div class="progress-sub">Feed the M.A.L.E.™</div>
+					
 				</div>
-				<div class="one-third column">
-					<div class="progress-content">
+				<div class="progress-item">
+					<div class="circles">
 						<div class="circle-back">
 						</div>
 						<div class="circle">
@@ -66,11 +70,11 @@
 								2
 							</div>
 						</div>
-						<div class="progress-sub">Confirm Plan</div>
 					</div>
+					<div class="progress-sub">Confirm Plan</div>
 				</div>
-				<div class="one-third column">
-					<div class="progress-content">
+				<div class="progress-item">
+					<div class="circles">
 						<div class="circle-back">
 						</div>
 						<div class="circle">
@@ -78,13 +82,15 @@
 								3
 							</div>
 						</div>
-						<div class="progress-sub">Checkout</div>
 					</div>
+					<div class="progress-sub">Checkout</div>
 				</div>
+			</div>
+
+			<div class="male-console">
+					<div id="console"></div>
+			</div>
 		</div>
-	</div>
-	<div class="male-console container">
-			<div id="console"></div>
 	</div>
 </div>
 <script type="text/javascript">
@@ -230,7 +236,7 @@
 
 	jQuery(document).ready(function() {
 		window.scrollTo(0,0);
-		setTimeout("loaded()", 3000);
+		setTimeout("loaded()", 1000);
 	});
 
 </script>
