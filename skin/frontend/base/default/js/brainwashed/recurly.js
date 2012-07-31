@@ -2,14 +2,16 @@ jQuery.noConflict();
 
 
 function loadRecurly(recurlySubdomain, mageCurrency, mageCountry, sku, customerId, callBack, customerEmail, recurlySignature, transactionType) {
-	$('co-payment-form').on('change', 'input[type="radio"][payment\[method\]]', function(e){
-		loadRecurly(recurlySubdomain, mageCurrency, mageCountry, sku, customerId, callBack, customerEmail, recurlySignature, transactionType);
-	});
+	// $('co-payment-form').on('change', 'input[type="radio"][payment\[method\]]', function(e){
+	// 	preLoadRecurly();
+	// 	//loadRecurly(recurlySubdomain, mageCurrency, mageCountry, sku, customerId, callBack, customerEmail, recurlySignature, transactionType);
+	// });
 	
 	Ajax.Responders.register({
 		onComplete: function(request) {
 			if (request.url.indexOf('checkout/onepage/progress') >= 0) {
-				loadRecurly(recurlySubdomain, mageCurrency, mageCountry, sku, customerId, callBack, customerEmail, recurlySignature, transactionType);			
+				preLoadRecurly();
+				//loadRecurly(recurlySubdomain, mageCurrency, mageCountry, sku, customerId, callBack, customerEmail, recurlySignature, transactionType);			
 			}
 		}
 	});

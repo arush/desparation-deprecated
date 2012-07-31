@@ -14,12 +14,6 @@ document.observe('dom:loaded', function(){
 	
 	preLoadRecurly();
 	
-	var $j = jQuery.noConflict();
-
-	$j('#shipping:country_id').change(function() {
-	  preLoadRecurly();
-	});
-	
 });
 
 function preLoadRecurly() {
