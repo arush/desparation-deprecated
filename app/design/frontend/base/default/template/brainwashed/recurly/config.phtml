@@ -11,8 +11,15 @@ Mage::getSingleton('core/session')->setSignature($signature);
 <script type="text/javascript">
 
 document.observe('dom:loaded', function(){
-
+	
 	preLoadRecurly();
+	
+	var $j = jQuery.noConflict();
+
+	$j('#shipping:country_id').change(function() {
+	  preLoadRecurly();
+	});
+	
 });
 
 function preLoadRecurly() {
