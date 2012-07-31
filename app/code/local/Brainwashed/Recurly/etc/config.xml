@@ -23,36 +23,30 @@
         </helpers>
         
     	<events>
-<!--
-            <controller_action_predispatch_checkout_cart_add>
+
+			<!-- ARUSH - this actually triggers before the item is added to the cart, so we use it to clear the cart -->
+            <checkout_cart_product_add_after>
                 <observers>
                     <recurly>
                         <type>singleton</type>
                         <class>Brainwashed_Recurly_Model_Product_Observer</class>
-                        <method>clearCart</method>
-                    </recurly>
-                </observers>                    
-            </controller_action_predispatch_checkout_cart_add>
--->
-			<checkout_cart_add_product_complete>
-                <observers>
-                    <recurly>
-                        <type>singleton</type>
-                        <class>Brainwashed_Recurly_Model_Product_Observer</class>
-                        <method>redirectToCheckout</method>
+                        <method>emptyCart</method>
                     </recurly>
                 </observers>
-            </checkout_cart_add_product_complete>            
-			<checkout_cart_product_update_after>
+            </checkout_cart_product_add_after>            
+
+            <!-- ARUSH - this happens AFTER item added to the cart, so we use it to redirect to the checkout -->
+            <checkout_cart_add_product_complete>
                 <observers>
                     <recurly>
                         <type>singleton</type>
                         <class>Brainwashed_Recurly_Model_Product_Observer</class>
-                        <method>redirectToCheckout</method>
+                        <method>recurlyRedirectToCheckout</method>
                     </recurly>
                 </observers>
-            </checkout_cart_product_update_after>
-    	</events>        
+            </checkout_cart_add_product_complete>
+
+       	</events>        
     </global>
     <frontend>
     	<secure_url>
