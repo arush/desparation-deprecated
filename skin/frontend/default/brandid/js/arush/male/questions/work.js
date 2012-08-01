@@ -14,12 +14,12 @@ function workQ() {
 function workDone(q) {
 	newQ(q);
 	typeit();
-	insertContinue('playQ()');
+	setTimeout('playQ()',1500);
 
 }
 
 function workAa() {
-	punter.work = 'suit';
+	punter.work = 1;
 	punter.workShirts = true;
 
 	wipeConsole();
@@ -28,7 +28,7 @@ function workAa() {
 }
 
 function workAb() {
-	punter.work = 'casual';
+	punter.work = 2;
 	punter.workShirts = true;
 
 	wipeConsole();
@@ -38,7 +38,7 @@ function workAb() {
 }
 
 function workAc() {
-	punter.work = 'laid back';
+	punter.work = 3;
 	punter.workShirts = false;
 
 	wipeConsole();
@@ -49,7 +49,7 @@ function workAc() {
 
 
 function workAd() {
-	punter.work = 'gorilla suit';
+	punter.work = 4;
 	punter.workShirts = false;
 	
 	wipeConsole();

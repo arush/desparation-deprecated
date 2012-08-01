@@ -47,7 +47,9 @@ function registerUser() {
         	$j(s).parent().addClass('green');
 			$j(s).text(retval.message);
 			
-			window[punter.goAfterSave]();
+			setTimeout(function() {
+			  return window[punter.goAfterSave]();
+			}, 1000);
 			
         }
         else {
@@ -97,20 +99,4 @@ function returningVisitor() {
 	buttons[0] = new Array("convert secondary","I'm not "+punter.fname, "startAgain(true)");
 	buttons[1] = new Array("convert","Continue", "dropBackIn(true)");
 	insertButtons(buttons);
-
-	// jqconsole.Prompt(true, function (input) {
-	// 	switch(input) {
-	// 		case 'a':
-	// 			dropBackIn(false);
-	// 			break;
-	// 		case 'b':
-	// 			startAgain(false);
-	// 			break;
-	// 		default:
-	// 			jqconsole.Write('What, no [a] and [b] on your keyboard?\nTry again: ', 'jqconsole-output red wordwrap');
-	// 			typeit();
-	// 			setTimeout('returningVisitor();',1500);
-	// 			break;
-	// 	}
-	// });
 }

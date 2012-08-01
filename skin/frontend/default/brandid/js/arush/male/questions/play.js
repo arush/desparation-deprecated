@@ -14,11 +14,11 @@ function playQ() {
 function playDone() {
 	newQ('Got it. ');
 	typeit();
-	insertContinue('rollQ()');
+	setTimeout('rollQ()',1500);
 }
 
 function playAa() {
-	punter.play = 'shirts';
+	punter.play = 1;
 	punter.playShirts = true;
 
 	wipeConsole();
@@ -26,7 +26,7 @@ function playAa() {
 }
 
 function playAb() {
-	punter.play = 'polos';
+	punter.play = 2;
 	punter.playShirts = false;
 	punter.playTees = "polos";
 
@@ -35,7 +35,7 @@ function playAb() {
 }
 
 function playAc() {
-	punter.play = 'tees';
+	punter.play = 3;
 	punter.playShirts = false;
 	punter.playTees = "tees";
 
@@ -44,7 +44,7 @@ function playAc() {
 }
 	
 function playAd() {
-	punter.play = 'elvis';
+	punter.play = 4;
 	punter.playShirts = false;
 	punter.playTees = "elvis";
 

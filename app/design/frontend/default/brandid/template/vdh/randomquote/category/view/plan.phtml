@@ -23,14 +23,28 @@
 <ul class="plans-list clearfix">
 	<?php foreach($_productCollection as $product):?>
 	
-	<?php $_productName = strtolower($product->getName());
-	if($_productName == 'godfather') {
-		$_earner = 3;
-	} else if($_productName == 'boss') {
-		$_earner = 2;
-	} else {
-		$_earner = 1;
-	} ?>
+	<?php
+		$_productName = strtolower($product->getName());
+	
+		$god   = 'godfather';
+		$boss = 'boss';
+		$soldier = 'soldier';
+
+		$containsGod = strpos($_productName, $god);
+		$containsBoss = strpos($_productName, $boss);
+		$containsSoldier = strpos($_productName, $soldier);
+
+		if($containsBoss !== false) {
+			$maleRecommendsId = $boss;
+		}
+		else if($containsGod !== false)	{
+			$maleRecommendsId = $god;
+		}
+		else {
+			$maleRecommendsId = $soldier;
+		}
+	?>
+
 
 	<?php $counter--;?>
 	<li<?php echo ($counter == 0) ? ' class="last"': ''; ?>>
@@ -41,7 +55,38 @@
 
 		<div class="discount-triangle">
 		</div-->		
-		
+		<div class="male-recommends ani" id="male-<?php echo $maleRecommendsId ?>">
+			<div class="male-recommends-circle">
+			</div>
+			<div class="male-recommends-circle whiteoutline">
+			</div>
+			<div class="male-recommends-circle redoutline">
+			</div>
+			<div class="recommends-text">
+				<span class="first">
+					M.A.L.E.
+				</span><br/>
+				<span class="second">
+					Recommends
+				</span>
+			</div>
+		</div>
+
+		<!-- script to enable recommendation -->
+		<script type="text/javascript">
+			var $j = jQuery.noConflict();
+			
+			//check if punter exists first
+			createPunter();
+			if(punter != null) {
+				$j('#male-'+punter.recommended).css('display','block');
+				$j('#male-'+punter.recommended).addClass('flash');
+			}
+
+
+				
+		</script>
+
 		
 		<?php if($giftCategory == true) { ?>
 		

@@ -39,7 +39,8 @@ function insertNameButton() {
 	
 	string += "</div>";
 	
-	setTimeout(function(){performAppend(s,string)},2000);
+	//setTimeout(function(){performAppend(s,string)},500);
+	performAppend(s,string)
 }
 
 function handleNameSubmit() {

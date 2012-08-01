@@ -1,10 +1,76 @@
-@import 'brandid-core.scss';
-@import 'buttons.scss';
+@import "brandid-core.scss";
+@import "buttons.scss";
 
+@import "arush/animate.scss";
 
 @import "skeleton/base.scss";
 @import "skeleton/skeleton.scss";
 @import "skeleton/layout.scss";
 
 
-@import 'magento/footer';
+@import "magento/footer.scss";
+
+
+@mixin circle($radius: 10px,$color: #000) {
+  	width: $radius;
+	height: $radius;
+	background: $color;
+	-moz-border-radius: $radius;
+	-webkit-border-radius: $radius;
+	border-radius: $radius;
+	line-height:$radius;
+}
+
+@mixin smallcaps($color:#000) {
+	color: $color;
+	font-size:14px;
+	font-family: "proxima-nova";
+	font-weight: bold;
+	letter-spacing: -1px;
+	text-transform: uppercase;
+
+}
+
+// MALE RECOMMENDS
+
+.male-recommends {
+	position:absolute;
+	display:none;
+	margin:-50px 0 0 180px;
+	
+}
+.male-recommends-circle {
+	@include circle(108px,#d2002b);
+	position:absolute;
+	z-index:20;
+
+}
+.male-recommends-circle.whiteoutline {
+	@include circle(118px,#FFFFFF);
+	position:absolute;
+	z-index:10;
+	margin:-5px 0 0 -5px;
+}
+.male-recommends-circle.redoutline {
+	@include circle(124px,#d2002b);
+	position:absolute;
+	z-index:5;
+	margin:-8px 0 0 -8px;
+}
+
+.recommends-text {
+	position:absolute;
+	@include smallcaps(#FFF);
+	line-height:20px;
+	padding-top:32px;
+	padding-left:11px;
+	text-align:center;
+	z-index:25;
+	.span.first {
+
+		
+	}
+	.span.second {
+
+	}
+}

@@ -16,32 +16,30 @@
   };
 
   root.rollDone = function() {
-    newQ("All good. Let's save your progress again. ");
-    typeit();
-    return insertContinue("shirtsQ()", "continue");
+    return shareQ();
   };
 
   root.rollAa = function() {
-    punter.roll = "private jet";
-    wipeConsole();
+    punter.roll = 1;
+    punter.rollA = 'private jet';
     return rollDone();
   };
 
   root.rollAb = function() {
-    punter.roll = "business class";
-    wipeConsole();
+    punter.roll = 2;
+    punter.rollA = 'business class';
     return rollDone();
   };
 
   root.rollAc = function() {
-    punter.roll = "economy";
-    wipeConsole();
+    punter.roll = 3;
+    punter.rollA = 'economy';
     return rollDone();
   };
 
   root.rollAd = function() {
-    punter.roll = "bus";
-    wipeConsole();
+    punter.roll = 4;
+    punter.rollA = 'bus';
     return rollDone();
   };
 

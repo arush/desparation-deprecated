@@ -14,7 +14,7 @@ function offside(fname) {
 
 		typeit();
 
-		setTimeout('offsideQ()',5000);
+		setTimeout('offsideQ()',4000);
 		// offsideQ();
 	}
 
@@ -45,7 +45,7 @@ function offsideAa() {
 	newQ(q);
 
 	setTimeout(function(){correctResponse('That is correct. You are clearly a man. ')}, 2000);
-	setTimeout(function(){insertContinue('startEmail()')},2000);
+	setTimeout('startEmail()',4000);
 
 }
 function offsideAb() {

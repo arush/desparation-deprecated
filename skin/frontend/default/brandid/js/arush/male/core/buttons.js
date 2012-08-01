@@ -31,8 +31,19 @@ function insertButtons(buttons, target) {
 function insertContinue(nextStep, buttonText) {
 	// default button text is 'continue'
 	buttonText = typeof buttonText !== 'undefined' ? buttonText : 'continue';
-
+	
 	var string = "<div class=\"mobile-buttons clearfix\"><a class=\"continue convert\" onclick=\""+nextStep+"\">"+buttonText+"</a></div>";
+
+	var s = $j('#male-welcome-msg').parent();
+	performAppend(s,string);
+	adjustHeight();
+}
+
+function insertShare(type, href) {
+	var buttonText = 'Share this on '+type;
+	var buttonClass = 'convert secondary '+type;
+
+	var string = "<div class=\"mobile-buttons clearfix\"><a target=\"_blank\" href=\""+href+"\" class=\""+buttonClass+"\">"+buttonText+"</a></div>";
 
 	var s = $j('#male-welcome-msg').parent();
 	performAppend(s,string);

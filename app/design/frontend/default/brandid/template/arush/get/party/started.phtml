@@ -23,30 +23,30 @@
 		<div class="container app">
 			<div class="logo-container">
 				<a id="logo" href="/" class="header-logo">
-					<img class="gift-logo scale-with-grid" alt="BRANDiD logo" src="<?php echo $this->getSkinUrl('images/logo-beta.png')?>" title="BRANDiD Logo"/>
+					<img class="gift-logo ani fadeIn scale-with-grid" alt="BRANDiD logo" src="<?php echo $this->getSkinUrl('images/logo-beta.png')?>" title="BRANDiD Logo"/>
 				</a>
-			</div>
-			<div class="male-round">
-				<div class="male-holder">
-					<div id="male-colour" class="male-loading">
-					</div>
-					<div id="male-loader" class="male-loader">
-					</div>
-					
-					<img src="<?php echo $this->getSkinUrl('images/male/male-round.png'); ?>" alt="M.A.L.E." class="male-round ani" title="feed the male"/>
-					<div class="male-label-box">
-						<span id="male-label">MALE&trade;</span>
-					</div>
-				</div>
-				<div id="status">Establishing Connection</div>
-
 			</div>
 		</div>
 	</div>
 	<div class="container app">
 		<div class="view">
 			<div class="progress-bar">
-				<div class="progress-item first">
+				<div class="male-round ani">
+					<div class="male-holder">
+						<div id="male-colour" class="male-loading">
+						</div>
+						<div id="male-loader" class="male-loader">
+						</div>
+						
+						<img src="<?php echo $this->getSkinUrl('images/male/male-round.png'); ?>" alt="M.A.L.E." class="male-round ani" title="feed the male"/>
+						<div class="male-label-box">
+							<span id="male-label">M.A.L.E.</span>
+						</div>
+					</div>
+					<div id="status">Establishing Connection</div>
+				</div>
+
+				<div class="progress-item first ani fadeOutDown">
 					<div class="circles active">
 						<div class="circle-back back">
 						</div>
@@ -58,11 +58,11 @@
 							</div>
 						</div>
 					</div>
-					<div class="progress-sub">Feed the M.A.L.E.™</div>
-					
+					<div class="progress-sub">Feed the M.A.L.E.</div>
 				</div>
-				<div class="progress-item">
-					<div class="circles">
+				
+				<div class="progress-item second ani fadeOutDown">
+					<div class="circles fadeInDown">
 						<div class="circle-back">
 						</div>
 						<div class="circle">
@@ -73,7 +73,7 @@
 					</div>
 					<div class="progress-sub">Confirm Plan</div>
 				</div>
-				<div class="progress-item">
+				<div class="progress-item third ani fadeOutDown">
 					<div class="circles">
 						<div class="circle-back">
 						</div>
@@ -87,7 +87,7 @@
 				</div>
 			</div>
 
-			<div class="male-console">
+			<div class="male-console ani">
 					<div id="console"></div>
 			</div>
 		</div>
@@ -206,7 +206,7 @@
         }
         else {
 
-        	var q = 'Well hello there.\n\nM.A.L.E.™ here, what\'s your name? ';
+        	var q = 'Well hello there.\n\nM.A.L.E. here, what\'s your name? ';
         	newQ(q);
 
 			insertNameButton();
@@ -230,13 +230,17 @@
 			jQuery('.male-header').addClass('flyup');
 			jQuery('#male-colour').removeClass('male-loading');
 			jQuery('#male-colour').addClass('male-back');
-			jQuery('#status').text('');
+			jQuery('#status').text('Feed the M.A.L.E.');
+
 			setTimeout("startMale()", 300);
 		}
 
 	jQuery(document).ready(function() {
 		window.scrollTo(0,0);
-		setTimeout("loaded()", 1000);
+		setTimeout("loaded()", 3000);
+		setTimeout(function() {
+		  return $j('.male-round').addClass('fadeIn');
+		}, 2000);
 	});
 
 </script>

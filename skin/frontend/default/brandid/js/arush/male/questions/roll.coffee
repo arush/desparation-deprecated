@@ -8,22 +8,20 @@ root.rollQ = ->
   s = $j("#male-welcome-msg")
   rollImages s
 root.rollDone = ->
-  newQ "All good. Let's save your progress again. "
-  typeit()
-  insertContinue "shirtsQ()", "continue"
+  shareQ()
 root.rollAa = ->
-  punter.roll = "private jet"
-  wipeConsole()
+  punter.roll = 1
+  punter.rollA = 'private jet'
   rollDone()
 root.rollAb = ->
-  punter.roll = "business class"
-  wipeConsole()
+  punter.roll = 2
+  punter.rollA = 'business class'
   rollDone()
 root.rollAc = ->
-  punter.roll = "economy"
-  wipeConsole()
+  punter.roll = 3
+  punter.rollA = 'economy'
   rollDone()
 root.rollAd = ->
-  punter.roll = "bus"
-  wipeConsole()
+  punter.roll = 4
+  punter.rollA = 'bus'
   rollDone()
