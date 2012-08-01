@@ -70,3 +70,56 @@ var $j = jQuery.noConflict();
 	 
 	});
 
+
+function closeReject() {
+		$j('#rejecter').remove();
+		$j('body').css('overflow','scroll');
+	}
+
+function clearDefault(el) {
+	if (el.defaultValue==el.value) {
+			el.value = "";
+	    $('subscribe_btn').removeClassName('disabled');
+	}
+}
+function restoreText(el) {
+	if (el.value == "") {
+		el.value = el.defaultValue;
+	}
+}
+
+
+// accordian
+jQuery(function() {
+			
+	jQuery('#st-accordion').accordion({
+		oneOpenedItem	: true
+	});
+	
+});
+
+
+// sliding intro
+
+	var trig = jQuery('#less-more');
+	trig.data('open', false);
+	var div  = jQuery('#long-welcome-msg');
+
+	trig.click(function(e){
+	    div.toggleClass('expanded');
+	    trig.toggleClass('expanded');
+	    if(trig.data('open') == true) {
+	    	trig.text('read more');
+	    	trig.data('open',false);
+	    }
+	    else { 
+	    	trig.data('open',true);
+	    	trig.text('read less');}
+	});
+
+
+	function hasClosed() {
+		if($j.cookie('')) {
+
+		}
+	}
