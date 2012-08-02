@@ -1,35 +1,4 @@
 root = exports ? this
-root.shareQ = ->
-  wipeConsole()
-  recommend()
-  saveProgress "shareQ"
-  q = 'I\'ll be adding more questions soon, but that\'s all I need right now to recommend you a plan. '
-  newQ(q)
-  typeit()
-
-  setTimeout ->
-  	jqconsole.Write 'Computing manhood percentage...  ', 'jqconsole-output loading-flash wordwrap'
-  	typeit()
-  ,2000
-  
-  startReplace = -> replaceText 0
-  setTimeout startReplace, 4000
-
-root.replaceText = (num) ->
-  
-  shareCallback = -> replaceText num
-  
-
-  msg = ['Please bear with me... ', 'I\'m M.A.L.E., I can only do one thing at a time... ']
-  s = getLatestSpan()
-  $j(s).text(msg[num])
-  num++
-  typeit()
-  
-  if num < msg.length
-  	setTimeout shareCallback, 2500
-  else
-  	setTimeout createResult, 2500
 
 root.recommend = ->
 	punter.recommended = 'godfather'

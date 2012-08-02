@@ -16,7 +16,7 @@
   };
 
   root.rollDone = function() {
-    return shareQ();
+    return finalSave();
   };
 
   root.rollAa = function() {

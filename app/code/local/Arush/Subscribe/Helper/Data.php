@@ -3,7 +3,7 @@
 class Arush_Subscribe_Helper_Data extends Mage_Core_Helper_Abstract {
 
 	/* returns $api object */
-	public function doSubscribe($male, $fname, $email, $gender, $source) {
+	public function doSubscribe($male, $fname, $email, $gender, $source, $male) {
 
 		// get standard values for mailchimp api call
 		$storeId = Mage::app()->getStore()->getId();			
@@ -31,10 +31,10 @@ class Arush_Subscribe_Helper_Data extends Mage_Core_Helper_Abstract {
 			// put variables in an array
 			$mergeVars = array(
 							'STATUS' => 'interested',
-							'MALE' => 'in progress',
 							'FNAME' => $fname,
 							'GENDER' => $gender,
 							'SOURCE' => $source,
+							'MALE' => $male,
 							'OPTIN_IP' => $ip,
 							'OPTIN_TIME' => $time
 							);

@@ -17,6 +17,7 @@ var nameA = function (input) {
 	    else if(!smallName) {
 	      	// strip whitespace, capitalise and save the name
 	      	punter.fname = name;
+	      	punter.maleAnswers = JSON.stringify('started');
 
 	      	punter.sexGuess = genderGuess(name);
 	      	

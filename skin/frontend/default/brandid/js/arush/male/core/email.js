@@ -9,19 +9,20 @@ function resendConfirmation() {
 }
 
 function confirmationQ() {
-	jqconsole.Write('a. I didn\'t get any email\nb. I clicked confirm, let\'s continue. ', 'jqconsole-output question wordwrap');
-	typeit();
-
 	var buttons = new Array();
-	buttons[0] = new Array("convert secondary","Resend confirmation", "resendConfirmation()");
 	
-	if(punter.gender === 'Female') {
+	buttons[0] = new Array("convert secondary","Resend confirmation", "resendConfirmation()");
+		
+	
+	if(punter.gender === 'Female' && punter.progress !== 'finalSave') {
 		buttons[1] = new Array("convert","Continue", "giftQ()");	
 	}
-	else {
+	else if(punter.progress !== 'finalSave'){
 		buttons[1] = new Array("convert","Continue", "workQ()");	
 	}
-	
+	else {
+		buttons[1] = new Array("convert","OK, I clicked on the link in my email, try again", "finalSave()");
+	}//must be the final save
 	insertButtons(buttons);
 	// confirmationA();
 	

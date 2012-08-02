@@ -10,6 +10,7 @@ class Arush_Get_PartyController extends Mage_Core_Controller_Front_Action
 			$fname = 'not yet known';
 			$gender = 'not yet known';
 			$source = 'not yet known';
+			$male = 'not far along enough yet';
 
 			if(array_key_exists('email',$this->getRequest()->getPost())) {
 				$email = $this->getRequest()->getPost('email');
@@ -26,9 +27,12 @@ class Arush_Get_PartyController extends Mage_Core_Controller_Front_Action
 			if(array_key_exists('source',$this->getRequest()->getPost())) {
 				$source = $this->getRequest()->getPost('source');
 			}
-			
+			if(array_key_exists('male',$this->getRequest()->getPost())) {
+				$male = $this->getRequest()->getPost('male');
+			}
 
-			$params = array($fname, $email, $gender, $source);
+			$params = array($fname, $email, $gender, $source, $male);
+
 			$this->_redirect('subscribe/newbie', $params);
 		}
 		else {
@@ -51,6 +55,8 @@ class Arush_Get_PartyController extends Mage_Core_Controller_Front_Action
 			$fname = $parameters[0];
 			$email = $parameters[1];
 			$gender = $parameters[2];
+			// dont need source if email already exists
+			$male = $parameters[4];
 		}
 
 		$emailarray = array($email);
@@ -81,7 +87,7 @@ class Arush_Get_PartyController extends Mage_Core_Controller_Front_Action
 
 			}
 			else {
-				$this->_redirect("get/party/update", array($fname,$retval['data'][0]['email'], $gender));
+				$this->_redirect("get/party/update", array($fname,$retval['data'][0]['email'], $gender, $parameters[4]));
 			}
 		}
 		
@@ -93,13 +99,15 @@ class Arush_Get_PartyController extends Mage_Core_Controller_Front_Action
 		$fname = $parameters[0];
 		$email = $parameters[1];
 		$gender = $parameters[2];
+		$male = $parameters[3];
 
 		// echo json_encode($parameters);
 		// put them all in an array
 		$mergeVars = array(
 						'MALE' => 'in progress',
 						'FNAME' => $fname,
-						'GENDER' => $gender
+						'GENDER' => $gender,
+						'MALE' => $male
 						);
 		
 		$storeId = Mage::app()->getStore()->getId();			

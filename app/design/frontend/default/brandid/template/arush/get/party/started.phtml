@@ -219,7 +219,7 @@
 <script type="text/javascript">
 	function getReferer() {
 		var referer;
-		referer = '<?php echo $referer; ?>';
+		referer = '<?php echo parse_url($referer,PHP_URL_HOST); ?>';
 		return referer;
 	}
 </script>

@@ -8,7 +8,7 @@ root.rollQ = ->
   s = $j("#male-welcome-msg")
   rollImages s
 root.rollDone = ->
-  shareQ()
+  finalSave()
 root.rollAa = ->
   punter.roll = 1
   punter.rollA = 'private jet'

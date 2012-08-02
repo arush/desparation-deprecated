@@ -2,7 +2,7 @@ root = exports ? this
 root.giftQ = ->
   wipeConsole()
   saveProgress "giftQ"
-  q = "You must be looking to buy a gift for a very lucky man. But do you just want to gift a one-off taster, or set him up with a full recurring plan? "
+  q = "You must be looking to buy a gift for a very lucky man.\n\nBut do you just want a one-off gift, or set him up with a full recurring plan? "
   newQ q
   typeit()
 

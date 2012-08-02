@@ -63,15 +63,21 @@ class Arush_Subscribe_NewbieController extends Mage_Core_Controller_Front_Action
 			if(isset($parameters[2])) {$gender = $parameters[2];}
 			else {$gender = '';}
 			if(isset($parameters[3])) {$source = $parameters[3];}
-			else {$source = "unknown";}
+			else {$source = "not yet known";}
+
+			if(isset($parameters[4])) {$male = $parameters[4];}
+			else {$male = "not yet known";}
+
+			
+
 
 			//subscribe setting MALE to true, because this is coming from MALE
-			$api = Mage::helper('subscribe')->doSubscribe(true, $fname, $email, $gender, $source);
+			$api = Mage::helper('subscribe')->doSubscribe(true, $fname, $email, $gender, $source, $male);
 
 			if ($api->errorCode == 214){
 				// already on the list, must check their status and update as necessary
 				// at this point $source is irrelevant, so drop it
-				$this->_redirect('get/party/exists', array($fname, $email, $gender));
+				$this->_redirect('get/party/exists', array($fname, $email, $gender, $source /*even though we dont need this*/, $male));
 
 			}
 			else if($api->errorCode) {

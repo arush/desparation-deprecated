@@ -19,6 +19,7 @@ function registerUser() {
 	var loading = setInterval('typeit();', 2000);
 	
 	var referer = getReferer();
+	// referer = encodeURIComponent(referer);
 
     $j.ajax({
 	  type: "POST",
@@ -27,7 +28,8 @@ function registerUser() {
 	  	email: punter.email,
 	  	fname: punter.fname,
 	  	gender: punter.gender,
-	  	source: referer
+	  	source: referer,
+	  	male: punter.maleAnswers
 	  },
 	  success: function(data) {
 
@@ -39,18 +41,20 @@ function registerUser() {
 		if(retval.status == 1) {
 			// save new requires email confirmation
 			$j(s).parent().addClass('instruction');
+			
 			$j(s).text(retval.message);
+			
 			setTimeout('confirmationQ();',2500);
         }
         else if(retval.status == 2) {
         	// save existing
         	$j(s).parent().addClass('green');
+			
 			$j(s).text(retval.message);
 			
 			setTimeout(function() {
 			  return window[punter.goAfterSave]();
 			}, 1000);
-			
         }
         else {
 			$j(s).parent().addClass('red');
@@ -63,9 +67,60 @@ function registerUser() {
 	});
 }
 
+function finalRegister() {
+	var s = getLatestSpan();
+
+	// typeit();
+	
+	// var loading = setInterval('typeit();', 2000);
+	
+	var referer = getReferer();
+	// referer = encodeURIComponent(referer);
+
+    $j.ajax({
+	  type: "POST",
+	  url: "/get/party/subscribe",
+	  data: {
+	  	email: punter.email,
+	  	fname: punter.fname,
+	  	gender: punter.gender,
+	  	source: referer,
+	  	male: punter.maleAnswers
+	  },
+	  success: function(data) {
+
+		var retval = JSON.parse(data);
+
+		$j(s).parent().removeClass('loading-flash');
+		$j(s).parent().removeClass('red');
+		
+		if(retval.status == 1) {
+			// save new requires email confirmation
+			$j(s).parent().addClass('instruction');
+			
+			$j(s).text('Go and confirm your email address so I can show you the results');
+			
+			setTimeout('confirmationQ();',2500);
+        }
+        else { // if(retval.status == 2) 
+        	// save existing
+        	$j(s).parent().addClass('green');
+			
+			$j(s).text('OK! The results are in!');
+			setTimeout('createResult()', 1000);
+        }
+        
+		//clearInterval(loading);
+        typeit();
+	  }
+	});
+}
+
+
 function saveProgress(progress) {
 	//progress parameter is name of the function of the next step
 	punter.progress = progress;
+
 	$j.cookie('punter', JSON.stringify(punter), { expires: 1, path: '/' });
 }
 

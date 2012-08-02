@@ -8,7 +8,7 @@
     var buttons, giftBut1, giftBut2, q;
     wipeConsole();
     saveProgress("giftQ");
-    q = "You must be looking to buy a gift for a very lucky man. But do you just want to gift a one-off taster, or set him up with a full recurring plan? ";
+    q = "You must be looking to buy a gift for a very lucky man.\n\nBut do you just want a one-off gift, or set him up with a full recurring plan? ";
     newQ(q);
     typeit();
     giftBut1 = ["smalltext convert", "Gift a taster<br/><span class=\"button-caption\">Buy him a 1, 3 or 12 month taster</span>", "giftAa()"];

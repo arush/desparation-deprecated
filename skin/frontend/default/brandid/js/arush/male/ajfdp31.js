@@ -7,6 +7,7 @@ var $j = jQuery.noConflict();
 // @codekit-append "core/helper.js"
 // @codekit-append "core/images.js"
 // @codekit-append "core/buttons.js"
+// @codekit-append "core/finalSave.js"
 // @codekit-append "core/share.js"
 
 // @codekit-append "questions/name.js"
