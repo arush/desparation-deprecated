@@ -72,6 +72,7 @@ class Arush_Subscribe_NewbieController extends Mage_Core_Controller_Front_Action
 
 
 			//subscribe setting MALE to true, because this is coming from MALE
+
 			$api = Mage::helper('subscribe')->doSubscribe(true, $fname, $email, $gender, $source, $male);
 
 			if ($api->errorCode == 214){

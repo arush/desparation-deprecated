@@ -67,7 +67,8 @@ class Arush_Get_PartyController extends Mage_Core_Controller_Front_Action
 
 		if ($api->errorCode){
 			// if person is not on the list... this should never happen, just a fallback.
-			Mage::log('Tried to list member info and got this error: ', json_encode($api), 'male.log');
+Mage::log('Tried to list member info and got this error: ', null, 'male.log');
+Mage::log($api,null, 'male.log');
 
 			print_r(json_encode(
 				array(
@@ -79,10 +80,15 @@ class Arush_Get_PartyController extends Mage_Core_Controller_Front_Action
 
 		} else {
 			// person is on the list, check their status and update accordingly
-			$status = $retval['data'][0]['merges']['STATUS'];
-			if($status == 'member') {
-				// this shouldn't happen, write to log. This person may have unsubscribed
-				Mage::log('This person is saving with MALE, but already a member on mailchimp. May have unsubscribed. ', json_encode($retval), 'male.log');
+Mage::log('person is on the list, check their status and update accordingly: ', null, 'male.log');
+Mage::log($retval,null, 'male.log');
+			$maleMerge = $retval['data'][0]['merges']['MALE'];
+			if($maleMerge == null) {
+				$this->_redirect("get/party/update", array($fname,$retval['data'][0]['email'], $gender, $parameters[4]));
+				
+Mage::log('This person is saving with MALE, and has no progress. ', null, 'male.log');
+Mage::log($retval,null, 'male.log');
+
 				// TO DO: save to magento
 
 			}

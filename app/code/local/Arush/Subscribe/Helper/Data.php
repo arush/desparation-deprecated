@@ -3,7 +3,7 @@
 class Arush_Subscribe_Helper_Data extends Mage_Core_Helper_Abstract {
 
 	/* returns $api object */
-	public function doSubscribe($male, $fname, $email, $gender, $source, $male) {
+	public function doSubscribe($isMale, $fname, $email, $gender, $source, $male) {
 
 		// get standard values for mailchimp api call
 		$storeId = Mage::app()->getStore()->getId();			
@@ -12,7 +12,7 @@ class Arush_Subscribe_Helper_Data extends Mage_Core_Helper_Abstract {
 		$ip = $_SERVER['REMOTE_ADDR'];
 
 		// if this has come from a form
-		if($male == false) {
+		if($isMale === false) {
 			
 			// put variables in an array
 			$mergeVars = array(

@@ -9,6 +9,7 @@ root.finalSave = ->
   	work: punter.work
   	play: punter.play
   	roll: punter.roll
+  	progress: punter.progress
   
   punter.maleAnswers = JSON.stringify(answers);
   # asynchronously save the user
