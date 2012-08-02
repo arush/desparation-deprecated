@@ -32,7 +32,7 @@ function registerUser() {
 	  	male: punter.maleAnswers
 	  },
 	  success: function(data) {
-	  	alert(data);
+
 		var retval = JSON.parse(data);
 
 		$j(s).parent().removeClass('loading-flash');

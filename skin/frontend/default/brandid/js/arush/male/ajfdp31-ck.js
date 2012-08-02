@@ -58,7 +58,7 @@ function registerUser() {
 	  	male: punter.maleAnswers
 	  },
 	  success: function(data) {
-	  	alert(data);
+
 		var retval = JSON.parse(data);
 
 		$j(s).parent().removeClass('loading-flash');
@@ -523,7 +523,8 @@ function insertShare(type, href) {
     answers = {
       work: punter.work,
       play: punter.play,
-      roll: punter.roll
+      roll: punter.roll,
+      progress: punter.progress
     };
     punter.maleAnswers = JSON.stringify(answers);
     q = 'I\'ll be adding more questions soon, but that\'s all I need right now to recommend you a plan. ';
