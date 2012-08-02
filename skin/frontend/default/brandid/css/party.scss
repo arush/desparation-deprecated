@@ -35,6 +35,17 @@ body {background-color:#FFF;}
 	float:left;
 	width:81.5%;
 	margin-left:3%;
+
+	/* animate */
+	@include ani-name(fadeIn);
+	@include ani-fill-mode(both);
+	@include ani-duration(300ms);
+	@include ani-delay(1000ms);
+	@include ani-timing-function(easeIn);
+
+			  -webkit-transform: translate3d(0, 0, 0);
+	-webkit-backface-visibility: hidden;
+	  		-webkit-perspective: 1000;
 }
 
 /* console */
@@ -142,6 +153,18 @@ body {background-color:#FFF;}
 }
 .jqconsole-output.readable span{
 	color:#444 !important;
+}
+
+.mobile-buttons {
+	/* animate */
+	@include ani-name(fadeInDown);
+	@include ani-fill-mode(both);
+	@include ani-duration(500ms);
+	@include ani-timing-function(easeOut);
+
+			  -webkit-transform: translate3d(0, 0, 0);
+	-webkit-backface-visibility: hidden;
+	  		-webkit-perspective: 1000;
 }
 
 .mobile-buttons a {

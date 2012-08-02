@@ -41,6 +41,7 @@
 @mixin ani-name($name) {
 	-webkit-animation-name: $name;
 	-moz-animation-name: $name;
+	-ms-animation-name: $name;
 	-o-animation-name: $name;
 	animation-name: $name;
 }
