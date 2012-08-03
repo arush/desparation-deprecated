@@ -230,7 +230,7 @@ function insertEmailButton() {
 
 
 function startEmail() {
-	saveProgress('email');
+	saveProgress('startEmail');
 	wipeConsole();
 	var q = 'Cool.\n\nLet\'s save your progress now so you don\'t have to go through this again.\nWhat\'s your email address: ';
 	newQ(q);
@@ -241,14 +241,14 @@ function startEmail() {
 
 function emailPrompt(emailEntered) {
 	punter.email = emailEntered;
-	saveProgress('registerUser');
-
+	
 	if(punter.gender === 'Female') {
 		punter.goAfterSave = 'giftQ';
 	}
 	else {
 		punter.goAfterSave = 'workQ';
 	}
+	saveProgress('registerUser');
 	registerUser();
 }
 
