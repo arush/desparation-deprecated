@@ -374,14 +374,14 @@ function getDelayRequired() {
 }
 
 function typeit() {
-		/* types the latest element of the matched object passed */
-		var s = getLatestSpan();
-		var randomId = 'male' + (Math.floor(Math.random()*10000000)+1);
-		$j(s).attr('id',randomId);
-		/* scroll while typing */
-		
-	    $j('#'+randomId).typewriter();
-		$j('#'+randomId).css('color', '#444');
+	/* types the latest element of the matched object passed */
+	var s = getLatestSpan();
+	var randomId = 'male' + (Math.floor(Math.random()*10000000)+1);
+	$j(s).attr('id',randomId);
+	/* scroll while typing */
+	
+    $j('#'+randomId).typewriter();
+	$j('#'+randomId).css('color', '#444');
 
 }
 function capitaliseFirstLetter(string)

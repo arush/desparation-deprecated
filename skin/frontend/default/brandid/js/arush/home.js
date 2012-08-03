@@ -98,6 +98,24 @@ jQuery(function() {
 	
 });
 
+//
+$j(document).ready(function() {
+	if($j.cookie('punter') != null) {
+		punter = JSON.parse($j.cookie("punter"));
+		if(punter.progress === 'finalSave') {
+			$j('#main-step-1').addClass('secondary');
+			$j('#main-step-2').removeClass('inactive');
+			$j('#main-step-2').attr('href','/plans.html');
+			$j('#header-convert').text('Step 2. Confirm your Plan');
+			$j('#header-convert').attr('href','/plans.html');
+			$j('#middle-body-convert').text('Step 2. Confirm your Plan');
+			$j('#middle-body-convert').attr('href','/plans.html');
+			$j('#body-convert-2').text('Step 2. Confirm your Plan');
+			$j('#body-convert-2').attr('href','/plans.html');
+
+		}
+	}
+});
 
 // sliding intro
 
