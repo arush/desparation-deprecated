@@ -73,5 +73,19 @@ function getSoldValue($orders) {
 	return $totalSales;
 }
 
+function getMaleSegment($from, $filter) {
+	$segment;
+	$storeId = Mage::app()->getStore()->getId();			
+	$listId = Mage::helper('monkey')->getDefaultList($storeId);
+
+	$segment = array(
+		"filter" => $filter
+		"from" => $from,
+		"store" => $storeId,
+		"listid" => $listId);
+
+	return $segment;
+}
+
 
 ?>
