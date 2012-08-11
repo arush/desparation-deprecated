@@ -21,27 +21,41 @@ $ye = date('Y-m-d H:i:s', mktime(date('H'), date('i'), date('s'), date('m')-1, d
 // if (isset($_POST) && isset($_SERVER['PHP_AUTH_USER'])) {
 
 
-// 	/* Check API key */
-//     if ('XXXX' == $_SERVER['PHP_AUTH_USER']) {
-		$mailchimpData = getMaleSegment($ts,'check');
+	/* Check API key */
+    // if ('XXXX' == $_SERVER['PHP_AUTH_USER']) {
+		$mailchimpData = getAllMembers();
+		$emailArray;
+
+		if($mailchimpData["status"] === 1) {
+			$i =0;
+			foreach($mailchimpData['data'] as $member){
+			    $emailArray[$i] = $member['email'];
+			    $i++;
+			}
+		}
+
+		$retval = getMaleSegments($emailArray);
+		
+		foreach($retval['data'] as $member){
+			echo $member['email'] . '\n';
+			echo $member['merges']['MALE'] . '\n';
+		}
 		
 
-		// $ordersRefunded = array("value"=>$countAtClosed, "text"=>"Orders Refunded");
-		// $ordersProcessing = array("value"=>$countAtProcessing, "text"=>"Orders Processing");
-		// $ordersComplete = array("value"=>$countAtComplete, "text"=>"Orders Invoiced");
+		// $json = json_encode($mailchimpData);
 
-		// $response = array("item"=>array($ordersRefunded,$ordersProcessing,$ordersComplete));
+		// echo $json;  
 
 
-		$json = json_encode($mailchimpData);
 
-		echo $json;        
-    
-//     } else {
-//         Header("HTTP/1.1 403 Access denied");
-//         $data = array('error' => 'Nice try, asshole.');
-//         echo $data;
-//     }
+
+
+
+    // } else {
+    //     Header("HTTP/1.1 403 Access denied");
+    //     $data = array('error' => 'Nice try, asshole.');
+    //     echo $data;
+    // }
 
 // } else {
 // 	Header("HTTP/1.1 404 Page not found");

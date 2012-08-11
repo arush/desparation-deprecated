@@ -73,18 +73,55 @@ function getSoldValue($orders) {
 	return $totalSales;
 }
 
-function getMaleSegment($from, $filter) {
-	$segment;
+function getAllMembers() {
 	$storeId = Mage::app()->getStore()->getId();			
 	$listId = Mage::helper('monkey')->getDefaultList($storeId);
 
-	$segment = array(
-		"filter" => $filter
-		"from" => $from,
-		"store" => $storeId,
-		"listid" => $listId);
+
+	// call ebizmarts api
+
+		$api = Mage::getSingleton('monkey/api');
+		$retval = $api->listMembers($listId, 'subscribed', null, 0, 5000 );
+
+
+		if ($api->errorCode){
+			$segment["status"] = 0;
+			$segment["errorCode"] = "\n\tCode=".$api->errorCode;
+			$segment["errorMessage"] = "\n\tMsg=".$api->errorMessage."\n";
+
+		} else {
+			$segment["status"] = 1;
+			$segment["number"] = $retval['total'];
+			$segment["numberReturned"] = sizeof($retval['data']);
+			$segment["data"] = $retval['data'];
+		}
 
 	return $segment;
+}
+
+function getMaleSegments($emailArray) {
+	$storeId = Mage::app()->getStore()->getId();			
+	$listId = Mage::helper('monkey')->getDefaultList($storeId);
+
+	// call ebizmarts api
+		$api = Mage::getSingleton('monkey/api');
+		$retval = $api->listMemberInfo($listId, $emailArray);
+
+		if ($api->errorCode){
+
+			print_r(json_encode(
+				array(
+					'status' => $api->errorCode,
+					'state' => "failed",
+					'message' => $api->errorMessage
+					)
+			));
+			return false;
+
+		} else {
+			return $retval;
+// 			
+		}
 }
 
 

@@ -21,7 +21,7 @@ $ye = date('Y-m-d H:i:s', mktime(date('H'), date('i'), date('s'), date('m')-1, d
 
 
 // 	/* Check API key */
-//     if ('1024' == $_SERVER['PHP_AUTH_USER']) {
+//     if ('XXXX' == $_SERVER['PHP_AUTH_USER']) {
 		$sales1 = getOrders($ts,$te);
 		$count1 = getSoldCount($sales1);
 		$total1 = getSoldValue($sales1);

@@ -22,7 +22,7 @@ $ye = date('Y-m-d H:i:s', mktime(date('H'), date('i'), date('s'), date('m')-1, d
 
 
 // 	/* Check API key */
-//     if ('1024' == $_SERVER['PHP_AUTH_USER']) {
+//     if ('XXXX' == $_SERVER['PHP_AUTH_USER']) {
 		$currentOrders = getOrders($ts,$te);
 		
 		$countAtProcessing = countAtProcessing($ts,$te);

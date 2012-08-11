@@ -28,9 +28,9 @@
  * 
  */
  
- $apiKey = '1024'; // enter a strong unguessable key here that you will use in Geckoboard widget setup
- $endPoint = 'http://www.ilovebrandsoutlet.com/api/soap/?wsdl'; // enter the location of the Magento API endpoint here
+ $apiKey = 'SNmcwySF88L188gj'; // enter a strong unguessable key here that you will use in Geckoboard widget setup
+ $endPoint = 'http://www.getbrandid.com/api/soap/?wsdl'; // enter the location of the Magento API endpoint here
  $mageUser = 'geckoboard'; // enter the name of a Magento web services user
- $magePass = 'evogue2011'; // enter the password of the Magento web services user
+ $magePass = 'SNmcwySF88L188gj'; // enter the password of the Magento web services user
  
 ?>

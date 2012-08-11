@@ -2,7 +2,6 @@
 
 require_once('core.php');
 
-
 // first of the month
 // $ts = date("Y-m-d H:i:s", mktime(0, 0, 0, date('m'), 1, date('Y')));
 // $te = date('Y-m-d H:i:s', mktime(date('H'), date('i'), date('s'), date('m'), date('d'), date('Y')));
@@ -22,7 +21,7 @@ $ye = date('Y-m-d H:i:s', mktime(date('H')-24, date('i'), date('s'), date('m'), 
 
 
 // 	/* Check API key */
-//     if ('1024' == $_SERVER['PHP_AUTH_USER']) {
+//     if ('XXXX' == $_SERVER['PHP_AUTH_USER']) {
 		$sales1 = getOrders($ts,$te);
 		$count1 = getSoldCount($sales1);
 		$total1 = getSoldValue($sales1);

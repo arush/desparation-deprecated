@@ -1,8 +1,8 @@
 <?php
 
 require_once('core.php');
-
-
+require_once('config.php');
+global $apiKey;
 // first of the month
 // $ts = date("Y-m-d H:i:s", mktime(0, 0, 0, date('m'), 1, date('Y')));
 // $te = date('Y-m-d H:i:s', mktime(date('H'), date('i'), date('s'), date('m'), date('d'), date('Y')));
@@ -22,7 +22,7 @@ if (isset($_POST) && isset($_SERVER['PHP_AUTH_USER'])) {
 
 
 	/* Check API key */
-    if ('1024' == $_SERVER['PHP_AUTH_USER']) {
+    if ($apiKey == $_SERVER['PHP_AUTH_USER']) {
 		$currentOrders = getOrders($ts,$te);
 		
 		$countAtProcessing = countAtProcessing($ts,$te);
