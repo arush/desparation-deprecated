@@ -1,0 +1,95 @@
+<?xml version="1.0"?> 
+<config>
+  <modules>
+      <Arush_Kissmetrics> 
+          <version>0.1.0</version>
+          <depends>
+              <!-- no dependencies --> 
+          </depends>
+      </Arush_Kissmetrics> 
+  </modules>
+  <global> 
+   
+    <blocks>
+        <adminhtml>
+            <rewrite>
+            </rewrite>
+        </adminhtml>
+    </blocks>
+    
+    <blocks>
+        <kissmetrics> 
+            <class>Arush_Kissmetrics_Block</class>
+        </kissmetrics> 
+    </blocks>
+    <helpers>
+        <kissmetrics>
+          <class>Arush_Kissmetrics_Helper</class>
+        </kissmetrics>
+    </helpers>
+  </global>
+  <adminhtml>
+      <acl>
+          <resources>
+              <admin>
+                  <children>
+                      <system>
+                          <children>
+                              <config>
+                                  <children>
+                                      <kissmetrics>
+                                          <title>Kissmetrics Settings</title>
+                                      </kissmetrics>
+                                  </children>
+                              </config>
+                          </children>
+                      </system>
+                  </children>
+              </admin>
+          </resources>
+      </acl>
+      <events></events> 
+      <translate></translate>
+  </adminhtml> 
+  <frontend>
+      <routers></routers> 
+      <events></events> 
+      <translate></translate> 
+      <layout>
+      	<updates>
+                <kissmetrics>
+                    <file>arush/kissmetrics.xml</file>
+                </kissmetrics>
+        </updates>
+      </layout>
+  </frontend>
+  <admin>
+       <routers>
+          <kissmetrics>
+              <use>admin</use>
+              <args>
+                  <module>Arush_Kissmetrics</module>
+                  <frontName>kissmetrics</frontName>
+              </args>
+          </kissmetrics>
+      </routers>
+  </admin>
+  <!-- module defaults --> 
+  <default>
+      <!-- config values -->
+      <kissmetrics>
+          <track>
+            <kissmetrics_on><![CDATA[]]></kissmetrics_on>
+            <kissmetrics_code><![CDATA[]]></kissmetrics_code>
+          </track>
+      </kissmetrics>
+  </default>
+  <!--<crontab>
+      <jobs>
+          <get_kissmetrics_view>
+              <schedule><cron_expr>*/2 * * * *</cron_expr></schedule>
+              <run><model>kissmetrics/observer::cacheFeeds</model></run>
+          </get_kissmetrics_view>
+      </jobs>
+  </crontab>-->
+</config>

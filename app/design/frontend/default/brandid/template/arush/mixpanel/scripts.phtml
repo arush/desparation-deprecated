@@ -8,7 +8,7 @@
 		if(Mage::getSingleton('customer/session')->isLoggedIn()) {
 			$customer = Mage::getSingleton('customer/session')->getCustomer();
 			$customerID = $customer->getId();
-			$customerTag = $customer->getEmail();
+			$customerEmail = $customer->getEmail();
 
 			// we use group id to tell if a customer has paid us before or not
 			$groupId = Mage::getSingleton('customer/session')->getCustomerGroupId();
@@ -23,7 +23,7 @@
 		<?php /* Otherwise set as guest */
 		} else {
 			$customerID = 'guest';
-			$customerTag = 'guest';
+			$customerEmail = 'guest';
 			$payer = 'guest';
 		} ?>
 
@@ -124,8 +124,10 @@
 	 	});
 
 		// who is it
+		
+
 		mixpanel.identify("<?php echo $customerID; ?>");
-		mixpanel.name_tag('<?php echo $customerTag; ?>');
+		mixpanel.name_tag('<?php echo $customerEmail; ?>');
 
 
 		// custom actions

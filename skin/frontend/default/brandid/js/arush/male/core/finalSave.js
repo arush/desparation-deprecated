@@ -10,6 +10,7 @@
     recommend();
     saveProgress("finalSave");
     punter.goAfterSave = "finalSave";
+    _kmq.push(["record", "activated"]);
     answers = {
       work: punter.work,
       play: punter.play,

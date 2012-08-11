@@ -5,6 +5,9 @@ root.finalSave = ->
   saveProgress "finalSave"
   punter.goAfterSave = "finalSave"
   
+  #KISSmetrics
+  _kmq.push ["record", "activated"]
+
   answers =
   	work: punter.work
   	play: punter.play

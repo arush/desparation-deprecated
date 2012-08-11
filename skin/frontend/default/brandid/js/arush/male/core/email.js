@@ -70,6 +70,9 @@ function handleEmailSubmit() {
 		var emailToSave;
 
 		emailToSave = $j('#email-to-save').val();
+	 	
+		//KISSmetrics
+		_kmq.push(['identify', emailToSave]);
 	 	emailPrompt(emailToSave);
 		$j('.mobile-buttons.saving').remove();
 	

@@ -1,0 +1,64 @@
+<?php  if(Mage::getStoreConfig('kissmetrics/track/kissmetrics_on')) {
+?>
+	<!-- start Kissmetrics BRANDiD code -->
+	<script type="text/javascript">
+		<?php /* What page is this */
+
+			$module = $this->getRequest()->getModuleName();
+			$controller = $this->getRequest()->getControllerName();
+			$action = $this->getRequest()->getActionName();
+
+		?>
+		
+
+		<?php /* Identify user */
+		if(Mage::getSingleton('customer/session')->isLoggedIn()) {
+			$customer = Mage::getSingleton('customer/session')->getCustomer();
+			$customerID = $customer->getId();
+			$customerEmail = $customer->getEmail();
+
+
+			/* payer can be: unknown, yes, or definitely not. Need to check this after email address. 
+			*/
+
+			// we use group id to tell if a customer has paid us before or not
+			// $groupId = Mage::getSingleton('customer/session')->getCustomerGroupId();
+			// if($groupId != 1) {
+			// 	$payer = 'has purchased';
+			// }
+			// else {
+			// 	$payer = 'not purchased';
+			// }
+
+		?>
+			
+
+		<?php /* Otherwise set as guest */
+		} ?>
+		
+		// set global properties for every event
+	 	var page_properties = {
+		    'page_module': "<?php echo $module; ?>",
+		    'page_controller': "<?php echo $controller; ?>",
+		    'page_action': "<?php echo $action; ?>"
+		    
+		    //'paying customer': '<?php // echo $payer ?>'
+		};
+
+		// custom actions
+		document.observe('dom:loaded', function(){
+			
+			<?php /* Identify user */
+				if(Mage::getSingleton('customer/session')->isLoggedIn()) { ?>
+
+					_kmq.push(['identify', '<?php echo $customerEmail; ?>', page_properties]);			
+
+			<?php } ?>
+		});
+
+
+			
+	</script>
+	<!-- end Kissmetrics BRANDiD code -->
+
+<?php } ?>
