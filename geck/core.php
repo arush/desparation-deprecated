@@ -73,39 +73,62 @@ function getSoldValue($orders) {
 	return $totalSales;
 }
 
-function getAllMembers() {
+
+/*
+*
+* Only use this if you have ebizmarts MageMonkey installed
+*
+**/
+function getTotalSignups() {
 	$storeId = Mage::app()->getStore()->getId();			
 	$listId = Mage::helper('monkey')->getDefaultList($storeId);
 
-
 	// call ebizmarts api
-
 		$api = Mage::getSingleton('monkey/api');
-		$retval = $api->listMembers($listId, 'subscribed', null, 0, 5000 );
+		
+		$conditions = array();
+		$conditions[] = array('field'=>'status', 'op'=>'ne', 'value'=>'invited'); // take out old evogue contacts
+		$opts = array('match'=>'all', 'conditions'=>$conditions);
+		 
+		$retval = $api->campaignSegmentTest($listId, $opts);
 
 
 		if ($api->errorCode){
-			$segment["status"] = 0;
-			$segment["errorCode"] = "\n\tCode=".$api->errorCode;
-			$segment["errorMessage"] = "\n\tMsg=".$api->errorMessage."\n";
+
+			print_r(json_encode(
+				array(
+					'status' => $api->errorCode,
+					'state' => "failed",
+					'message' => $api->errorMessage
+					)
+			));
+			return false;
 
 		} else {
-			$segment["status"] = 1;
-			$segment["number"] = $retval['total'];
-			$segment["numberReturned"] = sizeof($retval['data']);
-			$segment["data"] = $retval['data'];
+			return $retval;
+// 			
 		}
-
-	return $segment;
 }
 
-function getMaleSegments($emailArray) {
+/*
+*
+* Only use this if you have ebizmarts MageMonkey installed
+*
+**/
+function getMaleSegments($maleNeedle) {
 	$storeId = Mage::app()->getStore()->getId();			
 	$listId = Mage::helper('monkey')->getDefaultList($storeId);
 
 	// call ebizmarts api
 		$api = Mage::getSingleton('monkey/api');
-		$retval = $api->listMemberInfo($listId, $emailArray);
+		
+		$conditions = array();
+		$conditions[] = array('field'=>'male', 'op'=>'like', 'value'=>$maleNeedle);
+		$conditions[] = array('field'=>'status', 'op'=>'ne', 'value'=>'invited'); // take out old evogue contacts
+		$opts = array('match'=>'all', 'conditions'=>$conditions);
+		 
+		$retval = $api->campaignSegmentTest($listId, $opts);
+
 
 		if ($api->errorCode){
 

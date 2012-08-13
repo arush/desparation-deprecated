@@ -23,32 +23,22 @@ $ye = date('Y-m-d H:i:s', mktime(date('H'), date('i'), date('s'), date('m')-1, d
 
 	/* Check API key */
     // if ('XXXX' == $_SERVER['PHP_AUTH_USER']) {
-		$mailchimpData = getAllMembers();
-		$emailArray;
 
-		if($mailchimpData["status"] === 1) {
-			$i =0;
-			foreach($mailchimpData['data'] as $member){
-			    $emailArray[$i] = $member['email'];
-			    $i++;
-			}
-		}
+        $signedUp = getTotalSignups();
+		$started = getMaleSegments('started');
+        $finished = getMaleSegments('finalSave');
 
-		$retval = getMaleSegments($emailArray);
-		
-		foreach($retval['data'] as $member){
-			echo $member['email'] . '\n';
-			echo $member['merges']['MALE'] . '\n';
-		}
-		
+        $totalStarted = (int)$started + (int)$finished;
 
-		// $json = json_encode($mailchimpData);
+        $item = array();
+        $item[] = array('value' => $signedUp, 'label' => 'All signups');
+        $item[] = array('value' => $totalStarted, 'label' => 'Started');
+        $item[] = array('value' => $finished, 'label' => 'Completed');
 
-		// echo $json;  
+        $retval = array('type' => 'reverse', 'percentage' => 'show', 'item' => $item);
+		$json = json_encode($retval);
 
-
-
-
+		echo $json;  
 
 
     // } else {
