@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+	<arush translate="label" module="male">
+	    <label>Arush</label>
+	    <sort_order>150</sort_order>
+	</arush>
+    </tabs>
+    <sections>
+        <male translate="label comment" module="male">
+            <tab>arush</tab>
+            <label>Male</label>
+            <frontend_type>text</frontend_type>
+            <sort_order>30</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                
+                <questions translate="label comment" module="male">
+                    <label>Questions</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+            			<male_sock_brands translate="label">
+                            <label>Sock brands</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[comma separated]]></comment>
+                        </male_sock_brands>
+                        <male_boxer_brands translate="label">
+                            <label>Underwear brands</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[comma separated]]></comment>
+                        </male_boxer_brands>
+                        <male_tee_brands translate="label">
+                            <label>Tee brands</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[comma separated]]></comment>
+                        </male_tee_brands>
+                        <male_shirt_brands translate="label">
+                            <label>Shirt brands</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[comma separated]]></comment>
+                        </male_shirt_brands>
+                        
+                    </fields>
+                </questions>
+            </groups>
+        </male>
+    </sections>
+</config>

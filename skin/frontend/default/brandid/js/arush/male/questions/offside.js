@@ -1,7 +1,13 @@
 function offside(fname) {
 		saveProgress('offside');
 
-		wipeConsole();
+		if(punter.justStarted === true) {
+
+			punter.justStarted = false;
+		}
+		else {
+			wipeConsole();
+		}
 		
 		var q;
 		if(punter.sexGuess === 'female') {

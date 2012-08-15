@@ -212,27 +212,23 @@
 
 				<div class="copy">
 					<div class="sixteen columns row">
-						<h1 class="one-liner">A package to keep your package well packaged.</h1>
+						<h1 class="one-liner">Your clothes. Delivered on a schedule.</h1>
 					</div>
 					<div class="description ten columns offset-by-three row">
-						<h4 class="description-copy">Designer essentials. Auto-delivered monthly or quarterly.</h4>
+						<h4 class="description-copy">This isn't fashion. This is maths.</h4>
 					</div>
-					
-					<div class="process">
-						<div class="one-third column">
-							<img src="<?php echo $this->getSkinUrl('images/arush/home/small-mag-male.png'); ?>" alt="we feed the MALE™" title="we feed the MALE™"/>
-							<a id="main-step-1" href="/get/party/started" class="convert step">Step 1. Feed the MALE™</a>
-							<div class="step-caption">MALE™ is our Masculine Algorithmic Learning Engine. It learns what you like.</div>
+					<div class="male row">
+						<div class="three columns">
+							<img src="<?php echo $this->getSkinUrl('images/arush/home/small-mag-male.png'); ?>" alt="feed the M.A.L.E." title="feed the M.A.L.E."/>
 						</div>
-						<div class="one-third column">
-							<img src="<?php echo $this->getSkinUrl('images/arush/home/small-mag-plan.png'); ?>" alt="choose a clothing subscription" title="choose a clothing subscription"/>
-							<a id="main-step-2" href="#" class="convert step inactive">Step 2. Confirm your plan</a>
-							<div class="step-caption"><span id="2">Are you a Soldier, Boss or Godfather? Tees, Vees or Polos? Shirts for Monday morning or Saturday night?</span></div>
-						</div>
-						<div class="one-third column">
-							<img src="<?php echo $this->getSkinUrl('images/arush/home/small-mag-pack.png'); ?>" alt="we feed the MALE™" title="we feed the MALE™"/>
-							<a href="#" class="convert step inactive">Step 3. Get BRANDiD</a>
-							<div class="step-caption">Now you're rockin' fresh garms, time to do something more important instead.</div>
+						
+						<div class="thirteen columns">
+							<span class="" id="male-welcome-msg">Well hello there. M.A.L.E. here, what's your name? </span>
+							<div class="mobile-buttons saving clearfix"><input id="name-to-save" type="text" name="firstname" value="e.g. Steve" onfocus="clearDefault(this)" onblur="restoreText(this)">
+								<a id="step1" href="/get/party/started" class="convert secondary" style="display:none;float: left; margin: 0 10px 0 0;">Step 1. Feed the M.A.L.E.</a>
+								<a id="submit_email" class="convert" onclick="handleNameSubmit(); return false;">Feed the M.A.L.E™</a>
+								<a id="step3" class="convert inactive" style="float:left" href="#">Step 3. Get BRANDiD</a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -240,6 +236,7 @@
 			
 		</div>
 	</div>
+	<span id="2"></span>
 </div>
 
 
@@ -248,9 +245,25 @@
 		<span class="vision-title-text">What is BRANDiD?</span>
 	</div>
 	<span class="caption">BRANDiD is an online subscription service for all the things men need, starting with designer basics such as underwear, socks, tees and shirts from the likes of Calvin Klein, Hugo Boss and Ralph Lauren. We'll send your gear every month so your boxers are always box fresh. Select. Subscribe. Sorted. Capiche?</span>
-	<div class="convert-button clearfix">
-		<a id="middle-body-convert" href="/get/party/started" class="convert">Step 1. Feed the MALE™</a>
+	
+	<div class="process">
+		<div class="one-third column">
+			<img src="<?php echo $this->getSkinUrl('images/arush/home/small-mag-male.png'); ?>" alt="we feed the M.A.L.E." title="we feed the M.A.L.E."/>
+			<a id="main-step-1" href="#top" class="convert step">Step 1. Feed the M.A.L.E.</a>
+			<div class="step-caption">M.A.L.E. is our Masculine Algorithmic Learning Engine. It learns what you like.</div>
+		</div>
+		<div class="one-third column">
+			<img src="<?php echo $this->getSkinUrl('images/arush/home/small-mag-plan.png'); ?>" alt="choose a clothing subscription" title="choose a clothing subscription"/>
+			<a id="main-step-2" href="#" class="convert step inactive">Step 2. Confirm your plan</a>
+			<div class="step-caption"><span>Are you a Soldier, Boss or Godfather? Tees, Vees or Polos? Shirts for Monday morning or Saturday night?</span></div>
+		</div>
+		<div class="one-third column">
+			<img src="<?php echo $this->getSkinUrl('images/arush/home/small-mag-pack.png'); ?>" alt="we feed the M.A.L.E." title="we feed the M.A.L.E."/>
+			<a href="#" class="convert step inactive">Step 3. Get BRANDiD</a>
+			<div class="step-caption">Now you're rockin' fresh garms, time to do something more important instead.</div>
+		</div>
 	</div>
+
 	<div class="share-buttons thirteen columns offset-by-three">
 	
 		<div class="like-but share-but">
@@ -354,40 +367,41 @@
 			<div class="grey-tilt-container clearfix">
 				<div class="vision container clearfix" id="take-to-plans">
 					<div class="vision-title">
-						<span class="vision-title-text">How do I know you're right for me?</span>
+						<span class="vision-title-text">How will you know my style?</span>
 					</div>
 					
 
 					<div class="container">
-						<div class="male-explanation row">That's why we built MALE™. Our proprietary AAI (Artificial Artificial Intelligence).
+
+						<div class="male-explanation row">That's why we built M.A.L.E.. Our proprietary AAI (Artificial Artificial Intelligence).
 						</div>
 
 						<div class="one-third column">
 							
 							<div class="fade">
 
-								<img id="step-1-feed" class="scale-with-grid male-explanation-img" src="<?php echo $this->getSkinUrl('images/arush/home/step-1-feed.png'); ?>" alt="the MALE™ learns what you like" title="the MALE™ learns what you like"/>
+								<img id="step-1-feed" class="scale-with-grid male-explanation-img" src="<?php echo $this->getSkinUrl('images/arush/home/step-1-feed.png'); ?>" alt="the M.A.L.E. learns what you like" title="the M.A.L.E. learns what you like"/>
 
 								<div>
-									<img id="step-2-feed" class="scale-with-grid male-explanation-img" src="<?php echo $this->getSkinUrl('images/arush/home/step-2-feed.png'); ?>" alt="the MALE™ learns what you like" title="the MALE™ learns what you like"/>
+									<img id="step-2-feed" class="scale-with-grid male-explanation-img" src="<?php echo $this->getSkinUrl('images/arush/home/step-2-feed.png'); ?>" alt="the M.A.L.E. learns what you like" title="the M.A.L.E. learns what you like"/>
 								</div>
 							</div>
 
 						</div>
 						<div class="one-third column">
-							<div class="male-explanation">Your data gets punched into BRANDiD’s proprietary Masculine Algorithmic Learning Engine (MALE™).</div>
-							<img src="<?php echo $this->getSkinUrl('images/arush/home/small-mag-male.png'); ?>" alt="the MALE™ learns what you like" title="the MALE™ learns what you like"/>
-							<div class="male-explanation">We built MALE™ from the pixel up to learn what you like. It eats feedback and sh*ts great garms.</div>
+							<div class="male-explanation">Your data gets punched into BRANDiD’s proprietary Masculine Algorithmic Learning Engine (M.A.L.E.).</div>
+							<img src="<?php echo $this->getSkinUrl('images/arush/home/small-mag-male.png'); ?>" alt="the M.A.L.E. learns what you like" title="the M.A.L.E. learns what you like"/>
+							<div class="male-explanation">We built M.A.L.E. from the pixel up to learn what you like. It eats feedback and sh*ts great garms.</div>
 
 						</div>
 						<div class="one-third column">
 
 							<div class="fade">
 
-								<img id="step-1-clothes" class="scale-with-grid male-explanation-img" src="<?php echo $this->getSkinUrl('images/arush/home/step-1-clothes.jpg'); ?>" alt="the MALE™ learns what you like" title="the MALE™ learns what you like"/>
+								<img id="step-1-clothes" class="scale-with-grid male-explanation-img" src="<?php echo $this->getSkinUrl('images/arush/home/step-1-clothes.jpg'); ?>" alt="the M.A.L.E. learns what you like" title="the M.A.L.E. learns what you like"/>
 								
 								<div>
-									<img id="step-2-clothes" class="scale-with-grid male-explanation-img" src="<?php echo $this->getSkinUrl('images/arush/home/step-2-clothes.jpg'); ?>" alt="the MALE™ learns what you like" title="the MALE™ learns what you like"/>
+									<img id="step-2-clothes" class="scale-with-grid male-explanation-img" src="<?php echo $this->getSkinUrl('images/arush/home/step-2-clothes.jpg'); ?>" alt="the M.A.L.E. learns what you like" title="the M.A.L.E. learns what you like"/>
 								</div>
 							</div>
 						</div>
@@ -483,7 +497,7 @@
 									<span class="caption">No commitment or credit card required, just balls.</span>
 								</div>
 								<div class="convert-button clearfix">
-									<a id="body-convert-2" href="/get/party/started" class="convert">Step 1. Feed the MALE™</a>
+									<a id="body-convert-2" href="#top" class="convert">Step 1. Feed the M.A.L.E.</a>
 								</div>
 							</div>
 						</div>
@@ -634,4 +648,6 @@
 });
 
 </script>
+
+
 

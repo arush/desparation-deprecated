@@ -1,5 +1,6 @@
 @import "compass/css3/opacity";
 @import "calendar.scss";
+@import "../party.scss";
 
 @import "jquery.reject.scss";
 @import "../keep-calm110620120613.scss";
@@ -50,8 +51,7 @@ body.cms-index-index
 
 .step-caption
 {
-  color:#aaa;
-  font-weight:700;
+  color:#444;
   width:80%;
   margin:0 auto;
 }
@@ -70,7 +70,7 @@ a.convert.step
 a.convert.step.inactive
 {
   float:left;
-  font-size:12px;
+  font-size:15px;
   font-family:proxima-nova,arial,sans-serif;
   margin:20px auto;
   height:40px;
@@ -80,6 +80,9 @@ a.convert.step.inactive
   -webkit-box-shadow:none;
   cursor:default;
   width:100%;
+  color:black;
+  text-shadow: 0pt -1px 0pt white;
+
 }
 .lte9 a.convert.step.inactive {
 	filter:none;
@@ -129,7 +132,7 @@ a.convert.step.inactive
 
 .process
 {
-  margin:12px 0 0;
+  margin:80px 0;
   position:relative;
   display:inline;
   float:left;
@@ -137,7 +140,7 @@ a.convert.step.inactive
 
 .process .one-third
 {
-  margin:0;
+  margin: 0 10px 0 10px;
 }
 
 .description
@@ -174,6 +177,35 @@ h4.description-copy,h4 strong
   color:#d2002b;
 }
 
+.male.row {
+  margin-top:128px;
+  #submit_email {
+    line-height: 60px;
+  }
+  .mobile-buttons.saving {
+    margin:20px 0 0 0;
+  }
+  #name-to-save, #step1, #step3 {
+    line-height: 60px;
+  }
+  #step3 {
+    display:none;
+    background: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    cursor: default;
+    color: white;
+    text-shadow: 0pt -1px 0pt black;
+  }
+
+}
+.male.row #male-welcome-msg {
+  color:#83F52C;
+  font-family:courier,monospace;
+  font-size:20px;
+  margin-top: 22px;
+  display: block;
+}
 
 @keyframes fade-in {
 	0%{
@@ -244,7 +276,11 @@ h4.description-copy,h4 strong
     margin:20px 110px;
   }
   .step-caption {margin-bottom:20px}
-  .calendar-container .title-block-inner {height:1054px;}
+  .calendar-container .title-block-inner {height:608px;}
+  .male.row {text-align:center;}
+  .male.row .thirteen {
+    margin-top:20px;
+  }
 
   .quote-box {margin-bottom:43px;}
 

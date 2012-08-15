@@ -1,0 +1,97 @@
+<?xml version="1.0"?> 
+<config>
+  <modules>
+      <Arush_Male> 
+          <version>0.1.0</version>
+          <depends>
+              <!-- no dependencies --> 
+          </depends>
+      </Arush_Male> 
+  </modules>
+  <global> 
+   
+    <blocks>
+        <adminhtml>
+            <rewrite>
+            </rewrite>
+        </adminhtml>
+    </blocks>
+    
+    <blocks>
+        <male> 
+            <class>Arush_Male_Block</class>
+        </male> 
+    </blocks>
+    <helpers>
+        <male>
+          <class>Arush_Male_Helper</class>
+        </male>
+    </helpers>
+  </global>
+  <adminhtml>
+      <acl>
+          <resources>
+              <admin>
+                  <children>
+                      <system>
+                          <children>
+                              <config>
+                                  <children>
+                                      <male>
+                                          <title>Male Settings</title>
+                                      </male>
+                                  </children>
+                              </config>
+                          </children>
+                      </system>
+                  </children>
+              </admin>
+          </resources>
+      </acl>
+      <events></events> 
+      <translate></translate>
+  </adminhtml> 
+  <frontend>
+      <routers></routers> 
+      <events></events> 
+      <translate></translate> 
+      <!-- <layout>
+      	<updates>
+                <male>
+                    <file>arush/male.xml</file>
+                </male>
+        </updates>
+      </layout> -->
+  </frontend>
+  <admin>
+       <routers>
+          <male>
+              <use>admin</use>
+              <args>
+                  <module>Arush_Male</module>
+                  <frontName>male</frontName>
+              </args>
+          </male>
+      </routers>
+  </admin>
+  <!-- module defaults --> 
+  <default>
+      <!-- config values -->
+      <male>
+          <questions>
+            <male_sock_brands><![CDATA[]]></male_sock_brands>
+            <male_boxer_brands><![CDATA[]]></male_boxer_brands>
+            <male_tee_brands><![CDATA[]]></male_tee_brands>
+            <male_shirt_brands><![CDATA[]]></male_shirt_brands>
+          </questions>
+      </male>
+  </default>
+  <!--<crontab>
+      <jobs>
+          <get_male_view>
+              <schedule><cron_expr>*/2 * * * *</cron_expr></schedule>
+              <run><model>male/observer::cacheFeeds</model></run>
+          </get_male_view>
+      </jobs>
+  </crontab>-->
+</config>

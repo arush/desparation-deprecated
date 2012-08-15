@@ -98,11 +98,18 @@ jQuery(function() {
 	
 });
 
-//
+// change the buttons depending on MALE progress
 $j(document).ready(function() {
 	if($j.cookie('punter') != null) {
 		punter = JSON.parse($j.cookie("punter"));
 		if(punter.progress === 'finalSave') {
+			$j('#male-welcome-msg').text('Hey '+punter.fname+', I\'ve got the perfect plan for you.');
+			$j('.mobile-buttons.saving input').remove();
+			$j('#step1').show();
+			$j('#step3').show();
+			$j('#submit_email').css('float','left');
+			$j('#submit_email').text('Step 2. Confirm your Plan');
+			$j('#submit_email').attr('href','/plans.html');
 			$j('#main-step-1').addClass('secondary');
 			$j('#main-step-2').removeClass('inactive');
 			$j('#main-step-2').attr('href','/plans.html');
@@ -115,6 +122,39 @@ $j(document).ready(function() {
 		}
 	}
 });
+
+$j(document).ready(function() {
+	setTimeout("$j('#male-welcome-msg').typewriter()",5000);
+	var whereFrom = getReferer();
+	_kmq.push(['record', 'Visited Homepage', {'source':whereFrom}]);
+});
+
+
+//Male stuff
+//global punter object
+var punter = new Object();
+if($j.cookie('punter') != null) {
+	punter = JSON.parse($j.cookie("punter"));
+}
+
+function handleNameSubmit() {
+
+		var nameToSave;
+
+		nameToSave = $j('#name-to-save').val();
+
+		// in case they entered 2 names, just take the first name before the space
+	 	nameToSave = nameToSave.split(" ");
+	 	punter.fname = nameToSave[0];
+	 	punter.justStarted = true;
+	 	$j.cookie('punter', JSON.stringify(punter), { expires: 1, path: '/' });
+
+	 	//KISSMETRICS
+	 	_kmq.push(['record', 'Entered Name', {'nameVal':punter.fname}]);
+		window.location.href = '/get/party/started';
+	
+}
+
 
 // sliding intro
 
