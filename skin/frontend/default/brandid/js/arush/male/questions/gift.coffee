@@ -15,6 +15,9 @@ root.giftQ = ->
 
 root.giftAa = ->
   punter.gift = "gifter"
+  _kmq.push ["record", "MALE Gift",
+    gift: "one-off-gifter"
+  ]
   wipeConsole()
   newQ "I wish I had a fembot like you.\n\nThe link below will take you to the gift page. If you don't like what you see, just use your browser's back button to continue M.A.L.E.™ where you left off. "
   typeit()
@@ -23,6 +26,9 @@ root.giftAa = ->
   ), 3000
 root.giftAb = ->
   punter.gift = "impersonator"
+  _kmq.push ["record", "MALE Gift",
+    gift: "impersonator"
+  ]
   wipeConsole()
   newQ "You're amazing. What would he do without you?\n\nLet's continue the questions pretending you're him... "
   typeit()

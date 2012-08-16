@@ -12,17 +12,26 @@ function confirmationQ() {
 	var buttons = new Array();
 	
 	buttons[0] = new Array("convert secondary","Resend confirmation", "resendConfirmation()");
-		
 	
-	if(punter.gender === 'Female' && punter.progress !== 'finalSave') {
-		buttons[1] = new Array("convert","Continue", "giftQ()");	
-	}
-	else if(punter.progress !== 'finalSave'){
-		buttons[1] = new Array("convert","Continue", "workQ()");	
+	// not sure this makes sense now
+	
+	if(punter.progress === 'finalSave') {
+		buttons[1] = new Array("convert","OK, I clicked on the link in my email, try again", "finalSave()");
+		_kmq.push(['record', 'MALE Tried to continue without confirming email', {'emailAttempt':punter.email}]);
 	}
 	else {
-		buttons[1] = new Array("convert","OK, I clicked on the link in my email, try again", "finalSave()");
-	}//must be the final save
+		buttons[1] = new Array("convert","Continue", "magsQ()");
+	}
+	_kmq.push(['record', 'MALE Email Confirm Sent', {'emailAttempt':punter.email}]);
+	// if(punter.gender === 'Female' && punter.progress !== 'finalSave') {
+	// 	buttons[1] = new Array("convert","Continue", "rollQ()");	
+	// }
+	// else if(punter.progress !== 'finalSave'){
+	// 	buttons[1] = new Array("convert","Continue", "magsQ()");	
+	// }
+	// else {
+	// 	buttons[1] = new Array("convert","OK, I clicked on the link in my email, try again", "finalSave()");
+	// }//must be the final save
 	insertButtons(buttons);
 	// confirmationA();
 	
@@ -40,6 +49,28 @@ function insertEmailButton() {
 	setTimeout(function(){performAppend(s,string)},2000);
 }
 
+function insertMagsField() {
+	var s = $j("#console");
+
+	var string = '<div class=\"mobile-buttons saving clearfix\">';
+	string += '<input id="mags-to-save" type="text" name="magazines" value="magazine 1, magazine 2..." onFocus="clearDefaultJ(this)" onBlur="restoreTextJ(this)"/><a id="submit_mags" class="convert" onclick="handleMagsSubmit(); return false;">Feed the M.A.L.E.</a>';
+	
+	string += "</div>";
+	
+	setTimeout(function(){performAppend(s,string)},1500);
+}
+
+function insertTvField() {
+	var s = $j("#console");
+
+	var string = '<div class=\"mobile-buttons saving clearfix\">';
+	string += '<input id="tv-to-save" type="text" name="tv" value="tv show 1, tv show 2..." onFocus="clearDefaultJ(this)" onBlur="restoreTextJ(this)"/><a id="submit_tv" class="convert" onclick="handleTvSubmit(); return false;">Feed the M.A.L.E.</a>';
+	
+	string += "</div>";
+	
+	setTimeout(function(){performAppend(s,string)},1500);
+}
+
 
 function startEmail() {
 	saveProgress('startEmail');
@@ -51,19 +82,6 @@ function startEmail() {
 	insertEmailButton();
 }
 
-function emailPrompt(emailEntered) {
-	punter.email = emailEntered;
-	
-	if(punter.gender === 'Female') {
-		punter.goAfterSave = 'giftQ';
-	}
-	else {
-		punter.goAfterSave = 'workQ';
-	}
-	saveProgress('registerUser');
-	registerUser();
-}
-
 
 function handleEmailSubmit() {
 
@@ -72,8 +90,44 @@ function handleEmailSubmit() {
 		emailToSave = $j('#email-to-save').val();
 	 	
 		//KISSmetrics
+		_kmq.push(['record', 'MALE Email Submitted']);
 		_kmq.push(['identify', emailToSave]);
-	 	emailPrompt(emailToSave);
+
+		punter.email = emailToSave;
+		punter.goAfterSave = 'finalSave';
+		saveProgress('registerUser');
+		registerUser();
+
 		$j('.mobile-buttons.saving').remove();
+	
+}
+
+function handleMagsSubmit() {
+
+		var magsToSave;
+
+		magsToSave = $j('#mags-to-save').val();
+	 	
+		//KISSmetrics
+		_kmq.push(['record', 'MALE Magazines', {'magazines':magsToSave}]);
+	 	punter.mags = magsToSave;
+		$j('.mobile-buttons.saving').remove();
+
+		return watchQ();
+	
+}
+
+function handleTvSubmit() {
+
+		var tvToSave;
+
+		tvToSave = $j('#tv-to-save').val();
+	 	
+		//KISSmetrics
+		_kmq.push(['record', 'MALE TV Shows', {'tv':tvToSave}]);
+	 	punter.tv = tvToSave;
+		$j('.mobile-buttons.saving').remove();
+
+		return startEmail();
 	
 }

@@ -9,7 +9,7 @@ class Arush_Get_PartyController extends Mage_Core_Controller_Front_Action
 			$email = 'not yet known';
 			$fname = 'not yet known';
 			$gender = 'not yet known';
-			$source = 'not yet known';
+			$source = 'direct';
 			$male = 'not far along enough yet';
 
 			if(array_key_exists('email',$this->getRequest()->getPost())) {

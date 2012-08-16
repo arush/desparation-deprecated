@@ -39,6 +39,17 @@ function insertContinue(nextStep, buttonText) {
 	adjustHeight();
 }
 
+function insertSkip(nextStep, buttonText) {
+	// default button text is 'continue'
+	buttonText = typeof buttonText !== 'undefined' ? buttonText : 'skip';
+	
+	var string = "<div class=\"mobile-buttons clearfix\"><a class=\"continue skip secondary convert\" onclick=\""+nextStep+"\">"+buttonText+"</a></div>";
+
+	var s = $j('.male-console');
+	performAppend(s,string);
+	adjustHeight();
+}
+
 function insertShare(type, href) {
 	var buttonText = 'Share this on '+type;
 	var buttonClass = 'convert secondary '+type;

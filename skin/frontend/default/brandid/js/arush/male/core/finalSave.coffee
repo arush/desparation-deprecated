@@ -5,15 +5,16 @@ root.finalSave = ->
   saveProgress "finalSave"
   punter.goAfterSave = "finalSave"
   
-  #KISSmetrics
-  _kmq.push ["record", "activated"]
-
-  answers =
-  	work: punter.work
-  	play: punter.play
-  	roll: punter.roll
-  	progress: punter.progress
   
+  
+  answers =
+    work: punter.work
+    play: punter.play
+    roll: punter.roll
+    progress: punter.progress
+    mags: punter.mags
+    tv: punter.tv
+
   punter.maleAnswers = JSON.stringify(answers);
   # asynchronously save the user
   q = 'I\'ll be adding more questions soon, but that\'s all I need right now to recommend you a plan. '

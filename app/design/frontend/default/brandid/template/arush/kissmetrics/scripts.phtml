@@ -37,18 +37,33 @@
 		} ?>
 		
 		// set global properties for every event
-	 	var page_properties = {
-		    'page_module': "<?php echo $module; ?>",
-		    'page_controller': "<?php echo $controller; ?>",
-		    'page_action': "<?php echo $action; ?>"
+	 // 	var page_properties = {
+		//     'page_title': "<?php echo $module; ?>",
+		//     'page_controller': "<?php echo $controller; ?>",
+		//     'page_action': "<?php echo $action; ?>"
 		    
-		    //'paying customer': '<?php // echo $payer ?>'
-		};
+		//     //'paying customer': '<?php // echo $payer ?>'
+		// };
 
 		// custom actions
 		document.observe('dom:loaded', function(){
 			
 			<?php /* Identify user */
+				if($module === 'catalog' && $controller === 'category' && $action === 'view') {
+					?> _kmq.push(['record', 'Viewed Plans']);	<?php
+				}
+				if($module === 'catalog' && $controller === 'product' && $action === 'view') {
+					?> _kmq.push(['record', 'Viewed Product']);
+						// added to cart
+						$j("button.convert").click(function() {
+						  _kmq.push(['record', 'Add to Cart']);
+						});	<?php
+				}
+				if($module === 'checkout' && $controller === 'onepage' && $action === 'index') {
+					?> _kmq.push(['record', 'Reached Checkout']); <?php 
+				}
+				// echo $module . ' ' . $controller . ' ' . $action;
+
 				if(Mage::getSingleton('customer/session')->isLoggedIn()) { ?>
 
 					_kmq.push(['identify', '<?php echo $customerEmail; ?>', page_properties]);			

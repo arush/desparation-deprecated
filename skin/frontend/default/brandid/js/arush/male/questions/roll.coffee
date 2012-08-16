@@ -8,7 +8,10 @@ root.rollQ = ->
   s = $j("#male-welcome-msg")
   rollImages s
 root.rollDone = ->
-  finalSave()
+  _kmq.push ["record", "MALE Roll",
+    roll: punter.rollA
+  ]
+  magsQ()
 root.rollAa = ->
   punter.roll = 1
   punter.rollA = 'private jet'

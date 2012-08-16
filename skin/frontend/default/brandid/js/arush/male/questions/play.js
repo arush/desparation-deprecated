@@ -12,6 +12,7 @@ function playQ() {
 }
 
 function playDone() {
+	_kmq.push(['record', 'MALE Play Outfit', {'playshirts': punter.playShirts}]);
 	newQ('Got it. ');
 	typeit();
 	setTimeout('rollQ()',1500);

@@ -33,7 +33,10 @@ root.createResult = ->
 
 	  wipeConsole()
 
-	  
+	  #KISSmetrics
+	  _kmq.push ["record", "Activated",
+	  	manhood: percent
+	  ]
 	  
 	  tweetLink = 'http://www.getbrandid.com/get/party/started'
 

@@ -46,47 +46,56 @@ function offsideAa() {
 	wipeConsole();
 	
 	punter.gender = 'Male';
-	
+	_kmq.push(['record', 'MALE Offside', {'gender': 'male'}]);
+
+
+
 	var q = 'You said: You are a man, Player A is offside ';
 
 	newQ(q);
 
 	setTimeout(function(){correctResponse('That is correct. You are clearly a man. ')}, 2000);
-	setTimeout('startEmail()',4000);
+	setTimeout('workQ()',4000);
 
 }
 function offsideAb() {
 	wipeConsole();
 
 	punter.gender = 'Female';
+	_kmq.push(['record', 'MALE Offside', {'gender': 'female'}]);
+
 	
 	var q = 'You said: You are a woman who knows her sport, Player A is offside ';
 
 	newQ(q);
 	setTimeout(function(){correctResponse('Correct! Wow, that\'s hot. Just kidding. I\'m a machine. ')}, 2000);
-	setTimeout(function(){insertContinue('startEmail()')},2000);
+	setTimeout(function(){insertContinue('giftQ()')},2000);
 }
 function offsideAc() {
 	wipeConsole();
 
 	punter.gender = 'Female';
+	_kmq.push(['record', 'MALE Offside', {'gender': 'female'}]);
+
 	
 	var q = 'These guys should have gone to BRANDiD... ';
 
 	newQ(q);
 	
 	setTimeout(function(){beckham()},1000);
-	setTimeout(function(){insertContinue('startEmail()')},1000);
+	setTimeout(function(){insertContinue('giftQ()')},1000);
 }
 function offsideAd() {
 	wipeConsole();
 	
 	punter.gender = 'Male';
+	_kmq.push(['record', 'MALE Offside', {'gender': 'male'}]);
+
 	
 	var q = 'You said: You are a man, but you don\'t give a monkey\'s about this football/soccer stuff ';
 
 	newQ(q);
 
 	setTimeout(function(){correctResponse('You are a man. This is great news. ')}, 2000);
-	setTimeout('startEmail()',4000);
+	setTimeout('workQ()',4000);
 }
