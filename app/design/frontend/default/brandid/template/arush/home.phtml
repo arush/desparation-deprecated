@@ -212,10 +212,10 @@
 
 				<div class="copy">
 					<div class="sixteen columns row">
-						<h1 class="one-liner">Your clothes. Delivered on a schedule.</h1>
+						<h1 class="one-liner">Mens Basics. Delivered on a schedule.</h1>
 					</div>
 					<div class="description ten columns offset-by-three row">
-						<h4 class="description-copy">Say goodbye to shopping, and hello to M.A.L.E.</h4>
+						<h4 class="description-copy">Say goodbye to shopping. Say hello to M.A.L.E.</h4>
 					</div>
 					<div class="male row">
 						<div class="three columns">
@@ -223,11 +223,14 @@
 						</div>
 						
 						<div class="thirteen columns">
-							<span class="" id="male-welcome-msg">Well hello there. M.A.L.E. here, what's your name? </span>
-							<div class="mobile-buttons saving clearfix"><input id="name-to-save" type="text" name="firstname" value="e.g. Steve" onfocus="clearDefault(this)" onblur="restoreText(this)">
-								<a id="step1" href="/get/party/started" class="convert secondary" style="display:none;float: left; margin: 0 10px 0 0;">Step 1. Feed the M.A.L.E.</a>
-								<a id="submit_email" class="convert" onclick="handleNameSubmit(); return false;">Feed the M.A.L.E™</a>
-								<a id="step3" class="convert inactive" style="float:left" href="#">Step 3. Get BRANDiD</a>
+							<span class="" id="male-welcome-msg">Hey, I'm M.A.L.E. (Masculine Algorithmic Learning Engine). What's your name? </span>
+							<div class="mobile-buttons saving clearfix">
+								<form action="#">
+									<input id="name-to-save" type="text" name="firstname" value="e.g. Steve" onfocus="clearDefault(this)" onblur="restoreText(this)">
+									<a id="step1" href="/get/party/started" class="convert secondary" style="display:none;float: left; margin: 0 10px 0 0;">Step 1. Feed the M.A.L.E.</a>
+									<a id="submit_email" type="submit" class="convert" onclick="handleNameSubmit(); return false;">Feed the M.A.L.E™</a>
+									<a id="step3" class="convert inactive" style="float:left" href="#">Step 3. Get BRANDiD</a>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -244,7 +247,7 @@
 	<div class="row">
 		<br/><br/>
 	</div>
-	<img class="four columns" src="<?php echo $this->getSkinUrl('images/arush/seedcamp.png');?>" alt="press releases"/>
+	<img class="four columns" src="<?php // echo $this->getSkinUrl('images/arush/seedcamp.png');?>" alt="press releases"/>
 	<div id="st-accordion" class="st-accordion twelve columns">
 	    <ul>
 	        <li>

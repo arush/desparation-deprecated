@@ -10,6 +10,9 @@ var nameA = function (input) {
 	    	investorAsk();
 	    }
 	    else if(input.toLowerCase() === 'male') {
+	    	var q = 'You said: Male ';
+	    	newQ(q);
+	    	typeit();
 	    	jqconsole.Write(name + '? Really? Somehow I doubt that. Try again: ', 'jqconsole-output red wordwrap');
             typeit();
             insertNameButton();
