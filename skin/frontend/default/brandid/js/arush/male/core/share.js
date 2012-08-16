@@ -36,7 +36,7 @@
         manhood: percent
       }
     ]);
-    tweetLink = 'http://www.getbrandid.com/get/party/started';
+    tweetLink = 'http://www.getbrandid.com/';
     maleOutput = 'You are a ';
     tweet = 'I\'m a ';
     if (punter.play === 1) {
@@ -55,7 +55,7 @@
 	  					name=' + encodeURIComponent(fbook) + '&\
 	  					caption=' + encodeURIComponent('How man are you? Stop face-stalking for a second and take the M.A.L.E. test') + '&\
 	  					description=' + encodeURIComponent('Brought to you by the fine folks at BRANDiD - Shop. Like a Man.') + '&\
-	  					redirect_uri=http://www.getbrandid.com/get/party/started';
+	  					redirect_uri=http://www.getbrandid.com/';
     q = 'M.A.L.E. COMPUTATIONAL OUTPUT:\n\n';
     newQ(q);
     typeit();
