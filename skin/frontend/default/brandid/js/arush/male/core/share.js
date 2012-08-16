@@ -31,6 +31,11 @@
       percent = Math.ceil(Math.random() * 21) + 104;
     }
     wipeConsole();
+    _kmq.push([
+      "record", "Activated", {
+        manhood: percent
+      }
+    ]);
     tweetLink = 'http://www.getbrandid.com/get/party/started';
     maleOutput = 'You are a ';
     tweet = 'I\'m a ';

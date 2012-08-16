@@ -194,7 +194,8 @@
 
 	function startMale() {
 
-		if(punter.fname != undefined) {
+		// this is to drop people back in if they bounced half way
+		if(punter.fname != undefined && punter.justStarted === false) {
 	        var backMessage = new Array(", I thought you were gone forever! ", ", missing me already, eh? ", ", I knew you\'d be back. I could feel it. ");
 	        var i = Math.floor(Math.random()*3);
         	
@@ -204,8 +205,14 @@
         	setTimeout('returningVisitor();',1500);
         	initiate();
         }
+        // this is to start people off if they came directly from the homepage
+        else if(punter.fname != undefined && punter.justStarted === true) {
+        	nameA(punter.fname);
+        	
+        }
         else {
 
+        	
         	var q = 'Well hello there.\n\nM.A.L.E. here, what\'s your name? ';
         	newQ(q);
 

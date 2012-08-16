@@ -14,7 +14,9 @@
       work: punter.work,
       play: punter.play,
       roll: punter.roll,
-      progress: punter.progress
+      progress: punter.progress,
+      mags: punter.mags,
+      tv: punter.tv
     };
     punter.maleAnswers = JSON.stringify(answers);
     q = 'I\'ll be adding more questions soon, but that\'s all I need right now to recommend you a plan. ';

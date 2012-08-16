@@ -16,7 +16,12 @@
   };
 
   root.rollDone = function() {
-    return finalSave();
+    _kmq.push([
+      "record", "MALE Roll", {
+        roll: punter.rollA
+      }
+    ]);
+    return magsQ();
   };
 
   root.rollAa = function() {

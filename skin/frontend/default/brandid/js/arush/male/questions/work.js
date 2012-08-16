@@ -12,6 +12,7 @@ function workQ() {
 }
 
 function workDone(q) {
+	_kmq.push(['record', 'MALE Work Outfit', {'workshirts': punter.workShirts}]);
 	newQ(q);
 	typeit();
 	setTimeout('playQ()',1500);
