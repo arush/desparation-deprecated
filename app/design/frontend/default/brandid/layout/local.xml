@@ -271,9 +271,10 @@
             <action method="addItem"><type>skin_js</type><name>js/arush/home1-ck.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/arush/male/jquery.text-effects.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/arush/modernizr.2.5.3.min.js</name></action>
-        <!--    <action method="addItem"><type>skin_js</type><name>js/scroll/jquery.serialScroll-1.2.2-min.js</name></action>
-        -->
+            <action method="addItem"><type>skin_js</type><name>js/jquery.easing.1.3.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/jquery.reject.js</name></action>
+            
+
 
             <action method="removeItem"><type>js</type><name>lib/ccard.js</name></action>
             <action method="removeItem"><type>js</type><name>prototype/validation.js</name></action>
@@ -288,7 +289,6 @@
             <action method="removeItem"><type>js</type><name>varien/menu.js</name></action>
             <action method="removeItem"><type>js</type><name>mage/translate.js</name></action>
             <action method="removeItem"><type>js</type><name>jquery/jquery.tools.min.js</name></action>
-            <action method="removeItem"><type>skin_js</type><name>js/jquery.easing.1.3.js</name></action>
             <action method="removeItem"><type>skin_js</type><name>js/jquery.purr.js</name></action>
             <action method="removeItem"><type>skin_js</type><name>js/date.js</name></action>
             <action method="removeItem"><type>skin_js</type><name>mailchimp/js/MailChimp.js</name></action>

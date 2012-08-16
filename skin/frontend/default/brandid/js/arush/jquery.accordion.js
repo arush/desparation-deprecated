@@ -150,8 +150,8 @@
 				});
 				
 				// scroll to current
-				if( instance._isOpened() )
-				instance._scroll();
+				// if( instance._isOpened() )
+				// instance._scroll();
 				
 			});
 			
@@ -175,7 +175,7 @@
 				
 				: ( this.current = $item.index(), $content.stop(true, true).fadeIn( this.options.speed ), $item.addClass( 'st-open' ).stop().animate({
 					height	: $item.data( 'originalHeight' ) + $content.outerHeight( true )
-				}, this.options.speed, this.options.easing ), this._scroll( this ) )
+				}, this.options.speed, this.options.easing ) /*, this._scroll( this )*/ )
 		
 		},
 		// scrolls to current item or last opened item if current is -1
