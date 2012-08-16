@@ -121,6 +121,13 @@ $j(document).ready(function() {
 			$j('#body-convert-2').attr('href','/plans.html');
 		}
 	}
+
+	//male form submit
+	$j('#malesubmit').submit(function() {
+	  handleNameSubmit();
+	  return false;
+	});
+
 });
 
 $j(document).ready(function() {
@@ -138,6 +145,9 @@ if($j.cookie('punter') != null) {
 }
 
 function handleNameSubmit() {
+		$j('#submit_email').addClass('secondary');
+		$j('#submit_email').addClass('submitted');
+		$j('#submit_email').text('Hold tight...');
 
 		var nameToSave;
 

@@ -214,6 +214,12 @@ h4.description-copy,h4 strong
   display: block;
 }
 
+.male.row a.convert.secondary.submitted {
+  margin: 0;
+  background: #CCC;
+  color: #666;
+}
+
 @keyframes fade-in {
 	0%{
 	  @include opacity(0);
