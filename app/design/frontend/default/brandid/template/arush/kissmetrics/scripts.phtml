@@ -2,6 +2,10 @@
 ?>
 	<!-- start Kissmetrics BRANDiD code -->
 	<script type="text/javascript">
+		
+		//detect browser and OS
+		_kmq.push(['set', {'Browser' : BrowserDetect.browser + " " + BrowserDetect.version, 'Operating System' : BrowserDetect.OS}]);
+
 		<?php /* What page is this */
 
 			$module = $this->getRequest()->getModuleName();
@@ -35,18 +39,10 @@
 
 		<?php /* Otherwise set as guest */
 		} ?>
-		
-		// set global properties for every event
-	 // 	var page_properties = {
-		//     'page_title': "<?php echo $module; ?>",
-		//     'page_controller': "<?php echo $controller; ?>",
-		//     'page_action': "<?php echo $action; ?>"
-		    
-		//     //'paying customer': '<?php // echo $payer ?>'
-		// };
 
 		// custom actions
-		document.observe('dom:loaded', function(){
+		jQuery(document).ready(function() {
+			var $j = jQuery.noConflict();
 			
 			<?php /* Identify user */
 				if($module === 'catalog' && $controller === 'category' && $action === 'view') {
@@ -60,13 +56,27 @@
 						});	<?php
 				}
 				if($module === 'checkout' && $controller === 'onepage' && $action === 'index') {
-					?> _kmq.push(['record', 'Reached Checkout']); <?php 
+					?> _kmq.push(['record', 'Reached Checkout']);
+
+					// get the punter from cookie
+					createPunter();
+					// auto fill email and name
+					if(punter.email) {
+						$j('input.validate-email').val(punter.email);
+					}
+					if(punter.fname) {
+						$j('.name-firstname input').val(punter.fname);
+					}
+
+					// code to track coupon submit is in recurly callback function
+
+					<?php 
 				}
 				// echo $module . ' ' . $controller . ' ' . $action;
 
 				if(Mage::getSingleton('customer/session')->isLoggedIn()) { ?>
 
-					_kmq.push(['identify', '<?php echo $customerEmail; ?>', page_properties]);			
+					_kmq.push(['identify', '<?php echo $customerEmail; ?>']);			
 
 			<?php } ?>
 		});

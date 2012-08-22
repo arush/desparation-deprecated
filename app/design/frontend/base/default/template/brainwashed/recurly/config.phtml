@@ -52,7 +52,11 @@ function preLoadRecurly() {
 <script type="text/javascript">
 
 	function recurlyTooltip(d){
-
+		// KISSmetrics track coupon use
+		$j(".recurly .coupon .check").click(function() {
+				var couponCode = $j('input.coupon_code').val();
+				_kmq.push(['set', {'Coupon used':couponCode}]);
+			});	
 		/*
 		*  insert tooltip
 		*  

@@ -146,3 +146,16 @@
 	    <p><?php echo $this->__('Your order # is: %s.', $this->escapeHtml($this->getOrderId())) ?>.</p>
 	<?php endif;?>
 <?php endif;?>
+
+
+
+
+<?php if(!$gift) {
+	$planDetails = split("-", $skus[0]);
+
+	?>
+	<script type="text/javascript">
+		_kmq.push(['record', 'Signed Up', {'Plan Level': '<?php echo $planDetails[0]; ?>', 'Plan Frequency':'<?php echo $planDetails[1]; ?>'}]);
+	</script>
+<?php } ?>
+

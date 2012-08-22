@@ -20,7 +20,7 @@ function confirmationQ() {
 		_kmq.push(['record', 'MALE Tried to continue without confirming email', {'emailAttempt':punter.email}]);
 	}
 	else {
-		buttons[1] = new Array("convert","Continue", "magsQ()");
+		buttons[1] = new Array("convert","Continue", "finalSave()");
 	}
 	_kmq.push(['record', 'MALE Email Confirm Sent', {'emailAttempt':punter.email}]);
 	// if(punter.gender === 'Female' && punter.progress !== 'finalSave') {
