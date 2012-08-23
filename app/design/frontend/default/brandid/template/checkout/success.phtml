@@ -36,18 +36,19 @@
 
 <?php
 	$gift = false;
-	
+	$name=array();
+	$unitPrice=array();
+	$skus=array();
+	$ids=array();
+	$qty=array();
 	/* to do - debug */
 	
 	if($this->getOrderId()) {
 		$order = Mage::getModel('sales/order')->load($this->getOrderId());
 		$items = $order->getAllItems();
 		$itemcount=count($items);
-		$name=array();
-		$unitPrice=array();
-		$skus=array();
-		$ids=array();
-		$qty=array();
+		
+		
 		foreach ($items as $itemId => $item)
 		{
 			$name[] = $item->getName();
@@ -138,7 +139,7 @@
 	<?php endforeach;?>
 	</ul>
 <?php endif;?>
-	
+
 <?php if ($this->getOrderId()):?>
 	<?php if ($this->getCanViewOrder()) :?>
 	    <p><?php echo $this->__('Your order # is: %s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getViewOrderUrl()), $this->escapeHtml($this->getOrderId()))) ?></p>
@@ -151,11 +152,26 @@
 
 
 <?php if(!$gift) {
-	$planDetails = split("-", $skus[0]);
+
+	$planDetails = array();
+
+	
+	
+	
 
 	?>
 	<script type="text/javascript">
-		_kmq.push(['record', 'Signed Up', {'Payer': 'yes', 'Plan Level': '<?php echo $planDetails[0]; ?>', 'Plan Frequency':'<?php echo $planDetails[1]; ?>'}]);
+		_kmq.push(['record', 'Signed Up', {
+			'Payer': 'yes', 'Plan Level': '<?php
+				foreach ($skus as $sku) {
+					// TO DO: there should only be one item in the basket
+					echo $sku;
+				} ?>',
+			'Plan Frequency':'<?php
+			foreach ($skus as $sku) {
+					// TO DO: there should only be one item in the basket
+					echo $sku;
+				} ?>'}]);
 	</script>
 <?php } ?>
 
