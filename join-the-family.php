@@ -2,12 +2,11 @@
 
 if (isset($_POST)) {
 
-
 		// get post parameters
 		$from = $_POST['email_ad'];
 		$twitter = $_POST['twitter_handle'];
 		$github = $_POST['github_username'];
-		$message = 'Github: <br>' . $github . ' Twitter: ' . $twitter;
+		$message = 'Hi I\'d like to build an empire with you. Github: ' . $github . ' Twitter: ' . $twitter;
 
 	/* Check API key */
     // if ($apiKey == $_SERVER['PHP_AUTH_USER']) {
