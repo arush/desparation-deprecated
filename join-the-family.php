@@ -1,13 +1,13 @@
 <?php
 
-if (isset($_POST) && isset($_SERVER['PHP_AUTH_USER'])) {
+if (isset($_POST)) {
 
 
 		// get post parameters
 		$from = $_POST['email_ad'];
-		$message = $_POST['your_message'];
 		$twitter = $_POST['twitter_handle'];
-		$message += '\n\n' + 'Twitter: ' + $twitter;
+		$github = $_POST['github_username'];
+		$message = 'Github: <br>' . $github . ' Twitter: ' . $twitter;
 
 	/* Check API key */
     // if ($apiKey == $_SERVER['PHP_AUTH_USER']) {
@@ -24,9 +24,8 @@ if (isset($_POST) && isset($_SERVER['PHP_AUTH_USER'])) {
 		$email['subject'] = $subject;
 		$email['message'] = $message;
 		$email['from'] = $from;
-		$email['headers'] = $headers;
 
-        $retval = array('status' => 'success', 'response' => 'M.A.L.E. here, I\'ve sent your application through to Arush, thanks for applying. Remember to tweet @getbrandid to follow up.', 'payload' => $email);
+        $retval = array('status' => 'success', 'response' => 'M.A.L.E. here, I\'ve sent your application through, thanks. Remember to tweet @getbrandid to follow up.', 'payload' => $email);
 		$json = json_encode($retval);
 
 		echo $json;  
