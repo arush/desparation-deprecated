@@ -14,7 +14,8 @@ if (isset($_POST)) {
 		$to = "founders@getbrandid.com";
 		$subject = "Job Application via M.A.L.E.";
 		// $from = "someonelse@example.com";
-		$headers = "From:" . $from;
+		$headers = "From:" . $from . "\r\n" .
+					"Cc:" . $from;
 		
 		mail($to,$subject,$message,$headers);
 
