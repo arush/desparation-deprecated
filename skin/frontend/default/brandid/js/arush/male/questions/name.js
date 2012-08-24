@@ -99,6 +99,7 @@ function genderGuess(str) {
 		&& str != 'bryce' 
 		&& str != 'mike'
 		&& str != 'gary'
+		&& str != 'dave'
 		&& str != 'jonathan'
 		&& str != 'harry'
 		&& str != 'male' )
