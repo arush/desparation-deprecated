@@ -9,199 +9,200 @@ if($_productName == 'godfather') {
 	$_earner = 1;
 } ?>
 
+<div class="container">
+	<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
 
-<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
-
-<div class="sliders">
-<div class="plan-explanation">
-	<?php $block = Mage::getModel('cms/block')->load('plan-randomness-explanation');?>
-    <?php echo $block->getContent(); ?>
-</div>
-<?php
-$pieces = array(
-	'Socks'		=> 'SOCKS',
-	'Boxers'	=> 'BOXERS',
-	'T-Shirts'	=> 'T-SHIRT',
-	'Shirts'	=> 'SHIRT'
-);
-$relatedProductIds = array();
-foreach($_product->getRelatedLinkCollection() as $related) 	{
-	$relatedProductIds[] = $related->getLinkedProductId();
-}
-?>
-<?php
-foreach ($pieces as $k => $v) {
-	$products = Mage::getModel('catalog/product')
-		->getCollection()
-		->addAttributeToSelect('image')
-		->addAttributeToSelect('rmscategory')
-		->addAttributeToSelect('season')
-		->addAttributeToSelect('brand')
-		->addAttributeToFilter('rmscategory', $v)
-		->addAttributeToFilter('entity_id', array('in' => $relatedProductIds));	
-
-if ($products->count() > 0){
-	$counter = 1;
- ?>
-<div class="planOther">
-	<h1 class="black-title-bar main-view"><?php echo $this->__($k);?></h1>
-	<div class="style-chooser clearfix">
-		<?php if(strtolower($k) == 'socks' || strtolower($k) == 'boxers') { ?>
-			<a title="classic" onclick="handleClick(this);" class="convert secondary lt <?php echo $this->__(strtolower($k));?>" id="large_<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Classic</a>
-			<a title="disco" onclick="handleClick(this);" class="convert secondary lt mid <?php echo $this->__(strtolower($k));?>" id="large_<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Disco</a>
-			<a title="both" onclick="handleClick(this);" class="convert secondary lt rt <?php echo $this->__(strtolower($k));?> active" id="large_<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Both</a>
-
-		<?php } else if(strtolower($k) == 't-shirts') { ?>
-			<a title="designer-tee" onclick="handleClick(this);" class="convert secondary lt <?php echo $this->__(strtolower($k));?>" id="large_<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>"></a>
-			<a title="designer-polo" onclick="handleClick(this);" class="convert secondary rt <?php echo $this->__(strtolower($k));?>" id="large_<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>"></a>
-
-		<?php } else if(strtolower($k) == 'shirts') { ?>
-			<a title="work-shirt" onclick="handleClick(this);" class="convert secondary lt <?php echo $this->__(strtolower($k));?>" id="large_<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>"></a>
-			<a title="designer-shirt" onclick="handleClick(this);" class="convert secondary rt <?php echo $this->__(strtolower($k));?>" id="large_<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>"></a>
-
-		<?php } ?>
-
+	<div class="sliders">
+	<div class="plan-explanation">
+		<?php $block = Mage::getModel('cms/block')->load('plan-randomness-explanation');?>
+	    <?php echo $block->getContent(); ?>
 	</div>
+	<?php
+	$pieces = array(
+		'Socks'		=> 'SOCKS',
+		'Boxers'	=> 'BOXERS',
+		'T-Shirts'	=> 'T-SHIRT',
+		'Shirts'	=> 'SHIRT'
+	);
+	$relatedProductIds = array();
+	foreach($_product->getRelatedLinkCollection() as $related) 	{
+		$relatedProductIds[] = $related->getLinkedProductId();
+	}
+	?>
+	<?php
+	foreach ($pieces as $k => $v) {
+		$products = Mage::getModel('catalog/product')
+			->getCollection()
+			->addAttributeToSelect('image')
+			->addAttributeToSelect('rmscategory')
+			->addAttributeToSelect('season')
+			->addAttributeToSelect('brand')
+			->addAttributeToFilter('rmscategory', $v)
+			->addAttributeToFilter('entity_id', array('in' => $relatedProductIds));	
 
-	<?php /*Both*/ ?>
-	<div class="holder">
-		<div class="slider">
-			<ul class="box-content">
-			<?php foreach($products as $product): ?>
-				<li>
-					<img class="filterable <?php echo strtolower($k) .' '. strtolower($product->getSeason()); /* 'season' is the attribute code for style */?>" src="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize(191, 229);?>" width="191" height="229" />
-					<div class="plan-item-details">
-						<span class="black-title-small"><?php echo $product->getAttributeText('brand'); ?></span>
-						<!-- span class="plan-item-rrp"><?php // echo 'RRP &pound;' . number_format($product->getPrice(),0); ?></span -->
-					</div>
-				</li>
-			<?php endforeach; ?>
-			</ul>
-		</div>
-		<div class="left <?php echo strtolower($k); ?>-prev-btn" id="prev-btn"></div>		
-		<div class="right <?php echo strtolower($k); ?>-next-btn" id="next-btn"></div>
+	if ($products->count() > 0){
+		$counter = 1;
+	 ?>
+	<div class="planOther">
+		<h1 class="black-title-bar main-view"><?php echo $this->__($k);?></h1>
+		<div class="style-chooser clearfix">
+			<?php if(strtolower($k) == 'socks' || strtolower($k) == 'boxers') { ?>
+				<a title="classic" onclick="handleClick(this);" class="convert secondary lt <?php echo $this->__(strtolower($k));?>" id="large_<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Classic</a>
+				<a title="disco" onclick="handleClick(this);" class="convert secondary lt mid <?php echo $this->__(strtolower($k));?>" id="large_<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Disco</a>
+				<a title="both" onclick="handleClick(this);" class="convert secondary lt rt <?php echo $this->__(strtolower($k));?> active" id="large_<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>">Both</a>
 
-		<?php /* discover call text */
-		if(strtolower($k) == 'socks') { ?>
-			<div class="helptext">Prefer long/short/don't care? Tell us more on the discovery call.</div>	
-		<?php } else if(strtolower($k) == 'boxers') { ?>
-			<div class="helptext">Prefer a particular brand? Tell us more on the discovery call.</div>	
-		<?php } else if(strtolower($k) == 't-shirts') { ?>
-			<div class="helptext">Crew? V-neck? Graphic tees? Tell us more on the discovery call.</div>	
-		<?php } else if(strtolower($k) == 'shirts') { ?>
-			<div class="helptext">Slim? Classic? Double-cuff? Tell us more on the discovery call.</div>	
-		<?php } ?>
-	</div>
+			<?php } else if(strtolower($k) == 't-shirts') { ?>
+				<a title="designer-tee" onclick="handleClick(this);" class="convert secondary lt <?php echo $this->__(strtolower($k));?>" id="large_<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>"></a>
+				<a title="designer-polo" onclick="handleClick(this);" class="convert secondary rt <?php echo $this->__(strtolower($k));?>" id="large_<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>"></a>
 
-</div>
-<?php 
-	};
-}
-?>
-</div>
-<div class="plan product-info">
-    <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
-        <div class="no-display">
-            <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
-            <input type="hidden" name="related_product" id="related-products-field" value="" />
-        </div>
+			<?php } else if(strtolower($k) == 'shirts') { ?>
+				<a title="work-shirt" onclick="handleClick(this);" class="convert secondary lt <?php echo $this->__(strtolower($k));?>" id="large_<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>"></a>
+				<a title="designer-shirt" onclick="handleClick(this);" class="convert secondary rt <?php echo $this->__(strtolower($k));?>" id="large_<?php echo $this->__(strtolower($k));?>_option_<?php echo $counter; $counter++;?>"></a>
 
-		<!-- div class="discount-triangle-container">
-			<span class="discount-number"<?php // if($_earner == 1) {echo ' style="margin:0 0 0 8px;"';} ?>><?php // echo $_earner; ?>x POINT<?php // if($_earner > 1) {echo 'S';} ?></span>
-			<span class="discount-label">PER £1</span>
+			<?php } ?>
+
 		</div>
 
-		<div class="discount-triangle">
-		</div-->		
-		
-		<div class="price-box">
-			<h3><span class="the"></span><span class="plan-category-grid-title"><?php echo $_product->getName(); ?></span></h3>
-			<div class="clearfix"></div>
-			<!-- span class="price"><?php // echo 'RRP &pound;' . number_format($_product->getPrice(), 0); ?></span-->
-			<span class="special-price"><?php echo 'Plan Price &pound;<span id="final-price">' . number_format($_product->getSpecialPrice(), 0) . '</span>'; ?></span>
-			<div id="socks_style-text" style="float:none;" class="product-detail-checkbox nobg">Socks style: <span>choose</span></div>
-
-			<div class="style-chooser clearfix">
-				<a title="classic" onclick="handleClick(this);" class="convert secondary lt socks" id="small_socks_option_1">Classic</a>
-				<a title="disco" onclick="handleClick(this);" class="convert secondary lt mid socks" id="small_socks_option_2">Disco</a>
-				<a title="both" onclick="handleClick(this);" class="convert secondary lt rt socks active" id="small_socks_option_3">Both</a>
+		<?php /*Both*/ ?>
+		<div class="holder">
+			<div class="slider">
+				<ul class="box-content">
+				<?php foreach($products as $product): ?>
+					<li>
+						<img class="filterable <?php echo strtolower($k) .' '. strtolower($product->getSeason()); /* 'season' is the attribute code for style */?>" src="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize(191, 229);?>" width="191" height="229" />
+						<div class="plan-item-details">
+							<span class="black-title-small"><?php echo $product->getAttributeText('brand'); ?></span>
+							<!-- span class="plan-item-rrp"><?php // echo 'RRP &pound;' . number_format($product->getPrice(),0); ?></span -->
+						</div>
+					</li>
+				<?php endforeach; ?>
+				</ul>
 			</div>
+			<div class="left <?php echo strtolower($k); ?>-prev-btn" id="prev-btn"></div>		
+			<div class="right <?php echo strtolower($k); ?>-next-btn" id="next-btn"></div>
 
-			<div id="boxers_style-text" style="float:none;" class="product-detail-checkbox nobg">Boxers style: <span>choose</span></div>
-
-			<div class="style-chooser clearfix">
-				<a title="classic" onclick="handleClick(this);" class="convert secondary lt boxers" id="small_boxers_option_1">Classic</a>
-				<a title="disco" onclick="handleClick(this);" class="convert secondary lt mid boxers" id="small_boxers_option_2">Disco</a>
-				<a title="both" onclick="handleClick(this);" class="convert secondary lt rt boxers active" id="small_boxers_option_3">Both</a>
-			</div>
-
-			<?php 
-			$god   = 'godfather';
-			$boss = 'boss';
-			$containsGod = strpos($_productName, $god);
-			$containsBoss = strpos($_productName, $boss);
-
-			if($containsBoss !== false) {
-			?>
-				<div id="t-shirts_style-text" style="float:none;" class="product-detail-checkbox nobg">T-Shirt style: <span>choose</span></div>
-				<div class="style-chooser clearfix">
-					<a title="designer-tee" onclick="handleClick(this);" class="convert secondary lt t-shirts" id="small_t-shirts_option_1"></a>
-					<a title="designer-polo" onclick="handleClick(this);" class="convert secondary rt t-shirts" id="small_t-shirts_option_2"></a>
-				</div>
-
-			<?php }
-			
-			if($containsGod !== false) {
-			?>
-				<div id="shirts_style-text" style="float:none;" class="product-detail-checkbox nobg">Shirt style: <span>choose</span></div>
-				<div class="style-chooser clearfix">
-					<a title="work-shirt" onclick="handleClick(this);" class="convert secondary lt shirts" id="small_shirts_option_1"></a>
-					<a title="designer-shirt" onclick="handleClick(this);" class="convert secondary rt shirts" id="small_shirts_option_2"></a>
-				</div>
+			<?php /* discover call text */
+			if(strtolower($k) == 'socks') { ?>
+				<div class="helptext">Prefer long/short/don't care? Tell us more on the discovery call.</div>	
+			<?php } else if(strtolower($k) == 'boxers') { ?>
+				<div class="helptext">Prefer a particular brand? Tell us more on the discovery call.</div>	
+			<?php } else if(strtolower($k) == 't-shirts') { ?>
+				<div class="helptext">Crew? V-neck? Graphic tees? Tell us more on the discovery call.</div>	
+			<?php } else if(strtolower($k) == 'shirts') { ?>
+				<div class="helptext">Slim? Classic? Double-cuff? Tell us more on the discovery call.</div>	
 			<?php } ?>
 		</div>
-	
-	    <div class="container2">
-	    <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
-	    </div>
-	    
-	    <div class="bottom-stuff">
-		    <div class="add-to-box">
-		        <?php echo $this->getChildHtml('addtocart') ?>
-		        <?php echo $this->getChildHtml('addto') ?>
-				<div class="delivery-date">
-					<?php $profile = Mage::helper('randomquote')->getProfileEasyDate(); /*remove Easy when enabling delivery drops*/?>
-					<?php echo $this->__('This plan delivers between <br/><span class="actual-date">') . $profile['delivery_date'] . $this->__('</span><br/>and<br/><span class="actual-date">') . $profile['delivery_date2'] . $this->__('</span><br/> and every month after that');?>	
-				</div>
-		    </div>
-		    <div class="extra-info">
-		       		<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-' . $_product->getSku())->toHtml(); ?>
-					<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-common')->toHtml(); ?>
-		    </div>
-	    </div>
-    </form>
-    
-</div>
-<?php
-$upsells = $_product->getUpSellProductCollection()->addAttributeToSort('position', 'asc');
-if ($upsells->count() > 0):
-?>
-<div class="upsells">
-	<h1 class="black-title-bar"><?php echo $this->__('Our Plans'); ?></h1>
-	<ul>
-	<?php foreach($upsells as $upsell): ?>
-		<?php $upsellProduct = Mage::getModel('catalog/product')->load($upsell->getId()); ?>
-		<li>
-			<h3><span class="title">the</span><? echo $upsellProduct->getName(); ?></h3>
-			<span class="price"><?php echo Mage::helper('core')->currency($upsellProduct->getPrice());?></span><br />
-			<span class="special-price"><?php echo Mage::helper('core')->currency($upsellProduct->getSpecialPrice());?></span>
-			<button class="button"><span><span><?php echo $this->__('View plan'); ?></span></span></button>
-		</li>
-	<?php endforeach; ?>
-	</ul>
-</div>
-<?php endif; ?>
 
+	</div>
+	<?php 
+		};
+	}
+	?>
+	</div>
+	<div class="plan product-info">
+	    <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+	        <div class="no-display">
+	            <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+	            <input type="hidden" name="related_product" id="related-products-field" value="" />
+	        </div>
+
+			<!-- div class="discount-triangle-container">
+				<span class="discount-number"<?php // if($_earner == 1) {echo ' style="margin:0 0 0 8px;"';} ?>><?php // echo $_earner; ?>x POINT<?php // if($_earner > 1) {echo 'S';} ?></span>
+				<span class="discount-label">PER £1</span>
+			</div>
+
+			<div class="discount-triangle">
+			</div-->		
+			
+			<div class="price-box">
+				<h3><span class="the"></span><span class="plan-category-grid-title"><?php echo $_product->getName(); ?></span></h3>
+				<div class="clearfix"></div>
+				<!-- span class="price"><?php // echo 'RRP &pound;' . number_format($_product->getPrice(), 0); ?></span-->
+				<span class="special-price"><?php echo 'Plan Price &pound;<span id="final-price">' . number_format($_product->getSpecialPrice(), 0) . '</span>'; ?></span>
+				<div id="socks_style-text" style="float:none;" class="product-detail-checkbox nobg">Socks style: <span>choose</span></div>
+
+				<div class="style-chooser clearfix">
+					<a title="classic" onclick="handleClick(this);" class="convert secondary lt socks" id="small_socks_option_1">Classic</a>
+					<a title="disco" onclick="handleClick(this);" class="convert secondary lt mid socks" id="small_socks_option_2">Disco</a>
+					<a title="both" onclick="handleClick(this);" class="convert secondary lt rt socks active" id="small_socks_option_3">Both</a>
+				</div>
+
+				<div id="boxers_style-text" style="float:none;" class="product-detail-checkbox nobg">Boxers style: <span>choose</span></div>
+
+				<div class="style-chooser clearfix">
+					<a title="classic" onclick="handleClick(this);" class="convert secondary lt boxers" id="small_boxers_option_1">Classic</a>
+					<a title="disco" onclick="handleClick(this);" class="convert secondary lt mid boxers" id="small_boxers_option_2">Disco</a>
+					<a title="both" onclick="handleClick(this);" class="convert secondary lt rt boxers active" id="small_boxers_option_3">Both</a>
+				</div>
+
+				<?php 
+				$god   = 'godfather';
+				$boss = 'boss';
+				$containsGod = strpos($_productName, $god);
+				$containsBoss = strpos($_productName, $boss);
+
+				if($containsBoss !== false) {
+				?>
+					<div id="t-shirts_style-text" style="float:none;" class="product-detail-checkbox nobg">T-Shirt style: <span>choose</span></div>
+					<div class="style-chooser clearfix">
+						<a title="designer-tee" onclick="handleClick(this);" class="convert secondary lt t-shirts" id="small_t-shirts_option_1"></a>
+						<a title="designer-polo" onclick="handleClick(this);" class="convert secondary rt t-shirts" id="small_t-shirts_option_2"></a>
+					</div>
+
+				<?php }
+				
+				if($containsGod !== false) {
+				?>
+					<div id="shirts_style-text" style="float:none;" class="product-detail-checkbox nobg">Shirt style: <span>choose</span></div>
+					<div class="style-chooser clearfix">
+						<a title="work-shirt" onclick="handleClick(this);" class="convert secondary lt shirts" id="small_shirts_option_1"></a>
+						<a title="designer-shirt" onclick="handleClick(this);" class="convert secondary rt shirts" id="small_shirts_option_2"></a>
+					</div>
+				<?php } ?>
+			</div>
+		
+		    <div class="container2">
+		    <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+		    </div>
+		    
+		    <div class="bottom-stuff">
+			    <div class="add-to-box">
+			        <?php echo $this->getChildHtml('addtocart') ?>
+			        <?php echo $this->getChildHtml('addto') ?>
+					<div class="delivery-date">
+						<?php $profile = Mage::helper('randomquote')->getProfileEasyDate(); /*remove Easy when enabling delivery drops*/?>
+						<?php echo $this->__('This plan delivers between <br/><span class="actual-date">') . $profile['delivery_date'] . $this->__('</span><br/>and<br/><span class="actual-date">') . $profile['delivery_date2'] . $this->__('</span><br/> and every month after that');?>	
+					</div>
+			    </div>
+			    <div class="extra-info">
+			       		<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-' . $_product->getSku())->toHtml(); ?>
+						<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-common')->toHtml(); ?>
+			    </div>
+		    </div>
+	    </form>
+	    
+	</div>
+	<?php
+	$upsells = $_product->getUpSellProductCollection()->addAttributeToSort('position', 'asc');
+	if ($upsells->count() > 0):
+	?>
+	<div class="upsells">
+		<h1 class="black-title-bar"><?php echo $this->__('Our Plans'); ?></h1>
+		<ul>
+		<?php foreach($upsells as $upsell): ?>
+			<?php $upsellProduct = Mage::getModel('catalog/product')->load($upsell->getId()); ?>
+			<li>
+				<h3><span class="title">the</span><? echo $upsellProduct->getName(); ?></h3>
+				<span class="price"><?php echo Mage::helper('core')->currency($upsellProduct->getPrice());?></span><br />
+				<span class="special-price"><?php echo Mage::helper('core')->currency($upsellProduct->getSpecialPrice());?></span>
+				<button class="button"><span><span><?php echo $this->__('View plan'); ?></span></span></button>
+			</li>
+		<?php endforeach; ?>
+		</ul>
+	</div>
+	<?php endif; ?>
+
+</div> <!-- end container -->
 
 <script type="text/javascript">
 

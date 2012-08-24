@@ -13,16 +13,12 @@
                 <block type="catalog/product_view" name="product.info.addto" as="addto" template="catalog/product/view/addto.phtml"/>
                 <block type="catalog/product_view" name="product.info.addtocart" as="addtocart" template="catalog/product/view/addtocart.phtml"/>
     		</block>
-            <action method="setTemplate">
-                <template>page/no-frame.phtml</template>
-            </action>
     	</reference>
     </catalog_product_view>
     
     <catalog_category_view>
     	<reference name="root">
     		<block type="catalog/product_list" name="plan_content" template="vdh/randomquote/category/view/plan.phtml">
-    		
 			</block>
     	</reference>
     </catalog_category_view>    

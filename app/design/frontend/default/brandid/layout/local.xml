@@ -3,7 +3,6 @@
     
     <default>
     	<reference name="head">
-    		
 			<block type="page/html" name="bg_css" template="page/base64.phtml"/>
     		<block type="page/html_head" name="typekit" template="typekit.phtml" />
             <action method="addCss"><stylesheet>css/brandid.css</stylesheet></action>
@@ -11,8 +10,6 @@
 			
 			<action method="addItem"><type>skin_js</type><name>js/gauge.js</name></action>    			
 			<action method="addItem"><type>skin_js</type><name>js/flipcounter.min.js</name></action>    		
-			
-            
     	</reference>
     	
 		<reference name="header">
@@ -26,7 +23,6 @@
     <!-- for MALE recommends -->
     <catalog_category_view>
         <reference name="head">
-            
             <action method="addItem"><type>skin_js</type><name>js/arush/subscribe/jquery.cookie.js</name></action>
         </reference>
     </catalog_category_view>
