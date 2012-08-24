@@ -326,11 +326,9 @@
 
 
 	<catalog_product_view>
-        <!-- can't find the names
-<remove name="Product_list_Upsell"/>       
-        <remove name="reports_products_viewed"/>       
-        <remove name="product_list_related"/>
--->       
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/arush/frameworks/angular-1.0.1.min.js</name></action>
+        </reference>
 	</catalog_product_view>
 
        
