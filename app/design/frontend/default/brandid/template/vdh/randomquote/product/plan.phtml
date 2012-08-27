@@ -94,7 +94,14 @@ lang="<?php echo $this->getLang() ?>">             <!--<![endif]-->
 	if(Mage::getStoreConfig('kissinsights/survey/kissinsights_identify')) {
 		?>
 		<script type="text/javascript" charset="utf-8">
-		var email = "<?php $email = Mage::getSingleton('customer/session')->getCustomer()->getEmail(); echo $email; ?>";
+		var email;
+		email = "<?php $email = Mage::getSingleton('customer/session')->getCustomer()->getEmail(); echo $email; ?>";
+		
+		// BRANDiD MALE addition
+		if(email === "" && punter.email !== undefined) {
+			email = punter.email;
+		}
+		
 		_kiq.push(['identify', email]);
 		</script>
 <?php	}
