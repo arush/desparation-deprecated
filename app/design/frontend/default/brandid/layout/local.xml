@@ -31,8 +31,11 @@
     <catalog_product_view>
         <reference name="head">
             <action method="addItem"><type>skin_js</type><name>js/arush/subscribe/jquery.cookie.js</name></action>
-            <action method="addItem"><type>skin_js</type><name>js/arush/plan-upgrades.js</name></action>      
-            <action method="addItem"><type>skin_js</type><name>js/brandid-ck.js</name></action>      
+            <action method="addItem"><type>skin_js</type><name>js/arush/male/ajfdp311-ck.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/arush/plan-upgrades.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/arush/frameworks/angular-1.0.1.min.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/brandid-ck.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/arush/plans/buildPlan.js</name></action>
         </reference>
     </catalog_product_view>
 
@@ -319,13 +322,5 @@
             </block>
         </reference>
     </cms_index_index>
-
-
-	<catalog_product_view>
-        <reference name="head">   
-            <action method="addItem"><type>skin_js</type><name>js/arush/frameworks/angular-1.0.1.min.js</name></action>
-        </reference>
-	</catalog_product_view>
-
        
 </layout>

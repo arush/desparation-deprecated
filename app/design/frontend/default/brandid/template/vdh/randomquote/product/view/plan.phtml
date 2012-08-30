@@ -9,8 +9,124 @@ if($_productName == 'godfather') {
 	$_earner = 1;
 } ?>
 
-<div class="container" ng-app>
+<div class="container">
 	<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+
+<?php /* end angular */ ?>
+
+
+
+	<div class="container" ng-controller="buildPlan">
+
+	    <div class="fb-like-button-prod">
+	        <?php echo $this->getBlockHtml('info.likebutton') ?>
+	    </div>
+	    <div class="add-to-box">
+	        <?php echo $this->getChildHtml('addtocart') ?>
+	        <div class="delivery-date">
+	            <?php $profile = Mage::helper('randomquote')->getProfileEasyDate(); /*remove Easy when enabling delivery drops*/?>
+	            <?php echo $this->__('This plan delivers between <br/><span class="actual-date">') . $profile['delivery_date'] . $this->__('</span><br/>and<br/><span class="actual-date">') . $profile['delivery_date2'] . $this->__('</span>');?> 
+	        </div>
+	    </div>
+
+	    <div class="product-essential"> 
+	        <div>
+
+	          <div>
+	            <form novalidate class="simple-form">
+	              
+
+	                <h1>Hello {{plan.total}}!</h1><br/>
+	                
+	                <h4>Socks size:</h4>
+	                
+	                <br/>
+	                <h4>Boxers size:</h4>
+	                
+	                <br/>
+	                <br/>
+	                <br/>
+	                <h4>T-shirt size:</h4>
+	                
+	                <h4>Shirt size:</h4>
+
+	                <br/><br/>
+	                <ul>
+	                  <li ng-repeat="item in items">
+	                      {{item.type}}
+	                      <button ng-click="subtract(item)">-</button> {{item.qty}} <button ng-click="add(item)">+</button>
+	                      <br/><br/>
+	                      
+	                      <span ng-repeat="index in item.options"><input type="checkbox" ng-model="index.selected" ng-change="calculateOptionSupplement(index,item)"/>{{index.text}}</span>
+	                      <br/>
+	                      
+	                      <span ng-repeat="upgrade in item.upgrades"><input type="radio" ng-model="item.upgradeSupplement" name="upgrade1" value="{{upgrade.supplement}}" ng-change="calculateUpgradeSupplement(upgrade,item)"/>{{upgrade.value}}</span>
+
+	                      <br/><br/>
+	                      <br/><br/>
+	                  </li>
+	                </ul>        
+	                <br/><br/>
+	                  
+	              <button ng-click="reset()">RESET</button>
+	              <button ng-click="update(plan)">SAVE</button>
+	            </form>
+	            <pre>plan = {{plan | json}}</pre>
+	            <pre>items = {{items | json}}</pre>
+	            <pre>master = {{master | json}}</pre>
+	          </div>
+	        </div>​
+
+
+
+	        <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+	            <div class="no-display">
+	                <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+	                <input type="hidden" name="related_product" id="related-products-field" value="" />
+	            </div>
+
+
+	            <div class="male-config clearfix">
+	                <!-- this somehow makes the price box appear -->
+	                <?php echo $this->getChildHtml('product_type_data') ?>
+	                <?php echo $this->getTierPriceHtml() ?>
+	                <?php echo $this->getChildHtml('extrahint') ?>
+
+
+	                <?php if ($_product->isSaleable() && $this->hasOptions() && $this->getChildChildHtml('container2')):?>
+	                
+	                    <!-- product options -->
+	                    <div class="container2">
+	                        <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+	                    </div>
+	                    
+	                <?php endif;?>
+
+	                <?php echo $this->getChildHtml('extra_buttons') ?>
+	                <?php echo $this->getChildHtml('other');?>
+
+	            </div>
+
+	            <div class="clearer"></div>
+	            
+	            
+	        </form>
+	        <div class="bottom-stuff">
+	            
+	            <div class="extra-info">
+	                    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-' . $_product->getSku())->toHtml(); ?>
+	                    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-common')->toHtml(); ?>
+	            </div>
+	        </div>
+	    </div>
+
+	</div>
+
+
+
+
+
+<?php /* end angular */ ?>
 
 	<div class="sliders">
 	<div class="plan-explanation">

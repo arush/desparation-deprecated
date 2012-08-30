@@ -1,6 +1,7 @@
 // @codekit-prepend "arush/browser-detect.js"
 
 
+
 document.observe('dom:loaded', function(){
 
 	/* steve's slider */
