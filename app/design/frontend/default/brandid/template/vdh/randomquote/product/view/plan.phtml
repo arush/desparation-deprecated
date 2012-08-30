@@ -12,7 +12,7 @@ if($_productName == 'godfather') {
 <div class="container">
 	<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
 
-<?php /* end angular */ ?>
+<?php /* start angular */ ?>
 
 
 
@@ -67,7 +67,7 @@ if($_productName == 'godfather') {
 	                  </li>
 	                </ul>        
 	                <br/><br/>
-	                  
+	                
 	              <button ng-click="reset()">RESET</button>
 	              <button ng-click="update(plan)">SAVE</button>
 	            </form>
@@ -333,6 +333,13 @@ if($_productName == 'godfather') {
 		jQuery.cookie("upgrade_shirts",null,{ path: '/'});
 		jQuery.cookie("upgrade_shirts_val",null,{ path: '/'});
 	}
+
+
+	// clear the cookies on page load
+	if(jQuery.cookie("plan") != null) {
+		jQuery.cookie("plan",null,{ path: '/'});
+	}
+
 	
 	$('product-options-wrapper').select('label').each(function(obj){
 		if (obj.innerHTML.toLowerCase().indexOf('shoe size') >= 0) {

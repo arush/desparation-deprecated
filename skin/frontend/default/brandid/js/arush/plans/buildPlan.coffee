@@ -1,3 +1,7 @@
+# retrieve the punter from cookie
+punter = new Object()
+createPunter()
+
 root = exports ? this
 root.buildPlan = ($scope) ->
   sockOptions = [
@@ -118,9 +122,16 @@ root.buildPlan = ($scope) ->
   ]
 
   $scope.update = (plan) ->
-    $scope.master = angular.copy plan
-    $scope.master.items = $scope.items
-    
+    x = 0
+    basketItem = []
+    while x < $scope.items.length
+      basketItem[x] = {
+        type: $scope.items[x].type
+        qty: $scope.items[x].qty
+      }
+      x++
+    $scope.plan.basket = basketItem
+    return saveBasket (plan)
 
   $scope.reset = ->
     $scope.plan.total = angular.copy $scope.master

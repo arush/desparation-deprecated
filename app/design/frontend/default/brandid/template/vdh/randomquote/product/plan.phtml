@@ -94,6 +94,10 @@ lang="<?php echo $this->getLang() ?>" ng-app>             <!--<![endif]-->
 	if(Mage::getStoreConfig('kissinsights/survey/kissinsights_identify')) {
 		?>
 		<script type="text/javascript" charset="utf-8">
+		
+		var punter = new Object();
+		createPunter();
+		
 		var email;
 		email = "<?php $email = Mage::getSingleton('customer/session')->getCustomer()->getEmail(); echo $email; ?>";
 		
