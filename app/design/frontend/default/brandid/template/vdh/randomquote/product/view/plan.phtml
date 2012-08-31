@@ -65,11 +65,11 @@ if($_productName == 'godfather') {
 	                      <br/><br/>
 	                      <br/><br/>
 	                  </li>
-	                </ul>        
+	                </ul>
 	                <br/><br/>
-	                
-	              <button ng-click="reset()">RESET</button>
-	              <button ng-click="update(plan)">SAVE</button>
+	                <span ng-repeat="drop in drops"><input type="radio" ng-model="plan.frequency" name="frequency" value="{{drop.value}}" ng-change="update()"/>{{drop.value}}</span>
+
+	              <button ng-click="update()">SAVE</button>
 	            </form>
 	            <pre>plan = {{plan | json}}</pre>
 	            <pre>items = {{items | json}}</pre>
@@ -78,7 +78,7 @@ if($_productName == 'godfather') {
 	        </div>​
 
 
-
+<?php /* ?>
 	        <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
 	            <div class="no-display">
 	                <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
@@ -88,9 +88,9 @@ if($_productName == 'godfather') {
 
 	            <div class="male-config clearfix">
 	                <!-- this somehow makes the price box appear -->
-	                <?php echo $this->getChildHtml('product_type_data') ?>
-	                <?php echo $this->getTierPriceHtml() ?>
-	                <?php echo $this->getChildHtml('extrahint') ?>
+	                <?php // echo $this->getChildHtml('product_type_data') ?>
+	                <?php // echo $this->getTierPriceHtml() ?>
+	                <?php // echo $this->getChildHtml('extrahint') ?>
 
 
 	                <?php if ($_product->isSaleable() && $this->hasOptions() && $this->getChildChildHtml('container2')):?>
@@ -100,7 +100,7 @@ if($_productName == 'godfather') {
 	                        <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
 	                    </div>
 	                    
-	                <?php endif;?>
+	                <?php endif; ?>
 
 	                <?php echo $this->getChildHtml('extra_buttons') ?>
 	                <?php echo $this->getChildHtml('other');?>
@@ -111,6 +111,7 @@ if($_productName == 'godfather') {
 	            
 	            
 	        </form>
+	        <?php */ ?>
 	        <div class="bottom-stuff">
 	            
 	            <div class="extra-info">

@@ -98,7 +98,18 @@
         supplement: 75
       }
     ];
-    $scope.plan = {};
+    $scope.plan = {
+      frequency: "trial"
+    };
+    $scope.drops = [
+      {
+        value: "trial"
+      }, {
+        value: "monthly"
+      }, {
+        value: "quarterly"
+      }
+    ];
     $scope.master = {};
     $scope.items = [
       {
@@ -132,7 +143,7 @@
         upgrades: shirtUpgrades
       }
     ];
-    $scope.update = function(plan) {
+    $scope.update = function() {
       var basketItem, x;
       x = 0;
       basketItem = [];
@@ -144,10 +155,7 @@
         x++;
       }
       $scope.plan.basket = basketItem;
-      return saveBasket(plan);
-    };
-    $scope.reset = function() {
-      return $scope.plan.total = angular.copy($scope.master);
+      return saveBasket($scope.plan);
     };
     $scope.recalculate = function() {
       var x, _results;
@@ -190,8 +198,8 @@
       item.qty++;
       return $scope.recalculate();
     };
-    $scope.reset();
-    return $scope.recalculate();
+    $scope.recalculate();
+    return $scope.update();
   };
 
 }).call(this);

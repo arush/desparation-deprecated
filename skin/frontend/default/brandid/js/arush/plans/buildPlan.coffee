@@ -87,9 +87,19 @@ root.buildPlan = ($scope) ->
     supplement: 75
   ]
 
-  $scope.plan = {}
-  $scope.master = {}
+  $scope.plan = {
+    frequency: "trial"
+  }
+  
+  $scope.drops = [
+    value:"trial"
+  ,
+    value:"monthly"
+  ,
+    value:"quarterly"
+  ]
 
+  $scope.master = {}
   $scope.items = [
     type: "socks"
     qty: 0
@@ -121,7 +131,7 @@ root.buildPlan = ($scope) ->
     upgrades: shirtUpgrades
   ]
 
-  $scope.update = (plan) ->
+  $scope.update = ->
     x = 0
     basketItem = []
     while x < $scope.items.length
@@ -131,11 +141,8 @@ root.buildPlan = ($scope) ->
       }
       x++
     $scope.plan.basket = basketItem
-    return saveBasket (plan)
+    return saveBasket ($scope.plan)
 
-  $scope.reset = ->
-    $scope.plan.total = angular.copy $scope.master
-  
   $scope.recalculate = ->
     $scope.plan.total = 0
 
@@ -173,8 +180,8 @@ root.buildPlan = ($scope) ->
     item.qty++
     $scope.recalculate()
 
-  $scope.reset()
   $scope.recalculate()
+  $scope.update()
 
 
 

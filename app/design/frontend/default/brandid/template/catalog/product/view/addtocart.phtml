@@ -33,7 +33,14 @@
         <?php /*?><label for="qty" visibility="hidden"><?php echo $this->__('Qty:') ?></label><?php */?>
         <input type="hidden" name="qty" id="qty" maxlength="12" value="1" title="<?php echo $this->__('Qty') ?>" class="input-text qty"  />
         <?php endif; ?>
-        <button type="button" title="<?php echo $this->__('Continue to checkout') ?>" class="convert" onclick="productAddToCartForm.submit()"><strong><span><?php echo $this->__('Continue to checkout') ?></span></strong></button><br/>
+        <?php /*added Angular.js click function to save plan configuration to cookie */ ?>
+
+        <button ng-mousedown="update(plan)" type="button" title="<?php echo $this->__('Continue to checkout') ?>" class="convert" onclick="<?php
+                    /*debug*/
+                    echo 'productAddToCartForm.submit()';
+                    // echo 'return false';
+
+        ?>"><strong><span><?php echo $this->__('Continue to checkout') ?></span></strong></button><br/>
 		<?php echo $this->getChildHtml('addto') ?>
 		
     </div>
