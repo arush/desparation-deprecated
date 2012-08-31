@@ -1909,7 +1909,7 @@ width: 231px;
  	color:#595959;
  }
 
-.product-view .product-shop .price-box-bundle .container2 .product-options .last label {display:none;}
+.product-view .product-shop .price-box-bundle .container2 .product-options .last label {/*display:none;*/}
 .plan.product-info  .last label {display:none;}
 .plan.product-info .product-options {padding:10px 15px 0;}
 
@@ -2340,7 +2340,7 @@ clear:both;
 }
 
 .plan.product-info .product-options dt label {
-	display:none;
+	display:block;
 }
 
 .plan-explanation {
