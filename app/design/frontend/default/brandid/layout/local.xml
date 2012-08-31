@@ -105,6 +105,7 @@
 			<action method="addJs"><script>jquery/jquery.scrollTo-1.4.2-min.js</script></action>
 			<action method="addJs"><script>jquery/jquery.serialScroll-1.2.2-min.js</script></action>
 			<action method="addJs"><script>jquery/coda-slider.js</script></action>
+            <action method="addItem"><type>skin_js</type><name>js/brandid-ck.js</name></action>
     	</reference>
     </checkout_onepage_index>
     

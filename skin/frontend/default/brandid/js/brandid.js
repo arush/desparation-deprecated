@@ -1,5 +1,5 @@
 // @codekit-prepend "arush/browser-detect.js"
-
+// @codekit-prepend "arush/checkout/checkoutHelpers.js"
 
 
 document.observe('dom:loaded', function(){

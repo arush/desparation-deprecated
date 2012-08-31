@@ -113,34 +113,29 @@
     $scope.master = {};
     $scope.items = [
       {
-        type: "socks",
+        code: "option-10-socks",
+        text: "socks",
         qty: 0,
         price: 5,
         optionSupplement: 0,
         upgradeSupplement: 0,
         options: sockOptions
       }, {
-        type: "boxers",
+        code: "option-20-boxers",
+        text: "boxers",
         qty: 1,
         price: 10,
         optionSupplement: 0,
         upgradeSupplement: 0,
         options: boxerOptions
       }, {
-        type: "tees",
+        code: "option-30-undertees",
+        text: "undertees",
         qty: 0,
         price: 30,
         optionSupplement: 0,
         upgradeSupplement: 0,
         options: teeOptions
-      }, {
-        type: "shirts",
-        qty: 1,
-        price: 25,
-        optionSupplement: 0,
-        upgradeSupplement: 0,
-        options: shirtOptions,
-        upgrades: shirtUpgrades
       }
     ];
     $scope.update = function() {
@@ -149,7 +144,7 @@
       basketItem = [];
       while (x < $scope.items.length) {
         basketItem[x] = {
-          type: $scope.items[x].type,
+          code: $scope.items[x].code,
           qty: $scope.items[x].qty
         };
         x++;

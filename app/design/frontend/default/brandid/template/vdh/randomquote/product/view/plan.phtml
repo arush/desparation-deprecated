@@ -53,7 +53,7 @@ if($_productName == 'godfather') {
 	                <br/><br/>
 	                <ul>
 	                  <li ng-repeat="item in items">
-	                      {{item.type}}
+	                      {{item.text}}
 	                      <button ng-click="subtract(item)">-</button> {{item.qty}} <button ng-click="add(item)">+</button>
 	                      <br/><br/>
 	                      
@@ -337,8 +337,8 @@ if($_productName == 'godfather') {
 
 
 	// clear the cookies on page load
-	if(jQuery.cookie("plan") != null) {
-		jQuery.cookie("plan",null,{ path: '/'});
+	if(jQuery.cookie("basket") != null) {
+		jQuery.cookie("basket",null,{ path: '/'});
 	}
 
 	

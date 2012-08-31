@@ -1,0 +1,45 @@
+<?php
+Mage::helper('recurly')->config();
+$customerId = Mage::getSingleton('customer/session')->getId();
+$customerEmail = Mage::getModel('customer/customer')->load($customerId)->getEmail();
+$sku = Mage::helper('recurly')->getSku();
+$onceOff = $this->_isOnceOff();
+$signature = $onceOff ? Mage::helper('recurly')->signOneTimeTransaction($customerId)  : Mage::helper('recurly')->signSubscription($sku, $customerId);
+Mage::getSingleton('core/session')->setSignature($signature);
+
+?>
+<script type="text/javascript">
+
+document.observe('dom:loaded', function(){
+	
+	preLoadRecurly();
+	
+});
+
+function preLoadRecurly() {
+	
+	var recurlySubdomain = '<?php echo Mage::helper('recurly')->getSubdomain(); ?>';
+	var recurlyCurrency = '<?php echo Mage::helper('recurly')->getCurrency(); ?>';
+	var recurlyCountry = '<?php echo Mage::helper('recurly')->getCountry(); ?>';
+	var recurlySku = '<?php echo $sku; ?>';
+	var recurlyCustomer = '<?php echo $customerId; ?>';
+	var recurlyCallback = '<?php echo Mage::getUrl('', array('_secure' => true)) . 'recurly/callback/success/'; ?>';
+	var recurlyEmail =  '<?php echo $customerEmail; ?>';
+	var recurlySig = '<?php echo $signature; ?>';
+	var recurlyOnceoff = '<?php echo ($onceOff) ? 'once-off' : 'subscription'; ?>';
+
+	
+
+	loadRecurly(
+		recurlySubdomain
+		, recurlyCurrency
+		, recurlyCountry
+		, recurlySku
+		, recurlyCustomer
+		, recurlyCallback
+		, recurlyEmail
+		, recurlySig
+		, recurlyOnceoff
+	);
+}
+</script>

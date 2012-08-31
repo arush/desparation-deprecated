@@ -113,7 +113,7 @@
 .recurly .add_ons.any {
   margin: 20px 10px;
 }
-.recurly .add_ons .add_on {
+.recurly .add_ons .add_on, .recurly .add_on_readonly {
   background: #ecedee;
   background: -webkit-linear-gradient(top, #ecedee, #e5e6e7);
   background: -moz-linear-gradient(top, #ecedee, #e5e6e7);
@@ -136,7 +136,7 @@
   zoom: 1;
   cursor: default;
 }
-.recurly .add_ons .add_on.first {
+.recurly .add_ons .add_on.first, .recurly .add_on_readonly.first {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
@@ -145,7 +145,7 @@
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-.recurly .add_ons .add_on .name {
+.recurly .add_ons .add_on .name, .recurly .add_on_readonly .name {
   font-size: inherit;
   font-weight: inherit;
   font-style: italic;
@@ -167,7 +167,7 @@
 .recurly .add_ons .add_on .quantity.field input[type=text] {
   width: 48px;
 }
-.recurly .add_ons .add_on .quantity.field:before {
+.recurly .add_ons .add_on .quantity.field:before, .recurly .add_on_readonly .quantity.field:before {
   content: "\d7";
   height: 48px;
   line-height: 30px;
@@ -180,7 +180,7 @@
   z-index: 1337;
   color: #666;
 }
-.recurly .add_ons .add_on .cost {
+.recurly .add_ons .add_on .cost,.recurly .add_on_readonly .cost {
   font-size: inherit;
   line-height: inherit;
   vertical-align: middle;
@@ -197,7 +197,7 @@
   color: #111;
 }
 .recurly .add_ons .add_on:active,
-.recurly .add_ons .add_on.selected {
+.recurly .add_ons .add_on.selected, .recurly .add_on_readonly.selected {
   color: #111;
   background: -webkit-linear-gradient(top, #f0f0f0, #fff);
   background: -moz-linear-gradient(top, #f0f0f0, #fff);
@@ -207,16 +207,16 @@
   box-shadow: inset 0 1px 4px 0 rgba(0,0,0,0.07);
   text-shadow: none;
 }
-.recurly .add_ons .add_on.selected {
+.recurly .add_ons .add_on.selected, .recurly .add_on_readonly.selected {
   background: #d2f2d2 url("../../images/brainwashed/recurly/check.png") no-repeat 10px center;
 }
-.recurly .add_ons .add_on.selected .name {
+.recurly .add_ons .add_on.selected .name, .recurly .add_on_readonly.selected .name {
   padding-left: 24px;
 }
 .recurly .add_ons .add_on.selected:hover {
   background: #ffe8e8 url("../../images/brainwashed/recurly/uncheck.png") no-repeat 10px center;
 }
-.recurly .add_ons .add_on.selected .quantity {
+.recurly .add_ons .add_on.selected .quantity, .recurly .add_on_readonly.selected .quantity {
   display: block;
 }
 .recurly .coupon {
@@ -696,4 +696,13 @@
 
 .checkout-onepage-payment-additional-giftcardaccount {
 	display:none;
+}
+
+
+.recurly .readonly input, .recurly .add_on.readonly {
+  background: none;
+  border: none;
+  box-shadow: none;
+  color: #7A7A7A;
+  font-weight: normal;
 }
