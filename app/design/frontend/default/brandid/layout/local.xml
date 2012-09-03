@@ -28,6 +28,9 @@
         <reference name="head">
             
             <action method="addItem"><type>skin_js</type><name>js/arush/subscribe/jquery.cookie.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/arush/male/ajfdp311-ck.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/brandid-ck.js</name></action>
+
         </reference>
     </catalog_category_view>
 
