@@ -111,6 +111,7 @@ function recurlyPostProcess(d){
 				// calculate total
 				
 				$j(buildSelectorString + ' .quantity input').val(basketItems[i].qty);
+				$j(buildSelectorString + ' .name').prepend(document.createTextNode(basketItems[i].qty+'x '));
 				$j(buildSelectorString).show();
 				$j(buildSelectorString).click();
 
@@ -143,7 +144,9 @@ function recurlyPostProcess(d){
 
 			// click free shipping and turn to read-only
 			$j('.add_on_ship-free').click();
-			$j('.add_on_ship-free').addClass('readonly');
+			// make all plan add_ons unclickable
+			$j('.add_on_ship-free').removeClass('add_on').addClass('add_on_readonly');
+			// unhide it
 			$j('.add_on_ship-free').show();
 		}
 

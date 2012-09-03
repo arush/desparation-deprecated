@@ -210,6 +210,14 @@
 .recurly .add_ons .add_on.selected, .recurly .add_on_readonly.selected {
   background: #d2f2d2 url("../../images/brainwashed/recurly/check.png") no-repeat 10px center;
 }
+
+.recurly .add_on_readonly.selected {
+  background: url("../../images/brainwashed/recurly/check.png") no-repeat 10px center;
+  border:none;
+  box-shadow: none;
+}
+
+
 .recurly .add_ons .add_on.selected .name, .recurly .add_on_readonly.selected .name {
   padding-left: 24px;
 }
