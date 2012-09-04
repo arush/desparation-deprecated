@@ -113,7 +113,12 @@ function recurlyPostProcess(d){
 				$j(buildSelectorString + ' .quantity input').val(basketItems[i].qty);
 				$j(buildSelectorString + ' .name').prepend(document.createTextNode(basketItems[i].qty+'x '));
 				$j(buildSelectorString).show();
-				$j(buildSelectorString).click();
+				
+				// can only perform click when current tab is active, otherwise breaks checkout
+				if($j('#opc-payment').hasClass('active')) {
+					$j(buildSelectorString).click();
+				}
+				
 
 			}
 
@@ -142,8 +147,13 @@ function recurlyPostProcess(d){
 		// if free shipping
 		if(helper_trial) {
 
-			// click free shipping and turn to read-only
-			$j('.add_on_ship-free').click();
+			// can only perform click when current tab is active, otherwise breaks checkout
+				if($j('#opc-payment').hasClass('active')) {
+					// click free shipping and turn to read-only
+					$j('.add_on_ship-free').click();
+				}
+
+
 			// make all plan add_ons unclickable
 			$j('.add_on_ship-free').removeClass('add_on').addClass('add_on_readonly');
 			// unhide it

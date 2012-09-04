@@ -150,23 +150,65 @@
         x++;
       }
       $scope.plan.basket = basketItem;
+      $scope.updateMageFrequency();
       return saveBasket($scope.plan);
     };
     $scope.recalculate = function() {
-      var x, _results;
+      var x;
       $scope.plan.total = 0;
       x = 0;
-      _results = [];
       while (x < $scope.items.length) {
         $scope.plan.total += $scope.items[x].qty * ($scope.items[x].price + $scope.items[x].upgradeSupplement + $scope.items[x].optionSupplement);
-        _results.push(x++);
+        x++;
       }
-      return _results;
+      $scope.updateMageOptions();
+    };
+    $scope.updateMageFrequency = function() {
+      $j("#product-options-wrapper select").each(function(index) {
+        var dropId, e, optionSelector, str;
+        e = $j(this);
+        dropId = e.attr('id');
+        str = e.parent().parent().prev().find('label').text();
+        if (str.indexOf("option-frequency") > 0) {
+          optionSelector = 'option:contains("' + $scope.plan.frequency + '")';
+          $j('#' + dropId + ' ' + optionSelector).attr("selected", "selected");
+          return false;
+        }
+      });
+    };
+    $scope.updateMageOptions = function() {
+      $j("#product-options-wrapper textarea").each(function(index) {
+        var e, str;
+        e = $j(this);
+        str = e.parent().parent().prev().find('label').text();
+        if (str === "options-json") {
+          e.text(JSON.stringify($scope.items));
+          return false;
+        }
+      });
+    };
+    $scope.updateMageQty = function(text, qty) {
+      $j("#product-options-wrapper select").each(function(index) {
+        var dropId, e, itemText, str;
+        e = $j(this);
+        str = e.parent().parent().prev().find('label').text();
+        str = str.split('-');
+        if (str[0] === "option") {
+          itemText = str[1];
+          if (itemText === text) {
+            e.find("option").eq(qty).attr("selected", "selected");
+            dropId = e.attr('id');
+            document.getElementById(dropId).onchange();
+            return false;
+          }
+        }
+      });
     };
     $scope.subtract = function(item) {
       if (item.qty > 0) {
         item.qty--;
-        return $scope.recalculate();
+        $scope.recalculate();
+        return $scope.updateMageQty(item.text, item.qty);
       }
     };
     $scope.calculateOptionSupplement = function(index, item) {
@@ -191,7 +233,8 @@
     };
     $scope.add = function(item) {
       item.qty++;
-      return $scope.recalculate();
+      $scope.recalculate();
+      return $scope.updateMageQty(item.text, item.qty);
     };
     $scope.recalculate();
     return $scope.update();
