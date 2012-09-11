@@ -13,10 +13,12 @@
     sockOptions = [
       {
         text: "classic",
+        buttonId: "classic",
         selected: false,
         supplement: 0
       }, {
         text: "disco",
+        buttonId: "disco",
         selected: false,
         supplement: 0
       }
@@ -24,22 +26,27 @@
     boxerOptions = [
       {
         text: "classic",
+        buttonId: "classic",
         selected: false,
         supplement: 0
       }, {
         text: "disco",
+        buttonId: "disco",
         selected: false,
         supplement: 0
       }, {
         text: "boxer shorts",
+        buttonId: "boxer-shorts",
         selected: false,
         supplement: 0
       }, {
         text: "boxer trunks",
+        buttonId: "boxer-trunks",
         selected: false,
         supplement: 0
       }, {
         text: "briefs",
+        buttonId: "briefs",
         selected: false,
         supplement: 0
       }
@@ -47,18 +54,27 @@
     teeOptions = [
       {
         text: "crew neck",
+        buttonId: "crew-neck",
         selected: false,
         supplement: 0
       }, {
         text: "v-neck",
+        buttonId: "v-neck",
         selected: false,
         supplement: 0
       }, {
-        text: "plain",
+        text: "white",
+        buttonId: "white",
         selected: false,
         supplement: 0
       }, {
-        text: "graphic",
+        text: "black",
+        buttonId: "black",
+        selected: false,
+        supplement: 0
+      }, {
+        text: "coloured",
+        buttonId: "coloured",
         selected: false,
         supplement: 0
       }
@@ -66,22 +82,27 @@
     shirtOptions = [
       {
         text: "short collar",
+        buttonId: "short-collar",
         selected: false,
         supplement: 0
       }, {
         text: "double cuff",
+        buttonId: "double-cuff",
         selected: false,
         supplement: 0
       }, {
         text: "slim fit",
+        buttonId: "slim-fit",
         selected: false,
         supplement: 0
       }, {
         text: "straight fit",
+        buttonId: "straight-fit",
         selected: false,
         supplement: 0
       }, {
         text: "no pocket",
+        buttonId: "no-pocket",
         selected: false,
         supplement: 0
       }
@@ -105,9 +126,18 @@
       {
         value: "trial"
       }, {
-        value: "monthly"
-      }, {
         value: "quarterly"
+      }, {
+        value: "biannually"
+      }
+    ];
+    $scope.brands = [
+      {
+        value: "UNBRANDiD",
+        supplement: 0
+      }, {
+        value: "designer",
+        supplement: 20
       }
     ];
     $scope.master = {};
@@ -152,6 +182,12 @@
       $scope.plan.basket = basketItem;
       $scope.updateMageFrequency();
       return saveBasket($scope.plan);
+    };
+    $scope.freqChanger = function(newFreq) {
+      $j('.frequency-chooser a').removeClass('active');
+      $j('#' + newFreq + '-button').addClass('active');
+      $scope.plan.frequency = newFreq;
+      return $scope.update();
     };
     $scope.recalculate = function() {
       var x;
@@ -235,6 +271,33 @@
       item.qty++;
       $scope.recalculate();
       return $scope.updateMageQty(item.text, item.qty);
+    };
+    $scope.toggleCustomOption = function(index, item) {
+      index.selected = !index.selected;
+      $j('#' + '-' + item.text + '-' + index.buttonId).toggleClass('active');
+      return $scope.refilter(item);
+    };
+    $scope.buildFilterString = function(item) {
+      var filterString, x;
+      x = 0;
+      filterString = '.proxy ';
+      while (x < item.options.length) {
+        if (item.options[x].selected === true) {
+          filterString += ', .' + item.options[x].buttonId;
+        }
+        x++;
+      }
+      return filterString;
+    };
+    $scope.refilter = function(item) {
+      var $isocontainer, filterString;
+      if ($isocontainer === void 0) {
+        $isocontainer = $j('#socks-section-container .isotope-holder');
+        filterString = $scope.buildFilterString(item);
+        return $isocontainer.isotope({
+          filter: filterString
+        });
+      }
     };
     $scope.recalculate();
     return $scope.update();

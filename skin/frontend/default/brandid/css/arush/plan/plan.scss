@@ -1,6 +1,26 @@
+@import "components/isotope.scss";
+@import "components/accordion.scss";
+@import "components/angular-inputs.scss";
+@import "components/title-block.scss";
+@import "components/configuration-section.scss";
+
+.fb-like-button-prod.container {
+  margin-top:20px !important;
+}
+
+
 .product-essential {
 	background: white;
 }
 .male-config {
 	background:white;
+}
+
+.planOther {
+	background: white;
+}
+
+/* IE9 gradient hack */
+.gte9 .gradient {
+	filter:none;
 }

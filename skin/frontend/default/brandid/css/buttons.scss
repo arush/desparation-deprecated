@@ -115,7 +115,7 @@ a.convert.secondary:hover {
 	border: 1px solid #ddd;
 }
 
-a.convert.secondary.active:hover {
+a.convert.secondary.active:hover, a.convert.secondary.true:hover {
 	color:white;
 }
 
@@ -152,7 +152,7 @@ a.convert.mid {
 
 }
 
-a.convert.active {
+a.convert.active, a.convert.true {
 	-webkit-box-shadow: inset 0 3px 9px rgb(0,0,0), 0 1px 0 rgba(255,255,255,0.2);
 	-moz-box-shadow: inset 0 3px 9px rgb(0,0,0), 0 1px 0 rgba(255,255,255,0.2);
 	box-shadow: inset 0 3px 9px rgb(0,0,0), 0 1px 0 rgba(255,255,255,0.2);
@@ -212,4 +212,8 @@ a.convert.active {
 
 a.continue.skip.secondary.convert {
 	margin:0 10px;
+}
+
+.planOther a.convert {
+	font-size: 11px;
 }

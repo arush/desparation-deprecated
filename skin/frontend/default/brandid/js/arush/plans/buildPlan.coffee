@@ -6,72 +6,93 @@ root = exports ? this
 root.buildPlan = ($scope) ->
   sockOptions = [
     text: "classic"
+    buttonId: "classic"
     selected: false
     supplement: 0
   ,
     text: "disco"
+    buttonId: "disco"
     selected: false
     supplement: 0
   ]
   
   boxerOptions = [
     text: "classic"
+    buttonId: "classic"
     selected: false
     supplement: 0
   ,
     text: "disco"
+    buttonId: "disco"
     selected: false
     supplement: 0
   ,
     text: "boxer shorts"
+    buttonId: "boxer-shorts"
     selected: false
     supplement: 0
   ,
     text: "boxer trunks"
+    buttonId: "boxer-trunks"
     selected: false
     supplement: 0
   ,
     text: "briefs"
+    buttonId: "briefs"
     selected: false
     supplement: 0
   ]
 
   teeOptions = [
     text: "crew neck"
+    buttonId: "crew-neck"
     selected: false
     supplement: 0
   ,
     text: "v-neck"
+    buttonId: "v-neck"
     selected: false
     supplement: 0
   ,
-    text: "plain"
+    text: "white"
+    buttonId: "white"
     selected: false
     supplement: 0
   ,
-    text: "graphic"
+    text: "black"
+    buttonId: "black"
+    selected: false
+    supplement: 0
+  ,
+    text: "coloured"
+    buttonId: "coloured"
     selected: false
     supplement: 0
   ]
 
   shirtOptions = [
     text: "short collar"
+    buttonId: "short-collar"
     selected: false
     supplement: 0
   ,
     text: "double cuff"
+    buttonId: "double-cuff"
     selected: false
     supplement: 0
   ,
     text: "slim fit"
+    buttonId: "slim-fit"
     selected: false
     supplement: 0
   ,
     text: "straight fit"
+    buttonId: "straight-fit"
     selected: false
     supplement: 0
   ,
     text: "no pocket"
+    buttonId: "no-pocket"
     selected: false
     supplement: 0
   ]
@@ -94,9 +115,17 @@ root.buildPlan = ($scope) ->
   $scope.drops = [
     value:"trial"
   ,
-    value:"monthly"
-  ,
     value:"quarterly"
+  ,
+    value:"biannually"
+  ]
+
+  $scope.brands = [
+    value: "UNBRANDiD"
+    supplement: 0
+  ,
+    value: "designer"
+    supplement: 20
   ]
 
   $scope.master = {}
@@ -150,6 +179,13 @@ root.buildPlan = ($scope) ->
     $scope.updateMageFrequency()
     # put basket in cookie
     return saveBasket ($scope.plan)
+
+  $scope.freqChanger = (newFreq) ->
+    $j('.frequency-chooser a').removeClass 'active'
+    $j('#'+newFreq+'-button').addClass 'active'
+    $scope.plan.frequency = newFreq
+    
+    $scope.update()
 
 
   $scope.recalculate = ->
@@ -238,9 +274,35 @@ root.buildPlan = ($scope) ->
     $scope.recalculate()
     $scope.updateMageQty item.text,item.qty
 
+
+  $scope.toggleCustomOption = (index, item) ->
+    index.selected = !index.selected
+    $j('#'+'-'+item.text+'-'+index.buttonId).toggleClass 'active'
+    $scope.refilter item
+
+
+  $scope.buildFilterString = (item) ->
+    x = 0
+    filterString = '.proxy '
+
+    while x < item.options.length
+      if item.options[x].selected is true
+        filterString += ', .' + item.options[x].buttonId
+      x++
+
+    return filterString
+
+
+  $scope.refilter = (item) ->
+    if $isocontainer is undefined
+      $isocontainer = $j '#socks-section-container .isotope-holder'
+      filterString = $scope.buildFilterString item
+
+      $isocontainer.isotope filter: filterString
+
+
   $scope.recalculate()
   $scope.update()
-
 
 
 

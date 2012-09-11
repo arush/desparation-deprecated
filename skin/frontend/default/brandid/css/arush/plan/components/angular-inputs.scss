@@ -1,0 +1,17 @@
+#socks-section-container,#socks-section-summary {
+	#boxers-section, #undertees-section, #boxers-quantity, #undertees-quantity {
+		display:none;
+	}
+}
+
+#boxers-section-container, #boxers-section-summary {
+	#socks-section, #undertees-section, #socks-quantity, #undertees-quantity {
+		display:none;
+	}
+}
+
+#t-shirts-section-container, #t-shirts-section-summary {
+	#socks-section, #boxers-section, #socks-quantity, #boxers-quantity {
+		display:none;
+	}
+}

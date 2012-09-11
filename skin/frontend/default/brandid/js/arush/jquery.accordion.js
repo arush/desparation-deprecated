@@ -98,7 +98,7 @@
 				var $item		= $(this);
 				
 				$item.data({
-					originalHeight 	: $item.find('a:first').height(),
+					originalHeight 	: $item.height(),
 					offsetTop		: $item.offset().top
 				});
 				
@@ -118,9 +118,9 @@
 			var instance	= this;
 			
 			// open / close item
-			this.$items.find('a:first').bind('click.accordion', function( event ) {
+			this.$items.find('a.opener').bind('click.accordion', function( event ) {
 				
-				var $item			= $(this).parent();
+				var $item			= $(this).closest('li');
 				
 				// close any opened item if oneOpenedItem is true
 				if( instance.options.oneOpenedItem && instance._isOpened() && instance.current!== $item.index() ) {

@@ -125,27 +125,23 @@ lang="<?php echo $this->getLang() ?>" ng-app>             <!--<![endif]-->
 
 <?php echo $this->getChildHtml('after_body_start') ?>
 <div class="wrapper">
-    
-    <div class="page">
         <?php echo $this->getChildHtml('header') ?>
 		<?php echo $this->getChildHtml('topContainer') ?>
 	
         
         <?php echo $this->getChildHtml('breadcrumbsContainer') ?>
-        <div class="main col1-layout">
+
 	
-            <div class="col-main">
+
 				<?php echo $this->getChildHtml('global_messages') ?>
 				<?php echo $this->getChildHtml('global_notices') ?>
                 <?php echo $this->getChildHtml('plan_content') ?>
                 <?php //echo $this->getChildHtml('content') ?>
-            </div>
-        </div>
-		<div class="main-bottom"></div>
+
+
         <?php echo $this->getChildHtml('footer_before') ?>
         <?php echo $this->getChildHtml('footer') ?>
         <?php echo $this->getChildHtml('before_body_end') ?>
-    </div>
 </div>
 <?php echo $this->getAbsoluteFooter() ?>
 <!-- Chartbeat module -->

@@ -1,0 +1,32 @@
+/*
+.title-block {
+	padding-top: 18px;
+	text-align: left;
+}
+
+.title-block-inner {
+	min-height: 64px;
+	padding-bottom: 24px;
+}*/
+
+/* new title styles */
+
+.title-block {
+	background: #000;
+	padding-top: 18px;
+	text-align: left;
+}
+
+.title-block-inner {
+ 	background: #000; 
+	min-height: 64px;
+	padding-bottom: 24px;
+}
+
+.title-block .title {
+	letter-spacing: -2px;
+	text-align:center;
+	line-height:40px;
+	padding:20px 0;
+	font-size: 40px;
+}
