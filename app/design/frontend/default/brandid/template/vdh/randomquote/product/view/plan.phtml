@@ -18,46 +18,48 @@
 <section class="container plan-configurator" ng-controller="buildPlan">
 	
 	<header>
-		<div class="cart-message row sixteen-columns">
-			wattup
-		</div>
-		
-		<div class="one-third column">
-			<div class="basket-price">
-				<span class="currency-icon"><?php echo Mage::app()->getLocale()->currency(Mage::app()->getStore()->
-     getCurrentCurrencyCode())->getSymbol(); ?></span>
-				<span class="special-price"><span id="final-price">{{plan.total}}</span></span>
+		<!-- <div class="cart-message row sixteen-columns">
+			<div class="male-cart-message">
+				Listen up buddy, I've hooked you up with a plan specifically for you. Chop and change using the options below, and always remember one thing: from here on out, I got your arse covered.
 			</div>
+		</div> -->
+		
+		<div class="row sixteen-columns">
 		</div>
+		<div class="two-thirds column">
 
-		<div class="one-third column">
+			<div class="basket-price">
+				<div class="frequency-label label">Total:</div>
+				<div class="price-block">
+					<span class="currency-icon"><?php echo Mage::app()->getLocale()->currency(Mage::app()->getStore()->
+	     getCurrentCurrencyCode())->getSymbol(); ?></span>
+					<span class="special-price"><span id="final-price">{{plan.total}}</span></span>
+				</div>
+			</div>
+
 			<div class="frequency-chooser">
+				<div class="frequency-label label">Billed:</div>
 		    	<a class="convert secondary lt active" id="trial-button" ng-click="freqChanger('trial')">Just once</a>
 		    	<a class="convert secondary mid" id="quarterly-button" ng-click="freqChanger('quarterly')">Quarterly</a>
 		    	<a class="convert secondary rt" id="biannually-button" ng-click="freqChanger('biannually')">Biannually</a>
 
 		    	<!-- <span ng-repeat="drop in drops"><input type="radio" ng-model="plan.frequency" name="frequency" value="{{drop.value}}"/>{{drop.value}}</span> -->
 		    </div>
+		    
 		</div>
-		<div class="one-third column">
 
+		<div class="one-third column">
+			<div class="shipping-label label">Free UK shipping & Returns</div>
 
 			<form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
 		        <div class="no-display">
 		            <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
 		            <input type="hidden" name="related_product" id="related-products-field" value="" />
-		            <div class="container2">
-				    <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
-				    </div>
+		            
 		        </div>
-		
-				
-				<div class="price-box">
-					<!-- <h3><span class="the"></span><span class="plan-category-grid-title"><?php // echo $_product->getName(); ?></span></h3> -->
-					<div class="clearfix"></div>
-			
-				</div>
-				
+		        <div class="container2 no-display">
+    <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+    </div>
 
 			    
 			    <div class="bottom-stuff">
@@ -77,6 +79,7 @@
 				    </div>
 				    
 			    </div>
+
 		    </form>
 		</div>
 
@@ -106,7 +109,10 @@
 	<div id="st-accordion" class="st-accordion">
 		<ul>
 
-		<?php foreach ($pieces as $k => $v) {
+		<?php 
+			$foreachIndex = 0; // we use this index to link the $pieces array key to the angular $scope.items array key
+
+			foreach ($pieces as $k => $v) {
 			$products = Mage::getModel('catalog/product')
 				->getCollection()
 				->addAttributeToSelect('image')
@@ -119,30 +125,44 @@
 			if ($products->count() > 0) {
 		 ?>
 		
-			<li class="st-li" id="<?php echo strtolower($this->__($k));?>-section-summary">
+			<li class="st-li ani" id="<?php echo strtolower($this->__($k));?>-section-summary">
 
-                <div class="collapsed-configurables">
+                <div class="collapsed-configurables ani" ng-class="isZeroed(<?php echo $foreachIndex; ?>)">
 
                 	<div class="one-third column">
 						<div class="icon <?php echo $this->__($k);?>"></div>
+						<div class="x-holder">x</div>
 						<div class="quantity-selector">
-							<div ng-repeat="item in items" id="{{item.text}}-quantity">
-							  <a class="convert secondary" ng-click="subtract(item)">-</a><span class="qty-digit">{{item.qty}}</span><a class="convert secondary" ng-click="add(item)">+</a>
+							<div class="quantity-button-container {{items[<?php echo $foreachIndex; ?>].text}}-quantity">
+								<div class="qty-label label">QTY:</div>
+								<a class="convert secondary subtract-button" ng-click="subtract(items[<?php echo $foreachIndex; ?>],$index)">-</a><div class="qty-digit">{{items[<?php echo $foreachIndex; ?>].qty}}</div><a class="convert secondary add-button" ng-click="add(items[<?php echo $foreachIndex; ?>])">+</a>
 							</div>
 					    </div>
-
                 	</div>
 
-                	<div class="one-third column">
-                		<div class="configure-size">
-                			<a class="convert secondary lt active" id="trial-button" ng-click="sizeChanger('small')">6-9</a>
-					    	<a class="convert secondary rt" id="biannually-button" ng-click="sizeChanger('large')">10-13</a>
+                	<div class="two-thirds column configure-brands-holder">
+                		<div class="configure-brands clearfix {{items[<?php echo $foreachIndex; ?>].text}}-size">
+                			<div class="upgrade-chooser item-<?php echo $foreachIndex; ?>">
+                				<div class="brands-label label">BRANDS:</div>
+				              	<a ng-repeat="upgrade in items[<?php echo $foreachIndex; ?>].upgrades" ng-click="calculateUpgradeSupplement(upgrade,items[<?php echo $foreachIndex; ?>], <?php echo $foreachIndex; ?>)" class="convert secondary upgrade {{items[<?php echo $foreachIndex; ?>].text}}-{{upgrade.value}}" ng-class="groupButtons($index,items[<?php echo $foreachIndex; ?>].upgrades)">{{upgrade.value}}</a>
+					        </div>
+                			
                 		</div>
+                		<div class="male-edit-holder">
+	                		<div class="male-summary">
+		                		<div class="male-summary-label label">MALE inputs:</div>
+		                		<span class="selected">{{items[<?php echo $foreachIndex; ?>].chosenColour}}, {{items[<?php echo $foreachIndex; ?>].chosenOptions}}</span>
+		                	</div>
+						    
+						    
+			            </div>
+			        <a href="#" class="opener convert secondary gradient">
+	                	Edit
+	                </a>    
                 	</div>
-                	<div class="one-third column">
-					    <a href="#" class="opener convert secondary gradient">
-		                	Edit
-		                </a>
+                	
+		            <div class="add-item-helper">
+		            	{{addMessage[<?php echo $foreachIndex ?>].chosenPhrase}}
 		            </div>
 				</div>
 
@@ -157,35 +177,15 @@
 
 
 
-			 	<div class="st-content">
+			 	<div class="st-content clearfix">
 
-					<div class="planOther" id="<?php echo strtolower($this->__($k));?>-section-container">
+					<div class="male-filter clearfix" id="{{items[<?php echo $foreachIndex; ?>].text}}-section-container">
 						<?php // e.g. // id="customise-section-socks" ?>
 
-						<h1 class="black-title-bar main-view"><?php echo $this->__($k);?></h1>
 						
-
-						<ul>
-				          <li ng-repeat="item in items" id="{{item.text}}-section">
-				              
-				              <span ng-repeat="index in item.options"><input id="" type="checkbox" ng-model="index.selected" ng-change="calculateOptionSupplement(index,item)"/>{{index.text}}</span>
-				              <br/>
-				              
-				              
-				              <?php /* shitty non-webkit browsers can't style checkboxes, so have to replicate with <a> tags */ ?>
-
-				              <a ng-repeat="index in item.options" class="convert secondary {{index.selected}}" id="{{item.text}}-{{index.buttonId}}" ng-click="toggleCustomOption(index, item)" title="{{index.text}}">{{index.text}}</a>
-
-
-				              <span ng-repeat="upgrade in item.upgrades"><input type="radio" ng-model="item.upgradeSupplement" name="upgrade1" value="{{upgrade.supplement}}" ng-change="calculateUpgradeSupplement(upgrade,item)"/>{{upgrade.value}}</span>
-
-				              <br/><br/>
-				          </li>
-				        </ul>
-
-
+						
 						<?php /*Both*/ ?>
-						<div class="isotope-holder">
+						<div class="isotope-holder two-thirds column">
 							
 								<?php foreach($products as $product): ?>
 									<div class="filterable-product <?php
@@ -194,16 +194,52 @@
 
 
 										?>">
-										<img class="filterable" src="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize(191, 229);?>" width="191" height="229" />
+										<img class="filterable" src="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize(140, 140);?>" width="140" height="140" />
+										
+										<?php /* brand name ?>
 										<div class="plan-item-details">
 											<span class="black-title-small"><?php echo $product->getAttributeText('brand'); ?></span>
 											<!-- span class="plan-item-rrp"><?php // echo 'RRP &pound;' . number_format($product->getPrice(),0); ?></span -->
 										</div>
+										<?php end brand name */ ?>
+
 									</div>
 									
 								<?php endforeach; ?>
 							
 						</div>
+
+						<div class="one-third column expanded-configurables">
+							<ul>
+					          <li class="{{items[<?php echo $foreachIndex; ?>].text}}-section configurables-holder">
+					              
+					              
+				              	<div class="configure-size-holder row">
+		                			<div class="configure-size clearfix {{items[<?php echo $foreachIndex; ?>].text}}-size">
+										
+										<div class="size-label label">SIZE:</div>
+				                		
+				                		<a ng-repeat="size in items[<?php echo $foreachIndex; ?>].sizes" class="convert secondary size-button {{items[<?php echo $foreachIndex; ?>].text}}-{{size.text}}" ng-class="groupButtons($index,items[<?php echo $foreachIndex; ?>].sizes)" ng-click="changeSize(items[<?php echo $foreachIndex; ?>], size,<?php echo $foreachIndex; ?>)">{{size.text}}</a>
+
+					                </div>
+					            </div>
+
+		                		  <br/>
+					              
+					            <div class="{{items[<?php echo $foreachIndex; ?>].text}} colours row">
+					              	<div class="colours-label label">COLOURS:</div>
+					              	<a ng-repeat="index in itemOptions[<?php echo $foreachIndex; ?>].colours" class="convert secondary {{items[<?php echo $foreachIndex; ?>].text}}-{{index.buttonId}}" ng-click="toggleColour(index, <?php echo $foreachIndex; ?>)" ng-class="groupButtons($index,itemOptions[<?php echo $foreachIndex; ?>].colours" title="{{index.text}}">{{index.text}}</a>
+
+					            </div>
+					            <br/>
+					            <div class="{{items[<?php echo $foreachIndex; ?>].text}} style row">
+					              	<div class="colours-label label">STYLE:</div>
+					              		<a ng-repeat="index in itemOptions[<?php echo $foreachIndex; ?>].options" class="convert secondary {{index.selected}} {{items[<?php echo $foreachIndex; ?>].text}}-{{index.buttonId}}" ng-click="toggleCustomOption(index,$index,<?php echo $foreachIndex; ?>)" ng-class="groupButtons($index,itemOptions[<?php echo $foreachIndex; ?>].options" title="{{index.text}}">{{index.text}}</a>
+					            </div>
+					          </li>
+					        </ul>
+					    </div>
+
 
 					</div>
 				</div> <!-- st-content -->
@@ -212,6 +248,8 @@
 
 			<?php 
 				}; // end if
+			
+			$foreachIndex++;
 			} // end foreach ?>
 		</ul>
 	</div> <!-- end st-accordion -->
@@ -277,7 +315,6 @@
 
 
 	<div class="extra-info">
-       		<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-' . $_product->getSku())->toHtml(); ?>
 			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-common')->toHtml(); ?>
     </div>
 
@@ -295,7 +332,9 @@
 
     var $j = jQuery.noConflict();
 	$j(document).ready(function() {
-	  
+	  	
+		$j(".male-cart-message").typewriter();
+
 		if($isocontainer === undefined) {
 	    	var $isocontainer = $j('.isotope-holder');
 		    // initialize isotope

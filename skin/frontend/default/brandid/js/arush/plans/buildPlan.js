@@ -9,45 +9,38 @@
   root = typeof exports !== "undefined" && exports !== null ? exports : this;
 
   root.buildPlan = function($scope) {
-    var boxerOptions, shirtOptions, shirtUpgrades, sockOptions, teeOptions;
-    sockOptions = [
+    var boxerOptions, boxerSizes, boxerUpgrades, genericColours, sockOptions, sockSizes, sockUpgrades, teeOptions, underteeSizes, underteeUpgrades;
+    $scope.alert = function(text) {
+      return alert(text);
+    };
+    genericColours = [
       {
         text: "classic",
-        buttonId: "classic",
-        selected: false,
-        supplement: 0
+        filterCode: ".classic",
+        buttonId: "classic"
       }, {
         text: "disco",
-        buttonId: "disco",
-        selected: false,
-        supplement: 0
+        filterCode: ".disco",
+        buttonId: "disco"
+      }, {
+        text: "both",
+        filterCode: ".classic, .disco",
+        buttonId: "both"
       }
     ];
+    sockOptions = [];
     boxerOptions = [
       {
-        text: "classic",
-        buttonId: "classic",
-        selected: false,
-        supplement: 0
-      }, {
-        text: "disco",
-        buttonId: "disco",
-        selected: false,
-        supplement: 0
-      }, {
         text: "boxer shorts",
         buttonId: "boxer-shorts",
+        filterCode: ".shorts",
         selected: false,
         supplement: 0
       }, {
         text: "boxer trunks",
         buttonId: "boxer-trunks",
-        selected: false,
-        supplement: 0
-      }, {
-        text: "briefs",
-        buttonId: "briefs",
-        selected: false,
+        filterCode: ".trunks",
+        selected: true,
         supplement: 0
       }
     ];
@@ -62,61 +55,96 @@
         buttonId: "v-neck",
         selected: false,
         supplement: 0
-      }, {
-        text: "white",
-        buttonId: "white",
-        selected: false,
-        supplement: 0
-      }, {
-        text: "black",
-        buttonId: "black",
-        selected: false,
-        supplement: 0
-      }, {
-        text: "coloured",
-        buttonId: "coloured",
-        selected: false,
-        supplement: 0
       }
     ];
-    shirtOptions = [
+    sockUpgrades = [
       {
-        text: "short collar",
-        buttonId: "short-collar",
-        selected: false,
+        value: "value",
+        code: "option-8-v-socks",
         supplement: 0
       }, {
-        text: "double cuff",
-        buttonId: "double-cuff",
-        selected: false,
-        supplement: 0
-      }, {
-        text: "slim fit",
-        buttonId: "slim-fit",
-        selected: false,
-        supplement: 0
-      }, {
-        text: "straight fit",
-        buttonId: "straight-fit",
-        selected: false,
-        supplement: 0
-      }, {
-        text: "no pocket",
-        buttonId: "no-pocket",
-        selected: false,
-        supplement: 0
+        value: "premium",
+        code: "option-10-d-socks",
+        supplement: 5
       }
     ];
-    shirtUpgrades = [
+    boxerUpgrades = [
       {
-        value: "Tier 1",
+        value: "value",
+        code: "option-18-v-boxers",
         supplement: 0
       }, {
-        value: "Tier 2",
-        supplement: 25
+        value: "premium",
+        code: "option-20-d-boxers",
+        supplement: 5
+      }
+    ];
+    underteeUpgrades = [
+      {
+        value: "value",
+        code: "option-28-v-undertees",
+        supplement: 0
       }, {
-        value: "Tier 3",
-        supplement: 75
+        value: "premium",
+        code: "option-30-d-undertees",
+        supplement: 5
+      }
+    ];
+    sockSizes = [
+      {
+        text: "S",
+        helper: "6-10 UK shoe size"
+      }, {
+        text: "L",
+        helper: "11-13 UK shoe size"
+      }
+    ];
+    boxerSizes = [
+      {
+        text: "S",
+        helper: "30in - 32in waist"
+      }, {
+        text: "M",
+        helper: "32in - 34in waist"
+      }, {
+        text: "L",
+        helper: "34in - 36in waist"
+      }, {
+        text: "XL",
+        helper: "36in - 38in waist"
+      }
+    ];
+    underteeSizes = [
+      {
+        text: "S",
+        helper: "47cm - 48cm chest"
+      }, {
+        text: "M",
+        helper: "49cm - 50cm chest"
+      }, {
+        text: "L",
+        helper: "51cm - 52cm chest"
+      }, {
+        text: "XL",
+        helper: "53cm - 54cm chest"
+      }, {
+        text: "XXL",
+        helper: "55cm - 56cm chest"
+      }
+    ];
+    $scope.addMessage = [
+      {
+        text: 'socks',
+        chosenPhrase: 0,
+        phrases: ["Go on, add some socks, think of those poor little naked toes.", "Just because you can't see the holes, doesn't mean they're not there."]
+      }, {
+        text: 'boxers',
+        chosenPhrase: 0,
+        phrases: ["Are you sure you don't want any? What if you get lucky?", "I got two words for ya buddy: skid marks.", "You must have a draw full of fresh undies. Yeah, sure you do."]
+      }, {
+        text: 'undertees',
+        chosenPhrase: 0,
+        phrases: ["undertees random1", "undertees random2", "undertees random3", "undertees random4", "undertees random5"]
       }
     ];
     $scope.plan = {
@@ -131,41 +159,56 @@
         value: "biannually"
       }
     ];
-    $scope.brands = [
-      {
-        value: "UNBRANDiD",
-        supplement: 0
-      }, {
-        value: "designer",
-        supplement: 20
-      }
-    ];
     $scope.master = {};
-    $scope.items = [
+    $scope.itemOptions = [
       {
-        code: "option-10-socks",
-        text: "socks",
-        qty: 0,
-        price: 5,
-        optionSupplement: 0,
-        upgradeSupplement: 0,
+        colours: genericColours,
         options: sockOptions
       }, {
-        code: "option-20-boxers",
+        colours: genericColours,
+        options: boxerOptions
+      }, {
+        colours: genericColours,
+        options: teeOptions
+      }
+    ];
+    $scope.items = [
+      {
+        recurlyCode: "option-8-v-socks",
+        text: "socks",
+        qty: 0,
+        price: 3,
+        size: false,
+        chosenColour: 'both',
+        chosenOptions: 'Choose a style',
+        optionSupplement: 0,
+        upgradeSupplement: 0,
+        upgrades: sockUpgrades,
+        sizes: sockSizes
+      }, {
+        recurlyCode: "option-20-d-boxers",
         text: "boxers",
         qty: 1,
         price: 10,
+        size: false,
+        chosenColour: 'Choose a colour',
+        chosenOptions: 'Choose a style',
         optionSupplement: 0,
         upgradeSupplement: 0,
-        options: boxerOptions
+        upgrades: boxerUpgrades,
+        sizes: boxerSizes
       }, {
-        code: "option-30-undertees",
+        recurlyCode: "option-28-v-undertees",
         text: "undertees",
         qty: 0,
         price: 30,
+        size: false,
+        chosenColour: 'Choose a colour',
+        chosenOptions: 'Choose a style',
         optionSupplement: 0,
         upgradeSupplement: 0,
-        options: teeOptions
+        upgrades: underteeUpgrades,
+        sizes: underteeSizes
       }
     ];
     $scope.update = function() {
@@ -198,6 +241,7 @@
         x++;
       }
       $scope.updateMageOptions();
+      $scope.update();
     };
     $scope.updateMageFrequency = function() {
       $j("#product-options-wrapper select").each(function(index) {
@@ -205,9 +249,10 @@
         e = $j(this);
         dropId = e.attr('id');
         str = e.parent().parent().prev().find('label').text();
-        if (str.indexOf("option-frequency") > 0) {
+        if (str === "option-frequency" || str.indexOf("option-frequency") >= 0) {
           optionSelector = 'option:contains("' + $scope.plan.frequency + '")';
           $j('#' + dropId + ' ' + optionSelector).attr("selected", "selected");
+          document.getElementById(dropId).onchange();
           return false;
         }
       });
@@ -223,39 +268,58 @@
         }
       });
     };
-    $scope.updateMageQty = function(text, qty) {
+    $scope.updateMageQty = function(text, qty, brands) {
       $j("#product-options-wrapper select").each(function(index) {
-        var dropId, e, itemText, str;
+        var drop1Found, drop2Found, dropId, e, itemText, str;
         e = $j(this);
         str = e.parent().parent().prev().find('label').text();
         str = str.split('-');
         if (str[0] === "option") {
           itemText = str[1];
           if (itemText === text) {
-            e.find("option").eq(qty).attr("selected", "selected");
-            dropId = e.attr('id');
-            document.getElementById(dropId).onchange();
-            return false;
+            if (str[2] === brands) {
+              e.find("option").eq(qty).attr("selected", "selected");
+              dropId = e.attr('id');
+              document.getElementById(dropId).onchange();
+              drop1Found = true;
+            } else {
+              e.find("option").eq(0).attr("selected", "selected");
+              dropId = e.attr('id');
+              document.getElementById(dropId).onchange();
+              drop2Found = true;
+            }
+            if (drop1Found && drop2Found) {
+              return false;
+            }
           }
         }
       });
     };
-    $scope.subtract = function(item) {
+    $scope.subtract = function(item, idx) {
+      var brands;
       if (item.qty > 0) {
         item.qty--;
         $scope.recalculate();
-        return $scope.updateMageQty(item.text, item.qty);
+        if (item.qty === 0) {
+          $scope.chooseAddMessage(idx);
+        }
+        if (item.upgradeSupplement === 0) {
+          brands = 'value';
+        } else {
+          brands = 'premium';
+        }
+        return $scope.updateMageQty(item.text, item.qty, brands);
       }
     };
-    $scope.calculateOptionSupplement = function(index, item) {
+    $scope.calculateOptionSupplement = function(index, item, idx) {
       var x, y;
-      item.optionSupplement = 0;
+      $scope.items[idx].optionSupplement = 0;
       x = 0;
       while (x < $scope.items.length) {
         y = 0;
-        while (y < $scope.items[x].options.length) {
-          if ($scope.items[x].options[y].selected === true) {
-            $scope.items[x].optionSupplement += $scope.items[x].options[y].supplement;
+        while (y < $scope.itemOptions[x].options.length) {
+          if ($scope.itemOptions[x].options[y].selected === true) {
+            $scope.items[x].optionSupplement += $scope.itemOptions[x].options[y].supplement;
           }
           y++;
         }
@@ -263,44 +327,139 @@
       }
       return $scope.recalculate();
     };
-    $scope.calculateUpgradeSupplement = function(upgrade, item) {
-      item.upgradeSupplement = upgrade.supplement;
+    $scope.calculateUpgradeSupplement = function(upgrade, item, idx) {
+      $scope.items[idx].upgradeSupplement = upgrade.supplement;
+      $j('.upgrade-chooser.item-' + idx + ' a').removeClass('active');
+      $j('.upgrade-chooser.item-' + idx + ' a.' + item.text + '-' + upgrade.value).addClass('active');
+      $scope.updateMageQty(item.text, item.qty, upgrade.value);
       return $scope.recalculate();
     };
     $scope.add = function(item) {
+      var brands;
       item.qty++;
       $scope.recalculate();
-      return $scope.updateMageQty(item.text, item.qty);
+      if (item.upgradeSupplement === 0) {
+        brands = 'value';
+      } else {
+        brands = 'premium';
+      }
+      return $scope.updateMageQty(item.text, item.qty, brands);
     };
-    $scope.toggleCustomOption = function(index, item) {
-      index.selected = !index.selected;
-      $j('#' + '-' + item.text + '-' + index.buttonId).toggleClass('active');
-      return $scope.refilter(item);
-    };
-    $scope.buildFilterString = function(item) {
-      var filterString, x;
+    $scope.toggleCustomOption = function(index, $index, idx) {
+      var x;
+      if ($scope.itemOptions[idx].options[$index].selected === true) {
+        $scope.itemOptions[idx].options[$index].selected = false;
+      } else {
+        $scope.itemOptions[idx].options[$index].selected = true;
+      }
+      $j('.' + '-' + $scope.items[idx] + '-' + index.buttonId).toggleClass('true');
+      $scope.items[idx].chosenOptions = '';
       x = 0;
-      filterString = '.proxy ';
-      while (x < item.options.length) {
-        if (item.options[x].selected === true) {
-          filterString += ', .' + item.options[x].buttonId;
+      while (x < $scope.itemOptions[idx].options.length) {
+        if ($scope.itemOptions[idx].options[x].selected === true) {
+          if ($scope.items[idx].chosenOptions !== '') {
+            $scope.items[idx].chosenOptions += ', ';
+          }
+          $scope.items[idx].chosenOptions += $scope.itemOptions[idx].options[x].filterCode;
         }
         x++;
       }
-      return filterString;
+      $scope.recalculate();
+      return $scope.refilter(idx);
     };
-    $scope.refilter = function(item) {
+    $scope.toggleColour = function(index, idx) {
+      $scope.items[idx].chosenColour = index.filterCode;
+      $j('.' + $scope.items[idx].text + '.colours a').removeClass('active');
+      $j('.' + $scope.items[idx].text + '-' + index.buttonId).toggleClass('active');
+      $scope.recalculate();
+      return $scope.refilter(idx);
+    };
+    $scope.refilter = function(idx) {
       var $isocontainer, filterString;
       if ($isocontainer === void 0) {
-        $isocontainer = $j('#socks-section-container .isotope-holder');
-        filterString = $scope.buildFilterString(item);
-        return $isocontainer.isotope({
-          filter: filterString
-        });
+        $isocontainer = $j('#' + $scope.items[idx].text + '-section-container .isotope-holder');
+      }
+      filterString = '';
+      if ($scope.items[idx].chosenColour !== '') {
+        filterString = $scope.items[idx].chosenColour;
+      }
+      if ($scope.items[idx].chosenOptions !== '') {
+        if (filterString !== '') {
+          filterString += ', ';
+        }
+        filterString += $scope.items[idx].chosenOptions;
+      }
+      return $isocontainer.isotope({
+        filter: filterString
+      });
+    };
+    $scope.groupButtons = function(idx, buttons) {
+      if (idx === 0) {
+        return 'lt';
+      } else if (idx + 1 === buttons.length) {
+        return 'rt';
+      } else {
+        return 'mid';
       }
     };
-    $scope.recalculate();
-    return $scope.update();
+    $scope.changeSize = function(item, size, idx) {
+      $scope.items[idx].size = size.text;
+      $scope.recalculate();
+      $j('.configure-size.' + item.text + '-size a').removeClass('active');
+      return $j('.' + item.text + '-' + size.text).addClass('active');
+    };
+    $scope.isZeroed = function(idx) {
+      if ($scope.items[idx].qty === 0) {
+        return 'zeroed';
+      } else {
+        return 'non-zero';
+      }
+    };
+    $scope.chooseAddMessage = function(idx) {
+      var randomisedNum;
+      randomisedNum = Math.floor(Math.random() * $scope.addMessage[idx].phrases.length);
+      return $scope.addMessage[idx].chosenPhrase = $scope.addMessage[idx].phrases[randomisedNum];
+    };
+    $scope.init = function() {
+      var $j, brandType, colour, o, x, _results;
+      $j = jQuery.noConflict();
+      x = 0;
+      while (x < $scope.items.length) {
+        o = $scope.items[x];
+        if (o.recurlyCode.indexOf("-v-", 0) >= 0) {
+          brandType = 'value';
+        } else {
+          brandType = 'premium';
+        }
+        $scope.updateMageQty(o.text, o.qty, brandType);
+        $j('.' + $scope.items[x].text + '-' + brandType).click();
+        if (o.chosenColour.indexOf("Choose", 0) <= 0) {
+          if (o.chosenColour.indexOf("classic") >= 0) {
+            colour = 'classic';
+            if (o.chosenColour.indexOf("disco") >= 0) {
+              colour = 'both';
+            }
+          } else {
+            colour = 'disco';
+          }
+        } else {
+          colour = '';
+        }
+        x++;
+      }
+      $scope.recalculate();
+      $scope.update();
+      x = 0;
+      _results = [];
+      while (x < $scope.addMessage.length) {
+        $scope.chooseAddMessage(x);
+        _results.push(x++);
+      }
+      return _results;
+    };
+    return $j(document).ready(function() {
+      return $scope.init();
+    });
   };
 
 }).call(this);

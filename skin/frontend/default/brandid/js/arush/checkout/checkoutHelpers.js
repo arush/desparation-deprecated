@@ -103,7 +103,16 @@ function recurlyPostProcess(d){
 		for(i=0; i < basketItems.length; i++) {
 
 			buildSelectorString = '.add_on_';
-			buildSelectorString += basketItems[i].code;
+
+			// get upgrade
+			if(basketItems[i].upgradeSupplement == 0) { // this means its the value brands
+				// else get code from the 'designer' upgrade option
+				buildSelectorString += basketItems[i].upgrades[0].code;
+			} else {
+				// else get code from the 'designer' upgrade option
+				buildSelectorString += basketItems[i].upgrades[1].code;
+			}
+			
 
 			//hide this add-on if qty is 0
 			if(basketItems[i].qty > 0) {
@@ -119,7 +128,6 @@ function recurlyPostProcess(d){
 					$j(buildSelectorString).click();
 				}
 				
-
 			}
 
 			/* ====== FORMATTING ======= */

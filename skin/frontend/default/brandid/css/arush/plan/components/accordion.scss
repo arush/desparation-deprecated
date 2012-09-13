@@ -13,8 +13,15 @@
     border-top:1px solid #fff;
     overflow: hidden;
 }
+
+.plan-configurator .st-accordion ul li.st-li {
+
+    height:130px;
+    
+}
+
 .st-accordion ul li.st-li:first-child{
-    border-top:none;
+    // border-top:none;
 }
 
 .st-accordion ul li.st-li > a{

@@ -1,3 +1,4 @@
+
 @mixin trans($time: 1s) {
 	-webkit-transition: all $time ease-in-out;
 	   -moz-transition: all $time ease-in-out;
@@ -145,6 +146,49 @@
 .fadeIn {
 	@include ani-name(fadeIn);
 }
+
+
+@-webkit-keyframes fadeInHalf {
+	0% {
+		opacity: 0.2;
+	}	
+	100% {
+		opacity: 1;
+	}
+}
+
+@-moz-keyframes fadeInHalf {
+	0% {
+		opacity: 0.2;
+	}	
+	100% {
+		opacity: 1;
+	}
+}
+
+@-o-keyframes fadeInHalf {
+	0% {
+		opacity: 0.2;
+	}	
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeInHalf {
+	0% {
+		opacity: 0.2;
+	}	
+	100% {
+		opacity: 1;
+	}
+}
+
+.fadeInHalf {
+	@include ani-name(fadeInHalf);
+}
+
+
 @-webkit-keyframes fadeInUp {
 	0% {
 		opacity: 0;
@@ -270,6 +314,31 @@
 .fadeOut {
 	@include ani-name(fadeOut);
 }
+
+@-webkit-keyframes fadeOutHalf {
+	0% {opacity: 1;}
+	100% {opacity: 0.2;}
+}
+
+@-moz-keyframes fadeOutHalf {
+	0% {opacity: 1;}
+	100% {opacity: 0.2;}
+}
+
+@-o-keyframes fadeOutHalf {
+	0% {opacity: 1;}
+	100% {opacity: 0.2;}
+}
+
+@keyframes fadeOutHalf {
+	0% {opacity: 1;}
+	100% {opacity: 0.2;}
+}
+
+.fadeOutHalf {
+	@include ani-name(fadeOutHalf);
+}
+
 @-webkit-keyframes fadeOutUp {
 	0% {
 		opacity: 1;
@@ -372,6 +441,99 @@
 
 .fadeOutDown {
 	@include ani-name(fadeOutDown);
+}
+
+@-webkit-keyframes fadeOutBg {
+	0% {
+		background-color:rgba(255,255,255,1);
+	}
+	
+	100% {
+		background-color:rgba(255,255,255,0.2);
+	}
+}
+
+@-moz-keyframes fadeOutBg {
+	0% {
+		background-color:rgba(255,255,255,1);
+	}
+	
+	100% {
+		background-color:rgba(255,255,255,0.2);
+	}
+}
+
+@-o-keyframes fadeOutBg {
+	0% {
+		background-color:rgba(255,255,255,1);
+	}
+	
+	100% {
+		background-color:rgba(255,255,255,0.2);
+	}
+}
+
+@keyframes fadeOutBg {
+	0% {
+		background-color:rgba(255,255,255,1);
+	}
+	
+	100% {
+		background-color:rgba(255,255,255,0.2);
+	}
+}
+
+.fadeOutBg {
+	@include ani-name(fadeOutBg);
+}
+
+
+@-webkit-keyframes fadeInBg {
+	0% {
+		background-color:rgba(255,255,255,0.2);
+	}
+	
+	100% {
+		background-color:rgba(255,255,255,1);
+
+	}
+}
+
+@-moz-keyframes fadeInBg {
+	0% {
+		background-color:rgba(255,255,255,0.2);
+	}
+	
+	100% {
+		background-color:rgba(255,255,255,1);
+
+	}
+}
+
+@-o-keyframes fadeInBg {
+	0% {
+		background-color:rgba(255,255,255,0.2);
+	}
+	
+	100% {
+		background-color:rgba(255,255,255,1);
+
+	}
+}
+
+@keyframes fadeInBg {
+	0% {
+		background-color:rgba(255,255,255,0.2);
+	}
+	
+	100% {
+		background-color:rgba(255,255,255,1);
+
+	}
+}
+
+.fadeInBg {
+	@include ani-name(fadeInBg);
 }
 
 

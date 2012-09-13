@@ -4,42 +4,38 @@ createPunter()
 
 root = exports ? this
 root.buildPlan = ($scope) ->
-  sockOptions = [
+  
+  #debug
+  $scope.alert = (text) ->
+    alert text
+
+  genericColours = [
     text: "classic"
+    filterCode: ".classic"
     buttonId: "classic"
-    selected: false
-    supplement: 0
   ,
     text: "disco"
+    filterCode: ".disco"
     buttonId: "disco"
-    selected: false
-    supplement: 0
+  ,
+    text: "both"
+    filterCode: ".classic, .disco"
+    buttonId: "both"
   ]
   
+  sockOptions = []
+
   boxerOptions = [
-    text: "classic"
-    buttonId: "classic"
-    selected: false
-    supplement: 0
-  ,
-    text: "disco"
-    buttonId: "disco"
-    selected: false
-    supplement: 0
-  ,
     text: "boxer shorts"
     buttonId: "boxer-shorts"
+    filterCode: ".shorts"
     selected: false
     supplement: 0
   ,
     text: "boxer trunks"
     buttonId: "boxer-trunks"
-    selected: false
-    supplement: 0
-  ,
-    text: "briefs"
-    buttonId: "briefs"
-    selected: false
+    filterCode: ".trunks"
+    selected: true
     supplement: 0
   ]
 
@@ -53,59 +49,128 @@ root.buildPlan = ($scope) ->
     buttonId: "v-neck"
     selected: false
     supplement: 0
-  ,
-    text: "white"
-    buttonId: "white"
-    selected: false
-    supplement: 0
-  ,
-    text: "black"
-    buttonId: "black"
-    selected: false
-    supplement: 0
-  ,
-    text: "coloured"
-    buttonId: "coloured"
-    selected: false
-    supplement: 0
   ]
 
-  shirtOptions = [
-    text: "short collar"
-    buttonId: "short-collar"
-    selected: false
+  # shirtOptions = [
+  #   text: "short collar"
+  #   buttonId: "short-collar"
+  #   selected: false
+  #   supplement: 0
+  # ,
+  #   text: "double cuff"
+  #   buttonId: "double-cuff"
+  #   selected: false
+  #   supplement: 0
+  # ,
+  #   text: "slim fit"
+  #   buttonId: "slim-fit"
+  #   selected: false
+  #   supplement: 0
+  # ,
+  #   text: "straight fit"
+  #   buttonId: "straight-fit"
+  #   selected: false
+  #   supplement: 0
+  # ,
+  #   text: "no pocket"
+  #   buttonId: "no-pocket"
+  #   selected: false
+  #   supplement: 0
+  # ]
+
+  #code and price MUST match recurly add-on code
+  sockUpgrades = [
+    value: "value"
+    code: "option-8-v-socks"
     supplement: 0
   ,
-    text: "double cuff"
-    buttonId: "double-cuff"
-    selected: false
-    supplement: 0
-  ,
-    text: "slim fit"
-    buttonId: "slim-fit"
-    selected: false
-    supplement: 0
-  ,
-    text: "straight fit"
-    buttonId: "straight-fit"
-    selected: false
-    supplement: 0
-  ,
-    text: "no pocket"
-    buttonId: "no-pocket"
-    selected: false
-    supplement: 0
+    value: "premium"
+    code: "option-10-d-socks"
+    supplement: 5 # on top of the value price
   ]
 
-  shirtUpgrades = [
-    value: "Tier 1"
+  boxerUpgrades = [
+    value: "value"
+    code: "option-18-v-boxers"
     supplement: 0
   ,
-    value: "Tier 2"
-    supplement: 25
+    value: "premium"
+    code: "option-20-d-boxers"
+    supplement: 5 # on top of the value price
+  ]
+
+  underteeUpgrades = [
+    value: "value"
+    code: "option-28-v-undertees"
+    supplement: 0
   ,
-    value: "Tier 3"
-    supplement: 75
+    value: "premium"
+    code: "option-30-d-undertees"
+    supplement: 5 # on top of the value price
+  ]
+
+  sockSizes = [
+    text: "S"
+    helper: "6-10 UK shoe size"
+  ,
+    text: "L"
+    helper: "11-13 UK shoe size"
+  ]
+
+  boxerSizes = [
+    text: "S"
+    helper: "30in - 32in waist"
+  ,  
+    text: "M"
+    helper: "32in - 34in waist"
+  ,
+    text: "L"
+    helper: "34in - 36in waist"
+  ,
+    text: "XL"
+    helper: "36in - 38in waist"
+  ]
+
+  underteeSizes = [
+    text: "S"
+    helper: "47cm - 48cm chest"
+  ,
+    text: "M"
+    helper: "49cm - 50cm chest"
+  ,
+    text: "L"
+    helper: "51cm - 52cm chest"
+  ,
+    text: "XL"
+    helper: "53cm - 54cm chest"
+  ,
+    text: "XXL"
+    helper: "55cm - 56cm chest"
+  ]
+
+  # shirtUpgrades = [
+  #   value: "Tier 1"
+  #   supplement: 0
+  # ,
+  #   value: "Tier 2"
+  #   supplement: 25
+  # ,
+  #   value: "Tier 3"
+  #   supplement: 75
+  # ]
+
+  $scope.addMessage = [
+    text: 'socks'
+    chosenPhrase: 0
+    phrases: ["Go on, add some socks, think of those poor little naked toes.", "Just because you can't see the holes, doesn't mean they're not there."]
+  ,
+    text: 'boxers'
+    chosenPhrase: 0
+    phrases: ["Are you sure you don't want any? What if you get lucky?", "I got two words for ya buddy: skid marks.", "You must have a draw full of fresh undies. Yeah, sure you do."]
+  ,
+    text: 'undertees'
+    chosenPhrase: 0
+    phrases: ["undertees random1", "undertees random2", "undertees random3", "undertees random4", "undertees random5"]
   ]
 
   $scope.plan = {
@@ -120,46 +185,64 @@ root.buildPlan = ($scope) ->
     value:"biannually"
   ]
 
-  $scope.brands = [
-    value: "UNBRANDiD"
-    supplement: 0
-  ,
-    value: "designer"
-    supplement: 20
-  ]
-
   $scope.master = {}
   
-  #code and price MUST match recurly add-on code
-  $scope.items = [
-    code: "option-10-socks"
-    text: "socks"
-    qty: 0
-    price: 5
-    optionSupplement: 0
-    upgradeSupplement: 0
+  
+  #this array must mirror $scope.items because when looping through with an index, we assume index is the same for $scope.items too
+  $scope.itemOptions = [
+    colours: genericColours
     options: sockOptions
   ,
-    code: "option-20-boxers"
+    colours: genericColours
+    options: boxerOptions
+  ,
+    colours: genericColours
+    options: teeOptions
+  ]
+
+  
+  $scope.items = [
+    recurlyCode: "option-8-v-socks" #NB this should never be read as the default value, must always be initialised
+    text: "socks"
+    qty: 0
+    price: 3
+    size: false
+    chosenColour: 'both'
+    chosenOptions: 'Choose a style'
+    optionSupplement: 0
+    upgradeSupplement: 0
+    upgrades: sockUpgrades
+    sizes: sockSizes
+  ,
+    recurlyCode: "option-20-d-boxers"
     text: "boxers"
     qty: 1
     price: 10
+    size: false
+    chosenColour: 'Choose a colour'
+    chosenOptions: 'Choose a style'
     optionSupplement: 0
     upgradeSupplement: 0
-    options: boxerOptions
+    upgrades: boxerUpgrades
+    sizes: boxerSizes
   ,
-    code: "option-30-undertees"
+    recurlyCode: "option-28-v-undertees"
     text: "undertees"
     qty: 0
     price: 30
+    size: false
+    chosenColour: 'Choose a colour'
+    chosenOptions: 'Choose a style'
     optionSupplement: 0
     upgradeSupplement: 0
-    options: teeOptions
+    upgrades: underteeUpgrades
+    sizes: underteeSizes
   # ,
   #   code: "option-30-undertees"
   #   text: "socks"
   #   qty: 1
   #   price: 25
+  #   size: false
   #   optionSupplement: 0
   #   upgradeSupplement: 0
   #   options: shirtOptions
@@ -197,6 +280,7 @@ root.buildPlan = ($scope) ->
       $scope.plan.total += $scope.items[x].qty * ($scope.items[x].price + $scope.items[x].upgradeSupplement + $scope.items[x].optionSupplement)
       x++
     $scope.updateMageOptions()
+    $scope.update()
     
     return
   
@@ -206,9 +290,12 @@ root.buildPlan = ($scope) ->
       e = $j(this)
       dropId = e.attr 'id'
       str = e.parent().parent().prev().find('label').text()
-      if str.indexOf("option-frequency")> 0
+      if str is "option-frequency" or str.indexOf("option-frequency")>=0
         optionSelector = 'option:contains("'+$scope.plan.frequency+'")'
         $j('#'+dropId+' '+optionSelector).attr "selected", "selected"
+
+        # tell magento the dropdown has changed
+        document.getElementById(dropId).onchange()
         # break out of the .each() function, save processor
         return false
     return
@@ -224,7 +311,7 @@ root.buildPlan = ($scope) ->
         return false
     return
 
-  $scope.updateMageQty = (text, qty) ->
+  $scope.updateMageQty = (text, qty, brands) ->
     
     # find all dropdown selectable options built by magento
     $j("#product-options-wrapper select").each (index) ->
@@ -232,79 +319,227 @@ root.buildPlan = ($scope) ->
       e = $j(this)
       str = e.parent().parent().prev().find('label').text()
       str = str.split('-')
-      if str[0] is "option"
+      
+      # the str array should be something like ["option","socks","value"]
+      # must also check if we need to affect the value or premium option, then set the other to 0
+
+      if str[0] is "option" # be careful the option is not 'required' in magento, otherwise 'option' will not match '*option'
+
         itemText = str[1] # should be 'socks' or 'boxers' or whatever
+        
         if itemText is text
-          # select the option index corresponding to current qty
-          e.find("option").eq(qty).attr "selected", "selected"
-          # trigger dropdown onchange event to update magento price
-          dropId = e.attr 'id'
-          document.getElementById(dropId).onchange()
-          # break out of the .each() function, save processor
-          return false
+
+          #great! we've found both the 'premium' and 'value' qty dropdowns, now act on the correct one and set the other to 0
+          if str[2] is brands # this line checks for the brands parameter "value" or "premium"
+            
+            # select the option index corresponding to current qty
+            e.find("option").eq(qty).attr "selected", "selected"
+            # trigger dropdown onchange event to update magento price
+            dropId = e.attr 'id'
+            document.getElementById(dropId).onchange()
+            
+            # this if/else block needs to execute exactly twice, so it has been found once
+            drop1Found = true
+
+          else
+            # set the other dropdown qty to 0
+            e.find("option").eq(0).attr "selected", "selected"
+            # trigger dropdown onchange event to update magento price
+            dropId = e.attr 'id'
+            document.getElementById(dropId).onchange()
+            
+            # this if/else block needs to execute exactly twice, so it has been found once
+            drop2Found = true
+
+          if drop1Found and drop2Found
+            # break out of the .each() function, we've processed both "value" and "branded" dropdowns
+            return false
     return
 
-  $scope.subtract = (item) ->
+  $scope.subtract = (item, idx) ->
     if item.qty > 0
       item.qty--
       $scope.recalculate()
-      $scope.updateMageQty item.text,item.qty
+      
+      # if we have just turned qty to 0, bring up a new message
+      if item.qty is 0
+        $scope.chooseAddMessage(idx)
 
-  $scope.calculateOptionSupplement = (index, item) ->
-    item.optionSupplement = 0
+      # must detect if this is value or premium brands so price can be calculated accordingly
+      if item.upgradeSupplement is 0
+        brands = 'value'
+      else
+        brands = 'premium'
+
+      $scope.updateMageQty item.text,item.qty, brands
+
+  $scope.calculateOptionSupplement = (index, item, idx) ->
+    $scope.items[idx].optionSupplement = 0
     x = 0
     
     while x < $scope.items.length
       y = 0
       
-      while y < $scope.items[x].options.length
-        if $scope.items[x].options[y].selected is true
-          $scope.items[x].optionSupplement += $scope.items[x].options[y].supplement
+      while y < $scope.itemOptions[x].options.length
+        if $scope.itemOptions[x].options[y].selected is true
+          $scope.items[x].optionSupplement += $scope.itemOptions[x].options[y].supplement
         y++
       x++
     
     $scope.recalculate()
 
-  $scope.calculateUpgradeSupplement = (upgrade, item) ->
-    item.upgradeSupplement = upgrade.supplement
+  $scope.calculateUpgradeSupplement = (upgrade, item, idx) ->
+    $scope.items[idx].upgradeSupplement = upgrade.supplement
+    $j('.upgrade-chooser.item-'+idx+' a').removeClass 'active'
+    $j('.upgrade-chooser.item-'+idx+' a.'+item.text+'-'+upgrade.value).addClass 'active'
+    
+    # update value / premium quantity dropdown
+    $scope.updateMageQty(item.text,item.qty,upgrade.value)
+
     $scope.recalculate()
 
   $scope.add = (item) ->
     item.qty++
     $scope.recalculate()
-    $scope.updateMageQty item.text,item.qty
+
+    # must detect if this is value or premium brands so price can be calculated accordingly
+    if item.upgradeSupplement is 0
+      brands = 'value'
+    else
+      brands = 'premium'
+
+    $scope.updateMageQty item.text,item.qty,brands 
 
 
-  $scope.toggleCustomOption = (index, item) ->
-    index.selected = !index.selected
-    $j('#'+'-'+item.text+'-'+index.buttonId).toggleClass 'active'
-    $scope.refilter item
+  $scope.toggleCustomOption = (index, $index, idx) ->
+    # toggle the option
+    if $scope.itemOptions[idx].options[$index].selected is true
+      $scope.itemOptions[idx].options[$index].selected = false
+    else
+      $scope.itemOptions[idx].options[$index].selected = true
 
+    $j('.'+'-'+$scope.items[idx]+'-'+index.buttonId).toggleClass 'true'
 
-  $scope.buildFilterString = (item) ->
-    x = 0
-    filterString = '.proxy '
-
-    while x < item.options.length
-      if item.options[x].selected is true
-        filterString += ', .' + item.options[x].buttonId
+    $scope.items[idx].chosenOptions = ''
+    
+    x=0
+    while x < $scope.itemOptions[idx].options.length
+      if $scope.itemOptions[idx].options[x].selected is true
+        # do not want to add comma on first chosen option
+        if $scope.items[idx].chosenOptions isnt ''
+          $scope.items[idx].chosenOptions += ', '
+        $scope.items[idx].chosenOptions += $scope.itemOptions[idx].options[x].filterCode;
       x++
+    $scope.recalculate()
+    $scope.refilter idx
+    #don't forget to set it to false if nothing selected
 
-    return filterString
+  $scope.toggleColour = (index, idx) ->
+    
+    $scope.items[idx].chosenColour = index.filterCode
 
+    #this acts like a radio button, so remove all active classes, then enable the clicked one
+    $j('.'+$scope.items[idx].text+'.colours a').removeClass 'active'
+    $j('.'+$scope.items[idx].text+'-'+index.buttonId).toggleClass 'active'
+    $scope.recalculate()
+    $scope.refilter idx
 
-  $scope.refilter = (item) ->
+  $scope.refilter = (idx) ->
     if $isocontainer is undefined
-      $isocontainer = $j '#socks-section-container .isotope-holder'
-      filterString = $scope.buildFilterString item
+      $isocontainer = $j '#'+$scope.items[idx].text+'-section-container .isotope-holder'
+    
+    # build filter string
+    filterString = ''
+    # 1. get colour for this item
 
-      $isocontainer.isotope filter: filterString
+    if $scope.items[idx].chosenColour isnt ''
+      filterString = $scope.items[idx].chosenColour
+
+    # 2. get checkbox options for this item
+    if $scope.items[idx].chosenOptions isnt ''
+      if filterString isnt ''
+        filterString += ', '
+      filterString += $scope.items[idx].chosenOptions
+
+    $isocontainer.isotope filter: filterString
+
+  $scope.groupButtons = (idx, buttons) ->
+    if idx is 0
+      return 'lt'
+    else if idx+1 is buttons.length
+      return 'rt'
+    else
+      return 'mid'
+
+  $scope.changeSize = (item, size, idx) ->
+    $scope.items[idx].size = size.text
+    $scope.recalculate()
+
+    # change button formatting to active
+    $j('.configure-size.'+item.text+'-size a').removeClass 'active'
+    $j('.'+item.text+'-'+size.text).addClass 'active'
+
+  $scope.isZeroed = (idx) ->
+    if $scope.items[idx].qty is 0
+      return 'zeroed'
+    else
+      return 'non-zero'
+
+  $scope.chooseAddMessage = (idx) ->
+    # choose a random 'add some socks mate' message for idx element in the $scope.addMessage object
+    randomisedNum = Math.floor(Math.random() * $scope.addMessage[idx].phrases.length)
+    $scope.addMessage[idx].chosenPhrase = $scope.addMessage[idx].phrases[randomisedNum]
+
+  $scope.init = ->
+    # receive cookie and set $scope.items values
+    $j = jQuery.noConflict()
+    # take $scope.items values and set angular inputs
+    x = 0
+    while x < $scope.items.length
+      o = $scope.items[x]
+      if o.recurlyCode.indexOf("-v-",0)>= 0
+        brandType = 'value'
+      else
+        brandType = 'premium'
+      
+      # update quantities
+      $scope.updateMageQty(o.text, o.qty, brandType)
+      
+      # update value / premium
+      $j('.'+$scope.items[x].text+'-'+brandType).click()
+
+      # update colours
+      if o.chosenColour.indexOf("Choose",0)<= 0
+        if o.chosenColour.indexOf("classic")>=0
+          colour = 'classic'
+          if o.chosenColour.indexOf("disco")>=0
+            colour = 'both'
+        else
+          colour = 'disco'
+      else
+        colour = ''
+
+      # have to delay this to wait for isotope
+      # NOT WORKING RIGHT NOW!
+      # setTimeout $j('.'+$scope.items[x].text+'-'+colour).click(), 5000
 
 
-  $scope.recalculate()
-  $scope.update()
 
+      x++
+    # set mage dropdowns etc...
 
+    $scope.recalculate()
+    $scope.update()
+    x = 0
+    while x < $scope.addMessage.length
+      $scope.chooseAddMessage(x)
+      x++
+    # set mage dropdowns
+
+    # set custom option checkmarks
+  # initiate
+  $j(document).ready ->
+    $scope.init()
 
 
 
