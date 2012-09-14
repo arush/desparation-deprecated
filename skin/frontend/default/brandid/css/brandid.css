@@ -4359,7 +4359,9 @@ a.continue.skip.secondary.convert {
 .plan-configurator .st-li .collapsed-configurables .male-summary span.summary-item {
   background-repeat: no-repeat;
   padding-left: 20px;
-  color: #CFCFCF; }
+  color: #595959;
+  font-weight: normal;
+  text-transform: none; }
 .plan-configurator .st-li .collapsed-configurables .male-summary span.ok {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABzklEQVQ4EWP8//8/Az5w/9NVhs+/3zMwMTJhVcaCVRRJcO/TlQw3359lYGPmgIkaABnNQLwSiFcTNACmC0qrAukNQCwPxD5ArIvdXUAZLEAYKLYCiEGaQeAiEM8l1gUgi2YCsREQg8BjIA4F4tvEuqAcqDgYiEHgBxDHAvFtEIegAcDQtwKqawQphoIaIH0QxoEb8PzbA4bf/37CxMH0mx/P2B98uj6FlYmNFSqxF0hPQFYENuD3v18Mi260Tl94szXy7/8/YHmQYVsfzs/5/ueLISMkDXwHShQB8V8MA7Y8nOv06vuTjGvvTs5ecqvT5d//fwxX352UOP96fylS/M8BaryErBnEZnn1/THDzQ9n81mZ2RiYGVm4L745tI6dmSP67Y+XyuzMnOJQDe+BdB+UjUIxgpLy+vvTnQ88WbOGi5VPgJmRmeHXv5+/gIb9BAYgL1T1FCCdi6ITygEbAAqDS28Pm6+/N33Zn3+/lZiZUJLHP6BaayA+gdMAmMSN92cUFt1snQ000AXJ7+eA8hZA/BumDpkGuwBZ4OX3Rxw7Hi0uPP/6QAkw+oSAcl1ADEpIWAGGASBVoKi89OaIyvk3B0qA3pkGFMIIfZhpACudp6xtSvCxAAAAAElFTkSuQmCC); }
 .plan-configurator .st-li .collapsed-configurables .male-summary span.warning {
