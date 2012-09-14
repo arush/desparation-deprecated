@@ -446,18 +446,19 @@
       x = 0;
       while (x < $scope.items.length) {
         o = $scope.items[x];
-        console.log(punter);
-        if (punter.recommendation[x].brandsType !== void 0) {
-          brandType = punter.recommendation[x].brandsType;
+        if (punter.recommendation !== void 0) {
+          if (punter.recommendation[x].brandsType !== void 0) {
+            brandType = punter.recommendation[x].brandsType;
+          }
+          if (punter.recommendation[x].qty !== void 0) {
+            o.qty = punter.recommendation[x].qty;
+          }
         } else {
           if (o.recurlyCode.indexOf("-v-", 0) >= 0) {
             brandType = 'value';
           } else {
             brandType = 'premium';
           }
-        }
-        if (punter.recommendation[x].qty !== void 0) {
-          o.qty = punter.recommendation[x].qty;
         }
         $scope.updateMageQty(o.text, o.qty, brandType);
         $j('.' + $scope.items[x].text + '-' + brandType).click();

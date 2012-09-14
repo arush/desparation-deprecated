@@ -550,18 +550,21 @@ root.buildPlan = ($scope) ->
     x = 0
     while x < $scope.items.length
       o = $scope.items[x]
-      console.log punter
-      if punter.recommendation[x].brandsType isnt undefined
-        brandType = punter.recommendation[x].brandsType
+
+      # inject cookie data from M.A.L.E, otherwise use defaults
+      if punter.recommendation isnt undefined
+        if punter.recommendation[x].brandsType isnt undefined
+          brandType = punter.recommendation[x].brandsType
+        # update quantities
+        if punter.recommendation[x].qty isnt undefined
+          o.qty = punter.recommendation[x].qty
       else
         if o.recurlyCode.indexOf("-v-",0)>= 0
           brandType = 'value'
         else
           brandType = 'premium'
       
-      # update quantities
-      if punter.recommendation[x].qty isnt undefined
-        o.qty = punter.recommendation[x].qty
+      
       $scope.updateMageQty(o.text, o.qty, brandType)
       
       # update value / premium
