@@ -12,42 +12,62 @@ root.buildPlan = ($scope) ->
   genericColours = [
     text: "classic"
     filterCode: ".classic"
+    summary: "classic"
     buttonId: "classic"
   ,
     text: "disco"
     filterCode: ".disco"
+    summary: "disco"
     buttonId: "disco"
   ,
     text: "both"
-    filterCode: ".classic, .disco"
+    #filterCode: ".classic, .disco"
+    filterCode: ""
+    summary: "mix of classic and disco"
     buttonId: "both"
   ]
   
   sockOptions = []
 
   boxerOptions = [
-    text: "boxer shorts"
-    buttonId: "boxer-shorts"
-    filterCode: ".shorts"
-    selected: false
-    supplement: 0
-  ,
     text: "boxer trunks"
     buttonId: "boxer-trunks"
     filterCode: ".trunks"
-    selected: true
+    summary: "boxer trunks"
+    supplement: 0
+  ,
+    text: "boxer shorts"
+    buttonId: "boxer-shorts"
+    filterCode: ".shorts"
+    summary: "boxer shorts"
+    supplement: 0
+  ,
+    text: "both"
+    # filterCode: ".trunks, .shorts"
+    filterCode: ""
+    summary: "mix of trunks and shorts"
+    buttonId: "both"
     supplement: 0
   ]
 
   teeOptions = [
     text: "crew neck"
     buttonId: "crew-neck"
-    selected: false
+    filterCode: ".crew"
+    summary: "crew necks only"
     supplement: 0
   ,
     text: "v-neck"
     buttonId: "v-neck"
-    selected: false
+    filterCode: ".v-neck"
+    summary: "v-necks only"
+    supplement: 0
+  ,
+    text: "both"
+    # filterCode: ".v-neck, .crew"
+    filterCode: ""
+    summary: "mix of v-necks and crews"
+    buttonId: "both"
     supplement: 0
   ]
 
@@ -81,32 +101,32 @@ root.buildPlan = ($scope) ->
   #code and price MUST match recurly add-on code
   sockUpgrades = [
     value: "value"
-    code: "option-8-v-socks"
+    recurlyCode: "option-08-v-socks"
     supplement: 0
   ,
     value: "premium"
-    code: "option-10-d-socks"
+    recurlyCode: "option-10-d-socks"
     supplement: 5 # on top of the value price
   ]
 
   boxerUpgrades = [
     value: "value"
-    code: "option-18-v-boxers"
+    recurlyCode: "option-18-v-boxers"
     supplement: 0
   ,
     value: "premium"
-    code: "option-20-d-boxers"
-    supplement: 5 # on top of the value price
+    recurlyCode: "option-20-d-boxers"
+    supplement: 7 # on top of the value price
   ]
 
   underteeUpgrades = [
     value: "value"
-    code: "option-28-v-undertees"
+    recurlyCode: "option-28-v-undertees"
     supplement: 0
   ,
     value: "premium"
-    code: "option-30-d-undertees"
-    supplement: 5 # on top of the value price
+    recurlyCode: "option-30-d-undertees"
+    supplement: 15 # on top of the value price
   ]
 
   sockSizes = [
@@ -143,9 +163,9 @@ root.buildPlan = ($scope) ->
   ,
     text: "XL"
     helper: "53cm - 54cm chest"
-  ,
-    text: "XXL"
-    helper: "55cm - 56cm chest"
+  # ,
+  #   text: "XXL"
+  #   helper: "55cm - 56cm chest"
   ]
 
   # shirtUpgrades = [
@@ -159,6 +179,14 @@ root.buildPlan = ($scope) ->
   #   supplement: 75
   # ]
 
+  $scope.sizeGuide = [
+    helper: "What's your sock size? Click on a size to see its guide"
+  ,
+    helper: "What's your boxer size? Click on a size to see its guide"
+  ,
+    helper: "What's your tee size? Click on a size to see its guide"
+  ]
+
   $scope.addMessage = [
     text: 'socks'
     chosenPhrase: 0
@@ -170,11 +198,11 @@ root.buildPlan = ($scope) ->
   ,
     text: 'undertees'
     chosenPhrase: 0
-    phrases: ["undertees random1", "undertees random2", "undertees random3", "undertees random4", "undertees random5"]
+    phrases: ["No tees? Topless it is, then."]
   ]
 
   $scope.plan = {
-    frequency: "trial"
+    frequency: "quarterly"
   }
   
   $scope.drops = [
@@ -204,22 +232,24 @@ root.buildPlan = ($scope) ->
   $scope.items = [
     recurlyCode: "option-8-v-socks" #NB this should never be read as the default value, must always be initialised
     text: "socks"
-    qty: 0
+    qty: 5
     price: 3
-    size: false
-    chosenColour: 'both'
-    chosenOptions: 'Choose a style'
+    size: 'Choose a size'
+    chosenColour: 'Choose a colour'
+    colourSummary: 'Choose a colour'
     optionSupplement: 0
     upgradeSupplement: 0
     upgrades: sockUpgrades
     sizes: sockSizes
   ,
-    recurlyCode: "option-20-d-boxers"
+    recurlyCode: "option-18-v-boxers"
     text: "boxers"
-    qty: 1
-    price: 10
-    size: false
+    qty: 5
+    price: 5
+    size: 'Choose a size'
+    colourSummary: 'Choose a colour'
     chosenColour: 'Choose a colour'
+    optionSummary: 'Choose a style'
     chosenOptions: 'Choose a style'
     optionSupplement: 0
     upgradeSupplement: 0
@@ -228,11 +258,13 @@ root.buildPlan = ($scope) ->
   ,
     recurlyCode: "option-28-v-undertees"
     text: "undertees"
-    qty: 0
-    price: 30
-    size: false
+    qty: 4
+    price: 15
+    size: 'Choose a size'
     chosenColour: 'Choose a colour'
     chosenOptions: 'Choose a style'
+    colourSummary: 'Choose a colour'
+    optionSummary: 'Choose a style'
     optionSupplement: 0
     upgradeSupplement: 0
     upgrades: underteeUpgrades
@@ -254,7 +286,7 @@ root.buildPlan = ($scope) ->
     basketItem = []
     while x < $scope.items.length
       basketItem[x] = {
-        code: $scope.items[x].code
+        recurlyCode: $scope.items[x].recurlyCode
         qty: $scope.items[x].qty
       }
       x++
@@ -390,6 +422,8 @@ root.buildPlan = ($scope) ->
 
   $scope.calculateUpgradeSupplement = (upgrade, item, idx) ->
     $scope.items[idx].upgradeSupplement = upgrade.supplement
+    $scope.items[idx].recurlyCode = upgrade.recurlyCode
+    
     $j('.upgrade-chooser.item-'+idx+' a').removeClass 'active'
     $j('.upgrade-chooser.item-'+idx+' a.'+item.text+'-'+upgrade.value).addClass 'active'
     
@@ -411,36 +445,47 @@ root.buildPlan = ($scope) ->
     $scope.updateMageQty item.text,item.qty,brands 
 
 
-  $scope.toggleCustomOption = (index, $index, idx) ->
-    # toggle the option
-    if $scope.itemOptions[idx].options[$index].selected is true
-      $scope.itemOptions[idx].options[$index].selected = false
-    else
-      $scope.itemOptions[idx].options[$index].selected = true
+  # $scope.toggleCustomOption = (index, $index, idx) ->
+  #   # toggle the option
+  #   if $scope.itemOptions[idx].options[$index].selected is true
+  #     $scope.itemOptions[idx].options[$index].selected = false
+  #   else
+  #     $scope.itemOptions[idx].options[$index].selected = true
 
-    $j('.'+'-'+$scope.items[idx]+'-'+index.buttonId).toggleClass 'true'
+  #   $j('.'+'-'+$scope.items[idx]+'-'+index.buttonId).toggleClass 'true'
 
-    $scope.items[idx].chosenOptions = ''
+  #   $scope.items[idx].chosenOptions = ''
     
-    x=0
-    while x < $scope.itemOptions[idx].options.length
-      if $scope.itemOptions[idx].options[x].selected is true
-        # do not want to add comma on first chosen option
-        if $scope.items[idx].chosenOptions isnt ''
-          $scope.items[idx].chosenOptions += ', '
-        $scope.items[idx].chosenOptions += $scope.itemOptions[idx].options[x].filterCode;
-      x++
-    $scope.recalculate()
-    $scope.refilter idx
-    #don't forget to set it to false if nothing selected
+  #   x=0
+  #   while x < $scope.itemOptions[idx].options.length
+  #     if $scope.itemOptions[idx].options[x].selected is true
+  #       # do not want to add comma on first chosen option
+  #       if $scope.items[idx].chosenOptions isnt ''
+  #         $scope.items[idx].chosenOptions += ', '
+  #       $scope.items[idx].chosenOptions += $scope.itemOptions[idx].options[x].filterCode;
+  #     x++
+  #   $scope.recalculate()
+  #   $scope.refilter idx
+  #   #don't forget to set it to false if nothing selected
 
   $scope.toggleColour = (index, idx) ->
     
     $scope.items[idx].chosenColour = index.filterCode
+    $scope.items[idx].colourSummary = index.summary
 
     #this acts like a radio button, so remove all active classes, then enable the clicked one
     $j('.'+$scope.items[idx].text+'.colours a').removeClass 'active'
-    $j('.'+$scope.items[idx].text+'-'+index.buttonId).toggleClass 'active'
+    $j('.'+$scope.items[idx].text+'-colours-'+index.buttonId).toggleClass 'active'
+    $scope.recalculate()
+    $scope.refilter idx
+
+  $scope.toggleStyle = (index, idx) ->
+    $scope.items[idx].chosenOptions = index.filterCode
+    $scope.items[idx].optionSummary = index.summary
+
+    #this acts like a radio button, so remove all active classes, then enable the clicked one
+    $j('.'+$scope.items[idx].text+'.style a').removeClass 'active'
+    $j('.'+$scope.items[idx].text+'-style-'+index.buttonId).toggleClass 'active'
     $scope.recalculate()
     $scope.refilter idx
 
@@ -450,17 +495,15 @@ root.buildPlan = ($scope) ->
     
     # build filter string
     filterString = ''
-    # 1. get colour for this item
-
-    if $scope.items[idx].chosenColour isnt ''
-      filterString = $scope.items[idx].chosenColour
-
-    # 2. get checkbox options for this item
-    if $scope.items[idx].chosenOptions isnt ''
-      if filterString isnt ''
-        filterString += ', '
-      filterString += $scope.items[idx].chosenOptions
-
+    # 1. if colour exists, get colour for this item
+    if $scope.items[idx].chosenColour isnt undefined
+      if $scope.items[idx].chosenColour.toLowerCase().indexOf('choose') < 0
+        filterString += $scope.items[idx].chosenColour #this contains the filterCode, so no need to format
+    # 2. if options exist, get options
+    if $scope.items[idx].chosenOptions isnt undefined
+      if $scope.items[idx].chosenOptions.toLowerCase().indexOf('choose') < 0
+        filterString += $scope.items[idx].chosenOptions #this adds with no space (AND filter)
+    
     $isocontainer.isotope filter: filterString
 
   $scope.groupButtons = (idx, buttons) ->
@@ -471,8 +514,9 @@ root.buildPlan = ($scope) ->
     else
       return 'mid'
 
-  $scope.changeSize = (item, size, idx) ->
+  $scope.changeSize = (item, size, idx, $index) ->
     $scope.items[idx].size = size.text
+    $scope.sizeGuide[idx].helper = $scope.items[idx].sizes[$index].helper
     $scope.recalculate()
 
     # change button formatting to active
@@ -489,6 +533,12 @@ root.buildPlan = ($scope) ->
     # choose a random 'add some socks mate' message for idx element in the $scope.addMessage object
     randomisedNum = Math.floor(Math.random() * $scope.addMessage[idx].phrases.length)
     $scope.addMessage[idx].chosenPhrase = $scope.addMessage[idx].phrases[randomisedNum]
+
+  $scope.prettifySummary = (thing) ->
+    if thing.toLowerCase().indexOf('choose') >= 0
+      return 'warning'
+    else
+      return 'ok'
 
   $scope.init = ->
     # receive cookie and set $scope.items values
@@ -509,15 +559,19 @@ root.buildPlan = ($scope) ->
       $j('.'+$scope.items[x].text+'-'+brandType).click()
 
       # update colours
-      if o.chosenColour.indexOf("Choose",0)<= 0
-        if o.chosenColour.indexOf("classic")>=0
-          colour = 'classic'
-          if o.chosenColour.indexOf("disco")>=0
-            colour = 'both'
-        else
-          colour = 'disco'
-      else
-        colour = ''
+      # if o.chosenColour.indexOf("Choose",0)<= 0
+      #   if o.chosenColour.indexOf("classic")>=0
+      #     colour = 'classic'
+      #     if o.chosenColour.indexOf("disco")>=0
+      #       colour = 'both'
+      #   else
+      #     colour = 'disco'
+      # else
+      #   colour = ''
+
+
+      # update frequency
+      $scope.freqChanger($scope.plan.frequency)
 
       # have to delay this to wait for isotope
       # NOT WORKING RIGHT NOW!

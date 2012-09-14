@@ -17,30 +17,39 @@
       {
         text: "classic",
         filterCode: ".classic",
+        summary: "classic",
         buttonId: "classic"
       }, {
         text: "disco",
         filterCode: ".disco",
+        summary: "disco",
         buttonId: "disco"
       }, {
         text: "both",
-        filterCode: ".classic, .disco",
+        filterCode: "",
+        summary: "mix of classic and disco",
         buttonId: "both"
       }
     ];
     sockOptions = [];
     boxerOptions = [
       {
-        text: "boxer shorts",
-        buttonId: "boxer-shorts",
-        filterCode: ".shorts",
-        selected: false,
-        supplement: 0
-      }, {
         text: "boxer trunks",
         buttonId: "boxer-trunks",
         filterCode: ".trunks",
-        selected: true,
+        summary: "boxer trunks",
+        supplement: 0
+      }, {
+        text: "boxer shorts",
+        buttonId: "boxer-shorts",
+        filterCode: ".shorts",
+        summary: "boxer shorts",
+        supplement: 0
+      }, {
+        text: "both",
+        filterCode: "",
+        summary: "mix of trunks and shorts",
+        buttonId: "both",
         supplement: 0
       }
     ];
@@ -48,46 +57,54 @@
       {
         text: "crew neck",
         buttonId: "crew-neck",
-        selected: false,
+        filterCode: ".crew",
+        summary: "crew necks only",
         supplement: 0
       }, {
         text: "v-neck",
         buttonId: "v-neck",
-        selected: false,
+        filterCode: ".v-neck",
+        summary: "v-necks only",
+        supplement: 0
+      }, {
+        text: "both",
+        filterCode: "",
+        summary: "mix of v-necks and crews",
+        buttonId: "both",
         supplement: 0
       }
     ];
     sockUpgrades = [
       {
         value: "value",
-        code: "option-8-v-socks",
+        recurlyCode: "option-08-v-socks",
         supplement: 0
       }, {
         value: "premium",
-        code: "option-10-d-socks",
+        recurlyCode: "option-10-d-socks",
         supplement: 5
       }
     ];
     boxerUpgrades = [
       {
         value: "value",
-        code: "option-18-v-boxers",
+        recurlyCode: "option-18-v-boxers",
         supplement: 0
       }, {
         value: "premium",
-        code: "option-20-d-boxers",
-        supplement: 5
+        recurlyCode: "option-20-d-boxers",
+        supplement: 7
       }
     ];
     underteeUpgrades = [
       {
         value: "value",
-        code: "option-28-v-undertees",
+        recurlyCode: "option-28-v-undertees",
         supplement: 0
       }, {
         value: "premium",
-        code: "option-30-d-undertees",
-        supplement: 5
+        recurlyCode: "option-30-d-undertees",
+        supplement: 15
       }
     ];
     sockSizes = [
@@ -127,9 +144,15 @@
       }, {
         text: "XL",
         helper: "53cm - 54cm chest"
+      }
+    ];
+    $scope.sizeGuide = [
+      {
+        helper: "What's your sock size? Click on a size to see its guide"
       }, {
-        text: "XXL",
-        helper: "55cm - 56cm chest"
+        helper: "What's your boxer size? Click on a size to see its guide"
+      }, {
+        helper: "What's your tee size? Click on a size to see its guide"
       }
     ];
     $scope.addMessage = [
@@ -144,11 +167,11 @@
       }, {
         text: 'undertees',
         chosenPhrase: 0,
-        phrases: ["undertees random1", "undertees random2", "undertees random3", "undertees random4", "undertees random5"]
+        phrases: ["No tees? Topless it is, then."]
       }
     ];
     $scope.plan = {
-      frequency: "trial"
+      frequency: "quarterly"
     };
     $scope.drops = [
       {
@@ -176,22 +199,24 @@
       {
         recurlyCode: "option-8-v-socks",
         text: "socks",
-        qty: 0,
+        qty: 5,
         price: 3,
-        size: false,
-        chosenColour: 'both',
-        chosenOptions: 'Choose a style',
+        size: 'Choose a size',
+        chosenColour: 'Choose a colour',
+        colourSummary: 'Choose a colour',
         optionSupplement: 0,
         upgradeSupplement: 0,
         upgrades: sockUpgrades,
         sizes: sockSizes
       }, {
-        recurlyCode: "option-20-d-boxers",
+        recurlyCode: "option-18-v-boxers",
         text: "boxers",
-        qty: 1,
-        price: 10,
-        size: false,
+        qty: 5,
+        price: 5,
+        size: 'Choose a size',
+        colourSummary: 'Choose a colour',
         chosenColour: 'Choose a colour',
+        optionSummary: 'Choose a style',
         chosenOptions: 'Choose a style',
         optionSupplement: 0,
         upgradeSupplement: 0,
@@ -200,11 +225,13 @@
       }, {
         recurlyCode: "option-28-v-undertees",
         text: "undertees",
-        qty: 0,
-        price: 30,
-        size: false,
+        qty: 4,
+        price: 15,
+        size: 'Choose a size',
         chosenColour: 'Choose a colour',
         chosenOptions: 'Choose a style',
+        colourSummary: 'Choose a colour',
+        optionSummary: 'Choose a style',
         optionSupplement: 0,
         upgradeSupplement: 0,
         upgrades: underteeUpgrades,
@@ -217,7 +244,7 @@
       basketItem = [];
       while (x < $scope.items.length) {
         basketItem[x] = {
-          code: $scope.items[x].code,
+          recurlyCode: $scope.items[x].recurlyCode,
           qty: $scope.items[x].qty
         };
         x++;
@@ -329,6 +356,7 @@
     };
     $scope.calculateUpgradeSupplement = function(upgrade, item, idx) {
       $scope.items[idx].upgradeSupplement = upgrade.supplement;
+      $scope.items[idx].recurlyCode = upgrade.recurlyCode;
       $j('.upgrade-chooser.item-' + idx + ' a').removeClass('active');
       $j('.upgrade-chooser.item-' + idx + ' a.' + item.text + '-' + upgrade.value).addClass('active');
       $scope.updateMageQty(item.text, item.qty, upgrade.value);
@@ -345,32 +373,19 @@
       }
       return $scope.updateMageQty(item.text, item.qty, brands);
     };
-    $scope.toggleCustomOption = function(index, $index, idx) {
-      var x;
-      if ($scope.itemOptions[idx].options[$index].selected === true) {
-        $scope.itemOptions[idx].options[$index].selected = false;
-      } else {
-        $scope.itemOptions[idx].options[$index].selected = true;
-      }
-      $j('.' + '-' + $scope.items[idx] + '-' + index.buttonId).toggleClass('true');
-      $scope.items[idx].chosenOptions = '';
-      x = 0;
-      while (x < $scope.itemOptions[idx].options.length) {
-        if ($scope.itemOptions[idx].options[x].selected === true) {
-          if ($scope.items[idx].chosenOptions !== '') {
-            $scope.items[idx].chosenOptions += ', ';
-          }
-          $scope.items[idx].chosenOptions += $scope.itemOptions[idx].options[x].filterCode;
-        }
-        x++;
-      }
+    $scope.toggleColour = function(index, idx) {
+      $scope.items[idx].chosenColour = index.filterCode;
+      $scope.items[idx].colourSummary = index.summary;
+      $j('.' + $scope.items[idx].text + '.colours a').removeClass('active');
+      $j('.' + $scope.items[idx].text + '-colours-' + index.buttonId).toggleClass('active');
       $scope.recalculate();
       return $scope.refilter(idx);
     };
-    $scope.toggleColour = function(index, idx) {
-      $scope.items[idx].chosenColour = index.filterCode;
-      $j('.' + $scope.items[idx].text + '.colours a').removeClass('active');
-      $j('.' + $scope.items[idx].text + '-' + index.buttonId).toggleClass('active');
+    $scope.toggleStyle = function(index, idx) {
+      $scope.items[idx].chosenOptions = index.filterCode;
+      $scope.items[idx].optionSummary = index.summary;
+      $j('.' + $scope.items[idx].text + '.style a').removeClass('active');
+      $j('.' + $scope.items[idx].text + '-style-' + index.buttonId).toggleClass('active');
       $scope.recalculate();
       return $scope.refilter(idx);
     };
@@ -380,14 +395,15 @@
         $isocontainer = $j('#' + $scope.items[idx].text + '-section-container .isotope-holder');
       }
       filterString = '';
-      if ($scope.items[idx].chosenColour !== '') {
-        filterString = $scope.items[idx].chosenColour;
-      }
-      if ($scope.items[idx].chosenOptions !== '') {
-        if (filterString !== '') {
-          filterString += ', ';
+      if ($scope.items[idx].chosenColour !== void 0) {
+        if ($scope.items[idx].chosenColour.toLowerCase().indexOf('choose') < 0) {
+          filterString += $scope.items[idx].chosenColour;
         }
-        filterString += $scope.items[idx].chosenOptions;
+      }
+      if ($scope.items[idx].chosenOptions !== void 0) {
+        if ($scope.items[idx].chosenOptions.toLowerCase().indexOf('choose') < 0) {
+          filterString += $scope.items[idx].chosenOptions;
+        }
       }
       return $isocontainer.isotope({
         filter: filterString
@@ -402,8 +418,9 @@
         return 'mid';
       }
     };
-    $scope.changeSize = function(item, size, idx) {
+    $scope.changeSize = function(item, size, idx, $index) {
       $scope.items[idx].size = size.text;
+      $scope.sizeGuide[idx].helper = $scope.items[idx].sizes[$index].helper;
       $scope.recalculate();
       $j('.configure-size.' + item.text + '-size a').removeClass('active');
       return $j('.' + item.text + '-' + size.text).addClass('active');
@@ -420,8 +437,15 @@
       randomisedNum = Math.floor(Math.random() * $scope.addMessage[idx].phrases.length);
       return $scope.addMessage[idx].chosenPhrase = $scope.addMessage[idx].phrases[randomisedNum];
     };
+    $scope.prettifySummary = function(thing) {
+      if (thing.toLowerCase().indexOf('choose') >= 0) {
+        return 'warning';
+      } else {
+        return 'ok';
+      }
+    };
     $scope.init = function() {
-      var $j, brandType, colour, o, x, _results;
+      var $j, brandType, o, x, _results;
       $j = jQuery.noConflict();
       x = 0;
       while (x < $scope.items.length) {
@@ -433,18 +457,7 @@
         }
         $scope.updateMageQty(o.text, o.qty, brandType);
         $j('.' + $scope.items[x].text + '-' + brandType).click();
-        if (o.chosenColour.indexOf("Choose", 0) <= 0) {
-          if (o.chosenColour.indexOf("classic") >= 0) {
-            colour = 'classic';
-            if (o.chosenColour.indexOf("disco") >= 0) {
-              colour = 'both';
-            }
-          } else {
-            colour = 'disco';
-          }
-        } else {
-          colour = '';
-        }
+        $scope.freqChanger($scope.plan.frequency);
         x++;
       }
       $scope.recalculate();

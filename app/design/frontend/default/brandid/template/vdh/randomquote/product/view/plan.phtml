@@ -38,10 +38,10 @@
 			</div>
 
 			<div class="frequency-chooser">
-				<div class="frequency-label label">Billed:</div>
-		    	<a class="convert secondary lt active" id="trial-button" ng-click="freqChanger('trial')">Just once</a>
-		    	<a class="convert secondary mid" id="quarterly-button" ng-click="freqChanger('quarterly')">Quarterly</a>
-		    	<a class="convert secondary rt" id="biannually-button" ng-click="freqChanger('biannually')">Biannually</a>
+				<div class="frequency-label label">Automatically Deliver Again Every:</div>
+		    	<a class="convert secondary lt" id="trial-button" ng-click="freqChanger('trial')">Just once</a>
+		    	<a class="convert secondary mid" id="quarterly-button" ng-click="freqChanger('quarterly')">3 months<br/><span class="recommended">(recommended)</span></a>
+		    	<a class="convert secondary rt" id="biannually-button" ng-click="freqChanger('biannually')">6 months</a>
 
 		    	<!-- <span ng-repeat="drop in drops"><input type="radio" ng-model="plan.frequency" name="frequency" value="{{drop.value}}"/>{{drop.value}}</span> -->
 		    </div>
@@ -49,7 +49,7 @@
 		</div>
 
 		<div class="one-third column">
-			<div class="shipping-label label">Free UK shipping & Returns</div>
+			<div class="shipping-label label">£2 shipping & Idiotproof Returns</div>
 
 			<form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
 		        <div class="no-display">
@@ -96,7 +96,7 @@
 	$pieces = array(
 		'Socks'		=> 'SOCKS',
 		'Boxers'	=> 'BOXERS',
-		'T-Shirts'	=> 'T-SHIRT',
+		'T-Shirts'	=> 'TEES',
 		'Shirts'	=> 'SHIRT'
 	);
 	$relatedProductIds = array();
@@ -150,14 +150,22 @@
                 		</div>
                 		<div class="male-edit-holder">
 	                		<div class="male-summary">
-		                		<div class="male-summary-label label">MALE inputs:</div>
-		                		<span class="selected">{{items[<?php echo $foreachIndex; ?>].chosenColour}}, {{items[<?php echo $foreachIndex; ?>].chosenOptions}}</span>
+		                		<div class="male-summary-label label">Your options:</div>
+		                		<span class="selected">
+		                			<span class="summary-item" ng-class="prettifySummary(items[<?php echo $foreachIndex; ?>].size)">{{items[<?php echo $foreachIndex; ?>].size}}</span><br/>
+
+		                			<span class="summary-item" ng-class="prettifySummary(items[<?php echo $foreachIndex; ?>].chosenColour)">{{items[<?php echo $foreachIndex; ?>].colourSummary}}</span><br/>
+
+		                			<span class="summary-item" ng-class="prettifySummary(items[<?php echo $foreachIndex; ?>].chosenOptions)">
+		                			{{items[<?php echo $foreachIndex; ?>].optionSummary}}</span>
+
+		                		</span>
 		                	</div>
 						    
 						    
 			            </div>
-			        <a href="#" class="opener convert secondary gradient">
-	                	Edit
+			        <a href="#" class="opener configurator-item convert secondary gradient">
+	                	<div class="drop-icon"></div><span class="icon-label">Choose options</span>
 	                </a>    
                 	</div>
                 	
@@ -219,7 +227,8 @@
 										
 										<div class="size-label label">SIZE:</div>
 				                		
-				                		<a ng-repeat="size in items[<?php echo $foreachIndex; ?>].sizes" class="convert secondary size-button {{items[<?php echo $foreachIndex; ?>].text}}-{{size.text}}" ng-class="groupButtons($index,items[<?php echo $foreachIndex; ?>].sizes)" ng-click="changeSize(items[<?php echo $foreachIndex; ?>], size,<?php echo $foreachIndex; ?>)">{{size.text}}</a>
+				                		<a ng-repeat="size in items[<?php echo $foreachIndex; ?>].sizes" class="convert secondary size-button {{items[<?php echo $foreachIndex; ?>].text}}-{{size.text}}" ng-class="groupButtons($index,items[<?php echo $foreachIndex; ?>].sizes)" ng-click="changeSize(items[<?php echo $foreachIndex; ?>], size,<?php echo $foreachIndex; ?>, $index)">{{size.text}}</a>
+				                		<div class="size-label size-guide label">{{sizeGuide[<?php echo $foreachIndex; ?>].helper}}</div>
 
 					                </div>
 					            </div>
@@ -228,13 +237,13 @@
 					              
 					            <div class="{{items[<?php echo $foreachIndex; ?>].text}} colours row">
 					              	<div class="colours-label label">COLOURS:</div>
-					              	<a ng-repeat="index in itemOptions[<?php echo $foreachIndex; ?>].colours" class="convert secondary {{items[<?php echo $foreachIndex; ?>].text}}-{{index.buttonId}}" ng-click="toggleColour(index, <?php echo $foreachIndex; ?>)" ng-class="groupButtons($index,itemOptions[<?php echo $foreachIndex; ?>].colours" title="{{index.text}}">{{index.text}}</a>
+					              	<a ng-repeat="index in itemOptions[<?php echo $foreachIndex; ?>].colours" class="convert secondary {{items[<?php echo $foreachIndex; ?>].text}}-colours-{{index.buttonId}}" ng-click="toggleColour(index, <?php echo $foreachIndex; ?>)" ng-class="groupButtons($index,itemOptions[<?php echo $foreachIndex; ?>].colours" title="{{index.text}}">{{index.text}}</a>
 
 					            </div>
 					            <br/>
 					            <div class="{{items[<?php echo $foreachIndex; ?>].text}} style row">
 					              	<div class="colours-label label">STYLE:</div>
-					              		<a ng-repeat="index in itemOptions[<?php echo $foreachIndex; ?>].options" class="convert secondary {{index.selected}} {{items[<?php echo $foreachIndex; ?>].text}}-{{index.buttonId}}" ng-click="toggleCustomOption(index,$index,<?php echo $foreachIndex; ?>)" ng-class="groupButtons($index,itemOptions[<?php echo $foreachIndex; ?>].options" title="{{index.text}}">{{index.text}}</a>
+					              		<a ng-repeat="index in itemOptions[<?php echo $foreachIndex; ?>].options" class="convert secondary {{index.selected}} {{items[<?php echo $foreachIndex; ?>].text}}-style-{{index.buttonId}}" ng-click="toggleStyle(index,<?php echo $foreachIndex; ?>)" ng-class="groupButtons($index,itemOptions[<?php echo $foreachIndex; ?>].options" title="{{index.text}}">{{index.text}}</a>
 					            </div>
 					          </li>
 					        </ul>
@@ -253,35 +262,6 @@
 			} // end foreach ?>
 		</ul>
 	</div> <!-- end st-accordion -->
-
-		
-
-
-
-
-
-	<?php // start buy box ?>
-
-
-
-
-
-
-
-
-	<div class="plan product-info">
-	    
-	    
-	</div>
-
-
-
-
-
-
-
-	<?php // end buy box ?>
-
 
 
 
@@ -314,8 +294,26 @@
 	<?php endif; ?>
 
 
-	<div class="extra-info">
+	<div class="extra-info eight columns checkboxes">
+			<h4 class="smallprint">The (not so) smallprint</h4>
 			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('plan-text-common')->toHtml(); ?>
+    </div>
+
+    <div class="extra-info eight columns">
+    		<h4 class="smallprint">World Class Aftercare</h4>
+    		<div class="random-quote">
+				<span class="apostrophe">"</span>
+				<span class="quote">Those online stores, they f*ck you with the shipping, they always f*ck you with the shipping.</span>
+				<div class="quote-triangle"></div>
+				<span class="author">Leo Getz, Leathal Weapon 4</span>
+				<span class="caption">Man Since 1989</span>
+			</div>
+			<div class="shipping-explanation">
+				Nope, not us. We pride ourslves on our simple and transparent. We charge a standard flat rate of £2 for shipping anywhere in the UK, and sort you out with free exchanges and returns, no questions asked.<br/><br/>
+				Want to talk about it?<br/>
+				<a href="https://twitter.com/intent/tweet?screen_name=getbrandid" class="twitter-mention-button" data-related="male_robot">Tweet to @getbrandid</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+			</div>
     </div>
 
 </section> <!-- end container -->

@@ -91,9 +91,9 @@ function recurlyPostProcess(d){
 		
 		/* ========== PLAN TITLE =================== */
 
+		$j('#recurlyDiv .recurring_cost .cost').hide();
 		if(helper_trial) {
-			$j('#recurlyDiv .recurring_cost .cost').hide();
-			$j('#recurlyDiv .plan .interval').html('billed once only');
+			$j('#recurlyDiv .plan .interval').html('billed only once');
 		}
 
 
@@ -105,13 +105,7 @@ function recurlyPostProcess(d){
 			buildSelectorString = '.add_on_';
 
 			// get upgrade
-			if(basketItems[i].upgradeSupplement == 0) { // this means its the value brands
-				// else get code from the 'designer' upgrade option
-				buildSelectorString += basketItems[i].upgrades[0].code;
-			} else {
-				// else get code from the 'designer' upgrade option
-				buildSelectorString += basketItems[i].upgrades[1].code;
-			}
+			buildSelectorString += basketItems[i].recurlyCode;
 			
 
 			//hide this add-on if qty is 0
@@ -151,22 +145,17 @@ function recurlyPostProcess(d){
 
 	if(countryShip === 'GB') {
 		
-		// helper_trial defaults to false if cookie doesn't exist
-		// if free shipping
-		if(helper_trial) {
-
 			// can only perform click when current tab is active, otherwise breaks checkout
 				if($j('#opc-payment').hasClass('active')) {
 					// click free shipping and turn to read-only
-					$j('.add_on_ship-free').click();
+					$j('.add_on_ship-uk').click();
 				}
 
 
 			// make all plan add_ons unclickable
-			$j('.add_on_ship-free').removeClass('add_on').addClass('add_on_readonly');
+			$j('.add_on_ship-uk').removeClass('add_on').addClass('add_on_readonly');
 			// unhide it
-			$j('.add_on_ship-free').show();
-		}
+			$j('.add_on_ship-uk').show();
 
 
 	}
