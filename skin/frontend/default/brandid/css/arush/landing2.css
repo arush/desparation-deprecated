@@ -2228,7 +2228,18 @@ body {
 
 .logo-container {
   margin: 0 auto;
-  text-align: center; }
+  text-align: center;
+  float: left; }
+.logo-container .header-logo {
+  float: left; }
+
+.skip-container {
+  float: right; }
+.skip-container a.convert {
+  height: 36px;
+  line-height: 36px;
+  width: 99px;
+  font-size: 10px; }
 
 .male-header {
   background: white;
@@ -5075,7 +5086,8 @@ a.convert.step.inactive {
   margin-top: -360px; }
 
 #gift-header-convert {
-  text-shadow: 0 -1px 0 black; }
+  text-shadow: 0 -1px 0 black;
+  width: 188px; }
 
 .process {
   margin: 80px 0;

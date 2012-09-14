@@ -2,7 +2,7 @@
 <layout version="0.1.0">
     <get_party_started>
         <reference name="head">
-	        <action method="addCss"><stylesheet>css/party.css</stylesheet></action>		
+	        <action method="addCss"><stylesheet>css/party.css</stylesheet></action>
 
 			<action method="addItem"><type>skin_js</type><name>js/jquery-1.7.1.min.js</name></action>
 			<action method="addItem"><type>skin_js</type><name>js/arush/subscribe/jquery.cookie.js</name></action>

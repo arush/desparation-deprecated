@@ -11,7 +11,7 @@ root.rollDone = ->
   _kmq.push ["record", "MALE Roll",
     roll: punter.rollA
   ]
-  magsQ()
+  startEmail()
 root.rollAa = ->
   punter.roll = 1
   punter.rollA = 'private jet'

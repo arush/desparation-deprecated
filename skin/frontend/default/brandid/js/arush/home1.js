@@ -108,14 +108,14 @@ $j(document).ready(function() {
 			$j('#step1').show();
 			$j('#step3').show();
 			$j('#submit_email').css('float','left');
-			$j('#submit_email').text('Step 2. Confirm your Plan');
-			$j('#submit_email').attr('href','/plans.html');
+			$j('#submit_email').text('Step 2. Plan Configurator');
+			$j('#submit_email').attr('href','/mens-clothing.html');
 			$j('#main-step-1').addClass('secondary');
 			$j('#main-step-2').removeClass('inactive');
 			$j('#main-step-2').attr('href','/plans.html');
-			$j('#header-convert').text('Step 2. Confirm your Plan');
+			$j('#header-convert').text('Step 2. Plan Configurator');
 			$j('#header-convert').attr('href','/plans.html');
-			$j('#middle-body-convert').text('Step 2. Confirm your Plan');
+			$j('#middle-body-convert').text('Step 2. Plan Configurator');
 			$j('#middle-body-convert').attr('href','/plans.html');
 			$j('#body-convert-2').text('Step 2. Confirm your Plan');
 			$j('#body-convert-2').attr('href','/plans.html');
@@ -161,7 +161,7 @@ function handleNameSubmit() {
 
 	 	//KISSMETRICS
 	 	_kmq.push(['record', 'Entered Name', {'nameVal':punter.fname}]);
-		window.location.href = '/get/party/started';
+		window.location.href = '/mens-clothing.html';
 	
 }
 

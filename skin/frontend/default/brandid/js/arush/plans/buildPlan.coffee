@@ -1,6 +1,4 @@
 # retrieve the punter from cookie
-punter = new Object()
-createPunter()
 
 root = exports ? this
 root.buildPlan = ($scope) ->
@@ -30,13 +28,13 @@ root.buildPlan = ($scope) ->
   sockOptions = []
 
   boxerOptions = [
-    text: "boxer trunks"
+    text: "trunks"
     buttonId: "boxer-trunks"
     filterCode: ".trunks"
     summary: "boxer trunks"
     supplement: 0
   ,
-    text: "boxer shorts"
+    text: "shorts"
     buttonId: "boxer-shorts"
     filterCode: ".shorts"
     summary: "boxer shorts"
@@ -541,18 +539,29 @@ root.buildPlan = ($scope) ->
       return 'ok'
 
   $scope.init = ->
-    # receive cookie and set $scope.items values
     $j = jQuery.noConflict()
+
+
+    # receive cookie and set $scope.items values
+    
+
+
     # take $scope.items values and set angular inputs
     x = 0
     while x < $scope.items.length
       o = $scope.items[x]
-      if o.recurlyCode.indexOf("-v-",0)>= 0
-        brandType = 'value'
+      console.log punter
+      if punter.recommendation[x].brandsType isnt undefined
+        brandType = punter.recommendation[x].brandsType
       else
-        brandType = 'premium'
+        if o.recurlyCode.indexOf("-v-",0)>= 0
+          brandType = 'value'
+        else
+          brandType = 'premium'
       
       # update quantities
+      if punter.recommendation[x].qty isnt undefined
+        o.qty = punter.recommendation[x].qty
       $scope.updateMageQty(o.text, o.qty, brandType)
       
       # update value / premium

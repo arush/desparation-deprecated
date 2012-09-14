@@ -19,8 +19,9 @@ $borderColour: #ddd;
 	line-height:$radius;
 }
 
-
 body {background-color:#FFF;}
+
+
 
 /* Source: http://snipplr.com/view/10979/css-cross-browser-word-wrap */
 // #male-status {padding-bottom:100px;}
@@ -235,6 +236,20 @@ body {background-color:#FFF;}
 .logo-container {
 	margin:0 auto;
 	text-align:center;
+	float:left;
+	.header-logo {
+		float:left;
+	}
+}
+.skip-container {
+	float:right;
+	a.convert {
+		height: 36px;
+		line-height: 36px;
+		width: 99px;
+		font-size: 10px;
+
+	}
 }
 
 .male-header {

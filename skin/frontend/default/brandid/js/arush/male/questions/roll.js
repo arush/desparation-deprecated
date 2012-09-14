@@ -21,7 +21,7 @@
         roll: punter.rollA
       }
     ]);
-    return magsQ();
+    return startEmail();
   };
 
   root.rollAa = function() {

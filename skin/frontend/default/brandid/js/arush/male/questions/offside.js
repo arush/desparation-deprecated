@@ -35,9 +35,8 @@ function offsideQ() {
 		
 		var buttons = new Array();
 		buttons[0] = new Array("smalltext convert","I'm a Man<br/><span class=\"button-caption\">Player A is offside</span>", "offsideAa()");
-		buttons[1] = new Array("smalltext convert","I'm a Man<br/><span class=\"button-caption\">I don\'t give a monkey's about football/soccer</span>", "offsideAd()");
-		buttons[2] = new Array("smalltext convert","I'm a woman<br/><span class=\"button-caption\">I know my football, its Player A</span>", "offsideAb()");
-		buttons[3] = new Array("smalltext convert","I'm a woman<br/><span class=\"button-caption\">just show me a picture of Beckham</span>", "offsideAc()");
+		buttons[1] = new Array("smalltext convert","I'm a woman<br/><span class=\"button-caption\">I know my football, its Player A</span>", "offsideAb()");
+		buttons[2] = new Array("smalltext convert","I'm a woman<br/><span class=\"button-caption\">just show me a picture of Beckham</span>", "offsideAc()");
 
 		insertButtons(buttons);
 	}

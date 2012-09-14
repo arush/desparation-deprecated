@@ -5,11 +5,48 @@
   root = typeof exports !== "undefined" && exports !== null ? exports : this;
 
   root.recommend = function() {
-    punter.recommended = 'godfather';
-    if (punter.roll === 4) {
-      punter.recommended = 'soldier';
+    var brandsUpgrade, multiplier, teesMultiplier, x;
+    punter.recommendation = [
+      {
+        item: 'socks',
+        qty: 1,
+        brandsType: 'value'
+      }, {
+        item: 'boxers',
+        qty: 1,
+        brandsType: 'value'
+      }, {
+        item: 'tees',
+        qty: 1,
+        brandsType: 'value'
+      }
+    ];
+    multiplier = 1;
+    brandsUpgrade = 'value';
+    if (punter.roll === 1) {
+      multiplier = 6;
+      brandsUpgrade = 'premium';
+    } else if (punter.roll === 2) {
+      multiplier = 4;
+      brandsUpgrade = 'premium';
+    } else if (punter.roll === 3) {
+      multiplier = 2;
+      brandsUpgrade = 'value';
+    }
+    if (punter.workShirts === true && punter.playShirts === true) {
+      teesMultiplier = 0.5;
     } else if (punter.workShirts === false && punter.playShirts === false) {
-      punter.recommend = 'boss';
+      teesMultiplier = 2;
+    }
+    x = 0;
+    while (x < punter.recommendation.length) {
+      if (punter.recommendation[x].item === 'tees') {
+        punter.recommendation[x].qty = Math.ceil(punter.recommendation[x].qty * multiplier * teesMultiplier);
+      } else {
+        punter.recommendation[x].qty = Math.ceil(punter.recommendation[x].qty * multiplier);
+      }
+      punter.recommendation[x].brandsType = brandsUpgrade;
+      x++;
     }
   };
 
@@ -66,7 +103,7 @@
     return setTimeout((function() {
       insertShare("twitter", tweetHref);
       insertShare("facebook", fbookHref);
-      return insertContinue("window.location = '/plans.html'", "show me my recommended plan");
+      return insertContinue("window.location = '/mens-clothing.html'", "show me my recommended plan");
     }), 3500);
   };
 

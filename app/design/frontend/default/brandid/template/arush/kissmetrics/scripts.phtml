@@ -50,6 +50,21 @@
 				}
 				if($module === 'catalog' && $controller === 'product' && $action === 'view') {
 					?> _kmq.push(['record', 'Viewed Product']);
+						
+						// product configuration
+						$j(".frequency-chooser a.convert").click(function() {
+							var freq = this.text();
+							_kmq.push(['set', {'frequency': freq}]);
+						});
+
+						$j(".st-li a.opener").click(function() {
+							_kmq.push(['record', 'viewed options dropdown']);
+						});
+
+						$j(".upgrade-chooser a.convert").click(function() {
+							_kmq.push(['record', 'configured brands']);
+						});
+
 						// added to cart
 						$j("button.convert").click(function() {
 						  _kmq.push(['record', 'Add to Cart']);

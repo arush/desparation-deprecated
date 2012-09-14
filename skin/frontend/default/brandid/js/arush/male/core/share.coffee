@@ -1,13 +1,48 @@
 root = exports ? this
 
 root.recommend = ->
-	punter.recommended = 'godfather'
-	if punter.roll is 4
-		punter.recommended = 'soldier'
-		return
+	punter.recommendation = [
+		item: 'socks'
+		qty: 1
+		brandsType: 'value'
+	,
+		item: 'boxers'
+		qty: 1
+		brandsType: 'value'
+	,
+		item: 'tees'
+		qty: 1
+		brandsType: 'value'
+	]
+
+	multiplier = 1
+	brandsUpgrade = 'value'
+
+	if punter.roll is 1
+		multiplier = 6
+		brandsUpgrade = 'premium'
+	else if punter.roll is 2
+		multiplier = 4
+		brandsUpgrade = 'premium'
+	else if punter.roll is 3
+		multiplier = 2
+		brandsUpgrade = 'value'
+
+	# edge cases where they either need loads of tees or barely any
+	if punter.workShirts is true and punter.playShirts is true
+		teesMultiplier = 0.5
 	else if punter.workShirts is false and punter.playShirts is false
-		punter.recommend = 'boss'
-		return
+		teesMultiplier = 2
+
+	x=0
+	while x < punter.recommendation.length
+		if punter.recommendation[x].item is 'tees'
+			punter.recommendation[x].qty = Math.ceil(punter.recommendation[x].qty*multiplier*teesMultiplier)
+		else
+			punter.recommendation[x].qty = Math.ceil(punter.recommendation[x].qty*multiplier)
+		punter.recommendation[x].brandsType = brandsUpgrade
+		x++
+	return
 
 
 root.createResult = ->
@@ -83,5 +118,5 @@ root.createResult = ->
 	    # insertButtons buttons, "#male-welcome-msg"
 	    insertShare("twitter",tweetHref);
 	    insertShare("facebook",fbookHref);
-	    insertContinue("window.location = '/plans.html'","show me my recommended plan");
+	    insertContinue("window.location = '/mens-clothing.html'","show me my recommended plan");
 	  ), 3500
