@@ -73,17 +73,25 @@
 				if($module === 'checkout' && $controller === 'onepage' && $action === 'index') {
 					?> _kmq.push(['record', 'Reached Checkout']);
 
-					// get the punter from cookie
-					createPunter();
-					// auto fill email and name
-					if(punter.email) {
-						$j('input.validate-email').val(punter.email);
+					if($j.cookie('punter') !== null) {
+						// get the punter from cookie
+						createPunter();
+						// auto fill email and name
+						
+						if(punter.email !== undefined) {
+							if(punter.email) {
+								$j('input.validate-email').val(punter.email);
+							}
+						}
+						if(punter.fname !== undefined) {
+							if(punter.fname) {
+								$j('.name-firstname input').val(punter.fname);
+							}
+						}
 					}
-					if(punter.fname) {
-						$j('.name-firstname input').val(punter.fname);
-					}
+						
 
-					// code to track coupon submit is in recurly callback function
+					// code to track coupon submit is in recurly callback function because has to wait until coupon field exists
 
 					<?php 
 				}
