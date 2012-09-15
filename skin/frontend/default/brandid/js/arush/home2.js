@@ -161,7 +161,7 @@ function handleNameSubmit() {
 
 	 	//KISSMETRICS
 	 	_kmq.push(['record', 'Entered Name', {'nameVal':punter.fname}]);
-		window.location.href = '/mens-clothing.html';
+		window.location.href = '/get/party/started';
 	
 }
 
