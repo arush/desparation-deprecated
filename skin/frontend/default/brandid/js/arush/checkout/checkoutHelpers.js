@@ -142,7 +142,8 @@ function recurlyPostProcess(d){
 
 	var shipField = document.getElementById("shipping:country_id");
 	var countryShip = shipField.options[shipField.selectedIndex].value;
-
+	
+	
 	if(countryShip === 'GB') {
 		
 			// can only perform click when current tab is active, otherwise breaks checkout
@@ -158,6 +159,74 @@ function recurlyPostProcess(d){
 			$j('.add_on_ship-uk').show();
 
 
+	} else if(
+		countryShip === 'AT' ||
+		countryShip === 'BE' ||
+		countryShip === 'DE' ||
+		countryShip === 'DK' ||
+		countryShip === 'ES' ||
+		countryShip === 'FI' ||
+		countryShip === 'FR' ||
+		countryShip === 'FO' ||
+		countryShip === 'GR' ||
+		countryShip === 'GL' ||
+		countryShip === 'IE' ||
+		countryShip === 'IT' ||
+		countryShip === 'LU' ||
+		countryShip === 'NL' ||
+		countryShip === 'PT' ||
+		countryShip === 'SE') {
+
+			// can only perform click when current tab is active, otherwise breaks checkout
+				if($j('#opc-payment').hasClass('active')) {
+					// click free shipping and turn to read-only
+					$j('.add_on_ship-eu-west').click();
+				}
+
+
+			// make all plan add_ons unclickable
+			$j('.add_on_ship-eu-west').removeClass('add_on').addClass('add_on_readonly');
+			// unhide it
+			$j('.add_on_ship-eu-west').show();
+	} else if(
+		countryShip === 'BG' ||
+		countryShip === 'CY' ||
+		countryShip === 'CZ' ||
+		countryShip === 'EE' ||
+		countryShip === 'HU' ||
+		countryShip === 'LT' ||
+		countryShip === 'LV' ||
+		countryShip === 'MT' ||
+		countryShip === 'PL' ||
+		countryShip === 'RO' ||
+		countryShip === 'SK' ||
+		countryShip === 'SI') {
+
+			// can only perform click when current tab is active, otherwise breaks checkout
+				if($j('#opc-payment').hasClass('active')) {
+					// click free shipping and turn to read-only
+					$j('.add_on_ship-eu-east').click();
+				}
+
+
+			// make all plan add_ons unclickable
+			$j('.add_on_ship-eu-east').removeClass('add_on').addClass('add_on_readonly');
+			// unhide it
+			$j('.add_on_ship-eu-east').show();
+
+	} else { // rest of world
+
+			// can only perform click when current tab is active, otherwise breaks checkout
+				if($j('#opc-payment').hasClass('active')) {
+					// click free shipping and turn to read-only
+					$j('.add_on_ship-intl').click();
+				}
+
+
+			// make all plan add_ons unclickable
+			$j('.add_on_ship-intl').removeClass('add_on').addClass('add_on_readonly');
+			// unhide it
+			$j('.add_on_ship-intl').show();
 	}
 
 
