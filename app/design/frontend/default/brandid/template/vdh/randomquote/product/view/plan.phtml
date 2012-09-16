@@ -227,7 +227,7 @@
 										
 										<div class="size-label label">SIZE:</div>
 				                		
-				                		<a ng-repeat="size in items[<?php echo $foreachIndex; ?>].sizes" class="convert secondary size-button {{items[<?php echo $foreachIndex; ?>].text}}-{{size.text}}" ng-class="groupButtons($index,items[<?php echo $foreachIndex; ?>].sizes)" ng-click="changeSize(items[<?php echo $foreachIndex; ?>], size,<?php echo $foreachIndex; ?>, $index)">{{size.text}}</a>
+				                		<a ng-repeat="size in items[<?php echo $foreachIndex; ?>].sizes" class="convert secondary size-button {{items[<?php echo $foreachIndex; ?>].text}}-{{size.class}}" ng-class="groupButtons($index,items[<?php echo $foreachIndex; ?>].sizes)" ng-click="changeSize(items[<?php echo $foreachIndex; ?>], size,<?php echo $foreachIndex; ?>, $index)">{{size.text}}</a>
 				                		<div class="size-label size-guide label">{{sizeGuide[<?php echo $foreachIndex; ?>].helper}}</div>
 
 					                </div>

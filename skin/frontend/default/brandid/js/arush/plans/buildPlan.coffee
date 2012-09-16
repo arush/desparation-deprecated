@@ -128,39 +128,49 @@ root.buildPlan = ($scope) ->
   ]
 
   sockSizes = [
-    text: "S"
-    helper: "6-10 UK shoe size"
+    text: "6-11 (UK)"
+    helper: "40-45 (EU)"
+    class:'small'
   ,
-    text: "L"
-    helper: "11-13 UK shoe size"
+    text: "12-14 (UK)"
+    helper: "46-48 (EU)"
+    class:'large'
   ]
 
   boxerSizes = [
     text: "S"
-    helper: "30in - 32in waist"
+    helper: "28in - 30in waist"
+    class:'S'
   ,  
     text: "M"
     helper: "32in - 34in waist"
+    class:'M'
   ,
     text: "L"
-    helper: "34in - 36in waist"
+    helper: "36in - 38in waist"
+    class:'L'
   ,
     text: "XL"
-    helper: "36in - 38in waist"
+    helper: "40in - 42in waist"
+    class:'XL'
   ]
 
   underteeSizes = [
     text: "S"
-    helper: "47cm - 48cm chest"
+    helper: "36-38in or 91-96cm around the fullest part of your chest"
+    class:'S'
   ,
     text: "M"
-    helper: "49cm - 50cm chest"
+    helper: "38-40in or 96-101cm around the fullest part of your chest"
+    class:'M'
   ,
     text: "L"
-    helper: "51cm - 52cm chest"
+    helper: "40-42in or 101cm-106cm around the fullest part of your chest"
+    class:'L'
   ,
     text: "XL"
-    helper: "53cm - 54cm chest"
+    helper: "42-44in or 106-111cm around the fullest part of your chest"
+    class:'XL'
   # ,
   #   text: "XXL"
   #   helper: "55cm - 56cm chest"
@@ -519,7 +529,7 @@ root.buildPlan = ($scope) ->
 
     # change button formatting to active
     $j('.configure-size.'+item.text+'-size a').removeClass 'active'
-    $j('.'+item.text+'-'+size.text).addClass 'active'
+    $j('.'+item.text+'-'+size.class).addClass 'active'
 
   $scope.isZeroed = (idx) ->
     if $scope.items[idx].qty is 0
