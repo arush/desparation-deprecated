@@ -235,16 +235,17 @@
 
 		                		  <br/>
 					              
+					            <div class="{{items[<?php echo $foreachIndex; ?>].text}} style row">
+					              	<div class="colours-label label">STYLE:</div>
+					              		<a ng-repeat="index in itemOptions[<?php echo $foreachIndex; ?>].options" class="convert secondary {{index.selected}} {{items[<?php echo $foreachIndex; ?>].text}}-style-{{index.buttonId}}" ng-click="toggleStyle(index,<?php echo $foreachIndex; ?>)" ng-class="groupButtons($index,itemOptions[<?php echo $foreachIndex; ?>].options" title="{{index.text}}">{{index.text}}</a>
+					            </div>
+					            <br/>
 					            <div class="{{items[<?php echo $foreachIndex; ?>].text}} colours row">
 					              	<div class="colours-label label">COLOURS:</div>
 					              	<a ng-repeat="index in itemOptions[<?php echo $foreachIndex; ?>].colours" class="convert secondary {{items[<?php echo $foreachIndex; ?>].text}}-colours-{{index.buttonId}}" ng-click="toggleColour(index, <?php echo $foreachIndex; ?>)" ng-class="groupButtons($index,itemOptions[<?php echo $foreachIndex; ?>].colours" title="{{index.text}}">{{index.text}}</a>
 
 					            </div>
-					            <br/>
-					            <div class="{{items[<?php echo $foreachIndex; ?>].text}} style row">
-					              	<div class="colours-label label">STYLE:</div>
-					              		<a ng-repeat="index in itemOptions[<?php echo $foreachIndex; ?>].options" class="convert secondary {{index.selected}} {{items[<?php echo $foreachIndex; ?>].text}}-style-{{index.buttonId}}" ng-click="toggleStyle(index,<?php echo $foreachIndex; ?>)" ng-class="groupButtons($index,itemOptions[<?php echo $foreachIndex; ?>].options" title="{{index.text}}">{{index.text}}</a>
-					            </div>
+					            
 					          </li>
 					        </ul>
 					    </div>
