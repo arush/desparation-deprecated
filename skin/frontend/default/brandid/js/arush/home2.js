@@ -112,13 +112,13 @@ $j(document).ready(function() {
 			$j('#submit_email').attr('href','/mens-clothing.html');
 			$j('#main-step-1').addClass('secondary');
 			$j('#main-step-2').removeClass('inactive');
-			$j('#main-step-2').attr('href','/plans.html');
+			$j('#main-step-2').attr('href','/mens-clothing.html');
 			$j('#header-convert').text('Step 2. Plan Configurator');
-			$j('#header-convert').attr('href','/plans.html');
+			$j('#header-convert').attr('href','/mens-clothing.html');
 			$j('#middle-body-convert').text('Step 2. Plan Configurator');
-			$j('#middle-body-convert').attr('href','/plans.html');
+			$j('#middle-body-convert').attr('href','/mens-clothing.html');
 			$j('#body-convert-2').text('Step 2. Confirm your Plan');
-			$j('#body-convert-2').attr('href','/plans.html');
+			$j('#body-convert-2').attr('href','/mens-clothing.html');
 		}
 	}
 
