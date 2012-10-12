@@ -568,7 +568,7 @@ img.male-round, .male-back, .male-loading, .male-label-box, .male-loader {
 	     -o-animation-fill-mode: forwards;
 	        animation-fill-mode: forwards;
 }
-.mobile-buttons.saving input {
+.mobile-buttons.saving input, .tinyletter input {
 	width: 63%;
 	@include input-field;
 	color:#9f9f9f;
@@ -577,7 +577,39 @@ img.male-round, .male-back, .male-loading, .male-label-box, .male-loader {
 	font-size:21px;
 	font-family:courier, monospace;
 }
+.tinyletter {
+	margin:10px;
+}
 
+.tinyletter input {
+	float: left;
+	margin-right: 2%;
+}
+
+.tinyletter p {
+	background: #E9E9E9;
+	display: block;
+	float:left;
+	padding: 2%;
+	width: 96%;
+}
+
+.tinyletter p.enter-name {
+	margin-bottom: 20px;
+}
+.tinyletter p.powered-by-tinyletter {
+	font-size: 12px;
+	font-family:"proxima-nova", helvetica, sans-serif;
+	color:#d2002b !important;
+	background:#FFF;
+}
+
+.tinyletter a.convert {
+	width:30%;
+	float:left;
+	height: 63px;
+	line-height: 63px;
+}
 .mobile-buttons.saving input:focus {
 	color:#444;
 }
@@ -586,10 +618,13 @@ img.male-round, .male-back, .male-loading, .male-label-box, .male-loader {
 	float:right;
 }
 
+#console .angellist_embed {
+	max-width:100%;
+}
 
-
-
-
+#console .angellist_embed .detail .long_description {
+	max-width:100%;
+}
 
 
 

@@ -1,44 +1,3 @@
-function teamMenu() {
-	
-	jqconsole.Write('Secret Menu > Team Menu:\n\na. Open the team page in a new window\nb. Who is M.A.L.E™?\nc. Return to the Secret Menu ', 'jqconsole-output wordwrap');
-	typeit();
-	setTimeout('teamAnswer();',2000);
-}
-
-function teamAnswer() {
-	$j('.jqconsole-prompt').css('display','block');
-	$j('.jqconsole-input').css('display','block');
-	jqconsole.Prompt(true, function (input) {
-		var answer = $j.trim(input);
-		answer = answer.toLowerCase();
-		switch(answer) {
-			case 'a':
-				window.open("/keep/calm/wearepros","_blank");
-				setTimeout('teamMenu();',1000);
-				break;
-			case 'b':
-				wipeConsole();
-				var q = 'My true identity can never be revealed. However I can tell you this:\n\nM.A.L.E™ is the Masculine Algorithmic Learning Engine. M.A.L.E™ is learning all the time. When you signup, when you feedback on your deliveries, when you upgrade/downgrade or need new stuff, M.A.L.E™ learns exactly what you need, exactly when you need it. ';
-				newQ(q);
-				typeit();
-				setTimeout('teamMenu();',7000);
-				break;
-			case 'c':
-				wipeConsole();
-				var q = 'Returning to the Secret Menu... ';
-				newQ(q);
-				typeit();
-				setTimeout('investorMenu();',1000);
-				break;
-			default:
-				jqconsole.Write('No comprendes, partner. Gotta choose one of the options.\nTry again: ', 'jqconsole-output red wordwrap');
-				typeit();
-				setTimeout('teamAnswer();',1500);
-				break;
-		}
-	});
-}
-
 function investorMenuAnswer() {
 	$j('.jqconsole-prompt').css('display','block');
 	$j('.jqconsole-input').css('display','block');
@@ -48,29 +7,39 @@ function investorMenuAnswer() {
 		switch(answer) {
 			case 'a':
 				wipeConsole();
-				var q = 'Our team is the perfect mix of tech startup, retail, fashion, branding and comms entrepreneurs.\nAnd we are deadly serious about solving clothing shopping for men. Forever. ';
+				var q = 'Follow us to get involved with fundraising ';
 				newQ(q);
 				typeit();
-				setTimeout('teamMenu();',4000);
+				var thing = '<div class=\'angellist_embed\' data-startup_id=\'110936\'></div><script type=\'text/javascript\' src=\'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js\'></script><script type=\'text/javascript\' src=\'https://angel.co/brandid/embed/angellist.js\'></script>\'';
+				$j('#console').prepend(thing);
+				setTimeout('investorMenu();',1000);
 				break;
 			case 'b':
 				wipeConsole();
-				var q = 'Men don’t like shopping. And while men want to look good, most wouldn’t claim to be interested in fashion. Ecommerce for men is too often just ecommerce for women with the pinks turned blue.\n\nWant to know more? Download our deck (option d). ';
+				var q = 'Fashionista startups, prepare to be violated. ';
 				newQ(q);
 				typeit();
-
+				var thing = '<div style="text-align:center"><iframe width="560" height="315" src="http://www.youtube.com/embed/0BXYbAijdoM" frameborder="0" allowfullscreen></iframe></div>';
+				$j('#console').prepend(thing);
 				investorMenu();
 				break;
 			case 'c':
 				wipeConsole();
-				var q = 'BRANDiD is an online subscription service for all the things men need, starting with designer basics such as underwear, socks, tees and shirts from the likes of Dior, Calvin Klein and Ralph Lauren.\n\nBRANDiD is specifically designed for the way men want to shop – no hassle, no fuss, no fluff. Your average man only shops to solve a problem, and once dealt with, never wants to deal with it again. Select, subscribe, sorted.\n\nWant to know more? Download our deck (option d). ';
+				var q = 'We can keep you up to date with our progress in our infrequent Founders\' Letter ';
 				newQ(q);
 				typeit();
+				var thing = '<form class="tinyletter" action="https://tinyletter.com/brandid" method="post" target="popupwindow" onsubmit="window.open(\'https://tinyletter.com/brandid\', \'popupwindow\', \'scrollbars=yes,width=800,height=600\');return true"><p class="enter-name"><label for="tlemail">Enter your email address</label></p><div class="tinyletter-inputbox"><input type="text" name="email" id="tlemail" /><input type="hidden" value="1" name="embed"/><a class="convert" type="submit">Subscribe</a></div><p class="powered-by-tinyletter"><a href="https://tinyletter.com" target="_blank">powered by TinyLetter</a></p></form>';
+				$j('#console').prepend(thing);
 				investorMenu();
 				break;
 			case 'd':
-				window.open("http://f.cl.ly/items/0C0F3k0e2F3E2A150B2u/angel%20deck.pdf","_blank");
-				setTimeout('investorMenu();',1000);
+				wipeConsole();
+				var q = 'We\'re pretty up front on our Founders\' Blog, so check back regularly for inside info. ';
+				newQ(q);
+				typeit();
+				window.open('http://founders.getbrandid.com/', '_blank');
+				window.focus();
+				investorMenu();
 				break;
 			case 'q':
 				wipeConsole();
@@ -90,7 +59,8 @@ function investorMenuAnswer() {
 }
 
 function investorMenu() {
-	jqconsole.Write('Secret Menu:\na. Team\nb. What problem are you solving?\nc. What\'s the answer?\nd. View the investor deck\nq. Quit the Secret Menu  ', 'jqconsole-output wordwrap');
+	jqconsole.Write('Secret Menu:\na. Follow us on AngelList\nb. Watch our Seedcamp Demo Day 2012 Pitch\nc. Stay in the loop with our Founders\' Letter\nd. Open the Founders\'s Blog in a new window\nq. Quit the Secret Menu  ', 'jqconsole-output wordwrap');
+	
 	var s = getLatestSpan();
 	$j(s).css('color', '#444');
 	investorMenuAnswer();
@@ -140,7 +110,13 @@ function moneyPower() {
 	setTimeout('investorMenu();',4500);
 }
 function investorAsk() {
-	wipeConsole();
+	if(punter.justStarted === true) {
+		punter.justStarted = false;
+	}
+	else {
+		wipeConsole();
+	}
+
 	var q = 'So, you\'re an investor? What\'s the password: ';
 	newQ(q);
 	typeit();
@@ -152,7 +128,7 @@ function insertPasswordButton() {
 	var s = $j("#console");
 
 	var string = '<div class=\"mobile-buttons saving clearfix\">';
-	string += '<input id="password-to-check" type="password" name="password" value="" onFocus="clearDefaultJ(this)" onBlur="restoreTextJ(this)"/><a id="submit_email" class="convert" onclick="handlePasswordSubmit(); return false;">Attempt Access</a>';
+	string += '<form id="passwordsubmit" onsubmit="handlePasswordSubmit(); return false;"><input id="password-to-check" type="password" name="password" value="" onFocus="clearDefaultJ(this)" onBlur="restoreTextJ(this)"/><a id="submit_email" type="submit" class="convert">Attempt Access</a></form>';
 	
 	string += "</div>";
 	
@@ -167,6 +143,8 @@ function handlePasswordSubmit() {
 		passwordToCheck = $j('#password-to-check').val();
 	 	investorPass(passwordToCheck);
 		$j('.mobile-buttons.saving').remove();
-	
+
+		return false;
+		
 }
 
