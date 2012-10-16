@@ -36,7 +36,6 @@ root.recommend = ->
 	else
 		teesMultiplier = 1
 
-
 	x=0
 	while x < punter.recommendation.length
 		if punter.recommendation[x].item is 'tees'
