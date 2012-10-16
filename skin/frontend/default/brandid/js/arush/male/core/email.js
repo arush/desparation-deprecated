@@ -46,7 +46,7 @@ function insertEmailButton() {
 	
 	string += "</div>";
 	
-	setTimeout(function(){performAppend(s,string)},2000);
+	performAppend(s,string);
 }
 
 function insertMagsField() {
