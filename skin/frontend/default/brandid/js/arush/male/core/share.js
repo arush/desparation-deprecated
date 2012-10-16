@@ -24,19 +24,21 @@
     multiplier = 1;
     brandsUpgrade = 'value';
     if (punter.roll === 1) {
-      multiplier = 6;
+      multiplier = 4;
       brandsUpgrade = 'premium';
     } else if (punter.roll === 2) {
-      multiplier = 4;
+      multiplier = 3;
       brandsUpgrade = 'premium';
     } else if (punter.roll === 3) {
       multiplier = 2;
       brandsUpgrade = 'value';
     }
     if (punter.workShirts === true && punter.playShirts === true) {
-      teesMultiplier = 0.5;
+      teesMultiplier = 0;
     } else if (punter.workShirts === false && punter.playShirts === false) {
       teesMultiplier = 2;
+    } else {
+      teesMultiplier = 1;
     }
     x = 0;
     while (x < punter.recommendation.length) {

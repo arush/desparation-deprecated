@@ -19,10 +19,10 @@ root.recommend = ->
 	brandsUpgrade = 'value'
 
 	if punter.roll is 1
-		multiplier = 6
+		multiplier = 4
 		brandsUpgrade = 'premium'
 	else if punter.roll is 2
-		multiplier = 4
+		multiplier = 3
 		brandsUpgrade = 'premium'
 	else if punter.roll is 3
 		multiplier = 2
@@ -30,20 +30,22 @@ root.recommend = ->
 
 	# edge cases where they either need loads of tees or barely any
 	if punter.workShirts is true and punter.playShirts is true
-		teesMultiplier = 0.5
+		teesMultiplier = 0
 	else if punter.workShirts is false and punter.playShirts is false
 		teesMultiplier = 2
+	else
+		teesMultiplier = 1
+
 
 	x=0
 	while x < punter.recommendation.length
 		if punter.recommendation[x].item is 'tees'
-			punter.recommendation[x].qty = Math.ceil(punter.recommendation[x].qty*multiplier*teesMultiplier)
+			punter.recommendation[x].qty = Math.ceil punter.recommendation[x].qty * multiplier * teesMultiplier
 		else
-			punter.recommendation[x].qty = Math.ceil(punter.recommendation[x].qty*multiplier)
+			punter.recommendation[x].qty = Math.ceil punter.recommendation[x].qty * multiplier
 		punter.recommendation[x].brandsType = brandsUpgrade
 		x++
 	return
-
 
 root.createResult = ->
 	  s = getLatestSpan()
