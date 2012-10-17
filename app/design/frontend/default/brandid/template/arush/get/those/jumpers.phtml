@@ -1,0 +1,175 @@
+<?php
+	$referer = false;
+	$refererSet = false;
+	if(Mage::getSingleton('core/session')->getReferer()) {
+		$refererSet = true;
+		$referer = Mage::getSingleton('core/session')->getReferer();
+	}
+
+	if(!$refererSet) {
+		//get the referrer
+		if (isset($_SERVER['HTTP_REFERER'])) {
+			$referer = $_SERVER['HTTP_REFERER'];
+		} else {
+			$referer = "unknown";
+		}
+		//save it in a session variable
+		Mage::getSingleton('core/session')->setReferer($referer); // store session data
+	}
+
+
+	// get user from URI
+
+	if(isset($_GET['token'])) {
+		$token = $_GET['token'];
+	} else
+	$token = '';
+
+?>
+
+<div id="male-status">
+	<div id="male-header" class="male-header">
+		<div class="container app">
+			<div class="logo-container">
+				<a id="logo" href="/" class="header-logo">
+					<img class="gift-logo ani fadeIn scale-with-grid" alt="BRANDiD logo" src="<?php echo $this->getSkinUrl('images/logo-beta.png')?>" title="BRANDiD Logo"/>
+				</a>
+			</div>
+			<!-- div class="skip-container">
+				<a id="skip-male" class="convert secondary" href="/mens-clothing.html">Skip This</a>
+			</div-->
+		</div>
+	</div>
+	<div class="container app">
+		<div class="view">
+			<div class="progress-bar">
+				<div class="male-round ani">
+					<div class="male-holder">
+						<div id="male-colour" class="male-loading">
+						</div>
+						<div id="male-loader" class="male-loader">
+						</div>
+						
+						<img src="<?php echo $this->getSkinUrl('images/male/male-round.png'); ?>" alt="M.A.L.E." class="male-round ani" title="feed the male"/>
+						<div class="male-label-box">
+							<span id="male-label">M.A.L.E.</span>
+						</div>
+					</div>
+					<div id="status">Establishing Connection</div>
+				</div>
+
+				<div class="progress-item first ani fadeOutDown">
+					<div class="circles active">
+						<div class="circle-back back">
+						</div>
+						<div class="circle-back">
+						</div>
+						<div class="circle">
+							<div class="circle-text">
+								1
+							</div>
+						</div>
+					</div>
+					<div class="progress-sub">Feed the M.A.L.E.</div>
+				</div>
+				
+				<!-- <div class="progress-item second ani fadeOutDown">
+					<div class="circles fadeInDown">
+						<div class="circle-back">
+						</div>
+						<div class="circle">
+							<div class="circle-text">
+								2
+							</div>
+						</div>
+					</div>
+					<div class="progress-sub">Confirm Plan</div>
+				</div>
+				<div class="progress-item third ani fadeOutDown">
+					<div class="circles">
+						<div class="circle-back">
+						</div>
+						<div class="circle">
+							<div class="circle-text">
+								3
+							</div>
+						</div>
+					</div>
+					<div class="progress-sub">Checkout</div>
+				</div> -->
+			</div>
+
+			<div class="male-console ani">
+					<div id="console"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var $j = jQuery.noConflict();
+	//global punter object
+	var punter = new Object();
+	createPunter();
+
+	retrievePunterCookieFromToken('<?php echo $token; ?>');
+
+	function startMale() {
+
+		// this is to drop people back in if they bounced half way
+		if(punter.fname != undefined && punter.justStarted === false) {
+	        var backMessage = new Array(", Ready to make the easiest jumper purchase of your life? ", ", Ready to make the easiest jumper purchase of your life? ", ", Ready to make the easiest jumper purchase of your life? ");
+	        var i = Math.floor(Math.random()*3);
+        	
+        	var q = 'Hey '+punter.fname+backMessage[i];
+        	newQ(q);
+        	
+        	setTimeout('returningVisitor();',1500);
+        	initiate();
+        }
+        // this is to start people off if they came directly from the homepage
+        else if(punter.fname != undefined && punter.justStarted === true) {
+        	nameA(punter.fname);
+        	
+        }
+        else {
+
+        	
+        	var q = 'Well hello there.\n\nM.A.L.E. here, what\'s your name? ';
+        	newQ(q);
+
+			insertNameButton();
+        }
+
+	}
+
+</script>
+
+<script type="text/javascript">
+	function getReferer() {
+		var referer;
+		referer = '<?php echo parse_url($referer,PHP_URL_HOST); ?>';
+		return referer;
+	}
+</script>
+
+<script type="text/javascript">
+	function loaded(){
+			jQuery('#male-status').addClass('online');
+			jQuery('.male-header').addClass('flyup');
+			jQuery('#male-colour').removeClass('male-loading');
+			jQuery('#male-colour').addClass('male-back');
+			jQuery('#status').text('Feed the M.A.L.E.');
+
+			setTimeout("startMale()", 800);
+		}
+
+	jQuery(document).ready(function() {
+		window.scrollTo(0,0);
+		setTimeout("loaded()", 3000);
+		setTimeout(function() {
+		  return $j('.male-round').addClass('fadeIn');
+		}, 2000);
+	});
+
+</script>
+

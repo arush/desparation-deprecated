@@ -5,6 +5,14 @@ function createPunter() {
 	}
 }
 
+function saveCookieFromString(cookieString) {
+
+	$j.cookie('punter', cookieString, { expires: 1, path: '/' });
+
+	// load punter from cookie
+	createPunter();
+}
+
 function registerUser() {
 	wipeConsole();
 	newQ(punter.email+' ');
