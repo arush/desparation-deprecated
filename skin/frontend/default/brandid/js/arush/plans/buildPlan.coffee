@@ -210,7 +210,7 @@ root.buildPlan = ($scope) ->
   ]
 
   $scope.plan = {
-    frequency: "quarterly"
+    frequency: "trial"
   }
   
   $scope.drops = [

@@ -177,7 +177,7 @@
       }
     ];
     $scope.plan = {
-      frequency: "quarterly"
+      frequency: "trial"
     };
     $scope.drops = [
       {
