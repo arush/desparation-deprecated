@@ -20,10 +20,11 @@
 
 	// get user from URI
 
-	if(isset($_GET['token'])) {
-		$token = $_GET['token'];
-	} else
-	$token = '';
+	if(isset($_GET['email'])) {
+		$email = $_GET['email'];
+		$punter = Mage::helper('get')->retrievePunterFromEmail($email);
+	}
+	$punter = json_encode($punter);
 
 ?>
 
@@ -109,31 +110,29 @@
 	var $j = jQuery.noConflict();
 	//global punter object
 	var punter = new Object();
-	createPunter();
 
-	retrievePunterCookieFromToken('<?php echo $token; ?>');
+
+	saveCookieFromString('<?php echo $punter; ?>');
+
+	// load punter from cookie
+	createPunter();
 
 	function startMale() {
 
-		// this is to drop people back in if they bounced half way
-		if(punter.fname != undefined && punter.justStarted === false) {
+		// this checks if a name was retrieved from Mailchimp, if not, else {...}
+		if(punter.fname != undefined /* && punter.justStarted === false */) {
 	        var backMessage = new Array(", Ready to make the easiest jumper purchase of your life? ", ", Ready to make the easiest jumper purchase of your life? ", ", Ready to make the easiest jumper purchase of your life? ");
 	        var i = Math.floor(Math.random()*3);
         	
         	var q = 'Hey '+punter.fname+backMessage[i];
         	newQ(q);
         	
-        	setTimeout('returningVisitor();',1500);
+        	setTimeout('male.jumpers.enterTheDragon();',1500);
         	initiate();
         }
-        // this is to start people off if they came directly from the homepage
-        else if(punter.fname != undefined && punter.justStarted === true) {
-        	nameA(punter.fname);
-        	
-        }
+        
         else {
 
-        	
         	var q = 'Well hello there.\n\nM.A.L.E. here, what\'s your name? ';
         	newQ(q);
 

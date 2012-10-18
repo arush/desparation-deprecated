@@ -1,19 +1,15 @@
 <?php 
 class Arush_Get_Helper_Data extends Mage_Core_Helper_Abstract{
 	
-	public function getEmailFromToken($token) {
 
-
-
-	}
-
-	public function retrievePunterCookieFromToken($email) {
+	public function retrievePunterFromEmail($email) {
 
 		// get standard values for mailchimp api call
 		$storeId = Mage::app()->getStore()->getId();			
 		$listId = Mage::helper('monkey')->getDefaultList($storeId);
 
 		$emailarray = array($email);
+
 
 		// call ebizmarts api
 		$api = Mage::getSingleton('monkey/api');
@@ -30,7 +26,7 @@ Mage::log($api,null, 'male.log');
 					'state' => "failed",
 					'message' => "Sorry, something went wrong... I've logged this and am working on a solution. "
 					)
-			));
+			);
 			
 			return $returnThis;
 
@@ -38,12 +34,17 @@ Mage::log($api,null, 'male.log');
 			// person is on the list, check their MALE cookie
 // Mage::log('person is on the list, check their status and update accordingly: ', null, 'male.log');
 // Mage::log($retval,null, 'male.log');
-			$returnThis = $retval['data'][0]['merges']['MALE'];
-			if($returnThis !== "" && $returnThis !== "\"started\"") {
-				return $returnThis;
+			$maleAnswers = $retval['data'][0]['merges']['MALE'];
+			$firstname = $retval['data'][0]['merges']['FNAME'];
+			
+			if($maleAnswers !== "" && $maleAnswers !== "\"started\"") {
+				$returnThis['maleAnswers'] = json_decode($maleAnswers);
 			} else {
-				return "";
+				$returnThis['maleAnswers'] = "";
 			}
+			$returnThis['fname'] = $firstname;
+
+			return $returnThis;
 		}
 
 
