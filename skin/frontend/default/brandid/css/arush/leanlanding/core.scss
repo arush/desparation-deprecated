@@ -1,0 +1,40 @@
+@import "compass/css3/border-radius";
+
+// global variables
+$back: #FFF;
+
+$colour: #444;
+$title-font: bold 3em/1.5em "ff-enzo-web",Helvetica,Arial,sans-serif;
+$subtitle-font: normal 0.4em/1em "proxima-nova",Helvetica,Arial,sans-serif;
+$font: normal 1em/1em "proxima-nova",Helvetica,Arial,sans-serif;
+
+$margin: 15px;
+
+
+.top-block {
+	background:$back;
+	font: $font;
+	color: $colour;
+	@include border-radius(4px, 4px);
+	margin-top:20px;
+	width:100%;
+
+	.title {
+		font: $title-font;
+		text-align:center;
+		letter-spacing:-1px;
+		margin-top:20px;
+
+		.subtitle {
+			font: $subtitle-font;
+			color: #6f6f6f;
+			letter-spacing:0;
+
+		}
+	}
+
+}
+
+.text-overlay {
+	width:100%;
+}

@@ -1,0 +1,71 @@
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+
+$radius: 5px;
+$padding: 30px;
+
+.top-block {
+	.big-tash-holder {
+		position:absolute;
+		z-index:0;
+		top:0;
+		width:700px;
+
+		.big-tash {
+			margin-top: 120px;	
+
+		}
+	}
+		
+
+	.mo-price-box {
+		@include border-radius($radius,$radius);
+		margin:20px;
+		border:1px solid #8d8d8d;
+		border-top:1px solid #eee;
+		border-bottom:1px solid #444;
+		background:#f4f4f4;
+		margin-top:80px;
+		@include box-shadow(#CFCFCF 0 $radius 10px); 
+
+
+		.price-header {
+			@include border-top-radius($radius);
+			background:#595959;
+			color:#FFF;
+			font-size:20px;
+			letter-spacing:-1px;
+			padding:20px;
+			text-align:center;
+		}
+
+		.price-details {
+			background:#f4f4f4;
+			padding:0 $padding;
+			.big-price {
+				font-size:50px;
+				line-height:50px;
+				letter-spacing:-4px;
+				font-weight:bold;
+				text-shadow: 0px 1px 1px #4d4d4d;
+		        color: #222;
+		        margin:30px 0;
+			}
+			.price-subtitles {
+				font-size:16px;
+				line-height:16px;
+
+				span.blue {
+					color:#0095DA;
+				}
+			}
+		}
+
+		.buy-container {
+			padding:$padding;
+			background:#f4f4f4;
+			@include border-bottom-radius($radius);
+		}
+	}
+	
+}
