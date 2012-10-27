@@ -5,14 +5,18 @@ $radius: 5px;
 $padding: 30px;
 
 .top-block {
+	
+	background-image:url(../../../images/arush/movember/big-tash.png);
+	background-position:50% 25%; 
+	background-repeat:no-repeat; 
+	-moz-background-size:contain; 
+	-webkit-background-size:contain; 
+	background-size:contain;
+
 	.big-tash-holder {
-		position:absolute;
-		z-index:0;
-		top:0;
-		width:700px;
 
 		.big-tash {
-			margin-top: 120px;	
+
 
 		}
 	}
@@ -20,7 +24,7 @@ $padding: 30px;
 
 	.mo-price-box {
 		@include border-radius($radius,$radius);
-		margin:20px;
+		margin:15%;
 		border:1px solid #8d8d8d;
 		border-top:1px solid #eee;
 		border-bottom:1px solid #444;
