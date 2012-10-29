@@ -4,6 +4,10 @@
 $radius: 5px;
 $padding: 30px;
 
+.wrapper {
+	background: #EFEFEF;
+}
+
 .top-block {
 	
 	background-image:url(../../../images/arush/movember/big-tash.png);
@@ -13,23 +17,41 @@ $padding: 30px;
 	-webkit-background-size:contain; 
 	background-size:contain;
 
-	.big-tash-holder {
-
-		.big-tash {
-
-
-		}
+	.butler-img {
+		vertical-align:bottom;
 	}
+	
+	.mo-price-box-container {
+		margin:8% 15% 7% 15%;
 		
+		.price-box-subtext {
+			margin-top:20px;
+		}
+
+		.share-top {
+			margin-bottom:10px;
+			.share {
+				float:left;
+			}
+			.share.like {
+				margin-right:20px;
+			}
+			.share:last-child {
+				float:right;
+			}
+		}
+		
+
+	}
 
 	.mo-price-box {
 		@include border-radius($radius,$radius);
-		margin:15%;
-		border:1px solid #8d8d8d;
-		border-top:1px solid #eee;
-		border-bottom:1px solid #444;
+
+		border:1px solid #ddd;
+		border-top:1px solid #efefef;
+		border-bottom:1px solid #adadad;
 		background:#f4f4f4;
-		margin-top:80px;
+		
 		@include box-shadow(#CFCFCF 0 $radius 10px); 
 
 
@@ -46,6 +68,7 @@ $padding: 30px;
 		.price-details {
 			background:#f4f4f4;
 			padding:0 $padding;
+			text-align:left;
 			.big-price {
 				font-size:50px;
 				line-height:50px;
@@ -69,7 +92,38 @@ $padding: 30px;
 			padding:$padding;
 			background:#f4f4f4;
 			@include border-bottom-radius($radius);
+			a.convert {
+				width:100%;
+			}
 		}
 	}
+
+	.sub-block {
+		background-image:url(../../../images/arush/movember/big-tash-light.png);
+		background-position:50% 26%; 
+		background-repeat:no-repeat; 
+		-moz-background-size:contain; 
+		-webkit-background-size:contain; 
+		background-size:contain;
+	}
 	
+}
+
+
+.quotes {
+	img {
+		vertical-align:bottom;
+	}
+	.apostrophe, .apostrophe2 {
+		text-shadow:1px 1px 3px #333;
+	}
+	span.quote.left {
+		padding:36px 40px 25px;
+	}
+	span.quote.right {
+		padding:57px 40px 4px;
+	}
+	span.quote.middle {
+		padding:18px 34px 43px;
+	}
 }
