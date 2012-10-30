@@ -228,7 +228,7 @@
 								<form id="malesubmit">
 									<input id="name-to-save" type="text" name="firstname" value="e.g. Steve" onfocus="clearDefault(this)" onblur="restoreText(this)">
 									<a id="step1" href="/get/party/started" class="convert secondary" style="display:none;float: left; margin: 0 10px 0 0;">Step 1. Feed the M.A.L.E.</a>
-									<a id="submit_email" type="submit" class="convert" onclick="handleNameSubmit(); return false;">Feed the M.A.L.E™</a>
+									<a id="submit_email" type="submit" class="convert" onclick="handleNameSubmit(); return false;">Feed the M.A.L.E.</a>
 									<a id="step3" class="convert inactive" style="float:left" href="#">Step 3. Get BRANDiD</a>
 								</form>
 							</div>
@@ -251,11 +251,37 @@
 </div> -->
 
 <div class="commitment-caption container">
-	<div class="vision-title">
-		<span class="vision-title-text">What is BRANDiD?</span>
+		
+	<div class="row movember-banner">
+		<div class="eight columns">
+				
+			<div class="left-section">
+				<div class="movember-title">
+					<span class="movember-title-text">Get a Mo Butler for Movember</span>
+				</div>
+				<div class="clearfix movember-caption">
+					
+					<span class="caption">Movember means that us men need to <span class="bold">grow large or go home.</span> With that in mind, BRANDiD has put together the ultimate in <span class="bold">bespoke moustache experiences.</span> A dedicated 24/7 specialist <span class="bold">tache technician.</span></span>
+
+					<a href="/get/that/butler" class="movember-btn convert">Check it out!</a>
+				</div>
+			</div>
+		</div>
+		<div class="eight columns mo-butler-pic-holder">
+			<img src="<?php echo $this->getSkinUrl('images/arush/movember/homepage-banner.png'); ?>" alt="Movember Mo Butler" class="scale-with-grid movember-img">
+		</div>
 	</div>
-	<span class="caption">BRANDiD is mens shopping for men who hate shopping. You tell us what tees, socks and boxers you like, and we sort the rest. We can even auto-deliver every three or six months, so your boxers are always box fresh. Select. Subscribe. Sorted. Capiche?</span>
-	
+
+
+	<div class="row">
+		
+		<div class="vision-title">
+			<span class="vision-title-text">What is BRANDiD?</span>
+		</div>
+		<span class="caption">BRANDiD is mens shopping for men who hate shopping. You tell us what tees, socks and boxers you like, and we sort the rest. We can even auto-deliver every three or six months, so your boxers are always box fresh. Select. Subscribe. Sorted. Capiche?</span>
+
+	</div>
+
 	<div class="process">
 		<div class="one-third column">
 			<img src="<?php echo $this->getSkinUrl('images/arush/home/small-mag-male.png'); ?>" alt="we feed the M.A.L.E." title="we feed the M.A.L.E."/>
@@ -365,7 +391,7 @@
 <div class="title-block first">
 	<div class="title-block-inner clearfix">
 		<div class="title-block-container container clearfix">		
-			<div id="bigtop-title" class="title">
+			<div id="bigtop-title" class="im-man-title">
 				<span class="first">I'm a man.</span><br/>
 				<span class="second">I have commitment issues.</span>
 			</div>
@@ -781,7 +807,7 @@
 <div class="final title-block last">
 	<div class="title-block-inner clearfix">
 		<div class="title-block-container container clearfix">		
-			<div id="bigtop-title" class="title">
+			<div id="bigtop-title" class="im-man-title">
 				<span class="first">I'm not a man.</span><br/>
 				<a href="http://www.barbie.com"><span class="second red">Get me the heck out of here.</span></a>
 			</div>

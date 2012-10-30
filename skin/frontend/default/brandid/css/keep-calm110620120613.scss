@@ -76,13 +76,13 @@ span.apostrophe2 {
 
 @import 'arush/landing/header.scss';
 
-.title {
+.im-man-title {
 	margin: 40px auto;
 	text-align: center;
 }
 
 
-.title span {
+.im-man-title span {
 	clear:both;
 	padding:10px 17px;
 	background-color:#000;
@@ -148,7 +148,7 @@ span.apostrophe2 {
 	
 }
 
-.commitment .title.section {
+.commitment .im-man-title.section {
 	margin-top:115px;
 }
 
@@ -396,11 +396,11 @@ span.quote {
 	margin-right:0;
 }
 
-.final.title.section {
+.final.im-man-title.section {
 	margin: 190px auto 80px;
 }
 
-.final.title.section span.second.red {
+.final.im-man-title.section span.second.red {
 	color:#d2002b;
 }
 
@@ -409,13 +409,13 @@ span.quote {
 }
 
 
-.final.title span {
+.final.im-man-title span {
 	color:black;
 	background:none !important;
 	-webkit-background-clip: none !important;
 	-webkit-text-fill-color: black;
 }
-.final.title a span.red {
+.final.im-man-title a span.red {
 	color:#d2002b;
 	background:none;
 	-webkit-text-fill-color: #d2002b;
@@ -929,13 +929,13 @@ span.login a {color:#d2002b;text-decoration:underline;}
 	.quote-footer .footer-container {width:100%;}
 }
 @media only screen and (max-width: 767px) {
-	.title span, .title span {
+	.im-man-title span, .im-man-title span {
 		font-size:29px;
 	}
 
 }
 @media only screen and (max-width: 479px) {
-	.title span, .title span {
+	.im-man-title span, .im-man-title span {
 		font-size:18px;
 		line-height:27px;
 		padding:9px;

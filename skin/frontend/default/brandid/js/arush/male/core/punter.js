@@ -1,8 +1,25 @@
+// var brandidMale = {
+// 	createPunter: function() {
+
+// 	}
+// }
+// male = new brandidMale();
+
+// male.createPunter();
+
+
+
 function createPunter() {
 	
 	if($j.cookie('punter') != null) {
 		punter = JSON.parse($j.cookie("punter"));
 	}
+}
+
+function saveCookieFromString(cookieString) {
+
+	$j.cookie('punter', cookieString, { expires: 1, path: '/' });
+	// load punter from cookie
 }
 
 function registerUser() {
