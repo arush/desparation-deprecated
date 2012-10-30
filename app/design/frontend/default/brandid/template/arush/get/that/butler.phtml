@@ -23,7 +23,7 @@
 				<div class="landing-title">
 					<span>Get a Mo Butler for Movember</span>
 					<div class="landing-subtitle">
-						<span>Movember means that us men need to <span class="bold">grow large or go home.</span><br/>With that in mind, BRANDiD has put together the ultimate in <span class="bold">bespoke moustache experiences.</span><br>A dedicated 24/7 specialist <span class="bold">tache technician.</span></span>
+						<span>Movember means that us men need to <span class="bold">grow large or go home.</span> With that in mind, BRANDiD has put together the ultimate in <span class="bold">bespoke moustache experiences.</span><br/>A dedicated 24/7 specialist <span class="bold">tache technician.</span></span>
 					</div>
 				</div>
 				<div class="ten columns">
@@ -129,6 +129,10 @@
 
 <div class="quotes container clearfix">
 
+	<div class="row endorsement-title clearfix">
+		Unofficial Endorsements
+	</div>
+
 	<div class="quote-box one-third column">
 	<img src="<?php echo $this->getSkinUrl('images/arush/movember/magnum.jpg'); ?>" class="scale-with-grid quote-img" alt="Magnum PI"/>
 	<div class="apostrophe"><span>‘</span><span class="apostrophe2">‘</span></div>
@@ -162,11 +166,11 @@
 			<div class="landing-subtitle">
 				<span>Share this page with your friends, maybe one of them is feeling more generous than you.</span>
 			</div>
-
-			<div class="big-share-buttons clearfix">
+		</div>
+		<div class="big-share-buttons clearfix">
 				<div class="one-third column">
 					<div class="share like">
-						<div class="fb-like" data-href="http://www.facebook.com/getbrandid" data-send="false" data-layout="button_count" data-width="200" data-show-faces="false" data-font="arial"></div>
+						<div class="fb-like" data-href="http://www.getbrandid.com/get/that/butler" data-send="false" data-width="250" data-show-faces="true"></div>
 					</div>
 				</div>
 
@@ -179,12 +183,10 @@
 
 				<div class="one-third column">
 					<div class="share">
-						<a href="https://twitter.com/BRANDiD" class="twitter-follow-button" data-show-count="false">Follow @BRANDiD</a>
-						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+						<span id="tumblr_button_abc123"></span>
 					</div>
 				</div>
 			</div>
-		</div>
 		
 		<div class="sub-block-holder">
 				
@@ -246,6 +248,26 @@
 
 	</div>
 </div>
+
+
+
+<!-- Set these variables wherever convenient -->
+<script type="text/javascript">
+    var tumblr_photo_source = "http://brandid.s3.amazonaws.com/landing/mobutler.png";
+    var tumblr_photo_caption = "Movember means that us men need to grow large or go home. With that in mind, BRANDiD has put together the ultimate in bespoke moustache experiences. A dedicated 24/7 specialist tache technician.";
+    var tumblr_photo_click_thru = "http://www.getbrandid.com/get/that/butler";
+</script>
+
+<!-- Put this code at the bottom of your page -->
+<script type="text/javascript">
+    var tumblr_button = document.createElement("a");
+    tumblr_button.setAttribute("href", "http://www.tumblr.com/share/photo?source=" + encodeURIComponent(tumblr_photo_source) + "&caption=" + encodeURIComponent(tumblr_photo_caption) + "&clickthru=" + encodeURIComponent(tumblr_photo_click_thru));
+    tumblr_button.setAttribute("title", "Share on Tumblr");
+    tumblr_button.setAttribute("style", "display:inline-block; text-indent:-9999px; overflow:hidden; width:129px; height:20px; background:url('http://platform.tumblr.com/v1/share_3.png') top left no-repeat transparent;");
+    tumblr_button.innerHTML = "Share on Tumblr";
+    document.getElementById("tumblr_button_abc123").appendChild(tumblr_button);
+</script>
+
 
 
 <script type="text/javascript">

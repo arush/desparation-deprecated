@@ -40,8 +40,6 @@ $padding: 30px;
 				float:right;
 			}
 		}
-		
-
 	}
 
 	.mo-price-box {
@@ -127,3 +125,138 @@ $padding: 30px;
 		padding:18px 34px 43px;
 	}
 }
+
+
+@media only screen and (max-width: 767px) {
+	.top-block {
+		.mo-price-box-container	{
+			.price-box-subtext {
+
+			}
+			.share-top	{
+				.share {
+					clear:both;
+					float:left;
+				}
+				.share.like {
+
+				}
+				.share:last-child {
+					float:left;
+				}
+			}
+			.mo-price-box {
+				.price-header {
+					font-size:16px;
+				}
+				.price-details {
+					.big-price {
+						font-size:44px;
+					}
+					.price-subtitles {
+						span.blue {
+
+						}
+					}
+				}
+				.buy-container {
+					a.convert {
+
+					}
+				}
+			}
+			.sub-block {
+
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 959px) and (min-width: 768px) {
+	.top-block {
+		.mo-price-box-container	{
+			.price-box-subtext {
+
+			}
+			.share-top	{
+				.share {
+
+				}
+				.share.like {
+
+				}
+				.share:last-child {
+
+				}
+			}
+			.mo-price-box {
+				.price-header {
+					font-size:16px;
+				}
+				.price-details {
+					.big-price {
+
+					}
+					.price-subtitles {
+						span.blue {
+
+						}
+					}
+				}
+				.buy-container {
+					a.convert {
+
+					}
+				}
+			}
+			.sub-block {
+
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 767px) and (min-width: 480px) {
+	.top-block {
+		.mo-price-box-container	{
+			.price-box-subtext {
+
+			}
+			.share-top	{
+				.share {
+
+				}
+				.share.like {
+
+				}
+				.share:last-child {
+
+				}
+			}
+			.mo-price-box {
+				.price-header {
+					font-size:16px;
+				}
+				.price-details {
+					.big-price {
+
+					}
+					.price-subtitles {
+						span.blue {
+
+						}
+					}
+				}
+				.buy-container {
+					a.convert {
+
+					}
+				}
+			}
+			.sub-block {
+
+			}
+		}
+	}
+}
+

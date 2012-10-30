@@ -16,6 +16,7 @@ $margin: 15px;
 .container.withShadow {
 	@include box-shadow(rgba(0, 0, 0, 0.3) 0 1px 3px);
 	@include border-top-radius(5px);
+	margin-bottom:80px;
 }
 span.bold {
 	font-weight:bold;
@@ -35,13 +36,14 @@ span.bold {
 		font: $title-font;
 		text-align:center;
 		letter-spacing:-1px;
-		margin-top:20px;
+		margin:20px 15% 0;
 
 		.landing-subtitle {
 			font: $subtitle-font;
 			color: #6f6f6f;
 			letter-spacing:0;
 			line-height:20px;
+			margin:30px 0;
 		}
 	}
 	.sub-block-holder {
@@ -123,6 +125,17 @@ span.bold {
 	width:100%;
 }
 
+
+.endorsement-title {
+	font-size: 34px;
+	font-family: $title-font;
+	text-shadow: 0 1px 0 white;
+	letter-spacing:-2px;
+	color: #595959;
+	font-weight:bold;
+	margin-bottom:20px;
+}
+
 .quotes {
 	span.quote {
 		background:#FFF;
@@ -145,6 +158,7 @@ span.bold {
 	}
 }
 
+
 .loading {
 	background: transparent url(../../../images/ajax-loader.gif) no-repeat 50% 50%;
 }
@@ -159,3 +173,41 @@ span.bold {
 		padding:40px 0;
 	}
 }
+
+.share-block {
+
+	.landing-title {
+		font-size:36px;
+		margin:20px 10%;
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	.top-block, .share-block {
+		.landing-title {
+			font-size:20px;
+			margin:20px 5%;
+		}
+	}
+}
+
+
+@media only screen and (max-width: 959px) and (min-width: 768px) {
+	.top-block, .share-block {
+		.landing-title {
+			font-size:36px;
+		}
+	}
+}
+
+
+@media only screen and (max-width: 767px) and (min-width: 480px) {
+	.top-block, .share-block {
+		.landing-title {
+			font-size:26px;
+			margin:20px 5%;
+		}
+	}
+}
+
+
