@@ -1,5 +1,6 @@
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
+@import "components/tumblr.scss";
 
 
 // global variables
@@ -7,16 +8,21 @@ $back: #FFF;
 $radius: 5px;
 $colour: #444;
 $title-font: bold 3em/1.5em "ff-enzo-web",Helvetica,Arial,sans-serif;
-$subtitle-font: normal 0.4em/1em "proxima-nova",Helvetica,Arial,sans-serif;
+$subtitle-font: normal 18px/18px "proxima-nova",Helvetica,Arial,sans-serif;
 $font: normal 1em/1em "proxima-nova",Helvetica,Arial,sans-serif;
 
 $margin: 15px;
 
-#mainContainer {
+.container.withShadow {
 	@include box-shadow(rgba(0, 0, 0, 0.3) 0 1px 3px);
 	@include border-top-radius(5px);
 }
-.top-block {
+span.bold {
+	font-weight:bold;
+	color:black;
+}
+
+.top-block, .share-block {
 	background:$back;
 	font: $font;
 	color: $colour;
@@ -36,7 +42,6 @@ $margin: 15px;
 			color: #6f6f6f;
 			letter-spacing:0;
 			line-height:20px;
-
 		}
 	}
 	.sub-block-holder {
@@ -88,6 +93,7 @@ $margin: 15px;
 				color:#7d7d7d;
 				text-align:left;
 				margin:0 15px 15px 15px;
+
 			}
 		}
 		.sub-block-bg {
@@ -136,5 +142,20 @@ $margin: 15px;
 	}
 	.caption-small {
 		text-align:left;
+	}
+}
+
+.loading {
+	background: transparent url(../../../images/ajax-loader.gif) no-repeat 50% 50%;
+}
+
+.share-block .sub-block-holder .sub-block .explain {
+	margin:56px 20px;
+}
+
+.share-block {
+	.big-share-buttons {
+		background:white;
+		padding:40px 0;
 	}
 }
