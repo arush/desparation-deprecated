@@ -276,7 +276,7 @@
 		// load js in after user has indicated they are hanging around on the page
 
 		(function($) {
-			$.ajax({ url:"<?php echo $this->getSkinUrl('js/arush/landing/tumblrBadge-1.1.js'); ?>", cache:true, dataType:"script"
+			$.ajax({ url:"<?php echo $this->getSkinUrl('js/arush/landing/tumblrBadge-1.1-ck.js'); ?>", cache:true, dataType:"script"
 			}).done(function ( data ) {
 				$('#tumblr-badge').removeClass('loading');
 			});
