@@ -473,6 +473,7 @@
         $scope.updateMageQty(o.text, o.qty, brandType);
         $j('.' + $scope.items[x].text + '-' + brandType).click();
         $scope.freqChanger($scope.plan.frequency);
+        $scope.chooseAddMessage(x);
         x++;
       }
       $scope.recalculate();
