@@ -599,7 +599,7 @@ root.buildPlan = ($scope) ->
       # NOT WORKING RIGHT NOW!
       # setTimeout $j('.'+$scope.items[x].text+'-'+colour).click(), 5000
       
-      $scope.chooseAddMessage(x);
+      $scope.chooseAddMessage(x+1);
 
       x++
     # set mage dropdowns etc...
