@@ -599,6 +599,8 @@ root.buildPlan = ($scope) ->
       # NOT WORKING RIGHT NOW!
       # setTimeout $j('.'+$scope.items[x].text+'-'+colour).click(), 5000
       
+      # init motivational message when page loads with zero as default quantity
+      # can't really understand why I need a +1 here, but it doesn't work otherwise!
       $scope.chooseAddMessage(x+1);
 
       x++
