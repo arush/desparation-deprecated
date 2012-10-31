@@ -10,7 +10,7 @@
 			<action method="addItem"><type>skin_js</type><name>js/arush/male/jquery.text-effects.js</name></action>
 			<action method="addItem"><type>skin_js</type><name>js/arush/male/json2.js</name></action>
 			<action method="addItem"><type>skin_js</type><name>js/arush/male/ajfdp312-ck.js</name></action>
-			<action method="removeItem"><type>skin_js</type><name>js/brandid1-ck.js</name></action>
+			<action method="addItem"><type>skin_js</type><name>js/brandid1-ck.js</name></action>
 
 
 		<!--	<action method="addItem"><type>skin_js</type><name>js/scroll/jquery.serialScroll-1.2.2-min.js</name></action>
@@ -84,7 +84,7 @@
 			<action method="addItem"><type>skin_js</type><name>js/arush/male/json2.js</name></action>
 			<action method="addItem"><type>skin_js</type><name>js/arush/male/ajfdp312-ck.js</name></action>
 			<action method="addItem"><type>skin_js</type><name>js/arush/male/questions/jumpers.js</name></action>
-			<action method="removeItem"><type>skin_js</type><name>js/brandid1-ck.js</name></action>
+			<action method="addItem"><type>skin_js</type><name>js/brandid1-ck.js</name></action>
 
 
 
@@ -178,7 +178,7 @@
 			<!-- <action method="addItem"><type>skin_js</type><name>js/arush/male/json2.js</name></action> -->
 			<!-- <action method="addItem"><type>skin_js</type><name>js/arush/male/ajfdp312-ck.js</name></action> -->
 			<!-- <action method="addItem"><type>skin_js</type><name>js/arush/male/questions/jumpers.js</name></action> -->
-			<!-- <action method="removeItem"><type>skin_js</type><name>js/brandid1-ck.js</name></action> -->
+			<action method="addItem"><type>skin_js</type><name>js/brandid1-ck.js</name></action>
 
 
 
