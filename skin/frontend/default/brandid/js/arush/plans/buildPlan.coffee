@@ -603,6 +603,7 @@ root.buildPlan = ($scope) ->
     # set mage dropdowns etc...
 
     # init motivational messages when the item starts at zero
+    # should really do this as a loop but it didn't work in the while loop above
     $scope.chooseAddMessage(0);
     $scope.chooseAddMessage(1);
     $scope.chooseAddMessage(2);
