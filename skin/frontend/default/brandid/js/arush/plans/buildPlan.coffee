@@ -240,7 +240,7 @@ root.buildPlan = ($scope) ->
   $scope.items = [
     recurlyCode: "option-8-v-socks" #NB this should never be read as the default value, must always be initialised
     text: "socks"
-    qty: 5
+    qty: 1
     price: 3
     size: 'Choose a size'
     chosenColour: 'Choose a colour'
@@ -252,7 +252,7 @@ root.buildPlan = ($scope) ->
   ,
     recurlyCode: "option-18-v-boxers"
     text: "boxers"
-    qty: 5
+    qty: 0
     price: 5
     size: 'Choose a size'
     colourSummary: 'Choose a colour'
@@ -266,7 +266,7 @@ root.buildPlan = ($scope) ->
   ,
     recurlyCode: "option-28-v-undertees"
     text: "undertees"
-    qty: 4
+    qty: 0
     price: 15
     size: 'Choose a size'
     chosenColour: 'Choose a colour'
