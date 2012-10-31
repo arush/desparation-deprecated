@@ -599,10 +599,13 @@ root.buildPlan = ($scope) ->
       # NOT WORKING RIGHT NOW!
       # setTimeout $j('.'+$scope.items[x].text+'-'+colour).click(), 5000
 
-      $scope.chooseAddMessage(x);
-
       x++
     # set mage dropdowns etc...
+
+    # init motivational messages when the item starts at zero
+    $scope.chooseAddMessage(0);
+    $scope.chooseAddMessage(1);
+    $scope.chooseAddMessage(2);
 
     $scope.recalculate()
     $scope.update()
