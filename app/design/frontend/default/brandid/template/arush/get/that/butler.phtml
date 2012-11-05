@@ -1,3 +1,25 @@
+<?php
+	$referer = false;
+	$refererSet = false;
+	if(Mage::getSingleton('core/session')->getReferer()) {
+		$refererSet = true;
+		$referer = Mage::getSingleton('core/session')->getReferer();
+	}
+
+	if(!$refererSet) {
+		//get the referrer
+		if (isset($_SERVER['HTTP_REFERER'])) {
+			$referer = $_SERVER['HTTP_REFERER'];
+		} else {
+			$referer = "unknown";
+		}
+		//save it in a session variable
+		Mage::getSingleton('core/session')->setReferer($referer); // store session data
+	}
+?>
+
+
+
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -283,3 +305,33 @@
 		})(jQuery);
 	}
 </script>
+
+<?php
+	if(isset($_GET["fb_ad_id"])) { ?>
+
+		<script type="text/javascript">
+			
+			// Facebook ads to KISSmetrics tracking
+			if(_kmq !== undefined) {
+				_kmq.push(['set', {'fb_ad_id':'<?php echo $_GET["fb_ad_id"]; ?>'}]);
+
+			}
+		
+		</script>
+
+	<?php	}
+
+	if(isset($_GET["fb_ad_group"])) { ?>
+
+		<script type="text/javascript">
+			
+			// Facebook ads to KISSmetrics tracking
+			if(_kmq !== undefined) {
+				_kmq.push(['set', {'fb_ad_group':'<?php echo $_GET["fb_ad_group"]; ?>'}]);
+
+			}
+		
+		</script>
+
+	<?php 	}
+?>
