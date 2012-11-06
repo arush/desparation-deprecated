@@ -7,5 +7,10 @@ class Arush_Get_ThatController extends Mage_Core_Controller_Front_Action
 	    $this->renderLayout();
     }
 
+    public function appAction(){
+	    $this->loadLayout();
+	    $this->renderLayout();
+    }
+
 }
 

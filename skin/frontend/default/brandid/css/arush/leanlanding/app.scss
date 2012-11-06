@@ -1,0 +1,88 @@
+.app-holder {
+	margin:15% 0 0 25%;
+}
+
+.top-section {
+	padding-bottom:30px;
+	background:white;
+}
+
+
+
+.top-block, .share-block {
+
+	.landing-title {
+
+		span.landing-title-span {
+			line-height:45px;
+		}
+
+		margin:30px 5% 0;
+		.landing-subtitle {
+
+		}
+	}
+
+}
+
+.sub-block-holder {
+	.sub-block-bg {
+		.sub-block {
+			.landing-title {
+				font-size:20px;
+				letter-spacing:-1px;
+			}
+
+		}
+	}						
+}
+
+
+.share-top {
+	margin-top:60px;
+	.share {
+		float:left;
+		margin-right:30px;
+	}
+	.share.follow {
+		float:right;
+		margin-right:0;
+	}
+}
+
+.blurb {
+	font-family:"proxima-nova",Hevetica, Arial;
+	font-weight:bold;
+	font-size:18px;
+	letter-spacing:-1px;
+	text-transform:uppercase;
+	color:black;
+	margin:20px 0;
+	text-align:center;
+}
+
+button.convert.get-the-app {
+	width:45%;
+	font-size:14px;
+}
+
+input.get-the-app-input {
+	width:41%;
+	padding-left:60px;
+	padding-right:0;
+	color:#9f9f9f;
+}
+
+.input-overlay {
+	position:absolute;
+	padding:24px 0 24px 20px;
+	color: #9F9F9F;
+	padding-left:20px;
+	font-size: 21px;
+}
+
+.signup {
+	text-align: left;
+	margin:50px;
+	margin-top:80px;
+}
