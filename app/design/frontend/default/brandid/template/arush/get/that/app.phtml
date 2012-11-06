@@ -236,9 +236,18 @@
 
 <script type="text/javascript">
 
+	/* KISSmetrics tracking */
+    if(_kmq !== undefined) {
+	  _kmq.push(['record', 'Viewed App Download Page']);
+    }
+
+
+
 	var $j = jQuery.noConflict();
 	/* attach a submit handler to the form */
 	  $j("#download-app").submit(function(event) {
+
+
 
 	    /* stop form from submitting normally */
 	    event.preventDefault(); 
@@ -248,17 +257,22 @@
 	        mobileInput = $form.find('input[name="mobile-input"]').val(),
 	        url = $form.attr('action');
 
+	    /* KISSmetrics tracking */
+	    if(_kmq !== undefined) {
+			_kmq.push(['record', 'Clicked App Download Link']);
+	    	_kmq.push(['set', {'mobile number':mobileInput}]);
+	    }
+
 	    if(mobileInput.charAt(0) == 0) {
 			// remove first digit
 			mobileInput = mobileInput.substring(1, mobileInput.length);
 		}
 
 		var mobile = $j('#mobile-prefix').text() + mobileInput;
-		alert(mobile);
 	    /* Send the data using post and put the results in a div */
 	    $j.post( url, { "mobile": mobile },
 	      function( data ) {
-		      	alert(data);
+	      	alert('Cool, check your phone for a text message!');
 	          //var content = $( data ).find( '#content' );
 	          //$( "#result" ).empty().append( content );
 	      }, "json");

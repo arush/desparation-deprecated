@@ -18,6 +18,11 @@ $margin: 15px;
 	@include border-top-radius(5px);
 	margin-bottom:80px;
 }
+
+.top-block, .content, .text-overlay, .top-section {
+	@include border-top-radius(5px);
+}
+
 span.bold {
 	font-weight:bold;
 	color:black;
