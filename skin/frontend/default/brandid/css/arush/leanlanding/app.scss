@@ -1,0 +1,47 @@
+.app-holder {
+	margin:0 0 0 35px;
+}
+
+.top-section {
+	padding-bottom:30px;
+	background:white;
+}
+
+.blurb {
+	font-family:"proxima-nova",Hevetica, Arial;
+	font-weight:bold;
+	font-size:18px;
+	letter-spacing:-1px;
+	text-transform:uppercase;
+	color:black;
+	margin:20px 0;
+	text-align:center;
+}
+
+.how-to {
+	margin-top:80px;
+}
+
+a.convert.get-the-app {
+	width:45%;
+}
+
+input.get-the-app-input {
+	width:41%;
+	padding-left:60px;
+	padding-right:0;
+	color:#9f9f9f;
+}
+
+.input-overlay {
+	position:absolute;
+	padding:24px 0 24px 20px;
+	color: #9F9F9F;
+	padding-left:20px;
+	font-size: 21px;
+}
+
+.signup {
+	text-align: left;
+	margin:50px;
+}
