@@ -7,8 +7,7 @@ class Arush_Subscribe_Helper_Data extends Mage_Core_Helper_Abstract {
 	public function applyJob($email) {
 		// get standard values for mailchimp api call
 		$storeId = Mage::app()->getStore()->getId();			
-		$listId = Mage::helper('monkey')->getDefaultList($storeId);
-		
+		$listId = 'ed477f92bf';
 
 		$time = strtotime("now");
 
