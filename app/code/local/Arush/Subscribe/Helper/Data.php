@@ -5,8 +5,11 @@ class Arush_Subscribe_Helper_Data extends Mage_Core_Helper_Abstract {
 	/* returns $api object */
 	
 	public function applyJob($email) {
-		$storeId = Mage::app()->getStore()->getId();
-		$listId = '46fc00ea30';
+		// get standard values for mailchimp api call
+		$storeId = Mage::app()->getStore()->getId();			
+		$listId = Mage::helper('monkey')->getDefaultList($storeId);
+		
+
 		$time = strtotime("now");
 
 		if (isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] !== '127.0.0.1') {
