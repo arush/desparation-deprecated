@@ -67,7 +67,7 @@
 				$message2
 			);
 
-			$message3 = "(3/3) Your first reminder will arrive by txt soon. All will be explained. As always call BRANDiD support on 0203 322 2882 with your feedback. Over & Out.";
+			$message3 = "(3/3) Your first txt reminder will arrive soon. For help or feedback either REPLY to this txt or CALL 0203 322 2882 to speak to humans. Over & Out.";
 
 			$sms3 = $client->account->sms_messages->create(
 
