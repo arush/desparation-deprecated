@@ -51,7 +51,9 @@
 								<div class="get-the-app-input clearfix">
 									<div id="mobile-prefix" class="input-overlay">+44</div>
 									<input type="text" id="mobile-input" name="mobile-input" class="clear-input">
+									<div id="twilio-response" class="start"></div>
 									<button type="submit" id="submit-mobile" class="convert get-the-app">Txt me a download link!</button>
+									
 								</div>
 							</form>
 
@@ -85,17 +87,17 @@
 						
 						<img src="<?php echo $this->getSkinUrl('images/arush/leanlanding/app/icon-desktop.png'); ?>" alt="Moustache weight training" class="scale-with-grid explain-img">
 
-						<div class="explain">Make your first order at <a href="/">getbrandid.com</a>. Once you're set up, M.A.L.E. learns your tastes and remembers your credit card details.</div>
+						<div class="explain">Make your first order at <a href="/">getbrandid.com</a>. Once you're set up, M.A.L.E. (Masculine Algorithmic Learning Engine) learns your tastes and remembers your payment deets.</div>
 					</div>
 				</div>
 				
 				<div class="sub-block-bg">
 					<div class="one-third column sub-block">
-						<div class="landing-title">Step 2<br>M.A.L.E. Reminds You</div>
+						<div class="landing-title">Step 2<br>M.A.L.E. Keeps You On Point</div>
 
 						<img src="<?php echo $this->getSkinUrl('images/arush/leanlanding/app/icon-alarm.png'); ?>" alt="Moustache oils" class="scale-with-grid explain-img">
 
-						<div class="explain">Depending on what you ordered, M.A.L.E. figures out when you're likely to need a top-up, and sends you a reminder.</div>
+						<div class="explain">Depending on your order M.A.L.E. will figure out when you need a top-up, and hit you up with a reminder.</div>
 					</div>
 				</div>
 
@@ -105,7 +107,7 @@
 
 						<img src="<?php echo $this->getSkinUrl('images/arush/leanlanding/app/icon-phone.png'); ?>" alt="Moustache singing" class="scale-with-grid explain-img">
 
-						<div class="explain">In one tap, you can reorder, snooze or modify your next order. It couldn't be simpler.</div>
+						<div class="explain">With one tap, you can top up, modify or hit snooze on your order. Easy right? Of course it is, you're a bloke, you've got better things to do with your time.</div>
 					</div>
 				</div>
 
@@ -267,6 +269,10 @@
     if(typeof(_kmq) !== "undefined") {
     	_kmq.push(['record', 'Viewed App Download Page']);
     }
+    /* Mixpanel tracking */
+    if(typeof(mixpanel) !== "undefined") {
+		mixpanel.track_pageview("/get/that/app");
+    }
 
 
 
@@ -302,9 +308,19 @@
 		}
 
 		var mobile = $j('#mobile-prefix').text() + mobileInput;
+	    
+
+		/* disable the button */
+
+		$j('#submit-mobile').attr('disabled', true);
+		$j('#twilio-response').addClass('loading');
+
+
 	    /* Send the data using post and put the results in a div */
 	    $j.post( url, { "mobile": mobile },
 	      function( data ) {
+	      	$j('#submit-mobile').removeAttr('disabled');
+	      	$j('#twilio-response').removeClass('loading');
 	      	alert('Cool, check your phone for a text message!');
 	          //var content = $( data ).find( '#content' );
 	          //$( "#result" ).empty().append( content );

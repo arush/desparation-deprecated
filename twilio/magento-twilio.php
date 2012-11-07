@@ -9,25 +9,58 @@ Mage::setIsDeveloperMode(true);
 Mage::app(); //pass in store code if you like
 date_default_timezone_set('Europe/London'); // add your locale - thanks to @benmarks from BlueAcorn for this
 
+function getOrders() {
+	$orders = Mage::getSingleton('sales/order')->getCollection()
+		->addAttributeToSelect('*');
+		// ->addFieldToFilter('created_at', array('from'=>$from, 'to'=>$to))
+		// ->addFieldToFilter('status', 'complete')
+	 	// ->addFieldToFilter('status', array('in' => array('pending','complete','processing')));
+	return $orders;
+}
+
+
+function getOrderBillingInfo($order)
+{
+    $billingAddress = !$order->getIsVirtual() ? $order->getBillingAddress() : null;
+    $address_line1 = "";
+    $district = "";
+    
+    if(strpos($billingAddress->getData("street"), "\n")){
+        $tmp = explode("\n", $billingAddress->getData("street"));
+        $district = $tmp[1];
+        $address_line1 = $tmp[0];
+    }
+    if($address_line1 == ""){
+        $address_line1 = $billingAddress->getData("street");
+    }
+    return array(
+         "billing_name" =>       $billingAddress ? $billingAddress->getName() : '',
+         "billing_company" =>    $billingAddress ? $billingAddress->getData("company") : '',
+         "billing_street" =>     $billingAddress ? $address_line1 : '',
+         "billing_district" =>   $billingAddress ? $district : '',
+         "billing_zip" =>        $billingAddress ? $billingAddress->getData("postcode") : '',
+         "billing_city" =>       $billingAddress ? $billingAddress->getData("city") : '',
+         "billing_state" =>  $billingAddress ? $billingAddress->getRegionCode() : '',
+         "billing_country" =>    $billingAddress ? $billingAddress->getCountry() : '',
+        "billing_telephone" =>   $billingAddress ? $billingAddress->getData("telephone") : ''
+    );
+}
+
+function getOrderTelephone($orderBillingInfo) {
+	return $orderBillingInfo["billing_telephone"];
+}
 
 function isPayingCustomer($mobile) {
 
-	$customers = Mage::getResourceModel('customer/customer_collection')
-               ->addNameToSelect()
-               ->addAttributeToSelect('email')
+	$orders = getOrders();
+	
+	foreach($orders as $order) {
 
-               ->joinAttribute('billing_telephone', 'customer_address/telephone', 'default_billing', null, 'left');
- 
-               //->joinAttribute('shipping_telephone', 'customer_address/telephone', 'default_shipping', null, 'left')
-               // ->addFieldToFilter('billing_telephone', 'notnull')
+		$orderBillingInfo = getOrderBillingInfo($order);
 
-    foreach($customers as $customer) {
-    	
-    	$customerAddressId = $customer->getDefaultBilling();
-		
-		if ($customerAddressId) {
-			$address = Mage::getModel('customer/address')->load($customerAddressId);
-			$magentoTel = $address->getTelephone();
+		if ($orderBillingInfo) {
+
+			$magentoTel = getOrderTelephone($orderBillingInfo);
 
 			//remove whitespace
 			$magentoTel = trim($magentoTel);
@@ -44,7 +77,7 @@ function isPayingCustomer($mobile) {
 	    	if($magentoTel === $mobile) {
 	    		// var_dump($customer);
 		    	// die;
-	    		return $customer->getEmail();
+	    		return $orderCustomerEmail = $order->getCustomerEmail();
 	    	}
 	    	
 		} else {

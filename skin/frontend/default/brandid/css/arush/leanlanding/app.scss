@@ -75,10 +75,14 @@ button.convert.get-the-app {
 	height: 50px;
 }
 
+button[disabled=disabled] {
+	background:#CFCFCF;
+}
+
 input.clear-input {
 	background:transparent;
 	border:none;
-	width:40%;
+	width:35%;
 	padding-left:1%;
 	float:left;
 }
@@ -137,7 +141,19 @@ input.clear-input {
 		margin-right:0;
 	}
 
+	#twilio-response {
+  		display: block;
+		height: 60px;
+		width:5%;
+		float: left;
+	}
+	#twilio-response.loading {
+		background: url('../../../images/ajax-loader.gif') no-repeat 0% 50%;
+	}
+
 }
+
+
 
 
 /* media queries */
