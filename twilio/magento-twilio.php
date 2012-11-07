@@ -28,8 +28,28 @@ function isPayingCustomer($mobile) {
 		if ($customerAddressId) {
 			$address = Mage::getModel('customer/address')->load($customerAddressId);
 			$magentoTel = $address->getTelephone();
+
+			//remove whitespace
+			$magentoTel = trim($magentoTel);
+			//remove first zero
+			$firstChar = substr($magentoTel, 0, 1);
+
+			if($firstChar === '0') {
+				$magentoTel = substr($magentoTel, 1);
+			}
+
+			//remove country code +44 <-- assumes UK mobile
+			$mobile = substr($mobile, 3);
+
+	    	if($magentoTel === $mobile) {
+	    		// var_dump($customer);
+		    	// die;
+	    		return $customer->getEmail();
+	    	}
+	    	
 		} else {
 			$address = false;
+
 		}
 
 
@@ -42,23 +62,7 @@ function isPayingCustomer($mobile) {
 
     	*/
 
-		//remove whitespace
-		$magentoTel = trim($magentoTel);
-		//remove first zero
-		$firstChar = substr($magentoTel, 0, 1);
-
-		if($firstChar === '0') {
-			$magentoTel = substr($magentoTel, 1);
-		}
-
-		//remove country code +44 <-- assumes UK mobile
-		$mobile = substr($mobile, 3);
-
-    	if($magentoTel === $mobile) {
-    		// var_dump($customer);
-	    	// die;
-    		return $customer->getEmail();
-    	}
+		
     }
     // var_dump($customers);
 	return false;
