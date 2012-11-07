@@ -68,18 +68,32 @@
 
 button.convert.get-the-app {
 	width:45%;
-	font-size:14px;
+	font-size:13px;
+	float:left;
+	margin: 5px;
+	line-height: 50px;
+	height: 50px;
 }
 
-input.get-the-app-input {
-	width:41%;
-	padding-left:60px;
+input.clear-input {
+	background:transparent;
+	border:none;
+	width:40%;
+	padding-left:1%;
+	float:left;
+}
+
+.get-the-app-input {
+	width:100%;
+	
 	padding-right:0;
 	color:#9f9f9f;
+	border:1px solid #ddd;
+	background:#f9f9f9;
 }
 
 .input-overlay {
-	position:absolute;
+	float:left;
 	padding:24px 0 24px 20px;
 	color: #9F9F9F;
 	padding-left:20px;
@@ -94,12 +108,14 @@ input.get-the-app-input {
 	.mobile-os-selector {
 		padding:5%;
 		margin-right:5%;
-		width:35%;
+		margin-bottom:20px;
+		width:37%;
 
 		// background:#CFCFCF;
-		@include box-shadow(#FA3F8D 0 1px 8px);
+		
 		@include border-radius(5px);
 		float:left;
+		text-transform:none;
 		
 		text-shadow: 0 1px 0 white;
 		letter-spacing:-2px;
@@ -113,8 +129,87 @@ input.get-the-app-input {
 			text-align:center;
 		}
 	}
-	.mobile-os-selector:last-child {
+
+	.mobile-os-selector:hover {
+		@include box-shadow(#444 0 1px 8px);
+	}
+	.mobile-os-selector.android {
 		margin-right:0;
 	}
 
 }
+
+
+/* media queries */
+
+@media only screen and (max-width: 767px) {
+	.top-section {
+		.app-holder {
+			width: 50%;
+			margin: 0 auto;
+			margin-top:30px;
+		}
+		.landing-title {
+			margin:5% 5% 0;
+
+		}
+		.signup {
+			margin:5%;
+			.mobile-os-selector {
+				margin-right:0;
+				width:90%;
+			}
+			button.convert.get-the-app {
+				width:96%;
+				margin:2%;
+			}
+		}
+	}
+			
+	.get-the-app-input {
+		width:100%;
+		margin-bottom:10px;
+
+	}
+}
+
+@media only screen and (max-width: 767px) and (min-width: 480px) {
+	button.convert.get-the-app {
+		
+		clear:both;
+		width:96%;
+		margin:2%;
+	}
+}
+
+@media only screen and (max-width: 959px) and (min-width: 768px) {
+	.top-section {
+		
+		.landing-title {
+			margin:5% 5% 0;
+
+		}
+		.signup {
+			margin:5%;
+			.mobile-os-selector {
+				margin-right:0;
+				width:90%;
+			}
+			button.convert.get-the-app {
+				width:96%;
+				margin:2%;
+			}
+		}
+	}
+			
+	.get-the-app-input {
+		width:100%;
+		margin-bottom:10px;
+
+	}
+	
+	
+}
+
+
+

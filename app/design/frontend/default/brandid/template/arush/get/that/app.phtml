@@ -36,21 +36,23 @@
 						</div>
 						<div class="signup">
 							<form id="download-app" action="/twilio/download-app.php" class="get-the-app">
-								
-								<a id="ios" class="mobile-os-selector secondary">
-									<div class="os-title">iOS</div>
-								</a>
-
-								<a id="android" class="mobile-os-selector secondary android">
-									<div class="os-title">Android</div>
-								</a>
-								<div class="clearfix"></div>
 								<div class="blurb">
 									Enter your mobile number for early beta access
 								</div>
-								<div id="mobile-prefix" class="input-overlay">+44</div>
-								<input type="text" id="mobile-input" name="mobile-input" class="get-the-app-input">
-								<button type="submit" id="submit-mobile" class="convert get-the-app">Txt me a download link!</button>
+								<a id="ios" class="mobile-os-selector convert secondary">
+									<div class="os-title">iOS</div>
+								</a>
+
+								<a id="android" class="mobile-os-selector convert secondary android">
+									<div class="os-title">Android</div>
+								</a>
+								<div class="clearfix"></div>
+								
+								<div class="get-the-app-input clearfix">
+									<div id="mobile-prefix" class="input-overlay">+44</div>
+									<input type="text" id="mobile-input" name="mobile-input" class="clear-input">
+									<button type="submit" id="submit-mobile" class="convert get-the-app">Txt me a download link!</button>
+								</div>
 							</form>
 
 							<div class="share-top clearfix">
@@ -244,6 +246,23 @@
 
 <script type="text/javascript">
 
+	var $j = jQuery.noConflict();
+	var phoneOS = "none chosen";
+
+	/* track Phone OS */
+	$j("#ios").click(function() {
+		phoneOS = "iOS";
+	  	$j('.mobile-os-selector').removeClass('active');
+	  	$j('#ios').addClass('active');
+	});
+
+	$j("#android").click(function() {
+		phoneOS = "android";
+		$j('.mobile-os-selector').removeClass('active');
+	  	$j('#android').addClass('active');
+	});
+
+
 	/* KISSmetrics tracking */
     if(typeof(_kmq) !== "undefined") {
     	_kmq.push(['record', 'Viewed App Download Page']);
@@ -251,7 +270,7 @@
 
 
 
-	var $j = jQuery.noConflict();
+	
 	/* attach a submit handler to the form */
 	  $j("#download-app").submit(function(event) {
 
@@ -268,8 +287,14 @@
 	    /* KISSmetrics tracking */
 	    if(typeof(_kmq) !== "undefined") {
 			_kmq.push(['record', 'Clicked App Download Link']);
-	    	_kmq.push(['set', {'mobile number':mobileInput}]);
+	    	_kmq.push(['set', {'mobile number':mobileInput, 'Phone OS':phoneOS}]);
 	    }
+
+	    /* Mixpanel Tracking */
+	   	if(typeof(mixpanel) !== "undefined") {
+	   		mixpanel.track("Clicked App Download Link", {"Phone OS": phoneOS, "Phone number": mobileInput});
+		}
+
 
 	    if(mobileInput.charAt(0) == 0) {
 			// remove first digit
