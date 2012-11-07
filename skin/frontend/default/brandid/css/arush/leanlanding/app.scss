@@ -1,3 +1,6 @@
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+
 .app-holder {
 	margin:15% 0 0 25%;
 }
@@ -7,7 +10,9 @@
 	background:white;
 }
 
-
+.container.withShadow {
+	background:#FFF;
+}
 
 .top-block, .share-block {
 
@@ -85,4 +90,31 @@ input.get-the-app-input {
 	text-align: left;
 	margin:50px;
 	margin-top:80px;
+
+	.mobile-os-selector {
+		padding:5%;
+		margin-right:5%;
+		width:35%;
+
+		// background:#CFCFCF;
+		@include box-shadow(#FA3F8D 0 1px 8px);
+		@include border-radius(5px);
+		float:left;
+		
+		text-shadow: 0 1px 0 white;
+		letter-spacing:-2px;
+		color: #595959;
+		
+	
+		.os-title {
+			font-family: "ff-enzo-web", Helvetica, Arial, sans-serif;
+			font-size:16px;
+			letter-spacing: -1px;
+			text-align:center;
+		}
+	}
+	.mobile-os-selector:last-child {
+		margin-right:0;
+	}
+
 }
