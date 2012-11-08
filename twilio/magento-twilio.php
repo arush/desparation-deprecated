@@ -25,23 +25,23 @@ function getOrderBillingInfo($order)
     $address_line1 = "";
     $district = "";
     
-    if(strpos($billingAddress->getData("street"), "\n")){
-        $tmp = explode("\n", $billingAddress->getData("street"));
-        $district = $tmp[1];
-        $address_line1 = $tmp[0];
-    }
-    if($address_line1 == ""){
-        $address_line1 = $billingAddress->getData("street");
-    }
+    // if(strpos($billingAddress->getData("street"), "\n")){
+    //     $tmp = explode("\n", $billingAddress->getData("street"));
+    //     $district = $tmp[1];
+    //     $address_line1 = $tmp[0];
+    // }
+    // if($address_line1 == ""){
+    //     $address_line1 = $billingAddress->getData("street");
+    // }
     return array(
-         "billing_name" =>       $billingAddress ? $billingAddress->getName() : '',
-         "billing_company" =>    $billingAddress ? $billingAddress->getData("company") : '',
-         "billing_street" =>     $billingAddress ? $address_line1 : '',
-         "billing_district" =>   $billingAddress ? $district : '',
-         "billing_zip" =>        $billingAddress ? $billingAddress->getData("postcode") : '',
-         "billing_city" =>       $billingAddress ? $billingAddress->getData("city") : '',
-         "billing_state" =>  $billingAddress ? $billingAddress->getRegionCode() : '',
-         "billing_country" =>    $billingAddress ? $billingAddress->getCountry() : '',
+         // "billing_name" =>       $billingAddress ? $billingAddress->getName() : '',
+         // "billing_company" =>    $billingAddress ? $billingAddress->getData("company") : '',
+         // // "billing_street" =>     $billingAddress ? $address_line1 : '',
+         // "billing_district" =>   $billingAddress ? $district : '',
+         // "billing_zip" =>        $billingAddress ? $billingAddress->getData("postcode") : '',
+         // "billing_city" =>       $billingAddress ? $billingAddress->getData("city") : '',
+         // "billing_state" =>  $billingAddress ? $billingAddress->getRegionCode() : '',
+         // "billing_country" =>    $billingAddress ? $billingAddress->getCountry() : '',
         "billing_telephone" =>   $billingAddress ? $billingAddress->getData("telephone") : ''
     );
 }
