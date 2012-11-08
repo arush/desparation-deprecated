@@ -37,7 +37,7 @@
 	foreach ($people as $number => $name) {
 		if($email = isPayingCustomer($number)) {
 
-			$message1 = "(1/3) M.A.L.E. here. I have your number linked to: " . $email . ", and looks like you are ready to test our order-by-mobile system.";
+			$message1 = "(1/3) M.A.L.E. here. I have your number linked to: " . $email . ", and looks like you are ready to test our app.";
 
 			$sms1 = $client->account->sms_messages->create(
 
@@ -52,7 +52,7 @@
 				$message1
 			);
 
-			$message2 = "(2/3) but before we release the app, I'll just send txts instead of push notifications, so we can get your feedback on what to build in the app.";
+			$message2 = "(2/3) Before releasing the app, I'll send txts instead of push notifications, so my engineers can get feedback on exactly what to build during beta.";
 
 			$sms2 = $client->account->sms_messages->create(
 
@@ -95,7 +95,7 @@
 				$number,
 
 				// the sms body
-				"M.A.L.E. here. Looks like you don't have a plan yet. You'll need to set one up at getbrandid.com first, then try and download the app again."
+				"M.A.L.E. here. You're on the app waiting list. Looks like you haven't been BRANDiD yet. Head over to getbrandid.com and get... uh... BRANDiD to jump the queue."
 			);
 
 			// Display a confirmation message on the screen
