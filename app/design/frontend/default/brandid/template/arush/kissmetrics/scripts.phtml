@@ -73,6 +73,8 @@
 				if($module === 'checkout' && $controller === 'onepage' && $action === 'index') {
 					?> _kmq.push(['record', 'Reached Checkout']);
 
+					// push email to kmq on click
+
 					if($j.cookie('punter') !== null) {
 						// get the punter from cookie
 						createPunter();

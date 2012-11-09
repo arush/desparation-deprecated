@@ -10,6 +10,7 @@ var $j = jQuery.noConflict();
 // @codekit-append "core/finalSave.js"
 // @codekit-append "core/share.js"
 
+
 // @codekit-append "questions/name.js"
 // @codekit-append "questions/offside.js"
 // @codekit-append "questions/investor.js"
@@ -20,7 +21,7 @@ var $j = jQuery.noConflict();
 // @codekit-append "questions/watch.js"
 // @codekit-append "questions/gift.js"
 // @codekit-append "questions/shirts.js"
-
+// @codekit-append "questions/jumpers.js"
 
 /* **********************************************
      Begin punter.js
@@ -256,6 +257,32 @@ function insertEmailButton() {
 	performAppend(s,string);
 }
 
+function insertBrandsField() {
+	var s = $j("#console");
+
+	var string = '<div class=\"mobile-buttons saving clearfix\">';
+	string += '<form action="/get/party/started" id="brands-form" class="brands-form"><input id="brands-to-save" type="text" name="brands" value="UniQlo, Muji, H&M, All Saints etc..." onFocus="clearDefaultJ(this)" onBlur="restoreTextJ(this)"/><button type="submit" id="submit_mags" class="convert">Feed the M.A.L.E.</button></form>';
+	
+	string += "</div>";
+	
+	setTimeout(function(){
+		performAppend(s,string)
+	
+		$j("#brands-form").submit(function(event) {
+
+			/* stop form from submitting normally */
+			event.preventDefault();
+
+			/* disable the button */
+			$j('#brands-to-save').attr('disabled', true);
+
+			handleBrandsSubmit();
+
+		});
+
+	},1500);
+}
+
 function insertMagsField() {
 	var s = $j("#console");
 
@@ -306,6 +333,27 @@ function handleEmailSubmit() {
 		registerUser();
 
 		$j('.mobile-buttons.saving').remove();
+	
+}
+
+
+
+function handleBrandsSubmit() {
+
+		var brandsToSave;
+
+		brandsToSave = $j('#brands-to-save').val();
+	 	
+		// KISSmetrics
+		_kmq.push(['record', 'MALE Jumpers Hoodies Brands', {'brands':brandsToSave}]);
+
+		// Mixpanel
+		mixpanel.track(['MALE Jumpers Hoodies Brands', {'brands':brandsToSave}]);
+
+	 	punter.brands = brandsToSave;
+		$j('.mobile-buttons.saving').remove();
+
+		return maleJumpersBrandsDone();
 	
 }
 
@@ -779,6 +827,20 @@ var nameA = function (input) {
 	  	name = name.toLowerCase();
       	name = capitaliseFirstLetter(name);
 
+
+      	/* KISSmetrics tracking */
+	    if(typeof(_kmq) !== "undefined") {
+			_kmq.push(['record', 'Entered Name']);
+	    	_kmq.push(['set', {'Firstname':name}]);
+	    }
+
+	    /* Mixpanel Tracking */
+	   	if(typeof(mixpanel) !== "undefined") {
+	   		mixpanel.track("Entered Name", {"Firstname": name});
+	   		mixpanel.name_tag(name);
+		}
+
+
 	    var smallName = name.length <= 1;
 
 	  	if(input.toLowerCase() === 'investor') {
@@ -814,13 +876,31 @@ function insertNameButton() {
 	var s = $j("#console");
 
 	var string = '<div class=\"mobile-buttons saving clearfix\">';
-	string += '<input id="name-to-save" type="text" name="firstname" value="e.g. Steve" onFocus="clearDefaultJ(this)" onBlur="restoreTextJ(this)"/><a id="submit_email" class="convert" onclick="handleNameSubmit(); return false;">Feed the M.A.L.E™</a>';
+	string += '<form id="name-form" action="/get/party/started" class="name-form"><input id="name-to-save" type="text" name="firstname" value="e.g. Steve" onFocus="clearDefaultJ(this)" onBlur="restoreTextJ(this)"/><button type="submit" id="submit_email" class="convert">Feed the M.A.L.E™</button></form>';
 	
 	string += "</div>";
 	
-	setTimeout(function(){performAppend(s,string)},800);
+	setTimeout(function(){
+		performAppend(s,string);
+		$j("#name-form").submit(function(event) {
+
+			/* stop form from submitting normally */
+			event.preventDefault();
+
+			/* disable the button */
+			$j('#name-to-save').attr('disabled', true);
+
+			handleNameSubmit();
+
+		});
+	},800);
 	// performAppend(s,string)
 }
+
+	/* attach a submit handler to the form */
+	
+
+
 
 function handleNameSubmit() {
 
@@ -939,23 +1019,42 @@ function offsideAa() {
 	wipeConsole();
 	
 	punter.gender = 'Male';
-	_kmq.push(['record', 'MALE Offside', {'gender': 'male'}]);
+	
+	/* KISSmetrics tracking */
+    if(typeof(_kmq) !== "undefined") {
+    	_kmq.push(['record', 'MALE Offside', {'gender': 'male'}]);
+    }
 
-
+    /* Mixpanel Tracking */
+   	if(typeof(mixpanel) !== "undefined") {
+   		mixpanel.track("MALE Offside", {"Offside Answer": "I'm a man, Player A is offside"});
+   		mixpanel.register({ gender: "male" });
+	}
 
 	var q = 'You said: You are a man, Player A is offside ';
 
 	newQ(q);
 
 	setTimeout(function(){correctResponse('That is correct. You are clearly a man. ')}, 2000);
-	setTimeout('workQ()',4000);
+	setTimeout('maleJumpersHoodiesQ()',4000);
 
 }
 function offsideAb() {
 	wipeConsole();
 
 	punter.gender = 'Female';
-	_kmq.push(['record', 'MALE Offside', {'gender': 'female'}]);
+
+	/* KISSmetrics tracking */
+    if(typeof(_kmq) !== "undefined") {
+		_kmq.push(['record', 'MALE Offside', {'gender': 'female'}]);
+    }
+
+    /* Mixpanel Tracking */
+   	if(typeof(mixpanel) !== "undefined") {
+   		mixpanel.track("MALE Offside", {"Offside Answer": "I'm a a woman who knows her sport, Player A is offside"});
+   		mixpanel.register({ gender: "female" });
+	}
+
 
 	
 	var q = 'You said: You are a woman who knows her sport, Player A is offside ';
@@ -968,7 +1067,19 @@ function offsideAc() {
 	wipeConsole();
 
 	punter.gender = 'Female';
-	_kmq.push(['record', 'MALE Offside', {'gender': 'female'}]);
+	
+	/* KISSmetrics tracking */
+    if(typeof(_kmq) !== "undefined") {
+		_kmq.push(['record', 'MALE Offside', {'gender': 'female'}]);
+    }
+
+    /* Mixpanel Tracking */
+   	if(typeof(mixpanel) !== "undefined") {
+   		mixpanel.track("MALE Offside", {"Offside Answer": "Just show me a picture of Beckham"});
+   		mixpanel.register({ gender: "female" });
+	}
+
+	
 
 	
 	var q = 'These guys should have gone to BRANDiD... ';
@@ -977,20 +1088,6 @@ function offsideAc() {
 	
 	setTimeout(function(){beckham()},1000);
 	setTimeout(function(){insertContinue('giftQ()')},1000);
-}
-function offsideAd() {
-	wipeConsole();
-	
-	punter.gender = 'Male';
-	_kmq.push(['record', 'MALE Offside', {'gender': 'male'}]);
-
-	
-	var q = 'You said: You are a man, but you don\'t give a monkey\'s about this football/soccer stuff ';
-
-	newQ(q);
-
-	setTimeout(function(){correctResponse('You are a man. This is great news. ')}, 2000);
-	setTimeout('workQ()',4000);
 }
 
 /* **********************************************
@@ -1500,6 +1597,130 @@ function playAd() {
     punter.shirts = "bus";
     wipeConsole();
     return shirtsDone();
+  };
+
+}).call(this);
+
+
+/* **********************************************
+     Begin jumpers.js
+********************************************** */
+
+// Generated by CoffeeScript 1.3.3
+(function() {
+  var root;
+
+  root = typeof exports !== "undefined" && exports !== null ? exports : this;
+
+  root.maleJumpersHoodiesQ = function() {
+    var buttons, jumperBut1, jumperBut2, q;
+    wipeConsole();
+    saveProgress("maleJumpersHoodiesQ");
+    q = "I've hacked the Hubble Telescope and am pointing it towards Earth. I can see a storm system over New York, a neglected helium balloon with a Red Bull logo, and boy is it going to be cold in the UK this winter. \n\nLooks like you'll need something warm. Do you want a jumper or a hoodie? ";
+    newQ(q);
+    typeit();
+    jumperBut1 = ["smalltext convert", "Jumper<br/><span class=\"button-caption\">A hoodie won't match my shirts</span>", "maleJumpersHoodiesAa()"];
+    jumperBut2 = ["smalltext convert", "Hoodie<br/><span class=\"button-caption\">Two words: Mark. Zuckerberg.</span>", "maleJumpersHoodiesAb()"];
+    buttons = [jumperBut1, jumperBut2];
+    return setTimeout((function() {
+      return insertButtons(buttons, "#male-welcome-msg");
+    }), 3500);
+  };
+
+  root.maleJumpersHoodiesDone = function() {
+    _kmq.push([
+      "record", "MALE Jumpers Hoodies", {
+        jumpersHoodies: punter.jumpersHoodiesA
+      }
+    ]);
+    mixpanel.track([
+      "MALE Jumpers or Hoodies", {
+        jumpersHoodies: punter.jumpersHoodiesA
+      }
+    ]);
+    return maleJumpersPriceQ();
+  };
+
+  root.maleJumpersHoodiesAa = function() {
+    punter.jumpersHoodiesA = 'Jumpers';
+    return maleJumpersHoodiesDone();
+  };
+
+  root.maleJumpersHoodiesAb = function() {
+    punter.jumpersHoodiesA = 'Hoodies';
+    return maleJumpersHoodiesDone();
+  };
+
+  root.maleJumpersPriceQ = function() {
+    var buttons, jumperBut1, jumperBut2, q;
+    wipeConsole();
+    saveProgress("maleJumpersPriceQ");
+    q = "How much do you want to spend? ";
+    newQ(q);
+    typeit();
+    jumperBut1 = ["smalltext convert", "£30<br/><span class=\"button-caption\">Value brands, lighter material</span>", "maleJumpersPriceAa()"];
+    jumperBut2 = ["smalltext convert", "£80<br/><span class=\"button-caption\">Premium brands, heavier and warmer</span>", "maleJumpersPriceAb()"];
+    buttons = [jumperBut1, jumperBut2];
+    return setTimeout((function() {
+      return insertButtons(buttons, "#male-welcome-msg");
+    }), 1500);
+  };
+
+  root.maleJumpersPriceDone = function() {
+    _kmq.push([
+      "record", "MALE Jumpers Price", {
+        jumpersPrice: punter.jumpersPriceA
+      }
+    ]);
+    mixpanel.track("MALE Jumpers Price", {
+      jumpersPrice: punter.jumpersPriceA
+    });
+    return maleJumpersBrandsQ();
+  };
+
+  root.maleJumpersPriceAa = function() {
+    punter.jumpersPriceA = 'value';
+    return maleJumpersPriceDone();
+  };
+
+  root.maleJumpersPriceAb = function() {
+    punter.jumpersPriceA = 'premium';
+    return maleJumpersPriceDone();
+  };
+
+  root.maleJumpersBrandsQ = function() {
+    var buttons, jumperBut1, q;
+    wipeConsole();
+    saveProgress("maleJumpersBrandsQ");
+    q = "Complete the sentence:\n\nI want my " + punter.jumpersHoodiesA.toLowerCase() + " from brands or shops like ___________ ";
+    newQ(q);
+    typeit();
+    jumperBut1 = ["smalltext convert secondary", "I don't care<br/><span class=\"button-caption\">We'll call you after checkout anyway</span>", "maleJumpersBrandsAa()"];
+    buttons = [jumperBut1];
+    insertBrandsField();
+    return setTimeout((function() {}), 1500);
+  };
+
+  root.maleJumpersBrandsDone = function() {
+    _kmq.push([
+      "record", "MALE Jumpers Brands", {
+        jumpersBrands: punter.jumpersBrandsA
+      }
+    ]);
+    mixpanel.track("MALE Jumpers Brands", {
+      jumpersBrands: punter.jumpersBrandsA
+    });
+    return maleJumpersFinishedQ();
+  };
+
+  root.maleJumpersBrandsAa = function() {
+    punter.jumpersBrandsA = 'value';
+    return maleJumpersBrandsDone();
+  };
+
+  root.maleJumpersBrandsAb = function() {
+    punter.jumpersBrandsA = 'premium';
+    return maleJumpersBrandsDone();
   };
 
 }).call(this);

@@ -212,10 +212,10 @@
 
 				<div class="copy">
 					<div class="sixteen columns row">
-						<h1 class="one-liner">Mens Basics. Delivered on a schedule.</h1>
+						<h1 class="one-liner">I'm a man. I don't do shopping.</h1>
 					</div>
 					<div class="description ten columns offset-by-three row">
-						<h4 class="description-copy">Say goodbye to shopping. Say hello to M.A.L.E.</h4>
+						<h4 class="description-copy">BRANDiD is the simplest way for men to get their clothes.<br/>How? Say hello to M.A.L.E.</h4>
 					</div>
 					<div class="male row">
 						<div class="three columns">
@@ -903,17 +903,18 @@
 
 	var $j = jQuery.noConflict();
 	
+	// check for FB login
+	if(typeof(FB) !== "undefined" && typeof(mixpanel) !== "undefined") {
+		FB.getLoginStatus(function(response){
+			mixpanel.track("Connected to Facebook?": response.status);
+		});
+	}
+
+
 
 	$j(document).ready(function () {
-		$j.localScroll();
-		$j('a.invisibut').hover(
-			function() {
-				$j(this).addClass('red');
-				},
-			function() {
-				$j(this).removeClass('red');
-			});				
-});
+				
+	});
 
 </script>
 

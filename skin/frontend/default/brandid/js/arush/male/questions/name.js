@@ -4,6 +4,20 @@ var nameA = function (input) {
 	  	name = name.toLowerCase();
       	name = capitaliseFirstLetter(name);
 
+
+      	/* KISSmetrics tracking */
+	    if(typeof(_kmq) !== "undefined") {
+			_kmq.push(['record', 'Entered Name']);
+	    	_kmq.push(['set', {'Firstname':name}]);
+	    }
+
+	    /* Mixpanel Tracking */
+	   	if(typeof(mixpanel) !== "undefined") {
+	   		mixpanel.track("Entered Name", {"Firstname": name});
+	   		mixpanel.name_tag(name);
+		}
+
+
 	    var smallName = name.length <= 1;
 
 	  	if(input.toLowerCase() === 'investor') {
@@ -39,13 +53,31 @@ function insertNameButton() {
 	var s = $j("#console");
 
 	var string = '<div class=\"mobile-buttons saving clearfix\">';
-	string += '<input id="name-to-save" type="text" name="firstname" value="e.g. Steve" onFocus="clearDefaultJ(this)" onBlur="restoreTextJ(this)"/><a id="submit_email" class="convert" onclick="handleNameSubmit(); return false;">Feed the M.A.L.E™</a>';
+	string += '<form id="name-form" action="/get/party/started" class="name-form"><input id="name-to-save" type="text" name="firstname" value="e.g. Steve" onFocus="clearDefaultJ(this)" onBlur="restoreTextJ(this)"/><button type="submit" id="submit_email" class="convert">Feed the M.A.L.E™</button></form>';
 	
 	string += "</div>";
 	
-	setTimeout(function(){performAppend(s,string)},800);
+	setTimeout(function(){
+		performAppend(s,string);
+		$j("#name-form").submit(function(event) {
+
+			/* stop form from submitting normally */
+			event.preventDefault();
+
+			/* disable the button */
+			$j('#name-to-save').attr('disabled', true);
+
+			handleNameSubmit();
+
+		});
+	},800);
 	// performAppend(s,string)
 }
+
+	/* attach a submit handler to the form */
+	
+
+
 
 function handleNameSubmit() {
 

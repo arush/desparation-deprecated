@@ -163,7 +163,7 @@ body {background-color:#FFF;}
 	  		-webkit-perspective: 1000;
 }
 
-.mobile-buttons a {
+.mobile-buttons a, .mobile-buttons button {
 	width:100%;
 	margin:0 0 20px 0;
 	min-height:60px;
@@ -556,7 +556,7 @@ img.male-round, .male-back, .male-loading, .male-label-box, .male-loader {
 
 .jqconsole-output.question, .jqconsole-prompt, .jqconsole-input {display:none;}
 
-.mobile-buttons.saving input, .mobile-buttons.saving a {
+.mobile-buttons.saving input, .mobile-buttons.saving a, .mobile-buttons.saving button {
 	float:left;
 }
 
@@ -613,7 +613,7 @@ img.male-round, .male-back, .male-loading, .male-label-box, .male-loader {
 .mobile-buttons.saving input:focus {
 	color:#444;
 }
-.mobile-buttons.saving a {
+.mobile-buttons.saving a, .mobile-buttons.saving button {
 	width:30%;
 	float:right;
 }
@@ -694,7 +694,7 @@ and (orientation : landscape) {
 @media only screen and (max-width: 479px) {
 	#logo {width:48%;}
 	.mobile-buttons.saving input {font-size: 14px; width:96%;margin-bottom:10px;}
-	.mobile-buttons.saving a {width:100%;float:left;}
+	.mobile-buttons.saving a, .mobile-buttons.saving button {width:100%;float:left;}
 	
 	.online .male-round { @include ani-name(fadeOutUp);}
 	.online .progress-bar {display:none;}

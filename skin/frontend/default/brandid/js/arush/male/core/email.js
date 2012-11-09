@@ -49,6 +49,32 @@ function insertEmailButton() {
 	performAppend(s,string);
 }
 
+function insertBrandsField() {
+	var s = $j("#console");
+
+	var string = '<div class=\"mobile-buttons saving clearfix\">';
+	string += '<form action="/get/party/started" id="brands-form" class="brands-form"><input id="brands-to-save" type="text" name="brands" value="UniQlo, Muji, H&M, All Saints etc..." onFocus="clearDefaultJ(this)" onBlur="restoreTextJ(this)"/><button type="submit" id="submit_mags" class="convert">Feed the M.A.L.E.</button></form>';
+	
+	string += "</div>";
+	
+	setTimeout(function(){
+		performAppend(s,string)
+	
+		$j("#brands-form").submit(function(event) {
+
+			/* stop form from submitting normally */
+			event.preventDefault();
+
+			/* disable the button */
+			$j('#brands-to-save').attr('disabled', true);
+
+			handleBrandsSubmit();
+
+		});
+
+	},1500);
+}
+
 function insertMagsField() {
 	var s = $j("#console");
 
@@ -99,6 +125,27 @@ function handleEmailSubmit() {
 		registerUser();
 
 		$j('.mobile-buttons.saving').remove();
+	
+}
+
+
+
+function handleBrandsSubmit() {
+
+		var brandsToSave;
+
+		brandsToSave = $j('#brands-to-save').val();
+	 	
+		// KISSmetrics
+		_kmq.push(['record', 'MALE Jumpers Hoodies Brands', {'brands':brandsToSave}]);
+
+		// Mixpanel
+		mixpanel.track(['MALE Jumpers Hoodies Brands', {'brands':brandsToSave}]);
+
+	 	punter.brands = brandsToSave;
+		$j('.mobile-buttons.saving').remove();
+
+		return maleJumpersBrandsDone();
 	
 }
 
