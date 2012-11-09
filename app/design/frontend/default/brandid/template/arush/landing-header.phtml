@@ -125,6 +125,9 @@
 			<a id="header-convert" href="/get/party/started" class="convert">Step 1. Feed the M.A.L.E.</a>
 		</div>
 		
+		<a id="app" href="/get/that/app" class="header-button">
+			<span class="button-copy">App</span>
+		</a>
 		<a id="who" href="/keep/calm/getgifted" class="header-button">
 			<span class="button-copy">Gifts</span>
 		</a>
@@ -135,6 +138,7 @@
 		<a id="blog" href="http://blog.getbrandid.com/" class="header-button">
 			<span class="button-copy">Blog</span>
 		</a>
+		
 
 		<!-- <a id="what" href="<?php echo $urlmodifier; ?>#2" class="header-button">
 			<span class="button-copy">What?</span>
@@ -159,7 +163,7 @@
 		var referer;
 		referer = '<?php echo parse_url($referer,PHP_URL_HOST); ?>';
 		if(referer === '') {
-			referer = 'direct';
+			referer = 'PHP_URL_HOST was blank';
 		}
 		return referer;
 	}
