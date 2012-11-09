@@ -276,9 +276,8 @@
     /* Mixpanel tracking */
     if(typeof(mixpanel) !== "undefined") {
 		mixpanel.track_pageview("/get/that/app");
+   		mixpanel.track("Viewed App Download Page");
     }
-
-
 
 	
 	/* attach a submit handler to the form */
@@ -291,7 +290,9 @@
 	        
 	    /* get some values from elements on the page: */
 	    var $form = $j(this),
-	        mobileInput = $form.find('input[name="mobile-input"]').val(),
+	        mobileInput = $form.find('input[name="mobile-input"]').val();
+	        mobileInput = mobileInput.replace(/\s+/g, ' ');
+	        //alert(mobileInput);
 	        url = $form.attr('action');
 
 	    /* KISSmetrics tracking */
