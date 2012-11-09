@@ -132,8 +132,8 @@ $j(document).ready(function() {
 
 $j(document).ready(function() {
 	setTimeout("$j('#male-welcome-msg').typewriter()",5000);
-	var whereFrom = getReferer();
-	_kmq.push(['record', 'Visited Homepage', {'source':whereFrom}]);
+		
+
 });
 
 
@@ -159,8 +159,7 @@ function handleNameSubmit() {
 	 	punter.justStarted = true;
 	 	$j.cookie('punter', JSON.stringify(punter), { expires: 1, path: '/' });
 
-	 	//KISSMETRICS
-	 	_kmq.push(['record', 'Entered Name', {'nameVal':punter.fname}]);
+	 	
 		window.location.href = '/get/party/started';
 	
 }

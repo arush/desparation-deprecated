@@ -903,13 +903,44 @@
 
 	var $j = jQuery.noConflict();
 	
-	// check for FB login
-	if(typeof(FB) !== "undefined" && typeof(mixpanel) !== "undefined") {
-		FB.getLoginStatus(function(response){
-			mixpanel.track("Connected to Facebook?", response.status);
-		});
+	// getReferer is the PHP_URL_HOST - defined in landing-header.phtml
+	var whereFrom = getReferer();
+
+	/* KISSmetrics tracking */
+    if(typeof(_kmq) !== "undefined") {
+		_kmq.push(['record', 'Visited Homepage', {'Source - PHP': whereFrom}]);
+    }
+
+    /* Mixpanel Tracking */
+   	if(typeof(mixpanel) !== "undefined") {
+   		mixpanel.track("Visited Homepage", {
+   			'Source - PHP': whereFrom
+   		});
+
+   		mixpanel.register_once({
+   			'Initial Source - JS': document.referrer,
+   			'Initial Source - PHP': whereFrom
+   		});
 	}
 
+	// check for FB login
+	if(typeof(FB) !== "undefined") {
+	
+
+		FB.getLoginStatus(function(response){
+		    
+		    /* Mixpanel Tracking */
+			if(typeof(mixpanel) !== "undefined") {
+				mixpanel.track("Facebook Cookie Detected", {"Login Status": response.status});
+			}
+
+			/* KISSmetrics tracking */
+		    if(typeof(_kmq) !== "undefined") {
+				_kmq.push(['record', 'Facebook Cookie Detected, Login Status: '+response.status]);
+		    }
+
+		});
+	}
 
 
 	$j(document).ready(function () {
