@@ -42,63 +42,30 @@
     });
    	
    	
-  	
   	FB.Event.subscribe('edge.remove', function(href, widget) {
     	alert('You are not a real man');
   	}); 
     
   	FB.Event.subscribe('edge.create', function(href, widget) {
- 		<?php if(isset($_REQUEST['signed_request'])) {?>
- 		window.location.reload();
- 	<?php } ?>
- 
- /*
-   	var dataSend = 'hello';
-                jQuery.ajax({
-                    type: 'POST',
-                    url: '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>test.php',
-                    data: dataSend,
-                    success: function(data) {
-                        var notice = '<div class="notice">'
-								  + '<div class="notice-body">' 
-									  + '<img src="<?php echo $this->getSkinUrl('');?>images/info.png" alt="" />'
-									  + '<h3>+3 points!</h3>'
-									  + '<p>You liked something and earned points</p>'
-								  + '</div>'
-								  + '<div class="notice-bottom">'
-								  + '</div>'
-							  + '</div>';
-							  
-						jQuery( notice ).purr(
-							{
-								usingTransparentPNG: true
-							}
-						);
-						
-						return false;
-                    },
-                    error: function(data) {
-                        var notice = '<div class="notice">'
-								  + '<div class="notice-body">' 
-									  + '<img src="<?php echo $this->getSkinUrl('');?>images/info.png" alt="" />'
-									  + '<h3>Sorry!</h3>'
-									  + '<p>This is a test. Sorry dude.</p>'
-								  + '</div>'
-								  + '<div class="notice-bottom">'
-								  + '</div>'
-							  + '</div>';
-							  
-						jQuery( notice ).purr(
-							{
-								usingTransparentPNG: true
-							}
-						);
-						
-						return false;
+   		 /* KISSmetrics tracking */
+        if(typeof(_kmq) !== "undefined") {
+          _kmq.push(['record', 'Social Event', {
+            'Facebook': 'Like'
+            'Internal URL: ': document.URL,
+            'Source: PHP': whereFrom,
+            'Source: JS': document.referrer,
+          } ]);
+        }
 
-                    }
-                });
-*/
+        /* Mixpanel Tracking */
+        if(typeof(mixpanel) !== "undefined") {
+            mixpanel.track("Social Event", {
+              'Facebook': 'Like'
+              'Like URL': document.URL,
+              'Source: PHP': whereFrom,
+              'Source: JS': document.referrer,
+            });
+        }
    	
   	});
   	
