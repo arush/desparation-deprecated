@@ -50,20 +50,20 @@
    		 /* KISSmetrics tracking */
         if(typeof(_kmq) !== "undefined") {
           _kmq.push(['record', 'Social Event', {
-            'Facebook': 'Like'
+            'Facebook': 'Like',
             'Internal URL: ': document.URL,
             'Source: PHP': whereFrom,
-            'Source: JS': document.referrer,
+            'Liked from internal URL, Source: JS': document.referrer
           } ]);
         }
 
         /* Mixpanel Tracking */
         if(typeof(mixpanel) !== "undefined") {
             mixpanel.track("Social Event", {
-              'Facebook': 'Like'
+              'Facebook': 'Like',
               'Like URL': document.URL,
               'Source: PHP': whereFrom,
-              'Source: JS': document.referrer,
+              'Source: JS': document.referrer
             });
         }
    	
