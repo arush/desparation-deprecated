@@ -25,11 +25,9 @@
         jumpersHoodies: punter.jumpersHoodiesA
       }
     ]);
-    mixpanel.track([
-      "MALE Jumpers or Hoodies", {
-        jumpersHoodies: punter.jumpersHoodiesA
-      }
-    ]);
+    mixpanel.track("MALE Jumpers or Hoodies", {
+      jumpersHoodies: punter.jumpersHoodiesA
+    });
     return maleJumpersPriceQ();
   };
 
@@ -89,30 +87,11 @@
     typeit();
     jumperBut1 = ["smalltext convert secondary", "I don't care<br/><span class=\"button-caption\">We'll call you after checkout anyway</span>", "maleJumpersBrandsAa()"];
     buttons = [jumperBut1];
-    insertBrandsField();
-    return setTimeout((function() {}), 1500);
+    return insertBrandsField();
   };
 
   root.maleJumpersBrandsDone = function() {
-    _kmq.push([
-      "record", "MALE Jumpers Brands", {
-        jumpersBrands: punter.jumpersBrandsA
-      }
-    ]);
-    mixpanel.track("MALE Jumpers Brands", {
-      jumpersBrands: punter.jumpersBrandsA
-    });
     return maleJumpersFinishedQ();
-  };
-
-  root.maleJumpersBrandsAa = function() {
-    punter.jumpersBrandsA = 'value';
-    return maleJumpersBrandsDone();
-  };
-
-  root.maleJumpersBrandsAb = function() {
-    punter.jumpersBrandsA = 'premium';
-    return maleJumpersBrandsDone();
   };
 
 }).call(this);

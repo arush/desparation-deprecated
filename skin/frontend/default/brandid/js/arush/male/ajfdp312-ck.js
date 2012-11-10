@@ -1633,11 +1633,9 @@ function playAd() {
         jumpersHoodies: punter.jumpersHoodiesA
       }
     ]);
-    mixpanel.track([
-      "MALE Jumpers or Hoodies", {
-        jumpersHoodies: punter.jumpersHoodiesA
-      }
-    ]);
+    mixpanel.track("MALE Jumpers or Hoodies", {
+      jumpersHoodies: punter.jumpersHoodiesA
+    });
     return maleJumpersPriceQ();
   };
 

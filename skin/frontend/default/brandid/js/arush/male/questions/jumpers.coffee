@@ -17,9 +17,9 @@ root.maleJumpersHoodiesDone = ->
   _kmq.push ["record", "MALE Jumpers Hoodies",
     jumpersHoodies: punter.jumpersHoodiesA
   ]
-  mixpanel.track ["MALE Jumpers or Hoodies",
+  mixpanel.track "MALE Jumpers or Hoodies",
     jumpersHoodies: punter.jumpersHoodiesA
-  ]
+  
   maleJumpersPriceQ()
 root.maleJumpersHoodiesAa = ->
   punter.jumpersHoodiesA = 'Jumpers'
@@ -73,25 +73,11 @@ root.maleJumpersBrandsQ = ->
   # jumperBut2 = ["smalltext convert", "£80<br/><span class=\"button-caption\">Premium brands, heavier and warmer</span>", "maleJumpersBrandsAb()"]
   buttons = [jumperBut1]
   insertBrandsField()
-  setTimeout (->
+  # setTimeout (->
     
-    # insertButtons buttons, "#male-welcome-msg"
+  #   # insertButtons buttons, "#male-welcome-msg"
     
-  ), 1500
+  # ), 1500
 
 root.maleJumpersBrandsDone = ->
-  _kmq.push ["record", "MALE Jumpers Brands",
-    jumpersBrands: punter.jumpersBrandsA
-  ]
-  mixpanel.track "MALE Jumpers Brands",
-    jumpersBrands: punter.jumpersBrandsA
-
   maleJumpersFinishedQ()
-root.maleJumpersBrandsAa = ->
-  punter.jumpersBrandsA = 'value'
-  maleJumpersBrandsDone()
-root.maleJumpersBrandsAb = ->
-  punter.jumpersBrandsA = 'premium'
-  maleJumpersBrandsDone()
-
-
