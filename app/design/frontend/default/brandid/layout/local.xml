@@ -304,7 +304,7 @@
             <action method="removeItem"><type>js</type><name>varien/js.js</name></action>
             <action method="removeItem"><type>js</type><name>varien/form.js</name></action>
             <action method="removeItem"><type>js</type><name>varien/menu.js</name></action>
-            <action method="removeItem"><type>js</type><name>mage/translate.js</name></action>
+            <!-- <action method="removeItem"><type>js</type><name>mage/translate.js</name></action> --> <!-- Had to do this to remove console error. Can't wait to get rid of whole Magento frontend -->
             <action method="removeItem"><type>js</type><name>jquery/jquery.tools.min.js</name></action>
             <action method="removeItem"><type>skin_js</type><name>js/jquery.purr.js</name></action>
             <action method="removeItem"><type>skin_js</type><name>js/date.js</name></action>
