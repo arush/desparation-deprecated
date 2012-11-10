@@ -72,7 +72,7 @@ Customer account pages, rendered for all tabs in dashboard
     <!-- point slider -->
     <catalog_product_view>           
         <reference name="head">
-            <action method="addCss" ifconfig="rewards/general/layoutsactive">
+            <!-- <action method="addCss" ifconfig="rewards/general/layoutsactive">
                 <stylesheet>css/rewards/slider.css</stylesheet>						
             </action>
             <action method="addJs" ifconfig="rewards/general/layoutsactive">		
@@ -89,7 +89,7 @@ Customer account pages, rendered for all tabs in dashboard
             </action>
             <action method="addJs" ifconfig="rewards/general/layoutsactive">		
                 <script>tbt/rewards/catalog/product/view/PointsSlider.js</script>	
-            </action>
+            </action> -->
         </reference>
         <reference name="content">
             <block type="core/template" name="js_points_captions" template="rewards/js/captions.phtml" />
@@ -203,14 +203,14 @@ Customer account pages, rendered for all tabs in dashboard
     </catalog_product_view>
     <!-- @nelkaake AUTOINTEGRATED END -->
     <default>
-        <reference name="head">
+        <!-- <reference name="head">
             <action method="addCss" ifconfig="rewards/general/layoutsactive">
                 <stylesheet>css/rewards/skin.css</stylesheet>
             </action>
             <action method="addCss" ifconfig="rewards/general/layoutsactive">
                 <stylesheet>css/rewards/catalog.css</stylesheet>						
             </action>
-        </reference>
+        </reference> -->
         <!-- TBT_Rewards Sidebox (sidebar) -->
         <reference name="right">
             <block type="rewards/customer_sidebar" name="rewards_sidebar" as="rewards" after="cart_sidebar" template="rewards/customer/sidebar.phtml"/>
@@ -236,21 +236,21 @@ Customer account pages, rendered for all tabs in dashboard
 	
     <checkout_cart_index>
         <reference name="head">
-            <action method="addCss" ifconfig="rewards/general/layoutsactive">
+            <!-- <action method="addCss" ifconfig="rewards/general/layoutsactive">
                 <stylesheet>css/rewards/checkout/minicart.css</stylesheet>						
-            </action>
-            <action method="addCss" ifconfig="rewards/general/layoutsactive">
+            </action> -->
+            <!-- <action method="addCss" ifconfig="rewards/general/layoutsactive">
                 <stylesheet>css/rewards/slider.css</stylesheet>						
-            </action>
-            <action method="addJs" ifconfig="rewards/general/layoutsactive">		
+            </action> -->
+            <!-- <action method="addJs" ifconfig="rewards/general/layoutsactive">		
                 <script>tbt/rewards/util.js</script>							
-            </action>
-            <action method="addJs" ifconfig="rewards/general/layoutsactive">		
+            </action> -->
+            <!-- <action method="addJs" ifconfig="rewards/general/layoutsactive">		
                 <script>tbt/scriptaculous/SmoothSlider.js</script>					
-            </action>
-            <action method="addJs" ifconfig="rewards/general/layoutsactive">		
+            </action> -->
+            <!-- <action method="addJs" ifconfig="rewards/general/layoutsactive">		
                 <script>tbt/rewards/points/RedemptionSlider.js</script>					
-            </action>
+            </action> -->
         </reference>
         <reference name="checkout.cart">
             <action method="addItemRender" ifconfig="rewards/general/layoutsactive">

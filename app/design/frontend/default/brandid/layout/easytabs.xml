@@ -3,7 +3,7 @@
 	
     <default>
         <reference name="head">
-            <action method="addItem" ifconfig="easy_tabs/general/enabled"><type>skin_css</type><name>css/easytabs.css</name></action>
+            <!-- <action method="addItem" ifconfig="easy_tabs/general/enabled"><type>skin_css</type><name>css/easytabs.css</name></action> -->
         </reference>      
     </default>
 	                    
