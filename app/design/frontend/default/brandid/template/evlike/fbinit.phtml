@@ -33,15 +33,38 @@
 <!-- Using the JavaScript SDK -->
 <div id="fb-root"></div>
 
+
+<?php /* instead of writing BRANDiDs own FB integration, we just used this and modified it to use Parse */ ?>
+
 <script>
   window.fbAsyncInit = function() {
-    FB.init({appId: '<?php echo Mage::helper("evlike")->getLikeConfig("ev_facebook_app_id") ?>',
-    		Status: true,
+      
+    // use Parse if available
+
+    if(typeof(Parse) !== "undefined") {
+
+      Parse.FacebookUtils.init({
+          appId: '<?php echo Mage::helper("evlike")->getLikeConfig("ev_facebook_app_id") ?>',
+          channelUrl : '<?php echo $this->getBaseUrl() ?>facebook/channel',
+      		Status: true,
         	Cookie: true,
-            xfbml: true
-    });
+          xfbml: true,
+          frictionlessRequests: true
+      });
    	
-   	
+    } else {
+      FB.init({
+          appId: '<?php echo Mage::helper("evlike")->getLikeConfig("ev_facebook_app_id") ?>',
+          channelUrl : '<?php echo $this->getBaseUrl() ?>facebook/channel',
+          Status: true,
+          Cookie: true,
+          xfbml: true,
+          frictionlessRequests: true
+      });
+    }
+
+    // custom initialisation for advanced tracking
+
   	FB.Event.subscribe('edge.remove', function(href, widget) {
     	alert('You are not a real man');
   	}); 
@@ -71,6 +94,7 @@
   	
   };
   
+  <?php // is this duplicated now that we have /facebook/channel working? ?>
   
   (function() {
     var e = document.createElement('script'); e.async = true;

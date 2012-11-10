@@ -2,7 +2,7 @@
 
 <layout version="0.1.0">
 	<!-- Load style on every page. This will be fixed later. -->
-	<default>
+	<checkout_onepage_index>
 		<!-- Scripts/Styles -->
 		
 		<reference name="head">
@@ -15,7 +15,7 @@
 				name="arush_oneall_scripts"
 				template="arush/oneall/scripts.phtml" />
 		</reference>
-	</default>
+	</checkout_onepage_index>
 	
 	
 

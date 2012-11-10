@@ -3,6 +3,14 @@
     <male_index_index>
 
         <reference name="head">
+
+	        <block type="core/text" name="google.cdn.jquery">
+	            <action method="setText">
+	                <text><![CDATA[<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script><script type="text/javascript">jQuery.noConflict();</script>]]>
+	                </text>
+	            </action>
+	        </block>
+
             <action method="addCss"><stylesheet>css/arush/landing3.css</stylesheet></action>     
             <block type="page/html" name="bg_css" template="page/keep-calm-base64.phtml"/>
             <block type="core/text" name="fb-meta">
@@ -23,7 +31,8 @@
 	        <action method="addCss"><stylesheet>css/arush/leanlanding/core.css</stylesheet></action>
 	        <action method="addCss"><stylesheet>css/arush/leanlanding/app.css</stylesheet></action>
 
-			<action method="addItem"><type>skin_js</type><name>js/jquery-1.7.1.min.js</name></action>
+			<action method="addItem"><type>skin_js</type><name>js/arush/male/male.js</name></action>
+
 			<!-- <action method="addItem"><type>skin_js</type><name>js/arush/subscribe/jquery.cookie.js</name></action> -->
 			<!-- <action method="addItem"><type>skin_js</type><name>js/arush/male/jqconsole-2.7.min.js</name></action> -->
 			<!-- <action method="addItem"><type>skin_js</type><name>js/arush/male/jquery.text-effects.js</name></action> -->
@@ -36,8 +45,10 @@
 
 		<!--	<action method="addItem"><type>skin_js</type><name>js/scroll/jquery.serialScroll-1.2.2-min.js</name></action>
 -->
+            <action method="removeItem"><type>skin_js</type><name>js/jquery-1.7.1.min.js</name></action>
 			<action method="removeItem"><type>js</type><name>lib/ccard.js</name></action>
 			<action method="removeItem"><type>js</type><name>prototype/validation.js</name></action>
+			<action method="removeItem"><type>js</type><name>prototype/prototype.js</name></action>
 			<action method="removeItem"><type>js</type><name>jquery/jquery-1.4.2.min.js</name></action>
 
 			<action method="removeItem"><type>js</type><name>scriptaculous/builder.js</name></action>
@@ -83,9 +94,12 @@
             </action>
         </reference>
         
-
+        <remove name="header"/>
         <reference name="content">
-            <block type="core/template" name="get_party_started" template="arush/male/male.phtml"></block>
+            <block type="core/template" name="get_party_started" template="arush/male/male.phtml">
+	            <block type="core/template" name="landing_header" as="landing_header" template="arush/landing-header.phtml"/>
+	        </block>
+
         </reference>
 
         <!--reference name="before_body_end">
