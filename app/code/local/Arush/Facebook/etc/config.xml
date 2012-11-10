@@ -28,7 +28,7 @@
                               <config>
                                   <children>
                                       <facebook>
-                                          <title>Facebook Canvas</title>
+                                          <title>Facebook</title>
                                       </facebook>
                                   </children>
                               </config>
@@ -77,7 +77,7 @@
     <default>
         <facebook>
             <options>
-                <fbpageid></fbpageid>
+                <fbappid></fbappid>
             </options>
         </facebook>
     </default>

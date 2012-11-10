@@ -1,8 +1,8 @@
 <?php 
 class Arush_Facebook_Helper_Data extends Mage_Core_Helper_Abstract{
 
-	public function getFbPageId() {
-		$id = Mage::getStoreConfig('facebook/options/fbpageid');
+	public function getFbAppId() {
+		$id = Mage::getStoreConfig('facebook/options/fbappid');
 		
 		return $id;
 	}
@@ -128,10 +128,10 @@ $OAdomain = $this->getOneallApiDomain();
 				$numLikes = count($userLikes->data);
 				// echo $numLikes;				
 				$i = 0;
-				$fbPageId = $this->getFbPageId();
+				$fbAppId = $this->getFbAppId();
 
 				while($isFan == false && $i < $numLikes) {
-					if($userLikes->data[$i]->id == $fbPageId) {
+					if($userLikes->data[$i]->id == $fbAppId) {
 						$isFan = true;
 						return $isFan;
 					}

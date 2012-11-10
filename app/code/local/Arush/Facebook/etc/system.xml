@@ -17,7 +17,7 @@
             <show_in_store>1</show_in_store>
             <groups>
                 <options translate="label">
-                    <label>Welcome</label>
+                    <label>FB Integration</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>10</sort_order>
                     <show_in_default>1</show_in_default>
@@ -25,15 +25,15 @@
                     <show_in_store>1</show_in_store>
                     <fields>                       
                         
-                        <fbpageid translate="label">
-                            <label>Facebook Page ID</label>
+                        <fbappid translate="label">
+                            <label>Facebook App ID</label>
                             <frontend_type>text</frontend_type>
                             <comment><![CDATA[Get this from your Facebook Page URL]]></comment>
                             <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </fbpageid>
+                        </fbappid>
                     </fields>
                 </options>
             </groups>
