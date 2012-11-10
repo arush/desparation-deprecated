@@ -55,13 +55,13 @@
       <routers></routers> 
       <events></events> 
       <translate></translate> 
-      <!-- <layout>
+      <layout>
       	<updates>
                 <male>
                     <file>arush/male.xml</file>
                 </male>
         </updates>
-      </layout> -->
+      </layout>
   </frontend>
   <admin>
        <routers>
@@ -78,12 +78,12 @@
   <default>
       <!-- config values -->
       <male>
-          <questions>
+          <!-- <questions>
             <male_sock_brands><![CDATA[]]></male_sock_brands>
             <male_boxer_brands><![CDATA[]]></male_boxer_brands>
             <male_tee_brands><![CDATA[]]></male_tee_brands>
             <male_shirt_brands><![CDATA[]]></male_shirt_brands>
-          </questions>
+          </questions> -->
       </male>
   </default>
   <!--<crontab>
