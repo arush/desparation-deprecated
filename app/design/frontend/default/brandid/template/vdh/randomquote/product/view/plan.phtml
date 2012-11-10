@@ -1,3 +1,7 @@
+<div id="top" class="keep-calm-signup-container">
+	<?php echo $this->getChildHtml('landing_header'); ?>
+</div>
+
 <?php $_product = Mage::getModel('catalog/product')->load(Mage::registry('current_product')->getId());?>
 <?php $_helper = $this->helper('catalog/output'); ?>
 <?php $_productName = strtolower($_product->getName());
@@ -312,7 +316,7 @@
 			<div class="shipping-explanation">
 				Nope, not us. We pride ourselves on being simple and transparent. Everything is fully refundable. We charge a standard flat rate of £3 for shipping anywhere in the UK, and sort you out with free exchanges and returns, no questions asked.<br/><br/>
 				Want to talk about it?<br/>
-				<a href="https://twitter.com/intent/tweet?screen_name=getbrandid" class="twitter-mention-button" data-related="male_robot">Tweet to @getbrandid</a>
+				<a href="https://twitter.com/intent/tweet?screen_name=brandid" class="twitter-mention-button" data-related="male">Tweet to @BRANDiD</a>
 				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 			</div>
     </div>
