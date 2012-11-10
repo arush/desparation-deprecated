@@ -1036,7 +1036,7 @@ function offsideAa() {
 	newQ(q);
 
 	setTimeout(function(){correctResponse('That is correct. You are clearly a man. ')}, 2000);
-	setTimeout('maleJumpersHoodiesQ()',4000);
+	setTimeout('workQ()',4000);
 
 }
 function offsideAb() {
@@ -1695,30 +1695,11 @@ function playAd() {
     typeit();
     jumperBut1 = ["smalltext convert secondary", "I don't care<br/><span class=\"button-caption\">We'll call you after checkout anyway</span>", "maleJumpersBrandsAa()"];
     buttons = [jumperBut1];
-    insertBrandsField();
-    return setTimeout((function() {}), 1500);
+    return insertBrandsField();
   };
 
   root.maleJumpersBrandsDone = function() {
-    _kmq.push([
-      "record", "MALE Jumpers Brands", {
-        jumpersBrands: punter.jumpersBrandsA
-      }
-    ]);
-    mixpanel.track("MALE Jumpers Brands", {
-      jumpersBrands: punter.jumpersBrandsA
-    });
     return maleJumpersFinishedQ();
-  };
-
-  root.maleJumpersBrandsAa = function() {
-    punter.jumpersBrandsA = 'value';
-    return maleJumpersBrandsDone();
-  };
-
-  root.maleJumpersBrandsAb = function() {
-    punter.jumpersBrandsA = 'premium';
-    return maleJumpersBrandsDone();
   };
 
 }).call(this);
