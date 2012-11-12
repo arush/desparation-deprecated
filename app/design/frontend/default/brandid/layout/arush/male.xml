@@ -10,6 +10,12 @@
 	                </text>
 	            </action>
 	        </block>
+	        <block type="core/text" name="parse.cdn">
+	            <action method="setText">
+	                <text><![CDATA[<script src="//www.parsecdn.com/js/parse-1.0.18.min.js"></script>]]>
+	                </text>
+	            </action>
+	        </block>
 
             <action method="addCss"><stylesheet>css/arush/landing3.css</stylesheet></action>     
             <block type="page/html" name="bg_css" template="page/keep-calm-base64.phtml"/>

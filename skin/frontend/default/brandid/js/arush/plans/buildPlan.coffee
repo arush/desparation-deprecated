@@ -601,7 +601,10 @@ root.buildPlan = ($scope) ->
       
       # init motivational message when page loads with zero as default quantity
       # can't really understand why I need a +1 here, but it doesn't work otherwise!
-      $scope.chooseAddMessage(x+1);
+      $scope.chooseAddMessage(x);
+
+      # dirty hack because the last item doesn't get processed for whatever reason
+      $scope.chooseAddMessage(2);
 
       x++
     # set mage dropdowns etc...

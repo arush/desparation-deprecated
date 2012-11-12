@@ -356,6 +356,7 @@
 
 		.size-label, .colours-label, .style-label, .size-label.size-guide {
 			text-transform: uppercase;
+			text-align: left;
 			font-weight: bold;
 			letter-spacing: 0;
 			font-size: 14px;
@@ -386,6 +387,7 @@
 		margin:0;
 
 		.configurables-holder {
+			height:auto;
 			padding-left: 45px;
 			padding-top: 45px;
 			.colours a, .style a {
@@ -452,6 +454,7 @@
 		margin:43px 0 0 0;
 	}
 	.random-quote .quote {
+		height:auto;
 		background:#FFF;
 		width:75%;
 	}
