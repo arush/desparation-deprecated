@@ -1,0 +1,73 @@
+.drawer {
+	position:fixed;
+	left: -25%;
+	z-index:9999;
+	height:100%;
+	background:#4e5055;
+	width:25%;
+	
+}
+
+.drawer::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	width: 15px;
+	background: -webkit-linear-gradient(left, transparent, rgba(0, 0, 0, 0.45));
+}
+
+
+.open-drawer {
+	.drawer {
+		left:0;
+	}
+	.rest-of-page {
+		margin-left:25%;
+	}
+}
+
+.open-drawer.mini-drawer {
+	.drawer {
+		width:10%;
+		min-width:100px;
+	}
+	.rest-of-page {
+		width:90%;
+		margin-left:10%;
+	}
+}
+
+
+
+.drawer, .rest-of-page {
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+
+
+/* this prevents horizontal scroll when drawer is open */
+.whole-page.open-drawer {
+	width:100%;
+	overflow:hidden;
+}
+
+@media only screen and (max-width: 767px) /* and (min-width: 480px) */ {
+	// this is a hack to keep the detail view off screen while keeping it wide, facebook app style
+	.wrapper {
+		overflow-x:hidden;
+	}
+	.open-drawer {
+		.drawer {
+			min-width:300px;
+		}
+		.rest-of-page {
+			margin-left:300px;
+			min-width:320px;
+		}
+	}
+}

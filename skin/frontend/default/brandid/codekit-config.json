@@ -100,6 +100,18 @@
       "initialSize" : 19770,
       "fileType" : 4096
     },
+    "\/css\/male\/components\/drawer.scss" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/css\/male\/components\/drawer.scss",
+      "outputStyle" : 1,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/css\/drawer.css",
+      "fileType" : 4,
+      "debugStyle" : 0
+    },
     "\/images\/lightbox\/beta\/boosters.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -294,6 +306,17 @@
       "initialSize" : 10561,
       "fileType" : 8192
     },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/modal\/modal.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/modal\/modal.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/modal\/modal-ck.js",
+      "fileType" : 64
+    },
     "\/images\/plans\/tee.jpg" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -438,6 +461,17 @@
       "initialSize" : 10159,
       "fileType" : 8192
     },
+    "\/js\/male\/libs\/angular-ui\/test\/lib\/tinymce\/tiny_mce.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/test\/lib\/tinymce\/tiny_mce.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/test\/lib\/tinymce\/tiny_mce-ck.js",
+      "fileType" : 64
+    },
     "\/css\/magento\/essentials.scss" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -544,6 +578,15 @@
       "outputStyle" : 0,
       "fileType" : 32
     },
+    "\/css\/brandid-core.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/css\/brandid-core.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
+    },
     "\/js\/graphics\/close.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -555,15 +598,6 @@
       "initialSize" : 1910,
       "fileType" : 8192
     },
-    "\/css\/brandid-core.css" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/css\/brandid-core.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
-    },
     "\/js\/jquery.easing.1.3.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -573,6 +607,28 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/js\/jquery.easing.1.3-ck.js",
+      "fileType" : 64
+    },
+    "\/js\/male\/libs\/select2\/select2.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/select2\/select2.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/select2\/select2-ck.js",
+      "fileType" : 64
+    },
+    "\/js\/male\/libs\/angular-ui\/build\/angular-ui-ieshiv.min.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/build\/angular-ui-ieshiv.min.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/build\/angular-ui-ieshiv.min-ck.js",
       "fileType" : 64
     },
     "\/images\/sendinvitationsright.png" : {
@@ -720,6 +776,17 @@
       "initialSize" : 967,
       "fileType" : 8192
     },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/event\/test\/eventSpec.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/event\/test\/eventSpec.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/event\/test\/eventSpec-ck.js",
+      "fileType" : 64
+    },
     "\/images\/arush\/circleframe.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -731,16 +798,16 @@
       "initialSize" : 8958,
       "fileType" : 8192
     },
-    "\/images\/line.png" : {
+    "\/js\/male\/libs\/angular-ui\/modules\/filters\/highlight\/highlight.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/images\/line.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/images\/line.png",
-      "initialSize" : 2868,
-      "fileType" : 8192
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/filters\/highlight\/highlight.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/filters\/highlight\/highlight-ck.js",
+      "fileType" : 64
     },
     "\/images\/male\/work\/3.jpg" : {
       "ignoreWasSetByUser" : 0,
@@ -763,6 +830,28 @@
       "outputAbbreviatedPath" : "\/images\/plans\/underwear.jpg",
       "initialSize" : 3989,
       "fileType" : 4096
+    },
+    "\/images\/line.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/images\/line.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/images\/line.png",
+      "initialSize" : 2868,
+      "fileType" : 8192
+    },
+    "\/js\/male\/libs\/angular-ui\/test\/lib\/angular\/angular-1.0.0rc4.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/test\/lib\/angular\/angular-1.0.0rc4.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/test\/lib\/angular\/angular-1.0.0rc4-ck.js",
+      "fileType" : 64
     },
     "\/images\/background-new.png" : {
       "ignoreWasSetByUser" : 0,
@@ -807,27 +896,16 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
     },
-    "\/images\/events\/shopnow.jpg" : {
+    "\/js\/male\/libs\/angular-ui\/test\/lib\/jquery\/jquery-ui-1.8.18.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/images\/events\/shopnow.jpg",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/images\/events\/shopnow.jpg",
-      "initialSize" : 2813,
-      "fileType" : 4096
-    },
-    "\/images\/brandid-square-big.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/images\/brandid-square-big.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/images\/brandid-square-big.png",
-      "initialSize" : 7469,
-      "fileType" : 8192
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/test\/lib\/jquery\/jquery-ui-1.8.18.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/test\/lib\/jquery\/jquery-ui-1.8.18-ck.js",
+      "fileType" : 64
     },
     "\/js\/opcheckout.js" : {
       "ignoreWasSetByUser" : 0,
@@ -840,6 +918,17 @@
       "outputAbbreviatedPath" : "\/js\/opcheckout-ck.js",
       "fileType" : 64
     },
+    "\/images\/arush\/home\/feed.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/images\/arush\/home\/feed.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/images\/arush\/home\/feed.png",
+      "initialSize" : 27720,
+      "fileType" : 8192
+    },
     "\/images\/arush\/home\/small-mag-plan.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -851,16 +940,63 @@
       "initialSize" : 16499,
       "fileType" : 8192
     },
-    "\/images\/arush\/home\/feed.png" : {
+    "\/css\/male\/layout\/layout.scss" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/css\/male\/layout\/layout.scss",
+      "outputStyle" : 1,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/css\/layout.css",
+      "fileType" : 4,
+      "debugStyle" : 0
+    },
+    "\/images\/events\/shopnow.jpg" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/images\/arush\/home\/feed.png",
+      "inputAbbreviatedPath" : "\/images\/events\/shopnow.jpg",
       "processed" : 0,
-      "outputAbbreviatedPath" : "\/images\/arush\/home\/feed.png",
-      "initialSize" : 27720,
+      "outputAbbreviatedPath" : "\/images\/events\/shopnow.jpg",
+      "initialSize" : 2813,
+      "fileType" : 4096
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/filters\/highlight\/highlight.less" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/filters\/highlight\/highlight.less",
+      "outputStyle" : 0,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/filters\/css\/highlight.css",
+      "strictImports" : 0,
+      "fileType" : 1,
+      "debugStyle" : 0
+    },
+    "\/images\/brandid-square-big.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/images\/brandid-square-big.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/images\/brandid-square-big.png",
+      "initialSize" : 7469,
       "fileType" : 8192
+    },
+    "\/js\/male\/libs\/jquery-1.8.3.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/jquery-1.8.3.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/jquery-1.8.3-ck.js",
+      "fileType" : 64
     },
     "\/images\/rewards\/bronze_token.png" : {
       "ignoreWasSetByUser" : 0,
@@ -951,16 +1087,16 @@
       "initialSize" : 1529,
       "fileType" : 8192
     },
-    "\/js\/arush\/male\/questions\/offside.js" : {
+    "\/images\/emails\/welcome\/hero-image.jpg" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
+      "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/js\/arush\/male\/questions\/offside.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/js\/arush\/male\/questions\/offside-ck.js",
-      "fileType" : 64
+      "inputAbbreviatedPath" : "\/images\/emails\/welcome\/hero-image.jpg",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/images\/emails\/welcome\/hero-image.jpg",
+      "initialSize" : 39517,
+      "fileType" : 4096
     },
     "\/images\/social_link.png" : {
       "ignoreWasSetByUser" : 0,
@@ -973,16 +1109,16 @@
       "initialSize" : 36977,
       "fileType" : 8192
     },
-    "\/images\/emails\/welcome\/hero-image.jpg" : {
+    "\/js\/arush\/male\/questions\/offside.js" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
+      "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/images\/emails\/welcome\/hero-image.jpg",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/images\/emails\/welcome\/hero-image.jpg",
-      "initialSize" : 39517,
-      "fileType" : 4096
+      "inputAbbreviatedPath" : "\/js\/arush\/male\/questions\/offside.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/arush\/male\/questions\/offside-ck.js",
+      "fileType" : 64
     },
     "\/css\/party.scss" : {
       "ignoreWasSetByUser" : 1,
@@ -1007,17 +1143,6 @@
       "initialSize" : 1957,
       "fileType" : 4096
     },
-    "\/js\/arush\/male\/jquery.text-effects.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/js\/arush\/male\/jquery.text-effects.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/js\/arush\/male\/jquery.text-effects-ck.js",
-      "fileType" : 64
-    },
     "\/images\/message-bg.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -1028,6 +1153,17 @@
       "outputAbbreviatedPath" : "\/images\/message-bg.png",
       "initialSize" : 963,
       "fileType" : 8192
+    },
+    "\/js\/arush\/male\/jquery.text-effects.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/arush\/male\/jquery.text-effects.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/arush\/male\/jquery.text-effects-ck.js",
+      "fileType" : 64
     },
     "\/images\/emails\/welcome\/shop-now.jpg" : {
       "ignoreWasSetByUser" : 0,
@@ -1051,17 +1187,6 @@
       "initialSize" : 1407,
       "fileType" : 8192
     },
-    "\/js\/arush\/male\/core\/punter.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/js\/arush\/male\/core\/punter.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/js\/arush\/male\/core\/punter-ck.js",
-      "fileType" : 64
-    },
     "\/images\/minimize.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -1072,6 +1197,17 @@
       "outputAbbreviatedPath" : "\/images\/minimize.png",
       "initialSize" : 4177,
       "fileType" : 8192
+    },
+    "\/js\/arush\/male\/core\/punter.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/arush\/male\/core\/punter.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/arush\/male\/core\/punter-ck.js",
+      "fileType" : 64
     },
     "\/images\/emails\/welcome\/header-ad.jpg" : {
       "ignoreWasSetByUser" : 0,
@@ -1095,6 +1231,18 @@
       "outputAbbreviatedPath" : "\/js\/arush\/home3-ck-ck.js",
       "fileType" : 64
     },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/mask\/mask.coffee" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/mask\/mask.coffee",
+      "checkOutputStyle" : 1,
+      "minifyOutput" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/mask\/mask.js",
+      "outputStyle" : 0,
+      "fileType" : 32
+    },
     "\/images\/emails\/welcome\/pixel3.jpg" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -1117,6 +1265,30 @@
       "initialSize" : 14416,
       "fileType" : 4096
     },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/currency\/stylesheets\/currency.less" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/currency\/stylesheets\/currency.less",
+      "outputStyle" : 0,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/currency\/css\/currency.css",
+      "strictImports" : 0,
+      "fileType" : 1,
+      "debugStyle" : 0
+    },
+    "\/js\/male\/app\/ngMale.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/app\/ngMale.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/app\/ngMale-ck.js",
+      "fileType" : 64
+    },
     "\/images\/dk_arrows.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -1138,6 +1310,17 @@
       "outputAbbreviatedPath" : "\/images\/popupline.png",
       "initialSize" : 437,
       "fileType" : 8192
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/map\/test\/mapSpec.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/map\/test\/mapSpec.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/map\/test\/mapSpec-ck.js",
+      "fileType" : 64
     },
     "\/images\/emails\/welcome\/cms1.jpg" : {
       "ignoreWasSetByUser" : 0,
@@ -1184,15 +1367,6 @@
       "initialSize" : 2007,
       "fileType" : 8192
     },
-    "\/css\/screen.css" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/css\/screen.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
-    },
     "\/css\/brandid-core.scss" : {
       "ignoreWasSetByUser" : 1,
       "ignore" : 0,
@@ -1204,6 +1378,26 @@
       "outputAbbreviatedPath" : "\/css\/brandid-core.css",
       "fileType" : 4,
       "debugStyle" : 0
+    },
+    "\/css\/screen.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/css\/screen.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
+    },
+    "\/js\/male\/controllers\/main.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/controllers\/main.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/controllers\/main-ck.js",
+      "fileType" : 64
     },
     "\/js\/arush\/male\/questions\/shirts.js" : {
       "ignoreWasSetByUser" : 0,
@@ -1260,6 +1454,19 @@
       "initialSize" : 55490,
       "fileType" : 8192
     },
+    "\/js\/male\/libs\/angular-ui\/templates\/stylesheets\/template.less" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/templates\/stylesheets\/template.less",
+      "outputStyle" : 0,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/templates\/css\/template.css",
+      "strictImports" : 0,
+      "fileType" : 1,
+      "debugStyle" : 0
+    },
     "\/js\/arush\/male\/questions\/jumpers.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -1282,6 +1489,17 @@
       "outputAbbreviatedPath" : "\/css\/layout.css",
       "fileType" : 4,
       "debugStyle" : 0
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/filters\/unique\/test\/uniqueSpec.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/filters\/unique\/test\/uniqueSpec.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/filters\/unique\/test\/uniqueSpec-ck.js",
+      "fileType" : 64
     },
     "\/images\/carousel\/launchdate-bg.png" : {
       "ignoreWasSetByUser" : 0,
@@ -1337,6 +1555,17 @@
       "initialSize" : 2824,
       "fileType" : 8192
     },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/date\/date.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/date\/date.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/date\/date-ck.js",
+      "fileType" : 64
+    },
     "\/images\/arrow-right.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -1382,17 +1611,6 @@
       "fileType" : 4,
       "debugStyle" : 0
     },
-    "\/images\/arush\/leanlanding\/block-divider.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/images\/arush\/leanlanding\/block-divider.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/images\/arush\/leanlanding\/block-divider.png",
-      "initialSize" : 928,
-      "fileType" : 8192
-    },
     "\/images\/brainwashed\/recurly\/discover.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -1402,6 +1620,17 @@
       "processed" : 0,
       "outputAbbreviatedPath" : "\/images\/brainwashed\/recurly\/discover.png",
       "initialSize" : 3858,
+      "fileType" : 8192
+    },
+    "\/images\/arush\/leanlanding\/block-divider.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/images\/arush\/leanlanding\/block-divider.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/images\/arush\/leanlanding\/block-divider.png",
+      "initialSize" : 928,
       "fileType" : 8192
     },
     "\/js\/arush\/male\/core\/helper.js" : {
@@ -1512,17 +1741,6 @@
       "initialSize" : 30840,
       "fileType" : 4096
     },
-    "\/images\/arush\/movember\/neo.jpg" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/images\/arush\/movember\/neo.jpg",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/images\/arush\/movember\/neo.jpg",
-      "initialSize" : 11264,
-      "fileType" : 4096
-    },
     "\/images\/banner-list.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -1533,6 +1751,17 @@
       "outputAbbreviatedPath" : "\/images\/banner-list.png",
       "initialSize" : 2900,
       "fileType" : 8192
+    },
+    "\/images\/arush\/movember\/neo.jpg" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/images\/arush\/movember\/neo.jpg",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/images\/arush\/movember\/neo.jpg",
+      "initialSize" : 11264,
+      "fileType" : 4096
     },
     "\/js\/arush\/plans\/buildPlan.js" : {
       "ignoreWasSetByUser" : 0,
@@ -1598,6 +1827,28 @@
       "initialSize" : 7874,
       "fileType" : 4096
     },
+    "\/js\/male\/libs\/angular-ui\/test\/test-config.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/test\/test-config.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/test\/test-config-ck.js",
+      "fileType" : 64
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/mask\/test\/maskSpec.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/mask\/test\/maskSpec.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/mask\/test\/maskSpec-ck.js",
+      "fileType" : 64
+    },
     "\/images\/sendinvitationsleft.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -1620,6 +1871,26 @@
       "initialSize" : 7659,
       "fileType" : 8192
     },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/keypress\/keypress.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/keypress\/keypress.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/keypress\/keypress-ck.js",
+      "fileType" : 64
+    },
+    "\/css\/male\/male.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/css\/male\/male.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
+    },
     "\/css\/screen.scss" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -1631,6 +1902,39 @@
       "outputAbbreviatedPath" : "\/css\/screen.css",
       "fileType" : 4,
       "debugStyle" : 0
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/tinymce\/test\/tinymceSpec.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/tinymce\/test\/tinymceSpec.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/tinymce\/test\/tinymceSpec-ck.js",
+      "fileType" : 64
+    },
+    "\/js\/male\/controllers\/slide.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/controllers\/slide.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/controllers\/slide-ck.js",
+      "fileType" : 64
+    },
+    "\/js\/male\/libs\/angular-ui\/test\/lib\/codemirror\/codemirror.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/test\/lib\/codemirror\/codemirror.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/test\/lib\/codemirror\/codemirror-ck.js",
+      "fileType" : 64
     },
     "\/css\/arush\/calendar.scss" : {
       "ignoreWasSetByUser" : 1,
@@ -1664,6 +1968,28 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/js\/scroll\/jquery.serialScroll-1.2.2-min-ck.js",
+      "fileType" : 64
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/scrollfix\/scrollfix.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/scrollfix\/scrollfix.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/scrollfix\/scrollfix-ck.js",
+      "fileType" : 64
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/if\/test\/ifSpec.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/if\/test\/ifSpec.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/if\/test\/ifSpec-ck.js",
       "fileType" : 64
     },
     "\/images\/lightbox_close.png" : {
@@ -1842,6 +2168,18 @@
       "initialSize" : 1058,
       "fileType" : 8192
     },
+    "\/css\/male\/components\/slides.scss" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/css\/male\/components\/slides.scss",
+      "outputStyle" : 1,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/css\/slides.css",
+      "fileType" : 4,
+      "debugStyle" : 0
+    },
     "\/images\/logo-ilovebrands-sml.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -1853,14 +2191,18 @@
       "initialSize" : 4122,
       "fileType" : 8192
     },
-    "\/css\/keep-calm110620120613.css" : {
+    "\/js\/male\/libs\/angular-ui\/common\/stylesheets\/angular-ui.less" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
+      "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/css\/keep-calm110620120613.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/common\/stylesheets\/angular-ui.less",
+      "outputStyle" : 0,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/common\/css\/angular-ui.css",
+      "strictImports" : 0,
+      "fileType" : 1,
+      "debugStyle" : 0
     },
     "\/images\/catalog\/product\/placeholder\/thumbnail.jpg" : {
       "ignoreWasSetByUser" : 0,
@@ -1872,6 +2214,15 @@
       "outputAbbreviatedPath" : "\/images\/catalog\/product\/placeholder\/thumbnail.jpg",
       "initialSize" : 854,
       "fileType" : 4096
+    },
+    "\/css\/keep-calm110620120613.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/css\/keep-calm110620120613.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
     },
     "\/js\/arush\/male\/core\/share.js" : {
       "ignoreWasSetByUser" : 0,
@@ -1895,16 +2246,16 @@
       "initialSize" : 2683,
       "fileType" : 8192
     },
-    "\/images\/male\/work4.png" : {
+    "\/js\/male\/libs\/angular-ui\/build\/angular-ui-ieshiv.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/images\/male\/work4.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/images\/male\/work4.png",
-      "initialSize" : 301474,
-      "fileType" : 8192
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/build\/angular-ui-ieshiv.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/build\/angular-ui-ieshiv-ck.js",
+      "fileType" : 64
     },
     "\/images\/arrow-down.png" : {
       "ignoreWasSetByUser" : 0,
@@ -1915,6 +2266,17 @@
       "processed" : 0,
       "outputAbbreviatedPath" : "\/images\/arrow-down.png",
       "initialSize" : 218,
+      "fileType" : 8192
+    },
+    "\/images\/male\/work4.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/images\/male\/work4.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/images\/male\/work4.png",
+      "initialSize" : 301474,
       "fileType" : 8192
     },
     "\/css\/easytabs.css" : {
@@ -1937,16 +2299,16 @@
       "initialSize" : 19267,
       "fileType" : 4096
     },
-    "\/images\/scroll-right.png" : {
+    "\/js\/male\/libs\/parse-1.1.11.js" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
+      "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/images\/scroll-right.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/images\/scroll-right.png",
-      "initialSize" : 1214,
-      "fileType" : 8192
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/parse-1.1.11.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/parse-1.1.11-ck.js",
+      "fileType" : 64
     },
     "\/images\/rewards\/points_card_32x32.png" : {
       "ignoreWasSetByUser" : 0,
@@ -1969,6 +2331,17 @@
       "outputAbbreviatedPath" : "\/images\/countdown-bg.jpg",
       "initialSize" : 2677,
       "fileType" : 4096
+    },
+    "\/images\/scroll-right.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/images\/scroll-right.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/images\/scroll-right.png",
+      "initialSize" : 1214,
+      "fileType" : 8192
     },
     "\/images\/NOWCLOSED.png" : {
       "ignoreWasSetByUser" : 0,
@@ -2069,6 +2442,17 @@
       "initialSize" : 5881,
       "fileType" : 4096
     },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/codemirror\/codemirror.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/codemirror\/codemirror.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/codemirror\/codemirror-ck.js",
+      "fileType" : 64
+    },
     "\/css\/arush\/plan\/components\/title-block.scss" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -2135,6 +2519,28 @@
       "outputAbbreviatedPath" : "\/images\/plans-bg-boxer.png",
       "initialSize" : 1417,
       "fileType" : 8192
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/reset\/test\/resetSpec.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/reset\/test\/resetSpec.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/reset\/test\/resetSpec-ck.js",
+      "fileType" : 64
+    },
+    "\/js\/male\/libs\/angular-ui\/templates\/test\/templateSpec.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/templates\/test\/templateSpec.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/templates\/test\/templateSpec-ck.js",
+      "fileType" : 64
     },
     "\/css\/magento\/footer.css" : {
       "ignoreWasSetByUser" : 0,
@@ -2253,6 +2659,18 @@
       "initialSize" : 10782,
       "fileType" : 8192
     },
+    "\/css\/libs\/select2.scss" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/css\/libs\/select2.scss",
+      "outputStyle" : 1,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/css\/select2.css",
+      "fileType" : 4,
+      "debugStyle" : 0
+    },
     "\/js\/arush\/male\/questions\/play.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -2286,6 +2704,29 @@
       "initialSize" : 41053,
       "fileType" : 4096
     },
+    "\/css\/male\/components\/slideAnimations.scss" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/css\/male\/components\/slideAnimations.scss",
+      "outputStyle" : 1,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/css\/slideAnimations.css",
+      "fileType" : 4,
+      "debugStyle" : 0
+    },
+    "\/js\/male\/libs\/angular-ui\/templates\/template.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/templates\/template.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/templates\/template-ck.js",
+      "fileType" : 64
+    },
     "\/css\/ie.scss" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -2315,6 +2756,29 @@
       "inputAbbreviatedPath" : "\/css\/social-convert.css",
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/sortable\/sortable.coffee" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/sortable\/sortable.coffee",
+      "checkOutputStyle" : 1,
+      "minifyOutput" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/sortable\/sortable.js",
+      "outputStyle" : 0,
+      "fileType" : 32
+    },
+    "\/js\/male\/libs\/angular-ui\/common\/module.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/common\/module.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/common\/module-ck.js",
+      "fileType" : 64
     },
     "\/js\/jquery-1.7.1.min.js" : {
       "ignoreWasSetByUser" : 0,
@@ -2372,6 +2836,26 @@
       "initialSize" : 2799,
       "fileType" : 8192
     },
+    "\/css\/PIE.php" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/css\/PIE.php",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 2048
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/filters\/inflector\/inflector.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/filters\/inflector\/inflector.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/filters\/inflector\/inflector-ck.js",
+      "fileType" : 64
+    },
     "\/js\/jquery-color-min.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -2383,15 +2867,6 @@
       "outputAbbreviatedPath" : "\/js\/jquery-color-min-ck.js",
       "fileType" : 64
     },
-    "\/css\/PIE.php" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/css\/PIE.php",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 2048
-    },
     "\/images\/rewards\/points.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -2402,6 +2877,17 @@
       "outputAbbreviatedPath" : "\/images\/rewards\/points.png",
       "initialSize" : 457,
       "fileType" : 8192
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/filters\/highlight\/test\/highlightSpec.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/filters\/highlight\/test\/highlightSpec.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/filters\/highlight\/test\/highlightSpec-ck.js",
+      "fileType" : 64
     },
     "\/images\/emails\/welcome\/evogue-logo.jpg" : {
       "ignoreWasSetByUser" : 0,
@@ -2436,6 +2922,17 @@
       "outputAbbreviatedPath" : "\/css\/print.css",
       "fileType" : 4,
       "debugStyle" : 0
+    },
+    "\/js\/male\/libs\/angular-ui\/test\/lib\/angular\/angular-mocks.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/test\/lib\/angular\/angular-mocks.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/test\/lib\/angular\/angular-mocks-ck.js",
+      "fileType" : 64
     },
     "\/images\/gift\/parcel.png" : {
       "ignoreWasSetByUser" : 0,
@@ -2524,6 +3021,17 @@
       "initialSize" : 2817,
       "fileType" : 8192
     },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/select2\/select2.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/select2\/select2.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/select2\/select2-ck.js",
+      "fileType" : 64
+    },
     "\/images\/emails\/welcome\/twitter.jpg" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -2535,6 +3043,17 @@
       "initialSize" : 651,
       "fileType" : 4096
     },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/keypress\/test\/keypressSpec.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/keypress\/test\/keypressSpec.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/keypress\/test\/keypressSpec-ck.js",
+      "fileType" : 64
+    },
     "\/images\/male\/offside.jpg" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -2545,6 +3064,29 @@
       "outputAbbreviatedPath" : "\/images\/male\/offside.jpg",
       "initialSize" : 75443,
       "fileType" : 4096
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/mask\/test\/maskSpec.coffee" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/mask\/test\/maskSpec.coffee",
+      "checkOutputStyle" : 1,
+      "minifyOutput" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/mask\/test\/maskSpec.js",
+      "outputStyle" : 0,
+      "fileType" : 32
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/validate\/test\/validateSpec.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/validate\/test\/validateSpec.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/validate\/test\/validateSpec-ck.js",
+      "fileType" : 64
     },
     "\/css\/styles.css" : {
       "ignoreWasSetByUser" : 0,
@@ -2588,6 +3130,17 @@
       "initialSize" : 2108,
       "fileType" : 8192
     },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/showhide\/showhide.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/showhide\/showhide.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/showhide\/showhide-ck.js",
+      "fileType" : 64
+    },
     "\/images\/green-tick.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -2610,6 +3163,17 @@
       "initialSize" : 1866,
       "fileType" : 4096
     },
+    "\/js\/male\/libs\/angular-ui\/modules\/filters\/inflector\/test\/inflectorSpec.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/filters\/inflector\/test\/inflectorSpec.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/filters\/inflector\/test\/inflectorSpec-ck.js",
+      "fileType" : 64
+    },
     "\/images\/shop-man.jpg" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -2621,6 +3185,15 @@
       "initialSize" : 106778,
       "fileType" : 4096
     },
+    "\/js\/male\/views\/menu.html" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/views\/menu.html",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 2048
+    },
     "\/images\/counter\/small-digits.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -2631,6 +3204,17 @@
       "outputAbbreviatedPath" : "\/images\/counter\/small-digits.png",
       "initialSize" : 23875,
       "fileType" : 8192
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/tinymce\/tinymce.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/tinymce\/tinymce.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/tinymce\/tinymce-ck.js",
+      "fileType" : 64
     },
     "\/js\/arush\/male\/questions\/gift.coffee" : {
       "ignoreWasSetByUser" : 0,
@@ -2678,6 +3262,17 @@
       "initialSize" : 4595,
       "fileType" : 8192
     },
+    "\/js\/male\/libs\/angular-ui\/modules\/filters\/format\/test\/formatSpec.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/filters\/format\/test\/formatSpec.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/filters\/format\/test\/formatSpec-ck.js",
+      "fileType" : 64
+    },
     "\/js\/jquery-1.8.1.min.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -2687,6 +3282,17 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/js\/jquery-1.8.1.min-ck.js",
+      "fileType" : 64
+    },
+    "\/js\/male\/libs\/angular-ui\/grunt.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/grunt.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/grunt-ck.js",
       "fileType" : 64
     },
     "\/images\/male\/male-round.png" : {
@@ -2775,15 +3381,15 @@
       "outputStyle" : 0,
       "fileType" : 32
     },
-    "\/js\/arush\/male\/questions\/watch.js" : {
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/jq\/test\/jqSpec.js" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
+      "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/js\/arush\/male\/questions\/watch.js",
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/jq\/test\/jqSpec.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/js\/arush\/male\/questions\/watch-ck.js",
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/jq\/test\/jqSpec-ck.js",
       "fileType" : 64
     },
     "\/js\/arush\/male\/questions\/mags.coffee" : {
@@ -2798,16 +3404,25 @@
       "outputStyle" : 0,
       "fileType" : 32
     },
-    "\/js\/arush\/male\/ajfdp312-ck.js" : {
+    "\/js\/arush\/male\/questions\/watch.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/js\/arush\/male\/ajfdp312-ck.js",
+      "inputAbbreviatedPath" : "\/js\/arush\/male\/questions\/watch.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/js\/arush\/male\/ajfdp312-ck-ck.js",
+      "outputAbbreviatedPath" : "\/js\/arush\/male\/questions\/watch-ck.js",
       "fileType" : 64
+    },
+    "\/css\/skeleton\/skeleton.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/css\/skeleton\/skeleton.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
     },
     "\/css\/arush\/plan\/components\/isotope.scss" : {
       "ignoreWasSetByUser" : 0,
@@ -2832,6 +3447,17 @@
       "initialSize" : 2091,
       "fileType" : 8192
     },
+    "\/js\/arush\/male\/ajfdp312-ck.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/arush\/male\/ajfdp312-ck.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/arush\/male\/ajfdp312-ck-ck.js",
+      "fileType" : 64
+    },
     "\/js\/jquery.color.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -2843,24 +3469,37 @@
       "outputAbbreviatedPath" : "\/js\/jquery.color-ck.js",
       "fileType" : 64
     },
-    "\/css\/skeleton\/skeleton.css" : {
+    "\/js\/male\/libs\/angular-1.0.2.js" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
+      "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/css\/skeleton\/skeleton.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
-    },
-    "\/js\/arush\/male\/ajfdp312.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/js\/arush\/male\/ajfdp312.js",
-      "outputStyle" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-1.0.2.js",
+      "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/js\/arush\/male\/ajfdp312-ck.js",
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-1.0.2-ck.js",
+      "fileType" : 64
+    },
+    "\/js\/male\/libs\/angular-ui\/build\/angular-ui.min.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/build\/angular-ui.min.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/build\/angular-ui.min-ck.js",
+      "fileType" : 64
+    },
+    "\/js\/male\/libs\/angular-ui\/test\/lib\/bootstrap\/bootstrap-modal.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/test\/lib\/bootstrap\/bootstrap-modal.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/test\/lib\/bootstrap\/bootstrap-modal-ck.js",
       "fileType" : 64
     },
     "\/images\/brandid-square-med.png" : {
@@ -2906,6 +3545,17 @@
       "fileType" : 4,
       "debugStyle" : 0
     },
+    "\/js\/arush\/male\/ajfdp312.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/arush\/male\/ajfdp312.js",
+      "outputStyle" : 0,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/arush\/male\/ajfdp312-ck.js",
+      "fileType" : 64
+    },
     "\/images\/logo-back.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -2950,21 +3600,23 @@
       "initialSize" : 27488,
       "fileType" : 4096
     },
+    "\/js\/arush\/male\/core\/email.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/arush\/male\/core\/email.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/arush\/male\/core\/email-ck.js",
+      "fileType" : 64
+    },
     "\/css\/highslide.css" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/css\/highslide.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
-    },
-    "\/css\/keep-calm.css" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/css\/keep-calm.css",
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
     },
@@ -2979,6 +3631,15 @@
       "initialSize" : 13063,
       "fileType" : 8192
     },
+    "\/css\/keep-calm.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/css\/keep-calm.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
+    },
     "\/js\/arush\/male\/questions\/investor.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -2988,17 +3649,6 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/js\/arush\/male\/questions\/investor-ck.js",
-      "fileType" : 64
-    },
-    "\/js\/arush\/male\/core\/email.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/js\/arush\/male\/core\/email.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/js\/arush\/male\/core\/email-ck.js",
       "fileType" : 64
     },
     "\/images\/arush\/leanlanding\/app\/icon-tags.png" : {
@@ -3023,6 +3673,17 @@
       "outputAbbreviatedPath" : "\/js\/colorThumbnails-ck.js",
       "fileType" : 64
     },
+    "\/images\/cs-drop-25.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/images\/cs-drop-25.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/images\/cs-drop-25.png",
+      "initialSize" : 539,
+      "fileType" : 8192
+    },
     "\/images\/emails\/invitation\/fb.jpg" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -3034,16 +3695,16 @@
       "initialSize" : 587,
       "fileType" : 4096
     },
-    "\/images\/cs-drop-25.png" : {
+    "\/js\/male\/libs\/angular-ui\/common\/ieshiv\/ieshiv.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/images\/cs-drop-25.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/images\/cs-drop-25.png",
-      "initialSize" : 539,
-      "fileType" : 8192
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/common\/ieshiv\/ieshiv.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/common\/ieshiv\/ieshiv-ck.js",
+      "fileType" : 64
     },
     "\/images\/rewards\/remove_points.png" : {
       "ignoreWasSetByUser" : 0,
@@ -3089,6 +3750,17 @@
       "outputAbbreviatedPath" : "\/images\/arush\/faq-icon.png",
       "initialSize" : 57829,
       "fileType" : 8192
+    },
+    "\/js\/male\/libs\/angular-ui\/build\/angular-ui.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/build\/angular-ui.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/build\/angular-ui-ck.js",
+      "fileType" : 64
     },
     "\/images\/bg-timer-hours-trans.png" : {
       "ignoreWasSetByUser" : 0,
@@ -3168,6 +3840,17 @@
       "initialSize" : 2634,
       "fileType" : 8192
     },
+    "\/js\/male\/libs\/angular-ui\/test\/lib\/jquery\/jquery-1.7.2.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/test\/lib\/jquery\/jquery-1.7.2.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/test\/lib\/jquery\/jquery-1.7.2-ck.js",
+      "fileType" : 64
+    },
     "\/images\/arush\/home\/small-mag-pack.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -3189,6 +3872,29 @@
       "outputAbbreviatedPath" : "\/images\/emails\/welcome\/banner2.jpg",
       "initialSize" : 6186,
       "fileType" : 4096
+    },
+    "\/js\/male\/libs\/angular-ui\/test\/lib\/angular\/angular-1.0.0rc5.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/test\/lib\/angular\/angular-1.0.0rc5.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/test\/lib\/angular\/angular-1.0.0rc5-ck.js",
+      "fileType" : 64
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/sortable\/test\/sortableSpec.coffee" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/sortable\/test\/sortableSpec.coffee",
+      "checkOutputStyle" : 1,
+      "minifyOutput" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/sortable\/test\/sortableSpec.js",
+      "outputStyle" : 0,
+      "fileType" : 32
     },
     "\/js\/arush\/male\/parse\/male-ck.js" : {
       "ignoreWasSetByUser" : 0,
@@ -3245,17 +3951,6 @@
       "outputAbbreviatedPath" : "\/js\/arush\/male\/questions\/roll-ck.js",
       "fileType" : 64
     },
-    "\/images\/plans-bg-socks.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/images\/plans-bg-socks.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/images\/plans-bg-socks.png",
-      "initialSize" : 1579,
-      "fileType" : 8192
-    },
     "\/images\/male\/loaded-spokes-2x.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -3265,6 +3960,17 @@
       "processed" : 0,
       "outputAbbreviatedPath" : "\/images\/male\/loaded-spokes-2x.png",
       "initialSize" : 32430,
+      "fileType" : 8192
+    },
+    "\/images\/plans-bg-socks.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/images\/plans-bg-socks.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/images\/plans-bg-socks.png",
+      "initialSize" : 1579,
       "fileType" : 8192
     },
     "\/js\/arush\/male\/json2.js" : {
@@ -3287,6 +3993,17 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/js\/arush\/modernizr.2.5.3.min-ck.js",
+      "fileType" : 64
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/event\/event.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/event\/event.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/event\/event-ck.js",
       "fileType" : 64
     },
     "\/images\/send-invitations.png" : {
@@ -3358,6 +4075,39 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/js\/arush\/plans\/jquery.isotope-ck.js",
+      "fileType" : 64
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/map\/map.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/map\/map.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/map\/map-ck.js",
+      "fileType" : 64
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/if\/if.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/if\/if.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/if\/if-ck.js",
+      "fileType" : 64
+    },
+    "\/js\/male\/modules\/services.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/modules\/services.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/modules\/services-ck.js",
       "fileType" : 64
     },
     "\/css\/social-convert-head.css" : {
@@ -3458,17 +4208,6 @@
       "initialSize" : 8176,
       "fileType" : 4096
     },
-    "\/images\/arrow.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/images\/arrow.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/images\/arrow.png",
-      "initialSize" : 3121,
-      "fileType" : 8192
-    },
     "\/js\/brainwashed\/recurly.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -3479,6 +4218,17 @@
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/js\/brainwashed\/recurly-ck.js",
       "fileType" : 64
+    },
+    "\/images\/arrow.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/images\/arrow.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/images\/arrow.png",
+      "initialSize" : 3121,
+      "fileType" : 8192
     },
     "\/css\/rewards\/slider.css" : {
       "ignoreWasSetByUser" : 0,
@@ -3499,6 +4249,19 @@
       "outputAbbreviatedPath" : "\/images\/male\/play\/4.jpg",
       "initialSize" : 9248,
       "fileType" : 4096
+    },
+    "\/js\/male\/libs\/angular-ui\/common\/stylesheets\/mixins.less" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/common\/stylesheets\/mixins.less",
+      "outputStyle" : 0,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/common\/css\/mixins.css",
+      "strictImports" : 0,
+      "fileType" : 1,
+      "debugStyle" : 0
     },
     "\/js\/arush\/male\/core\/images.js" : {
       "ignoreWasSetByUser" : 0,
@@ -3578,15 +4341,6 @@
       "initialSize" : 19661,
       "fileType" : 4096
     },
-    "\/css\/forms.css" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/css\/forms.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
-    },
     "\/images\/arush\/movember\/training.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -3597,6 +4351,15 @@
       "outputAbbreviatedPath" : "\/images\/arush\/movember\/training.png",
       "initialSize" : 5119,
       "fileType" : 8192
+    },
+    "\/css\/forms.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/css\/forms.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
     },
     "\/images\/emails\/invitation\/logo1.jpg" : {
       "ignoreWasSetByUser" : 0,
@@ -3631,6 +4394,17 @@
       "initialSize" : 4790,
       "fileType" : 4096
     },
+    "\/js\/male\/libs\/angular-ui\/test\/lib\/angular-1.0.1\/angular.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/test\/lib\/angular-1.0.1\/angular.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/test\/lib\/angular-1.0.1\/angular-ck.js",
+      "fileType" : 64
+    },
     "\/images\/arush\/block-divider.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -3641,6 +4415,28 @@
       "outputAbbreviatedPath" : "\/images\/arush\/block-divider.png",
       "initialSize" : 928,
       "fileType" : 8192
+    },
+    "\/js\/male\/libs\/stately-1.0.0.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/stately-1.0.0.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/stately-1.0.0-ck.js",
+      "fileType" : 64
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/animate\/animate.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/animate\/animate.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/animate\/animate-ck.js",
+      "fileType" : 64
     },
     "\/images\/purrBottom.png" : {
       "ignoreWasSetByUser" : 0,
@@ -3663,6 +4459,35 @@
       "outputAbbreviatedPath" : "\/images\/white_arrow_bottom.png",
       "initialSize" : 7555,
       "fileType" : 8192
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/date\/test\/dateSpec.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/date\/test\/dateSpec.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/date\/test\/dateSpec-ck.js",
+      "fileType" : 64
+    },
+    "\/js\/male\/libs\/select2\/select2.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/select2\/select2.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
+    },
+    "\/js\/male\/libs\/angular-ui\/build\/angular-ui.min.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/build\/angular-ui.min.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
     },
     "\/images\/copylink.png" : {
       "ignoreWasSetByUser" : 0,
@@ -3703,6 +4528,28 @@
       "inputAbbreviatedPath" : "\/css\/magento\/old-styles.css",
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
+    },
+    "\/js\/male\/male.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/male.js",
+      "outputStyle" : 0,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/male-ck.js",
+      "fileType" : 64
+    },
+    "\/js\/male\/libs\/angular-ui\/test\/lib\/tinymce\/jquery.tinymce.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/test\/lib\/tinymce\/jquery.tinymce.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/test\/lib\/tinymce\/jquery.tinymce-ck.js",
+      "fileType" : 64
     },
     "\/images\/logo-ilovebrands.png" : {
       "ignoreWasSetByUser" : 0,
@@ -3748,6 +4595,17 @@
       "initialSize" : 10193,
       "fileType" : 8192
     },
+    "\/images\/lightbox\/beta\/boosters-img.jpg" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/images\/lightbox\/beta\/boosters-img.jpg",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/images\/lightbox\/beta\/boosters-img.jpg",
+      "initialSize" : 14458,
+      "fileType" : 4096
+    },
     "\/js\/scroll\/coda-slider.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -3769,17 +4627,6 @@
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/js\/arush\/male\/parse\/male-ck.js",
       "fileType" : 64
-    },
-    "\/images\/lightbox\/beta\/boosters-img.jpg" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/images\/lightbox\/beta\/boosters-img.jpg",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/images\/lightbox\/beta\/boosters-img.jpg",
-      "initialSize" : 14458,
-      "fileType" : 4096
     },
     "\/images\/arush\/home\/step-2-feed.png" : {
       "ignoreWasSetByUser" : 0,
@@ -3880,6 +4727,28 @@
       "initialSize" : 3266,
       "fileType" : 8192
     },
+    "\/js\/male\/libs\/angular-ui\/modules\/filters\/format\/format.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/filters\/format\/format.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/filters\/format\/format-ck.js",
+      "fileType" : 64
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/jq\/jq.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/jq\/jq.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/jq\/jq-ck.js",
+      "fileType" : 64
+    },
     "\/js\/arush\/jquery.accordion.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -3936,15 +4805,6 @@
       "initialSize" : 5137,
       "fileType" : 8192
     },
-    "\/css\/arush\/ux-niceties.css" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/css\/arush\/ux-niceties.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
-    },
     "\/js\/arush\/jquery.reject.brandid.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -3955,6 +4815,18 @@
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/js\/arush\/jquery.reject.brandid-ck.js",
       "fileType" : 64
+    },
+    "\/css\/male\/male.scss" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/css\/male\/male.scss",
+      "outputStyle" : 1,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/css\/male.css",
+      "fileType" : 4,
+      "debugStyle" : 0
     },
     "\/images\/dk_arrows_white.png" : {
       "ignoreWasSetByUser" : 0,
@@ -3989,17 +4861,6 @@
       "initialSize" : 12045,
       "fileType" : 4096
     },
-    "\/images\/shutl-close.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/images\/shutl-close.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/images\/shutl-close.png",
-      "initialSize" : 4403,
-      "fileType" : 8192
-    },
     "\/js\/arush\/jquery.mailcheck.min.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -4011,6 +4872,17 @@
       "outputAbbreviatedPath" : "\/js\/arush\/jquery.mailcheck.min-ck.js",
       "fileType" : 64
     },
+    "\/images\/shutl-close.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/images\/shutl-close.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/images\/shutl-close.png",
+      "initialSize" : 4403,
+      "fileType" : 8192
+    },
     "\/images\/brainwashed\/recurly\/amex.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -4021,6 +4893,15 @@
       "outputAbbreviatedPath" : "\/images\/brainwashed\/recurly\/amex.png",
       "initialSize" : 4429,
       "fileType" : 8192
+    },
+    "\/css\/arush\/ux-niceties.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/css\/arush\/ux-niceties.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
     },
     "\/css\/arush\/landing\/chevrons.scss" : {
       "ignoreWasSetByUser" : 0,
@@ -4163,6 +5044,17 @@
       "initialSize" : 18242,
       "fileType" : 4096
     },
+    "\/js\/male\/libs\/underscore-1.1.6.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/underscore-1.1.6.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/underscore-1.1.6-ck.js",
+      "fileType" : 64
+    },
     "\/images\/email.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -4182,6 +5074,28 @@
       "inputAbbreviatedPath" : "\/css\/arush\/landing3.css",
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
+    },
+    "\/js\/male\/libs\/select2\/select2x2.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/select2\/select2x2.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/select2\/select2x2.png",
+      "initialSize" : 845,
+      "fileType" : 8192
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/currency\/currency.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/currency\/currency.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/currency\/currency-ck.js",
+      "fileType" : 64
     },
     "\/images\/arush\/home\/step-2-clothes.jpg" : {
       "ignoreWasSetByUser" : 0,
@@ -4237,26 +5151,6 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
     },
-    "\/images\/logo-evogue.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/images\/logo-evogue.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/images\/logo-evogue.png",
-      "initialSize" : 5157,
-      "fileType" : 8192
-    },
-    "\/css\/rewardsref\/my_referrals.css" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/css\/rewardsref\/my_referrals.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
-    },
     "\/images\/emails\/invitation\/logo2.jpg" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -4267,6 +5161,37 @@
       "outputAbbreviatedPath" : "\/images\/emails\/invitation\/logo2.jpg",
       "initialSize" : 3775,
       "fileType" : 4096
+    },
+    "\/js\/male\/modules\/SlideViewDirective.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/modules\/SlideViewDirective.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/modules\/SlideViewDirective-ck.js",
+      "fileType" : 64
+    },
+    "\/css\/brainwashed\/recurly.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/css\/brainwashed\/recurly.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
+    },
+    "\/images\/logo-evogue.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/images\/logo-evogue.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/images\/logo-evogue.png",
+      "initialSize" : 5157,
+      "fileType" : 8192
     },
     "\/images\/down-chevron.png" : {
       "ignoreWasSetByUser" : 0,
@@ -4279,26 +5204,6 @@
       "initialSize" : 3648,
       "fileType" : 8192
     },
-    "\/css\/brainwashed\/recurly.css" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/css\/brainwashed\/recurly.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
-    },
-    "\/images\/price-bg.jpg" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/images\/price-bg.jpg",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/images\/price-bg.jpg",
-      "initialSize" : 1187,
-      "fileType" : 4096
-    },
     "\/images\/emailproviders.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -4308,59 +5213,6 @@
       "processed" : 0,
       "outputAbbreviatedPath" : "\/images\/emailproviders.png",
       "initialSize" : 17568,
-      "fileType" : 8192
-    },
-    "\/css\/social-convert-precheckout.css" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/css\/social-convert-precheckout.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
-    },
-    "\/images\/bg-flip-counter-smlr.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/images\/bg-flip-counter-smlr.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/images\/bg-flip-counter-smlr.png",
-      "initialSize" : 4179,
-      "fileType" : 8192
-    },
-    "\/images\/intl-shipping.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/images\/intl-shipping.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/images\/intl-shipping.png",
-      "initialSize" : 7655,
-      "fileType" : 8192
-    },
-    "\/images\/visit.jpg" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/images\/visit.jpg",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/images\/visit.jpg",
-      "initialSize" : 834,
-      "fileType" : 4096
-    },
-    "\/js\/graphics\/outlines\/glossy-dark.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/js\/graphics\/outlines\/glossy-dark.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/js\/graphics\/outlines\/glossy-dark.png",
-      "initialSize" : 2793,
       "fileType" : 8192
     },
     "\/js\/arush\/frameworks\/angular-1.0.1.min.js" : {
@@ -4373,6 +5225,88 @@
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/js\/arush\/frameworks\/angular-1.0.1.min-ck.js",
       "fileType" : 64
+    },
+    "\/css\/social-convert-precheckout.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/css\/social-convert-precheckout.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
+    },
+    "\/images\/visit.jpg" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/images\/visit.jpg",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/images\/visit.jpg",
+      "initialSize" : 834,
+      "fileType" : 4096
+    },
+    "\/images\/intl-shipping.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/images\/intl-shipping.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/images\/intl-shipping.png",
+      "initialSize" : 7655,
+      "fileType" : 8192
+    },
+    "\/js\/graphics\/outlines\/glossy-dark.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/graphics\/outlines\/glossy-dark.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/js\/graphics\/outlines\/glossy-dark.png",
+      "initialSize" : 2793,
+      "fileType" : 8192
+    },
+    "\/images\/bg-flip-counter-smlr.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/images\/bg-flip-counter-smlr.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/images\/bg-flip-counter-smlr.png",
+      "initialSize" : 4179,
+      "fileType" : 8192
+    },
+    "\/images\/price-bg.jpg" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/images\/price-bg.jpg",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/images\/price-bg.jpg",
+      "initialSize" : 1187,
+      "fileType" : 4096
+    },
+    "\/js\/male\/libs\/angular-ui\/build\/angular-ui.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/build\/angular-ui.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
+    },
+    "\/css\/rewardsref\/my_referrals.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/css\/rewardsref\/my_referrals.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
     },
     "\/config.rb" : {
       "ignoreWasSetByUser" : 0,
@@ -4426,6 +5360,17 @@
       "outputAbbreviatedPath" : "\/images\/brandid-huge.png",
       "initialSize" : 6853,
       "fileType" : 8192
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/scrollfix\/test\/scrollfixSpec.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/scrollfix\/test\/scrollfixSpec.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/scrollfix\/test\/scrollfixSpec-ck.js",
+      "fileType" : 64
     },
     "\/js\/arush\/male\/questions\/watch.coffee" : {
       "ignoreWasSetByUser" : 0,
@@ -4507,6 +5452,15 @@
       "initialSize" : 1056,
       "fileType" : 8192
     },
+    "\/css\/vdh\/popup\/style.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/css\/vdh\/popup\/style.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
+    },
     "\/js\/brainwashed\/recurly.min.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -4518,14 +5472,16 @@
       "outputAbbreviatedPath" : "\/js\/brainwashed\/recurly.min-ck.js",
       "fileType" : 64
     },
-    "\/css\/vdh\/popup\/style.css" : {
+    "\/images\/arrowblack.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/css\/vdh\/popup\/style.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
+      "inputAbbreviatedPath" : "\/images\/arrowblack.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/images\/arrowblack.png",
+      "initialSize" : 424,
+      "fileType" : 8192
     },
     "\/images\/points.jpg" : {
       "ignoreWasSetByUser" : 0,
@@ -4538,17 +5494,6 @@
       "initialSize" : 14707,
       "fileType" : 4096
     },
-    "\/images\/brainwashed\/recurly\/dash.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/images\/brainwashed\/recurly\/dash.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/images\/brainwashed\/recurly\/dash.png",
-      "initialSize" : 2820,
-      "fileType" : 8192
-    },
     "\/images\/arush\/seedcamp.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -4560,6 +5505,17 @@
       "initialSize" : 7939,
       "fileType" : 8192
     },
+    "\/js\/male\/male-ck.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/male-ck.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/male-ck-ck.js",
+      "fileType" : 64
+    },
     "\/css\/jquery-ui-1.8.11.custom.css" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -4569,15 +5525,15 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
     },
-    "\/images\/arrowblack.png" : {
+    "\/images\/brainwashed\/recurly\/dash.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/images\/arrowblack.png",
+      "inputAbbreviatedPath" : "\/images\/brainwashed\/recurly\/dash.png",
       "processed" : 0,
-      "outputAbbreviatedPath" : "\/images\/arrowblack.png",
-      "initialSize" : 424,
+      "outputAbbreviatedPath" : "\/images\/brainwashed\/recurly\/dash.png",
+      "initialSize" : 2820,
       "fileType" : 8192
     },
     "\/css\/keep-calm110620120613.scss" : {
@@ -4602,6 +5558,28 @@
       "outputAbbreviatedPath" : "\/images\/red-gradient-top.png",
       "initialSize" : 951,
       "fileType" : 8192
+    },
+    "\/js\/male\/libs\/select2\/select2.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/select2\/select2.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/select2\/select2.png",
+      "initialSize" : 613,
+      "fileType" : 8192
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/showhide\/test\/showhideSpec.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/showhide\/test\/showhideSpec.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/showhide\/test\/showhideSpec-ck.js",
+      "fileType" : 64
     },
     "\/images\/sendinvitations.png" : {
       "ignoreWasSetByUser" : 0,
@@ -4669,6 +5647,17 @@
       "initialSize" : 354,
       "fileType" : 4096
     },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/validate\/validate.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/validate\/validate.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/validate\/validate-ck.js",
+      "fileType" : 64
+    },
     "\/images\/arush\/movember\/big-tash.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -4723,17 +5712,6 @@
       "outputAbbreviatedPath" : "\/js\/arush\/male\/questions\/gift-ck.js",
       "fileType" : 64
     },
-    "\/images\/male\/play\/2.jpg" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/images\/male\/play\/2.jpg",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/images\/male\/play\/2.jpg",
-      "initialSize" : 8990,
-      "fileType" : 4096
-    },
     "\/images\/bg-login.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -4744,6 +5722,17 @@
       "outputAbbreviatedPath" : "\/images\/bg-login.png",
       "initialSize" : 4968,
       "fileType" : 8192
+    },
+    "\/images\/male\/play\/2.jpg" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/images\/male\/play\/2.jpg",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/images\/male\/play\/2.jpg",
+      "initialSize" : 8990,
+      "fileType" : 4096
     },
     "\/images\/plaxo.png" : {
       "ignoreWasSetByUser" : 0,
@@ -4766,17 +5755,6 @@
       "outputAbbreviatedPath" : "\/images\/60_black.png",
       "initialSize" : 2807,
       "fileType" : 8192
-    },
-    "\/images\/reward\/send.jpg" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/images\/reward\/send.jpg",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/images\/reward\/send.jpg",
-      "initialSize" : 19745,
-      "fileType" : 4096
     },
     "\/css\/arush\/jquery.reject.scss" : {
       "ignoreWasSetByUser" : 0,
@@ -4801,6 +5779,41 @@
       "initialSize" : 2813,
       "fileType" : 8192
     },
+    "\/images\/reward\/send.jpg" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/images\/reward\/send.jpg",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/images\/reward\/send.jpg",
+      "initialSize" : 19745,
+      "fileType" : 4096
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/codemirror\/test\/codemirrorSpec.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/codemirror\/test\/codemirrorSpec.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/codemirror\/test\/codemirrorSpec-ck.js",
+      "fileType" : 64
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/reset\/stylesheets\/reset.less" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/reset\/stylesheets\/reset.less",
+      "outputStyle" : 0,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/reset\/css\/reset.css",
+      "strictImports" : 0,
+      "fileType" : 1,
+      "debugStyle" : 0
+    },
     "\/js\/arush\/male\/jqconsole-2.7.min.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -4810,6 +5823,17 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/js\/arush\/male\/jqconsole-2.7.min-ck.js",
+      "fileType" : 64
+    },
+    "\/js\/male\/libs\/angular-ui\/test\/lib\/angular-1.0.1\/angular-mocks.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/test\/lib\/angular-1.0.1\/angular-mocks.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/test\/lib\/angular-1.0.1\/angular-mocks-ck.js",
       "fileType" : 64
     },
     "\/js\/arush\/landing\/tumblrBadge-1.1-ck.js" : {
@@ -4834,6 +5858,17 @@
       "outputAbbreviatedPath" : "\/js\/jquery.carouFredSel-4.3.3-packed-ck.js",
       "fileType" : 64
     },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/animate\/test\/animateSpec.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/animate\/test\/animateSpec.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/animate\/test\/animateSpec-ck.js",
+      "fileType" : 64
+    },
     "\/images\/clear.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -4844,6 +5879,17 @@
       "outputAbbreviatedPath" : "\/images\/clear.png",
       "initialSize" : 3090,
       "fileType" : 8192
+    },
+    "\/js\/male\/libs\/angular-ui\/test\/lib\/googlemaps\/googlemaps.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/test\/lib\/googlemaps\/googlemaps.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/test\/lib\/googlemaps\/googlemaps-ck.js",
+      "fileType" : 64
     },
     "\/js\/highslide-full.js" : {
       "ignoreWasSetByUser" : 0,
@@ -4878,6 +5924,17 @@
       "initialSize" : 137457,
       "fileType" : 4096
     },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/modal\/test\/modalSpec.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/modal\/test\/modalSpec.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/modal\/test\/modalSpec-ck.js",
+      "fileType" : 64
+    },
     "\/images\/emails\/welcome\/cms2.jpg" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -4897,6 +5954,28 @@
       "inputAbbreviatedPath" : "\/css\/forgotpass.css",
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/filters\/unique\/unique.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/filters\/unique\/unique.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/filters\/unique\/unique-ck.js",
+      "fileType" : 64
+    },
+    "\/js\/male\/controllers\/nav.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/controllers\/nav.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/controllers\/nav-ck.js",
+      "fileType" : 64
     },
     "\/css\/arush\/plan\/plan.css" : {
       "ignoreWasSetByUser" : 0,
@@ -5002,6 +6081,29 @@
       "outputAbbreviatedPath" : "\/js\/scroll\/jquery.mousewheel-ck.js",
       "fileType" : 64
     },
+    "\/css\/libs\/angular-ui.scss" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/css\/libs\/angular-ui.scss",
+      "outputStyle" : 1,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/css\/angular-ui.css",
+      "fileType" : 4,
+      "debugStyle" : 0
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/reset\/reset.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/reset\/reset.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/reset\/reset-ck.js",
+      "fileType" : 64
+    },
     "\/css\/svdh.scss" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -5013,6 +6115,17 @@
       "outputAbbreviatedPath" : "\/css\/svdh.css",
       "fileType" : 4,
       "debugStyle" : 0
+    },
+    "\/js\/male\/libs\/angular-ui\/modules\/directives\/currency\/test\/currencySpec.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/currency\/test\/currencySpec.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/male\/libs\/angular-ui\/modules\/directives\/currency\/test\/currencySpec-ck.js",
+      "fileType" : 64
     },
     "\/css\/svdh.css" : {
       "ignoreWasSetByUser" : 0,

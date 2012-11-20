@@ -42,7 +42,7 @@
     // use Parse if available
 
     if(typeof(Parse) !== "undefined") {
-
+      
       Parse.FacebookUtils.init({
           appId: '<?php echo Mage::helper("evlike")->getLikeConfig("ev_facebook_app_id") ?>',
           channelUrl : '<?php echo $this->getBaseUrl() ?>facebook/channel',
@@ -99,7 +99,7 @@
   (function() {
     var e = document.createElement('script'); e.async = true;
     e.src = document.location.protocol +
-      '//connect.facebook.net/<?php echo $_locale ?>/all.js#appId=<?php echo Mage::helper("evlike")->getLikeConfig("ev_facebook_app_id") ?>';
+      '//connect.facebook.net/<?php echo $_locale ?>/all.js';
     document.getElementById('fb-root').appendChild(e);
   }());
   

@@ -1,0 +1,41 @@
+@import "compass";
+@import "../libs/angular-ui.scss";
+@import "../libs/select2.scss";
+@import "../arush/animate.scss";
+
+
+@import "layout/layout.scss";
+@import "components/slides.scss";
+@import "components/slideAnimations.scss";
+@import "components/drawer.scss";
+
+body {
+	background:#f1f1f1;
+}
+
+#maleContainer {
+	background:#f1f1f1;
+	height:100%;
+}
+
+.ipad-style-header {
+	height:44px;
+	@include border-top-radius(5px);
+
+	/* needs latest Compass, add '@import "compass"' to your scss */
+	background-color: rgb(237,237,237); /* Old browsers */
+	@include filter-gradient(#ededed, #d6d6d6, vertical); /* IE6-8 */
+
+	$experimental-support-for-svg: true;
+	@include background-image(linear-gradient(top,  rgba(237,237,237,1) 0%,rgba(214,214,214,1) 100%));
+
+	border: 1px solid #ccc;
+	border-bottom: 1px solid #aaaaaa;
+	border-top:1px solid #FFF;
+}
+
+.gte9 .ipad-style-header {
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	filter:none;
+}
+

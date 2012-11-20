@@ -1,0 +1,27 @@
+.in {
+  background:red;
+}
+
+.out {
+	background:blue;
+}
+
+.backwardTransition, .forwardTransition {
+	position: absolute;
+	width: 100%;
+}
+
+.backwardTransition.in, .backwardTransition.out, .forwardTransition.in, .forwardTransition.out {
+	-webkit-transition: all 0.3s ease-out;
+}
+
+.backwardTransition, .forwardTransition.out {
+	-webkit-transform: translateX(-100%);
+
+}
+.backwardTransition.in, .forwardTransition.in {
+	-webkit-transform: translateX(0%);
+}
+.backwardTransition.out, .forwardTransition {
+	-webkit-transform: translateX(100%);
+}
