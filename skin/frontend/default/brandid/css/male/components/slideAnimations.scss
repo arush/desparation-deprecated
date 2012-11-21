@@ -13,15 +13,23 @@
 
 .backwardTransition.in, .backwardTransition.out, .forwardTransition.in, .forwardTransition.out {
 	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
 }
 
 .backwardTransition, .forwardTransition.out {
 	-webkit-transform: translateX(-100%);
+	-moz-transform: translateX(-100%);
+	-o-transform: translateX(-100%);
 
 }
 .backwardTransition.in, .forwardTransition.in {
 	-webkit-transform: translateX(0%);
+	-moz-transform: translateX(0%);
+	-o-transform: translateX(0%);
 }
 .backwardTransition.out, .forwardTransition {
 	-webkit-transform: translateX(100%);
+	-moz-transform: translateX(100%);
+	-o-transform: translateX(100%);
 }

@@ -1097,16 +1097,24 @@ disabled look for already selected choices in the results dropdown
   width: 100%; }
 
 .backwardTransition.in, .backwardTransition.out, .forwardTransition.in, .forwardTransition.out {
-  -webkit-transition: all 0.3s ease-out; }
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out; }
 
 .backwardTransition, .forwardTransition.out {
-  -webkit-transform: translateX(-100%); }
+  -webkit-transform: translateX(-100%);
+  -moz-transform: translateX(-100%);
+  -o-transform: translateX(-100%); }
 
 .backwardTransition.in, .forwardTransition.in {
-  -webkit-transform: translateX(0%); }
+  -webkit-transform: translateX(0%);
+  -moz-transform: translateX(0%);
+  -o-transform: translateX(0%); }
 
 .backwardTransition.out, .forwardTransition {
-  -webkit-transform: translateX(100%); }
+  -webkit-transform: translateX(100%);
+  -moz-transform: translateX(100%);
+  -o-transform: translateX(100%); }
 
 .drawer {
   position: fixed;
@@ -1122,8 +1130,8 @@ disabled look for already selected choices in the results dropdown
   top: 0;
   right: 0;
   height: 100%;
-  width: 15px;
-  background: -webkit-linear-gradient(left, transparent, rgba(0, 0, 0, 0.45)); }
+  width: 10px;
+  background: -webkit-linear-gradient(left, transparent, rgba(0, 0, 0, 0.4)); }
 
 .open-drawer .drawer {
   left: 0; }

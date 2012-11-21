@@ -4,6 +4,7 @@
 <div ng-app="ngMaleApp">
   
   <div class="open-drawer" ng-class="drawerClass">
+    
     <div class="drawer" ng-controller="NavCtrl">
       <button ng-click="drawerClass = 'test'"></button>
       <nav>
@@ -22,12 +23,10 @@
         </section>
       </nav>
     </div>
+
     <div class="rest-of-page">
       
       <div id="maleContainer" class="fullWidth withShadow">
-      
-        
-        
 
         <div class="submenu-detail-view clearfix" ng-controller="SlideCtrl">
           <button ng-Disabled='!Navigation.backPage', ng-click='Navigation.back()'>Back</button> <button ng-Disabled='!Navigation.nextPage', ng-click='Navigation.next()'>Next</button>
@@ -35,10 +34,6 @@
 
             <div class="slide-container" slide-view in-class="in" out-class="out"></div>
             
-
-
-
-
 
 
           <!-- Inline Templates (Partials) -->
