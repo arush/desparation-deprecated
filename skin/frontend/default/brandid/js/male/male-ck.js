@@ -35086,6 +35086,10 @@ function Ctrl2($scope) {
 
 ngMaleApp.config(function ($routeProvider) {
     $routeProvider
+      .when('/', {
+         templateUrl:'start.html',
+         controller:MainCtrl
+      })
       .when('/one', {
          templateUrl:'view1.html',
          controller:Ctrl1
@@ -35279,6 +35283,31 @@ angular.module('DataServices', [])
 
 
 /* **********************************************
+     Begin main.js
+********************************************** */
+
+'use strict';
+
+/**
+ * This is the Main controller for the application.  There is only one right now,
+ * given the simplistic nature of the application.  
+ *
+ */
+var MainCtrl = ngMaleApp.controller('MainCtrl', function($scope,DataService) {
+
+  /**
+   *  Controller Functions
+   */
+   $scope.user = {
+      firstName: null,
+      lastName: null,
+      email: null
+    };
+  alert($scope.user.firstName);
+});
+MainCtrl.$inject = ['$scope','DataService'];
+
+/* **********************************************
      Begin male.js
 ********************************************** */
 
@@ -35297,10 +35326,13 @@ angular.module('DataServices', [])
 
 // @codekit-prepend "modules/SlideViewDirective.js"
 // @codekit-prepend "app/ngMale.js"
+
 // @codekit-prepend "controllers/nav.js"
 // @codekit-prepend "controllers/slide.js"
 
 // @codekit-prepend "modules/services.js"
+
+// @codekit-prepend "controllers/main.js"
 
 $(function() {
 

@@ -1,42 +1,70 @@
-<div id="top" class="keep-calm-signup-container">
-  <?php echo $this->getChildHtml('landing_header'); ?>
-</div>
-<div ng-app="ngMaleApp">
-  
-  <div class="open-drawer" ng-class="drawerClass">
-    
-    <div class="drawer" ng-controller="NavCtrl">
-      <button ng-click="drawerClass = 'test'"></button>
-      <nav>
-        <section>
-          <div id="categoryItems" class="navItem">
-            <header>
-              <a id="menuItemOpener">
-                <span>Configure pants</span>
-              </a>
-            </header>
-            <div class="menuItem boxers">
-              <a id="navButtonBoxers" class="menuItemOverlay">
-              </a>
+<!-- <div id="top" class="keep-calm-signup-container">
+  <?php // echo $this->getChildHtml('landing_header'); ?>
+</div> -->
+<div ng-app="ngMaleApp" ng-controller="MainCtrl" class="container maleApp withShadow" ui-toggle="showHide" ng-init="showHide=true">
+
+  <div  class="drawer-holder shadow-trick-holder" >
+    <div class="drawer shadow-trick right">
+      <ul>
+        <li class="big-block active">
+
+          <div class="shadow-trick-holder">
+            <div class="chisel-block shadow-trick bottom">
+             <span>1. Your Garms</span> 
             </div>
           </div>
-        </section>
-      </nav>
-    </div>
-
-    <div class="rest-of-page">
-      
-      <div id="maleContainer" class="fullWidth withShadow">
-
-        <div class="submenu-detail-view clearfix" ng-controller="SlideCtrl">
-          <button ng-Disabled='!Navigation.backPage', ng-click='Navigation.back()'>Back</button> <button ng-Disabled='!Navigation.nextPage', ng-click='Navigation.next()'>Next</button>
-          
-
-            <div class="slide-container" slide-view in-class="in" out-class="out"></div>
             
+          <div class="big-block">
+            <div class="icon boxers"></div>
+            <div class="arrow-left"></div>
+          </div>
+        </li>
+        <li>
+          <div class="shadow-trick-holder">
+            <div class="chisel-block shadow-trick bottom">
+             <span>2. M.A.L.E. Recommends</span> 
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="shadow-trick-holder">
+            <div class="chisel-block shadow-trick bottom">
+             <span>3. Confirm quantities</span> 
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="shadow-trick-holder">
+            <div class="chisel-block shadow-trick bottom">
+             <span>4. Checkout</span> 
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="rest-of-page">
+    <div class="controls chisel-block clearfix">
+      <div class="controls-content clearfix">
+        <a ng-click="showHide=!showHide" class="button-overlay">
+        <div class="menu-button">
+          
+        </div>
+      </a>
+      </div>
+      
+
+    </div>
+  </div>
 
 
-          <!-- Inline Templates (Partials) -->
+   
+
+<!-- Inline Templates (Partials) -->
+          <script type=text/ng-template id=start.html>
+                <div class="">First page</div>
+          </script>
           <script type=text/ng-template id=view1.html>
                 <div class="page">First page</div>
           </script>
@@ -53,12 +81,6 @@
             
           </script>
 
-
-        </div>  
-      </div>
-
-    </div> <!-- rest of page -->
-  </div> <!-- whole page -->
 </div> <!-- ng-app -->
 
 

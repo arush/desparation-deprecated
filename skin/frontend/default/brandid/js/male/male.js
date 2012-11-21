@@ -13,10 +13,13 @@
 
 // @codekit-prepend "modules/SlideViewDirective.js"
 // @codekit-prepend "app/ngMale.js"
+
 // @codekit-prepend "controllers/nav.js"
 // @codekit-prepend "controllers/slide.js"
 
 // @codekit-prepend "modules/services.js"
+
+// @codekit-prepend "controllers/main.js"
 
 $(function() {
 

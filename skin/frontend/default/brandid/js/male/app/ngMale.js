@@ -32,6 +32,10 @@ function Ctrl2($scope) {
 
 ngMaleApp.config(function ($routeProvider) {
     $routeProvider
+      .when('/', {
+         templateUrl:'start.html',
+         controller:MainCtrl
+      })
       .when('/one', {
          templateUrl:'view1.html',
          controller:Ctrl1
