@@ -35077,12 +35077,6 @@ var ngMaleApp = angular.module('ngMaleApp', ['SlideViewDirective','DataServices'
   //     // });
   // }]);
 
-function Ctrl1($scope) {
-    $scope.message = "one!";
-}
-function Ctrl2($scope) {
-    $scope.message = "two!";
-}
 
 ngMaleApp.config(function ($routeProvider) {
     $routeProvider
@@ -35090,34 +35084,34 @@ ngMaleApp.config(function ($routeProvider) {
          templateUrl:'start.html',
          controller:MainCtrl
       })
-      .when('/one', {
-         templateUrl:'view1.html',
-         controller:Ctrl1
+      .when('/section/:section/category/socks/', {
+      	templateUrl: 'urlRouter.html',
+      	controller: SocksStateCtrl
       })
-     .when('/two', {
-        controller:Ctrl2,
-        templateUrl:'view2.html'
-      })
-     .when('/three', {
-        controller:Ctrl3,
-        templateUrl:'view3.html'
+      .when('/section/:section/category/:category/question/:question', {
+         templateUrl: 'urlRouter.html',
+         controller: DetailCtrl
       })
       .otherwise({
-        redirectTo:'/one'
+        redirectTo: '/'
       });
 });
 
-function Ctrl1($scope, Navigation) {
+
+
+// wire up the screens in order
+
+function Boxers1($scope, Navigation) {
     Navigation.backPage = null;
-    Navigation.nextPage = '/two';
+    Navigation.nextPage = '/2';
 }
-function Ctrl2($scope, Navigation) {
-    Navigation.backPage = '/one';
-    Navigation.nextPage = '/three';
+function Boxers2($scope, Navigation) {
+    Navigation.backPage = '/1';
+    Navigation.nextPage = '/3';
 }
 
-function Ctrl3($scope, Navigation) {
-    Navigation.backPage = '/two';
+function Boxers3($scope, Navigation) {
+    Navigation.backPage = '/2';
     Navigation.nextPage = null;
 }
 
@@ -35140,21 +35134,53 @@ ngMaleApp.service('Navigation', function($location) {
 
 
 /* **********************************************
-     Begin nav.js
+     Begin socksStateController.js
 ********************************************** */
 
 'use strict';
 
 /**
- * This is the nav controller for the application. 
- *
+ * This is the Socks State Machine that takes the questions that the user has answered 
+ * and redirects to the correct question
  */
-var NavCtrl = ngMaleApp.controller('NavCtrl', function($scope,DataService) {
 
-	$scope.drawerClass = 'tr';
 
+var SocksStateCtrl = ngMaleApp.controller('SocksStateCtrl', function($scope,DataService,$locale,$location) {
+
+	
+	alert('got to sock controller');
+	if(typeof($scope.user.socksAnswers) === "undefined") {
+		$location.path('/section/garms/category/socks/question/1');
+	}
 
 });
+
+/* **********************************************
+     Begin master.js
+********************************************** */
+
+'use strict';
+
+var MasterCtrl = ngMaleApp.controller('MasterCtrl', function($scope,DataService,$locale, $routeParams) {
+
+	$scope.routeParams = $routeParams;
+
+});
+
+/* **********************************************
+     Begin detail.js
+********************************************** */
+
+'use strict';
+
+/**
+ * This is the nav controller for the application.
+ *
+ */
+
+function DetailCtrl($scope, $routeParams) {
+    $scope.templateUrl = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
+}
 
 /* **********************************************
      Begin slide.js
@@ -35169,6 +35195,86 @@ var NavCtrl = ngMaleApp.controller('NavCtrl', function($scope,DataService) {
 var SlideCtrl = ngMaleApp.controller('SlideCtrl', function($scope,Navigation,DataService) {
 	$scope.Navigation = Navigation
 });
+
+/* **********************************************
+     Begin main.js
+********************************************** */
+
+'use strict';
+
+/**
+ * This is the Main controller for the application.  There is only one right now,
+ * given the simplistic nature of the application.  
+ *
+ */
+var MainCtrl = ngMaleApp.controller('MainCtrl', function($scope,DataService,$locale) {
+
+  /**
+   *  Controller Functions
+   */
+  $locale.id = "en-gb";
+
+  // TODO: put these in a .json file and retrieve via AJAX
+
+  if ($locale.id == 'en-gb') {
+    var catalogItems = [
+        {
+          category: "boxers",
+          cssClass: "boxers",
+          name: "pants"
+        },
+        {
+          category: "socks",
+          cssClass: "socks",
+          name: "socks"
+        }
+    ];
+  } else {
+    var catalogItems = [
+        {
+          category: "boxers",
+          cssClass: "boxers",
+          name: "pants"
+        },
+        {
+          category: "socks",
+          cssClass: "socks",
+          name: "socks"
+        }
+    ];
+  }
+
+  $scope.menu = [
+    {
+      title: "1. Are you a man?",
+      section: "manometer",
+    },
+    {
+      title: "2. Your Garms",
+      section: "garms",
+      subItems: catalogItems
+
+    },
+    {
+      title: "3. Your Life",
+
+    },
+    {
+      title: "4. ",
+
+    }
+  ];
+
+
+
+  $scope.user = {
+    firstName: null,
+    lastName: null,
+    email: null
+  };
+  // alert($locale.id);
+});
+MainCtrl.$inject = ['$scope','DataService'];
 
 /* **********************************************
      Begin services.js
@@ -35283,31 +35389,6 @@ angular.module('DataServices', [])
 
 
 /* **********************************************
-     Begin main.js
-********************************************** */
-
-'use strict';
-
-/**
- * This is the Main controller for the application.  There is only one right now,
- * given the simplistic nature of the application.  
- *
- */
-var MainCtrl = ngMaleApp.controller('MainCtrl', function($scope,DataService) {
-
-  /**
-   *  Controller Functions
-   */
-   $scope.user = {
-      firstName: null,
-      lastName: null,
-      email: null
-    };
-  alert($scope.user.firstName);
-});
-MainCtrl.$inject = ['$scope','DataService'];
-
-/* **********************************************
      Begin male.js
 ********************************************** */
 
@@ -35327,12 +35408,16 @@ MainCtrl.$inject = ['$scope','DataService'];
 // @codekit-prepend "modules/SlideViewDirective.js"
 // @codekit-prepend "app/ngMale.js"
 
-// @codekit-prepend "controllers/nav.js"
+// @codekit-prepend "controllers/stateMachines/socksStateController.js"
+
+// @codekit-prepend "controllers/master.js"
+// @codekit-prepend "controllers/detail.js"
 // @codekit-prepend "controllers/slide.js"
+// @codekit-prepend "controllers/main.js"
 
 // @codekit-prepend "modules/services.js"
 
-// @codekit-prepend "controllers/main.js"
+
 
 $(function() {
 

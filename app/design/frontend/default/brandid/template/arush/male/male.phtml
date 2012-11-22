@@ -1,44 +1,26 @@
 <!-- <div id="top" class="keep-calm-signup-container">
   <?php // echo $this->getChildHtml('landing_header'); ?>
 </div> -->
-<div ng-app="ngMaleApp" ng-controller="MainCtrl" class="container maleApp withShadow" ui-toggle="showHide" ng-init="showHide=true">
+<div ng-app="ngMaleApp" ng-controller="MainCtrl" class="container maleApp withShadow" ui-toggle="drawerOpen" ng-init="drawerOpen=true">
 
   <div  class="drawer-holder shadow-trick-holder" >
-    <div class="drawer shadow-trick right">
+    <div class="drawer shadow-trick right" ng-controller="MasterCtrl">
       <ul>
-        <li class="big-block active">
+        <li class="menu-section" ng-repeat="menuItem in menu">
 
           <div class="shadow-trick-holder">
             <div class="chisel-block shadow-trick bottom">
-             <span>1. Your Garms</span> 
+             <span>{{menuItem.title}}</span> 
             </div>
           </div>
-            
-          <div class="big-block">
-            <div class="icon boxers"></div>
-            <div class="arrow-left"></div>
-          </div>
-        </li>
-        <li>
-          <div class="shadow-trick-holder">
-            <div class="chisel-block shadow-trick bottom">
-             <span>2. M.A.L.E. Recommends</span> 
+          
+            <div ng-repeat="subItem in menuItem.subItems"  class="ani big-block" ng-class="{selected: subItem.category==routeParams.category}">
+              <a href="#/section/{{menuItem.section}}/category/{{subItem.category}}/" class="button-overlay">
+                <div class="icon {{subItem.cssClass}}"></div>
+                <div class="ani arrow-left"></div>
+              </a>
             </div>
-          </div>
-        </li>
-        <li>
-          <div class="shadow-trick-holder">
-            <div class="chisel-block shadow-trick bottom">
-             <span>3. Confirm quantities</span> 
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="shadow-trick-holder">
-            <div class="chisel-block shadow-trick bottom">
-             <span>4. Checkout</span> 
-            </div>
-          </div>
+          </a>
         </li>
       </ul>
     </div>
@@ -47,39 +29,46 @@
   <div class="rest-of-page">
     <div class="controls chisel-block clearfix">
       <div class="controls-content clearfix">
-        <a ng-click="showHide=!showHide" class="button-overlay">
+        <a ng-click="drawerOpen=!drawerOpen" class="button-overlay">
         <div class="menu-button">
           
         </div>
       </a>
       </div>
-      
-
+    <!-- TODO: pagination control -->
     </div>
+    <div ng-view>
+    </div>
+
+
   </div>
 
 
-   
+<!-- Workaround to dynamically load :primaryNav/:secondaryNav templates -->
+<script type=text/ng-template id=urlRouter.html>
+    <div ng-include src="templateUrl"></div>
+</script>
 
 <!-- Inline Templates (Partials) -->
-          <script type=text/ng-template id=start.html>
-                <div class="">First page</div>
-          </script>
-          <script type=text/ng-template id=view1.html>
-                <div class="page">First page</div>
-          </script>
+          
 
-          <script type=text/ng-template id=view2.html>
-              <div class="page">Second Page</div>
-          </script>
 
-          <script type=text/ng-template id=view3.html>
-              <div class="page">Third Page</div>
-          </script>
+<script type=text/ng-template id=start.html>
+    <div class="">M.A.L.E. Beginning</div>
+</script>
 
-          <script type="text/ng-template" id="menu.html">
-            
-          </script>
+
+<script type=text/ng-template id=garms/boxers/1.html>
+    <div class="page">First page</div>
+</script>
+
+<script type=text/ng-template id=garms/boxers/2.html>
+    <div class="page">Second Page</div>
+</script>
+
+<script type=text/ng-template id=garms/boxers/3.html>
+    <div class="page">Third Page</div>
+</script>
 
 </div> <!-- ng-app -->
 

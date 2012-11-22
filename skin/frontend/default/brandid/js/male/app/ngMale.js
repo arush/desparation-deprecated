@@ -23,12 +23,6 @@ var ngMaleApp = angular.module('ngMaleApp', ['SlideViewDirective','DataServices'
   //     // });
   // }]);
 
-function Ctrl1($scope) {
-    $scope.message = "one!";
-}
-function Ctrl2($scope) {
-    $scope.message = "two!";
-}
 
 ngMaleApp.config(function ($routeProvider) {
     $routeProvider
@@ -36,34 +30,34 @@ ngMaleApp.config(function ($routeProvider) {
          templateUrl:'start.html',
          controller:MainCtrl
       })
-      .when('/one', {
-         templateUrl:'view1.html',
-         controller:Ctrl1
+      .when('/section/:section/category/socks/', {
+      	templateUrl: 'urlRouter.html',
+      	controller: SocksStateCtrl
       })
-     .when('/two', {
-        controller:Ctrl2,
-        templateUrl:'view2.html'
-      })
-     .when('/three', {
-        controller:Ctrl3,
-        templateUrl:'view3.html'
+      .when('/section/:section/category/:category/question/:question', {
+         templateUrl: 'urlRouter.html',
+         controller: DetailCtrl
       })
       .otherwise({
-        redirectTo:'/one'
+        redirectTo: '/'
       });
 });
 
-function Ctrl1($scope, Navigation) {
+
+
+// wire up the screens in order
+
+function Boxers1($scope, Navigation) {
     Navigation.backPage = null;
-    Navigation.nextPage = '/two';
+    Navigation.nextPage = '/2';
 }
-function Ctrl2($scope, Navigation) {
-    Navigation.backPage = '/one';
-    Navigation.nextPage = '/three';
+function Boxers2($scope, Navigation) {
+    Navigation.backPage = '/1';
+    Navigation.nextPage = '/3';
 }
 
-function Ctrl3($scope, Navigation) {
-    Navigation.backPage = '/two';
+function Boxers3($scope, Navigation) {
+    Navigation.backPage = '/2';
     Navigation.nextPage = null;
 }
 
