@@ -1,6 +1,6 @@
 'use strict';
 
-var ngMaleApp = angular.module('ngMaleApp', ['SlideViewDirective','DataServices','ui']);
+var ngMaleApp = angular.module('ngMaleApp', ['SlideViewDirective','StateMachines','DataServices','ui']);
 
 
   // .config(['$routeProvider', function($routeProvider) {

@@ -6,12 +6,13 @@
  */
 
 
-var SocksStateCtrl = ngMaleApp.controller('SocksStateCtrl', function($scope,DataService,$locale,$location) {
+var SocksStateCtrl = ngMaleApp.controller('SocksStateCtrl', function($scope,StateMachine,DataService,$locale,$location) {
 
 	
-	alert('got to sock controller');
-	if(typeof($scope.user.socksAnswers) === "undefined") {
+
+	// if(typeof($scope.user.socksAnswers) === "undefined") {
 		$location.path('/section/garms/category/socks/question/1');
-	}
+	// }
 
 });
+SocksStateCtrl.$inject = ['$scope','StateMachine'];

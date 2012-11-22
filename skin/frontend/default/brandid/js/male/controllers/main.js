@@ -5,8 +5,9 @@
  * given the simplistic nature of the application.  
  *
  */
-var MainCtrl = ngMaleApp.controller('MainCtrl', function($scope,DataService,$locale) {
+var MainCtrl = ngMaleApp.controller('MainCtrl', function($scope,StateMachine,DataService,$locale) {
 
+  console.log(StateMachine);
   /**
    *  Controller Functions
    */
@@ -72,4 +73,4 @@ var MainCtrl = ngMaleApp.controller('MainCtrl', function($scope,DataService,$loc
   };
   // alert($locale.id);
 });
-MainCtrl.$inject = ['$scope','DataService'];
+MainCtrl.$inject = ['$scope','DataService','StateMachine'];

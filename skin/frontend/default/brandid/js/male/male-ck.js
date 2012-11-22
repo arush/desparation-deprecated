@@ -35054,7 +35054,7 @@ angular.module('SlideViewDirective',[])
 
 'use strict';
 
-var ngMaleApp = angular.module('ngMaleApp', ['SlideViewDirective','DataServices','ui']);
+var ngMaleApp = angular.module('ngMaleApp', ['SlideViewDirective','StateMachines','DataServices','ui']);
 
 
   // .config(['$routeProvider', function($routeProvider) {
@@ -35145,15 +35145,16 @@ ngMaleApp.service('Navigation', function($location) {
  */
 
 
-var SocksStateCtrl = ngMaleApp.controller('SocksStateCtrl', function($scope,DataService,$locale,$location) {
+var SocksStateCtrl = ngMaleApp.controller('SocksStateCtrl', function($scope,StateMachine,DataService,$locale,$location) {
 
 	
-	alert('got to sock controller');
-	if(typeof($scope.user.socksAnswers) === "undefined") {
+
+	// if(typeof($scope.user.socksAnswers) === "undefined") {
 		$location.path('/section/garms/category/socks/question/1');
-	}
+	// }
 
 });
+SocksStateCtrl.$inject = ['$scope','StateMachine'];
 
 /* **********************************************
      Begin master.js
@@ -35178,9 +35179,28 @@ var MasterCtrl = ngMaleApp.controller('MasterCtrl', function($scope,DataService,
  *
  */
 
-function DetailCtrl($scope, $routeParams) {
-    $scope.templateUrl = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
-}
+var DetailCtrl = ngMaleApp.controller('DetailCtrl', function($scope,StateMachine,DataService,$routeParams) {
+
+ 
+  
+  /**
+   *  Controller Properties
+   */
+
+   $scope.templateUrl = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
+
+
+  /**
+   *  Controller Functions
+   */
+
+ 	StateMachine.answer().answer();
+   
+
+
+
+});
+DetailCtrl.$inject = ['$scope','StateMachine'];
 
 /* **********************************************
      Begin slide.js
@@ -35207,8 +35227,9 @@ var SlideCtrl = ngMaleApp.controller('SlideCtrl', function($scope,Navigation,Dat
  * given the simplistic nature of the application.  
  *
  */
-var MainCtrl = ngMaleApp.controller('MainCtrl', function($scope,DataService,$locale) {
+var MainCtrl = ngMaleApp.controller('MainCtrl', function($scope,StateMachine,DataService,$locale) {
 
+  console.log(StateMachine);
   /**
    *  Controller Functions
    */
@@ -35274,7 +35295,7 @@ var MainCtrl = ngMaleApp.controller('MainCtrl', function($scope,DataService,$loc
   };
   // alert($locale.id);
 });
-MainCtrl.$inject = ['$scope','DataService'];
+MainCtrl.$inject = ['$scope','DataService','StateMachine'];
 
 /* **********************************************
      Begin services.js
@@ -35389,6 +35410,88 @@ angular.module('DataServices', [])
 
 
 /* **********************************************
+     Begin stateMachines.js
+********************************************** */
+
+/**
+ * State Machine Module
+ *
+ *  A state machine using stately.js to control routing
+ */
+angular.module('StateMachines', []) 
+/**
+ * Boxers Machine
+ */
+.factory('BoxersMachine', function(){
+    // Initialize Machine
+
+    var BoxersMachine = Stately.machine({
+	    'Q1': {
+	        answer: function (answers) {
+	            return this.Q2;
+	        }
+	    },
+	    'Q2': {
+	        answer: function (answers) {
+	            return this.Q3;
+	        }
+	    },
+	    'Q3': {
+	        answer: function (answers) {
+	            return 'Dashboard';
+	        }
+	    },
+	    'Dashboard': {
+	    	editQ1: function () {
+	    		return this.Q1;
+	    	},
+	    	editQ2: function () {
+	    		return this.Q1;
+	    	},
+	    	editQ3: function () {
+	    		return this.Q1;
+	    	}
+		}
+	}).bind(function (event, oldState, newState) {
+
+	    var transition = oldState + ' => ' + newState;
+
+	    switch (transition) {
+	        /*
+	        ...
+	        case 'Q1 => Q2':
+	        case 'Q3 => Dashboard':
+	        ...
+	        */
+	        default:
+	            console.log(transition);
+	            break;
+	    }
+	});
+
+
+    // The factory function returns BoxersMachine, which is injected into controllers.
+    return BoxersMachine;
+})
+
+/**
+ * StateMachine is a simple adapter that returns either the correct machine for the correct route
+ * This service is injected into the Main? Controller
+ */
+
+.factory('StateMachine', function (BoxersMachine,$routeParams) {
+  // default service as a fallback
+  // var serviceToUse = DefaultService;
+  var machineToUse = false;
+
+  // check the $location.path to see if the machine can be read straight from there
+  if ($routeParams.category === "boxers") machineToUse = BoxersMachine;
+
+  return machineToUse;
+});
+
+
+/* **********************************************
      Begin male.js
 ********************************************** */
 
@@ -35416,6 +35519,7 @@ angular.module('DataServices', [])
 // @codekit-prepend "controllers/main.js"
 
 // @codekit-prepend "modules/services.js"
+// @codekit-prepend "modules/stateMachines.js"
 
 
 

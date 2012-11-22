@@ -22,6 +22,7 @@
 // @codekit-prepend "controllers/main.js"
 
 // @codekit-prepend "modules/services.js"
+// @codekit-prepend "modules/stateMachines.js"
 
 
 
