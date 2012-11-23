@@ -113,19 +113,14 @@
     
     <checkout_onepage_index>
     	<reference name="head">
-	    	<action method="addJs"><script>jquery/jquery.localscroll-1.2.7-min.js</script></action>
+            <!-- removed login from checkout so dont need this junk -->
+	    	<!-- <action method="addJs"><script>jquery/jquery.localscroll-1.2.7-min.js</script></action>
 			<action method="addJs"><script>jquery/jquery.scrollTo-1.4.2-min.js</script></action>
 			<action method="addJs"><script>jquery/jquery.serialScroll-1.2.2-min.js</script></action>
-			<action method="addJs"><script>jquery/coda-slider.js</script></action>
+			<action method="addJs"><script>jquery/coda-slider.js</script></action> -->
             <action method="addItem"><type>skin_js</type><name>js/brandid1-ck.js</name></action>
     	</reference>
     </checkout_onepage_index>
-    
-    <checkout_cart_index>
-    	<reference name="head">
-			<action method="addJs"><script>jquery/jquery.tools.min.js</script></action>
-		</reference>
-	</checkout_cart_index>
     
     
     <oneall_rpx_duplicate>
