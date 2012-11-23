@@ -10,13 +10,9 @@ ngMaleApp.config(function ($routeProvider) {
       })
       .when('/section/:section/category/:category/question/:question', {
          templateUrl: 'detailViewProxy.html',
-         controller: DetailCtrl
+         controller:DetailController
       })
       .otherwise({
         redirectTo: '/'
       });
 });
-
-function DetailCtrl($scope, $routeParams) {
-  $scope.templateUrl = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
-}

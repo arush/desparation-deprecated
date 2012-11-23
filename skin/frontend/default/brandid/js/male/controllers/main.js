@@ -5,14 +5,18 @@
  * given the simplistic nature of the application.  
  *
  */
-var MainCtrl = ngMaleApp.controller('MainCtrl', function($scope,StateMachine,DataService,$locale) {
+var MainCtrl = ngMaleApp.controller('MainCtrl', function($scope,StateMachine,DataService,$locale,$routeParams) {
 
-  console.log("statemachine\n" + StateMachine);
+  // console.log("statemachine\n" + StateMachine);
   /**
    *  Controller Functions
    */
 
-  $scope.drawerOpen = true;
+
+  // this is so the menu can access current url parameters and highlight the current menu selection
+  $scope.routeParams = $routeParams;
+
+  $scope.drawerOpen = false;
 
   $locale.id = "en-gb";
 

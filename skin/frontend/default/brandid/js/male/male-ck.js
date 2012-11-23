@@ -34949,16 +34949,12 @@ ngMaleApp.config(function ($routeProvider) {
       })
       .when('/section/:section/category/:category/question/:question', {
          templateUrl: 'detailViewProxy.html',
-         controller: DetailCtrl
+         controller:DetailController
       })
       .otherwise({
         redirectTo: '/'
       });
 });
-
-function DetailCtrl($scope, $routeParams) {
-  $scope.templateUrl = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
-}
 
 /* **********************************************
      Begin master.js
@@ -34968,8 +34964,7 @@ function DetailCtrl($scope, $routeParams) {
 
 var MasterCtrl = ngMaleApp.controller('MasterCtrl', function($scope,DataService,$locale, $routeParams) {
 
-	// this is so the menu can access current url parameters and highlight the current menu selection
-	$scope.routeParams = $routeParams;
+	
 
 });
 
@@ -34984,7 +34979,7 @@ var MasterCtrl = ngMaleApp.controller('MasterCtrl', function($scope,DataService,
  *
  */
 
-var DetailCtrl = ngMaleApp.controller('DetailCtrl', function($scope,StateMachine,DataService,$routeParams) {
+function DetailController($scope,StateMachine,DataService,$routeParams) {
 
 	/**
 	*  Controller Properties
@@ -34992,11 +34987,35 @@ var DetailCtrl = ngMaleApp.controller('DetailCtrl', function($scope,StateMachine
 
 	/**
 	*  Controller Functions
-	*/   
+	*/
 
+ //    $scope.detailTemplate = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
+	// console.log($routeParams);
+	// console.log($scope.detailTemplate);
+	// $scope.templateUrl = 'garms/boxers/dashboard.html';
+	// alert($scope.templateUrl);
 
-});
-DetailCtrl.$inject = ['$scope','StateMachine'];
+	$scope.detailTemplate = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
+}
+
+function DetailControlsController($scope,StateMachine,DataService,$routeParams) {
+
+	/**
+	*  Controller Properties
+	*/
+
+	/**
+	*  Controller Functions
+	*/
+
+ //    $scope.detailTemplate = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
+	// console.log($routeParams);
+	// console.log($scope.detailTemplate);
+	// $scope.templateUrl = 'garms/boxers/dashboard.html';
+	// alert($scope.templateUrl);
+
+	// $scope.detailTemplate = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
+}
 
 /* **********************************************
      Begin main.js
@@ -35009,14 +35028,18 @@ DetailCtrl.$inject = ['$scope','StateMachine'];
  * given the simplistic nature of the application.  
  *
  */
-var MainCtrl = ngMaleApp.controller('MainCtrl', function($scope,StateMachine,DataService,$locale) {
+var MainCtrl = ngMaleApp.controller('MainCtrl', function($scope,StateMachine,DataService,$locale,$routeParams) {
 
-  console.log("statemachine\n" + StateMachine);
+  // console.log("statemachine\n" + StateMachine);
   /**
    *  Controller Functions
    */
 
-  $scope.drawerOpen = true;
+
+  // this is so the menu can access current url parameters and highlight the current menu selection
+  $scope.routeParams = $routeParams;
+
+  $scope.drawerOpen = false;
 
   $locale.id = "en-gb";
 
@@ -35306,14 +35329,3 @@ angular.module('StateMachines', [])
 
 // @codekit-prepend "modules/services.js"
 // @codekit-prepend "modules/stateMachines.js"
-
-
-
-$(function() {
-
-  Parse.$ = jQuery;
-
-  // Initialize Parse with your Parse application javascript keys
-  Parse.initialize("oB4lSEsDL1MuJbLiTe4pHQbNvCJAzfu4nUMdsLL2", "LZ88ABUjZ0l92Nogc3TlCWRlGeKWBkqOXWw382hu");
-
-});

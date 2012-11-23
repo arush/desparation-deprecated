@@ -5,7 +5,7 @@
  *
  */
 
-var DetailCtrl = ngMaleApp.controller('DetailCtrl', function($scope,StateMachine,DataService,$routeParams) {
+function DetailController($scope,StateMachine,DataService,$routeParams) {
 
 	/**
 	*  Controller Properties
@@ -13,8 +13,32 @@ var DetailCtrl = ngMaleApp.controller('DetailCtrl', function($scope,StateMachine
 
 	/**
 	*  Controller Functions
-	*/   
+	*/
 
+ //    $scope.detailTemplate = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
+	// console.log($routeParams);
+	// console.log($scope.detailTemplate);
+	// $scope.templateUrl = 'garms/boxers/dashboard.html';
+	// alert($scope.templateUrl);
 
-});
-DetailCtrl.$inject = ['$scope','StateMachine'];
+	$scope.detailTemplate = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
+}
+
+function DetailControlsController($scope,StateMachine,DataService,$routeParams) {
+
+	/**
+	*  Controller Properties
+	*/
+
+	/**
+	*  Controller Functions
+	*/
+
+ //    $scope.detailTemplate = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
+	// console.log($routeParams);
+	// console.log($scope.detailTemplate);
+	// $scope.templateUrl = 'garms/boxers/dashboard.html';
+	// alert($scope.templateUrl);
+
+	// $scope.detailTemplate = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
+}

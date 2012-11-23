@@ -21,8 +21,8 @@
     </div>
   </div>
 
-  <div class="rest-of-page" ng-controller="DetailCtrl">
-    <div class="controls chisel-block clearfix">
+  <div class="rest-of-page">
+    <div class="controls chisel-block clearfix" ng-controller="DetailControlsController">
       <div class="controls-content clearfix">
         <a ng-click="$parent.drawerOpen = !$parent.drawerOpen" class="button-overlay">
         <div class="menu-button">
@@ -33,6 +33,8 @@
     <!-- TODO: pagination control -->
     </div>
 
+    <!-- <div ng-include src="detailTemplate"></div> -->
+
     <div ng-view>
     </div>
 
@@ -42,12 +44,12 @@
 
 <!-- Workaround to dynamically load :primaryNav/:secondaryNav templates -->
 <script type=text/ng-template id=detailViewProxy.html>
-    <div ng-include src="templateUrl"></div>
+    <div ng-include src="detailTemplate"></div>
 </script>
 
 <!-- Inline Templates (Partials) -->
 <script type=text/ng-template id=menu/catalogItems.html>
-  <div ng-repeat="catalogItem in user.configuredItems"  class="ani big-block clearfix" ng-class="{selected: catalogItem.category==routeParams.category}">
+  <div ng-repeat="catalogItem in user.configuredItems"  class="ani big-block clearfix" ng-class="{selected: catalogItem.category==$parent.routeParams.category}">
     <a href="#/section/{{menuItem.section}}/category/{{catalogItem.category}}/question/dashboard" class="button-overlay">
       <div class="icon {{catalogItem.cssClass}}"></div>
       <div class="ani arrow-left"></div>

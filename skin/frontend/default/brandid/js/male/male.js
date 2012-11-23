@@ -23,14 +23,3 @@
 
 // @codekit-prepend "modules/services.js"
 // @codekit-prepend "modules/stateMachines.js"
-
-
-
-$(function() {
-
-  Parse.$ = jQuery;
-
-  // Initialize Parse with your Parse application javascript keys
-  Parse.initialize("oB4lSEsDL1MuJbLiTe4pHQbNvCJAzfu4nUMdsLL2", "LZ88ABUjZ0l92Nogc3TlCWRlGeKWBkqOXWw382hu");
-
-});
