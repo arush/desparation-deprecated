@@ -5,17 +5,25 @@
 
 
 @import "layout/layout.scss";
-@import "components/slides.scss";
-@import "components/slideAnimations.scss";
+// @import "components/slides.scss";
+// @import "components/slideAnimations.scss";
 @import "components/drawer.scss";
 
+
+// globals
+
+$paneBg: #F1F1F1;
+
 body {
-	background:#f1f1f1;
+	background:$paneBg;
 }
 
+.maleApp {
+	background:$paneBg;
+}
 
 #maleContainer {
-	background:#f1f1f1;
+	background:$paneBg;
 	height:100%;
 	font-size:0;
 }

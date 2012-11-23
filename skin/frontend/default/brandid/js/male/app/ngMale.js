@@ -1,28 +1,6 @@
 'use strict';
 
-var ngMaleApp = angular.module('ngMaleApp', ['SlideViewDirective','StateMachines','DataServices','ui']);
-
-
-  // .config(['$routeProvider', function($routeProvider) {
-  //   $routeProvider
-  //     .when('/one', {
-  //        templateUrl:'view1.html',
-  //        controller:Ctrl1
-  //     })
-  //    .when('/two', {
-  //       controller:Ctrl2,
-  //       templateUrl:'view2.html'
-  //     })
-  //     .otherwise({
-  //       redirectTo:'/one'
-  //     });
-
-  //     // .when('/one', {
-  //     //   templateUrl: 'view1.html',
-  //     //   controller: Ctrl1
-  //     // });
-  // }]);
-
+var ngMaleApp = angular.module('ngMaleApp', ['StateMachines','DataServices','ui']);
 
 ngMaleApp.config(function ($routeProvider) {
     $routeProvider
@@ -30,12 +8,8 @@ ngMaleApp.config(function ($routeProvider) {
          templateUrl:'start.html',
          controller:MainCtrl
       })
-      .when('/section/:section/category/socks/', {
-      	templateUrl: 'urlRouter.html',
-      	controller: SocksStateCtrl
-      })
       .when('/section/:section/category/:category/question/:question', {
-         templateUrl: 'urlRouter.html',
+         templateUrl: 'detailViewProxy.html',
          controller: DetailCtrl
       })
       .otherwise({
@@ -43,37 +17,6 @@ ngMaleApp.config(function ($routeProvider) {
       });
 });
 
-
-
-// wire up the screens in order
-
-function Boxers1($scope, Navigation) {
-    Navigation.backPage = null;
-    Navigation.nextPage = '/2';
+function DetailCtrl($scope, $routeParams) {
+  $scope.templateUrl = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
 }
-function Boxers2($scope, Navigation) {
-    Navigation.backPage = '/1';
-    Navigation.nextPage = '/3';
-}
-
-function Boxers3($scope, Navigation) {
-    Navigation.backPage = '/2';
-    Navigation.nextPage = null;
-}
-
-
-ngMaleApp.service('Navigation', function($location) {
-  return {
-  	transition: 'backwardTransition',
-		backPage: null,
-    nextPage: null,
-		back: function() {
-			this.transition = 'backwardTransition';
-			$location.path(this.backPage);
-		},
-		next: function() {
-			this.transition = 'forwardTransition';
-			$location.path(this.nextPage);
-		}
-	}
-})

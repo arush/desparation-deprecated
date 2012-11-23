@@ -34934,149 +34934,12 @@ the specific language governing permissions and limitations under the Apache Lic
 
 
 /* **********************************************
-     Begin SlideViewDirective.js
-********************************************** */
-
-/**
- * Custom Directives
- */
-angular.module('SlideViewDirective',[])
-
-/**
- * CSS3 animations for changing views
- *
- * Thanks to Sebastian from Angular Google Groups
- * https://groups.google.com/d/msg/angular/5j97NqjTwi0/6SkZQczqRSQJ
- * 
- */
-.directive('slideView', function ($http, $templateCache, $route, $anchorScroll, $compile, $controller, Navigation) {    
-  return {
-      restrict:'ECA',
-      terminal:true,
-      link:function (scope, parentElm, attr) {
-          var partials = [],
-            inClass = attr.inClass,
-            outClass = attr.outClass,
-            currentPartial, lastPartial;
-          
-          scope.$on('$routeChangeSuccess', update);
-          update();
-          
-          //Create just an element for a partial
-          function createPartial(template) {
-            //Create it this way because some templates give error
-            //when you just do angular.element(template) (unknown reason)
-            var d = document.createElement("div");
-            d.innerHTML = template;
-            $('.page', d).addClass(Navigation.transition);
-            return {
-              element: angular.element(d.children[0]),
-              //Store a reference to controller, but don'r create it yet
-              controller: $route.current && $route.current.controller,
-              locals: $route.current && $route.current.locals
-            };
-          }
-          
-          //'Angularize' a partial: Create scope/controller, $compile element, insert into dom
-          function setupPartial(partial) {
-            var cur = $route.current;
-            partial.scope = cur.locals.$scope = scope.$new();
-            //partial.controller contains a reference to the 
-            //controller constructor at first
-            //Now we actually instantiate it
-            if (partial.controller) {
-              partial.controller = $controller(partial.controller, partial.locals);
-              partial.element.contents().data('$ngControllerController', partial.controller);
-              $compile(partial.element.contents())(partial.scope);
-            }
-            parentElm.append(partial.element);
-            partial.scope.$emit('$viewContentLoaded');
-          } 
-          
-          function destroyPartial(partial) {
-            partial.scope.$destroy();
-            partial.element.remove();
-            partial = null;
-          } 
-           
-          //Transition end stuff from bootstrap:
-          //http://twitter.github.com/bootstrap/assets/js/bootstrap-transition.js
-          var transEndEvents = [
-            'webkitTransitionEnd', 'transitionend', 'oTransitionEnd', 
-            'otransitionend', 'transitionend'
-          ];
-          function onTransitionEnd(el, callback) {
-            for (var i=0; i<transEndEvents.length; i++) {
-              el[0].addEventListener(transEndEvents[i], callback);
-            }
-          }
-          
-          function transition(inPartial, outPartial) {
-            //Do a timeout so the initial class for the
-            //element has time to 'take effect'
-            setTimeout(function() {
-              inPartial.element.addClass(inClass);
-              onTransitionEnd(inPartial.element, updatePartialQueue);
-              if (outPartial) {
-                $(outPartial.element).removeClass();
-  								outPartial.element.addClass(outClass);
-  								outPartial.element.addClass(Navigation.transition);
-                onTransitionEnd(outPartial.element, function() {
-                  destroyPartial(outPartial);
-                });
-              }
-            });
-          }
-          
-          function updatePartialQueue() {
-            //Bring in a new partial if it exists
-            if (partials.length > 0) {         
-              var newPartial = partials.pop();
-              setupPartial(newPartial);
-              transition(newPartial, currentPartial);
-              currentPartial = newPartial; 
-            }
-          } 
-          
-          function update() {
-              if ($route.current && $route.current.locals.$template) {
-                partials.unshift(createPartial($route.current.locals.$template));
-                updatePartialQueue();
-              }
-          }
-      }
-  };
-});
-
-/* **********************************************
      Begin ngMale.js
 ********************************************** */
 
 'use strict';
 
-var ngMaleApp = angular.module('ngMaleApp', ['SlideViewDirective','StateMachines','DataServices','ui']);
-
-
-  // .config(['$routeProvider', function($routeProvider) {
-  //   $routeProvider
-  //     .when('/one', {
-  //        templateUrl:'view1.html',
-  //        controller:Ctrl1
-  //     })
-  //    .when('/two', {
-  //       controller:Ctrl2,
-  //       templateUrl:'view2.html'
-  //     })
-  //     .otherwise({
-  //       redirectTo:'/one'
-  //     });
-
-  //     // .when('/one', {
-  //     //   templateUrl: 'view1.html',
-  //     //   controller: Ctrl1
-  //     // });
-  // }]);
-
+var ngMaleApp = angular.module('ngMaleApp', ['StateMachines','DataServices','ui']);
 
 ngMaleApp.config(function ($routeProvider) {
     $routeProvider
@@ -35084,12 +34947,8 @@ ngMaleApp.config(function ($routeProvider) {
          templateUrl:'start.html',
          controller:MainCtrl
       })
-      .when('/section/:section/category/socks/', {
-      	templateUrl: 'urlRouter.html',
-      	controller: SocksStateCtrl
-      })
       .when('/section/:section/category/:category/question/:question', {
-         templateUrl: 'urlRouter.html',
+         templateUrl: 'detailViewProxy.html',
          controller: DetailCtrl
       })
       .otherwise({
@@ -35097,64 +34956,9 @@ ngMaleApp.config(function ($routeProvider) {
       });
 });
 
-
-
-// wire up the screens in order
-
-function Boxers1($scope, Navigation) {
-    Navigation.backPage = null;
-    Navigation.nextPage = '/2';
+function DetailCtrl($scope, $routeParams) {
+  $scope.templateUrl = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
 }
-function Boxers2($scope, Navigation) {
-    Navigation.backPage = '/1';
-    Navigation.nextPage = '/3';
-}
-
-function Boxers3($scope, Navigation) {
-    Navigation.backPage = '/2';
-    Navigation.nextPage = null;
-}
-
-
-ngMaleApp.service('Navigation', function($location) {
-  return {
-  	transition: 'backwardTransition',
-		backPage: null,
-    nextPage: null,
-		back: function() {
-			this.transition = 'backwardTransition';
-			$location.path(this.backPage);
-		},
-		next: function() {
-			this.transition = 'forwardTransition';
-			$location.path(this.nextPage);
-		}
-	}
-})
-
-
-/* **********************************************
-     Begin socksStateController.js
-********************************************** */
-
-'use strict';
-
-/**
- * This is the Socks State Machine that takes the questions that the user has answered 
- * and redirects to the correct question
- */
-
-
-var SocksStateCtrl = ngMaleApp.controller('SocksStateCtrl', function($scope,StateMachine,DataService,$locale,$location) {
-
-	
-
-	// if(typeof($scope.user.socksAnswers) === "undefined") {
-		$location.path('/section/garms/category/socks/question/1');
-	// }
-
-});
-SocksStateCtrl.$inject = ['$scope','StateMachine'];
 
 /* **********************************************
      Begin master.js
@@ -35164,6 +34968,7 @@ SocksStateCtrl.$inject = ['$scope','StateMachine'];
 
 var MasterCtrl = ngMaleApp.controller('MasterCtrl', function($scope,DataService,$locale, $routeParams) {
 
+	// this is so the menu can access current url parameters and highlight the current menu selection
 	$scope.routeParams = $routeParams;
 
 });
@@ -35181,40 +34986,31 @@ var MasterCtrl = ngMaleApp.controller('MasterCtrl', function($scope,DataService,
 
 var DetailCtrl = ngMaleApp.controller('DetailCtrl', function($scope,StateMachine,DataService,$routeParams) {
 
- 
-  
   /**
    *  Controller Properties
    */
+   $scope.toggleDrawer = function() {
+   	$scope.drawerOpen = !$scope.drawerOpen;
+   }
+	/**
+	*	This is my fake state machine to dynamically ng-include different template files
+	*
+	*/ 
 
-   $scope.templateUrl = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
+	// if there is no question, go to dashboard
+	alert("detail view");
+	
+		$scope.templateUrl = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
 
 
   /**
    *  Controller Functions
-   */
-
- 	StateMachine.answer().answer();
-   
+   */   
 
 
 
 });
 DetailCtrl.$inject = ['$scope','StateMachine'];
-
-/* **********************************************
-     Begin slide.js
-********************************************** */
-
-'use strict';
-
-/**
- * This is the slide controller for the male slides (questions)
- *
- */
-var SlideCtrl = ngMaleApp.controller('SlideCtrl', function($scope,Navigation,DataService) {
-	$scope.Navigation = Navigation
-});
 
 /* **********************************************
      Begin main.js
@@ -35229,10 +35025,13 @@ var SlideCtrl = ngMaleApp.controller('SlideCtrl', function($scope,Navigation,Dat
  */
 var MainCtrl = ngMaleApp.controller('MainCtrl', function($scope,StateMachine,DataService,$locale) {
 
-  console.log(StateMachine);
+  console.log("statemachine\n" + StateMachine);
   /**
    *  Controller Functions
    */
+
+  $scope.drawerOpen = true;
+
   $locale.id = "en-gb";
 
   // TODO: put these in a .json file and retrieve via AJAX
@@ -35265,34 +35064,35 @@ var MainCtrl = ngMaleApp.controller('MainCtrl', function($scope,StateMachine,Dat
     ];
   }
 
+  $scope.user = {
+    firstName: "test",
+    lastName: null,
+    email: null,
+    configuredItems: catalogItems
+  };
+
   $scope.menu = [
     {
       title: "1. Are you a man?",
-      section: "manometer",
+      section: "manometer"
     },
     {
       title: "2. Your Garms",
       section: "garms",
-      subItems: catalogItems
+      submenuTemplate: "menu/catalogItems.html"
+    },
+    {
+      title: "3. Your Life"
 
     },
     {
-      title: "3. Your Life",
-
-    },
-    {
-      title: "4. ",
+      title: "4. Timeline"
 
     }
   ];
 
 
-
-  $scope.user = {
-    firstName: null,
-    lastName: null,
-    email: null
-  };
+  
   // alert($locale.id);
 });
 MainCtrl.$inject = ['$scope','DataService','StateMachine'];
@@ -35508,10 +35308,10 @@ angular.module('StateMachines', [])
 
 // Angular files that make up the Male app
 
-// @codekit-prepend "modules/SlideViewDirective.js"
+
 // @codekit-prepend "app/ngMale.js"
 
-// @codekit-prepend "controllers/stateMachines/socksStateController.js"
+
 
 // @codekit-prepend "controllers/master.js"
 // @codekit-prepend "controllers/detail.js"

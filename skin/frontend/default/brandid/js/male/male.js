@@ -11,10 +11,10 @@
 
 // Angular files that make up the Male app
 
-// @codekit-prepend "modules/SlideViewDirective.js"
+
 // @codekit-prepend "app/ngMale.js"
 
-// @codekit-prepend "controllers/stateMachines/socksStateController.js"
+
 
 // @codekit-prepend "controllers/master.js"
 // @codekit-prepend "controllers/detail.js"

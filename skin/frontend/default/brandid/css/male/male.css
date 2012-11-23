@@ -1083,39 +1083,6 @@ disabled look for already selected choices in the results dropdown
 .fullWidth {
   width: 100%; }
 
-.slide-container {
-  position: relative; }
-
-.in {
-  background: red; }
-
-.out {
-  background: blue; }
-
-.backwardTransition, .forwardTransition {
-  position: absolute;
-  width: 100%; }
-
-.backwardTransition.in, .backwardTransition.out, .forwardTransition.in, .forwardTransition.out {
-  -webkit-transition: all 0.3s ease-out;
-  -moz-transition: all 0.3s ease-out;
-  -o-transition: all 0.3s ease-out; }
-
-.backwardTransition, .forwardTransition.out {
-  -webkit-transform: translateX(-100%);
-  -moz-transform: translateX(-100%);
-  -o-transform: translateX(-100%); }
-
-.backwardTransition.in, .forwardTransition.in {
-  -webkit-transform: translateX(0%);
-  -moz-transform: translateX(0%);
-  -o-transform: translateX(0%); }
-
-.backwardTransition.out, .forwardTransition {
-  -webkit-transform: translateX(100%);
-  -moz-transform: translateX(100%);
-  -o-transform: translateX(100%); }
-
 /* retina mixin */
 .maleApp {
   overflow: hidden;
@@ -1151,8 +1118,8 @@ disabled look for already selected choices in the results dropdown
 .ui-hide .rest-of-page {
   width: 100%; }
 
-li > .big-block, .chisel-block {
-  height: 133px;
+li .big-block, .chisel-block {
+  height: 100%;
   width: 100%;
   background-color: #55575d;
   *zoom: 1;
@@ -1185,7 +1152,7 @@ li > .big-block, .chisel-block {
   position: relative; }
 .big-block a.button-overlay {
   width: 100%;
-  height: 100%; }
+  height: 133px; }
 
 .ie9 li > .big-block, .chisel-block {
   filter: none; }
@@ -1316,6 +1283,9 @@ li > .big-block, .chisel-block {
     background-size: 84px 64px; } }
 
 body {
+  background: #f1f1f1; }
+
+.maleApp {
   background: #f1f1f1; }
 
 #maleContainer {

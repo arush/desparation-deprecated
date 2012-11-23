@@ -7,10 +7,13 @@
  */
 var MainCtrl = ngMaleApp.controller('MainCtrl', function($scope,StateMachine,DataService,$locale) {
 
-  console.log(StateMachine);
+  console.log("statemachine\n" + StateMachine);
   /**
    *  Controller Functions
    */
+
+  $scope.drawerOpen = true;
+
   $locale.id = "en-gb";
 
   // TODO: put these in a .json file and retrieve via AJAX
@@ -43,34 +46,35 @@ var MainCtrl = ngMaleApp.controller('MainCtrl', function($scope,StateMachine,Dat
     ];
   }
 
+  $scope.user = {
+    firstName: "test",
+    lastName: null,
+    email: null,
+    configuredItems: catalogItems
+  };
+
   $scope.menu = [
     {
       title: "1. Are you a man?",
-      section: "manometer",
+      section: "manometer"
     },
     {
       title: "2. Your Garms",
       section: "garms",
-      subItems: catalogItems
+      submenuTemplate: "menu/catalogItems.html"
+    },
+    {
+      title: "3. Your Life"
 
     },
     {
-      title: "3. Your Life",
-
-    },
-    {
-      title: "4. ",
+      title: "4. Timeline"
 
     }
   ];
 
 
-
-  $scope.user = {
-    firstName: null,
-    lastName: null,
-    email: null
-  };
+  
   // alert($locale.id);
 });
 MainCtrl.$inject = ['$scope','DataService','StateMachine'];
