@@ -7,27 +7,13 @@
 
 var DetailCtrl = ngMaleApp.controller('DetailCtrl', function($scope,StateMachine,DataService,$routeParams) {
 
-  /**
-   *  Controller Properties
-   */
-   $scope.toggleDrawer = function() {
-   	$scope.drawerOpen = !$scope.drawerOpen;
-   }
 	/**
-	*	This is my fake state machine to dynamically ng-include different template files
-	*
-	*/ 
+	*  Controller Properties
+	*/
 
-	// if there is no question, go to dashboard
-	alert("detail view");
-	
-		$scope.templateUrl = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
-
-
-  /**
-   *  Controller Functions
-   */   
-
+	/**
+	*  Controller Functions
+	*/   
 
 
 });

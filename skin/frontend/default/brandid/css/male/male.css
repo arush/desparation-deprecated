@@ -1113,9 +1113,9 @@ disabled look for already selected choices in the results dropdown
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease; }
 
-.ui-hide .drawer-holder {
+.drawerOpen-true .drawer-holder {
   margin-left: -300px; }
-.ui-hide .rest-of-page {
+.drawerOpen-true .rest-of-page {
   width: 100%; }
 
 li .big-block, .chisel-block {

@@ -1,7 +1,7 @@
 <!-- <div id="top" class="keep-calm-signup-container">
   <?php // echo $this->getChildHtml('landing_header'); ?>
 </div> -->
-<div ng-app="ngMaleApp" ng-controller="MainCtrl" class="container maleApp withShadow" ng-class="{drawerOpen: drawerOpen==true}">
+<div ng-app="ngMaleApp" ng-controller="MainCtrl" class="container maleApp withShadow drawerOpen-{{drawerOpen}}">
 
   <div  class="drawer-holder shadow-trick-holder" >
     <div class="drawer shadow-trick right" ng-controller="MasterCtrl">
@@ -24,7 +24,7 @@
   <div class="rest-of-page" ng-controller="DetailCtrl">
     <div class="controls chisel-block clearfix">
       <div class="controls-content clearfix">
-        <a ng-click="toggleDrawer()" class="button-overlay">
+        <a ng-click="$parent.drawerOpen = !$parent.drawerOpen" class="button-overlay">
         <div class="menu-button">
 
         </div>
