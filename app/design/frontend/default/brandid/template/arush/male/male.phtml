@@ -62,7 +62,7 @@
       <div class="curved-white-block withShadow withRadius fadeIn ani">
 
           <div class="question chisel-block" ng-repeat="question in questions">
-            <a class="list-item" href="#">
+            <a class="list-item" href="#/section/{{$parent.routeParams.section}}/category/{{$parent.routeParams.category}}/question/{{question.id}}">
               <i class="q-icon icon-check-empty"></i>{{question.question}}<i class="q-icon icon-chevron-right"></i>
             </a>
               

@@ -35031,13 +35031,13 @@ Questions.factory('boxersQuestions', function(){
     
   var boxersQuestions = [{
       id: "1",
-      question: "this is a boxers question",
-      type: "picture question"
+      question: "Size",
+      path: "garms/boxers/1"
     },
     {
       id: "2",
-      question: "this is a another boxers question",
-      type: "picture question"
+      question: "Colours",
+      path: "garms/boxers/2"
     }
 
     ];
@@ -35062,15 +35062,13 @@ Questions.factory('socksQuestions', function(){
   var socksQuestions = [{
       id: "1",
       question: "this is a socks question",
-      type: "picture question"
+      type: "picture question",
     },
     {
       id: "2",
       question: "this is a another socks question",
-      type: "picture question"
-    }
-
-    ];
+      type: "picture question",
+    }];
 
     // The factory function returns SocksQuestions, which is injected into controllers.
     return socksQuestions;
@@ -35109,12 +35107,10 @@ function DetailController($scope,$routeParams,questionLoader) {
 	} else {
 		$scope.detailTemplate = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
 	}
-	
-	var category = $routeParams.category;
 
 
 	// Fetch the set of questions from the back-end service
-	  $scope.questions = questionLoader.getQuestions(category);
+	  $scope.questions = questionLoader.getQuestions($routeParams.category);
 
 	
 

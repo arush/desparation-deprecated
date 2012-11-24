@@ -26,12 +26,10 @@ function DetailController($scope,$routeParams,questionLoader) {
 	} else {
 		$scope.detailTemplate = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
 	}
-	
-	var category = $routeParams.category;
 
 
 	// Fetch the set of questions from the back-end service
-	  $scope.questions = questionLoader.getQuestions(category);
+	  $scope.questions = questionLoader.getQuestions($routeParams.category);
 
 	
 

@@ -8,13 +8,13 @@ Questions.factory('boxersQuestions', function(){
     
   var boxersQuestions = [{
       id: "1",
-      question: "this is a boxers question",
-      type: "picture question"
+      question: "Size",
+      path: "garms/boxers/1"
     },
     {
       id: "2",
-      question: "this is a another boxers question",
-      type: "picture question"
+      question: "Colours",
+      path: "garms/boxers/2"
     }
 
     ];

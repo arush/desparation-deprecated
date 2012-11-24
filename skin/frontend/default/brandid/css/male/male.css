@@ -1964,13 +1964,14 @@ li .big-block, .chisel-block {
     background-size: 84px 64px; } }
 
 .curved-white-block {
-  margin: 25px;
+  margin: 2%;
   background: #FFFFFF;
   padding: 60px 0; }
 .curved-white-block .chisel-block {
   background: #FFF;
   text-shadow: none;
-  border-top: 1px solid #eee; }
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #e1e1e1; }
 
 .question .q-icon {
   padding: 20px;
