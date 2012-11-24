@@ -1,3 +1,11 @@
+@import "compass";
+
+@mixin animate {
+	@include transition-property(all);
+	@include transition-duration(0.3s);
+	@include transition-timing-function(ease-in);
+}
+
 .curved-white-block {
 	margin:25px;
 	background:#FFFFFF;
@@ -22,12 +30,15 @@
 		display: block;
 		width: 96%;
 		height:100%;
+		color:#444;
 
 		.icon-chevron-right {
 			float:right;
 		}
+		@include animate;
 	}
 	a.list-item:hover {
-		background:rgba(113,141,192,1);
+		background:#f1f1f1;
+		color:#222;
 	}
 }
