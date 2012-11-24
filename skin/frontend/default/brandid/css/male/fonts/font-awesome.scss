@@ -21,6 +21,8 @@
     // Work: Lead Product Designer @ http://kyruus.com
 
 @import "compass/css3/font-face";
+
+// this won't work until our app is standalone, not from  magento
 $fontAwesomePath: "fontawesome-webfont" !default;
 
 @include font-face(

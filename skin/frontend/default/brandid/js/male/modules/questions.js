@@ -7,7 +7,7 @@
 
 var Questions = angular.module('QuestionsModule', []);
 
-Questions.factory('questionLoader', function(BoxersQuestions) {
+Questions.factory('questionLoader', function(boxersQuestions, socksQuestions) {
     
 	/* This factory method returns an object that is accessible to the controller which it is injected into.
 	 * Here we define the object including its own methods.
@@ -15,14 +15,28 @@ Questions.factory('questionLoader', function(BoxersQuestions) {
 
     var questionLoader = {
 
-    	getQuestions: function() {
+    	getQuestions: function(category) {
 
 	    	var thing = [{
 		        id: "1",
 		        question: "this is a hardcoded question",
 		        type: "picture question"
 		      }];
-		    return thing;
+
+		    switch(category) {
+		    	case "boxers":
+		    		return boxersQuestions;
+		    		break;
+		    	case "socks":
+		    		return socksQuestions;
+		    		break;
+		    	default:
+		    		return thing;
+		    		break;
+		    }
+
+		    
+		    	
 	    }
 	}
 
@@ -30,7 +44,7 @@ Questions.factory('questionLoader', function(BoxersQuestions) {
 	 * We must inject these dependencies as strings so the file can be minified
 	 **/
 
-	questionLoader.$inject = ['BoxersQuestions'];
+	questionLoader.$inject = ['boxersQuestions','socksQuestions'];
 
 	return questionLoader;
 });

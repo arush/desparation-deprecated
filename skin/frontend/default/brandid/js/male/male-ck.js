@@ -34973,7 +34973,7 @@ ngMaleApp.$inject = ['ui','StateMAchines','DataServices','QuestionsModule'];
 
 var Questions = angular.module('QuestionsModule', []);
 
-Questions.factory('questionLoader', function(BoxersQuestions) {
+Questions.factory('questionLoader', function(boxersQuestions, socksQuestions) {
     
 	/* This factory method returns an object that is accessible to the controller which it is injected into.
 	 * Here we define the object including its own methods.
@@ -34981,14 +34981,28 @@ Questions.factory('questionLoader', function(BoxersQuestions) {
 
     var questionLoader = {
 
-    	getQuestions: function() {
+    	getQuestions: function(category) {
 
 	    	var thing = [{
 		        id: "1",
 		        question: "this is a hardcoded question",
 		        type: "picture question"
 		      }];
-		    return thing;
+
+		    switch(category) {
+		    	case "boxers":
+		    		return boxersQuestions;
+		    		break;
+		    	case "socks":
+		    		return socksQuestions;
+		    		break;
+		    	default:
+		    		return thing;
+		    		break;
+		    }
+
+		    
+		    	
 	    }
 	}
 
@@ -34996,7 +35010,7 @@ Questions.factory('questionLoader', function(BoxersQuestions) {
 	 * We must inject these dependencies as strings so the file can be minified
 	 **/
 
-	questionLoader.$inject = ['BoxersQuestions'];
+	questionLoader.$inject = ['boxersQuestions','socksQuestions'];
 
 	return questionLoader;
 });
@@ -35004,7 +35018,7 @@ Questions.factory('questionLoader', function(BoxersQuestions) {
 
 
 /* **********************************************
-     Begin boxers-questions.js
+     Begin boxersQuestions.js
 ********************************************** */
 
 
@@ -35013,16 +35027,53 @@ Questions.factory('questionLoader', function(BoxersQuestions) {
  * 
  */
 
-Questions.factory('BoxersQuestions', function(){
+Questions.factory('boxersQuestions', function(){
     
-  var BoxersQuestions = [{
+  var boxersQuestions = [{
       id: "1",
-      question: "this is a question",
+      question: "this is a boxers question",
       type: "picture question"
-    }];
+    },
+    {
+      id: "2",
+      question: "this is a another boxers question",
+      type: "picture question"
+    }
+
+    ];
 
     // The factory function returns BoxersQuestions, which is injected into controllers.
-    return BoxersQuestions;
+    return boxersQuestions;
+});
+
+
+/* **********************************************
+     Begin socksQuestions.js
+********************************************** */
+
+
+/**
+ * Socks Questions
+ * 
+ */
+
+Questions.factory('socksQuestions', function(){
+    
+  var socksQuestions = [{
+      id: "1",
+      question: "this is a socks question",
+      type: "picture question"
+    },
+    {
+      id: "2",
+      question: "this is a another socks question",
+      type: "picture question"
+    }
+
+    ];
+
+    // The factory function returns SocksQuestions, which is injected into controllers.
+    return socksQuestions;
 });
 
 
@@ -35063,7 +35114,7 @@ function DetailController($scope,$routeParams,questionLoader) {
 
 
 	// Fetch the set of questions from the back-end service
-	  $scope.questions = questionLoader.getQuestions();
+	  $scope.questions = questionLoader.getQuestions(category);
 
 	
 
@@ -35404,7 +35455,8 @@ angular.module('StateMachines', [])
 
 // the questions service must be defined first, all question sets go after
 // @codekit-prepend "modules/questions.js"
-// @codekit-prepend "modules/boxers/boxers-questions.js"
+// @codekit-prepend "modules/boxers/boxersQuestions.js"
+// @codekit-prepend "modules/socks/socksQuestions.js"
 
 
 

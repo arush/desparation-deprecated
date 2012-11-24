@@ -59,12 +59,15 @@
   </script>
 
   <script type=text/ng-template id=garms/dashboard.html>
-      <div class="dashboard">
-        <div class="curved-white-block withShadow dashboard">
-          <div class="question" ng-repeat="question in questions">
-            {{question.question}}
+      <div class="curved-white-block withShadow withRadius fadeIn ani">
+
+          <div class="question chisel-block" ng-repeat="question in questions">
+            <a class="list-item" href="#">
+              <i class="q-icon icon-check-empty"></i>{{question.question}}<i class="q-icon icon-chevron-right"></i>
+            </a>
+              
           </div>
-        </div>
+
       </div>
   </script>
 

@@ -31,7 +31,7 @@ function DetailController($scope,$routeParams,questionLoader) {
 
 
 	// Fetch the set of questions from the back-end service
-	  $scope.questions = questionLoader.getQuestions();
+	  $scope.questions = questionLoader.getQuestions(category);
 
 	
 

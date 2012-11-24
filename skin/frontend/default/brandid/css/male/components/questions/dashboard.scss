@@ -1,6 +1,33 @@
-.dashboard {
-	padding:20px;
-}
 .curved-white-block {
+	margin:25px;
 	background:#FFFFFF;
+	padding:60px 0;
+	.chisel-block {
+		background:#FFF;
+		text-shadow:none;
+		border-top:1px solid #eee;
+	}
+}
+
+.question {
+	
+	
+	
+	.q-icon {
+		padding:20px;
+		font-size:20px;
+	}
+	a.list-item {
+		padding: 20px 2%;
+		display: block;
+		width: 96%;
+		height:100%;
+
+		.icon-chevron-right {
+			float:right;
+		}
+	}
+	a.list-item:hover {
+		background:rgba(113,141,192,1);
+	}
 }

@@ -15,10 +15,20 @@
 // globals
 
 $paneBg: #F1F1F1;
+$radius: 5px;
 
 body {
 	background:$paneBg;
 }
+
+.withRadius {
+	@include border-radius($radius);
+}
+
+.withShadow {
+	@include box-shadow(rgba(0, 0, 0, 0.3) 0 1px 3px);
+}
+
 
 .maleApp {
 	background:$paneBg;
@@ -32,7 +42,7 @@ body {
 
 .ipad-style-header {
 	height:44px;
-	@include border-top-radius(5px);
+	@include border-top-radius($radius);
 
 	/* needs latest Compass, add '@import "compass"' to your scss */
 	background-color: rgb(237,237,237); /* Old browsers */

@@ -22,7 +22,8 @@
 
 // the questions service must be defined first, all question sets go after
 // @codekit-prepend "modules/questions.js"
-// @codekit-prepend "modules/boxers/boxers-questions.js"
+// @codekit-prepend "modules/boxers/boxersQuestions.js"
+// @codekit-prepend "modules/socks/socksQuestions.js"
 
 
 

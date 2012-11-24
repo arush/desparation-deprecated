@@ -1964,10 +1964,41 @@ li .big-block, .chisel-block {
     background-size: 84px 64px; } }
 
 .curved-white-block {
-  background: #FFFFFF; }
+  margin: 25px;
+  background: #FFFFFF;
+  padding: 60px 0; }
+.curved-white-block .chisel-block {
+  background: #FFF;
+  text-shadow: none;
+  border-top: 1px solid #eee; }
+
+.question .q-icon {
+  padding: 20px;
+  font-size: 20px; }
+.question a.list-item {
+  padding: 20px 2%;
+  display: block;
+  width: 96%;
+  height: 100%; }
+.question a.list-item .icon-chevron-right {
+  float: right; }
+.question a.list-item:hover {
+  background: #718dc0; }
 
 body {
   background: #f1f1f1; }
+
+.withRadius {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px; }
+
+.withShadow {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px; }
 
 .maleApp {
   background: #f1f1f1; }
