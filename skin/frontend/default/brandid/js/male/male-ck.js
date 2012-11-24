@@ -34939,13 +34939,13 @@ the specific language governing permissions and limitations under the Apache Lic
 
 'use strict';
 
-var ngMaleApp = angular.module('ngMaleApp', ['StateMachines','DataServices','ui']);
+var ngMaleApp = angular.module('ngMaleApp', ['ui','StateMachines','DataServices','QuestionsModule']);
 
 ngMaleApp.config(function ($routeProvider) {
     $routeProvider
       .when('/', {
          templateUrl:'start.html',
-         controller:MainCtrl
+         controller:MainController
       })
       .when('/section/:section/category/:category/question/:question', {
          templateUrl: 'detailViewProxy.html',
@@ -34955,18 +34955,76 @@ ngMaleApp.config(function ($routeProvider) {
         redirectTo: '/'
       });
 });
+ngMaleApp.$inject = ['ui','StateMAchines','DataServices','QuestionsModule'];
+
+
+
 
 /* **********************************************
-     Begin master.js
+     Begin questions.js
 ********************************************** */
 
-'use strict';
 
-var MasterCtrl = ngMaleApp.controller('MasterCtrl', function($scope,DataService,$locale, $routeParams) {
+/* Here we are defining a global variable Questions so we can extend it with factory methods in other files.
+ * This allows us to make question sets in separate files and make the main colleciton of questions depend on them
+ *
+ *
+ **/
 
-	
+var Questions = angular.module('QuestionsModule', []);
 
+Questions.factory('questionLoader', function(BoxersQuestions) {
+    
+	/* This factory method returns an object that is accessible to the controller which it is injected into.
+	 * Here we define the object including its own methods.
+	 **/
+
+    var questionLoader = {
+
+    	getQuestions: function() {
+
+	    	var thing = [{
+		        id: "1",
+		        question: "this is a hardcoded question",
+		        type: "picture question"
+		      }];
+		    return thing;
+	    }
+	}
+
+	/* This factory method is dependent on other factory methods as declared in function(...here...).
+	 * We must inject these dependencies as strings so the file can be minified
+	 **/
+
+	questionLoader.$inject = ['BoxersQuestions'];
+
+	return questionLoader;
 });
+
+
+
+/* **********************************************
+     Begin boxers-questions.js
+********************************************** */
+
+
+/**
+ * Boxers Questions
+ * 
+ */
+
+Questions.factory('BoxersQuestions', function(){
+    
+  var BoxersQuestions = [{
+      id: "1",
+      question: "this is a question",
+      type: "picture question"
+    }];
+
+    // The factory function returns BoxersQuestions, which is injected into controllers.
+    return BoxersQuestions;
+});
+
 
 /* **********************************************
      Begin detail.js
@@ -34979,7 +35037,7 @@ var MasterCtrl = ngMaleApp.controller('MasterCtrl', function($scope,DataService,
  *
  */
 
-function DetailController($scope,StateMachine,DataService,$routeParams) {
+function DetailController($scope,$routeParams,questionLoader) {
 
 	/**
 	*  Controller Properties
@@ -34995,8 +35053,23 @@ function DetailController($scope,StateMachine,DataService,$routeParams) {
 	// $scope.templateUrl = 'garms/boxers/dashboard.html';
 	// alert($scope.templateUrl);
 
-	$scope.detailTemplate = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
+	if($routeParams.question === "dashboard") {
+		$scope.detailTemplate = $routeParams.section+'/'+$routeParams.question+'.html';
+	} else {
+		$scope.detailTemplate = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
+	}
+	
+	var category = $routeParams.category;
+
+
+	// Fetch the set of questions from the back-end service
+	  $scope.questions = questionLoader.getQuestions();
+
+	
+
 }
+DetailController.$inject = ['$scope','$routeParams','questionLoader'];
+
 
 function DetailControlsController($scope,StateMachine,DataService,$routeParams) {
 
@@ -35016,6 +35089,8 @@ function DetailControlsController($scope,StateMachine,DataService,$routeParams) 
 
 	// $scope.detailTemplate = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
 }
+DetailControlsController.$inject = ['$scope','StateMachine','DataService','$routeParams'];
+
 
 /* **********************************************
      Begin main.js
@@ -35028,7 +35103,7 @@ function DetailControlsController($scope,StateMachine,DataService,$routeParams) 
  * given the simplistic nature of the application.  
  *
  */
-var MainCtrl = ngMaleApp.controller('MainCtrl', function($scope,StateMachine,DataService,$locale,$routeParams) {
+var MainController = ngMaleApp.controller('MainController', function($scope,StateMachine,DataService,$locale,$routeParams) {
 
   // console.log("statemachine\n" + StateMachine);
   /**
@@ -35104,7 +35179,7 @@ var MainCtrl = ngMaleApp.controller('MainCtrl', function($scope,StateMachine,Dat
   
   // alert($locale.id);
 });
-MainCtrl.$inject = ['$scope','DataService','StateMachine'];
+MainController.$inject = ['$scope','StateMachine','DataService','$locale','$routeParams'];
 
 /* **********************************************
      Begin services.js
@@ -35218,6 +35293,7 @@ angular.module('DataServices', [])
 });
 
 
+
 /* **********************************************
      Begin stateMachines.js
 ********************************************** */
@@ -35318,14 +35394,25 @@ angular.module('StateMachines', [])
 // Angular files that make up the Male app
 
 
+
+
+
+
+
+
 // @codekit-prepend "app/ngMale.js"
 
+// the questions service must be defined first, all question sets go after
+// @codekit-prepend "modules/questions.js"
+// @codekit-prepend "modules/boxers/boxers-questions.js"
 
 
-// @codekit-prepend "controllers/master.js"
+
 // @codekit-prepend "controllers/detail.js"
 // @codekit-prepend "controllers/slide.js"
 // @codekit-prepend "controllers/main.js"
 
 // @codekit-prepend "modules/services.js"
 // @codekit-prepend "modules/stateMachines.js"
+
+

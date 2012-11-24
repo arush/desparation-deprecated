@@ -1,10 +1,10 @@
 <!-- <div id="top" class="keep-calm-signup-container">
   <?php // echo $this->getChildHtml('landing_header'); ?>
 </div> -->
-<div ng-app="ngMaleApp" ng-controller="MainCtrl" class="container maleApp withShadow drawerOpen-{{drawerOpen}}">
+<div ng-app="ngMaleApp" ng-controller="MainController" class="container maleApp withShadow drawerOpen-{{drawerOpen}}">
 
   <div  class="drawer-holder shadow-trick-holder" >
-    <div class="drawer shadow-trick right" ng-controller="MasterCtrl">
+    <div class="drawer shadow-trick right">
       <ul>
         <li class="menu-section" ng-repeat="menuItem in menu">
 
@@ -25,63 +25,61 @@
     <div class="controls chisel-block clearfix" ng-controller="DetailControlsController">
       <div class="controls-content clearfix">
         <a ng-click="$parent.drawerOpen = !$parent.drawerOpen" class="button-overlay">
-        <div class="menu-button">
-
-        </div>
-      </a>
+          <div class="menu-button">
+          </div>
+        </a>
       </div>
     <!-- TODO: pagination control -->
     </div>
 
-    <!-- <div ng-include src="detailTemplate"></div> -->
+    <!-- detail loads here -->
 
     <div ng-view>
     </div>
-
-
   </div>
 
 
-<!-- Workaround to dynamically load :primaryNav/:secondaryNav templates -->
-<script type=text/ng-template id=detailViewProxy.html>
-    <div ng-include src="detailTemplate"></div>
-</script>
+  <!-- Workaround to dynamically load :primaryNav/:secondaryNav templates -->
+  <script type=text/ng-template id=detailViewProxy.html>
+      <div ng-include src="detailTemplate"></div>
+  </script>
 
-<!-- Inline Templates (Partials) -->
-<script type=text/ng-template id=menu/catalogItems.html>
-  <div ng-repeat="catalogItem in user.configuredItems"  class="ani big-block clearfix" ng-class="{selected: catalogItem.category==$parent.routeParams.category}">
-    <a href="#/section/{{menuItem.section}}/category/{{catalogItem.category}}/question/dashboard" class="button-overlay">
-      <div class="icon {{catalogItem.cssClass}}"></div>
-      <div class="ani arrow-left"></div>
-    </a>
-  </div>
-</script>
+  <!-- Inline Templates (Partials) -->
+  <script type=text/ng-template id=menu/catalogItems.html>
+    <div ng-repeat="catalogItem in user.configuredItems"  class="ani big-block clearfix" ng-class="{selected: catalogItem.category==$parent.routeParams.category}">
+      <a href="#/section/{{menuItem.section}}/category/{{catalogItem.category}}/question/dashboard" class="button-overlay">
+        <div class="icon {{catalogItem.cssClass}}"></div>
+        <div class="ani arrow-left"></div>
+      </a>
+    </div>
+  </script>
 
-<script type=text/ng-template id=start.html>
-    <div class="">M.A.L.E. Beginning</div>
-</script>
+  <script type=text/ng-template id=start.html>
+      <div class="">M.A.L.E. Beginning</div>
+  </script>
+
+  <script type=text/ng-template id=garms/dashboard.html>
+      <div class="dashboard">
+        <div class="curved-white-block withShadow dashboard">
+          <div class="question" ng-repeat="question in questions">
+            {{question.question}}
+          </div>
+        </div>
+      </div>
+  </script>
 
 
-<script type=text/ng-template id=garms/boxers/dashboard.html>
-    <div class="page">Boxers Dashboard</div>
-</script>
+  <script type=text/ng-template id=garms/boxers/1.html>
+      <div class="page">First page</div>
+  </script>
 
-<script type=text/ng-template id=garms/socks/dashboard.html>
-    <div class="page">Socks Dashboard</div>
-</script>
+  <script type=text/ng-template id=garms/boxers/2.html>
+      <div class="page">Second Page</div>
+  </script>
 
-<script type=text/ng-template id=garms/boxers/1.html>
-    <div class="page">First page</div>
-</script>
-
-<script type=text/ng-template id=garms/boxers/2.html>
-    <div class="page">Second Page</div>
-</script>
-
-<script type=text/ng-template id=garms/boxers/3.html>
-    <div class="page">Third Page</div>
-</script>
-
+  <script type=text/ng-template id=garms/boxers/3.html>
+      <div class="page">Third Page</div>
+  </script>
 </div> <!-- ng-app -->
 
 

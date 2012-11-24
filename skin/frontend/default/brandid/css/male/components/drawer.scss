@@ -1,6 +1,27 @@
 @import "compass";
 
 
+
+// globals
+
+$container: 960px;
+$drawerTargetWidth: 250px;
+$paneBg: #F1F1F1;
+
+// functions
+
+@function calc-percent($target) {
+  @return ($target / $container) * 100%;
+}
+
+// calculate percentage widths
+
+$drawerSize: calc-percent($drawerTargetWidth);
+$detailTargetWidth: $container - $drawerTargetWidth;
+
+$detailSize: calc-percent($detailTargetWidth);
+
+
 @mixin drop-shadow($xOff: 1px, $yOff: 1px, $radius: 4px, $opacity: 0.5) {
 	-webkit-filter: drop-shadow($xOff $yOff $radius rgba(0,0,0,$opacity));
 	-moz-filter: drop-shadow($xOff $yOff $radius rgba(0,0,0,$opacity));
@@ -31,7 +52,7 @@
 }
 
 .drawer-holder.shadow-trick-holder {
-	width:300px;
+	width:$drawerSize;
 	float:left;
 	.drawer {
 		width:100%;
@@ -49,7 +70,7 @@
 
 .rest-of-page {
 	float:left;
-	width:660px;
+	width:$detailSize;
 	background:#f1f1f1;
 }
 
@@ -70,8 +91,8 @@
 .drawerOpen-true {
 	.drawer-holder {
 		// position:absolute;
-		// width:300px;
-		margin-left:-300px;
+		// width:$drawerSize;
+		margin-left:-$drawerSize;
 	}
 	.rest-of-page {
 		width:100%;
@@ -105,8 +126,8 @@ li .big-block, .chisel-block {
 	// IE9 SVG, needs conditional override of 'filter' to 'none'
 	$experimental-support-for-svg: true;
 	@include background-image(linear-gradient(top,  rgba(85,87,93,1) 0%,rgba(55,56,62,1) 100%));
-	border-top: 2px solid #74767e;
-	border-bottom: 2px solid #262728;
+	border-top: 1px solid #74767e;
+	border-bottom: 1px solid #262728;
 }
 
 .big-block.selected {
@@ -115,8 +136,8 @@ li .big-block, .chisel-block {
 	// IE9 SVG, needs conditional override of 'filter' to 'none'
 	$experimental-support-for-svg: true;
 	@include background-image(linear-gradient(top,  rgba(113,141,192,1) 0%,rgba(82,110,161,1) 100%));
-	border-top: 2px solid #9fb4f0;
-	border-bottom: 2px solid #3f474f;
+	border-top: 1px solid #9fb4f0;
+	border-bottom: 1px solid #3f474f;
 }
 
 
@@ -137,8 +158,8 @@ li .big-block, .chisel-block {
 }
 .chisel-block {
 	background:#e2e2e2;
-	border-top: 2px solid #FFF;
-	border-bottom: 2px solid #b5b8bd;
+	border-top: 1px solid #FFF;
+	border-bottom: 1px solid #b5b8bd;
 	height:auto;
 	text-align:left;
 	font-weight:bold;
@@ -161,7 +182,7 @@ li .big-block, .chisel-block {
 	height: 0;
 	border-top: 10px solid transparent;
 	border-bottom: 10px solid transparent; 
-	border-right:10px solid #f9f9f9; 
+	border-right:10px solid $paneBg; 
 	position:absolute;
 	right:-10px;
 	margin-top:-60%;
@@ -174,7 +195,7 @@ li .big-block, .chisel-block {
 		right:0;
 	}
 	.chisel-block {
-		background:#F9f9f9;
+		background:$paneBg;
 	}
 }
 
@@ -188,6 +209,7 @@ li .big-block, .chisel-block {
 .shadow-trick::after {
 	content: "";
 	position: absolute;
+
 	@include background-image(linear-gradient(bottom, transparent, rgba(0, 0, 0, 0.5)));
 }
 
@@ -197,6 +219,7 @@ li .big-block, .chisel-block {
 	right:0;
 	top:0;
 	height:100%;
+	z-index:100;
 }
 
 .shadow-trick.bottom::after {
@@ -244,7 +267,7 @@ li .big-block, .chisel-block {
 	.controls-content {
 		margin:6px;
 	}
-	background:#F9f9f9;
+	background:$paneBg;
 }
 
 .menu-button {

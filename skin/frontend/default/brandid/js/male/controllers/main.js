@@ -5,7 +5,7 @@
  * given the simplistic nature of the application.  
  *
  */
-var MainCtrl = ngMaleApp.controller('MainCtrl', function($scope,StateMachine,DataService,$locale,$routeParams) {
+var MainController = ngMaleApp.controller('MainController', function($scope,StateMachine,DataService,$locale,$routeParams) {
 
   // console.log("statemachine\n" + StateMachine);
   /**
@@ -81,4 +81,4 @@ var MainCtrl = ngMaleApp.controller('MainCtrl', function($scope,StateMachine,Dat
   
   // alert($locale.id);
 });
-MainCtrl.$inject = ['$scope','DataService','StateMachine'];
+MainController.$inject = ['$scope','StateMachine','DataService','$locale','$routeParams'];

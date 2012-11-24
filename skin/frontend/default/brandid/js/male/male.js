@@ -12,14 +12,25 @@
 // Angular files that make up the Male app
 
 
+
+
+
+
+
+
 // @codekit-prepend "app/ngMale.js"
 
+// the questions service must be defined first, all question sets go after
+// @codekit-prepend "modules/questions.js"
+// @codekit-prepend "modules/boxers/boxers-questions.js"
 
 
-// @codekit-prepend "controllers/master.js"
+
 // @codekit-prepend "controllers/detail.js"
 // @codekit-prepend "controllers/slide.js"
 // @codekit-prepend "controllers/main.js"
 
 // @codekit-prepend "modules/services.js"
 // @codekit-prepend "modules/stateMachines.js"
+
+
