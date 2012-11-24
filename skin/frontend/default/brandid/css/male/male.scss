@@ -17,6 +17,11 @@
 $paneBg: #F1F1F1;
 $radius: 5px;
 
+
+#detailView {
+	overflow:hidden;	
+}
+
 body {
 	background:$paneBg;
 }

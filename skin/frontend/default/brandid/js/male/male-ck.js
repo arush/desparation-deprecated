@@ -34947,9 +34947,13 @@ ngMaleApp.config(function ($routeProvider) {
          templateUrl:'start.html',
          controller:MainController
       })
+      .when('/section/:section/category/:category/dashboard', {
+         templateUrl: 'detailViewProxy.html',
+         controller:DashboardController
+      })
       .when('/section/:section/category/:category/question/:question', {
          templateUrl: 'detailViewProxy.html',
-         controller:DetailController
+         controller:QuestionController
       })
       .otherwise({
         redirectTo: '/'
@@ -35031,13 +35035,15 @@ Questions.factory('boxersQuestions', function(){
     
   var boxersQuestions = [{
       id: "1",
-      question: "Size",
-      path: "garms/boxers/1"
+      controller: "q1Controller",
+      question: "Size"
+      // templatePath: "garms/boxers/1"
     },
     {
       id: "2",
-      question: "Colours",
-      path: "garms/boxers/2"
+      controller: "q1Controller",
+      question: "Colours"
+      // templatePath: "garms/boxers/2"
     }
 
     ];
@@ -35063,11 +35069,13 @@ Questions.factory('socksQuestions', function(){
       id: "1",
       question: "this is a socks question",
       type: "picture question",
+      templatePath: "garms/socks/1.html"
     },
     {
       id: "2",
       question: "this is a another socks question",
       type: "picture question",
+      templatePath: "garms/socks/2.html"
     }];
 
     // The factory function returns SocksQuestions, which is injected into controllers.
@@ -35086,36 +35094,61 @@ Questions.factory('socksQuestions', function(){
  *
  */
 
-function DetailController($scope,$routeParams,questionLoader) {
+function DashboardController($scope,$routeParams,questionLoader,$location) {
 
 	/**
 	*  Controller Properties
 	*/
 
-	/**
-	*  Controller Functions
-	*/
-
- //    $scope.detailTemplate = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
-	// console.log($routeParams);
-	// console.log($scope.detailTemplate);
-	// $scope.templateUrl = 'garms/boxers/dashboard.html';
-	// alert($scope.templateUrl);
-
 	if($routeParams.question === "dashboard") {
 		$scope.detailTemplate = $routeParams.section+'/'+$routeParams.question+'.html';
-	} else {
-		$scope.detailTemplate = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
+	} else /* question === id of question */ {
+		// send to dashboard and use routParams to load subview in the dashboard template
+		$scope.detailTemplate = $routeParams.section+'/dashboard.html';
 	}
 
 
 	// Fetch the set of questions from the back-end service
-	  $scope.questions = questionLoader.getQuestions($routeParams.category);
 
+	$scope.questions = questionLoader.getQuestions($routeParams.category);
+
+	$scope.routeParams = $routeParams;
+	/**
+	*  Controller Functions
+	*/
 	
 
+	$scope.slideToQuestion = function(questionId) {
+
+		$('#dashboard').addClass('fadeOutLeftBig');
+		// alert(questionTemplatePath);
+
+
+		var detailViewRoute = "/section/" + $routeParams.section + "/category/" + $routeParams.category + "/question/" + questionId;
+
+		// setTimeout(function(detailViewRoute) {
+			// alert('about to go to:' + detailViewRoute);
+			$location.path(detailViewRoute);
+		// }, 300);
+		
+	}
+
 }
-DetailController.$inject = ['$scope','$routeParams','questionLoader'];
+DashboardController.$inject = ['$scope','$routeParams','questionLoader','$location'];
+
+function QuestionController($scope,$routeParams,questionLoader) {
+
+	/**
+	*  Controller Properties
+	*/
+
+	//use the correct template
+	$scope.detailTemplate = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
+	
+
+
+}
+QuestionController.$inject = ['$scope','$routeParams','questionLoader'];
 
 
 function DetailControlsController($scope,StateMachine,DataService,$routeParams) {

@@ -8,13 +8,15 @@ Questions.factory('boxersQuestions', function(){
     
   var boxersQuestions = [{
       id: "1",
-      question: "Size",
-      path: "garms/boxers/1"
+      controller: "q1Controller",
+      question: "Size"
+      // templatePath: "garms/boxers/1"
     },
     {
       id: "2",
-      question: "Colours",
-      path: "garms/boxers/2"
+      controller: "q1Controller",
+      question: "Colours"
+      // templatePath: "garms/boxers/2"
     }
 
     ];

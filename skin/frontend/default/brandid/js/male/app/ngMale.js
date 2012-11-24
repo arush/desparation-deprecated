@@ -8,9 +8,13 @@ ngMaleApp.config(function ($routeProvider) {
          templateUrl:'start.html',
          controller:MainController
       })
+      .when('/section/:section/category/:category/dashboard', {
+         templateUrl: 'detailViewProxy.html',
+         controller:DashboardController
+      })
       .when('/section/:section/category/:category/question/:question', {
          templateUrl: 'detailViewProxy.html',
-         controller:DetailController
+         controller:QuestionController
       })
       .otherwise({
         redirectTo: '/'

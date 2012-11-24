@@ -34,7 +34,7 @@
 
     <!-- detail loads here -->
 
-    <div ng-view>
+    <div id="detailView" ng-view>
     </div>
   </div>
 
@@ -47,7 +47,7 @@
   <!-- Inline Templates (Partials) -->
   <script type=text/ng-template id=menu/catalogItems.html>
     <div ng-repeat="catalogItem in user.configuredItems"  class="ani big-block clearfix" ng-class="{selected: catalogItem.category==$parent.routeParams.category}">
-      <a href="#/section/{{menuItem.section}}/category/{{catalogItem.category}}/question/dashboard" class="button-overlay">
+      <a href="#/section/{{menuItem.section}}/category/{{catalogItem.category}}/dashboard" class="button-overlay">
         <div class="icon {{catalogItem.cssClass}}"></div>
         <div class="ani arrow-left"></div>
       </a>
@@ -59,13 +59,12 @@
   </script>
 
   <script type=text/ng-template id=garms/dashboard.html>
-      <div class="curved-white-block withShadow withRadius fadeIn ani">
+      <div id="dashboard" class="curved-white-block withShadow withRadius fadeIn ani">
 
           <div class="question chisel-block" ng-repeat="question in questions">
-            <a class="list-item" href="#/section/{{$parent.routeParams.section}}/category/{{$parent.routeParams.category}}/question/{{question.id}}">
+            <a class="list-item" ng-click="$parent.slideToQuestion(question.id)">
               <i class="q-icon icon-check-empty"></i>{{question.question}}<i class="q-icon icon-chevron-right"></i>
             </a>
-              
           </div>
 
       </div>

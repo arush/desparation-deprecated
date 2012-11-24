@@ -975,6 +975,49 @@ disabled look for already selected choices in the results dropdown
   100% {
     background-color: rgba(255, 255, 255, 0.2); } }
 
+@-webkit-keyframes fadeOutLeftBig {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateX(0); }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: translateX(-2000px); } }
+
+@-moz-keyframes fadeOutLeftBig {
+  0% {
+    opacity: 1;
+    -moz-transform: translateX(0); }
+
+  100% {
+    opacity: 0;
+    -moz-transform: translateX(-2000px); } }
+
+@-o-keyframes fadeOutLeftBig {
+  0% {
+    opacity: 1;
+    -o-transform: translateX(0); }
+
+  100% {
+    opacity: 0;
+    -o-transform: translateX(-2000px); } }
+
+@keyframes fadeOutLeftBig {
+  0% {
+    opacity: 1;
+    transform: translateX(0); }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-2000px); } }
+
+.fadeOutLeftBig {
+  -webkit-animation-name: fadeOutLeftBig;
+  -moz-animation-name: fadeOutLeftBig;
+  -ms-animation-name: fadeOutLeftBig;
+  -o-animation-name: fadeOutLeftBig;
+  animation-name: fadeOutLeftBig; }
+
 .fadeOutBg {
   -webkit-animation-name: fadeOutBg;
   -moz-animation-name: fadeOutBg;
@@ -1999,6 +2042,9 @@ li .big-block, .chisel-block {
 .question a.list-item:hover {
   background: #f1f1f1;
   color: #222; }
+
+#detailView {
+  overflow: hidden; }
 
 body {
   background: #f1f1f1; }
