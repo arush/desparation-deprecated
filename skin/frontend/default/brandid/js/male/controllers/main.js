@@ -59,20 +59,23 @@ var MainController = ngMaleApp.controller('MainController', function($scope,Stat
 
   $scope.menu = [
     {
-      title: "1. Are you a man?",
-      section: "manometer"
+      title: "1. Hi, I'm M.A.L.E.",
+      section: "intro",
+      submenuTemplate: "menu/menuItems.html",
+      submenuItems: [{
+        category: "gender",
+        cssClass: "gender",
+        name: "gender"
+      }]
     },
     {
-      title: "2. Your Garms",
+      title: "2. Your Underwear",
       section: "garms",
       submenuTemplate: "menu/catalogItems.html"
     },
     {
-      title: "3. Your Life"
-
-    },
-    {
-      title: "4. Timeline"
+      title: "3. Your Life",
+      section: "extras",
 
     }
   ];

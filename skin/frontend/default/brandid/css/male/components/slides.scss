@@ -1,3 +1,15 @@
 .slide-container {
 	position:relative;
 }
+
+.curved-white-block {
+	margin:2%;
+	background:#FFFFFF;
+	padding:60px 0;
+	.chisel-block {
+		background:#FFF;
+		text-shadow:none;
+		border-top:1px solid #eee;
+		border-bottom:1px solid #e1e1e1;
+	}
+}

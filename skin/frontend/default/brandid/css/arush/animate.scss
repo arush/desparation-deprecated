@@ -1,3 +1,4 @@
+@import "compass";
 
 @mixin trans($time: 1s) {
 	-webkit-transition: all $time ease-in-out;
@@ -45,6 +46,10 @@
 	-ms-animation-name: $name;
 	-o-animation-name: $name;
 	animation-name: $name;
+}
+
+.trans {
+	@include transition-property(all);
 }
 
 .ani {

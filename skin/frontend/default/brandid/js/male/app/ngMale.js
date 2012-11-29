@@ -5,8 +5,20 @@ var ngMaleApp = angular.module('ngMaleApp', ['ui','StateMachines','DataServices'
 ngMaleApp.config(function ($routeProvider) {
     $routeProvider
       .when('/', {
+        // redirectTo:'/section/intro'
+        // bring this back if we want a pre-intro screen
          templateUrl:'start.html',
          controller:MainController
+      })
+      .when('/section/intro', {
+        // redirectTo:'/section/intro'
+        // bring this back if we want a pre-intro screen
+         templateUrl:'section/intro.html',
+         controller:IntroController
+      })
+      .when('/section/:section', {
+         templateUrl:'sectionProxy.html',
+         controller:SectionController
       })
       .when('/section/:section/category/:category/dashboard', {
          templateUrl: 'detailViewProxy.html',

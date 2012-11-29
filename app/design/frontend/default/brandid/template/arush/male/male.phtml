@@ -1,19 +1,35 @@
 <!-- <div id="top" class="keep-calm-signup-container">
   <?php // echo $this->getChildHtml('landing_header'); ?>
 </div> -->
+
 <div ng-app="ngMaleApp" ng-controller="MainController" class="container maleApp withShadow drawerOpen-{{drawerOpen}}">
 
   <div  class="drawer-holder shadow-trick-holder" >
     <div class="drawer shadow-trick right">
-      <ul>
-        <li class="menu-section" ng-repeat="menuItem in menu">
 
-          <div class="shadow-trick-holder">
-            <div class="chisel-block shadow-trick bottom">
-             <span>{{menuItem.title}}</span> 
-            </div>
+      <div class="male-round">
+        <div class="male-holder">
+          <div id="male-colour" class="male-back">
+          </div>
+          <div id="male-loader" class="male-loader">
           </div>
           
+          <img src="<?php echo $this->getSkinUrl('images/male/male-transparent@2x.png'); ?>" alt="M.A.L.E." class="male-round ani" title="feed the male"/>
+          <div class="male-label-box">
+            <span id="male-label">M.A.L.E.</span>
+          </div>
+        </div>
+      </div>
+
+      <ul>
+        <li class="menu-section trans ani closed" ng-repeat="menuItem in menu" ng-class="{open: menuItem.section==$parent.routeParams.section}">
+          <a class="button-overlay" href="#/section/{{menuItem.section}}">
+            <div class="shadow-trick-holder">
+              <div class="chisel-block shadow-trick bottom">
+               <span>{{menuItem.title}}</span> 
+              </div>
+            </div>
+          </a>
           <div ng-include src="menuItem.submenuTemplate"></div>
 
         </li>
@@ -43,8 +59,13 @@
   <script type=text/ng-template id=detailViewProxy.html>
       <div ng-include src="detailTemplate"></div>
   </script>
+  <script type=text/ng-template id=sectionProxy.html>
+      <div ng-include src="sectionTemplate"></div>
+  </script>
 
   <!-- Inline Templates (Partials) -->
+
+  <!-- garms submenu is special because it will contain what the user has selected to configure, they might not want to configure everything -->
   <script type=text/ng-template id=menu/catalogItems.html>
     <div ng-repeat="catalogItem in user.configuredItems"  class="ani big-block clearfix" ng-class="{selected: catalogItem.category==$parent.routeParams.category}">
       <a href="#/section/{{menuItem.section}}/category/{{catalogItem.category}}/dashboard" class="button-overlay">
@@ -54,8 +75,34 @@
     </div>
   </script>
 
+  <!-- this is for all other submenu items -->
+  <script type=text/ng-template id=menu/menuItems.html>
+    <div ng-repeat="submenuItem in menuItem.submenuItems"  class="ani big-block clearfix" ng-class="{selected: submenuItem.category==routeParams.section}">
+      
+      <!-- the link here skips the dashboard, because no need for a dashboard for simple questions -->
+      <a href="#/section/{{menuItem.section}}/category/{{submenuItem.category}}/question/{{$index + 1}}" class="button-overlay">
+        <div class="icon {{submenuItem.cssClass}}"></div>
+        <div class="ani arrow-left"></div>
+      </a>
+    </div>
+  </script>
+
+
   <script type=text/ng-template id=start.html>
       <div class="">M.A.L.E. Beginning</div>
+  </script>
+  <script type=text/ng-template id=section/intro.html>
+      <div class="">
+        <div id="intro" class="curved-white-block withShadow withRadius fadeIn ani">
+          Wassup biatch
+        </div>
+      </div>
+  </script>
+  <script type=text/ng-template id=section/garms.html>
+      <div class="">This is the beginning of garms</div>
+  </script>
+  <script type=text/ng-template id=section/extras.html>
+      <div class="">This is the beginning of extras</div>
   </script>
 
   <script type=text/ng-template id=garms/dashboard.html>

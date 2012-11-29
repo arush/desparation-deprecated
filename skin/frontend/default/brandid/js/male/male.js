@@ -28,7 +28,11 @@
 
 
 // @codekit-prepend "controllers/detail.js"
-// @codekit-prepend "controllers/slide.js"
+// @codekit-prepend "controllers/section.js"
+// @codekit-prepend "controllers/question.js"
+// @codekit-prepend "controllers/dashboard.js"
+// @codekit-prepend "controllers/intro.js"
+
 // @codekit-prepend "controllers/main.js"
 
 // @codekit-prepend "modules/services.js"

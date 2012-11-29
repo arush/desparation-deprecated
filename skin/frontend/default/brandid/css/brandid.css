@@ -2814,6 +2814,12 @@ a.continue.skip.secondary.convert {
 .planOther a.convert {
   font-size: 11px; }
 
+.trans {
+  -webkit-transition-property: all;
+  -moz-transition-property: all;
+  -o-transition-property: all;
+  transition-property: all; }
+
 .ani, .plan-configurator .st-li .collapsed-configurables.zeroed .x-holder, .plan-configurator .st-li .collapsed-configurables.zeroed .configure-brands-holder, .plan-configurator .st-li .collapsed-configurables.zeroed .male-edit-holder, .plan-configurator .st-li .collapsed-configurables.non-zero .x-holder, .plan-configurator .st-li .collapsed-configurables.non-zero .configure-brands-holder, .plan-configurator .st-li .collapsed-configurables.non-zero .male-edit-holder, .plan-configurator .st-li .collapsed-configurables.zeroed .subtract-button, .plan-configurator .st-li .add-item-helper {
   -webkit-animation-fill-mode: both;
   /* Safari and Chrome */
@@ -3550,6 +3556,12 @@ a.continue.skip.secondary.convert {
   line-height: 40px;
   padding: 20px 0;
   font-size: 40px; }
+
+.trans {
+  -webkit-transition-property: all;
+  -moz-transition-property: all;
+  -o-transition-property: all;
+  transition-property: all; }
 
 .ani, .plan-configurator .st-li .collapsed-configurables.zeroed .x-holder, .plan-configurator .st-li .collapsed-configurables.zeroed .configure-brands-holder, .plan-configurator .st-li .collapsed-configurables.zeroed .male-edit-holder, .plan-configurator .st-li .collapsed-configurables.non-zero .x-holder, .plan-configurator .st-li .collapsed-configurables.non-zero .configure-brands-holder, .plan-configurator .st-li .collapsed-configurables.non-zero .male-edit-holder, .plan-configurator .st-li .collapsed-configurables.zeroed .subtract-button, .plan-configurator .st-li .add-item-helper {
   -webkit-animation-fill-mode: both;

@@ -1,0 +1,45 @@
+.male-round {
+	margin-bottom:30px;
+}
+
+.male-holder {
+	position:relative;
+	height:115px;
+	width:115px;
+	margin: 20px auto 0;
+}
+
+.male-back {
+	background:#FFF;
+	overflow:hidden;
+	-webkit-animation:loaded 2s infinite ease-in-out;
+	-moz-animation:loaded 2s infinite ease-in-out;
+	animation:loaded 2s infinite ease-in-out;
+	animation-iteration-count:infinite;
+}
+
+img.male-round, .male-back, .male-label-box {
+	height:115px;
+	width:115px;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:2000;
+}
+.male-back, .male-loading, .male-label-box {
+	background-color:#FFF;
+	z-index: 1;
+}
+
+.male-label-box {
+	z-index:5000;
+	background:none;
+	margin:0 auto;
+	font-family:ff-enzo-web,helvetica,sans-serif;
+	font-size: 12px;
+	color: #777;
+	text-shadow: 0 1px 0 white;
+	padding: 47px 0 0 1px;
+	text-align: center;
+	height:auto;
+}

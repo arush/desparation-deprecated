@@ -486,6 +486,12 @@ a.continue.skip.secondary.convert {
 .planOther a.convert {
   font-size: 11px; }
 
+.trans {
+  -webkit-transition-property: all;
+  -moz-transition-property: all;
+  -o-transition-property: all;
+  transition-property: all; }
+
 .ani {
   -webkit-animation-fill-mode: both;
   /* Safari and Chrome */

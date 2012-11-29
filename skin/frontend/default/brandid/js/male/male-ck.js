@@ -34944,8 +34944,20 @@ var ngMaleApp = angular.module('ngMaleApp', ['ui','StateMachines','DataServices'
 ngMaleApp.config(function ($routeProvider) {
     $routeProvider
       .when('/', {
+        // redirectTo:'/section/intro'
+        // bring this back if we want a pre-intro screen
          templateUrl:'start.html',
          controller:MainController
+      })
+      .when('/section/intro', {
+        // redirectTo:'/section/intro'
+        // bring this back if we want a pre-intro screen
+         templateUrl:'section/intro.html',
+         controller:IntroController
+      })
+      .when('/section/:section', {
+         templateUrl:'sectionProxy.html',
+         controller:SectionController
       })
       .when('/section/:section/category/:category/dashboard', {
          templateUrl: 'detailViewProxy.html',
@@ -35094,6 +35106,75 @@ Questions.factory('socksQuestions', function(){
  *
  */
 
+
+function DetailControlsController($scope,StateMachine,DataService,$routeParams) {
+
+	/**
+	*  Controller Properties
+	*/
+
+	/**
+	*  Controller Functions
+	*/
+
+ //    $scope.detailTemplate = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
+	// console.log($routeParams);
+	// console.log($scope.detailTemplate);
+	// $scope.templateUrl = 'garms/boxers/dashboard.html';
+	// alert($scope.templateUrl);
+
+	// $scope.detailTemplate = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
+}
+DetailControlsController.$inject = ['$scope','StateMachine','DataService','$routeParams'];
+
+
+/* **********************************************
+     Begin section.js
+********************************************** */
+
+function SectionController($scope,DataService,$routeParams) {
+
+	/**
+	*  Controller Properties
+	*/
+
+	/**
+	*  Controller Functions
+	*/
+
+ //    $scope.detailTemplate = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
+	// console.log($routeParams);
+	// console.log($scope.detailTemplate);
+	// $scope.templateUrl = 'garms/boxers/dashboard.html';
+	// alert($scope.templateUrl);
+
+	$scope.sectionTemplate = 'section/' + $routeParams.section + '.html';
+}
+SectionController.$inject = ['$scope','DataService','$routeParams'];
+
+
+/* **********************************************
+     Begin question.js
+********************************************** */
+
+function QuestionController($scope,$routeParams,questionLoader) {
+
+	/**
+	*  Controller Properties
+	*/
+
+	//use the correct template
+	$scope.detailTemplate = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
+	
+
+
+}
+QuestionController.$inject = ['$scope','$routeParams','questionLoader'];
+
+/* **********************************************
+     Begin dashboard.js
+********************************************** */
+
 function DashboardController($scope,$routeParams,questionLoader,$location) {
 
 	/**
@@ -35136,41 +35217,22 @@ function DashboardController($scope,$routeParams,questionLoader,$location) {
 }
 DashboardController.$inject = ['$scope','$routeParams','questionLoader','$location'];
 
-function QuestionController($scope,$routeParams,questionLoader) {
+/* **********************************************
+     Begin intro.js
+********************************************** */
+
+function IntroController($scope,$routeParams,questionLoader) {
 
 	/**
 	*  Controller Properties
 	*/
 
 	//use the correct template
-	$scope.detailTemplate = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
-	
-
+	// $scope.sectionTemplate = 'section/' + $routeParams.section + '.html';
+	$scope.routeParams.section = 'intro';
 
 }
-QuestionController.$inject = ['$scope','$routeParams','questionLoader'];
-
-
-function DetailControlsController($scope,StateMachine,DataService,$routeParams) {
-
-	/**
-	*  Controller Properties
-	*/
-
-	/**
-	*  Controller Functions
-	*/
-
- //    $scope.detailTemplate = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
-	// console.log($routeParams);
-	// console.log($scope.detailTemplate);
-	// $scope.templateUrl = 'garms/boxers/dashboard.html';
-	// alert($scope.templateUrl);
-
-	// $scope.detailTemplate = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
-}
-DetailControlsController.$inject = ['$scope','StateMachine','DataService','$routeParams'];
-
+IntroController.$inject = ['$scope','$routeParams','questionLoader'];
 
 /* **********************************************
      Begin main.js
@@ -35237,20 +35299,23 @@ var MainController = ngMaleApp.controller('MainController', function($scope,Stat
 
   $scope.menu = [
     {
-      title: "1. Are you a man?",
-      section: "manometer"
+      title: "1. Hi, I'm M.A.L.E.",
+      section: "intro",
+      submenuTemplate: "menu/menuItems.html",
+      submenuItems: [{
+        category: "gender",
+        cssClass: "gender",
+        name: "gender"
+      }]
     },
     {
-      title: "2. Your Garms",
+      title: "2. Your Underwear",
       section: "garms",
       submenuTemplate: "menu/catalogItems.html"
     },
     {
-      title: "3. Your Life"
-
-    },
-    {
-      title: "4. Timeline"
+      title: "3. Your Life",
+      section: "extras",
 
     }
   ];
@@ -35490,7 +35555,11 @@ angular.module('StateMachines', [])
 
 
 // @codekit-prepend "controllers/detail.js"
-// @codekit-prepend "controllers/slide.js"
+// @codekit-prepend "controllers/section.js"
+// @codekit-prepend "controllers/question.js"
+// @codekit-prepend "controllers/dashboard.js"
+// @codekit-prepend "controllers/intro.js"
+
 // @codekit-prepend "controllers/main.js"
 
 // @codekit-prepend "modules/services.js"
