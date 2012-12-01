@@ -92,7 +92,12 @@ Checkout.prototype = {
     {
         try {
           // Feel free to rename the KM event
-          _kmq.push(['record', 'Reached Checkout Step '+section]);
+            if(typeof(_kmq) !== "undefined") {
+                _kmq.push(['record', 'Reached Checkout Step '+section]);
+            }
+            if(typeof(mixpanel) !== "undefined") {
+                mixpanel.track('Reached Checkout Step '+section);
+            }
 
           // If using Google Analytics, uncomment the relevant code:
           // Old Analytics code
