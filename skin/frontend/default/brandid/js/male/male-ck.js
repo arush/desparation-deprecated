@@ -34934,6 +34934,33 @@ the specific language governing permissions and limitations under the Apache Lic
 
 
 /* **********************************************
+     Begin jquery-male-typewriter.js
+********************************************** */
+
+(function($) {
+
+    $.fn.typewriter = function(callback) {
+        this.each(function() {
+            var $ele = $(this), str = $ele.text(), progress = 0;
+            $ele.text('');
+            var timer = setInterval(function() {
+                
+                $ele.text(str.substring(0, progress++) + (progress & 1 ? '_' : ''));
+
+                if (progress >= str.length) {
+                    clearInterval(timer);
+                    // alert('bewbs');
+                    callback();
+                    // insert logic for callback here
+                } 
+            }, 15);
+        });
+        return this;
+    };
+    
+})(jQuery);
+
+/* **********************************************
      Begin ngMale.js
 ********************************************** */
 
@@ -35525,6 +35552,11 @@ angular.module('StateMachines', [])
      Begin male.js
 ********************************************** */
 
+
+
+
+
+
 // Had to load these here because external js in Magento loads last, so kept getting "jQuery undefined" error
 // Must include in core.js eventually if they are needed across the whole site. Right now they are not.
 
@@ -35536,14 +35568,20 @@ angular.module('StateMachines', [])
 // @codekit-prepend "libs/angular-ui/build/angular-ui.js"
 // @codekit-prepend "libs/select2/select2.js"
 
+
+
+// @codekit-prepend "libs/jquery-male-typewriter.js"
+
+
+
+
+
+
+
+
+
+/***************************/
 // Angular files that make up the Male app
-
-
-
-
-
-
-
 
 // @codekit-prepend "app/ngMale.js"
 

@@ -1,3 +1,8 @@
+
+
+
+
+
 // Had to load these here because external js in Magento loads last, so kept getting "jQuery undefined" error
 // Must include in core.js eventually if they are needed across the whole site. Right now they are not.
 
@@ -9,14 +14,20 @@
 // @codekit-prepend "libs/angular-ui/build/angular-ui.js"
 // @codekit-prepend "libs/select2/select2.js"
 
+
+
+// @codekit-prepend "libs/jquery-male-typewriter.js"
+
+
+
+
+
+
+
+
+
+/***************************/
 // Angular files that make up the Male app
-
-
-
-
-
-
-
 
 // @codekit-prepend "app/ngMale.js"
 

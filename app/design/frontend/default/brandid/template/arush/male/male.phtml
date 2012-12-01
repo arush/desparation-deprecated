@@ -1,7 +1,15 @@
 <!-- <div id="top" class="keep-calm-signup-container">
   <?php // echo $this->getChildHtml('landing_header'); ?>
 </div> -->
-
+<div class="chisel-block header">
+  <div class="container">
+    <div class="logo-container">
+      <a id="logo" href="/" class="header-logo">
+        <img class="gift-logo ani fadeIn scale-with-grid" alt="BRANDiD logo" src="<?php echo $this->getSkinUrl('images/logo-beta.png')?>" title="BRANDiD Logo"/>
+      </a>
+    </div>
+  </div>
+</div>
 <div ng-app="ngMaleApp" ng-controller="MainController" class="container maleApp withShadow drawerOpen-{{drawerOpen}}">
 
   <div  class="drawer-holder shadow-trick-holder" >
@@ -96,6 +104,12 @@
         <div id="intro" class="curved-white-block withShadow withRadius fadeIn ani">
           Wassup biatch
         </div>
+
+        <script type="text/javascript">
+          $('#intro').typewriter(function(){alert('done');});
+        </script>
+        
+
       </div>
   </script>
   <script type=text/ng-template id=section/garms.html>
