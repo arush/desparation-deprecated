@@ -247,6 +247,8 @@
    <cms_index_index>
         <reference name="head">
             <action method="addCss"><stylesheet>css/arush/landing3.css</stylesheet></action>
+            <action method="addCss"><stylesheet>css/arush/leanlanding/core.css</stylesheet></action>
+            <action method="addCss"><stylesheet>css/male/male.css</stylesheet></action>
             <block type="page/html" name="bg_css" template="page/keep-calm-base64.phtml"/>
             <block type="core/text" name="fb-meta">
                 <action method="setText">
@@ -276,11 +278,11 @@
             <action method="addItem"><type>skin_js</type><name>js/jquery-1.7.1.min.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/arush/male/json2.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/arush/subscribe/jquery.cookie.js</name></action>
-            <action method="addItem"><type>skin_js</type><name>js/scroll/jquery.localscroll-1.2.7-min.js</name></action>
-            <action method="addItem"><type>skin_js</type><name>js/scroll/jquery.scrollTo-1.4.2-min.js</name></action>
+            <!-- <action method="addItem"><type>skin_js</type><name>js/scroll/jquery.localscroll-1.2.7-min.js</name></action> -->
+            <!-- <action method="addItem"><type>skin_js</type><name>js/scroll/jquery.scrollTo-1.4.2-min.js</name></action> -->
             <action method="addItem"><type>skin_js</type><name>js/arush/jquery.accordion.js</name></action>
-            <action method="addItem"><type>skin_js</type><name>js/arush/home3-ck.js</name></action>
-            <action method="addItem"><type>skin_js</type><name>js/arush/male/jquery.text-effects.js</name></action>
+            <!-- <action method="addItem"><type>skin_js</type><name>js/arush/home02-12-2012-ck.js</name></action> -->
+            <!-- <action method="addItem"><type>skin_js</type><name>js/arush/male/jquery.text-effects.js</name></action> -->
             <action method="addItem"><type>skin_js</type><name>js/arush/modernizr.2.5.3.min.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/jquery.easing.1.3.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/jquery.reject.js</name></action>

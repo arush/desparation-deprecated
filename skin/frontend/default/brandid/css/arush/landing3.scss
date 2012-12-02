@@ -7,6 +7,13 @@
 @import "subscribe/style.scss";
 @import "leanlanding/movember/homepage-banner.scss";
 
+
+// homepage
+
+@import "leanlanding/sliding-home.scss";
+
+
+
 /* accordion */
 .st-accordion ul li > a span {
   background: transparent url("../../images/arush/accordion/down.png") no-repeat center center;
@@ -235,50 +242,6 @@ h4.description-copy,h4 strong
   margin: 0;
   background: #CCC;
   color: #666;
-}
-
-@keyframes fade-in {
-	0%{
-	  @include opacity(0);
-	}
-
-	100%
-	{
-	  @include opacity(1);
-	}  
-}
-
-@-webkit-keyframes fade-in {
-	0%{
-	  @include opacity(0);
-	}
-
-	100%
-	{
-	  @include opacity(1);
-	}  
-}
-
-@-moz-keyframes fade-in {
-	0%{
-	  @include opacity(0);
-	}
-
-	100%
-	{
-	  @include opacity(1);
-	}  
-}
-
-@-ms-keyframes fade-in {
-	0%{
-	  @include opacity(0);
-	}
-
-	100%
-	{
-	  @include opacity(1);
-	}  
 }
 
 @media only screen and (max-width: 959px) {

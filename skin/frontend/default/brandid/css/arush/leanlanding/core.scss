@@ -1,12 +1,14 @@
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
 @import "components/tumblr.scss";
+@import "components/swipejs.scss";
 
 
 // global variables
 $back: #FFF;
 $radius: 5px;
 $colour: #444;
+$heading-font: bold 36px/36px "proxima-nova",Helvetica,Arial,sans-serif;
 $title-font: bold 36px/36px "ff-enzo-web",Helvetica,Arial,sans-serif;
 $subtitle-font: normal 18px/18px "proxima-nova",Helvetica,Arial,sans-serif;
 $font: normal 1em/1em "proxima-nova",Helvetica,Arial,sans-serif;
@@ -17,6 +19,7 @@ $margin: 15px;
 	@include box-shadow(rgba(0, 0, 0, 0.3) 0 1px 3px);
 	@include border-top-radius(5px);
 	margin-bottom:80px;
+	background:$back;
 }
 
 .top-block, .content, .text-overlay, .top-section {
@@ -39,7 +42,11 @@ span.bold {
 	.landing-title {
 		padding-top: 40px;
 
-		font: $title-font;
+		font: $heading-font;
+		span.heading {
+			text-transform:uppercase;
+		}
+			
 		text-align:center;
 		text-transform:none;
 		letter-spacing:-2px;

@@ -1,0 +1,67 @@
+// homepage
+
+.landing-subtitle {
+  margin:30px 0 0 !important;
+}
+
+.landing-title {
+	.heading {
+		text-transform:uppercase;
+	}
+}
+.centered-content {
+  
+  // this is needed for absolutely positioned images inside this element
+  position:relative;
+
+  font: bold 36px/36px "proxima-nova", Helvetica, Arial, sans-serif;
+  letter-spacing:-2px;
+  text-align:center;
+  margin-bottom:40px;
+
+  a.convert {
+    width:80%;
+    float:none;
+	letter-spacing:0px;
+	height:70px;
+	line-height:70px;
+
+  }
+
+  .subheading {
+
+  }
+
+  .subheading-subtitle {
+	font-weight:normal;
+	font-size:0.8em;
+	color:#6F6F6F;
+	@include ani-delay(0.5s);
+
+  }
+}
+
+.vertical-middle {
+
+}
+
+.margin-bottom {
+	margin-bottom:20%;
+}
+
+.margin-top {
+	margin-top:20%;
+}
+
+.image-overlay {
+	margin-bottom:-40px;
+}
+
+.middle-quote {
+	// width:70%;
+	width:60%;
+	margin:20px auto;
+	margin-bottom:-120px;
+	@include ani-delay(1s);
+}
+
