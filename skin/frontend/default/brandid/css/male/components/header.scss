@@ -20,3 +20,39 @@
 	display: block;
 	margin-top: 6px;
 }
+
+.navigation-holder {
+	float:right;
+	margin:0;
+
+	.top-nav-link {
+		font-family:"proxima-nova",Helvetica,arial,sans-serif;
+		font-size:15px;
+		letter-spacing:-1px;
+		font-weight:bold;
+		color:#777777;
+		line-height:50px;
+		// border-left: 1px solid #F1F1F1;
+		padding:13px 40px 20px;
+		border-top:7px solid #FFF;
+		text-shadow:0 1px 0 white;
+		@include transition-property(all);
+		@include transition-duration(0.3s);
+	}
+	.top-nav-link:hover {
+		color: black;
+		border-top:7px solid #D2002B;
+		
+	}
+
+	a.convert {
+		float:none;
+		height:35px;
+		line-height:35px;
+		border-top:none;
+
+		/* counter balance the height of the border with margin*/
+		margin-top:-2px;
+		width:80px;
+	}
+}

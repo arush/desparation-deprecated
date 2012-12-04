@@ -4,7 +4,8 @@
     <keep_calm_getgifted>
         <reference name="head">
 	        <!-- action method="addCss"><stylesheet>css/getgifted.css</stylesheet></action-->
-	        <action method="addCss"><stylesheet>css/keep-calm110620120613.css</stylesheet></action>		
+	        <action method="addCss"><stylesheet>css/keep-calm110620120613.css</stylesheet></action>
+            <action method="addCss"><stylesheet>css/arush/leanlanding/core.css</stylesheet></action>
 	        <block type="page/html" name="bg_css" template="page/keep-calm-base64.phtml"/>
 	        <block type="core/text" name="gplus">
 				<action method="setText">
@@ -164,10 +165,9 @@
 
     <keep_calm_wearepros>
         <reference name="head">
-	        <action method="addCss"><stylesheet>css/skeleton/base.css</stylesheet></action>
-	        <action method="addCss"><stylesheet>css/skeleton/layout.css</stylesheet></action>
-	        <action method="addCss"><stylesheet>css/skeleton/skeleton.css</stylesheet></action>
-	        <action method="addCss"><stylesheet>css/keep-calm110620120613.css</stylesheet></action>		
+	        <action method="addCss"><stylesheet>css/keep-calm110620120613.css</stylesheet></action>
+            <action method="addCss"><stylesheet>css/arush/leanlanding/core.css</stylesheet></action>
+
 
 			<action method="addItem"><type>skin_js</type><name>js/jquery-1.7.1.min.js</name></action>
 
@@ -237,10 +237,8 @@
 
     <keep_calm_accessallareas>
         <reference name="head">
-	        <action method="addCss"><stylesheet>css/skeleton/base.css</stylesheet></action>
-	        <action method="addCss"><stylesheet>css/skeleton/layout.css</stylesheet></action>
-	        <action method="addCss"><stylesheet>css/skeleton/skeleton.css</stylesheet></action>
 	        <action method="addCss"><stylesheet>css/keep-calm110620120613.css</stylesheet></action>		
+            <action method="addCss"><stylesheet>css/arush/leanlanding/core.css</stylesheet></action>
 
 			<action method="addItem"><type>skin_js</type><name>js/jquery-1.7.1.min.js</name></action>
 

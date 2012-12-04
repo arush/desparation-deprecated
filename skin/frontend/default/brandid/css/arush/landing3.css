@@ -3090,9 +3090,29 @@ a.continue.skip.secondary.convert {
 .planOther a.convert {
   font-size: 11px; }
 
+.logo-container {
+  float: left !important; }
+.logo-container #logo {
+  float: left; }
+
+.commitment.container {
+  background: #fff;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px; }
+
+.blurb-container {
+  margin: 40px; }
+
+.chisel-block.header {
+  margin-bottom: 0 !important; }
+
 .getgifted .final-share.section {
   width: 507px !important; }
 .getgifted .final-share.section .box {
+  color: #CFCFCF;
   width: 100% !important; }
 .getgifted .final-share.section .share-buttons {
   width: 400px; }
@@ -4349,11 +4369,7 @@ img.gift-logo {
   margin: 0 auto;
   font-size: 68px; }
 
-#action-section-3 .coupon-card {
-  width: 86%; }
-
 .title-block.first, .title-block.first, .title-block.first {
-  margin-top: -21px;
   overflow: hidden; }
 
 .title-block.first .title {
@@ -4927,11 +4943,7 @@ a.hello-message-button.convert, .subscribe-form {
     text-align: justify; }
   .movember-banner .left-section a.movember-btn {
     margin: 15px 0; } }
-.twitter .quote-box {
-  margin-top: 80px; }
-.twitter .quote-img {
-  vertical-align: bottom; }
-.twitter .author-container .twitter-avatar {
+.twitter-avatar {
   float: left;
   -webkit-border-radius: 100px;
   -moz-border-radius: 100px;
@@ -4942,6 +4954,11 @@ a.hello-message-button.convert, .subscribe-form {
   -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 2px 0;
   box-shadow: rgba(0, 0, 0, 0.5) 0 2px 2px 0;
   margin-top: 8px; }
+
+.twitter .quote-box {
+  margin-top: 80px; }
+.twitter .quote-img {
+  vertical-align: bottom; }
 .twitter .author-container .author-text-container {
   float: left;
   margin-left: 20px; }
@@ -4958,6 +4975,51 @@ a.hello-message-button.convert, .subscribe-form {
 .twitter .load-more-container .convert {
   float: none; }
 
+.swipe {
+  margin-top: 40px; }
+
+.swipe .quote-box {
+  margin: 0; }
+.swipe .quotes .quote {
+  background: #F9F9F9; }
+.swipe .quotes .quote-triangle {
+  border-top-color: #F9F9F9; }
+.swipe .author-text-container {
+  float: left;
+  margin-top: 12px; }
+.swipe .twitter-avatar-container {
+  width: 72px; }
+.swipe .v-outer-container {
+  height: 38px; }
+.swipe .v-aligned-element {
+  font-weight: normal;
+  letter-spacing: 0;
+  line-height: 23px; }
+.swipe span.author, .swipe span.caption-small {
+  line-height: 18px; }
+.swipe span.caption-small {
+  font-weight: normal;
+  letter-spacing: -1px; }
+
+.customer-quote {
+  width: 303px;
+  margin: 80px auto 40px;
+  -webkit-animation-delay: 1s;
+  /* Safari and Chrome */
+  -moz-animation-delay: 1s;
+  /* Firefox */
+  -ms-animation-delay: 1s;
+  /* Steve Ballmer */
+  -o-animation-delay: 1s;
+  /* Opera */
+  animation-delay: 1s; }
+
+.subheading-container {
+  margin: 60px 45px; }
+
+img.behind {
+  margin-top: 30px; }
+
 .landing-subtitle {
   margin: 30px 0 0 !important; }
 
@@ -4969,7 +5031,7 @@ a.hello-message-button.convert, .subscribe-form {
   font: bold 36px/36px "proxima-nova", Helvetica, Arial, sans-serif;
   letter-spacing: -2px;
   text-align: center;
-  margin-bottom: 40px; }
+  margin: 0 25px 30px; }
 .centered-content a.convert {
   width: 80%;
   float: none;
@@ -4990,19 +5052,33 @@ a.hello-message-button.convert, .subscribe-form {
   /* Opera */
   animation-delay: 0.5s; }
 
-.margin-bottom {
-  margin-bottom: 20%; }
+.centered-content.grey-back {
+  -webkit-box-shadow: rgba(245, 245, 245, 0.1) 0 0 2px 5px, rgba(255, 255, 255, 0.6) 0 0 40px 30px inset;
+  -moz-box-shadow: rgba(245, 245, 245, 0.1) 0 0 2px 5px, rgba(255, 255, 255, 0.6) 0 0 40px 30px inset;
+  box-shadow: rgba(245, 245, 245, 0.1) 0 0 2px 5px, rgba(255, 255, 255, 0.6) 0 0 40px 30px inset; }
+.centered-content.grey-back .subheading-subtitle {
+  margin: 0 20px 40px;
+  font-size: 26px;
+  text-shadow: 0 1px 0 white;
+  letter-spacing: -2px; }
 
-.margin-top {
-  margin-top: 20%; }
+.share-buttons {
+  margin: 10px 0 40px; }
 
-.image-overlay {
-  margin-bottom: -40px; }
+/* GENERIC */
+.call-to-action-container {
+  margin: 40px auto 0; }
 
-.middle-quote {
-  width: 60%;
-  margin: 20px auto;
-  margin-bottom: -120px;
+.ani {
+  -webkit-animation-duration: 1s;
+  /* Safari and Chrome */
+  -moz-animation-duration: 1s;
+  /* Firefox */
+  -ms-animation-duration: 1s;
+  /* Steve Ballmer */
+  -o-animation-duration: 1s;
+  /* Opera */
+  animation-duration: 1s;
   -webkit-animation-delay: 1s;
   /* Safari and Chrome */
   -moz-animation-delay: 1s;
@@ -5012,6 +5088,16 @@ a.hello-message-button.convert, .subscribe-form {
   -o-animation-delay: 1s;
   /* Opera */
   animation-delay: 1s; }
+
+.all-corners {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px; }
+
+.image-overlay {
+  margin-bottom: -40px; }
 
 .fullwidth {
   width: 100%;
@@ -5031,10 +5117,16 @@ a.hello-message-button.convert, .subscribe-form {
   width: 100%;
   z-index: 100; }
 
-.grey-back {
-  padding: 40px 0;
+.grey-back, .footer.quote-footer {
   background-image: url(data:image/png;base64,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);
   background-repeat: repeat; }
+
+.grey-back {
+  padding: 40px 0; }
+
+/* OLD YUCKY OVERRIDES */
+.footer-container span.author, .footer-container span.caption {
+  text-align: left; }
 
 /* accordion */
 .st-accordion ul li > a span {

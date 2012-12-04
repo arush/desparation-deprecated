@@ -1,6 +1,28 @@
+@import "compass";
+
+.logo-container {
+	float:left !important;
+	#logo {
+		float:left;
+	}
+}
+
+.commitment.container {
+	background:#fff;
+	@include border-radius(5px);
+}
+
+.blurb-container {
+	margin:40px;
+}
+
+.chisel-block.header {
+	margin-bottom:0 !important;
+}
 .getgifted .final-share.section {
 	width:507px !important;
 	 .box {
+	 	color:#CFCFCF;
 		width:100% !important;
 	}
 	.share-buttons {

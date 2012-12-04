@@ -213,7 +213,7 @@
 			<action method="removeItem"><type>skin_css</type><name>css/highslide.css</name></action>
 			<action method="removeItem"><type>skin_css</type><name>css/styles.css</name></action>
 			<action method="removeItem"><type>skin_css</type><name>css/widgets.css</name></action>
-			<!-- <action method="removeItem"><type>skin_css</type><name>css/brandid.css</name></action> -->
+			<action method="removeItem"><type>skin_css</type><name>css/brandid.css</name></action>
 			<action method="removeItem"><type>skin_css</type><name>css/svdh.css</name></action>
 			<action method="removeItem"><type>skin_css</type><name>rewards/css/skin.css</name></action>
 			<action method="removeItem"><type>skin_css</type><name>rewards/css/catalog.css</name></action>
@@ -232,8 +232,13 @@
         
 
         <reference name="content">
-            <block type="core/template" name="get_party_started" template="arush/get/that/butler.phtml"></block>
+            <block type="core/template" name="get_party_started" template="arush/get/that/butler.phtml">
+            	<block type="core/template" name="landing_header" as="landing_header" template="arush/landing-header.phtml"/>
+            </block>
         </reference>
+
+        <remove name="header"/>
+        
 
         <!--reference name="before_body_end">
             <block type="core/template" name="parse" as="parsecode" template="arush/parse/code.phtml"/>
@@ -306,7 +311,7 @@
 			<action method="removeItem"><type>skin_css</type><name>css/highslide.css</name></action>
 			<action method="removeItem"><type>skin_css</type><name>css/styles.css</name></action>
 			<action method="removeItem"><type>skin_css</type><name>css/widgets.css</name></action>
-			<!-- <action method="removeItem"><type>skin_css</type><name>css/brandid.css</name></action> -->
+			<action method="removeItem"><type>skin_css</type><name>css/brandid.css</name></action>
 			<action method="removeItem"><type>skin_css</type><name>css/svdh.css</name></action>
 			<action method="removeItem"><type>skin_css</type><name>rewards/css/skin.css</name></action>
 			<action method="removeItem"><type>skin_css</type><name>rewards/css/catalog.css</name></action>
@@ -323,9 +328,12 @@
             </action>
         </reference>
         
+        <remove name="header"/>
 
         <reference name="content">
-            <block type="core/template" name="get_party_started" template="arush/get/that/app.phtml"></block>
+            <block type="core/template" name="get_party_started" template="arush/get/that/app.phtml">
+            	<block type="core/template" name="landing_header" as="landing_header" template="arush/landing-header.phtml"/>
+            </block>
         </reference>
 
         <!--reference name="before_body_end">

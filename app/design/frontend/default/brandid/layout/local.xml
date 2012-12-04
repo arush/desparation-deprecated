@@ -37,6 +37,8 @@
         </reference>
         <reference name="head">
             <action method="addCss"><stylesheet>css/arush/landing3.css</stylesheet></action>
+            <action method="addCss"><stylesheet>css/male/male.css</stylesheet></action>
+            <action method="addCss"><stylesheet>css/arush/leanlanding/core.css</stylesheet></action>
             
             <action method="addItem"><type>skin_js</type><name>js/arush/male/json2.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/arush/subscribe/jquery.cookie.js</name></action>
@@ -248,7 +250,7 @@
         <reference name="head">
             <action method="addCss"><stylesheet>css/arush/landing3.css</stylesheet></action>
             <action method="addCss"><stylesheet>css/arush/leanlanding/core.css</stylesheet></action>
-            <action method="addCss"><stylesheet>css/male/male.css</stylesheet></action>
+            <!-- <action method="addCss"><stylesheet>css/male/male.css</stylesheet></action> -->
             <block type="page/html" name="bg_css" template="page/keep-calm-base64.phtml"/>
             <block type="core/text" name="fb-meta">
                 <action method="setText">

@@ -1,5 +1,13 @@
 @import "compass";
 
+.twitter-avatar {
+	float:left;
+	@include border-radius(100px);
+	@include box-shadow(rgba(0, 0, 0, 0.5) 0 2px 2px 0);
+	// border: 1px solid #FFF;
+	margin-top: 8px;
+}
+
 .twitter {
 	.quote-box {
 		margin-top:80px;
@@ -10,14 +18,6 @@
 
 	.author-container {
 
-
-		.twitter-avatar{
-			float:left;
-			@include border-radius(100px);
-			@include box-shadow(rgba(0, 0, 0, 0.5) 0 2px 2px 0);
-			// border: 1px solid #FFF;
-			margin-top: 8px;
-		}
 
 		.author-text-container {
 			float:left;

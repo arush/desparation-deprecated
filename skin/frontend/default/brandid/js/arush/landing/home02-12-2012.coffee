@@ -1,6 +1,19 @@
 # ensure this is included after jquery
 root = exports ? this
 
+
+# helpers for swiping
+root.doSwipeNow = (slideToNum) ->
+  swiper1.slide slideToNum, 400
+  jQuery(".subheading-container").css "opacity", 0
+root.doSwipePrev = ->
+  jQuery(".subheading-container").css "opacity", 0
+  swiper1.prev()
+root.doSwipeNext = ->
+  jQuery(".subheading-container").css "opacity", 0
+  swiper1.next()
+
+
 root.TwitterController = ($scope,$http) ->
 
 	$scope.tweetCount = 0
