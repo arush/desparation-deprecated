@@ -153,29 +153,6 @@
 							</div>
 
 					    </li>
-					    <!-- <li style='display:none' class="clearfix ani">
-					    	<div class="nine columns">
-								<div class="centered-content">
-									<div class="image-overlay middle-quote ani fadeInRight">
-										<img src="<?php // echo $this->getSkinUrl('images/leanlanding/home/asos-bullshit.png');?>" alt="" class="scale-with-grid">
-									</div>
-									<img src="<?php // echo $this->getSkinUrl('images/leanlanding/home/asos.png');?>" alt="" class="scale-with-grid behind">
-								</div>
-							</div>
-							<div class="seven columns">
-								<div>
-									<div class="centered-content vertical-middle grey-back all-corners">
-										<div class="margin-bottom margin-top">
-											<h2 class="subheading">I'm a man.</h2>
-											<span class="subheading-subtitle ani fadeInRightBg">Not a fashionista.<br/>I buy the brands that fit me.</span>
-										</div>
-										
-										<a href="/mens-clothing.html" class="convert">Get BRANDiD!</a>	
-									</div>
-									
-								</div>
-							</div>
-					    </li> -->
 					    <li style='display:none' class="clearfix ani">
 					    	<div class="nine columns">
 								<div class="centered-content">
@@ -239,8 +216,7 @@
 					<nav class="dot-nav">
 						<ul id="bullets">
 							<li><a href="#" onclick='doSwipeNow(0);return false;' class="dot active"></a></li>
-							<li><a href="#" onclick='doSwipeNow(1);eturn false;' class="dot"></a></li>
-							<!-- <li><a href="#" onclick='swiper1.slide(2, 400);return false;' class="dot"></a></li> -->
+							<li><a href="#" onclick='doSwipeNow(1);return false;' class="dot"></a></li>
 							<li><a href="#" onclick='doSwipeNow(2);return false;' class="dot"></a></li>
 						</ul>
 					</nav>
@@ -290,6 +266,20 @@
 						});
 						var bullets = jQuery('#bullets li a');
 						var animate = jQuery('.subheading-container');
+
+						var doSwipeNow = function(slideToNum) {
+							swiper1.slide(slideToNum, 400);
+							return jQuery(".subheading-container").css("opacity", 0);
+						}
+						var doSwipePrev = function() {
+						  jQuery(".subheading-container").css("opacity", 0);
+						  return swiper1.prev();
+						};
+
+						var doSwipeNext = function() {
+						  jQuery(".subheading-container").css("opacity", 0);
+						  return swiper1.next();
+						};
 
 					</script>
 

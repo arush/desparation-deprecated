@@ -21,6 +21,28 @@
 
     </default>
 
+
+    <!-- blocking login -->
+    <customer_account_login>
+        <reference name="root">
+            <action method="setTemplate"><template>page/no-frame.phtml</template></action>           
+        </reference>
+
+        <remove name="storerestriction"/>
+        
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/arush/leanlanding/core.css</stylesheet></action>
+        </reference>
+        
+        <remove name="header"/>
+        <reference name="content">
+            <block type="core/template" name="homepage" template="arush/login.phtml">
+                <block type="core/template" name="landing_header" as="landing_header" template="arush/landing-header.phtml"/>
+            </block>
+        </reference>
+    </customer_account_login>
+
+
     <!-- for MALE recommends -->
     <catalog_category_view>
         <reference name="head">
@@ -67,9 +89,7 @@
 			<action method="setTemplate"><template>page/1column.phtml</template></action>			
 		</reference>
 	</customer_account_index>
-    <customer_account_login>
-        <remove name="storerestriction"/>       
-    </customer_account_login>
+
     <keep_calm_signmeup>
         <remove name="storerestriction"/>       
     </keep_calm_signmeup>
