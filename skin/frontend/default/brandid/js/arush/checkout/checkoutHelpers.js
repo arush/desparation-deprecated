@@ -96,6 +96,11 @@ function recurlyPostProcess(d){
 			$j('#recurlyDiv .plan .interval').html('billed only once');
 		}
 
+		/* ========== BUTTON TITLE =================== */
+
+		$j('#recurlyDiv .footer button.submit').text('Complete Purchase');
+
+
 
 		/* ========== PLAN CONFIG OPTIONS ========== */
 
