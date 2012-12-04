@@ -22,309 +22,388 @@
 	}
 ?>
 
+<div ng-app>
 
-<div class="container withShadow">
-	<div class="top-block">
-		
-
-		<div class="content">
-
+	<div class="container withShadow">
+		<div class="top-block">
 			
-			<div class="text-overlay clearfix">
-				<div class="landing-title">
-					<h1 class="heading">Shop. Like a Man.</h1>
-					<div class="landing-subtitle">
-						<span>Tell us what you wear. Refill on demand.</span>
+
+			<div class="content">
+
+				
+				<div class="text-overlay clearfix">
+					<div class="landing-title">
+						<h1 class="heading">Shop. Like a Man.</h1>
+						<div class="landing-subtitle">
+							<span>Tell us what you wear. Refill on demand.</span>
+						</div>
 					</div>
+					
+					<div class="home swipe-controls row clearfix">
+						<a class="big-control prev" href='#' onclick='swiper1.prev();return false;'></a>
+						<a class="big-control next" href='#' onclick='swiper1.next();return false;'></a>
+					</div>
+
+					<div id="slider" class="swipe clearfix">
+					  <ul class="clearfix">
+					    <li style='display:block' class="clearfix">
+					    	<div class="nine columns">
+								<div class="centered-content">
+									<div class="image-overlay middle-quote ani fadeInRight">
+										<img src="<?php echo $this->getSkinUrl('images/leanlanding/home/asos-bullshit.png');?>" alt="" class="scale-with-grid">
+									</div>
+									<img src="<?php echo $this->getSkinUrl('images/leanlanding/home/asos.png');?>" alt="" class="scale-with-grid behind">
+								</div>
+							</div>
+							<div class="seven columns">
+								<div>
+									<div class="centered-content vertical-middle">
+										<div class="margin-bottom margin-top">
+											<h2 class="subheading">I'm a man.</h2>
+											<span class="subheading-subtitle ani fadeInRightBg">I don't have the time to browse through 73 pages of tees.</span>
+										</div>
+										
+										<a href="/mens-clothing.html" class="convert">Get BRANDiD!</a>	
+									</div>
+									
+								</div>
+							</div>
+
+					    </li>
+					    <li style='display:none' class="clearfix ani">
+					    	<div class="seven columns">
+								<div>
+									<div class="centered-content vertical-middle">
+										<div class="margin-bottom margin-top">
+											<h2 class="subheading">I'm a man.</h2>
+											<span class="subheading-subtitle ani fadeInRightBg">I don't buy clothes online.</span>
+										</div>
+										
+										<a href="/mens-clothing.html" class="convert">Get BRANDiD!</a>	
+									</div>
+									
+								</div>
+							</div>
+					    	<div class="nine columns">
+								<div class="centered-content">
+									<div class="image-overlay middle-quote ani fadeInRight">
+										<img src="<?php echo $this->getSkinUrl('images/leanlanding/home/shop-online.png');?>" alt="" class="scale-with-grid">
+									</div>
+									<img src="<?php echo $this->getSkinUrl('images/leanlanding/home/parcel.png');?>" alt="" class="scale-with-grid behind">
+								</div>
+							</div>
+					    </li>
+					    <li style='display:none' class="clearfix ani">
+					    	<div class="nine columns">
+								<div class="centered-content">
+									<div class="image-overlay middle-quote ani fadeInRight">
+										<img src="<?php echo $this->getSkinUrl('images/leanlanding/home/asos-bullshit.png');?>" alt="" class="scale-with-grid">
+									</div>
+									<img src="<?php echo $this->getSkinUrl('images/leanlanding/home/asos.png');?>" alt="" class="scale-with-grid behind">
+								</div>
+							</div>
+							<div class="seven columns">
+								<div>
+									<div class="centered-content vertical-middle">
+										<div class="margin-bottom margin-top">
+											<h2 class="subheading">I'm a man.</h2>
+											<span class="subheading-subtitle ani fadeInRightBg">Not a fashionista.<br/>I buy the brands that fit me.</span>
+										</div>
+										
+										<a href="/mens-clothing.html" class="convert">Get BRANDiD!</a>	
+									</div>
+									
+								</div>
+							</div>
+					    </li>
+					    <li style='display:none' class="clearfix ani">
+					    	
+							<div class="seven columns">
+								<div>
+									<div class="centered-content vertical-middle">
+										<div class="margin-bottom margin-top">
+											<h2 class="subheading">I'm a man.</h2>
+											<span class="subheading-subtitle ani fadeInRightBg">Same again please guv'nor.</span>
+										</div>
+										
+										<a href="/mens-clothing.html" class="convert">Get BRANDiD!</a>	
+									</div>
+									
+								</div>
+							</div>
+							<div class="nine columns">
+								<div class="centered-content">
+									<div class="image-overlay middle-quote ani fadeInRight">
+										<img src="<?php echo $this->getSkinUrl('images/leanlanding/home/one-tap.png');?>" alt="" class="scale-with-grid">
+									</div>
+									<img src="<?php echo $this->getSkinUrl('images/leanlanding/home/asos.png');?>" alt="" class="scale-with-grid behind">
+								</div>
+							</div>
+					    </li>
+					    
+					  </ul>
+					</div>
+
+					<nav class="dot-nav">
+						<ul id="bullets">
+							<li><a href="#" onclick='swiper1.slide(0, 400);return false;' class="dot active"></a></li>
+							<li><a href="#" onclick='swiper1.slide(1, 400);return false;' class="dot"></a></li>
+							<li><a href="#" onclick='swiper1.slide(2, 400);return false;' class="dot"></a></li>
+							<li><a href="#" onclick='swiper1.slide(3, 400);return false;' class="dot"></a></li>
+						</ul>
+					</nav>
+					
+					
+					<script type="text/javascript">
+						var swiper1 = new Swipe(document.getElementById('slider'), {
+						    startSlide: 0,
+						    speed: 400,
+						    // auto: 5000,
+						    callback: function(event, index, elem) {
+
+						    	var i = bullets.length;
+						        while (i--) {
+						          bullets[i].className = 'dot';
+						        }
+						        bullets[index].className = 'dot active';
+						    	// update dot-nav
+						    }
+						});
+						var bullets = jQuery('#bullets li a');
+
+					</script>
+
 				</div>
-				
-				<div class="home swipe-controls row clearfix">
-					<a class="big-control prev" href='#' onclick='swiper1.prev();return false;'></a>
-					<a class="big-control next" href='#' onclick='swiper1.next();return false;'></a>
+
+				<div class="sub-block-holder">
+					
+					<div class="shadow-holder">
+						<div class="shadow-ninja"></div>
+					</div>
+					<div class="sub-block-bg first">
+						<div class="one-third column sub-block">
+							<div class="landing-title">Your Basics</div>
+							
+							<img src="<?php echo $this->getSkinUrl('images/arush/leanlanding/no-male/box-socks-tees.png'); ?>" alt="Your Basics" class="scale-with-grid explain-img">
+
+							<div class="explain">Choose socks, boxers, tees or all three. Just tell us what you like, leave the rest to us.</div>
+						</div>
+					</div>
+					
+					<div class="sub-block-bg">
+						<div class="one-third column sub-block">
+							<div class="landing-title">Every Brand</div>
+
+							<img src="<?php echo $this->getSkinUrl('images/arush/leanlanding/no-male/icon-brands.png'); ?>" alt="Moustache oils" class="scale-with-grid explain-img">
+
+							<div class="explain">Whatever brand you wear, we have it. Guaranteed. Or your money back. Capiche?</div>
+						</div>
+					</div>
+
+					<div class="sub-block-bg">
+						<div class="one-third column sub-block">
+							<div class="landing-title">Simple Refills</div>
+
+							<img src="<?php echo $this->getSkinUrl('images/arush/leanlanding/no-male/icon-phone.png'); ?>" alt="Moustache singing" class="scale-with-grid explain-img">
+
+							<div class="explain">We figure out exactly when you need a topup. Confirm the pre-populated order and your card gets charged automatically.</div>
+						</div>
+					</div>
+
 				</div>
 
-				<div id="slider" class="swipe clearfix">
-				  <ul class="clearfix">
-				    <li style='display:block' class="clearfix">
-				    	<div class="nine columns">
-							<div class="centered-content">
-								<div class="image-overlay middle-quote ani fadeInRight">
-									<img src="<?php echo $this->getSkinUrl('images/leanlanding/home/asos-bullshit.png');?>" alt="" class="scale-with-grid">
-								</div>
-								<img src="<?php echo $this->getSkinUrl('images/leanlanding/home/asos.png');?>" alt="" class="scale-with-grid behind">
-							</div>
-						</div>
-						<div class="seven columns">
-							<div>
-								<div class="centered-content vertical-middle">
-									<div class="margin-bottom margin-top">
-										<h2 class="subheading">I'm a man.</h2>
-										<span class="subheading-subtitle ani fadeInRightBg">I don't have the time to browse through 73 pages of tees.</span>
-									</div>
-									
-									<a href="/mens-clothing.html" class="convert">Get BRANDiD!</a>	
-								</div>
-								
-							</div>
-						</div>
-
-				    </li>
-				    <li style='display:none' class="clearfix ani">
-				    	<div class="seven columns">
-							<div>
-								<div class="centered-content vertical-middle">
-									<div class="margin-bottom margin-top">
-										<h2 class="subheading">I'm a man.</h2>
-										<span class="subheading-subtitle ani fadeInRightBg">I don't buy clothes online.</span>
-									</div>
-									
-									<a href="/mens-clothing.html" class="convert">Get BRANDiD!</a>	
-								</div>
-								
-							</div>
-						</div>
-				    	<div class="nine columns">
-							<div class="centered-content">
-								<div class="image-overlay middle-quote ani fadeInRight">
-									<img src="<?php echo $this->getSkinUrl('images/leanlanding/home/shop-online.png');?>" alt="" class="scale-with-grid">
-								</div>
-								<img src="<?php echo $this->getSkinUrl('images/leanlanding/home/parcel.png');?>" alt="" class="scale-with-grid behind">
-							</div>
-						</div>
-				    </li>
-				    <li style='display:none' class="clearfix ani">
-				    	<div class="nine columns">
-							<div class="centered-content">
-								<div class="image-overlay middle-quote ani fadeInRight">
-									<img src="<?php echo $this->getSkinUrl('images/leanlanding/home/asos-bullshit.png');?>" alt="" class="scale-with-grid">
-								</div>
-								<img src="<?php echo $this->getSkinUrl('images/leanlanding/home/asos.png');?>" alt="" class="scale-with-grid behind">
-							</div>
-						</div>
-						<div class="seven columns">
-							<div>
-								<div class="centered-content vertical-middle">
-									<div class="margin-bottom margin-top">
-										<h2 class="subheading">I'm a man.</h2>
-										<span class="subheading-subtitle ani fadeInRightBg">Not a fashionista.<br/>I buy the brands that fit me.</span>
-									</div>
-									
-									<a href="/mens-clothing.html" class="convert">Get BRANDiD!</a>	
-								</div>
-								
-							</div>
-						</div>
-				    </li>
-				    <li style='display:none' class="clearfix ani">
-				    	
-						<div class="seven columns">
-							<div>
-								<div class="centered-content vertical-middle">
-									<div class="margin-bottom margin-top">
-										<h2 class="subheading">I'm a man.</h2>
-										<span class="subheading-subtitle ani fadeInRightBg">Same again please guv'nor.</span>
-									</div>
-									
-									<a href="/mens-clothing.html" class="convert">Get BRANDiD!</a>	
-								</div>
-								
-							</div>
-						</div>
-						<div class="nine columns">
-							<div class="centered-content">
-								<div class="image-overlay middle-quote ani fadeInRight">
-									<img src="<?php echo $this->getSkinUrl('images/leanlanding/home/one-tap.png');?>" alt="" class="scale-with-grid">
-								</div>
-								<img src="<?php echo $this->getSkinUrl('images/leanlanding/home/asos.png');?>" alt="" class="scale-with-grid behind">
-							</div>
-						</div>
-				    </li>
-				    
-				  </ul>
-				</div>
-
-				<nav class="dot-nav">
-					<ul id="bullets">
-						<li><a href="#" onclick='swiper1.slide(0, 400);return false;' class="dot active"></a></li>
-						<li><a href="#" onclick='swiper1.slide(1, 400);return false;' class="dot"></a></li>
-						<li><a href="#" onclick='swiper1.slide(2, 400);return false;' class="dot"></a></li>
-						<li><a href="#" onclick='swiper1.slide(3, 400);return false;' class="dot"></a></li>
-					</ul>
-				</nav>
 				
-				
-				<script type="text/javascript">
-					var swiper1 = new Swipe(document.getElementById('slider'), {
-					    startSlide: 0,
-					    speed: 400,
-					    // auto: 5000,
-					    callback: function(event, index, elem) {
-
-					    	var i = bullets.length;
-					        while (i--) {
-					          bullets[i].className = 'dot';
-					        }
-					        bullets[index].className = 'dot active';
-					    	// update dot-nav
-					    }
-					});
-					var bullets = jQuery('#bullets li a');
-
-				</script>
 
 			</div>
 
-			<div class="sub-block-holder">
+			
+		</div>
+
+
+
+	</div>
+
+	<div class="grey-back fullwidth withTopShadow">
+		<div class="quotes container clearfix">
+
+			<div class="row endorsement-title clearfix">
+				Unofficial Endorsements
+			</div>
+			<br/>
+			<br/>
+
+			<div class="quote-box one-third column">
+				<img src="<?php echo $this->getSkinUrl('images/leanlanding/home/wolverine.png'); ?>" class="scale-with-grid quote-img" alt="Wolverine"/>
+				<div class="apostrophe"><span>‘</span><span class="apostrophe2">‘</span></div>
+				<div class="quote v-outer-container">
+					<div class="v-inner-container">
+						<span class="v-aligned-element">
+							BRANDiD makes the hairs on my hairs stand up.
+						</span>
+					</div>
+				</div>
+
 				
+				<div class="quote-triangle"></div>
+				<span class="author">Wolverine</span>
+				<span class="caption-small">Man since... ???</span>
+			</div>
+			
+			<div class="quote-box one-third column">
+				<img src="<?php echo $this->getSkinUrl('images/leanlanding/home/leonidas.jpg'); ?>" class="scale-with-grid quote-img" alt="Neo"/>
+				<div class="apostrophe"><span>‘</span><span class="apostrophe2">‘</span></div>
+				<div class="quote v-outer-container">
+					<div class="v-inner-container">
+						<span class="v-aligned-element">
+							BRANDiD pants are like CGI abs for your crotch.
+						</span>
+					</div>
+				</div>
+
+				
+				<div class="quote-triangle"></div>
+				<span class="author">Leonidas, King of Sparta</span>
+				<span class="caption-small">Man since 540 BC</span>
+			</div>
+			
+				<div class="quote-box one-third column last">
+				<img src="<?php echo $this->getSkinUrl('images/leanlanding/home/gok.jpg'); ?>" class="scale-with-grid quote-img" alt="Neo"/>
+				<div class="apostrophe"><span>‘</span><span class="apostrophe2">‘</span></div>
+				<div class="quote v-outer-container">
+					<div class="v-inner-container">
+						<span class="v-aligned-element">
+							It's not for me.
+						</span>
+					</div>
+				</div>
+
+				
+				<div class="quote-triangle"></div>
+				<span class="author">Gok Wan</span>
+				<span class="caption-small">Man since 1974</span>
+			</div>
+			
+		</div>
+
+		<div class="twitter quotes container clearfix" ng-controller="TwitterController">
+			<br/>
+			<hr/>
+			<br/>
+			<br/>
+			<br/>
+			<div class="row endorsement-title clearfix">
+				Official Endorsements
+			</div>
+
+			<div class="quote-box one-third column" ng-repeat="tweet in displayTweets">
+				<a href="http://www.twitter.com/{{tweet.user.screen_name}}" class="button-overlay" ng-hide="!tweet.media_url_https">
+					<div class="tweet-img-container">
+						<img src="{{tweet.media_url_https}}" class="scale-with-grid quote-img" alt="{{tweet.user.screen_name}}"/>
+					</div>
+				</a>
+				
+				<div class="apostrophe"><span>‘</span><span class="apostrophe2">‘</span></div>
+				<div class="quote v-outer-container">
+					<div class="v-inner-container">
+						<span class="v-aligned-element" ng-bind="tweet.text">
+						</span>
+					</div>
+				</div>
+				<div class="quote-triangle"></div>
+				
+				<div class="author-container">
+					<img src="{{tweet.user.profile_image_url_https}}" alt="" class="twitter-avatar">
+					<div class="author-text-container">
+						<span class="author">@{{tweet.user.screen_name}}</span>
+						<span class="caption-small">{{tweet.created_at_1}}</span>
+						<span class="caption-small">{{tweet.created_at_2}}</span>	
+					</div>
+					
+				</div>
+					
+			
+			</div> <!-- end ng-repeat -->
+			
+			<div class="load-more-container clearfix">
+				<a ng-click="getNext(scrollByNumTweets)" class="convert secondary more-tweets">Load More...</a>
+			</div>
+		</div>
+
+	</div>
+		
+
+	<div class="container withShadow">
+		<div class="share-block">
+			<div class="landing-title">
+				<span class="heading">Commitment issues?</span>
+				<div class="landing-subtitle">
+					<span>Not convinced yet? No worries. Until then, soak up cool man stuff daily.</span>
+				</div>
+			</div>
+			
+			
+			<div class="sub-block-holder">
+					
 				<div class="shadow-holder">
 					<div class="shadow-ninja"></div>
 				</div>
 				<div class="sub-block-bg first">
 					<div class="one-third column sub-block">
-						<div class="landing-title">Your Basics</div>
-						
-						<img src="<?php echo $this->getSkinUrl('images/arush/leanlanding/no-male/box-socks-tees.png'); ?>" alt="Your Basics" class="scale-with-grid explain-img">
+						<div class="explain"><span class="bold">Like us on Facebook</span> for cool man stuff daily.</div>
 
-						<div class="explain">Choose socks, boxers, tees or all three. Just tell us what you like, leave the rest to us.</div>
+						<div class="fb-like-box" data-href="http://www.facebook.com/getbrandid" data-width="292" data-height="340" data-show-faces="false" data-border-color="#EBEBEB" data-stream="true" data-header="false"></div>
+
+						
 					</div>
 				</div>
 				
 				<div class="sub-block-bg">
 					<div class="one-third column sub-block">
-						<div class="landing-title">Every Brand</div>
 
-						<img src="<?php echo $this->getSkinUrl('images/arush/leanlanding/no-male/icon-brands.png'); ?>" alt="Moustache oils" class="scale-with-grid explain-img">
 
-						<div class="explain">Whatever brand you wear, we have it. Guaranteed. Or your money back. Capiche?</div>
+
+						<div class="explain"><span class="bold">Follow us on Twitter</span> for cool man stuff daily.</div>
+
+
+						<a class="twitter-timeline" href="https://twitter.com/BRANDiD" data-widget-id="262989798569017344">Tweets by @BRANDiD</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
 					</div>
 				</div>
 
 				<div class="sub-block-bg">
 					<div class="one-third column sub-block">
-						<div class="landing-title">Simple Refills</div>
+							
+							<script type="text/javascript">
+								setTimeout(function(){
+									loadTumblrWidget();
+								},5000);
+							</script>
 
-						<img src="<?php echo $this->getSkinUrl('images/arush/leanlanding/no-male/icon-phone.png'); ?>" alt="Moustache singing" class="scale-with-grid explain-img">
-
-						<div class="explain">We figure out exactly when you need a topup. Confirm the pre-populated order and your card gets charged automatically.</div>
-					</div>
-				</div>
-
-			</div>
-
-			
-
-		</div>
-
-		
-	</div>
-
-
-
-</div>
-
-<div class="quotes container clearfix">
-
-	<div class="row endorsement-title clearfix">
-		Unofficial Endorsements
-	</div>
-
-	<div class="quote-box one-third column">
-	<img src="<?php echo $this->getSkinUrl('images/leanlanding/home/wolverine.png'); ?>" class="scale-with-grid quote-img" alt="Wolverine"/>
-	<div class="apostrophe"><span>‘</span><span class="apostrophe2">‘</span></div>
-	<span class="quote left">BRANDiD makes the hairs on my hairs stand up.</span>
-	<div class="quote-triangle"></div>
-	<span class="author">Wolverine</span>
-	<span class="caption-small">Man since... ???</span></div>
-	
-	<div class="quote-box one-third column">
-	<img src="<?php echo $this->getSkinUrl('images/leanlanding/home/leonidas.jpg'); ?>" class="scale-with-grid quote-img" alt="Neo"/>
-	<div class="apostrophe"><span>‘</span><span class="apostrophe2">‘</span></div>
-	<span class="quote middle">BRANDiD pants are like CGI abs for your crotch.</span>
-	<div class="quote-triangle"></div>
-	<span class="author">Leonidas, King of Sparta</span>
-	<span class="caption-small">Man since 540 BC</span></div>
-	
-	<div class="quote-box one-third column last">
-	<img src="<?php echo $this->getSkinUrl('images/leanlanding/home/gok.jpg'); ?>" class="scale-with-grid quote-img" alt="Neo"/>
-	<div class="apostrophe"><span>‘</span><span class="apostrophe2">‘</span></div>
-	<span class="quote right">It's not for me.</span>
-	<div class="quote-triangle"></div>
-	<span class="author">Gok Wan</span>
-	<span class="caption-small">Man since 1974</span></div>
-	
-</div>
-
-<div class="container withShadow">
-	<div class="share-block">
-		<div class="landing-title">
-			<span class="heading">Commitment issues?</span>
-			<div class="landing-subtitle">
-				<span>Not convinced yet? No worries. Until then, soak up cool man stuff daily.</span>
-			</div>
-		</div>
-		
-		
-		<div class="sub-block-holder">
-				
-			<div class="shadow-holder">
-				<div class="shadow-ninja"></div>
-			</div>
-			<div class="sub-block-bg first">
-				<div class="one-third column sub-block">
-					<div class="explain"><span class="bold">Like us on Facebook</span> for cool man stuff daily.</div>
-
-					<div class="fb-like-box" data-href="http://www.facebook.com/getbrandid" data-width="292" data-height="340" data-show-faces="false" data-border-color="#EBEBEB" data-stream="true" data-header="false"></div>
-
-					
-				</div>
-			</div>
-			
-			<div class="sub-block-bg">
-				<div class="one-third column sub-block">
-
-
-
-					<div class="explain"><span class="bold">Follow us on Twitter</span> for cool man stuff daily.</div>
-
-
-					<a class="twitter-timeline" href="https://twitter.com/BRANDiD" data-widget-id="262989798569017344">Tweets by @BRANDiD</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-
-
-				</div>
-			</div>
-
-			<div class="sub-block-bg">
-				<div class="one-third column sub-block">
+							<div class="explain"><span class="bold">Follow us on Tumblr</span> for cool man stuff daily.</div>
 						
-						<script type="text/javascript">
-							setTimeout(function(){
-								loadTumblrWidget();
-							},5000);
-						</script>
+						<div id="tumblrWidget">
+							<div class="timeline-header clearfix">
+								<h1 class="summary">Posts</h1>
+								<iframe class="btn right" frameborder="0" border="0" scrolling="no" allowtransparency="true" height="25" width="200" src="http://platform.tumblr.com/v1/follow_button.html?button_type=1&tumblelog=because-we-are-men&color_scheme=light"></iframe>
+							</div>
+							
+							<div class="stream">
+								<div id="tumblr-badge" class="loading"></div>
+							</div>
 
-						<div class="explain"><span class="bold">Follow us on Tumblr</span> for cool man stuff daily.</div>
-					
-					<div id="tumblrWidget">
-						<div class="timeline-header clearfix">
-							<h1 class="summary">Posts</h1>
-							<iframe class="btn right" frameborder="0" border="0" scrolling="no" allowtransparency="true" height="25" width="200" src="http://platform.tumblr.com/v1/follow_button.html?button_type=1&tumblelog=because-we-are-men&color_scheme=light"></iframe>
-						</div>
-						
-						<div class="stream">
-							<div id="tumblr-badge" class="loading"></div>
 						</div>
 
 					</div>
-
 				</div>
+
 			</div>
 
 		</div>
-
 	</div>
-</div>
 
+</div>
 
 <div id="fb-root"></div>
 <script>(function(d, s, id) {

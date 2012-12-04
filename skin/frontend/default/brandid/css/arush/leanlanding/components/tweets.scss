@@ -1,0 +1,48 @@
+@import "compass";
+
+.twitter {
+	.quote-box {
+		margin-top:80px;
+	}
+	.quote-img {
+		vertical-align:bottom;
+	}
+
+	.author-container {
+
+
+		.twitter-avatar{
+			float:left;
+			@include border-radius(100px);
+			@include box-shadow(rgba(0, 0, 0, 0.5) 0 2px 2px 0);
+			// border: 1px solid #FFF;
+			margin-top: 8px;
+		}
+
+		.author-text-container {
+			float:left;
+			margin-left:20px;
+
+			span.author, span.caption-small {
+				padding-left:0;
+			}
+		}
+
+	}
+
+	.tweet-img-container {
+		height: 169px;
+		overflow:hidden;
+	}
+
+	.load-more-container {
+		text-align:center;
+		margin-top:50px;
+		float: left;
+		width: 100%;
+
+		.convert {
+			float:none;
+		}
+	}
+}

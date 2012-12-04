@@ -265,7 +265,10 @@ span.bold {
   font-weight: bold;
   margin-bottom: 20px; }
 
-.quotes span.quote {
+.quote-img {
+  vertical-align: bottom; }
+
+.quotes .quote {
   background: #FFF;
   font-size: 16px; }
 .quotes .quote-triangle {
@@ -292,6 +295,39 @@ span.bold {
 .share-block .landing-title {
   font-size: 36px;
   margin: 20px 10%; }
+
+/* vertical align code */
+.v-outer-container {
+  display: table;
+  height: 120px;
+  overflow: hidden;
+  width: 100%;
+  font-size: 15px;
+  font-family: 'georgia';
+  font-style: italic; }
+
+.v-outer-container .v-inner-container {
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center; }
+
+.v-outer-container .v-inner-container .v-aligned-element {
+  text-decoration: none;
+  padding: 0px 10px;
+  display: block; }
+
+.lte8 .v-outerContainer {
+  position: relative; }
+
+.lte8 .v-outerContainer .v-innerContainer {
+  position: absolute;
+  top: 50%; }
+
+.lte8 .v-outerContainer .v-innerContainer .v-aligned-element {
+  position: relative;
+  top: -50%; }
 
 /* core elements */
 input {
