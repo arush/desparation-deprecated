@@ -24,6 +24,7 @@
  * @license     http://www.magentocommerce.com/license/enterprise-edition
  */
 ?>
+<?php /* ?>
 <div class="block opc-block-progress">
     
     <div class="block-content">
@@ -33,7 +34,7 @@
             </dt>
             <dd class="complete">
 				Call us: <strong>+44 (0) 203 322 2882</strong><br/><br/>
-				    Twitter: <a href="https://twitter.com/intent/tweet?screen_name=getbrandid&text=I'm%20about%20to%20buy%2C%20but…" class="twitter-mention-button">Tweet to @getbrandid</a>
+				    Twitter: <a href="https://twitter.com/intent/tweet?screen_name=brandid&text=I'm%20about%20to%20buy%2C%20but…" class="twitter-mention-button">Tweet to @brandid</a>
 				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 				    <br/><br/>
 				    Email: <a style="float:none;color:#d2002b" href="mailto:help@getbrandid.com?subject=Help">help@getbrandid.com</a>
@@ -42,13 +43,8 @@
 			
         <dl>
         
-        <?php /*WDCA CODE BEGINS*/?>
-        <?php if(!Mage::getStoreConfigFlag('advanced/modules_disable_output/TBT_Rewards') 
-    	            && Mage::getConfig()->getModuleConfig('TBT_Rewards')->is('active', 'true')) : ?>
-		<div>
-        <?php echo Mage::getBlockSingleton('rewards/checkout_onepage_progress_sidebox')->toHtml(); ?></div>
-        <?php endif;?>
-        <?php /*WDCA CODE ENDS*/?>
+        <?php // removed WDCA code ?>
+        
         
         <?php if ($this->getCheckout()->getStepData('billing', 'is_show')): ?>
         <?php if($this->getCheckout()->getStepData('billing', 'complete')): ?>
@@ -144,3 +140,5 @@
         </dl>
     </div>
 </div>
+
+<?php */ ?>
