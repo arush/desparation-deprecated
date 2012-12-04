@@ -24,7 +24,7 @@
 	            </action>
 	        </block> -->
 
-            <!-- <action method="addCss"><stylesheet>css/arush/landing3.css</stylesheet></action>      -->
+            <!-- <action method="addCss"><stylesheet>css/arush/landing4.css</stylesheet></action>      -->
             <action method="addCss"><stylesheet>css/male/male.css</stylesheet></action>     
             <block type="page/html" name="bg_css" template="page/keep-calm-base64.phtml"/>
             <block type="core/text" name="fb-meta">
@@ -42,7 +42,7 @@
                 </action>
             </block>
 
-	        <action method="addCss"><stylesheet>css/arush/leanlanding/core.css</stylesheet></action>
+	        <action method="addCss"><stylesheet>css/arush/leanlanding/core4.css</stylesheet></action>
 
 			<action method="addItem"><type>skin_js</type><name>js/male/male-ck.js</name></action>
 

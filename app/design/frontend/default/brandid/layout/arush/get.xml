@@ -151,7 +151,7 @@
     <get_that_butler>
 
         <reference name="head">
-            <action method="addCss"><stylesheet>css/arush/landing3.css</stylesheet></action>     
+            <action method="addCss"><stylesheet>css/arush/landing4.css</stylesheet></action>     
             <block type="page/html" name="bg_css" template="page/keep-calm-base64.phtml"/>
             <block type="core/text" name="fb-meta">
                 <action method="setText">
@@ -168,7 +168,7 @@
                 </action>
             </block>
 
-	        <action method="addCss"><stylesheet>css/arush/leanlanding/core.css</stylesheet></action>
+	        <action method="addCss"><stylesheet>css/arush/leanlanding/core4.css</stylesheet></action>
 	        <action method="addCss"><stylesheet>css/arush/leanlanding/movember.css</stylesheet></action>
 
 			<action method="addItem"><type>skin_js</type><name>js/jquery-1.7.1.min.js</name></action>
@@ -248,7 +248,7 @@
     <get_that_app>
 
         <reference name="head">
-            <action method="addCss"><stylesheet>css/arush/landing3.css</stylesheet></action>     
+            <action method="addCss"><stylesheet>css/arush/landing4.css</stylesheet></action>     
             <block type="page/html" name="bg_css" template="page/keep-calm-base64.phtml"/>
             <block type="core/text" name="fb-meta">
                 <action method="setText">
@@ -265,7 +265,7 @@
                 </action>
             </block>
 
-	        <action method="addCss"><stylesheet>css/arush/leanlanding/core.css</stylesheet></action>
+	        <action method="addCss"><stylesheet>css/arush/leanlanding/core4.css</stylesheet></action>
 	        <action method="addCss"><stylesheet>css/arush/leanlanding/app.css</stylesheet></action>
 
 			<action method="addItem"><type>skin_js</type><name>js/jquery-1.7.1.min.js</name></action>

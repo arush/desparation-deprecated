@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <layout version="0.1.0">
 
-    <cms_index_index>
+    <!-- <cms_index_index>
       <reference name="head">
           <action method="addItem">
           	<type>skin_css</type>
@@ -11,7 +11,7 @@
         <reference name="right">
             <block type="sagepaysuite/logo" name="sagepaysuite.right.logo" template="sagepaysuite/logo.phtml"/>
         </reference>
-    </cms_index_index>
+    </cms_index_index> -->
   <checkout_onepage_index>
   	<reference name="head">
 	  <action method="addItem">
