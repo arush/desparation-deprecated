@@ -543,13 +543,28 @@
 	}
 </script>
 
+<script type="text/javascript">
+
+	/* KISSmetrics Tracking */
+	if(typeof(_kmq) !== "undefined") {
+		_kmq.push(['record', 'Viewed homepage']);
+	}
+	/* Mixpanel Tracking */
+	if(typeof(mixpanel) !== "undefined") {
+		mixpanel.track("Viewed Homepage", {
+			'Source: JS': document.referrer
+		});
+	}
+
+</script>
+
 <?php
 	if(isset($_GET["fb_ad_id"])) { ?>
 
 		<script type="text/javascript">
 			
 			// Facebook ads to KISSmetrics tracking
-			if(_kmq !== undefined) {
+			if(typeof(_kmq) !== "undefined") {
 				_kmq.push(['set', {'fb_ad_id':'<?php echo $_GET["fb_ad_id"]; ?>'}]);
 
 			}
@@ -563,7 +578,7 @@
 		<script type="text/javascript">
 			
 			// Facebook ads to KISSmetrics tracking
-			if(_kmq !== undefined) {
+			if(typeof(_kmq) !== "undefined") {
 				_kmq.push(['set', {'fb_ad_group':'<?php echo $_GET["fb_ad_group"]; ?>'}]);
 
 			}
