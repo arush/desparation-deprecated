@@ -15,26 +15,27 @@
 
 
 					<div class="sixteen columns">
+						<?php echo $this->getMessagesBlock()->getGroupedHtml(); ?>
 						<div class="landing-title">
-							<span class="landing-title-span">Job done. Now what?</span>
+							<span class="landing-title-span">Yippie Ki Yay<a style="text-decoration:underline;color:#d2002b;" href="https://www.youtube.com/watch?v=tJ7z5CUsrbk">...</a>! Now what?</span>
 							<div class="landing-subtitle">
 								<br/><br/>
-								<span>Share this magnificent demonstration of masculinity</span>
+								<span>Share this magnificent moment of masculinity</span>
 								<br/><br/>
 								<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.getbrandid.com" data-text="Money, power, auto-delivered undies, I got @BRANDiD" data-via="male" data-size="large" data-related="BRANDiD">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 								
 								<br/><br/><br/>
 
-								<span>Sign up for the <span class="bold"><a href="/get/that/app">beta version of our app</a></span> so you can restock in one tap!</span>
+								<span>Sign up for the <span class="bold"><a style="text-decoration:underline;color:#d2002b" href="/get/that/app">beta version of our app</a></span> so you can restock in one tap!</span>
 
 								<br/><br/><br/>
 
 
 								<span>If you need help with anything, you can <span class="bold">contact us 24/7</span> via
 								<br/>
-								<a href="mailto:help@getbrandid.com?Subject=I%20need%20urgent%20help" style="color:#d2002b;text-decoration:underline;" class="bold">email</a>, telephone <span class="bold">+44 203 322 2882</span> or on Twitter</span>
-								<br/><br/>
+								<a href="mailto:help@getbrandid.com?Subject=I%20need%20urgent%20help" style="color:#d2002b;text-decoration:underline;" class="bold">email</a>, telephone <span class="bold">+44 203 322 2882</span>
+								<br/><br/>and we're always available on Twitter:</span>
 								<a href="https://twitter.com/intent/tweet?screen_name=male" class="twitter-mention-button" data-size="large" data-related="brandid">Tweet to @male</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 								
@@ -46,7 +47,7 @@
 					<div class="eight columns offset-by-four">
 						
 						<div id="wufoo-m7x3q1">
-							Fill out my <a href="http://brandid.wufoo.com/forms/m7x3q1">online form</a>.
+							Fill out my <a href="https://brandid.wufoo.com/forms/m7x3q1">online form</a>.
 						</div>
 							<script type="text/javascript">var m7x3q1;(function(d, t) {
 							var s = d.createElement(t), options = {
@@ -80,25 +81,20 @@
 
 
 
-<?php echo $this->getMessagesBlock()->getGroupedHtml(); ?>
-
-	
-	<p><?php echo $this->__(' Congratulations. Job done. Earn yourself even more hairs on your chest by spreading the word.')?></p></br>
-
-
-
 
 
 	<script type="text/javascript">
 		
 		$j = jQuery.noConflict();
 
-		var basketFrequency,basketTotal, basket;
+		var basketFrequency,basketTotal, basket, basketString;
 
-		basket = $j.cookie('basket');
+		basketString = $j.cookie('basket');
+
+		var basket = JSON.parse(basketString);
 
 		basketFrequency = basket.frequency;
-		basketTotal = basket.frequency;
+		basketTotal = basket.total;
 
 
 		if(typeof(_kmq) !== "undefined") {
@@ -107,6 +103,21 @@
 			'Purchased Frequency': basketFrequency,
 			'Purchased Total': basketTotal
 			}]);
+			
+			<?php 
+				if (Mage::getSingleton('customer/session')->isLoggedIn()) {
+					$email = Mage::getSingleton('customer/session')->getCustomer()->getEmail();
+				
+			?>
+				
+				_kmq.push(["identify", "<?php echo $email ?>"]);  // Replace "id-placeholder" with code that gets the user's ID, username, or email address.
+			
+			<?php
+				
+				}
+			?>
+
+			
 		}
 
 		// Mixpanel Tracking
@@ -119,8 +130,8 @@
 			mixpanel.register({ 'Payer': "Has bought before" });
 
 			<?php 
-				if (Mage::getSingleton(‘customer/session’)->isLoggedIn()) {
-					$email = Mage::getSingleton(‘customer/session’)->getCustomer()->getEmail();
+				if (Mage::getSingleton('customer/session')->isLoggedIn()) {
+					$email = Mage::getSingleton('customer/session')->getCustomer()->getEmail();
 				
 			?>
 				
