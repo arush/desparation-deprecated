@@ -68,10 +68,6 @@
 
 <script type="text/javascript">
 
-	var $j = jQuery.noConflict();
-	var phoneOS = "none chosen";
-
-
 	/* KISSmetrics tracking */
     if(typeof(_kmq) !== "undefined") {
     	_kmq.push(['record', 'Viewed Login Page']);
@@ -81,46 +77,5 @@
    		mixpanel.track("Viewed Login Page");
     }
 
-	
-	/* attach a submit handler to the form */
-	  $j("#download-app").submit(function(event) {
-
-
-
-	    /* stop form from submitting normally */
-	    event.preventDefault(); 
-	        
-	    /* get some values from elements on the page: */
-	    var $form = $j(this),
-	        url = $form.attr('action');
-
-	    /* KISSmetrics tracking */
-	    if(typeof(_kmq) !== "undefined") {
-			_kmq.push(['record', 'Clicked App Download Link']);
-	    	_kmq.push(['set', {'mobile number':mobileInput, 'Phone OS':phoneOS}]);
-	    }
-
-	    /* Mixpanel Tracking */
-	   	if(typeof(mixpanel) !== "undefined") {
-	   		mixpanel.track("Clicked App Download Link", {"Phone OS": phoneOS, "Phone number": mobileInput});
-		}
-
-
-		/* disable the button */
-
-		$j('#submit-mobile').attr('disabled', true);
-		$j('#twilio-response').addClass('loading');
-
-
-	    /* Send the data using post and put the results in a div */
-	    $j.post( url, { "mobile": mobile },
-	      function( data ) {
-	      	$j('#submit-mobile').removeAttr('disabled');
-	      	$j('#twilio-response').removeClass('loading');
-	      	alert('Cool, check your phone for a text message!');
-	          //var content = $( data ).find( '#content' );
-	          //$( "#result" ).empty().append( content );
-	      }, "json");
-	  });
 
 </script>

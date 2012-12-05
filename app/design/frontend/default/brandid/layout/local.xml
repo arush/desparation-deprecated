@@ -125,12 +125,24 @@
     
     <checkout_onepage_success>
     	<reference name="head">
-			<block type="core/text" name="twitteranywhere.js">
-				<action method="setText">
-					<text><![CDATA[<script type="text/javascript" src="http://platform.twitter.com/anywhere.js?id=rFclPwPvwaz6yJkaMVLbXQ&v=1"></script>]]></text>
-				</action>
-			</block> 
+            <action method="addItem"><type>skin_js</type><name>js/brandid1-ck.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/arush/subscribe/jquery.cookie.js</name></action>
+            <action method="addCss"><stylesheet>css/arush/leanlanding/core4.css</stylesheet></action>
     	</reference>
+
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/no-frame.phtml</template>
+            </action>
+        </reference>
+
+        <remove name="header"/>
+        <reference name="content">
+            <block type="core/template" name="success" template="arush/success.phtml">
+                <block type="core/template" name="landing_header" as="landing_header" template="arush/landing-header.phtml"/>
+            </block>
+        </reference>
+
     </checkout_onepage_success>
     
     <checkout_onepage_index>

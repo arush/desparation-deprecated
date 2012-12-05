@@ -25,14 +25,9 @@
  */
 ?>
 
-<!-- Innovate Analytics tracking beacon  -->
-
-<?php if(Mage::getStoreConfig('analytics/track/analytics_checkout_on')) {
-		echo Mage::getStoreConfig('analytics/track/analytics_checkout_success_code');
-	}
-?>
-
-<!-- END Innovate Analytics tracking beacon  -->
+<div id="top" class="keep-calm-signup-container">
+	<?php echo $this->getChildHtml('landing_header'); ?>
+</div>
 
 <?php
 	$gift = false;
@@ -78,7 +73,7 @@
 	
 <?php if(!$gift) {?>
 	
-	<p><?php echo $this->__(' Congratulations. Job done. Earn yourself some more points and even more hairs on your chest by spreading the word.')?></p></br>
+	<p><?php echo $this->__(' Congratulations. Job done. Earn yourself even more hairs on your chest by spreading the word.')?></p></br>
 
 <?php } else { ?>
 
@@ -86,51 +81,9 @@
 
 <?php } ?>
 	
-	   <div class="social-share">
-		        <div class="social-share-images">
-		        <?php /*?><a href="http://www.facebook.com/sharer.php?u=<?php echo $this->getReferralUrl(); ?>" target="_blank"><img class="facebook" src="<?php echo $this-> getSkinUrl(); ?>images/facebook.png" width="48" height="48" title="post this on facebook"/></a><?php */?>
-		        
-		       
-	<div class="facebok-share">
-						 
-				<div class="fb-like" data-href="https://www.facebook.com/pages/Brandid/282808678428182" data-send="true" data-layout="button_count" data-width="100" data-show-faces="true"></div>
-				
-				<!--
-			        <div class="f-trans"><a style="display:block;" href"#"></a></div>
-					<div class="f-text">Post this to my wall</div>
-		        -->
-		        </div>
-	
-		        
-		        <div class="twitter-share">
-		        <br/>
-		        <a href="https://twitter.com/share"
-		        	class="twitter-share-button"
-		        	data-url="https://www.getbrandid.com"
-		        	
-				<?php if(!$gift) {?>
-	
-		        	data-text="Money, power, auto-delivered undies. I got #BRANDiD. Use my invite"
-
-				<?php } else { ?>
-
-		        	data-text="I just got my man BRANDiD. Beckham eat your heart out."
-
-				<?php } ?>
-
-		        	
-		        	data-via="getbrandid"
-		        	data-count="none"
-		        	data-hashtags="BRANDiD">Tweet about your package</a>
-				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-						
-						
-						
-		        </div>
-		    </div>
-		</div>
+	   
 		
-<?php if ($profiles = $this->getRecurringProfiles()):?>
+<?php /* if ($profiles = $this->getRecurringProfiles()):?>
 	<p><?php echo $this->__('Your Plans:'); ?></p>
 	<ul class="disc">
 	<?php foreach($profiles as $profile):?>
@@ -146,32 +99,37 @@
 	<?php  else :?>
 	    <p><?php echo $this->__('Your order # is: %s.', $this->escapeHtml($this->getOrderId())) ?>.</p>
 	<?php endif;?>
-<?php endif;?>
+<?php endif; */?>
 
 
 
 
 <?php if(!$gift) {
 
-	$planDetails = array();
-
-	
-	
-	
-
 	?>
 	<script type="text/javascript">
-		_kmq.push(['record', 'Signed Up', {
-			'Payer': 'yes', 'Plan Level': '<?php
-				foreach ($skus as $sku) {
-					// TO DO: there should only be one item in the basket
-					echo $sku;
-				} ?>',
-			'Plan Frequency':'<?php
+		
+		<?php /* this will break if KISSmetrics is ever turned off */ ?>
+
+		if(typeof(_kmq) !== "undefined") {
+			_kmq.push(['record', 'Signed Up', {
+			'Payer': 'yes',
+			'Product Sku':'<?php
 			foreach ($skus as $sku) {
 					// TO DO: there should only be one item in the basket
 					echo $sku;
 				} ?>'}]);
+		}
+
+		
 	</script>
 <?php } ?>
 
+<!-- Innovate Analytics tracking beacon  -->
+
+<?php if(Mage::getStoreConfig('analytics/track/analytics_checkout_on')) {
+		echo Mage::getStoreConfig('analytics/track/analytics_checkout_success_code');
+	}
+?>
+
+<!-- END Innovate Analytics tracking beacon  -->

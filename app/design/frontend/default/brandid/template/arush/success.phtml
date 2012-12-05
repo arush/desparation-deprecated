@@ -1,0 +1,145 @@
+<div id="top" class="keep-calm-signup-container">
+	<?php echo $this->getChildHtml('landing_header'); ?>
+</div>
+
+
+<div class="container withShadow">
+	<div class="top-block">
+		
+
+		<div class="content">
+
+			<div class="text-overlay clearfix">
+				
+				<div class="top-section clearfix">
+
+
+					<div class="sixteen columns">
+						<div class="landing-title">
+							<span class="landing-title-span">Job done. Now what?</span>
+							<div class="landing-subtitle">
+								<br/><br/>
+								<span>Share this magnificent demonstration of masculinity</span>
+								<br/><br/>
+								<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.getbrandid.com" data-text="Money, power, auto-delivered undies, I got @BRANDiD" data-via="male" data-size="large" data-related="BRANDiD">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+								
+								<br/><br/><br/>
+
+								<span>Sign up for the <span class="bold"><a href="/get/that/app">beta version of our app</a></span> so you can restock in one tap!</span>
+
+								<br/><br/><br/>
+
+
+								<span>If you need help with anything, you can <span class="bold">contact us 24/7</span> via
+								<br/>
+								<a href="mailto:help@getbrandid.com?Subject=I%20need%20urgent%20help" style="color:#d2002b;text-decoration:underline;" class="bold">email</a>, telephone <span class="bold">+44 203 322 2882</span> or on Twitter</span>
+								<br/><br/>
+								<a href="https://twitter.com/intent/tweet?screen_name=male" class="twitter-mention-button" data-size="large" data-related="brandid">Tweet to @male</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+								
+
+							</div>
+						</div>
+					</div>
+
+					<div class="eight columns offset-by-four">
+						
+						<div id="wufoo-m7x3q1">
+							Fill out my <a href="http://brandid.wufoo.com/forms/m7x3q1">online form</a>.
+						</div>
+							<script type="text/javascript">var m7x3q1;(function(d, t) {
+							var s = d.createElement(t), options = {
+							'userName':'brandid', 
+							'formHash':'m7x3q1', 
+							'autoResize':true,
+							'height':'455',
+							'async':true,
+							'header':'show'};
+							s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'wufoo.com/scripts/embed/form.js';
+							s.onload = s.onreadystatechange = function() {
+							var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
+							try { m7x3q1 = new WufooForm();m7x3q1.initialize(options);m7x3q1.display(); } catch (e) {}};
+							var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
+							})(document, 'script');</script>
+					</div>
+				</div> <!-- end top-section -->
+
+			</div>
+
+			
+
+		</div>
+
+		
+	</div>
+
+
+
+</div>
+
+
+
+<?php echo $this->getMessagesBlock()->getGroupedHtml(); ?>
+
+	
+	<p><?php echo $this->__(' Congratulations. Job done. Earn yourself even more hairs on your chest by spreading the word.')?></p></br>
+
+
+
+
+
+	<script type="text/javascript">
+		
+		$j = jQuery.noConflict();
+
+		var basketFrequency,basketTotal, basket;
+
+		basket = $j.cookie('basket');
+
+		basketFrequency = basket.frequency;
+		basketTotal = basket.frequency;
+
+
+		if(typeof(_kmq) !== "undefined") {
+			_kmq.push(['record', 'Signed Up', {
+			'Payer': 'yes',
+			'Purchased Frequency': basketFrequency,
+			'Purchased Total': basketTotal
+			}]);
+		}
+
+		// Mixpanel Tracking
+
+		if(typeof(mixpanel) !== "undefined") {
+			mixpanel.track("Completed Purchase",{
+				'Purchased Frequency': basketFrequency,
+				'Purchased Total': basketTotal
+			});
+			mixpanel.register({ 'Payer': "Has bought before" });
+
+			<?php 
+				if (Mage::getSingleton(‘customer/session’)->isLoggedIn()) {
+					$email = Mage::getSingleton(‘customer/session’)->getCustomer()->getEmail();
+				
+			?>
+				
+				mixpanel.identify("<?php echo $email ?>");
+			
+			<?php
+				
+				}
+			?>
+		}
+
+		
+	</script>
+
+<!-- Innovate Analytics tracking beacon  -->
+
+<?php if(Mage::getStoreConfig('analytics/track/analytics_checkout_on')) {
+		echo Mage::getStoreConfig('analytics/track/analytics_checkout_success_code');
+	}
+?>
+
+<!-- END Innovate Analytics tracking beacon  -->
