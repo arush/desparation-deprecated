@@ -1,6 +1,8 @@
 // globals
 
 $radius: 5px;
+$twitter-avatar-size: 72px;
+$how-to-step-number-size: $twitter-avatar-size - 20;
 
 @import "components/tweets.scss";
 @import "components/sprite.scss";
@@ -28,7 +30,7 @@ $radius: 5px;
 		margin-top:12px;
 	}
 	.twitter-avatar-container {
-		width:72px;
+		width:$twitter-avatar-size;
 	}
 
 
@@ -80,6 +82,7 @@ img.behind {
 		text-transform:uppercase;
 	}
 }
+
 .centered-content {
   
   // this is needed for absolutely positioned images inside this element
@@ -110,6 +113,13 @@ img.behind {
 	@include ani-delay(0s);
 
   }
+}
+.centered-content.left {
+	margin-right:0;
+}
+
+.centered-content.right {
+	margin-left:0;
 }
 
 .centered-content.grey-back {
@@ -178,6 +188,67 @@ img.behind {
 	padding:40px 0;
 }
 
+/* HOW TO */
+
+.how-to-steps {
+	.subheading-container {
+		margin:0 0 10px;
+	}
+}
+
+.how-to-step {
+	float:left;
+	width:100%;
+	.behind {
+		margin:10px 0 40px;
+
+	}
+	.behind.male-scan {
+		margin:40px auto 40px;
+
+	}
+	.twitter-avatar-container {
+		float:left;
+		width:$how-to-step-number-size;
+		.twitter-avatar {
+			margin:0;
+			float:left;
+			color:white;
+			text-shadow: 0pt -1px 0pt black;
+			
+			width:$how-to-step-number-size;
+			height:$how-to-step-number-size;
+			background: #3e3e3e;
+			@include box-shadow(none);
+			span.number {
+				font-size:20px;
+				line-height:$how-to-step-number-size;
+			}
+
+		}
+	}
+	.subheading-subtitle {
+		text-align:left;
+		float:left;
+		margin-left:15px;
+		line-height:$how-to-step-number-size;
+		font-size:22px;
+	}
+}
+
+.male-scan {
+	background: url(../../images/leanlanding/home/male-scan.png) 0 0 no-repeat;
+	width:130px;
+	height:130px;
+	line-height:128px;
+	font-family: ff-enzo-web,helvetica,sans-serif;
+	font-size: 12px;
+	padding-left:1px;
+	color: #777;
+	text-shadow: 0 1px 0 white;
+	text-align: center;
+	letter-spacing:0;
+}
 
 /* OLD YUCKY OVERRIDES */
 

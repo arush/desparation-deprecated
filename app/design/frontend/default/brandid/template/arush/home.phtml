@@ -33,7 +33,7 @@
 				
 				<div class="text-overlay clearfix">
 					<div class="landing-title">
-						<h1 class="heading">Outsource Your Shopping.</h1>
+						<h1 class="heading">Outsource Your Shopping<br/>Like a Man</h1>
 					</div>
 
 
@@ -52,7 +52,80 @@
 
 					<div id="slider" class="swipe clearfix">
 					  <ul class="clearfix">
-					    <li style='display:block' class="clearfix">
+					  	<li style='display:block' class="clearfix ani">
+					    	<div class="nine columns">
+								<div class="how-to-steps centered-content left">
+									<div class="subheading-container clearfix ani fadeInRight">
+										<div class="how-to-step">
+											<div class="twitter-avatar-container">
+												<div class="twitter-avatar"><span class="number">1</span></div>
+											</div>
+											<span class="subheading-subtitle">Tell us what you need.</span>
+											<img src="<?php echo $this->getSkinUrl('images/leanlanding/home/need-jumpers.png');?>" alt="" class="scale-with-grid behind">
+										</div>
+										<div class="how-to-step">
+											<div class="twitter-avatar-container">
+												<div class="twitter-avatar"><span class="number">2</span></div>
+											</div>
+											<span class="subheading-subtitle">M.A.L.E. searches <span class="bold">everywhere</span>. Online &amp; offline.</span>
+											<div class="scale-with-grid behind male-scan clearfix">M.A.L.E.</div>
+										</div>
+										<div class="how-to-step">
+											<div class="twitter-avatar-container">
+												<div class="twitter-avatar"><span class="number">3</span></div>
+											</div>
+											<span class="subheading-subtitle">Receive a curated email. Buy in seconds.</span>
+											<img src="<?php echo $this->getSkinUrl('images/leanlanding/home/email.png');?>" alt="" class="scale-with-grid behind">
+										</div>
+									</div>
+								</div>
+							</div>
+					    	
+							<div class="seven columns">
+								<div>
+									<div class="centered-content right vertical-middle grey-back all-corners">
+										
+
+										<div class="subheading-subtitle">Kick shopping's ass.</div>
+										<a href="/mens-clothing.html" class="convert">Try it free!</a>	
+
+										<div class="customer-quote quotes clearfix">
+											<div class="quote-box">
+												
+												<div class="apostrophe"><span>‘</span><span class="apostrophe2">‘</span></div>
+												<div class="quote v-outer-container">
+													<div class="v-inner-container">
+														<span class="v-aligned-element">
+															I don't think I've ever shopped online for clothes. Except with BRANDiD.
+														</span>
+													</div>
+												</div>
+												<div class="quote-triangle"></div>
+												
+												<div class="author-container">
+													<div class="twitter-avatar-container">
+														<div id="hywel" class="twitter-avatar"></div>
+													</div>
+
+													<div class="author-text-container">
+														<span class="author">Hywel</span>
+														<span class="caption-small">Man since 1986</span>
+													</div>
+													
+												</div>
+											
+											</div> <!-- end ng-repeat -->
+										</div>
+										
+										
+									</div>
+									
+								</div>
+							</div>
+
+					    </li>
+
+					    <li style='display:none' class="clearfix">
 					    	<div class="nine columns">
 								<div class="centered-content">
 									<div class="subheading-container ani fadeInRight">
@@ -105,6 +178,7 @@
 							</div>
 
 					    </li>
+					    
 					    <li style='display:none' class="clearfix ani">
 					    	<div class="nine columns">
 								<div class="centered-content">
@@ -159,14 +233,14 @@
 							</div>
 
 					    </li>
-					    <li style='display:none' class="clearfix ani">
+					    <!-- <li style='display:none' class="clearfix ani">
 					    	<div class="nine columns">
 								<div class="centered-content">
 									<div class="subheading-container ani fadeInRight">
 										<h2 class="subheading">I'm a man.</h2>
 										<span class="subheading-subtitle">Same again please guv'nor.</span>
 									</div>
-									<img src="<?php echo $this->getSkinUrl('images/leanlanding/home/reorder-one-tap.png');?>" alt="" class="scale-with-grid behind">
+									<img src="<?php // echo $this->getSkinUrl('images/leanlanding/home/reorder-one-tap.png');?>" alt="" class="scale-with-grid behind">
 								</div>
 							</div>
 					    	
@@ -203,7 +277,7 @@
 													
 												</div>
 											
-											</div> <!-- end ng-repeat -->
+											</div>
 										</div>
 										
 										
@@ -212,7 +286,7 @@
 								</div>
 							</div>
 
-					    </li>
+					    </li> -->
 					    
 					  </ul>
 					</div>
@@ -246,7 +320,7 @@
 						var swiper1 = new Swipe(document.getElementById('slider'), {
 						    startSlide: 0,
 						    speed: 400,
-						    auto: 6000,
+						    // auto: 6000,
 						    callback: function(event, index, elem) {
 
 						    	var i = bullets.length;
@@ -288,11 +362,11 @@
 					</div>
 					<div class="sub-block-bg first">
 						<div class="one-third column sub-block">
-							<div class="landing-title">Your Basics</div>
+							<div class="landing-title">Any item</div>
 							
 							<img src="<?php echo $this->getSkinUrl('images/arush/leanlanding/no-male/box-socks-tees.png'); ?>" alt="Your Basics" class="scale-with-grid explain-img">
 
-							<div class="explain">Choose socks, boxers, tees or all three. Just tell us what you rate and what you hate. We keep learning more every time you order and feedback.</div>
+							<div class="explain">What do you need right now? Just tell us and we'll find it for you.</div>
 						</div>
 					</div>
 					
@@ -308,11 +382,11 @@
 
 					<div class="sub-block-bg">
 						<div class="one-third column sub-block">
-							<div class="landing-title">Simple Refills</div>
+							<div class="landing-title">Powered by M.A.L.E.</div>
 
 							<img src="<?php echo $this->getSkinUrl('images/arush/leanlanding/no-male/icon-phone.png'); ?>" alt="Moustache singing" class="scale-with-grid explain-img">
 
-							<div class="explain">We figure out exactly when you need a topup. We send you a reminder, and your card gets charged if you confirm. Strictly no commitments.</div>
+							<div class="explain">M.A.L.E. (Masculine Algorithmic Learning Engine) learns what you like. He narrows down billions of products to the perfect selection, just for you.</div>
 						</div>
 					</div>
 
