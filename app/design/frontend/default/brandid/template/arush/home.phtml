@@ -33,7 +33,7 @@
 				
 				<div class="text-overlay clearfix">
 					<div class="landing-title">
-						<h1 class="heading">Shop. Like a Man.</h1>
+						<h1 class="heading">Outsource Your Shopping.</h1>
 					</div>
 
 
@@ -41,6 +41,14 @@
 						<a class="big-control prev" href='#' onclick='doSwipePrev();return false;'></a>
 						<a class="big-control next" href='#' onclick='doSwipeNext();return false;'></a>
 					</div>
+
+					<nav class="dot-nav">
+						<ul id="bullets">
+							<li><a href="#" onclick='doSwipeNow(0);return false;' class="dot active"></a></li>
+							<li><a href="#" onclick='doSwipeNow(1);return false;' class="dot"></a></li>
+							<li><a href="#" onclick='doSwipeNow(2);return false;' class="dot"></a></li>
+						</ul>
+					</nav>
 
 					<div id="slider" class="swipe clearfix">
 					  <ul class="clearfix">
@@ -60,7 +68,7 @@
 										
 
 										<div class="subheading-subtitle">Let us shop for you.</div>
-										<a href="/mens-clothing.html" class="convert">Get BRANDiD!</a>	
+										<a href="/mens-clothing.html" class="convert">Try it free!</a>	
 
 										<div class="customer-quote quotes clearfix">
 											<div class="quote-box">
@@ -114,7 +122,7 @@
 										
 
 										<div class="subheading-subtitle">Kick shopping's ass.</div>
-										<a href="/mens-clothing.html" class="convert">Get BRANDiD!</a>	
+										<a href="/mens-clothing.html" class="convert">Try it free!</a>	
 
 										<div class="customer-quote quotes clearfix">
 											<div class="quote-box">
@@ -168,7 +176,7 @@
 										
 
 										<div class="subheading-subtitle">Your clothes. On demand.</div>
-										<a href="/mens-clothing.html" class="convert">Get BRANDiD!</a>	
+										<a href="/mens-clothing.html" class="convert">Try it free!</a>	
 
 										<div class="customer-quote quotes clearfix">
 											<div class="quote-box">
@@ -210,15 +218,6 @@
 					</div>
 
 
-					<nav class="dot-nav">
-						<ul id="bullets">
-							<li><a href="#" onclick='doSwipeNow(0);return false;' class="dot active"></a></li>
-							<li><a href="#" onclick='doSwipeNow(1);return false;' class="dot"></a></li>
-							<li><a href="#" onclick='doSwipeNow(2);return false;' class="dot"></a></li>
-						</ul>
-					</nav>
-
-
 					<div class="share-buttons thirteen columns offset-by-three">
 	
 						<div class="like-but share-but">
@@ -247,7 +246,7 @@
 						var swiper1 = new Swipe(document.getElementById('slider'), {
 						    startSlide: 0,
 						    speed: 400,
-						    // auto: 5000,
+						    auto: 6000,
 						    callback: function(event, index, elem) {
 
 						    	var i = bullets.length;
