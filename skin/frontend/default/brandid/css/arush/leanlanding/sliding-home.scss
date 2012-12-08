@@ -4,8 +4,28 @@ $radius: 5px;
 $twitter-avatar-size: 72px;
 $how-to-step-number-size: $twitter-avatar-size - 20;
 
+@mixin circle() {
+	@include border-radius(200px);
+}
+
 @import "components/tweets.scss";
 @import "components/sprite.scss";
+
+
+// fonts
+
+.subheading-subtitle {
+	font-weight:normal;
+	font-size:22px;
+	color:#6F6F6F;
+	letter-spacing: -1px;
+	@include ani-delay(0s);
+
+  }
+
+.subheading-subtitle.no-float.centered {
+	text-align:center;
+}
 
 // homepage
 .swipe {
@@ -107,11 +127,7 @@ img.behind {
   }
 
   .subheading-subtitle {
-	font-weight:normal;
-	font-size:0.8em;
-	color:#6F6F6F;
 	@include ani-delay(0s);
-
   }
 }
 .centered-content.left {
@@ -169,7 +185,8 @@ img.behind {
 
 }
 
-.fullwidth.withTopShadow::before {
+
+.withTopShadow::before {
 	content: "";
 	position: absolute;
 	@include background-image(linear-gradient(bottom, transparent, rgba(0, 0, 0, 0.3)));
@@ -178,6 +195,10 @@ img.behind {
 	height: 7px;
 	width: 100%;
 	z-index:100;
+}
+
+.withTopShadow.relative {
+	position: relative;
 }
 
 .grey-back, .footer.quote-footer {
@@ -200,13 +221,31 @@ img.behind {
 	float:left;
 	width:100%;
 	.behind {
-		margin:10px 0 40px;
+		margin:40px 0;
 
 	}
 	.behind.male-scan {
 		margin:40px auto 40px;
 
 	}
+	.circle-container {
+
+	}
+	.step-circle {
+		border: 5px solid #cfcfcf;
+		@include circle();
+		width:$how-to-step-number-size;
+		height:$how-to-step-number-size;
+		span.small-heading {
+
+		}
+		span.number {
+			font-size:20px;
+			font-weight:bold;
+			line-height:$how-to-step-number-size;
+		}
+	}
+
 	.twitter-avatar-container {
 		float:left;
 		width:$how-to-step-number-size;
@@ -234,9 +273,14 @@ img.behind {
 		line-height:$how-to-step-number-size;
 		font-size:22px;
 	}
+	.subheading-subtitle.no-float {
+		float:none;
+		margin:0;
+	}
+
 }
 
-.male-scan {
+.male-scan, .male-scan-transparent {
 	background: url(../../images/leanlanding/home/male-scan.png) 0 0 no-repeat;
 	width:130px;
 	height:130px;
@@ -249,6 +293,71 @@ img.behind {
 	text-align: center;
 	letter-spacing:0;
 }
+
+.male-scan-transparent {
+	background: url(../../images/leanlanding/home/male-scan-transparent.png) 0 0 no-repeat;
+	width:150px;
+	height:150px;
+	line-height:150px;
+	margin: 40px auto;
+}
+
+
+/* SPLIT PARTS THAT ARE CENTERED AROUND THE MIDDLE PART */
+
+.centered-parts {
+	width:100%;
+	clear:both;
+	float:left;
+	margin: 40px 0 0 0;
+}
+.part {
+	float:left;
+}
+.left.part, .right.part {
+
+	width:45%;
+	text-align:right;
+}
+.center.part {
+	width:10%;
+	height:10%;
+	.step-circle {
+		margin:0 auto;
+	}
+}
+.right.part {
+	text-align:left;
+}
+
+.big-centered-steps {
+	.left.part, .right.part {
+		margin-top:$how-to-step-number-size  / 2 + 3;
+	}
+}
+
+/* FADING LINES */
+
+.horizontal-line {
+	width:100%;
+	height:1px;
+}
+
+.horizontal-line.right-fade {
+	background-color: #909191;
+	@include background-image(linear-gradient(left, rgb(144, 145, 145), rgb(234, 234, 234)));
+	@include filter-gradient(rgb(144, 145, 145), rgb(234, 234, 234), horizontal);
+
+}
+
+.horizontal-line.left-fade {
+	background-color: #909191;
+	@include background-image(linear-gradient(left, rgb(234, 234, 234), rgb(144, 145, 145)));
+	@include filter-gradient(rgb(234, 234, 234), rgb(144, 145, 145), horizontal);
+}
+
+
+
 
 /* OLD YUCKY OVERRIDES */
 
