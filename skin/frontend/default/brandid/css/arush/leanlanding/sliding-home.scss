@@ -23,9 +23,23 @@ $how-to-step-number-size: $twitter-avatar-size - 20;
 
   }
 
+.centered-content.grey-back .subheading-subtitle.smaller-subtitle {
+	font-size:18px;
+	letter-spacing:-1px;
+	margin-top:20px;
+}
+
 .subheading-subtitle.no-float.centered {
 	text-align:center;
 }
+
+// structure 
+
+.transparent-block.with-margin {
+	clear:both;
+	margin:40px auto;
+}
+
 
 // homepage
 .swipe {
@@ -246,38 +260,24 @@ img.behind {
 		}
 	}
 
-	.twitter-avatar-container {
-		float:left;
-		width:$how-to-step-number-size;
-		.twitter-avatar {
-			margin:0;
-			float:left;
-			color:white;
-			text-shadow: 0pt -1px 0pt black;
-			
-			width:$how-to-step-number-size;
-			height:$how-to-step-number-size;
-			background: #3e3e3e;
-			@include box-shadow(none);
-			span.number {
-				font-size:20px;
-				line-height:$how-to-step-number-size;
-			}
-
-		}
-	}
-	.subheading-subtitle {
-		text-align:left;
-		float:left;
-		margin-left:15px;
-		line-height:$how-to-step-number-size;
-		font-size:22px;
-	}
 	.subheading-subtitle.no-float {
 		float:none;
 		margin:0;
 	}
 
+}
+
+/* REPEATED BLOCKS SKINNING */
+
+.conversion-reminder {
+
+	a.convert {
+		width:250px;
+		height:60px;
+		line-height:60px;
+		float:none;
+		margin:20px auto;
+	}
 }
 
 .male-scan, .male-scan-transparent {
@@ -309,7 +309,7 @@ img.behind {
 	width:100%;
 	clear:both;
 	float:left;
-	margin: 40px 0 0 0;
+	margin: 40px 0;
 }
 .part {
 	float:left;
