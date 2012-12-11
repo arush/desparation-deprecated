@@ -2,6 +2,17 @@
 	a.convert {
 		height:auto;
 	}
+
+	.one-third-button, a.convert.one-third-button:hover {
+		// the container has a 5% margin, leaving us 90% to fill
+		width:31.25% !important;
+		margin-right:3%;
+		border:none;
+
+	}
+	.one-third-button.last-true, , a.convert.one-third-button.last-true:hover {
+		margin-right:0;
+	}
 	
 }
 

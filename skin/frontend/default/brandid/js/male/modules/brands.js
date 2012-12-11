@@ -350,8 +350,34 @@ Brands.factory('brandsLoader', function() {
 
 
 		    return premiumBrands;	
+	    },
+
+
+	    // this is a function used by the "auto-populate brands" buttons
+
+	    getAllBrandsFilteredBy: function(category, brandType) {
+	    	var selectedBrands = {};
+
+	    	switch(brandType) {
+	    		case 'skate':
+	    			selectedBrands = this.getSkateBrands(category);
+	    			break;
+	    		case 'premium':
+	    			selectedBrands = this.getPremiumBrands(category);
+	    			break;
+	    		case 'value':
+	    			selectedBrands = this.getValueBrands(category);
+	    			break;
+	    		default:
+	    			selectedBrands.brands = [];
+	    			break;
+	    	}
+
+	    	return JSON.parse(JSON.stringify(selectedBrands.brands));
 	    }
-	}
+
+
+	};
 
 	/* This factory method is dependent on other factory methods as declared in function(...here...).
 	 * We must inject these dependencies as strings so the file can be minified

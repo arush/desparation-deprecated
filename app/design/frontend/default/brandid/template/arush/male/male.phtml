@@ -123,47 +123,18 @@
   <script type=text/ng-template id=section/garms/category/boxers/question/brands.html>
       <div class="slide-container">
         <div class="curved-white-block withShadow withRadius fadeIn ani">
-          <span id="brands">What brands do you want?<br/>Hint: You can type in your favourite brand and we guarantee we will find it for you</span>
+          <span id="brands">{{brandsQuestion}}</span>
         </div>
         <div class="answers">
-            <a class="convert secondary brands-auto-populator" ng-click="chooseValueBrands('boxers')">
+            
+            <a class="convert secondary brands-auto-populator one-third-button first-{{$first}} last-{{$last}}" ng-click="chooseBrands(routeParams.category, brandsButton.brandType)" ng-repeat="brandsButton in brandsButtons">
               <div class="v-outer-container">
 
                 <div class="v-inner-container">
 
-                  <span class="v-aligned-element">
-                    Value Brands <br/><span class="smaller-text">{{valuePriceLower | currency: "£"}} - {{valuePriceUpper | currency: "£"}}</span>
-                  </span>
-                
-                </div>
-
-              </div>
-
-            </a>
-
-            <a class="convert secondary brands-auto-populator" ng-click="choosePremiumBrands('boxers')">
-              <div class="v-outer-container">
-
-                <div class="v-inner-container">
-
-                  <span class="v-aligned-element">
-                    Premium Brands <br/><span class="smaller-text">{{premiumPriceLower | currency: "£"}} - {{premiumPriceUpper | currency: "£"}}</span>
-                  </span>
-                
-                </div>
-
-              </div>
-
-            </a>
-
-            <a class="convert secondary brands-auto-populator" ng-click="chooseSkateBrands('boxers')">
-              <div class="v-outer-container">
-
-                <div class="v-inner-container">
-
-                  <span class="v-aligned-element">
-                    Skate Brands <br/><span class="smaller-text">{{skatePriceLower | currency: "£"}} - {{skatePriceUpper | currency: "£"}}</span>
-                  </span>
+                  <div class="v-aligned-element">
+                    <span class="bigger-text">{{brandsButton.label}}</span><br/><span class="smaller-text">{{brandsButton.priceLower | currency: currencySymbol}} - {{brandsButton.priceUpper | currency: currencySymbol}}</span>
+                  </div>
                 
                 </div>
 

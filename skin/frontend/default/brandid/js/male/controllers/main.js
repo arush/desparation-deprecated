@@ -35,7 +35,7 @@ function MainController($scope,StateMachine,DataService,$locale,$routeParams) {
 
   // TODO: put these in a .json file and retrieve via AJAX
 
-  if ($locale.id == 'en-gb') {
+  if ($locale.id === 'en-gb') {
     
     var catalogItems = [
         // {

@@ -2391,6 +2391,12 @@ li .big-block, .chisel-block {
 
 .answers a.convert {
   height: auto; }
+.answers .one-third-button, .answers a.convert.one-third-button:hover {
+  width: 31.25% !important;
+  margin-right: 3%;
+  border: none; }
+.answers .one-third-button.last-true, .answers a.convert.one-third-button.last-true:hover {
+  margin-right: 0; }
 
 .answers {
   margin: 20px 0; }
