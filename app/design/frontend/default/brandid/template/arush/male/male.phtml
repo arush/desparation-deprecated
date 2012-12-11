@@ -94,7 +94,7 @@
       
       <!-- the link here skips the dashboard, because no need for a dashboard for simple questions -->
       <a href="{{submenuItem.link}}" class="button-overlay">
-        <div class="icon {{submenuItem.cssClass}}">{{submenuItem.label}} | {{selectedSubmenuItem}}</div>
+        <div class="icon {{submenuItem.cssClass}}">{{submenuItem.label}}</div>
         <div class="ani arrow-left"></div>
       </a>
     </div>
@@ -123,12 +123,66 @@
   <script type=text/ng-template id=section/garms/category/boxers/question/brands.html>
       <div class="slide-container">
         <div class="curved-white-block withShadow withRadius fadeIn ani">
-          <span id="brands">BRANDS:</span>
-          <a class="convert secondary" ng-click="chooseValueBrands('boxers')">Value Brands {{valuePriceLower | currency}} - {{valuePriceUpper | currency}}</a>
-          <input style="width: 100px" ui-select2="{tags:brands}" ng-model="$parent.selectedBrands" />
+          <span id="brands">What brands do you want?<br/>Hint: You can type in your favourite brand and we guarantee we will find it for you</span>
+        </div>
+        <div class="answers">
+            <a class="convert secondary brands-auto-populator" ng-click="chooseValueBrands('boxers')">
+              <div class="v-outer-container">
+
+                <div class="v-inner-container">
+
+                  <span class="v-aligned-element">
+                    Value Brands <br/><span class="smaller-text">{{valuePriceLower | currency: "£"}} - {{valuePriceUpper | currency: "£"}}</span>
+                  </span>
+                
+                </div>
+
+              </div>
+
+            </a>
+
+            <a class="convert secondary brands-auto-populator" ng-click="choosePremiumBrands('boxers')">
+              <div class="v-outer-container">
+
+                <div class="v-inner-container">
+
+                  <span class="v-aligned-element">
+                    Premium Brands <br/><span class="smaller-text">{{premiumPriceLower | currency: "£"}} - {{premiumPriceUpper | currency: "£"}}</span>
+                  </span>
+                
+                </div>
+
+              </div>
+
+            </a>
+
+            <a class="convert secondary brands-auto-populator" ng-click="chooseSkateBrands('boxers')">
+              <div class="v-outer-container">
+
+                <div class="v-inner-container">
+
+                  <span class="v-aligned-element">
+                    Skate Brands <br/><span class="smaller-text">{{skatePriceLower | currency: "£"}} - {{skatePriceUpper | currency: "£"}}</span>
+                  </span>
+                
+                </div>
+
+              </div>
+
+            </a>
+
         </div>
 
-        
+        <div class="tag-section">
+          <input class="tags-field" ui-select2="{tags:brands}" ng-model="$parent.selectedBrands" />
+        </div>
+
+        <div class="next-question-button-section">
+          <a class="convert" ng-click="nextQuestion('boxers')">
+                Next
+          </a>
+        </div>
+
       </div>
   </script>
 

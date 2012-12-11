@@ -1,0 +1,50 @@
+.answers {
+	a.convert {
+		height:auto;
+	}
+	
+}
+
+.answers {
+	margin:20px 0;
+
+
+
+	a.convert {
+		width:200px;
+		font-size:16px;
+		line-height:16px;
+
+		.v-outer-container {
+			height:100px;
+		}
+
+		.smaller-text {
+			font-size:14px;
+			font-family:"proxima-nova",Helvetica,Arial,sans-serif;
+		}
+	}
+}
+
+
+.tag-section {
+	margin-top:20px;
+	.select2-container {
+		width:100%;
+	}
+	// padding:20px;
+}
+input.tags-field {
+	min-width:50%;
+	height:60px;
+}
+
+
+.next-question-button-section {
+	margin:20px 0;
+
+	a.convert {
+		float:right;
+		width:150px;
+	}
+}

@@ -22,6 +22,105 @@ Brands.factory('brandsLoader', function() {
 		    }
 		},
 
+		getSkateBrands: function(category) {
+
+	    	var lowerPriceRange, upperPriceRange;
+
+	    	switch(category) {
+		    	
+		    	case "socks":
+		    		lowerPriceRange = 2.0;
+		    		upperPriceRange = 5.0;
+		    		break;
+		    	case "boxers":
+		    		lowerPriceRange = 8.0;
+		    		upperPriceRange = 15.0;
+		    		break;
+		    	case "tees":
+		    		lowerPriceRange = 20.0;
+		    		upperPriceRange = 40.0;
+		    		break;
+		    	case "jumpers":
+		    		lowerPriceRange = 40.0;
+		    		upperPriceRange = 80.0;
+		    		break;
+		    	case "hoodies":
+		    		lowerPriceRange = 40.0;
+		    		upperPriceRange = 80.0;
+		    		break;
+		    	case "shoes":
+		    		lowerPriceRange = 30.0;
+		    		upperPriceRange = 80.0;
+		    		break;
+		    	case "other":
+		    		lowerPriceRange = 10.0;
+		    		upperPriceRange = 40.0;
+		    		break;
+		    	default:
+		    	// this is just a catchall and should never have to be used
+		    		lowerPriceRange = 10.0;
+		    		upperPriceRange = 40.0;
+		    		break;
+		    }
+
+	    	var skateBrands = 
+
+	    	{
+	    		priceRange: {
+	    			upper: upperPriceRange,
+	    			lower: lowerPriceRange
+	    		},
+	    		brands: [
+		    		{
+		    			id: "Etnies",
+		    			text: "Etnies"
+		    		},
+		    		{
+		    			id: "Element",
+		    			text: "Element"
+		    		},
+		    		{
+		    			id: "DC",
+		    			text: "DC"
+		    		},
+		    		{
+		    			id: "Vans",
+		    			text: "Vans"
+		    		},
+		    		{
+		    			id: "WeSC",
+		    			text: "WeSC"
+		    		},
+		    		{
+		    			id: "SupremeBeing",
+		    			text: "SupremeBeing"
+		    		},
+		    		{
+		    			id: "Famous",
+		    			text: "Famous"
+		    		},
+		    		{
+		    			id: "Carhartt",
+		    			text: "Carhartt"
+		    		},
+		    		{
+		    			id: "Stussy",
+		    			text: "Stussy"
+		    		},
+		    		{
+		    			id: "Zoo York",
+		    			text: "Zoo York"
+		    		}
+			    ]
+			};
+
+			// use the dynamic sort function to order by text field
+
+			skateBrands.brands.sort(this.dynamicSort("text"));
+
+		    return skateBrands;	
+	    },
+
     	getValueBrands: function(category) {
 
 	    	var lowerPriceRange, upperPriceRange;
@@ -29,28 +128,28 @@ Brands.factory('brandsLoader', function() {
 	    	switch(category) {
 		    	
 		    	case "socks":
-		    		lowerPriceRange = 3.0;
+		    		lowerPriceRange = 2.0;
 		    		upperPriceRange = 5.0;
 		    		break;
 		    	case "boxers":
-		    		lowerPriceRange = 10.0;
-		    		upperPriceRange = 20.0;
+		    		lowerPriceRange = 4.0;
+		    		upperPriceRange = 7.0;
 		    		break;
 		    	case "tees":
-		    		lowerPriceRange = 10.0;
-		    		upperPriceRange = 40.0;
+		    		lowerPriceRange = 5.0;
+		    		upperPriceRange = 20.0;
 		    		break;
 		    	case "jumpers":
-		    		lowerPriceRange = 10.0;
+		    		lowerPriceRange = 15.0;
 		    		upperPriceRange = 40.0;
 		    		break;
 		    	case "hoodies":
-		    		lowerPriceRange = 10.0;
+		    		lowerPriceRange = 20.0;
 		    		upperPriceRange = 40.0;
 		    		break;
 		    	case "shoes":
-		    		lowerPriceRange = 10.0;
-		    		upperPriceRange = 40.0;
+		    		lowerPriceRange = 20.0;
+		    		upperPriceRange = 50.0;
 		    		break;
 		    	case "other":
 		    		lowerPriceRange = 10.0;
@@ -72,42 +171,58 @@ Brands.factory('brandsLoader', function() {
 	    		},
 	    		brands: [
 		    		{
-		    			id: "zalue1",
-		    			text: "zalue1"
+		    			id: "asos",
+		    			text: "asos"
 		    		},
 		    		{
-		    			id: "value2",
-		    			text: "value2"
+		    			id: "Pringle",
+		    			text: "Pringle"
 		    		},
 		    		{
-		    			id: "value3",
-		    			text: "value3"
+		    			id: "River Island",
+		    			text: "River Island"
 		    		},
 		    		{
-		    			id: "value4",
-		    			text: "value4"
+		    			id: "American Apparel",
+		    			text: "American Apparel"
 		    		},
 		    		{
-		    			id: "value5",
-		    			text: "value5"
+		    			id: "Next",
+		    			text: "Next"
 		    		},
 		    		{
-		    			id: "value6",
-		    			text: "value6"
+		    			id: "M&S",
+		    			text: "M&S"
 		    		},
 		    		{
-		    			id: "value7",
-		    			text: "value7"
+		    			id: "Topman",
+		    			text: "Topman"
 		    		},
 		    		{
-		    			id: "value8",
-		    			text: "value8"
+		    			id: "Zara",
+		    			text: "Zara"
+		    		},
+					{
+		    			id: "UniQlo",
+		    			text: "UniQlo"
+		    		},
+		    		{
+		    			id: "Muji",
+		    			text: "Muji"
+		    		},
+		    		{
+		    			id: "Esprit",
+		    			text: "Esprit"
+		    		},
+		    		{
+		    			id: "Benetton",
+		    			text: "Benetton"
 		    		}
 			    ]
 			};
 
 			// use the dynamic sort function to order by text field
-			
+
 			valueBrands.brands.sort(this.dynamicSort("text"));
 
 		    return valueBrands;	
@@ -120,28 +235,28 @@ Brands.factory('brandsLoader', function() {
 	    	switch(category) {
 		    	
 		    	case "socks":
-		    		lowerPriceRange = 8.0;
-		    		upperPriceRange = 12.0;
+		    		lowerPriceRange = 6.0;
+		    		upperPriceRange = 15.0;
 		    		break;
 		    	case "boxers":
-		    		lowerPriceRange = 10.0;
-		    		upperPriceRange = 40.0;
+		    		lowerPriceRange = 8.0;
+		    		upperPriceRange = 15.0;
 		    		break;
 		    	case "tees":
-		    		lowerPriceRange = 10.0;
-		    		upperPriceRange = 40.0;
+		    		lowerPriceRange = 20.0;
+		    		upperPriceRange = 50.0;
 		    		break;
 		    	case "jumpers":
-		    		lowerPriceRange = 10.0;
-		    		upperPriceRange = 40.0;
+		    		lowerPriceRange = 40.0;
+		    		upperPriceRange = 90.0;
 		    		break;
 		    	case "hoodies":
-		    		lowerPriceRange = 10.0;
-		    		upperPriceRange = 40.0;
+		    		lowerPriceRange = 40.0;
+		    		upperPriceRange = 90.0;
 		    		break;
 		    	case "shoes":
-		    		lowerPriceRange = 10.0;
-		    		upperPriceRange = 40.0;
+		    		lowerPriceRange = 50.0;
+		    		upperPriceRange = 100.0;
 		    		break;
 		    	case "other":
 		    		lowerPriceRange = 10.0;
@@ -152,9 +267,9 @@ Brands.factory('brandsLoader', function() {
 		    		lowerPriceRange = 10.0;
 		    		upperPriceRange = 40.0;
 		    		break;
-		    }
+		    };
 
-	    	var premiumBrands = 
+		    var premiumBrands = 
 
 	    	{
 	    		priceRange: {
@@ -163,36 +278,68 @@ Brands.factory('brandsLoader', function() {
 	    		},
 	    		brands: [
 		    		{
-		    			id: "premium1",
-		    			text: "premium1"
+		    			id: "Ralph Lauren",
+		    			text: "Ralph Lauren"
 		    		},
 		    		{
-		    			id: "premium2",
-		    			text: "premium2"
+		    			id: "French Connection",
+		    			text: "French Connection"
 		    		},
 		    		{
-		    			id: "premium3",
-		    			text: "premium3"
+		    			id: "Paul Smith",
+		    			text: "Paul Smith"
 		    		},
 		    		{
-		    			id: "premium4",
-		    			text: "premium4"
+		    			id: "Ted Baker",
+		    			text: "Ted Baker"
 		    		},
 		    		{
-		    			id: "premium5",
-		    			text: "premium5"
+		    			id: "Lyle & Scott",
+		    			text: "Lyle & Scott"
 		    		},
 		    		{
-		    			id: "premium6",
-		    			text: "premium6"
+		    			id: "Calvin Klein",
+		    			text: "Calvin Klein"
 		    		},
 		    		{
-		    			id: "premium7",
-		    			text: "premium7"
+		    			id: "Hugo Boss",
+		    			text: "Hugo Boss"
 		    		},
 		    		{
-		    			id: "premium8",
-		    			text: "premium8"
+		    			id: "Abercombie & Fitch",
+		    			text: "Abercombie & Fitch"
+		    		},
+		    		{
+		    			id: "Diesel",
+		    			text: "Diesel"
+		    		},
+		    		{
+		    			id: "Armani",
+		    			text: "Armani"
+		    		},
+		    		{
+		    			id: "Superdry",
+		    			text: "Superdry"
+		    		},
+		    		{
+		    			id: "All Saints",
+		    			text: "All Saints"
+		    		},
+		    		{
+		    			id: "Fred Perry",
+		    			text: "Fred Perry"
+		    		},
+		    		{
+		    			id: "G-Star",
+		    			text: "G-Star"
+		    		},
+		    		{
+		    			id: "Franklin & Marshall",
+		    			text: "Franklin & Marshall"
+		    		},
+		    		{
+		    			id: "Reiss",
+		    			text: "Reiss"
 		    		}
 			    ]
 			};
@@ -214,4 +361,3 @@ Brands.factory('brandsLoader', function() {
 
 	return brandsLoader;
 });
-

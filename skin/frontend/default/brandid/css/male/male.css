@@ -2389,6 +2389,36 @@ li .big-block, .chisel-block {
   background: #f1f1f1;
   color: #222; }
 
+.answers a.convert {
+  height: auto; }
+
+.answers {
+  margin: 20px 0; }
+.answers a.convert {
+  width: 200px;
+  font-size: 16px;
+  line-height: 16px; }
+.answers a.convert .v-outer-container {
+  height: 100px; }
+.answers a.convert .smaller-text {
+  font-size: 14px;
+  font-family: "proxima-nova",Helvetica,Arial,sans-serif; }
+
+.tag-section {
+  margin-top: 20px; }
+.tag-section .select2-container {
+  width: 100%; }
+
+input.tags-field {
+  min-width: 50%;
+  height: 60px; }
+
+.next-question-button-section {
+  margin: 20px 0; }
+.next-question-button-section a.convert {
+  float: right;
+  width: 150px; }
+
 #detailView {
   overflow: hidden; }
 

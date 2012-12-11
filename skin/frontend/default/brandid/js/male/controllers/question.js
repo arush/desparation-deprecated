@@ -39,13 +39,19 @@ function QuestionController($scope,$routeParams,questionLoader,brandsLoader,$loc
 
 	var valueBrands = brandsLoader.getValueBrands($routeParams.category);
 	var premiumBrands = brandsLoader.getPremiumBrands($routeParams.category);
+	var skateBrands = brandsLoader.getSkateBrands($routeParams.category);
 
 
 
 	$scope.valuePriceLower = valueBrands.priceRange.lower;
 	$scope.valuePriceUpper = valueBrands.priceRange.upper;
 
-	
+	$scope.premiumPriceLower = premiumBrands.priceRange.lower;
+	$scope.premiumPriceUpper = premiumBrands.priceRange.upper;
+
+	$scope.skatePriceLower = skateBrands.priceRange.lower;
+	$scope.skatePriceUpper = skateBrands.priceRange.upper;
+
 
 	// add all the brands retrieved from the service to the $scope.brands object
 	
@@ -57,6 +63,12 @@ function QuestionController($scope,$routeParams,questionLoader,brandsLoader,$loc
 		$scope.brands.push(copyOfPremiumBrand);
 	});
 
+	// TODO: do not add skate brands to $scope.brands if skate brands do not apply to this category
+	angular.forEach(skateBrands.brands, function(skateBrand) {
+		var copyOfSkateBrand = JSON.parse(JSON.stringify(skateBrand));
+		$scope.brands.push(copyOfSkateBrand);
+	});
+
 	$scope.selectedBrands = [];
 
 
@@ -66,6 +78,12 @@ function QuestionController($scope,$routeParams,questionLoader,brandsLoader,$loc
 
 	$scope.chooseValueBrands = function() {
 		$scope.selectedBrands = JSON.parse(JSON.stringify(valueBrands.brands));
+	}
+	$scope.choosePremiumBrands = function() {
+		$scope.selectedBrands = JSON.parse(JSON.stringify(premiumBrands.brands));
+	}
+	$scope.chooseSkateBrands = function() {
+		$scope.selectedBrands = JSON.parse(JSON.stringify(skateBrands.brands));
 	}
 
 
