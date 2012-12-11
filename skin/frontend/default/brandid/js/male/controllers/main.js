@@ -5,7 +5,7 @@
  * given the simplistic nature of the application.  
  *
  */
-var MainController = ngMaleApp.controller('MainController', function($scope,StateMachine,DataService,$locale,$routeParams) {
+function MainController($scope,StateMachine,DataService,$locale,$routeParams) {
 
   // console.log("statemachine\n" + StateMachine);
   /**
@@ -16,6 +16,19 @@ var MainController = ngMaleApp.controller('MainController', function($scope,Stat
   // this is so the menu can access current url parameters and highlight the current menu selection
   $scope.routeParams = $routeParams;
 
+  // select the correct option in the menu
+  $scope.$on('$routeChangeSuccess', function(scope, next, current){
+      
+      // this matches against the cssClass in ng-class
+      if(next.params.category === 'intro') {
+        $scope.selectedSubmenuItem = 'intro';
+      } else {
+        // for all other cases, select the question 
+        $scope.selectedSubmenuItem = next.params.question;
+      }
+  });
+
+
   $scope.drawerOpen = false;
 
   $locale.id = "en-gb";
@@ -23,65 +36,79 @@ var MainController = ngMaleApp.controller('MainController', function($scope,Stat
   // TODO: put these in a .json file and retrieve via AJAX
 
   if ($locale.id == 'en-gb') {
+    
     var catalogItems = [
-        {
-          category: "boxers",
-          cssClass: "boxers",
-          name: "pants"
-        },
-        {
-          category: "socks",
-          cssClass: "socks",
-          name: "socks"
-        }
+        // {
+        //   path: "#/section/garms/category/boxers/outsource",
+        //   category: "boxers",
+        //   cssClass: "boxers",
+        //   label: "pants"
+        // },
+        // {
+        //   path: "#/section/garms/category/socks/outsource",
+        //   category: "socks",
+        //   cssClass: "socks",
+        //   label: "socks"
+        // }
     ];
   } else {
-    var catalogItems = [
-        {
-          category: "boxers",
-          cssClass: "boxers",
-          name: "pants"
-        },
-        {
-          category: "socks",
-          cssClass: "socks",
-          name: "socks"
-        }
-    ];
+    // another language
+    // another currency
   }
 
   $scope.user = {
     firstName: "test",
     lastName: null,
     email: null,
-    configuredItems: catalogItems
   };
+
 
   $scope.menu = [
     {
-      title: "1. Hi, I'm M.A.L.E.",
+      title: "1. Choose an item",
       section: "intro",
       submenuTemplate: "menu/menuItems.html",
       submenuItems: [{
-        category: "gender",
-        cssClass: "gender",
-        name: "gender"
+        link: "#/section/garms/category/intro",
+        path: "/section/garms/category/intro",
+        category: "choose",
+        cssClass: "intro",
+        label: "choose"
       }]
     },
     {
-      title: "2. Your Underwear",
+      title: "2. Give me more detail",
       section: "garms",
-      submenuTemplate: "menu/catalogItems.html"
+      submenuTemplate: "menu/menuItems.html",
+      submenuItems: [{
+        category: "brands",
+        cssClass: "brands",
+        label: "Brands"
+      },
+      {
+        category: "size",
+        cssClass: "size",
+        label: "Size"
+      },
+      {
+        category: "colours",
+        cssClass: "colours",
+        label: "Colours"
+      },
+      {
+        category: "specifics",
+        cssClass: "specifics",
+        label: "Specifics"
+      }]
     },
     {
-      title: "3. Your Life",
-      section: "extras",
+      title: "3. Save",
+      section: "save",
 
     }
   ];
 
 
   
-  // alert($locale.id);
-});
+}
 MainController.$inject = ['$scope','StateMachine','DataService','$locale','$routeParams'];

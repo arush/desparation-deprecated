@@ -31,10 +31,14 @@
 
 // @codekit-prepend "app/ngMale.js"
 
+
+
 // the questions service must be defined first, all question sets go after
 // @codekit-prepend "modules/questions.js"
 // @codekit-prepend "modules/boxers/boxersQuestions.js"
 // @codekit-prepend "modules/socks/socksQuestions.js"
+
+// @codekit-prepend "modules/brands.js"
 
 
 
@@ -42,7 +46,7 @@
 // @codekit-prepend "controllers/section.js"
 // @codekit-prepend "controllers/question.js"
 // @codekit-prepend "controllers/dashboard.js"
-// @codekit-prepend "controllers/intro.js"
+// @codekit-prepend "controllers/category.js"
 
 // @codekit-prepend "controllers/main.js"
 

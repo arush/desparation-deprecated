@@ -80,9 +80,10 @@ $detailSize: calc-percent($detailTargetWidth);
 }
 
 
-.maleApp {
+.container.maleApp.withShadow {
 	background:$paneBg;
 }
+
 
 #maleContainer {
 	background:$paneBg;

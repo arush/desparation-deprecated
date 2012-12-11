@@ -32519,43 +32519,37 @@ angular.module('ui.filters').filter('unique', function () {
 ********************************************** */
 
 /*
-Copyright 2012 Igor Vaynberg
+ Copyright 2012 Igor Vaynberg
 
-Version: @@ver@@ Timestamp: @@timestamp@@
+ Version: 3.2 Timestamp: Mon Sep 10 10:38:04 PDT 2012
 
-This software is licensed under the Apache License, Version 2.0 (the "Apache License") or the GNU
-General Public License version 2 (the "GPL License"). You may choose either license to govern your
-use of this software only upon the condition that you accept all of the terms of either the Apache
-License or the GPL License.
+ Licensed under the Apache License, Version 2.0 (the "License"); you may not use this work except in
+ compliance with the License. You may obtain a copy of the License in the LICENSE file, or at:
 
-You may obtain a copy of the Apache License and the GPL License at:
+ http://www.apache.org/licenses/LICENSE-2.0
 
-    http://www.apache.org/licenses/LICENSE-2.0
-    http://www.gnu.org/licenses/gpl-2.0.html
-
-Unless required by applicable law or agreed to in writing, software distributed under the
-Apache License or the GPL Licesnse is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
-CONDITIONS OF ANY KIND, either express or implied. See the Apache License and the GPL License for
-the specific language governing permissions and limitations under the Apache License and the GPL License.
-*/
+ Unless required by applicable law or agreed to in writing, software distributed under the License is
+ distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and limitations under the License.
+ */
  (function ($) {
- 	if(typeof $.fn.each2 == "undefined"){
- 		$.fn.extend({
- 			/*
-			* 4-10 times faster .each replacement
-			* use it carefully, as it overrides jQuery context of element on each iteration
-			*/
-			each2 : function (c) {
-				var j = $([0]), i = -1, l = this.length;
-				while (
-					++i < l
-					&& (j.context = j[0] = this[i])
-					&& c.call(j[0], i, j) !== false //"this"=DOM, i=index, j=jQuery object
-				);
-				return this;
-			}
- 		});
- 	}
+    if(typeof $.fn.each2 == "undefined"){
+        $.fn.extend({
+            /*
+            * 4-10 times faster .each replacement
+            * use it carefully, as it overrides jQuery context of element on each iteration
+            */
+            each2 : function (c) {
+                var j = $([0]), i = -1, l = this.length;
+                while (
+                    ++i < l
+                    && (j.context = j[0] = this[i])
+                    && c.call(j[0], i, j) !== false //"this"=DOM, i=index, j=jQuery object
+                );
+                return this;
+            }
+        });
+    }
 })(jQuery);
 
 (function ($, undefined) {
@@ -32566,8 +32560,7 @@ the specific language governing permissions and limitations under the Apache Lic
         return;
     }
 
-    var KEY, AbstractSelect2, SingleSelect2, MultiSelect2, nextUid, sizer,
-        lastMousePosition, $document;
+    var KEY, AbstractSelect2, SingleSelect2, MultiSelect2, nextUid, sizer;
 
     KEY = {
         TAB: 9,
@@ -32616,8 +32609,6 @@ the specific language governing permissions and limitations under the Apache Lic
             return k >= 112 && k <= 123;
         }
     };
-
-    $document = $(document);
 
     nextUid=(function() { var counter=1; return function() { return counter++; }; }());
 
@@ -32672,7 +32663,7 @@ the specific language governing permissions and limitations under the Apache Lic
     }
 
     function getSideBorderPadding(element) {
-        return element.outerWidth(false) - element.width();
+        return element.outerWidth() - element.width();
     }
 
     function installKeyUpChangeEvent(element) {
@@ -32691,8 +32682,8 @@ the specific language governing permissions and limitations under the Apache Lic
         });
     }
 
-    $document.bind("mousemove", function (e) {
-        lastMousePosition = {x: e.pageX, y: e.pageY};
+    $(document).delegate("body", "mousemove", function (e) {
+        $.data(document, "select2-lastpos", {x: e.pageX, y: e.pageY});
     });
 
     /**
@@ -32702,8 +32693,8 @@ the specific language governing permissions and limitations under the Apache Lic
      * the elements under the pointer are scrolled.
      */
     function installFilteredMouseMove(element) {
-	    element.bind("mousemove", function (e) {
-            var lastpos = lastMousePosition;
+        element.bind("mousemove", function (e) {
+            var lastpos = $.data(document, "select2-lastpos");
             if (lastpos === undefined || lastpos.x !== e.pageX || lastpos.y !== e.pageY) {
                 $(e.target).trigger("mousemove-filtered", e);
             }
@@ -32756,28 +32747,24 @@ the specific language governing permissions and limitations under the Apache Lic
         event.preventDefault();
         event.stopPropagation();
     }
-    function killEventImmediately(event) {
-        event.preventDefault();
-        event.stopImmediatePropagation();
-    }
 
     function measureTextWidth(e) {
         if (!sizer){
-        	var style = e[0].currentStyle || window.getComputedStyle(e[0], null);
-        	sizer = $("<div></div>").css({
-	            position: "absolute",
-	            left: "-10000px",
-	            top: "-10000px",
-	            display: "none",
-	            fontSize: style.fontSize,
-	            fontFamily: style.fontFamily,
-	            fontStyle: style.fontStyle,
-	            fontWeight: style.fontWeight,
-	            letterSpacing: style.letterSpacing,
-	            textTransform: style.textTransform,
-	            whiteSpace: "nowrap"
-	        });
-        	$("body").append(sizer);
+            var style = e[0].currentStyle || window.getComputedStyle(e[0], null);
+            sizer = $("<div></div>").css({
+                position: "absolute",
+                left: "-10000px",
+                top: "-10000px",
+                display: "none",
+                fontSize: style.fontSize,
+                fontFamily: style.fontFamily,
+                fontStyle: style.fontStyle,
+                fontWeight: style.fontWeight,
+                letterSpacing: style.letterSpacing,
+                textTransform: style.textTransform,
+                whiteSpace: "nowrap"
+            });
+            $("body").append(sizer);
         }
         sizer.text(e.val());
         return sizer.width();
@@ -33026,16 +33013,16 @@ the specific language governing permissions and limitations under the Apache Lic
      *
      * also takes care of clicks on label tags that point to the source element
      */
-    $document.ready(function () {
-        $document.bind("mousedown touchend", function (e) {
+    $(document).ready(function () {
+        $(document).delegate("body", "mousedown touchend", function (e) {
             var target = $(e.target).closest("div.select2-container").get(0), attr;
             if (target) {
-                $document.find("div.select2-container-active").each(function () {
+                $(document).find("div.select2-container-active").each(function () {
                     if (this !== target) $(this).data("select2").blur();
                 });
             } else {
                 target = $(e.target).closest("div.select2-drop").get(0);
-                $document.find("div.select2-drop-active").each(function () {
+                $(document).find("div.select2-drop-active").each(function () {
                     if (this !== target) $(this).data("select2").blur();
                 });
             }
@@ -33043,7 +33030,6 @@ the specific language governing permissions and limitations under the Apache Lic
             target=$(e.target);
             attr = target.attr("for");
             if ("LABEL" === e.target.tagName && attr && attr.length > 0) {
-                attr = attr.replace(/([\[\].])/g,'\\$1'); /* escapes [, ], and . so properly selects the id */
                 target = $("#"+attr);
                 target = target.data("select2");
                 if (target !== undefined) { target.focus(); e.preventDefault();}
@@ -33381,7 +33367,6 @@ the specific language governing permissions and limitations under the Apache Lic
 
             this.enabled=true;
             this.container.removeClass("select2-container-disabled");
-            this.opts.element.removeAttr("disabled");
         },
 
         // abstract
@@ -33392,7 +33377,6 @@ the specific language governing permissions and limitations under the Apache Lic
 
             this.enabled=false;
             this.container.addClass("select2-container-disabled");
-            this.opts.element.attr("disabled", "disabled");
         },
 
         // abstract
@@ -33403,9 +33387,9 @@ the specific language governing permissions and limitations under the Apache Lic
         // abstract
         positionDropdown: function() {
             var offset = this.container.offset(),
-                height = this.container.outerHeight(true),
-                width = this.container.outerWidth(true),
-                dropHeight = this.dropdown.outerHeight(true),
+                height = this.container.outerHeight(),
+                width = this.container.outerWidth(),
+                dropHeight = this.dropdown.outerHeight(),
                 viewportBottom = $(window).scrollTop() + document.documentElement.clientHeight,
                 dropTop = offset.top + height,
                 dropLeft = offset.left,
@@ -33508,18 +33492,13 @@ the specific language governing permissions and limitations under the Apache Lic
                 });
             });
 
-            window.setTimeout(function() {
-                // this is done inside a timeout because IE will sometimes fire a resize event while opening
-                // the dropdown and that causes this handler to immediately close it. this way the dropdown
-                // has a chance to fully open before we start listening to resize events
-                $(window).bind(resize, function() {
-                    var s2 = $(selector);
-                    if (s2.length == 0) {
-                        $(window).unbind(resize);
-                    }
-                    s2.select2("close");
-                })
-            }, 10);
+            $(window).bind(resize, function() {
+                var s2 = $(selector);
+                if (s2.length == 0) {
+                    $(window).unbind(resize);
+                }
+                s2.select2("close");
+            });
 
             this.clearDropdownAlignmentPreference();
 
@@ -33591,17 +33570,17 @@ the specific language governing permissions and limitations under the Apache Lic
 
             child = $(children[index]);
 
-            hb = child.offset().top + child.outerHeight(true);
+            hb = child.offset().top + child.outerHeight();
 
             // if this is the last child lets also make sure select2-more-results is visible
             if (index === children.length - 1) {
                 more = results.find("li.select2-more-results");
                 if (more.length > 0) {
-                    hb = more.offset().top + more.outerHeight(true);
+                    hb = more.offset().top + more.outerHeight();
                 }
             }
 
-            rb = results.offset().top + results.outerHeight(true);
+            rb = results.offset().top + results.outerHeight();
             if (hb > rb) {
                 results.scrollTop(results.scrollTop() + (hb - rb));
             }
@@ -33655,7 +33634,7 @@ the specific language governing permissions and limitations under the Apache Lic
         highlightUnderEvent: function (event) {
             var el = $(event.target).closest(".select2-result-selectable");
             if (el.length > 0 && !el.is(".select2-highlighted")) {
-        		var choices = this.results.find('.select2-result-selectable');
+                var choices = this.results.find('.select2-result-selectable');
                 this.highlight(choices.index(el));
             } else if (el.length == 0) {
                 // if we are over an unselectable item remove al highlights
@@ -33739,20 +33718,16 @@ the specific language governing permissions and limitations under the Apache Lic
             if (opts.maximumSelectionSize >=1) {
                 data = this.data();
                 if ($.isArray(data) && data.length >= opts.maximumSelectionSize && checkFormatter(opts.formatSelectionTooBig, "formatSelectionTooBig")) {
-            	    render("<li class='select2-selection-limit'>" + opts.formatSelectionTooBig(opts.maximumSelectionSize) + "</li>");
-            	    return;
+                    render("<li class='select2-selection-limit'>" + opts.formatSelectionTooBig(opts.maximumSelectionSize) + "</li>");
+                    return;
                 }
             }
 
-            if (search.val().length < opts.minimumInputLength) {
-                if (checkFormatter(opts.formatInputTooShort, "formatInputTooShort")) {
-                    render("<li class='select2-no-results'>" + opts.formatInputTooShort(search.val(), opts.minimumInputLength) + "</li>");
-                } else {
-                    render("");
-                }
+            if (search.val().length < opts.minimumInputLength && checkFormatter(opts.formatInputTooShort, "formatInputTooShort")) {
+                render("<li class='select2-no-results'>" + opts.formatInputTooShort(search.val(), opts.minimumInputLength) + "</li>");
                 return;
             }
-            else if (opts.formatSearching()) {
+            else {
                 render("<li class='select2-searching'>" + opts.formatSearching() + "</li>");
             }
 
@@ -33823,7 +33798,6 @@ the specific language governing permissions and limitations under the Apache Lic
             if (this.search[0] === document.activeElement) { this.search.blur(); }
             this.clearSearch();
             this.selection.find(".select2-search-choice-focus").removeClass("select2-search-choice-focus");
-            this.opts.element.triggerHandler("blur");
         },
 
         // abstract
@@ -33876,7 +33850,7 @@ the specific language governing permissions and limitations under the Apache Lic
                 if (this.opts.width === "off") {
                     return null;
                 } else if (this.opts.width === "element"){
-                    return this.opts.element.outerWidth(false) === 0 ? 'auto' : this.opts.element.outerWidth(false) + 'px';
+                    return this.opts.element.outerWidth() === 0 ? 'auto' : this.opts.element.outerWidth() + 'px';
                 } else if (this.opts.width === "copy" || this.opts.width === "resolve") {
                     // check if there is inline style on the element that contains width
                     style = this.opts.element.attr('style');
@@ -33897,7 +33871,7 @@ the specific language governing permissions and limitations under the Apache Lic
                         if (style.indexOf("%") > 0) return style;
 
                         // finally, fallback on the calculated width of the element
-                        return (this.opts.element.outerWidth(false) === 0 ? 'auto' : this.opts.element.outerWidth(false) + 'px');
+                        return (this.opts.element.outerWidth() === 0 ? 'auto' : this.opts.element.outerWidth() + 'px');
                     }
 
                     return null;
@@ -33919,11 +33893,11 @@ the specific language governing permissions and limitations under the Apache Lic
 
         // single
 
-		createContainer: function () {
+        createContainer: function () {
             var container = $("<div></div>", {
                 "class": "select2-container"
             }).html([
-                "    <a href='javascript:void(0)' onclick='return false;' class='select2-choice'>",
+                "    <a href='#' onclick='return false;' class='select2-choice'>",
                 "   <span></span><abbr class='select2-search-choice-close' style='display:none;'></abbr>",
                 "   <div><b></b></div>" ,
                 "</a>",
@@ -34028,24 +34002,7 @@ the specific language governing permissions and limitations under the Apache Lic
             }));
             this.search.bind("blur", this.bind(function() {
                 if (!this.opened()) this.container.removeClass("select2-container-active");
-                window.setTimeout(this.bind(function() {
-                    // restore original tab index
-                    var ti=this.opts.element.attr("tabIndex");
-                    if (ti) {
-                        this.selection.attr("tabIndex", ti);
-                    } else {
-                        this.selection.removeAttr("tabIndex");
-                    }
-                }), 10);
-            }));
-
-            selection.delegate("abbr", "mousedown", this.bind(function (e) {
-                if (!this.enabled) return;
-                this.clear();
-                killEventImmediately(e);
-                this.close();
-                this.triggerChange();
-                this.selection.focus();
+                window.setTimeout(this.bind(function() { this.selection.attr("tabIndex", this.opts.element.attr("tabIndex")); }), 10);
             }));
 
             selection.bind("mousedown", this.bind(function (e) {
@@ -34079,25 +34036,64 @@ the specific language governing permissions and limitations under the Apache Lic
             selection.bind("keydown", this.bind(function(e) {
                 if (!this.enabled) return;
 
-                if (e.which == KEY.DOWN || e.which == KEY.UP
-                    || (e.which == KEY.ENTER && this.opts.openOnEnter)) {
-                    this.open();
+                if (e.which === KEY.PAGE_UP || e.which === KEY.PAGE_DOWN) {
+                    // prevent the page from scrolling
                     killEvent(e);
                     return;
                 }
 
-                if (e.which == KEY.DELETE || e.which == KEY.BACKSPACE) {
+                if (e.which === KEY.TAB || KEY.isControl(e) || KEY.isFunctionKey(e)
+                 || e.which === KEY.ESC) {
+                    return;
+                }
+
+                if (this.opts.openOnEnter === false && e.which === KEY.ENTER) {
+                    return;
+                }
+
+                if (e.which == KEY.DELETE) {
                     if (this.opts.allowClear) {
                         this.clear();
                     }
+                    return;
+                }
+
+                this.open();
+
+                if (e.which === KEY.ENTER) {
+                    // do not propagate the event otherwise we open, and propagate enter which closes
                     killEvent(e);
                     return;
                 }
+
+                // do not set the search input value for non-alpha-numeric keys
+                // otherwise pressing down results in a '(' being set in the search field
+                if (e.which < 48 ) { // '0' == 48
+                    killEvent(e);
+                    return;
+                }
+
+                var keyWritten = String.fromCharCode(e.which).toLowerCase();
+
+                if (e.shiftKey) {
+                    keyWritten = keyWritten.toUpperCase();
+                }
+
+                // focus the field before calling val so the cursor ends up after the value instead of before
+                this.search.focus();
+                this.search.val(keyWritten);
+
+                // prevent event propagation so it doesnt replay on the now focussed search field and result in double key entry
+                killEvent(e);
             }));
-            selection.bind("keypress", this.bind(function(e) {
-                var key = String.fromCharCode(e.which);
-                this.search.val(key);
-                this.open();
+
+            selection.delegate("abbr", "mousedown", this.bind(function (e) {
+                if (!this.enabled) return;
+                this.clear();
+                killEvent(e);
+                this.close();
+                this.triggerChange();
+                this.selection.focus();
             }));
 
             this.setPlaceholder();
@@ -34121,7 +34117,7 @@ the specific language governing permissions and limitations under the Apache Lic
         // single
         initSelection: function () {
             var selected;
-            if (this.opts.element.val() === "" && this.opts.element.text() === "") {
+            if (this.opts.element.val() === "") {
                 this.close();
                 this.setPlaceholder();
             } else {
@@ -34146,7 +34142,7 @@ the specific language governing permissions and limitations under the Apache Lic
                     var selected = element.find(":selected");
                     // a single select box always has a value, no need to null check 'selected'
                     if ($.isFunction(callback))
-                        callback({id: selected.attr("value"), text: selected.text(), element:selected});
+                        callback({id: selected.attr("value"), text: selected.text()});
                 };
             }
 
@@ -34309,7 +34305,7 @@ the specific language governing permissions and limitations under the Apache Lic
                 "   <ul class='select2-results'>" ,
                 "   </ul>" ,
                 "</div>"].join(""));
-			return container;
+            return container;
         },
 
         // multi
@@ -34324,7 +34320,7 @@ the specific language governing permissions and limitations under the Apache Lic
 
                     var data = [];
                     element.find(":selected").each2(function (i, elm) {
-                        data.push({id: elm.attr("value"), text: elm.text(), element: elm});
+                        data.push({id: elm.attr("value"), text: elm.text()});
                     });
 
                     if ($.isFunction(callback))
@@ -34455,7 +34451,7 @@ the specific language governing permissions and limitations under the Apache Lic
         // multi
         initSelection: function () {
             var data;
-            if (this.opts.element.val() === "" && this.opts.element.text() === "") {
+            if (this.opts.element.val() === "") {
                 this.updateSelection([]);
                 this.close();
                 // set the placeholder if necessary
@@ -34504,7 +34500,7 @@ the specific language governing permissions and limitations under the Apache Lic
             this.parent.opening.apply(this, arguments);
 
             this.clearPlaceholder();
-			this.resizeSearch();
+            this.resizeSearch();
             this.focusSearch();
         },
 
@@ -34560,7 +34556,7 @@ the specific language governing permissions and limitations under the Apache Lic
         // multi
         onSelect: function (data) {
             this.addSelectedChoice(data);
-            if (this.select || !this.opts.closeOnSelect) this.postprocessResults();
+            if (this.select) { this.postprocessResults(); }
 
             if (this.opts.closeOnSelect) {
                 this.close();
@@ -34594,16 +34590,14 @@ the specific language governing permissions and limitations under the Apache Lic
             var choice=$(
                     "<li class='select2-search-choice'>" +
                     "    <div></div>" +
-                    "    <a href='javascript:void(0)' onclick='return false;' class='select2-search-choice-close' tabindex='-1'></a>" +
+                    "    <a href='#' onclick='return false;' class='select2-search-choice-close' tabindex='-1'></a>" +
                     "</li>"),
                 id = this.id(data),
                 val = this.getVal(),
                 formatted;
 
-            formatted=this.opts.formatSelection(data, choice.find("div"));
-            if (formatted != undefined) {
-                choice.find("div").replaceWith("<div>"+this.opts.escapeMarkup(formatted)+"</div>");
-            }
+            formatted=this.opts.formatSelection(data, choice);
+            choice.find("div").replaceWith("<div>"+this.opts.escapeMarkup(formatted)+"</div>");
             choice.find(".select2-search-choice-close")
                 .bind("mousedown", killEvent)
                 .bind("click dblclick", this.bind(function (e) {
@@ -34671,7 +34665,7 @@ the specific language governing permissions and limitations under the Apache Lic
             });
 
             compound.each2(function(i, e) {
-                if (!e.is('.select2-result-selectable') && e.find(".select2-result-selectable").length==0) {  // FIX FOR HIRECHAL DATA
+                if (e.find(".select2-result-selectable").length==0) {
                     e.addClass("select2-disabled");
                 } else {
                     e.removeClass("select2-disabled");
@@ -34691,7 +34685,7 @@ the specific language governing permissions and limitations under the Apache Lic
         resizeSearch: function () {
 
             var minimumWidth, left, maxWidth, containerLeft, searchWidth,
-            	sideBorderPadding = getSideBorderPadding(this.search);
+                sideBorderPadding = getSideBorderPadding(this.search);
 
             minimumWidth = measureTextWidth(this.search) + 10;
 
@@ -34932,7 +34926,6 @@ the specific language governing permissions and limitations under the Apache Lic
 
 }(jQuery));
 
-
 /* **********************************************
      Begin jquery-male-typewriter.js
 ********************************************** */
@@ -34966,39 +34959,35 @@ the specific language governing permissions and limitations under the Apache Lic
 
 'use strict';
 
-var ngMaleApp = angular.module('ngMaleApp', ['ui','StateMachines','DataServices','QuestionsModule']);
+var ngMaleApp = angular.module('ngMaleApp', ['ui','StateMachines','DataServices','QuestionsModule','BrandsModule']);
 
 ngMaleApp.config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        // redirectTo:'/section/intro'
+        redirectTo:'/section/garms/category/intro',
         // bring this back if we want a pre-intro screen
-         templateUrl:'start.html',
+         // templateUrl:'start.html',
          controller:MainController
       })
-      .when('/section/intro', {
+      .when('/section/:section/category/:category', {
         // redirectTo:'/section/intro'
         // bring this back if we want a pre-intro screen
-         templateUrl:'section/intro.html',
-         controller:IntroController
+         templateUrl:'categoryProxy.html',
+         controller:CategoryController
       })
-      .when('/section/:section', {
-         templateUrl:'sectionProxy.html',
-         controller:SectionController
-      })
-      .when('/section/:section/category/:category/dashboard', {
-         templateUrl: 'detailViewProxy.html',
-         controller:DashboardController
-      })
+      // .when('/section/:section', {
+      //    templateUrl:'sectionProxy.html',
+      //    controller:SectionController
+      // })
       .when('/section/:section/category/:category/question/:question', {
          templateUrl: 'detailViewProxy.html',
          controller:QuestionController
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/section/garms/category/intro'
       });
 });
-ngMaleApp.$inject = ['ui','StateMAchines','DataServices','QuestionsModule'];
+ngMaleApp.$inject = ['ui','StateMAchines','DataServices','QuestionsModule','BrandsModule'];
 
 
 
@@ -35123,6 +35112,229 @@ Questions.factory('socksQuestions', function(){
 
 
 /* **********************************************
+     Begin brands.js
+********************************************** */
+
+
+/* Here we are defining a global variable Brands so we can extend it with factory methods in other files.
+ * This allows us to make brand sets in separate files and make the main colleciton of brands depend on them if we want
+ * But here we've just included all the brand sets in one file for simplicity. We could retrieve the list of brands from
+ * an external data source if we wanted.
+ **/
+
+var Brands = angular.module('BrandsModule', []);
+
+Brands.factory('brandsLoader', function() {
+    
+	/* This factory method returns an object that is accessible to the controller which it is injected into.
+	 * Here we define the object including its own methods.
+	 **/
+
+    var brandsLoader = {
+
+    	// this is used to sort arrays of objects
+    	dynamicSort: function(property) {
+		    return function (a,b) {
+		        return (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+		    }
+		},
+
+    	getValueBrands: function(category) {
+
+	    	var lowerPriceRange, upperPriceRange;
+
+	    	switch(category) {
+		    	
+		    	case "socks":
+		    		lowerPriceRange = 3.0;
+		    		upperPriceRange = 5.0;
+		    		break;
+		    	case "boxers":
+		    		lowerPriceRange = 10.0;
+		    		upperPriceRange = 20.0;
+		    		break;
+		    	case "tees":
+		    		lowerPriceRange = 10.0;
+		    		upperPriceRange = 40.0;
+		    		break;
+		    	case "jumpers":
+		    		lowerPriceRange = 10.0;
+		    		upperPriceRange = 40.0;
+		    		break;
+		    	case "hoodies":
+		    		lowerPriceRange = 10.0;
+		    		upperPriceRange = 40.0;
+		    		break;
+		    	case "shoes":
+		    		lowerPriceRange = 10.0;
+		    		upperPriceRange = 40.0;
+		    		break;
+		    	case "other":
+		    		lowerPriceRange = 10.0;
+		    		upperPriceRange = 40.0;
+		    		break;
+		    	default:
+		    	// this is just a catchall and should never have to be used
+		    		lowerPriceRange = 10.0;
+		    		upperPriceRange = 40.0;
+		    		break;
+		    }
+
+	    	var valueBrands = 
+
+	    	{
+	    		priceRange: {
+	    			upper: upperPriceRange,
+	    			lower: lowerPriceRange
+	    		},
+	    		brands: [
+		    		{
+		    			id: "zalue1",
+		    			text: "zalue1"
+		    		},
+		    		{
+		    			id: "value2",
+		    			text: "value2"
+		    		},
+		    		{
+		    			id: "value3",
+		    			text: "value3"
+		    		},
+		    		{
+		    			id: "value4",
+		    			text: "value4"
+		    		},
+		    		{
+		    			id: "value5",
+		    			text: "value5"
+		    		},
+		    		{
+		    			id: "value6",
+		    			text: "value6"
+		    		},
+		    		{
+		    			id: "value7",
+		    			text: "value7"
+		    		},
+		    		{
+		    			id: "value8",
+		    			text: "value8"
+		    		}
+			    ]
+			};
+
+			// use the dynamic sort function to order by text field
+			
+			valueBrands.brands.sort(this.dynamicSort("text"));
+
+		    return valueBrands;	
+	    },
+
+	    getPremiumBrands: function(category) {
+
+	    	var lowerPriceRange, upperPriceRange;
+
+	    	switch(category) {
+		    	
+		    	case "socks":
+		    		lowerPriceRange = 8.0;
+		    		upperPriceRange = 12.0;
+		    		break;
+		    	case "boxers":
+		    		lowerPriceRange = 10.0;
+		    		upperPriceRange = 40.0;
+		    		break;
+		    	case "tees":
+		    		lowerPriceRange = 10.0;
+		    		upperPriceRange = 40.0;
+		    		break;
+		    	case "jumpers":
+		    		lowerPriceRange = 10.0;
+		    		upperPriceRange = 40.0;
+		    		break;
+		    	case "hoodies":
+		    		lowerPriceRange = 10.0;
+		    		upperPriceRange = 40.0;
+		    		break;
+		    	case "shoes":
+		    		lowerPriceRange = 10.0;
+		    		upperPriceRange = 40.0;
+		    		break;
+		    	case "other":
+		    		lowerPriceRange = 10.0;
+		    		upperPriceRange = 40.0;
+		    		break;
+		    	default:
+		    	// this is just a catchall and should never have to be used
+		    		lowerPriceRange = 10.0;
+		    		upperPriceRange = 40.0;
+		    		break;
+		    }
+
+	    	var premiumBrands = 
+
+	    	{
+	    		priceRange: {
+	    			upper: upperPriceRange,
+	    			lower: lowerPriceRange
+	    		},
+	    		brands: [
+		    		{
+		    			id: "premium1",
+		    			text: "premium1"
+		    		},
+		    		{
+		    			id: "premium2",
+		    			text: "premium2"
+		    		},
+		    		{
+		    			id: "premium3",
+		    			text: "premium3"
+		    		},
+		    		{
+		    			id: "premium4",
+		    			text: "premium4"
+		    		},
+		    		{
+		    			id: "premium5",
+		    			text: "premium5"
+		    		},
+		    		{
+		    			id: "premium6",
+		    			text: "premium6"
+		    		},
+		    		{
+		    			id: "premium7",
+		    			text: "premium7"
+		    		},
+		    		{
+		    			id: "premium8",
+		    			text: "premium8"
+		    		}
+			    ]
+			};
+
+			// use the dynamic sort function to order by text field
+
+			premiumBrands.brands.sort(this.dynamicSort("text"));
+
+
+		    return premiumBrands;	
+	    }
+	}
+
+	/* This factory method is dependent on other factory methods as declared in function(...here...).
+	 * We must inject these dependencies as strings so the file can be minified
+	 **/
+
+	// brandLoader.$inject = ['boxersBrands','socksBrands'];
+
+	return brandsLoader;
+});
+
+
+
+/* **********************************************
      Begin detail.js
 ********************************************** */
 
@@ -35184,19 +35396,79 @@ SectionController.$inject = ['$scope','DataService','$routeParams'];
      Begin question.js
 ********************************************** */
 
-function QuestionController($scope,$routeParams,questionLoader) {
+function QuestionController($scope,$routeParams,questionLoader,brandsLoader,$location) {
 
 	/**
 	*  Controller Properties
 	*/
 
-	//use the correct template
-	$scope.detailTemplate = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
+	// assuming url begins at /section/garms/category/:category/start
+
+	var questionDecider = '';
+
+	switch($routeParams.question) {
+		case 'start':
+			questionDecider = 'brands';
+			$routeParams.question = 'brands';
+			break;
+		case 'brands':
+			questionDecider = 'brands';
+			break;
+		default:
+			// or dashboard
+			questionDecider = 'start';
+			break;
+	}
+
+
 	
+	$scope.detailTemplate = 'section/' + $routeParams.section + '/category/' + $routeParams.category + '/question/' + questionDecider + '.html';
+
+	// set the chosen item if navigated to this url without the onboarding process
+
+
+
+	// TODO: figure out exchange rate functionality
+
+
+	// Fetch the set of questions from the back-end service
+
+	// $scope.questions = questionLoader.getQuestions($routeParams.category);
+
+	var valueBrands = brandsLoader.getValueBrands($routeParams.category);
+	var premiumBrands = brandsLoader.getPremiumBrands($routeParams.category);
+
+
+
+	$scope.valuePriceLower = valueBrands.priceRange.lower;
+	$scope.valuePriceUpper = valueBrands.priceRange.upper;
+
+	
+
+	// add all the brands retrieved from the service to the $scope.brands object
+	
+	// this has to be done by doing a deep copy - copying objects is a javascript limitation
+	$scope.brands = JSON.parse(JSON.stringify(valueBrands.brands));
+
+	angular.forEach(premiumBrands.brands, function(premiumBrand) {
+		var copyOfPremiumBrand = JSON.parse(JSON.stringify(premiumBrand));
+		$scope.brands.push(copyOfPremiumBrand);
+	});
+
+	$scope.selectedBrands = [];
+
+
+	/**
+	*  Controller Functions
+	*/
+
+	$scope.chooseValueBrands = function() {
+		$scope.selectedBrands = JSON.parse(JSON.stringify(valueBrands.brands));
+	}
 
 
 }
-QuestionController.$inject = ['$scope','$routeParams','questionLoader'];
+QuestionController.$inject = ['$scope','$routeParams','questionLoader','brandsLoader','$location'];
 
 /* **********************************************
      Begin dashboard.js
@@ -35245,21 +35517,119 @@ function DashboardController($scope,$routeParams,questionLoader,$location) {
 DashboardController.$inject = ['$scope','$routeParams','questionLoader','$location'];
 
 /* **********************************************
-     Begin intro.js
+     Begin category.js
 ********************************************** */
 
-function IntroController($scope,$routeParams,questionLoader) {
+function CategoryController($scope,$routeParams,questionLoader,$locale,$location) {
 
 	/**
 	*  Controller Properties
 	*/
 
 	//use the correct template
-	// $scope.sectionTemplate = 'section/' + $routeParams.section + '.html';
-	$scope.routeParams.section = 'intro';
+	$scope.categoryTemplate = 'section/' + $routeParams.section + '/category/' + $routeParams.category +'.html';
+	
+
+	$scope.selectItem = function (indexOfItemToSelect) {
+		
+		// NB: if the user does this multiple times, their configuredItems list keeps growing
+
+		var hasChosenThisAlready = false;
+
+		// this is the item category they've chosen. Extracting into a variable for legibility
+		var chosenCategory = $scope.answers[indexOfItemToSelect].category;
+
+
+		/* USE THE FOREACH IF YOU WANT SHOPPING BASKET FUNCTIONALITY */
+
+		// angular.forEach($scope.menu[1].submenuItems, function(submenuItem) {
+	 //      if (item.category === chosenCategory) hasChosenThisAlready = true;
+	 //      return;
+	 //    });
+// 		if(!hasChosenThisAlready) $scope.chosenItems.push($scope.answers[indexOfItemToSelect]);
+
+		/* JUST CLEAR THE SHOPPING BASKET AND REPLACE WITH CHOSEN ITEM IF YOU CAN ONLY SHOP FOR ONE THING AT A TIME */
+
+		$scope.menu[0].submenuItems = [];
+		$scope.menu[0].submenuItems.push($scope.answers[indexOfItemToSelect]);
+
+
+
+		var newPath = $scope.answers[indexOfItemToSelect].path;
+		$location.path(newPath);
+
+
+	}
+
+
+	$locale.id = "en-gb";
+
+	// TODO: put these in a .json file and retrieve via AJAX
+
+	if ($locale.id == 'en-gb') {
+		$scope.question = "I'm M.A.L.E. (Masculine Algorithmic Learning Engine). I do all the hard work around here.\n\nLet me know what you're in the market for, and I'll hook you the F up.";
+
+	    $scope.answers = [
+	        {
+	          link: "#/section/garms/category/intro",
+	          path: "/section/garms/category/socks/question/brands",
+	          category: "socks",
+	          cssClass: "socks",
+	          label: "socks"
+	        },
+	        {
+	          link: "#/section/garms/category/intro",
+	          path: "/section/garms/category/boxers/question/brands",
+	          category: "boxers",
+	          cssClass: "boxers",
+	          label: "pants"
+	        },
+	        {
+	          link: "#/section/garms/category/intro",
+	          path: "/section/garms/category/tees/question/brands",
+	          category: "tees",
+	          cssClass: "tees",
+	          label: "t-shirts"
+	        },
+	        {
+	          link: "#/section/garms/category/intro",
+	          path: "/section/garms/category/jumpers/question/brands",
+	          category: "jumpers",
+	          cssClass: "jumpers",
+	          label: "jumpers"
+	        },
+	        {
+	          link: "#/section/garms/category/intro",
+	          path: "/section/garms/category/hoodies/question/brands",
+	          category: "hoodies",
+	          cssClass: "hoodies",
+	          label: "hoodies"
+	        },
+	        {
+	          link: "#/section/garms/category/intro",
+	          path: "/section/garms/category/shoes/question/brands",
+	          category: "shoes",
+	          cssClass: "shoes",
+	          label: "shoes"
+	        },
+	        {
+	          link: "#/section/garms/category/intro",
+	          path: "/section/garms/category/other/question/brands",
+	          category: "other",
+	          cssClass: "other",
+	          label: "other"
+	        }
+	        
+	    ];
+	  } else {
+	    
+	    // another language
+	  }
+
+
 
 }
-IntroController.$inject = ['$scope','$routeParams','questionLoader'];
+CategoryController.$inject = ['$scope','$routeParams','questionLoader','$locale','$location'];
 
 /* **********************************************
      Begin main.js
@@ -35272,7 +35642,7 @@ IntroController.$inject = ['$scope','$routeParams','questionLoader'];
  * given the simplistic nature of the application.  
  *
  */
-var MainController = ngMaleApp.controller('MainController', function($scope,StateMachine,DataService,$locale,$routeParams) {
+function MainController($scope,StateMachine,DataService,$locale,$routeParams) {
 
   // console.log("statemachine\n" + StateMachine);
   /**
@@ -35283,6 +35653,19 @@ var MainController = ngMaleApp.controller('MainController', function($scope,Stat
   // this is so the menu can access current url parameters and highlight the current menu selection
   $scope.routeParams = $routeParams;
 
+  // select the correct option in the menu
+  $scope.$on('$routeChangeSuccess', function(scope, next, current){
+      
+      // this matches against the cssClass in ng-class
+      if(next.params.category === 'intro') {
+        $scope.selectedSubmenuItem = 'intro';
+      } else {
+        // for all other cases, select the question 
+        $scope.selectedSubmenuItem = next.params.question;
+      }
+  });
+
+
   $scope.drawerOpen = false;
 
   $locale.id = "en-gb";
@@ -35290,67 +35673,81 @@ var MainController = ngMaleApp.controller('MainController', function($scope,Stat
   // TODO: put these in a .json file and retrieve via AJAX
 
   if ($locale.id == 'en-gb') {
+    
     var catalogItems = [
-        {
-          category: "boxers",
-          cssClass: "boxers",
-          name: "pants"
-        },
-        {
-          category: "socks",
-          cssClass: "socks",
-          name: "socks"
-        }
+        // {
+        //   path: "#/section/garms/category/boxers/outsource",
+        //   category: "boxers",
+        //   cssClass: "boxers",
+        //   label: "pants"
+        // },
+        // {
+        //   path: "#/section/garms/category/socks/outsource",
+        //   category: "socks",
+        //   cssClass: "socks",
+        //   label: "socks"
+        // }
     ];
   } else {
-    var catalogItems = [
-        {
-          category: "boxers",
-          cssClass: "boxers",
-          name: "pants"
-        },
-        {
-          category: "socks",
-          cssClass: "socks",
-          name: "socks"
-        }
-    ];
+    // another language
+    // another currency
   }
 
   $scope.user = {
     firstName: "test",
     lastName: null,
     email: null,
-    configuredItems: catalogItems
   };
+
 
   $scope.menu = [
     {
-      title: "1. Hi, I'm M.A.L.E.",
+      title: "1. Choose an item",
       section: "intro",
       submenuTemplate: "menu/menuItems.html",
       submenuItems: [{
-        category: "gender",
-        cssClass: "gender",
-        name: "gender"
+        link: "#/section/garms/category/intro",
+        path: "/section/garms/category/intro",
+        category: "choose",
+        cssClass: "intro",
+        label: "choose"
       }]
     },
     {
-      title: "2. Your Underwear",
+      title: "2. Give me more detail",
       section: "garms",
-      submenuTemplate: "menu/catalogItems.html"
+      submenuTemplate: "menu/menuItems.html",
+      submenuItems: [{
+        category: "brands",
+        cssClass: "brands",
+        label: "Brands"
+      },
+      {
+        category: "size",
+        cssClass: "size",
+        label: "Size"
+      },
+      {
+        category: "colours",
+        cssClass: "colours",
+        label: "Colours"
+      },
+      {
+        category: "specifics",
+        cssClass: "specifics",
+        label: "Specifics"
+      }]
     },
     {
-      title: "3. Your Life",
-      section: "extras",
+      title: "3. Save",
+      section: "save",
 
     }
   ];
 
 
   
-  // alert($locale.id);
-});
+}
 MainController.$inject = ['$scope','StateMachine','DataService','$locale','$routeParams'];
 
 /* **********************************************
@@ -35585,10 +35982,14 @@ angular.module('StateMachines', [])
 
 // @codekit-prepend "app/ngMale.js"
 
+
+
 // the questions service must be defined first, all question sets go after
 // @codekit-prepend "modules/questions.js"
 // @codekit-prepend "modules/boxers/boxersQuestions.js"
 // @codekit-prepend "modules/socks/socksQuestions.js"
+
+// @codekit-prepend "modules/brands.js"
 
 
 
@@ -35596,7 +35997,7 @@ angular.module('StateMachines', [])
 // @codekit-prepend "controllers/section.js"
 // @codekit-prepend "controllers/question.js"
 // @codekit-prepend "controllers/dashboard.js"
-// @codekit-prepend "controllers/intro.js"
+// @codekit-prepend "controllers/category.js"
 
 // @codekit-prepend "controllers/main.js"
 

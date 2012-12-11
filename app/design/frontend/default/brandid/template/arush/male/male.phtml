@@ -15,29 +15,31 @@
   <div  class="drawer-holder shadow-trick-holder" >
     <div class="drawer shadow-trick right">
 
-      <div class="male-round">
-        <div class="male-holder">
-          <div id="male-colour" class="male-back">
-          </div>
-          <div id="male-loader" class="male-loader">
-          </div>
-          
-          <img src="<?php echo $this->getSkinUrl('images/male/male-transparent@2x.png'); ?>" alt="M.A.L.E." class="male-round ani" title="feed the male"/>
-          <div class="male-label-box">
-            <span id="male-label">M.A.L.E.</span>
+      <a href="#/section/intro" class="button-overlay over-male" style="width:100%">
+        <div class="male-round">
+          <div class="male-holder">
+            <div id="male-colour" class="male-back">
+            </div>
+            <div id="male-loader" class="male-loader">
+            </div>
+            
+            <img src="<?php echo $this->getSkinUrl('images/male/male-transparent@2x.png'); ?>" alt="M.A.L.E." class="male-round ani" title="feed the male"/>
+            <div class="male-label-box">
+              <span id="male-label">M.A.L.E.</span>
+            </div>
           </div>
         </div>
-      </div>
+      </a>
 
       <ul>
-        <li class="menu-section trans ani closed" ng-repeat="menuItem in menu" ng-class="{open: menuItem.section==$parent.routeParams.section}">
-          <a class="button-overlay" href="#/section/{{menuItem.section}}">
+        <li class="menu-section trans ani open" ng-repeat="menuItem in menu">
+          <!-- <a class="button-overlay" href="#/section/{{menuItem.section}}"> -->
             <div class="shadow-trick-holder">
               <div class="chisel-block shadow-trick bottom">
                <span>{{menuItem.title}}</span> 
               </div>
             </div>
-          </a>
+          <!-- </a> -->
           <div ng-include src="menuItem.submenuTemplate"></div>
 
         </li>
@@ -70,14 +72,17 @@
   <script type=text/ng-template id=sectionProxy.html>
       <div ng-include src="sectionTemplate"></div>
   </script>
+  <script type=text/ng-template id=categoryProxy.html>
+      <div ng-include src="categoryTemplate"></div>
+  </script>
 
   <!-- Inline Templates (Partials) -->
 
   <!-- garms submenu is special because it will contain what the user has selected to configure, they might not want to configure everything -->
   <script type=text/ng-template id=menu/catalogItems.html>
-    <div ng-repeat="catalogItem in user.configuredItems"  class="ani big-block clearfix" ng-class="{selected: catalogItem.category==$parent.routeParams.category}">
-      <a href="#/section/{{menuItem.section}}/category/{{catalogItem.category}}/dashboard" class="button-overlay">
-        <div class="icon {{catalogItem.cssClass}}"></div>
+    <div ng-repeat="chosenItem in chosenItems"  class="ani big-block clearfix" ng-class="{selected: chosenItem.category==$parent.routeParams.category}">
+      <a href="{{catalogItem.link}}" class="button-overlay">
+        <div class="icon {{chosenItem.cssClass}}"></div>
         <div class="ani arrow-left"></div>
       </a>
     </div>
@@ -85,33 +90,48 @@
 
   <!-- this is for all other submenu items -->
   <script type=text/ng-template id=menu/menuItems.html>
-    <div ng-repeat="submenuItem in menuItem.submenuItems"  class="ani big-block clearfix" ng-class="{selected: submenuItem.category==routeParams.section}">
+    <div ng-repeat="submenuItem in menuItem.submenuItems"  class="ani big-block clearfix" ng-class="{selected: submenuItem.cssClass==selectedSubmenuItem}">
       
       <!-- the link here skips the dashboard, because no need for a dashboard for simple questions -->
-      <a href="#/section/{{menuItem.section}}/category/{{submenuItem.category}}/question/{{$index + 1}}" class="button-overlay">
-        <div class="icon {{submenuItem.cssClass}}"></div>
+      <a href="{{submenuItem.link}}" class="button-overlay">
+        <div class="icon {{submenuItem.cssClass}}">{{submenuItem.label}} | {{selectedSubmenuItem}}</div>
         <div class="ani arrow-left"></div>
       </a>
     </div>
   </script>
 
-
   <script type=text/ng-template id=start.html>
       <div class="">M.A.L.E. Beginning</div>
   </script>
-  <script type=text/ng-template id=section/intro.html>
-      <div class="">
-        <div id="intro" class="curved-white-block withShadow withRadius fadeIn ani">
-          Wassup biatch
+  <script type=text/ng-template id=section/garms/category/intro.html>
+      <div class="slide-container">
+        <div class="curved-white-block withShadow withRadius fadeIn ani">
+          <span id="intro">{{question}}</span>
         </div>
 
-        <script type="text/javascript">
-          $('#intro').typewriter(function(){alert('done');});
-        </script>
-        
+        <div class="withRadius male-button-holder" ng-repeat="answer in answers">
 
+          <a ng-click="selectItem($index)" class="button-overlay convert secondary">
+            <div class="icon ">{{answer.label}}</div>
+          </a>
+
+        </div>
+        
       </div>
   </script>
+
+  <script type=text/ng-template id=section/garms/category/boxers/question/brands.html>
+      <div class="slide-container">
+        <div class="curved-white-block withShadow withRadius fadeIn ani">
+          <span id="brands">BRANDS:</span>
+          <a class="convert secondary" ng-click="chooseValueBrands('boxers')">Value Brands {{valuePriceLower | currency}} - {{valuePriceUpper | currency}}</a>
+          <input style="width: 100px" ui-select2="{tags:brands}" ng-model="$parent.selectedBrands" />
+        </div>
+
+        
+      </div>
+  </script>
+
   <script type=text/ng-template id=section/garms.html>
       <div class="">This is the beginning of garms</div>
   </script>
