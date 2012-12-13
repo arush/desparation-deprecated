@@ -35222,7 +35222,7 @@ angular.module('ui.filters').filter('unique', function () {
 
 'use strict';
 
-var ngMaleApp = angular.module('ngMaleApp', ['ui','StateMachines','DataServices','QuestionsModule','BrandsModule']);
+var ngMaleApp = angular.module('ngMaleApp', ['ui','DataServices','QuestionsModule','BrandsModule','ColoursModule','SizeModule','SpecificsModule']);
 
 ngMaleApp.config(function ($routeProvider) {
     $routeProvider
@@ -35230,10 +35230,6 @@ ngMaleApp.config(function ($routeProvider) {
         redirectTo:'/section/garms/category/intro',
         // bring this back if we want a pre-intro screen
          // templateUrl:'start.html',
-         controller:MainController
-      })
-      .when('/register', {
-         templateUrl:'register.html',
          controller:MainController
       })
       .when('/section/:section/category/:category', {
@@ -35246,21 +35242,34 @@ ngMaleApp.config(function ($routeProvider) {
       //    templateUrl:'sectionProxy.html',
       //    controller:SectionController
       // })
+      .when('/section/:section/category/intro/question/:question', {
+         redirectTo:'/section/garms/category/intro',
+         controller:MainController
+      })
+      .when('/section/:section/category/:category/question/restart', {
+         redirectTo:'/section/garms/category/intro',
+         controller:MainController
+      })
+      .when('/section/garms/category/:category/question/checkout', {
+         templateUrl: 'checkout.html',
+         controller:CheckoutController
+      })
       .when('/section/:section/category/:category/question/:question', {
          templateUrl: 'detailViewProxy.html',
          controller:QuestionController
       })
+      
       .otherwise({
         redirectTo: '/section/garms/category/intro'
       });
 });
-ngMaleApp.$inject = ['ui','StateMAchines','DataServices','QuestionsModule','BrandsModule'];
+ngMaleApp.$inject = ['ui','DataServices','QuestionsModule','BrandsModule','ColoursModule','SizeModule','SpecificsModule'];
 
 
 
 
 /* **********************************************
-     Begin questions.js
+     Begin questionLoader.js
 ********************************************** */
 
 
@@ -35379,7 +35388,7 @@ Questions.factory('socksQuestions', function(){
 
 
 /* **********************************************
-     Begin brands.js
+     Begin brandsLoader.js
 ********************************************** */
 
 
@@ -35773,6 +35782,428 @@ Brands.factory('brandsLoader', function() {
 });
 
 /* **********************************************
+     Begin coloursLoader.js
+********************************************** */
+
+
+/* Here we are defining a global variable Colours so we can extend it with factory methods in other files.
+ * This allows us to make brand sets in separate files and make the main colleciton of colours depend on them if we want
+ * But here we've just included all the brand sets in one file for simplicity. We could retrieve the list of colours from
+ * an external data source if we wanted.
+ **/
+
+var Colours = angular.module('ColoursModule', []);
+
+Colours.factory('coloursLoader', function() {
+    
+	/* This factory method returns an object that is accessible to the controller which it is injected into.
+	 * Here we define the object including its own methods.
+	 **/
+
+    var coloursLoader = {
+
+    	// this is used to sort arrays of objects
+    	dynamicSort: function(property) {
+		    return function (a,b) {
+		        return (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+		    }
+		},
+
+		getColours: function(category, countryCode) {
+
+	    	var colours = [];
+
+	    	switch(category) {
+		    	
+		    	case "socks":
+		    		colours = this.getDiscoColoursAll(countryCode);
+		    		colours.concat(this.getClassicColoursAll(countryCode));
+		    		break;
+		    	case "boxers":
+		    		colours = this.getDiscoColoursAll(countryCode);
+		    		colours.concat(this.getClassicColoursAll(countryCode));
+		    		break;
+		    	case "tees":
+		    		colours = this.getDiscoColoursAll(countryCode);
+		    		colours.concat(this.getClassicColoursAll(countryCode));
+		    		break;
+		    	case "jumpers":
+		    		colours = this.getDiscoColoursAll(countryCode);
+		    		colours.concat(this.getClassicColoursAll(countryCode));
+		    		break;
+		    	case "hoodies":
+		    		colours = this.getDiscoColoursAll(countryCode);
+		    		colours.concat(this.getClassicColoursAll(countryCode));
+		    		break;
+		    	case "shoes":
+		    		colours = this.getDiscoColoursAll(countryCode);
+		    		var moreColours = this.getClassicColoursAll(countryCode)
+		    		
+		    		colours.concat(moreColours);
+		    		break;
+		    	case "other":
+		    		colours = this.getDiscoColoursAll(countryCode);
+		    		colours.concat(this.getClassicColoursAll(countryCode));
+		    		break;
+		    	default:
+		    	// this is just a catchall and should never have to be used
+
+		    		break;
+		    }
+		    console.log(colours);
+		    console.log(moreColours);
+
+		    return colours;
+
+	    },
+
+	    getDiscoColoursAll: function(countryCode) {
+	    	var discoColoursAll = {
+	    			"en-gb": [
+	    				"pink",
+	    				"orange",
+	    				"blue",
+	    				"yellow",
+	    				"stripes",
+	    				"camouflage"
+	    			],
+	    			"en-us": [
+	    				"khaki",
+	    				"mauve",
+	    				"chequered",
+	    				"camo"
+	    			]
+		    };
+
+		    var discoColoursFiltered = discoColoursAll[countryCode];
+		    
+			// use the dynamic sort function to order by label field
+			discoColoursFiltered.sort();
+
+		    return discoColoursFiltered;
+	    },
+
+	    getClassicColoursAll: function(countryCode) {
+	    	var classicColoursAll = {
+	    			"en-gb": [
+	    				"black",
+	    				"white",
+	    				"light grey",
+	    				"dark grey",
+	    			],
+	    			// this is just a joke, but this is how languages are done
+	    			"en-us": [
+	    				"sunrise",
+	    				"desert",
+	    				"dusk",
+	    				"mist"
+	    			]
+		    };
+
+		    var classicColoursFiltered = classicColoursAll[countryCode];
+		    
+			// use the dynamic sort function to order by label field
+
+		    return classicColoursFiltered;
+	    },
+
+
+	    // this is a function used by the "auto-populate colours" buttons
+
+	    getAllColoursFilteredBy: function(category, style) {
+	    	var selectedColours = {};
+
+	    	switch(style) {
+	    		case 'classic':
+	    			selectedColours = this.getClassicColours(category);
+	    			break;
+	    		case 'disco':
+	    			selectedColours = this.getDiscoColours(category);
+	    			break;
+	    		default:
+	    			selectedColours.colours = [];
+	    			break;
+	    	}
+
+	    	return JSON.parse(JSON.stringify(selectedColours.colours));
+	    }
+
+
+	};
+
+	/* This factory method is dependent on other factory methods as declared in function(...here...).
+	 * We must inject these dependencies as strings so the file can be minified
+	 **/
+
+	// brandLoader.$inject = ['boxersColours','socksColours'];
+
+	return coloursLoader;
+});
+
+/* **********************************************
+     Begin sizeLoader.js
+********************************************** */
+
+
+/* Here we are defining a global variable Size so we can extend it with factory methods in other files.
+ * This allows us to make brand sets in separate files and make the main colleciton of size depend on them if we want
+ * But here we've just included all the brand sets in one file for simplicity. We could retrieve the list of size from
+ * an external data source if we wanted.
+ **/
+
+var Size = angular.module('SizeModule', []);
+
+Size.factory('sizeLoader', function() {
+    
+	/* This factory method returns an object that is accessible to the controller which it is injected into.
+	 * Here we define the object including its own methods.
+	 **/
+
+    var sizeLoader = {
+
+    	
+		getSizes: function(category,countryCode) {
+
+	    	var sizeChoices;
+	    	var instructionsText;
+
+	    	switch(category) {
+		    
+		    	case "boxers":
+		    		sizeChoices = this.getBoxerSizes();
+		    		instructionsText = this.getBoxerInstructions(countryCode);
+		    		break;
+		    	case "tees":
+		    		sizeChoices = this.getTopSizes();
+		    		instructionsText = this.getTopsInstructions(countryCode);
+		    		break;
+		    	case "jumpers":
+		    		sizeChoices = this.getTopSizes();
+		    		instructionsText = this.getTopsInstructions(countryCode);
+		    		break;
+		    	case "hoodies":
+		    		sizeChoices = this.getTopSizes();
+		    		instructionsText = this.getTopsInstructions(countryCode);
+		    		break;
+		    	case "shoes":
+		    		sizeChoices = this.getShoeSizes();
+		    		instructionsText = "";
+		    		break;
+		    	case "other":
+		    		sizeChoices = this.getOtherSizes();
+		    		instructionsText = "";
+		    		break;
+		    	default:
+		    	// this is just a catchall and should never have to be used
+		    		sizeChoices = this.getBoxerSizes();
+		    		break;
+		    }
+
+
+			var sizes = {
+	    		instructions: instructionsText,
+	    		sizeChoices: sizeChoices
+			}
+
+		    return sizes;	
+	    },
+
+	    getBoxerInstructions: function(countryCode) {
+	    	var localInstructionsText;
+
+	    	if(countryCode === "en-gb"){
+		    	localInstructionsText = "If you're unsure what size pants are required for a dude of your standing, just measure your... waist. Yep, your waist. Failing that, check the label in your jeans.";
+		    } else{
+		    	//another language
+		    }
+
+		    return localInstructionsText;
+
+	    },
+	    getTopsInstructions: function(countryCode) {
+	    	var localInstructionsText;
+	    	
+	    	if(countryCode === "en-gb"){
+		    	localInstructionsText = "If you're unsure how big a dog you are, just measure all the way around that manly chest from pit-to-pit.";
+		    } else{
+		    	//another language
+		    }
+
+		    return localInstructionsText;
+	    },
+
+	    getBoxerSizes: function() {
+	    	var boxerSizes = [
+		    		{
+		    			label: "S",
+		    			measurements: "30 - 32in"
+		    		},
+		    		{
+		    			label: "M",
+		    			measurements: "30 - 34in"
+		    		},
+		    		{
+		    			label: "L",
+		    			measurements: "34 - 36in"
+		    		},
+		    		{
+		    			label: "XL",
+		    			measurements: "36 - 38in"
+		    		}
+			    ]
+			return boxerSizes;
+	    },
+	    getTopSizes: function() {
+	    	var topSizes = [
+		    		{
+		    			label: "S",
+		    			measurements: "36 - 38in"
+		    		},
+		    		{
+		    			label: "M",
+		    			measurements: "38 - 40in"
+		    		},
+		    		{
+		    			label: "L",
+		    			measurements: "40 - 42in"
+		    		},
+		    		{
+		    			label: "XL",
+		    			measurements: "42 - 44in"
+		    		}
+			    ]
+			return topSizes;
+	    },
+	    getShoeSizes: function() {
+	    	var shoeSizes = [
+		    		{
+		    			label: "UK 6",
+		    			measurements: "EU 40"
+		    		},
+		    		{
+		    			label: "UK 7",
+		    			measurements: "EU 41"
+		    		},
+		    		{
+		    			label: "UK 8",
+		    			measurements: "EU 42"
+		    		},
+		    		{
+		    			label: "UK 9",
+		    			measurements: "EU 43"
+		    		},
+		    		{
+		    			label: "UK 10",
+		    			measurements: "EU 44"
+		    		},
+		    		{
+		    			label: "UK 11",
+		    			measurements: "EU 45"
+		    		},
+		    		{
+		    			label: "UK 12",
+		    			measurements: "EU 46"
+		    		}
+
+			    ]
+			return shoeSizes;
+	    }
+
+	};
+
+	/* This factory method is dependent on other factory methods as declared in function(...here...).
+	 * We must inject these dependencies as strings so the file can be minified
+	 **/
+
+	// brandLoader.$inject = ['boxersSize','socksSize'];
+
+	return sizeLoader;
+});
+
+/* **********************************************
+     Begin specificsLoader.js
+********************************************** */
+
+
+/* Here we are defining a global variable Specifics so we can extend it with factory methods in other files.
+ * This allows us to make brand sets in separate files and make the main colleciton of specifics depend on them if we want
+ * But here we've just included all the brand sets in one file for simplicity. We could retrieve the list of specifics from
+ * an external data source if we wanted.
+ **/
+
+var Specifics = angular.module('SpecificsModule', []);
+
+Specifics.factory('specificsLoader', function() {
+    
+	/* This factory method returns an object that is accessible to the controller which it is injected into.
+	 * Here we define the object including its own methods.
+	 **/
+
+    var specificsLoader = {
+
+		getSpecificsQuestion: function(category,countryCode) {
+
+
+	    	switch(category) {
+		    	
+		    	case "socks":
+		    		specificsQuestion = this.getSocksQuestion(countryCode);
+		    		break;
+		    	case "boxers":
+		    		specificsQuestion = this.getBoxersQuestion(countryCode);
+		    		break;
+		    	case "tees":
+		    		specificsQuestion = this.getTeesQuestion(countryCode);
+		    		break;
+		    	case "jumpers":
+		    		specificsQuestion = this.getJumpersQuestion(countryCode);
+		    		break;
+		    	case "hoodies":
+		    		specificsQuestion = this.getHoodiesQuestion(countryCode);
+		    		break;
+		    	case "shoes":
+		    		specificsQuestion = this.getShoesQuestion(countryCode);
+		    		break;
+		    	case "other":
+		    		specificsQuestion = this.getOtherQuestion(countryCode);
+		    		break;
+		    	default:
+		    	// this is just a catchall and should never have to be used
+		    		specificsQuestion = this.getOtherQuestion(countryCode);
+		    		break;
+		    }
+
+		    return specificsQuestion;
+	    },
+
+	    getSocksQuestion: function(countryCode) {
+	    	var socksQuestion = {
+	    			"en-gb": [
+	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Ankle socks or stockings? Woolen or cotton? Sporty or classy? Give us those deets."
+	    			],
+	    			"en-us": [
+	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Ankle socks or stockings? Woolen or cotton? Sporty or classy? Give us those deets."
+	    			]
+		    };
+
+		    var socksQuestionFiltered = socksQuestion[countryCode];
+		    
+
+		    return socksQuestionFiltered;
+	    }
+
+	};
+
+	/* This factory method is dependent on other factory methods as declared in function(...here...).
+	 * We must inject these dependencies as strings so the file can be minified
+	 **/
+
+	// brandLoader.$inject = ['boxersSpecifics','socksSpecifics'];
+
+	return specificsLoader;
+});
+
+/* **********************************************
      Begin detail.js
 ********************************************** */
 
@@ -35784,7 +36215,7 @@ Brands.factory('brandsLoader', function() {
  */
 
 
-function DetailControlsController($scope,StateMachine,DataService,$routeParams) {
+function DetailControlsController($scope,DataService,$routeParams) {
 
 	/**
 	*  Controller Properties
@@ -35802,7 +36233,7 @@ function DetailControlsController($scope,StateMachine,DataService,$routeParams) 
 
 	// $scope.detailTemplate = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
 }
-DetailControlsController.$inject = ['$scope','StateMachine','DataService','$routeParams'];
+DetailControlsController.$inject = ['$scope','DataService','$routeParams'];
 
 
 /* **********************************************
@@ -35845,33 +36276,19 @@ function QuestionController($scope,$routeParams,questionLoader,brandsLoader,$loc
 		$scope.currencySymbol = "£";
 		$scope.routeParams = $routeParams;
 		$locale.id = "en-gb";
+		$scope.detailTemplate;
+		
 
 	/***** END CONTROLLER PROPERTIES ******/
 
 
-	/***** FINALISE ROUTING & TEMPLATES *****/
 
-		// assuming url begins at /section/garms/category/:category/start
+	// ***** CONTROLLER FUNCTIONS ***** //
 
-		var questionDecider = '';
+	$scope.init = function() {
+		$scope.loadCorrectTemplate();
+	}
 
-		switch($routeParams.question) {
-			case 'start':
-				questionDecider = 'brands';
-				$routeParams.question = 'brands';
-				break;
-			default:
-				// or dashboard
-				questionDecider = $routeParams.question;
-				break;
-		}
-		
-		$scope.detailTemplate = 'section/' + $routeParams.section + '/category/' + $routeParams.category + '/question/' + questionDecider + '.html';
-
-	/***** END FINALISE ROUTING & TEMPLATES *****/
-
-
-	// ***** QUESTION RELATED FUNCTIONS ***** //
 
     $scope.goToNextQuestion = function(section,category,question,answer) {
 
@@ -35890,15 +36307,26 @@ function QuestionController($scope,$routeParams,questionLoader,brandsLoader,$loc
     		$scope.currentUser.save(null, {
 			  success: function(user) {
 			    // The object was saved successfully.
-			    Parse.User.current().fetch({});
+			    $scope.currentUser.fetch({
+				  success: function(myObject) {
+				    // The object was refreshed successfully.
+				    alert('fetched successfully')
+				    console.log(myObject);
+				  },
+				  error: function(myObject, error) {
+				    // The object was not refreshed successfully.
+				    // error is a Parse.Error with an error code and description
+				    console.log(error);
+				  }
+				});
+
 			    // console.log(user);
-			    alert("saving succeeded");
 
 			  },
 			  error: function(user, error) {
 			    // The save failed.
 			    // error is a Parse.Error with an error code and description.
-			    alert("saving failed");
+			    alert("Cannot save right now, try again later");
 			    console.log(error);
 			  }
 			});
@@ -35906,7 +36334,17 @@ function QuestionController($scope,$routeParams,questionLoader,brandsLoader,$loc
     	}
     	
 
+    	
+    	var nextPath = $scope.getNextPath(question);
+    	$location.path(nextPath);
+      
 
+    }
+
+    $scope.getNextPath = function(question) {
+
+    	// this is our crappy state machine
+    	// TODO: extract this into a service
     	var questionRouter = '';
 
 		switch(question) {
@@ -35914,10 +36352,20 @@ function QuestionController($scope,$routeParams,questionLoader,brandsLoader,$loc
 				questionRouter = 'brands';
 				break;
 			case 'brands':
-				questionRouter = 'size';
+				if($routeParams.category === "socks") {
+					questionRouter = 'colours';
+				} else {
+					questionRouter = 'size';	
+				}
 				break;
 			case 'size':
-				questionRouter = 'size';
+				questionRouter = 'colours';
+				break;
+			case 'colours':
+				questionRouter = 'specifics';
+				break;
+			case 'specifics':
+				questionRouter = 'checkout';
 				break;
 			default:
 				// or dashboard
@@ -35925,17 +36373,54 @@ function QuestionController($scope,$routeParams,questionLoader,brandsLoader,$loc
 				break;
 		}
 		
-		var nextQuestionPath = 'section/' + $routeParams.section + '/category/' + $routeParams.category + '/question/' + questionRouter + '.html';
+		var nextQuestionPath = 'section/' + $routeParams.section + '/category/' + $routeParams.category + '/question/' + questionRouter;
 
-
-    	$location.path(nextQuestionPath);
-      
+    	return nextQuestionPath;
 
     }
+
+    // assuming url begins at /section/garms/category/:category/start
+	$scope.loadCorrectTemplate = function() {
+
+	
+		var questionDecider = '';
+
+		switch($routeParams.question) {
+			case 'start':
+				// send to first question
+			case 'brands':
+
+				// set generic brands template
+				questionDecider = 'brands';
+				$scope.detailTemplate = 'section/' + $routeParams.section + '/category/generic/question/' + questionDecider + '.html';
+				break;
+			case 'size':
+				// set generic size template
+				questionDecider = 'size';
+				$scope.detailTemplate = 'section/' + $routeParams.section + '/category/generic/question/' + questionDecider + '.html';
+				break;
+			case 'colours':
+				// set generic size template
+				questionDecider = 'colours';
+				$scope.detailTemplate = 'section/' + $routeParams.section + '/category/generic/question/' + questionDecider + '.html';
+				break;
+			case 'specifics':
+				// set generic size template
+				questionDecider = 'specifics';
+				$scope.detailTemplate = 'section/' + $routeParams.section + '/category/generic/question/' + questionDecider + '.html';
+				break;
+
+			default:
+				// or dashboard
+				questionDecider = $routeParams.question;
+				break;
+		}
+	}
 
     // ***** END QUESTION RELATED FUNCTIONS ***** //
 
 	
+	$scope.init();
 
 }
 QuestionController.$inject = ['$scope','$routeParams','questionLoader','brandsLoader','$location','$locale'];
@@ -36041,51 +36526,51 @@ function CategoryController($scope,$routeParams,questionLoader,$locale,$location
 
 	    $scope.answers = [
 	        {
-	          link: "#/section/garms/category/intro",
 	          path: "/section/garms/category/socks/question/brands",
-	          category: "socks",
+	          question: "restart", // when you click on this button, which question to go to
+	          category: "intro",
 	          cssClass: "socks",
 	          label: "socks"
 	        },
 	        {
-	          link: "#/section/garms/category/intro",
 	          path: "/section/garms/category/boxers/question/brands",
-	          category: "boxers",
+	          question: "restart", // when you click on this button, which question to go to
+	          category: "intro",
 	          cssClass: "boxers",
 	          label: "pants"
 	        },
 	        {
-	          link: "#/section/garms/category/intro",
 	          path: "/section/garms/category/tees/question/brands",
-	          category: "tees",
+	          question: "restart", // when you click on this button, which question to go to
+	          category: "intro",
 	          cssClass: "tees",
 	          label: "t-shirts"
 	        },
 	        {
-	          link: "#/section/garms/category/intro",
 	          path: "/section/garms/category/jumpers/question/brands",
-	          category: "jumpers",
+	          question: "restart", // when you click on this button, which question to go to
+	          category: "intro",
 	          cssClass: "jumpers",
 	          label: "jumpers"
 	        },
 	        {
-	          link: "#/section/garms/category/intro",
 	          path: "/section/garms/category/hoodies/question/brands",
-	          category: "hoodies",
+	          question: "restart", // when you click on this button, which question to go to
+	          category: "intro",
 	          cssClass: "hoodies",
 	          label: "hoodies"
 	        },
 	        {
-	          link: "#/section/garms/category/intro",
 	          path: "/section/garms/category/shoes/question/brands",
-	          category: "shoes",
+	          question: "restart", // when you click on this button, which question to go to
+	          category: "intro",
 	          cssClass: "shoes",
 	          label: "shoes"
 	        },
 	        {
-	          link: "#/section/garms/category/intro",
 	          path: "/section/garms/category/other/question/brands",
-	          category: "other",
+	          question: "restart", // when you click on this button, which question to go to
+	          category: "intro",
 	          cssClass: "other",
 	          label: "other"
 	        }
@@ -36102,10 +36587,31 @@ function CategoryController($scope,$routeParams,questionLoader,$locale,$location
 CategoryController.$inject = ['$scope','$routeParams','questionLoader','$locale','$location'];
 
 /* **********************************************
-     Begin BoxersFormController.js
+     Begin checkout.js
 ********************************************** */
 
-function BoxersFormController($scope,$routeParams,brandsLoader,$locale) {
+function CheckoutController($scope,DataService,$routeParams) {
+
+	/**
+	*  Controller Properties
+	*/
+
+	$scope.test = "this is a test";
+
+	/**
+	*  Controller Functions
+	*/
+
+
+}
+CheckoutController.$inject = ['$scope','DataService','$routeParams'];
+
+
+/* **********************************************
+     Begin BrandsFormController.js
+********************************************** */
+
+function BrandsFormController($scope,$routeParams,brandsLoader,$locale) {
 
 	/***** CONTROLLER PROPERTIES ******/
 
@@ -36124,11 +36630,11 @@ function BoxersFormController($scope,$routeParams,brandsLoader,$locale) {
 
 		if ($locale.id === 'en-gb') {
 
-			$scope.brandsQuestion = "What brands do you want? Hint: You can type in your favourite brand and we guarantee we will find it for you";
+			$scope.brandsQuestion = "Ok, this is as hard as it’s going to get. Select the price bracket your wallet likes the look of and we’ll serve you up some brands that fit.";
 
 			// Fetch the set of answers
 
-			$scope.typeBrandsTooltip = "Tag your brands here. If it's not listed, create a new tag it and we'll get it for you. 100% guaranteed.";
+			$scope.typeBrandsTooltip = "Hint: Type in your favourite brand and we’ll make sure you get it. 100% guaranteed. Got it? Good.";
 
 			$scope.brandsButtons = [
 				{
@@ -36198,7 +36704,169 @@ function BoxersFormController($scope,$routeParams,brandsLoader,$locale) {
 
 
 }
-BoxersFormController.$inject = ['$scope','$routeParams','brandsLoader','$locale'];
+BrandsFormController.$inject = ['$scope','$routeParams','brandsLoader','$locale'];
+
+/* **********************************************
+     Begin SizeFormController.js
+********************************************** */
+
+function SizeFormController($scope,$routeParams,sizeLoader,$locale) {
+
+	/***** CONTROLLER PROPERTIES ******/
+
+		$scope.routeParams = $routeParams;
+		$locale.id = "en-gb";
+
+	/***** END CONTROLLER PROPERTIES ******/
+		
+
+		// retrieve brand data from service so we can use it below in the buttons
+		var sizeData = sizeLoader.getSizes($routeParams.category,$locale.id);
+
+		$scope.howToMeasure = sizeData.instructions;
+
+		$scope.sizeButtons = sizeData.sizeChoices;
+
+		// TODO: put these in a .json file and retrieve via AJAX
+
+		if ($locale.id === 'en-gb') {
+
+			$scope.sizeQuestion = "Are you a big ‘un or a little ‘un? Whatever, we’ve got you covered. Just click the correct box and we’ll make sure it fits. ";
+
+
+		} else {
+			// another language
+		}
+
+	/***** END SIZE PRE-POPULATE BUTTONS ******/
+
+
+	/***** CONTROLLER EVENT RESPONDERS ******/
+	
+		$scope.chooseSize = function(category,brandType) {
+			// $scope.selectedSize = sizeLoader.getAllSizeFilteredBy(category,brandType);
+		};
+
+		$scope.saveAnswer = function() {
+			// since we defined the answer in the question in the form controller, the parent controller doesn't have access to it
+			// therefore we need to pass the answer by reference
+			$scope.goToNextQuestion($routeParams.section,$routeParams.category,$routeParams.question,/*answer*/$scope.selectedSize);
+		}
+
+	/***** END CONTROLLER EVENT RESPONDERS ******/
+
+
+}
+SizeFormController.$inject = ['$scope','$routeParams','sizeLoader','$locale'];
+
+/* **********************************************
+     Begin ColoursFormController.js
+********************************************** */
+
+function ColoursFormController($scope,$routeParams,coloursLoader,$locale) {
+
+	/***** CONTROLLER PROPERTIES ******/
+
+		$scope.routeParams = $routeParams;
+
+	/***** END CONTROLLER PROPERTIES ******/
+
+
+		// retrieve colour data from service so we can use them as tags
+		// var coloursFromLoader = coloursLoader.getColours($routeParams.category,$locale.id);
+		// need to send a stringified version for it to work with SELECT2
+		// $scope.discoColours = coloursFromLoader;
+
+		$scope.discoColours = coloursLoader.getDiscoColoursAll($locale.id);
+		$scope.classicColours = coloursLoader.getClassicColoursAll($locale.id);
+
+		$scope.colours = $scope.classicColours;
+
+		angular.forEach($scope.discoColours, function(discoColour) {
+
+			$scope.colours.push(discoColour);
+		});
+
+
+		// TODO: put these in a .json file and retrieve via AJAX
+
+		if ($locale.id === 'en-gb') {
+
+			$scope.coloursQuestion = "Disco or classic, spots or stripes, patterned or graphic, or just plain old plain? We’ve got the full spectrum buddy. And if we show you any colours you’d never wear, ever. Just hit delete.";
+
+			// Fetch the set of answers
+
+			$scope.typeColoursTooltip = "";
+
+			
+
+		} else {
+			// another language
+		}
+
+	/***** END COLOURS PRE-POPULATE BUTTONS ******/
+
+
+	/***** SELECT2 COLOURS DROPDOWN ******/
+
+		
+		$scope.selectedColours = [];
+
+	/***** SELECT2 COLOURS DROPDOWN ******/
+
+
+	/***** CONTROLLER EVENT RESPONDERS ******/
+	
+		$scope.chooseColours = function(category,coloursType) {
+			$scope.selectedColours = coloursLoader.getAllColoursFilteredBy(category,coloursType);
+		};
+
+		$scope.saveAnswer = function() {
+			// since we defined the answer in the question in the form controller, the parent controller doesn't have access to it
+			// therefore we need to pass the answer by reference
+			$scope.goToNextQuestion($routeParams.section,$routeParams.category,$routeParams.question,/*answer*/$scope.selectedColours);
+		}
+
+	/***** END CONTROLLER EVENT RESPONDERS ******/
+
+
+}
+ColoursFormController.$inject = ['$scope','$routeParams','coloursLoader','$locale'];
+
+/* **********************************************
+     Begin SpecificsFormController.js
+********************************************** */
+
+function SpecificsFormController($scope,$routeParams,specificsLoader,$locale) {
+
+	/***** CONTROLLER PROPERTIES ******/
+
+		$scope.routeParams = $routeParams;
+		$scope.selectedSpecifics = "";
+		
+	/***** END CONTROLLER PROPERTIES ******/
+
+
+		// retrieve brand data from service so we can use it below in the buttons
+		$scope.specificsQuestion = specificsLoader.getSpecificsQuestion($routeParams.category,$locale.id);
+
+		// TODO: put these in a .json file and retrieve via AJAX
+
+	
+
+	/***** CONTROLLER EVENT RESPONDERS ******/
+	
+		$scope.saveAnswer = function() {
+			// since we defined the answer in the question in the form controller, the parent controller doesn't have access to it
+			// therefore we need to pass the answer by reference
+			$scope.goToNextQuestion($routeParams.section,$routeParams.category,$routeParams.question,/*answer*/$scope.selectedSpecifics);
+		}
+
+	/***** END CONTROLLER EVENT RESPONDERS ******/
+
+
+}
+SpecificsFormController.$inject = ['$scope','$routeParams','specificsLoader','$locale'];
 
 /* **********************************************
      Begin main.js
@@ -36211,7 +36879,7 @@ BoxersFormController.$inject = ['$scope','$routeParams','brandsLoader','$locale'
  * given the simplistic nature of the application.  
  *
  */
-function MainController($scope,StateMachine,DataService,$locale,$routeParams) {
+function MainController($scope,DataService,$locale,$routeParams) {
 
   // ***** CONTROLLER PROPERTIES ***** //
 
@@ -36232,7 +36900,7 @@ function MainController($scope,StateMachine,DataService,$locale,$routeParams) {
             colours: [],
             specifics: []
           },
-          tshirts: {
+          tees: {
             brands: [],
             size: [],
             colours: [],
@@ -36292,7 +36960,7 @@ function MainController($scope,StateMachine,DataService,$locale,$routeParams) {
 
             // TODO: metrics
 
-            DataService.submitFeedback($scope.currentUser,$scope.feedback, section, category, question);  
+            DataService.submitFeedback($scope.currentUser,$scope.feedback, $scope.feedbackForm, section, category, question);  
           }
           
         }
@@ -36350,9 +37018,9 @@ function MainController($scope,StateMachine,DataService,$locale,$routeParams) {
   // select the correct option in the menu
   $scope.$on('$routeChangeSuccess', function(scope, next, current){
       
-      // this matches against the cssClass in ng-class
+      // this matches against the "submenuItem.question" in ng-class
       if(next.params.category === 'intro') {
-        $scope.selectedSubmenuItem = 'intro';
+        $scope.selectedSubmenuItem = 'restart';
       } else {
         // for all other cases, select the question 
         $scope.selectedSubmenuItem = next.params.question;
@@ -36390,15 +37058,15 @@ function MainController($scope,StateMachine,DataService,$locale,$routeParams) {
 
   $scope.menu = [
     {
-      title: "1. Choose an item",
+      title: "1. Add an item",
       section: "intro",
       submenuTemplate: "menu/menuItems.html",
       submenuItems: [{
         link: "#/section/garms/category/intro",
         path: "/section/garms/category/intro",
-        category: "choose",
+        question: "restart",
         cssClass: "intro",
-        label: "choose"
+        label: "Add Item"
       }]
     },
     {
@@ -36406,29 +37074,35 @@ function MainController($scope,StateMachine,DataService,$locale,$routeParams) {
       section: "garms",
       submenuTemplate: "menu/menuItems.html",
       submenuItems: [{
-        category: "brands",
+        question: "brands",
         cssClass: "brands",
         label: "Brands"
       },
       {
-        category: "size",
+        question: "size",
         cssClass: "size",
         label: "Size"
       },
       {
-        category: "colours",
+        question: "colours",
         cssClass: "colours",
         label: "Colours"
       },
       {
-        category: "specifics",
+        question: "specifics",
         cssClass: "specifics",
         label: "Specifics"
       }]
     },
     {
-      title: "3. Save",
-      section: "save",
+      title: "3. Checkout",
+      section: "checkout",
+      submenuTemplate: "menu/menuItems.html",
+      submenuItems: [{
+        question: "checkout",
+        cssClass: "checkout",
+        label: "Checkout"
+      }]
 
     }
   ];
@@ -36436,10 +37110,10 @@ function MainController($scope,StateMachine,DataService,$locale,$routeParams) {
 
   
 }
-MainController.$inject = ['$scope','StateMachine','DataService','$locale','$routeParams'];
+MainController.$inject = ['$scope','DataService','$locale','$routeParams'];
 
 /* **********************************************
-     Begin services.js
+     Begin DataServices.js
 ********************************************** */
 
 /**
@@ -36460,7 +37134,23 @@ angular.module('DataServices', [])
 
 
     // Define Parse Models
-    var Feedback = Parse.Object.extend("feedback");
+    var Feedback = Parse.Object.extend("Feedback");
+    var MaleAnswers = Parse.Object.extend("MaleAnswers");
+
+
+    // FACEBOOK init
+
+    // window.fbAsyncInit = function() {
+    //   Parse.FacebookUtils.init({
+    //     appId      : '250529718312984', // Facebook App ID
+    //     channelUrl : '//brandid.macbook.pro/facebook/channel', // Channel File
+    //     status     : true, // check login status
+    //     cookie     : true, // enable cookies to allow Parse to access the session
+    //     xfbml      : true  // parse XFBML
+    //   });
+     
+    //   // Additional initialization code here
+    // };
 
 
     /**
@@ -36510,7 +37200,7 @@ angular.module('DataServices', [])
       },
       
       // feedback form on every page
-      submitFeedback: function(currentUser,userFeedback,section,category,question) {
+      submitFeedback: function(currentUser,userFeedback,feedbackForm,section,category,question) {
 
         // Instantiate a feedback object
         var feedback = new Feedback();
@@ -36576,88 +37266,6 @@ angular.module('DataServices', [])
 
 
 /* **********************************************
-     Begin stateMachines.js
-********************************************** */
-
-/**
- * State Machine Module
- *
- *  A state machine using stately.js to control routing
- */
-angular.module('StateMachines', []) 
-/**
- * Boxers Machine
- */
-.factory('BoxersMachine', function(){
-    // Initialize Machine
-
-    var BoxersMachine = Stately.machine({
-	    'Q1': {
-	        answer: function (answers) {
-	            return this.Q2;
-	        }
-	    },
-	    'Q2': {
-	        answer: function (answers) {
-	            return this.Q3;
-	        }
-	    },
-	    'Q3': {
-	        answer: function (answers) {
-	            return 'Dashboard';
-	        }
-	    },
-	    'Dashboard': {
-	    	editQ1: function () {
-	    		return this.Q1;
-	    	},
-	    	editQ2: function () {
-	    		return this.Q1;
-	    	},
-	    	editQ3: function () {
-	    		return this.Q1;
-	    	}
-		}
-	}).bind(function (event, oldState, newState) {
-
-	    var transition = oldState + ' => ' + newState;
-
-	    switch (transition) {
-	        /*
-	        ...
-	        case 'Q1 => Q2':
-	        case 'Q3 => Dashboard':
-	        ...
-	        */
-	        default:
-	            console.log(transition);
-	            break;
-	    }
-	});
-
-
-    // The factory function returns BoxersMachine, which is injected into controllers.
-    return BoxersMachine;
-})
-
-/**
- * StateMachine is a simple adapter that returns either the correct machine for the correct route
- * This service is injected into the Main? Controller
- */
-
-.factory('StateMachine', function (BoxersMachine,$routeParams) {
-  // default service as a fallback
-  // var serviceToUse = DefaultService;
-  var machineToUse = false;
-
-  // check the $location.path to see if the machine can be read straight from there
-  if ($routeParams.category === "boxers") machineToUse = BoxersMachine;
-
-  return machineToUse;
-});
-
-
-/* **********************************************
      Begin male.js
 ********************************************** */
 
@@ -36693,11 +37301,14 @@ angular.module('StateMachines', [])
 
 
 // the questions service must be defined first, all question sets go after
-// @codekit-prepend "modules/questions.js"
+// @codekit-prepend "modules/questionLoader.js"
 // @codekit-prepend "modules/boxers/boxersQuestions.js"
 // @codekit-prepend "modules/socks/socksQuestions.js"
 
-// @codekit-prepend "modules/brands.js"
+// @codekit-prepend "modules/brandsLoader.js"
+// @codekit-prepend "modules/coloursLoader.js"
+// @codekit-prepend "modules/sizeLoader.js"
+// @codekit-prepend "modules/specificsLoader.js"
 
 
 
@@ -36706,12 +37317,15 @@ angular.module('StateMachines', [])
 // @codekit-prepend "controllers/question.js"
 // @codekit-prepend "controllers/dashboard.js"
 // @codekit-prepend "controllers/category.js"
+// @codekit-prepend "controllers/checkout.js"
 
-// @codekit-prepend "controllers/forms/BoxersFormController.js"
+// @codekit-prepend "controllers/forms/BrandsFormController.js"
+// @codekit-prepend "controllers/forms/SizeFormController.js"
+// @codekit-prepend "controllers/forms/ColoursFormController.js"
+// @codekit-prepend "controllers/forms/SpecificsFormController.js"
 
 // @codekit-prepend "controllers/main.js"
 
-// @codekit-prepend "modules/services.js"
-// @codekit-prepend "modules/stateMachines.js"
+// @codekit-prepend "modules/DataServices.js"
 
 

@@ -3,6 +3,13 @@
 	margin:5%;
 }
 
+.maleApp {
+	.slide-container.ani {
+		@include ani-duration(0.1);
+	}
+}
+
+
 .curved-white-block {
 	// margin:5%;
 	background:#FFFFFF;

@@ -108,6 +108,12 @@ li .big-block, .chisel-block {
 	}
 }
 
+// hide socks size
+
+.socks .big-block.size-container {
+	display:none;
+}
+
 .ie9 li > .big-block, .chisel-block {
 	filter:none;
 }

@@ -6,7 +6,7 @@
  */
 
 
-function DetailControlsController($scope,StateMachine,DataService,$routeParams) {
+function DetailControlsController($scope,DataService,$routeParams) {
 
 	/**
 	*  Controller Properties
@@ -24,4 +24,4 @@ function DetailControlsController($scope,StateMachine,DataService,$routeParams) 
 
 	// $scope.detailTemplate = $routeParams.section+'/'+$routeParams.category+'/'+$routeParams.question+'.html';
 }
-DetailControlsController.$inject = ['$scope','StateMachine','DataService','$routeParams'];
+DetailControlsController.$inject = ['$scope','DataService','$routeParams'];

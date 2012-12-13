@@ -9,33 +9,19 @@ function QuestionController($scope,$routeParams,questionLoader,brandsLoader,$loc
 		$scope.currencySymbol = "£";
 		$scope.routeParams = $routeParams;
 		$locale.id = "en-gb";
+		$scope.detailTemplate;
+		
 
 	/***** END CONTROLLER PROPERTIES ******/
 
 
-	/***** FINALISE ROUTING & TEMPLATES *****/
 
-		// assuming url begins at /section/garms/category/:category/start
+	// ***** CONTROLLER FUNCTIONS ***** //
 
-		var questionDecider = '';
+	$scope.init = function() {
+		$scope.loadCorrectTemplate();
+	}
 
-		switch($routeParams.question) {
-			case 'start':
-				questionDecider = 'brands';
-				$routeParams.question = 'brands';
-				break;
-			default:
-				// or dashboard
-				questionDecider = $routeParams.question;
-				break;
-		}
-		
-		$scope.detailTemplate = 'section/' + $routeParams.section + '/category/' + $routeParams.category + '/question/' + questionDecider + '.html';
-
-	/***** END FINALISE ROUTING & TEMPLATES *****/
-
-
-	// ***** QUESTION RELATED FUNCTIONS ***** //
 
     $scope.goToNextQuestion = function(section,category,question,answer) {
 
@@ -54,15 +40,26 @@ function QuestionController($scope,$routeParams,questionLoader,brandsLoader,$loc
     		$scope.currentUser.save(null, {
 			  success: function(user) {
 			    // The object was saved successfully.
-			    Parse.User.current().fetch({});
+			    $scope.currentUser.fetch({
+				  success: function(myObject) {
+				    // The object was refreshed successfully.
+				    alert('fetched successfully')
+				    console.log(myObject);
+				  },
+				  error: function(myObject, error) {
+				    // The object was not refreshed successfully.
+				    // error is a Parse.Error with an error code and description
+				    console.log(error);
+				  }
+				});
+
 			    // console.log(user);
-			    alert("saving succeeded");
 
 			  },
 			  error: function(user, error) {
 			    // The save failed.
 			    // error is a Parse.Error with an error code and description.
-			    alert("saving failed");
+			    alert("Cannot save right now, try again later");
 			    console.log(error);
 			  }
 			});
@@ -70,7 +67,17 @@ function QuestionController($scope,$routeParams,questionLoader,brandsLoader,$loc
     	}
     	
 
+    	
+    	var nextPath = $scope.getNextPath(question);
+    	$location.path(nextPath);
+      
 
+    }
+
+    $scope.getNextPath = function(question) {
+
+    	// this is our crappy state machine
+    	// TODO: extract this into a service
     	var questionRouter = '';
 
 		switch(question) {
@@ -78,10 +85,20 @@ function QuestionController($scope,$routeParams,questionLoader,brandsLoader,$loc
 				questionRouter = 'brands';
 				break;
 			case 'brands':
-				questionRouter = 'size';
+				if($routeParams.category === "socks") {
+					questionRouter = 'colours';
+				} else {
+					questionRouter = 'size';	
+				}
 				break;
 			case 'size':
-				questionRouter = 'size';
+				questionRouter = 'colours';
+				break;
+			case 'colours':
+				questionRouter = 'specifics';
+				break;
+			case 'specifics':
+				questionRouter = 'checkout';
 				break;
 			default:
 				// or dashboard
@@ -89,17 +106,54 @@ function QuestionController($scope,$routeParams,questionLoader,brandsLoader,$loc
 				break;
 		}
 		
-		var nextQuestionPath = 'section/' + $routeParams.section + '/category/' + $routeParams.category + '/question/' + questionRouter + '.html';
+		var nextQuestionPath = 'section/' + $routeParams.section + '/category/' + $routeParams.category + '/question/' + questionRouter;
 
-
-    	$location.path(nextQuestionPath);
-      
+    	return nextQuestionPath;
 
     }
+
+    // assuming url begins at /section/garms/category/:category/start
+	$scope.loadCorrectTemplate = function() {
+
+	
+		var questionDecider = '';
+
+		switch($routeParams.question) {
+			case 'start':
+				// send to first question
+			case 'brands':
+
+				// set generic brands template
+				questionDecider = 'brands';
+				$scope.detailTemplate = 'section/' + $routeParams.section + '/category/generic/question/' + questionDecider + '.html';
+				break;
+			case 'size':
+				// set generic size template
+				questionDecider = 'size';
+				$scope.detailTemplate = 'section/' + $routeParams.section + '/category/generic/question/' + questionDecider + '.html';
+				break;
+			case 'colours':
+				// set generic size template
+				questionDecider = 'colours';
+				$scope.detailTemplate = 'section/' + $routeParams.section + '/category/generic/question/' + questionDecider + '.html';
+				break;
+			case 'specifics':
+				// set generic size template
+				questionDecider = 'specifics';
+				$scope.detailTemplate = 'section/' + $routeParams.section + '/category/generic/question/' + questionDecider + '.html';
+				break;
+
+			default:
+				// or dashboard
+				questionDecider = $routeParams.question;
+				break;
+		}
+	}
 
     // ***** END QUESTION RELATED FUNCTIONS ***** //
 
 	
+	$scope.init();
 
 }
 QuestionController.$inject = ['$scope','$routeParams','questionLoader','brandsLoader','$location','$locale'];

@@ -30,11 +30,14 @@
 
 
 // the questions service must be defined first, all question sets go after
-// @codekit-prepend "modules/questions.js"
+// @codekit-prepend "modules/questionLoader.js"
 // @codekit-prepend "modules/boxers/boxersQuestions.js"
 // @codekit-prepend "modules/socks/socksQuestions.js"
 
-// @codekit-prepend "modules/brands.js"
+// @codekit-prepend "modules/brandsLoader.js"
+// @codekit-prepend "modules/coloursLoader.js"
+// @codekit-prepend "modules/sizeLoader.js"
+// @codekit-prepend "modules/specificsLoader.js"
 
 
 
@@ -43,12 +46,15 @@
 // @codekit-prepend "controllers/question.js"
 // @codekit-prepend "controllers/dashboard.js"
 // @codekit-prepend "controllers/category.js"
+// @codekit-prepend "controllers/checkout.js"
 
-// @codekit-prepend "controllers/forms/BoxersFormController.js"
+// @codekit-prepend "controllers/forms/BrandsFormController.js"
+// @codekit-prepend "controllers/forms/SizeFormController.js"
+// @codekit-prepend "controllers/forms/ColoursFormController.js"
+// @codekit-prepend "controllers/forms/SpecificsFormController.js"
 
 // @codekit-prepend "controllers/main.js"
 
-// @codekit-prepend "modules/services.js"
-// @codekit-prepend "modules/stateMachines.js"
+// @codekit-prepend "modules/DataServices.js"
 
 

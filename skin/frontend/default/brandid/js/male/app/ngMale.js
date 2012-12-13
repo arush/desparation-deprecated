@@ -1,6 +1,6 @@
 'use strict';
 
-var ngMaleApp = angular.module('ngMaleApp', ['ui','StateMachines','DataServices','QuestionsModule','BrandsModule']);
+var ngMaleApp = angular.module('ngMaleApp', ['ui','DataServices','QuestionsModule','BrandsModule','ColoursModule','SizeModule','SpecificsModule']);
 
 ngMaleApp.config(function ($routeProvider) {
     $routeProvider
@@ -8,10 +8,6 @@ ngMaleApp.config(function ($routeProvider) {
         redirectTo:'/section/garms/category/intro',
         // bring this back if we want a pre-intro screen
          // templateUrl:'start.html',
-         controller:MainController
-      })
-      .when('/register', {
-         templateUrl:'register.html',
          controller:MainController
       })
       .when('/section/:section/category/:category', {
@@ -24,14 +20,27 @@ ngMaleApp.config(function ($routeProvider) {
       //    templateUrl:'sectionProxy.html',
       //    controller:SectionController
       // })
+      .when('/section/:section/category/intro/question/:question', {
+         redirectTo:'/section/garms/category/intro',
+         controller:MainController
+      })
+      .when('/section/:section/category/:category/question/restart', {
+         redirectTo:'/section/garms/category/intro',
+         controller:MainController
+      })
+      .when('/section/garms/category/:category/question/checkout', {
+         templateUrl: 'checkout.html',
+         controller:CheckoutController
+      })
       .when('/section/:section/category/:category/question/:question', {
          templateUrl: 'detailViewProxy.html',
          controller:QuestionController
       })
+      
       .otherwise({
         redirectTo: '/section/garms/category/intro'
       });
 });
-ngMaleApp.$inject = ['ui','StateMAchines','DataServices','QuestionsModule','BrandsModule'];
+ngMaleApp.$inject = ['ui','DataServices','QuestionsModule','BrandsModule','ColoursModule','SizeModule','SpecificsModule'];
 
 

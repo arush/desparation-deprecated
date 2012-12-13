@@ -1,4 +1,4 @@
-function BoxersFormController($scope,$routeParams,brandsLoader,$locale) {
+function BrandsFormController($scope,$routeParams,brandsLoader,$locale) {
 
 	/***** CONTROLLER PROPERTIES ******/
 
@@ -17,11 +17,11 @@ function BoxersFormController($scope,$routeParams,brandsLoader,$locale) {
 
 		if ($locale.id === 'en-gb') {
 
-			$scope.brandsQuestion = "What brands do you want? Hint: You can type in your favourite brand and we guarantee we will find it for you";
+			$scope.brandsQuestion = "Ok, this is as hard as it’s going to get. Select the price bracket your wallet likes the look of and we’ll serve you up some brands that fit.";
 
 			// Fetch the set of answers
 
-			$scope.typeBrandsTooltip = "Tag your brands here. If it's not listed, create a new tag it and we'll get it for you. 100% guaranteed.";
+			$scope.typeBrandsTooltip = "Hint: Type in your favourite brand and we’ll make sure you get it. 100% guaranteed. Got it? Good.";
 
 			$scope.brandsButtons = [
 				{
@@ -91,4 +91,4 @@ function BoxersFormController($scope,$routeParams,brandsLoader,$locale) {
 
 
 }
-BoxersFormController.$inject = ['$scope','$routeParams','brandsLoader','$locale'];
+BrandsFormController.$inject = ['$scope','$routeParams','brandsLoader','$locale'];

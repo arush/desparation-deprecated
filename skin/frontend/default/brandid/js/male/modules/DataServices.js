@@ -16,7 +16,23 @@ angular.module('DataServices', [])
 
 
     // Define Parse Models
-    var Feedback = Parse.Object.extend("feedback");
+    var Feedback = Parse.Object.extend("Feedback");
+    var MaleAnswers = Parse.Object.extend("MaleAnswers");
+
+
+    // FACEBOOK init
+
+    // window.fbAsyncInit = function() {
+    //   Parse.FacebookUtils.init({
+    //     appId      : '250529718312984', // Facebook App ID
+    //     channelUrl : '//brandid.macbook.pro/facebook/channel', // Channel File
+    //     status     : true, // check login status
+    //     cookie     : true, // enable cookies to allow Parse to access the session
+    //     xfbml      : true  // parse XFBML
+    //   });
+     
+    //   // Additional initialization code here
+    // };
 
 
     /**
@@ -66,7 +82,7 @@ angular.module('DataServices', [])
       },
       
       // feedback form on every page
-      submitFeedback: function(currentUser,userFeedback,section,category,question) {
+      submitFeedback: function(currentUser,userFeedback,feedbackForm,section,category,question) {
 
         // Instantiate a feedback object
         var feedback = new Feedback();

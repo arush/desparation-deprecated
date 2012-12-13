@@ -49,51 +49,51 @@ function CategoryController($scope,$routeParams,questionLoader,$locale,$location
 
 	    $scope.answers = [
 	        {
-	          link: "#/section/garms/category/intro",
 	          path: "/section/garms/category/socks/question/brands",
-	          category: "socks",
+	          question: "restart", // when you click on this button, which question to go to
+	          category: "intro",
 	          cssClass: "socks",
 	          label: "socks"
 	        },
 	        {
-	          link: "#/section/garms/category/intro",
 	          path: "/section/garms/category/boxers/question/brands",
-	          category: "boxers",
+	          question: "restart", // when you click on this button, which question to go to
+	          category: "intro",
 	          cssClass: "boxers",
 	          label: "pants"
 	        },
 	        {
-	          link: "#/section/garms/category/intro",
 	          path: "/section/garms/category/tees/question/brands",
-	          category: "tees",
+	          question: "restart", // when you click on this button, which question to go to
+	          category: "intro",
 	          cssClass: "tees",
 	          label: "t-shirts"
 	        },
 	        {
-	          link: "#/section/garms/category/intro",
 	          path: "/section/garms/category/jumpers/question/brands",
-	          category: "jumpers",
+	          question: "restart", // when you click on this button, which question to go to
+	          category: "intro",
 	          cssClass: "jumpers",
 	          label: "jumpers"
 	        },
 	        {
-	          link: "#/section/garms/category/intro",
 	          path: "/section/garms/category/hoodies/question/brands",
-	          category: "hoodies",
+	          question: "restart", // when you click on this button, which question to go to
+	          category: "intro",
 	          cssClass: "hoodies",
 	          label: "hoodies"
 	        },
 	        {
-	          link: "#/section/garms/category/intro",
 	          path: "/section/garms/category/shoes/question/brands",
-	          category: "shoes",
+	          question: "restart", // when you click on this button, which question to go to
+	          category: "intro",
 	          cssClass: "shoes",
 	          label: "shoes"
 	        },
 	        {
-	          link: "#/section/garms/category/intro",
 	          path: "/section/garms/category/other/question/brands",
-	          category: "other",
+	          question: "restart", // when you click on this button, which question to go to
+	          category: "intro",
 	          cssClass: "other",
 	          label: "other"
 	        }

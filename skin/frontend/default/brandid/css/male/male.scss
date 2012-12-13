@@ -62,8 +62,9 @@ $detailSize: calc-percent($detailTargetWidth);
 @import "components/controls.scss";
 // @import "components/slideAnimations.scss";
 @import "components/drawer.scss";
-@import "components/questions/dashboard.scss";
 @import "components/answers.scss";
+@import "components/questions/dashboard.scss";
+@import "components/questions/specifics.scss";
 @import "components/questions/brands.scss";
 @import "components/feedback-form.scss";
 

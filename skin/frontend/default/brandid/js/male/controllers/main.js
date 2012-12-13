@@ -5,7 +5,7 @@
  * given the simplistic nature of the application.  
  *
  */
-function MainController($scope,StateMachine,DataService,$locale,$routeParams) {
+function MainController($scope,DataService,$locale,$routeParams) {
 
   // ***** CONTROLLER PROPERTIES ***** //
 
@@ -26,7 +26,7 @@ function MainController($scope,StateMachine,DataService,$locale,$routeParams) {
             colours: [],
             specifics: []
           },
-          tshirts: {
+          tees: {
             brands: [],
             size: [],
             colours: [],
@@ -86,7 +86,7 @@ function MainController($scope,StateMachine,DataService,$locale,$routeParams) {
 
             // TODO: metrics
 
-            DataService.submitFeedback($scope.currentUser,$scope.feedback, section, category, question);  
+            DataService.submitFeedback($scope.currentUser,$scope.feedback, $scope.feedbackForm, section, category, question);  
           }
           
         }
@@ -144,9 +144,9 @@ function MainController($scope,StateMachine,DataService,$locale,$routeParams) {
   // select the correct option in the menu
   $scope.$on('$routeChangeSuccess', function(scope, next, current){
       
-      // this matches against the cssClass in ng-class
+      // this matches against the "submenuItem.question" in ng-class
       if(next.params.category === 'intro') {
-        $scope.selectedSubmenuItem = 'intro';
+        $scope.selectedSubmenuItem = 'restart';
       } else {
         // for all other cases, select the question 
         $scope.selectedSubmenuItem = next.params.question;
@@ -184,15 +184,15 @@ function MainController($scope,StateMachine,DataService,$locale,$routeParams) {
 
   $scope.menu = [
     {
-      title: "1. Choose an item",
+      title: "1. Add an item",
       section: "intro",
       submenuTemplate: "menu/menuItems.html",
       submenuItems: [{
         link: "#/section/garms/category/intro",
         path: "/section/garms/category/intro",
-        category: "choose",
+        question: "restart",
         cssClass: "intro",
-        label: "choose"
+        label: "Add Item"
       }]
     },
     {
@@ -200,29 +200,35 @@ function MainController($scope,StateMachine,DataService,$locale,$routeParams) {
       section: "garms",
       submenuTemplate: "menu/menuItems.html",
       submenuItems: [{
-        category: "brands",
+        question: "brands",
         cssClass: "brands",
         label: "Brands"
       },
       {
-        category: "size",
+        question: "size",
         cssClass: "size",
         label: "Size"
       },
       {
-        category: "colours",
+        question: "colours",
         cssClass: "colours",
         label: "Colours"
       },
       {
-        category: "specifics",
+        question: "specifics",
         cssClass: "specifics",
         label: "Specifics"
       }]
     },
     {
-      title: "3. Save",
-      section: "save",
+      title: "3. Checkout",
+      section: "checkout",
+      submenuTemplate: "menu/menuItems.html",
+      submenuItems: [{
+        question: "checkout",
+        cssClass: "checkout",
+        label: "Checkout"
+      }]
 
     }
   ];
@@ -230,4 +236,4 @@ function MainController($scope,StateMachine,DataService,$locale,$routeParams) {
 
   
 }
-MainController.$inject = ['$scope','StateMachine','DataService','$locale','$routeParams'];
+MainController.$inject = ['$scope','DataService','$locale','$routeParams'];
