@@ -8,8 +8,9 @@
 
 // @codekit-prepend "libs/jquery-1.8.3.js"
 // @codekit-prepend "libs/angular-1.0.2.js"
-// @codekit-prepend "libs/parse-1.1.11.js"
+// @codekit-prepend "libs/parse-1.1.15.js"
 // @codekit-prepend "libs/stately-1.0.0.js"
+// @codekit-prepend "libs/bootstrap-modal-2.2.2.js"
 
 // @codekit-prepend "libs/angular-ui/build/angular-ui.js"
 // @codekit-prepend "libs/select2/select2.js"
@@ -17,11 +18,6 @@
 
 
 // @codekit-prepend "libs/jquery-male-typewriter.js"
-
-
-
-
-
 
 
 
@@ -47,6 +43,8 @@
 // @codekit-prepend "controllers/question.js"
 // @codekit-prepend "controllers/dashboard.js"
 // @codekit-prepend "controllers/category.js"
+
+// @codekit-prepend "controllers/forms/BoxersFormController.js"
 
 // @codekit-prepend "controllers/main.js"
 

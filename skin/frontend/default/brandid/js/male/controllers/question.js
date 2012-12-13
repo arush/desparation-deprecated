@@ -24,95 +24,82 @@ function QuestionController($scope,$routeParams,questionLoader,brandsLoader,$loc
 				questionDecider = 'brands';
 				$routeParams.question = 'brands';
 				break;
-			case 'brands':
-				questionDecider = 'brands';
-				break;
 			default:
 				// or dashboard
-				questionDecider = 'start';
+				questionDecider = $routeParams.question;
 				break;
 		}
 		
 		$scope.detailTemplate = 'section/' + $routeParams.section + '/category/' + $routeParams.category + '/question/' + questionDecider + '.html';
 
-	/***** FINALISE ROUTING & TEMPLATES *****/
+	/***** END FINALISE ROUTING & TEMPLATES *****/
 
 
-	/***** BRANDS PRE-POPULATE BUTTONS ******/
+	// ***** QUESTION RELATED FUNCTIONS ***** //
+
+    $scope.goToNextQuestion = function(section,category,question,answer) {
+
+    	// save the answer to browser memory
+		$scope.user.male_answers[section][category][question] = answer;
+
+    	// and if the user is logged in, save overwriting old data
+    	if($scope.currentUser) {
+    		// for readability
+    		var objectToSave = $scope.user.male_answers;
+    		console.log(objectToSave);
+    		$scope.currentUser.set("male_answers",objectToSave);
+
+    		console.log($scope.currentUser);
+
+    		$scope.currentUser.save(null, {
+			  success: function(user) {
+			    // The object was saved successfully.
+			    Parse.User.current().fetch({});
+			    // console.log(user);
+			    alert("saving succeeded");
+
+			  },
+			  error: function(user, error) {
+			    // The save failed.
+			    // error is a Parse.Error with an error code and description.
+			    alert("saving failed");
+			    console.log(error);
+			  }
+			});
+
+    	}
+    	
 
 
-		// retrieve brand data from service so we can use it below in the buttons
-		var valueBrands = brandsLoader.getValueBrands($routeParams.category);
-		var premiumBrands = brandsLoader.getPremiumBrands($routeParams.category);
-		var skateBrands = brandsLoader.getSkateBrands($routeParams.category);
+    	var questionRouter = '';
 
-		// TODO: put these in a .json file and retrieve via AJAX
-
-		if ($locale.id === 'en-gb') {
-
-			$scope.brandsQuestion = "What brands do you want? Hint: You can type in your favourite brand and we guarantee we will find it for you";
-
-			// Fetch the set of answers
-
-
-			$scope.brandsButtons = [
-				{
-					brandType: 'value',
-					label: 'Value Brands',
-					priceLower: valueBrands.priceRange.lower,
-					priceUpper: valueBrands.priceRange.upper
-				},
-				{
-					brandType: 'premium',
-					label: 'Premium Brands',
-					priceLower: premiumBrands.priceRange.lower,
-					priceUpper: premiumBrands.priceRange.upper
-				},
-				{
-					brandType: 'skate',
-					label: 'Skate / Snow',
-					priceLower: skateBrands.priceRange.lower,
-					priceUpper: skateBrands.priceRange.upper
-				},
-
-			];
-
-		} else {
-			// another language
+		switch(question) {
+			case 'start':
+				questionRouter = 'brands';
+				break;
+			case 'brands':
+				questionRouter = 'size';
+				break;
+			case 'size':
+				questionRouter = 'size';
+				break;
+			default:
+				// or dashboard
+				questionRouter = $routeParams.question;
+				break;
 		}
-
-	/***** END BRANDS PRE-POPULATE BUTTONS ******/
-
-
-	/***** SELECT2 BRANDS DROPDOWN ******/
-
-		// add all the brands retrieved from the service to the $scope.brands object
 		
-		// this has to be done by doing a deep copy - copying objects is a javascript limitation
-		$scope.brands = JSON.parse(JSON.stringify(valueBrands.brands));
+		var nextQuestionPath = 'section/' + $routeParams.section + '/category/' + $routeParams.category + '/question/' + questionRouter + '.html';
 
-		angular.forEach(premiumBrands.brands, function(premiumBrand) {
-			var copyOfPremiumBrand = JSON.parse(JSON.stringify(premiumBrand));
-			$scope.brands.push(copyOfPremiumBrand);
-		});
 
-		// TODO: do not add skate brands to $scope.brands if skate brands do not apply to this category
-		angular.forEach(skateBrands.brands, function(skateBrand) {
-			var copyOfSkateBrand = JSON.parse(JSON.stringify(skateBrand));
-			$scope.brands.push(copyOfSkateBrand);
-		});
+    	$location.path(nextQuestionPath);
+      
 
-		$scope.selectedBrands = [];
-		
-	/***** SELECT2 BRANDS DROPDOWN ******/
+    }
 
-	/**
-	*  Controller Functions
-	*/
+    // ***** END QUESTION RELATED FUNCTIONS ***** //
 
-	$scope.chooseBrands = function(category,brandType) {
-		$scope.selectedBrands = brandsLoader.getAllBrandsFilteredBy(category,brandType);
-	};
+	
 
 }
 QuestionController.$inject = ['$scope','$routeParams','questionLoader','brandsLoader','$location','$locale'];

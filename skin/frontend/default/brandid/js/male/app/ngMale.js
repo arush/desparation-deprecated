@@ -10,6 +10,10 @@ ngMaleApp.config(function ($routeProvider) {
          // templateUrl:'start.html',
          controller:MainController
       })
+      .when('/register', {
+         templateUrl:'register.html',
+         controller:MainController
+      })
       .when('/section/:section/category/:category', {
         // redirectTo:'/section/intro'
         // bring this back if we want a pre-intro screen

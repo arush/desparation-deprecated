@@ -17,9 +17,12 @@
     		Gifts
     	</a>
     	<a href="/mens-clothing.html" class="convert secondary">Try it!</a>
-    	<a href="/customer/account/login" class="top-nav-link">
+    	<a ng-hide="loggedIn" ng-click="loginModalShown=true" class="top-nav-link">
     		Login
     	</a>
+        <a ng-show="loggedIn" class="profile-image-container" ng-click="myAccountModalShown=true">
+            <img class="scale-with-grid profile-image-circle withShadow" ng-src="https://graph.facebook.com/{{user.fbID}}/picture" alt="your profile image"/>
+        </a>
     </div>
   </div>
 </div>

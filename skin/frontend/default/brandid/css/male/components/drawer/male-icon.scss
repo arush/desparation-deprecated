@@ -24,7 +24,7 @@ img.male-round, .male-back, .male-label-box {
 	position:absolute;
 	top:0;
 	left:0;
-	z-index:2000;
+	z-index:20;
 }
 .male-back, .male-loading, .male-label-box {
 	background-color:#FFF;
@@ -32,7 +32,7 @@ img.male-round, .male-back, .male-label-box {
 }
 
 .male-label-box {
-	z-index:5000;
+	z-index:50;
 	background:none;
 	margin:0 auto;
 	font-family:ff-enzo-web,helvetica,sans-serif;

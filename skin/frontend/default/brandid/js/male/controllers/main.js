@@ -7,10 +7,131 @@
  */
 function MainController($scope,StateMachine,DataService,$locale,$routeParams) {
 
-  // console.log("statemachine\n" + StateMachine);
-  /**
-   *  Controller Functions
-   */
+  // ***** CONTROLLER PROPERTIES ***** //
+
+    // this is the current session's user, which gets destroyed when the browser closes. it will only hold one set of answers at a time per item,
+    // and that answer get
+    $scope.user = {
+      male_answers: {
+        garms : {
+          socks: {
+            brands: [],
+            size: [],
+            colours: [],
+            specifics: []
+          },
+          boxers: {
+            brands: [],
+            size: [],
+            colours: [],
+            specifics: []
+          },
+          tshirts: {
+            brands: [],
+            size: [],
+            colours: [],
+            specifics: []
+          },
+          jumpers: {
+            brands: [],
+            size: [],
+            colours: [],
+            specifics: []
+          },
+          hoodies: {
+            brands: [],
+            size: [],
+            colours: [],
+            specifics: []
+          },
+          shoes: {
+            brands: [],
+            size: [],
+            colours: [],
+            specifics: []
+          },
+          other: {
+            brands: [],
+            size: [],
+            colours: [],
+            specifics: []
+          }
+        }
+      }
+    };
+    $scope.currentUser = false;
+    $scope.loggedIn = false;
+    $scope.feedback = {
+      section: $routeParams.section,
+      category: $routeParams.category,
+      question: $routeParams.question,
+      message: ""
+    };
+
+    if(typeof(BrowserDetect) !== "undefined") {
+      $scope.feedback.OS = BrowserDetect.OS;
+      $scope.feedback.browser = BrowserDetect.browser + " " + BrowserDetect.version;
+    }
+    
+
+  // ***** END CONTROLLER PROPERTIES ***** //
+
+
+  // ***** CONTROLLER FUNCTIONS ***** //
+
+    // ***** FEEDBACK ON EVERY PAGE ***** //
+
+        $scope.submitFeedback = function(section,category,question) {
+          alert('got it');
+          console.log($scope.feedback);
+          DataService.submitFeedback($scope.feedback, section, category, question);
+        }
+    // ***** FEEDBACK ON EVERY PAGE ***** //
+
+    // ***** LOGIN FUNCTIONS ***** //
+
+        $scope.setUserProfileImage = function() {
+
+          // we have 2 user objects, because one is a reference to the actual Parse.User object, and the other is for easy use in the templates
+          $scope.user.fbID = $scope.currentUser.attributes.authData.facebook.id;
+
+
+        };
+
+
+        $scope.fbLogin = function() {
+
+          // passes the angular scope object by reference, and the service sets $scope.user.profileImageUrl after logging them into facebook
+          var loggedIn = DataService.fbLogin($scope.user);
+
+        }
+
+    // ***** END LOGIN FUNCTIONS ***** //
+
+
+    $scope.init = function() {
+
+      // make a reference to the Parse.User object
+      $scope.currentUser = Parse.User.current();
+      
+      if ($scope.currentUser) {
+          
+          $scope.setUserProfileImage();
+          $scope.loggedIn = true;
+
+      } else {
+          // TODO: whatevers needed for not-logged-in users
+
+      }
+      
+      
+    }
+
+
+    $scope.init();
+
+
+  // ***** END CONTROLLER FUNCTIONS ***** //
 
 
   // this is so the menu can access current url parameters and highlight the current menu selection
@@ -55,12 +176,6 @@ function MainController($scope,StateMachine,DataService,$locale,$routeParams) {
     // another language
     // another currency
   }
-
-  $scope.user = {
-    firstName: "test",
-    lastName: null,
-    email: null,
-  };
 
 
   $scope.menu = [

@@ -17,7 +17,7 @@
 }
 
 .answers {
-	margin:20px 0;
+	margin:5% 0;
 
 
 
@@ -52,10 +52,22 @@ input.tags-field {
 
 
 .next-question-button-section {
-	margin:20px 0;
+	margin:5% 0;
 
 	a.convert {
 		float:right;
 		width:150px;
 	}
 }
+
+/* NEXT BUTTON */
+
+button.convert.submit {
+	float:right;
+	width:150px;
+	font-size:14px;
+	height:42px;
+	line-height:42px;
+}
+
+/*  */

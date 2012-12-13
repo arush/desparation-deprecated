@@ -55,4 +55,21 @@
 		margin-top:-2px;
 		width:80px;
 	}
+	
+}
+
+img.profile-image-circle {
+	float:left;
+	@include border-radius(100px);
+	
+	// without the below, it throws the rest of the buttons off
+	vertical-align:bottom;
+	margin:0 0 -15px 0;
+}
+
+.profile-image-container {
+	cursor:pointer;
+	width:40px;
+	display:inline-block;
+	margin-left: 35px;
 }

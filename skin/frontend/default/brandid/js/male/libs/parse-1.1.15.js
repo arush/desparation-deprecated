@@ -1,7 +1,7 @@
 /*!
  * Parse JavaScript SDK
- * Version: 1.1.11
- * Built: Wed Nov 14 2012 15:21:56
+ * Version: 1.1.15
+ * Built: Wed Dec 05 2012 15:59:58
  * http://parse.com
  *
  * Copyright 2012 Parse, Inc.
@@ -13,7 +13,7 @@
  */
 (function(root) {
   root.Parse = root.Parse || {};
-  root.Parse.VERSION = "js1.1.11";
+  root.Parse.VERSION = "js1.1.15";
 }(this));
 
 
@@ -2769,7 +2769,16 @@
       if (!oldValue) {
         return [];
       } else {
-        return _.difference(oldValue, this.objects());
+        var newValue = _.difference(oldValue, this.objects());
+        // If there are saved Parse Objects being removed, also remove them.
+        _.each(this.objects(), function(obj) {
+          if (obj instanceof Parse.Object && obj.id) {
+            newValue = _.reject(newValue, function(other) {
+              return (other instanceof Parse.Object) && (other.id === obj.id);
+            });
+          }
+        });
+        return newValue;
       }
     }
   });
@@ -4580,7 +4589,8 @@
       // Insert models into the collection, re-sorting if needed, and triggering
       // `add` events unless silenced.
       this.length += length;
-      index = options.at || this.models.length;
+      index = Parse._isNullOrUndefined(options.at) ? 
+          this.models.length : options.at;
       this.models.splice.apply(this.models, [index, 0].concat(models));
       if (this.comparator) {
         this.sort({silent: true});
@@ -6377,6 +6387,7 @@
   
   var initialized = false;
   var requestedPermissions;
+  var initOptions;
   var provider = {
     authenticate: function(options) {
       var self = this;
@@ -6407,9 +6418,9 @@
           expiresIn: (Parse._parseDate(authData.expiration_date).getTime() -
               (new Date()).getTime()) / 1000
         };
-        FB.Auth.setAuthResponse(authResponse, 'connected');
-      } else {
-        FB.Auth.setAuthResponse(null, 'unknown');
+        var newOptions = _.clone(initOptions);
+        newOptions.authResponse = authResponse;
+        FB.init(newOptions);
       }
       return true;
     },
@@ -6418,6 +6429,7 @@
     },
     deauthenticate: function() {
       this.restoreAuthentication(null);
+      FB.logout();
     }
   };
 
@@ -6445,7 +6457,8 @@
       if (typeof(FB) === 'undefined') {
         throw "The Javascript Facebook SDK must be loaded before calling init.";
       } 
-      FB.init(options);
+      initOptions = _.clone(options);
+      FB.init(initOptions);
       Parse.User._registerAuthenticationProvider(provider);
       initialized = true;
     },
@@ -6546,7 +6559,7 @@
    * History serves as a global router (per frame) to handle hashchange
    * events or pushState, match the appropriate route, and trigger
    * callbacks. You shouldn't ever have to create one of these yourself
-   * â€” you should use the reference to <code>Parse.history</code>
+   * — you should use the reference to <code>Parse.history</code>
    * that will be created for you automatically if you make use of 
    * Routers with routes.
    * @class

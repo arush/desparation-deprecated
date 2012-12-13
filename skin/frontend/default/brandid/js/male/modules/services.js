@@ -14,70 +14,74 @@ angular.module('DataServices', [])
     // Initialize Parse API and objects.
     Parse.initialize("oB4lSEsDL1MuJbLiTe4pHQbNvCJAzfu4nUMdsLL2", "LZ88ABUjZ0l92Nogc3TlCWRlGeKWBkqOXWw382hu");
 
-    // Define Parse Model and Collection for Signature records (firstName, lastName, email, signature, and petitionId)
-    var Signature = Parse.Object.extend("signature");
-    var SignatureCollection = Parse.Collection.extend({ model: Signature });
 
-    // Define Parse Model and Collection for Petitions. 
-    var Petition = Parse.Object.extend("petition");
-    var PetitionCollection = Parse.Collection.extend({ model: Petition });
+    // Define Parse Models
+    var Feedback = Parse.Object.extend("feedback");
+
 
     /**
      * ParseService Object
      * This is what is used by the main controller to save and retrieve data from Parse.com.
-     * Moving all the Parse.com specific stuff into a service allows me to later swap it out 
-     * with another back-end service provider without modifying my controller much, if at all.
+     * Moving all the Parse.com specific stuff into a service allows us to later swap it out 
+     * with another back-end service or localStorage without modifying my controller much, if at all.
      */
     var ParseService = {
       name: "Parse",
       
-      // Retrieve all petitions
-      getPetitions : function getPetitions(callback) {
-        // Instantiate a petition collection
-        var petitions = new PetitionCollection();
+      fbLogin: function(brandidUser) {
+      
+        var self = this;
 
-        // Use Parse's fetch method (a modified version of backbone.js fetch) to get all the petitions.
-        petitions.fetch({
-          success: function (results) {
-              // Send the petition collection back to the caller if it is succesfully populated. 
-              callback(petitions);
+        Parse.FacebookUtils.logIn("user_likes,email,user_photos", {
+          success: function(user) {
+            // Handle successful login
+
+            // self.updateUserWithFbDetails(brandidUser);
+
+
+            location.reload();
+
           },
-          error: function ( results,error) {
-              alert("Collection Error: " + error.message);
+          error: function(user, error) {
+            // Handle errors and cancellation
+            alert('Something went wrong, please let M.A.L.E. know so he can fix it - male@getbrandid.com or @MALE');
+
+            console.log("error:");
+            console.log(error);
+
           }
+
         });
+
       },
 
-      // Save the data from the signature form to Parse.com
-      saveSignature : function saveSignature(data, callback){
-        var sig = new Signature();
-        sig.save( data,
-                  {
-                    success: function (obj) {
-                      callback(obj);
-                    },
-                    error: function (obj, error) {
-                      alert("Error: " + error.message);
-                    }
-                  }
-        );
+      updateUserWithFbDetails: function(brandidUser) {
+
+        brandidUser.fbID = FB.getUserID();
+
       },
 
-      // Get signature data for a specified petition
-      getSignatures : function getSignatures(petitionId, callback) {
-        // Create a new Parse Query object in order to search Signature records by petitionId
-        var query = new Parse.Query(Signature);
-        query.equalTo("petitionId", petitionId);
-        // Use the find method to retreive all signatures with the given petitionId
-        query.find({
-          success: function (results) {
-            callback(results);
-          },
-          error: function (error) {
-            alert("Error: " + error.message);
-          }
-        });
+      getCurrentUser: function() {
+        return Parse.User.current();
+      },
+      
+      // feedback form on every page
+      submitFeedback: function(userFeedback,section,category,question) {
+        
+        // Instantiate a feedback object
+        var feedback = new Feedback();
+
+        feedback.set("section",section);
+        feedback.set("category",category);
+        feedback.set("question",question);
+        feedback.set("message",userFeedback.message);
+        feedback.set("browser",userFeedback.browser);
+        feedback.set("OS",userFeedback.OS);
+
+
+
       }
+      
     
     };
 

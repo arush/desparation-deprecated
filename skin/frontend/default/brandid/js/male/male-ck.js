@@ -23878,13 +23878,13 @@ var styleDirective = valueFn({
 angular.element(document).find('head').append('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak{display:none;}ng\\:form{display:block;}</style>');
 
 /* **********************************************
-     Begin parse-1.1.11.js
+     Begin parse-1.1.15.js
 ********************************************** */
 
 /*!
  * Parse JavaScript SDK
- * Version: 1.1.11
- * Built: Wed Nov 14 2012 15:21:56
+ * Version: 1.1.15
+ * Built: Wed Dec 05 2012 15:59:58
  * http://parse.com
  *
  * Copyright 2012 Parse, Inc.
@@ -23896,7 +23896,7 @@ angular.element(document).find('head').append('<style type="text/css">@charset "
  */
 (function(root) {
   root.Parse = root.Parse || {};
-  root.Parse.VERSION = "js1.1.11";
+  root.Parse.VERSION = "js1.1.15";
 }(this));
 
 
@@ -26652,7 +26652,16 @@ angular.element(document).find('head').append('<style type="text/css">@charset "
       if (!oldValue) {
         return [];
       } else {
-        return _.difference(oldValue, this.objects());
+        var newValue = _.difference(oldValue, this.objects());
+        // If there are saved Parse Objects being removed, also remove them.
+        _.each(this.objects(), function(obj) {
+          if (obj instanceof Parse.Object && obj.id) {
+            newValue = _.reject(newValue, function(other) {
+              return (other instanceof Parse.Object) && (other.id === obj.id);
+            });
+          }
+        });
+        return newValue;
       }
     }
   });
@@ -28463,7 +28472,8 @@ angular.element(document).find('head').append('<style type="text/css">@charset "
       // Insert models into the collection, re-sorting if needed, and triggering
       // `add` events unless silenced.
       this.length += length;
-      index = options.at || this.models.length;
+      index = Parse._isNullOrUndefined(options.at) ? 
+          this.models.length : options.at;
       this.models.splice.apply(this.models, [index, 0].concat(models));
       if (this.comparator) {
         this.sort({silent: true});
@@ -30260,6 +30270,7 @@ angular.element(document).find('head').append('<style type="text/css">@charset "
   
   var initialized = false;
   var requestedPermissions;
+  var initOptions;
   var provider = {
     authenticate: function(options) {
       var self = this;
@@ -30290,9 +30301,9 @@ angular.element(document).find('head').append('<style type="text/css">@charset "
           expiresIn: (Parse._parseDate(authData.expiration_date).getTime() -
               (new Date()).getTime()) / 1000
         };
-        FB.Auth.setAuthResponse(authResponse, 'connected');
-      } else {
-        FB.Auth.setAuthResponse(null, 'unknown');
+        var newOptions = _.clone(initOptions);
+        newOptions.authResponse = authResponse;
+        FB.init(newOptions);
       }
       return true;
     },
@@ -30301,6 +30312,7 @@ angular.element(document).find('head').append('<style type="text/css">@charset "
     },
     deauthenticate: function() {
       this.restoreAuthentication(null);
+      FB.logout();
     }
   };
 
@@ -30328,7 +30340,8 @@ angular.element(document).find('head').append('<style type="text/css">@charset "
       if (typeof(FB) === 'undefined') {
         throw "The Javascript Facebook SDK must be loaded before calling init.";
       } 
-      FB.init(options);
+      initOptions = _.clone(options);
+      FB.init(initOptions);
       Parse.User._registerAuthenticationProvider(provider);
       initialized = true;
     },
@@ -30429,7 +30442,7 @@ angular.element(document).find('head').append('<style type="text/css">@charset "
    * History serves as a global router (per frame) to handle hashchange
    * events or pushState, match the appropriate route, and trigger
    * callbacks. You shouldn't ever have to create one of these yourself
-   * â€” you should use the reference to <code>Parse.history</code>
+   * — you should use the reference to <code>Parse.history</code>
    * that will be created for you automatically if you make use of 
    * Routers with routes.
    * @class
@@ -31328,6 +31341,256 @@ angular.element(document).find('head').append('<style type="text/css">@charset "
     return Stately;
 
 });
+
+/* **********************************************
+     Begin bootstrap-modal-2.2.2.js
+********************************************** */
+
+/* =========================================================
+ * bootstrap-modal.js v2.2.2
+ * http://twitter.github.com/bootstrap/javascript.html#modals
+ * =========================================================
+ * Copyright 2012 Twitter, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ========================================================= */
+
+
+!function ($) {
+
+  "use strict"; // jshint ;_;
+
+
+ /* MODAL CLASS DEFINITION
+  * ====================== */
+
+  var Modal = function (element, options) {
+    this.options = options
+    this.$element = $(element)
+      .delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this))
+    this.options.remote && this.$element.find('.modal-body').load(this.options.remote)
+  }
+
+  Modal.prototype = {
+
+      constructor: Modal
+
+    , toggle: function () {
+        return this[!this.isShown ? 'show' : 'hide']()
+      }
+
+    , show: function () {
+        var that = this
+          , e = $.Event('show')
+
+        this.$element.trigger(e)
+
+        if (this.isShown || e.isDefaultPrevented()) return
+
+        this.isShown = true
+
+        this.escape()
+
+        this.backdrop(function () {
+          var transition = $.support.transition && that.$element.hasClass('fade')
+
+          if (!that.$element.parent().length) {
+            that.$element.appendTo(document.body) //don't move modals dom position
+          }
+
+          that.$element
+            .show()
+
+          if (transition) {
+            that.$element[0].offsetWidth // force reflow
+          }
+
+          that.$element
+            .addClass('in')
+            .attr('aria-hidden', false)
+
+          that.enforceFocus()
+
+          transition ?
+            that.$element.one($.support.transition.end, function () { that.$element.focus().trigger('shown') }) :
+            that.$element.focus().trigger('shown')
+
+        })
+      }
+
+    , hide: function (e) {
+        e && e.preventDefault()
+
+        var that = this
+
+        e = $.Event('hide')
+
+        this.$element.trigger(e)
+
+        if (!this.isShown || e.isDefaultPrevented()) return
+
+        this.isShown = false
+
+        this.escape()
+
+        $(document).off('focusin.modal')
+
+        this.$element
+          .removeClass('in')
+          .attr('aria-hidden', true)
+
+        $.support.transition && this.$element.hasClass('fade') ?
+          this.hideWithTransition() :
+          this.hideModal()
+      }
+
+    , enforceFocus: function () {
+        var that = this
+        $(document).on('focusin.modal', function (e) {
+          if (that.$element[0] !== e.target && !that.$element.has(e.target).length) {
+            that.$element.focus()
+          }
+        })
+      }
+
+    , escape: function () {
+        var that = this
+        if (this.isShown && this.options.keyboard) {
+          this.$element.on('keyup.dismiss.modal', function ( e ) {
+            e.which == 27 && that.hide()
+          })
+        } else if (!this.isShown) {
+          this.$element.off('keyup.dismiss.modal')
+        }
+      }
+
+    , hideWithTransition: function () {
+        var that = this
+          , timeout = setTimeout(function () {
+              that.$element.off($.support.transition.end)
+              that.hideModal()
+            }, 500)
+
+        this.$element.one($.support.transition.end, function () {
+          clearTimeout(timeout)
+          that.hideModal()
+        })
+      }
+
+    , hideModal: function (that) {
+        this.$element
+          .hide()
+          .trigger('hidden')
+
+        this.backdrop()
+      }
+
+    , removeBackdrop: function () {
+        this.$backdrop.remove()
+        this.$backdrop = null
+      }
+
+    , backdrop: function (callback) {
+        var that = this
+          , animate = this.$element.hasClass('fade') ? 'fade' : ''
+
+        if (this.isShown && this.options.backdrop) {
+          var doAnimate = $.support.transition && animate
+
+          this.$backdrop = $('<div class="modal-backdrop ' + animate + '" />')
+            .appendTo(document.body)
+
+          this.$backdrop.click(
+            this.options.backdrop == 'static' ?
+              $.proxy(this.$element[0].focus, this.$element[0])
+            : $.proxy(this.hide, this)
+          )
+
+          if (doAnimate) this.$backdrop[0].offsetWidth // force reflow
+
+          this.$backdrop.addClass('in')
+
+          doAnimate ?
+            this.$backdrop.one($.support.transition.end, callback) :
+            callback()
+
+        } else if (!this.isShown && this.$backdrop) {
+          this.$backdrop.removeClass('in')
+
+          $.support.transition && this.$element.hasClass('fade')?
+            this.$backdrop.one($.support.transition.end, $.proxy(this.removeBackdrop, this)) :
+            this.removeBackdrop()
+
+        } else if (callback) {
+          callback()
+        }
+      }
+  }
+
+
+ /* MODAL PLUGIN DEFINITION
+  * ======================= */
+
+  var old = $.fn.modal
+
+  $.fn.modal = function (option) {
+    return this.each(function () {
+      var $this = $(this)
+        , data = $this.data('modal')
+        , options = $.extend({}, $.fn.modal.defaults, $this.data(), typeof option == 'object' && option)
+      if (!data) $this.data('modal', (data = new Modal(this, options)))
+      if (typeof option == 'string') data[option]()
+      else if (options.show) data.show()
+    })
+  }
+
+  $.fn.modal.defaults = {
+      backdrop: true
+    , keyboard: true
+    , show: true
+  }
+
+  $.fn.modal.Constructor = Modal
+
+
+ /* MODAL NO CONFLICT
+  * ================= */
+
+  $.fn.modal.noConflict = function () {
+    $.fn.modal = old
+    return this
+  }
+
+
+ /* MODAL DATA-API
+  * ============== */
+
+  $(document).on('click.modal.data-api', '[data-toggle="modal"]', function (e) {
+    var $this = $(this)
+      , href = $this.attr('href')
+      , $target = $($this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, ''))) //strip for ie7
+      , option = $target.data('modal') ? 'toggle' : $.extend({ remote:!/#/.test(href) && href }, $target.data(), $this.data())
+
+    e.preventDefault()
+
+    $target
+      .modal(option)
+      .one('hide', function () {
+        $this.focus()
+      })
+  })
+
+}(window.jQuery);
 
 /* **********************************************
      Begin angular-ui.js
@@ -34969,6 +35232,10 @@ ngMaleApp.config(function ($routeProvider) {
          // templateUrl:'start.html',
          controller:MainController
       })
+      .when('/register', {
+         templateUrl:'register.html',
+         controller:MainController
+      })
       .when('/section/:section/category/:category', {
         // redirectTo:'/section/intro'
         // bring this back if we want a pre-intro screen
@@ -35593,95 +35860,82 @@ function QuestionController($scope,$routeParams,questionLoader,brandsLoader,$loc
 				questionDecider = 'brands';
 				$routeParams.question = 'brands';
 				break;
-			case 'brands':
-				questionDecider = 'brands';
-				break;
 			default:
 				// or dashboard
-				questionDecider = 'start';
+				questionDecider = $routeParams.question;
 				break;
 		}
 		
 		$scope.detailTemplate = 'section/' + $routeParams.section + '/category/' + $routeParams.category + '/question/' + questionDecider + '.html';
 
-	/***** FINALISE ROUTING & TEMPLATES *****/
+	/***** END FINALISE ROUTING & TEMPLATES *****/
 
 
-	/***** BRANDS PRE-POPULATE BUTTONS ******/
+	// ***** QUESTION RELATED FUNCTIONS ***** //
+
+    $scope.goToNextQuestion = function(section,category,question,answer) {
+
+    	// save the answer to browser memory
+		$scope.user.male_answers[section][category][question] = answer;
+
+    	// and if the user is logged in, save overwriting old data
+    	if($scope.currentUser) {
+    		// for readability
+    		var objectToSave = $scope.user.male_answers;
+    		console.log(objectToSave);
+    		$scope.currentUser.set("male_answers",objectToSave);
+
+    		console.log($scope.currentUser);
+
+    		$scope.currentUser.save(null, {
+			  success: function(user) {
+			    // The object was saved successfully.
+			    Parse.User.current().fetch({});
+			    // console.log(user);
+			    alert("saving succeeded");
+
+			  },
+			  error: function(user, error) {
+			    // The save failed.
+			    // error is a Parse.Error with an error code and description.
+			    alert("saving failed");
+			    console.log(error);
+			  }
+			});
+
+    	}
+    	
 
 
-		// retrieve brand data from service so we can use it below in the buttons
-		var valueBrands = brandsLoader.getValueBrands($routeParams.category);
-		var premiumBrands = brandsLoader.getPremiumBrands($routeParams.category);
-		var skateBrands = brandsLoader.getSkateBrands($routeParams.category);
+    	var questionRouter = '';
 
-		// TODO: put these in a .json file and retrieve via AJAX
-
-		if ($locale.id === 'en-gb') {
-
-			$scope.brandsQuestion = "What brands do you want? Hint: You can type in your favourite brand and we guarantee we will find it for you";
-
-			// Fetch the set of answers
-
-
-			$scope.brandsButtons = [
-				{
-					brandType: 'value',
-					label: 'Value Brands',
-					priceLower: valueBrands.priceRange.lower,
-					priceUpper: valueBrands.priceRange.upper
-				},
-				{
-					brandType: 'premium',
-					label: 'Premium Brands',
-					priceLower: premiumBrands.priceRange.lower,
-					priceUpper: premiumBrands.priceRange.upper
-				},
-				{
-					brandType: 'skate',
-					label: 'Skate / Snow',
-					priceLower: skateBrands.priceRange.lower,
-					priceUpper: skateBrands.priceRange.upper
-				},
-
-			];
-
-		} else {
-			// another language
+		switch(question) {
+			case 'start':
+				questionRouter = 'brands';
+				break;
+			case 'brands':
+				questionRouter = 'size';
+				break;
+			case 'size':
+				questionRouter = 'size';
+				break;
+			default:
+				// or dashboard
+				questionRouter = $routeParams.question;
+				break;
 		}
-
-	/***** END BRANDS PRE-POPULATE BUTTONS ******/
-
-
-	/***** SELECT2 BRANDS DROPDOWN ******/
-
-		// add all the brands retrieved from the service to the $scope.brands object
 		
-		// this has to be done by doing a deep copy - copying objects is a javascript limitation
-		$scope.brands = JSON.parse(JSON.stringify(valueBrands.brands));
+		var nextQuestionPath = 'section/' + $routeParams.section + '/category/' + $routeParams.category + '/question/' + questionRouter + '.html';
 
-		angular.forEach(premiumBrands.brands, function(premiumBrand) {
-			var copyOfPremiumBrand = JSON.parse(JSON.stringify(premiumBrand));
-			$scope.brands.push(copyOfPremiumBrand);
-		});
 
-		// TODO: do not add skate brands to $scope.brands if skate brands do not apply to this category
-		angular.forEach(skateBrands.brands, function(skateBrand) {
-			var copyOfSkateBrand = JSON.parse(JSON.stringify(skateBrand));
-			$scope.brands.push(copyOfSkateBrand);
-		});
+    	$location.path(nextQuestionPath);
+      
 
-		$scope.selectedBrands = [];
-		
-	/***** SELECT2 BRANDS DROPDOWN ******/
+    }
 
-	/**
-	*  Controller Functions
-	*/
+    // ***** END QUESTION RELATED FUNCTIONS ***** //
 
-	$scope.chooseBrands = function(category,brandType) {
-		$scope.selectedBrands = brandsLoader.getAllBrandsFilteredBy(category,brandType);
-	};
+	
 
 }
 QuestionController.$inject = ['$scope','$routeParams','questionLoader','brandsLoader','$location','$locale'];
@@ -35848,6 +36102,105 @@ function CategoryController($scope,$routeParams,questionLoader,$locale,$location
 CategoryController.$inject = ['$scope','$routeParams','questionLoader','$locale','$location'];
 
 /* **********************************************
+     Begin BoxersFormController.js
+********************************************** */
+
+function BoxersFormController($scope,$routeParams,brandsLoader,$locale) {
+
+	/***** CONTROLLER PROPERTIES ******/
+
+		$scope.routeParams = $routeParams;
+
+
+	/***** END CONTROLLER PROPERTIES ******/
+
+
+		// retrieve brand data from service so we can use it below in the buttons
+		var valueBrands = brandsLoader.getValueBrands($routeParams.category);
+		var premiumBrands = brandsLoader.getPremiumBrands($routeParams.category);
+		var skateBrands = brandsLoader.getSkateBrands($routeParams.category);
+
+		// TODO: put these in a .json file and retrieve via AJAX
+
+		if ($locale.id === 'en-gb') {
+
+			$scope.brandsQuestion = "What brands do you want? Hint: You can type in your favourite brand and we guarantee we will find it for you";
+
+			// Fetch the set of answers
+
+			$scope.typeBrandsTooltip = "Tag your brands here. If it's not listed, create it and we'll get it for you. 100% guaranteed.";
+
+			$scope.brandsButtons = [
+				{
+					brandType: 'value',
+					label: 'Value Brands',
+					priceLower: valueBrands.priceRange.lower,
+					priceUpper: valueBrands.priceRange.upper
+				},
+				{
+					brandType: 'premium',
+					label: 'Premium Brands',
+					priceLower: premiumBrands.priceRange.lower,
+					priceUpper: premiumBrands.priceRange.upper
+				},
+				{
+					brandType: 'skate',
+					label: 'Skate / Snow',
+					priceLower: skateBrands.priceRange.lower,
+					priceUpper: skateBrands.priceRange.upper
+				},
+
+			];
+
+		} else {
+			// another language
+		}
+
+	/***** END BRANDS PRE-POPULATE BUTTONS ******/
+
+
+	/***** SELECT2 BRANDS DROPDOWN ******/
+
+		// add all the brands retrieved from the service to the $scope.brands object
+		
+		// this has to be done by doing a deep copy - copying objects is a javascript limitation
+		$scope.brands = JSON.parse(JSON.stringify(valueBrands.brands));
+
+		angular.forEach(premiumBrands.brands, function(premiumBrand) {
+			var copyOfPremiumBrand = JSON.parse(JSON.stringify(premiumBrand));
+			$scope.brands.push(copyOfPremiumBrand);
+		});
+
+		// TODO: do not add skate brands to $scope.brands if skate brands do not apply to this category
+		angular.forEach(skateBrands.brands, function(skateBrand) {
+			var copyOfSkateBrand = JSON.parse(JSON.stringify(skateBrand));
+			$scope.brands.push(copyOfSkateBrand);
+		});
+
+		$scope.selectedBrands = [];
+
+	/***** SELECT2 BRANDS DROPDOWN ******/
+
+
+	/***** CONTROLLER EVENT RESPONDERS ******/
+	
+		$scope.chooseBrands = function(category,brandType) {
+			$scope.selectedBrands = brandsLoader.getAllBrandsFilteredBy(category,brandType);
+		};
+
+		$scope.saveAnswer = function() {
+			// since we defined the answer in the question in the form controller, the parent controller doesn't have access to it
+			// therefore we need to pass the answer by reference
+			$scope.goToNextQuestion($routeParams.section,$routeParams.category,$routeParams.question,/*answer*/$scope.selectedBrands);
+		}
+
+	/***** END CONTROLLER EVENT RESPONDERS ******/
+
+
+}
+BoxersFormController.$inject = ['$scope','$routeParams','brandsLoader','$locale'];
+
+/* **********************************************
      Begin main.js
 ********************************************** */
 
@@ -35860,10 +36213,131 @@ CategoryController.$inject = ['$scope','$routeParams','questionLoader','$locale'
  */
 function MainController($scope,StateMachine,DataService,$locale,$routeParams) {
 
-  // console.log("statemachine\n" + StateMachine);
-  /**
-   *  Controller Functions
-   */
+  // ***** CONTROLLER PROPERTIES ***** //
+
+    // this is the current session's user, which gets destroyed when the browser closes. it will only hold one set of answers at a time per item,
+    // and that answer get
+    $scope.user = {
+      male_answers: {
+        garms : {
+          socks: {
+            brands: [],
+            size: [],
+            colours: [],
+            specifics: []
+          },
+          boxers: {
+            brands: [],
+            size: [],
+            colours: [],
+            specifics: []
+          },
+          tshirts: {
+            brands: [],
+            size: [],
+            colours: [],
+            specifics: []
+          },
+          jumpers: {
+            brands: [],
+            size: [],
+            colours: [],
+            specifics: []
+          },
+          hoodies: {
+            brands: [],
+            size: [],
+            colours: [],
+            specifics: []
+          },
+          shoes: {
+            brands: [],
+            size: [],
+            colours: [],
+            specifics: []
+          },
+          other: {
+            brands: [],
+            size: [],
+            colours: [],
+            specifics: []
+          }
+        }
+      }
+    };
+    $scope.currentUser = false;
+    $scope.loggedIn = false;
+    $scope.feedback = {
+      section: $routeParams.section,
+      category: $routeParams.category,
+      question: $routeParams.question,
+      message: ""
+    };
+
+    if(typeof(BrowserDetect) !== "undefined") {
+      $scope.feedback.OS = BrowserDetect.OS;
+      $scope.feedback.browser = BrowserDetect.browser + " " + BrowserDetect.version;
+    }
+    
+
+  // ***** END CONTROLLER PROPERTIES ***** //
+
+
+  // ***** CONTROLLER FUNCTIONS ***** //
+
+    // ***** FEEDBACK ON EVERY PAGE ***** //
+
+        $scope.submitFeedback = function(section,category,question) {
+          alert('got it');
+          console.log($scope.feedback);
+          DataService.submitFeedback($scope.feedback, section, category, question);
+        }
+    // ***** FEEDBACK ON EVERY PAGE ***** //
+
+    // ***** LOGIN FUNCTIONS ***** //
+
+        $scope.setUserProfileImage = function() {
+
+          // we have 2 user objects, because one is a reference to the actual Parse.User object, and the other is for easy use in the templates
+          $scope.user.fbID = $scope.currentUser.attributes.authData.facebook.id;
+
+
+        };
+
+
+        $scope.fbLogin = function() {
+
+          // passes the angular scope object by reference, and the service sets $scope.user.profileImageUrl after logging them into facebook
+          var loggedIn = DataService.fbLogin($scope.user);
+
+        }
+
+    // ***** END LOGIN FUNCTIONS ***** //
+
+
+    $scope.init = function() {
+
+      // make a reference to the Parse.User object
+      $scope.currentUser = Parse.User.current();
+      
+      if ($scope.currentUser) {
+          
+          $scope.setUserProfileImage();
+          $scope.loggedIn = true;
+
+      } else {
+          // TODO: whatevers needed for not-logged-in users
+
+      }
+      
+      
+    }
+
+
+    $scope.init();
+
+
+  // ***** END CONTROLLER FUNCTIONS ***** //
 
 
   // this is so the menu can access current url parameters and highlight the current menu selection
@@ -35908,12 +36382,6 @@ function MainController($scope,StateMachine,DataService,$locale,$routeParams) {
     // another language
     // another currency
   }
-
-  $scope.user = {
-    firstName: "test",
-    lastName: null,
-    email: null,
-  };
 
 
   $scope.menu = [
@@ -35986,70 +36454,74 @@ angular.module('DataServices', [])
     // Initialize Parse API and objects.
     Parse.initialize("oB4lSEsDL1MuJbLiTe4pHQbNvCJAzfu4nUMdsLL2", "LZ88ABUjZ0l92Nogc3TlCWRlGeKWBkqOXWw382hu");
 
-    // Define Parse Model and Collection for Signature records (firstName, lastName, email, signature, and petitionId)
-    var Signature = Parse.Object.extend("signature");
-    var SignatureCollection = Parse.Collection.extend({ model: Signature });
 
-    // Define Parse Model and Collection for Petitions. 
-    var Petition = Parse.Object.extend("petition");
-    var PetitionCollection = Parse.Collection.extend({ model: Petition });
+    // Define Parse Models
+    var Feedback = Parse.Object.extend("feedback");
+
 
     /**
      * ParseService Object
      * This is what is used by the main controller to save and retrieve data from Parse.com.
-     * Moving all the Parse.com specific stuff into a service allows me to later swap it out 
-     * with another back-end service provider without modifying my controller much, if at all.
+     * Moving all the Parse.com specific stuff into a service allows us to later swap it out 
+     * with another back-end service or localStorage without modifying my controller much, if at all.
      */
     var ParseService = {
       name: "Parse",
       
-      // Retrieve all petitions
-      getPetitions : function getPetitions(callback) {
-        // Instantiate a petition collection
-        var petitions = new PetitionCollection();
+      fbLogin: function(brandidUser) {
+      
+        var self = this;
 
-        // Use Parse's fetch method (a modified version of backbone.js fetch) to get all the petitions.
-        petitions.fetch({
-          success: function (results) {
-              // Send the petition collection back to the caller if it is succesfully populated. 
-              callback(petitions);
+        Parse.FacebookUtils.logIn("user_likes,email,user_photos", {
+          success: function(user) {
+            // Handle successful login
+
+            // self.updateUserWithFbDetails(brandidUser);
+
+
+            location.reload();
+
           },
-          error: function ( results,error) {
-              alert("Collection Error: " + error.message);
+          error: function(user, error) {
+            // Handle errors and cancellation
+            alert('Something went wrong, please let M.A.L.E. know so he can fix it - male@getbrandid.com or @MALE');
+
+            console.log("error:");
+            console.log(error);
+
           }
+
         });
+
       },
 
-      // Save the data from the signature form to Parse.com
-      saveSignature : function saveSignature(data, callback){
-        var sig = new Signature();
-        sig.save( data,
-                  {
-                    success: function (obj) {
-                      callback(obj);
-                    },
-                    error: function (obj, error) {
-                      alert("Error: " + error.message);
-                    }
-                  }
-        );
+      updateUserWithFbDetails: function(brandidUser) {
+
+        brandidUser.fbID = FB.getUserID();
+
       },
 
-      // Get signature data for a specified petition
-      getSignatures : function getSignatures(petitionId, callback) {
-        // Create a new Parse Query object in order to search Signature records by petitionId
-        var query = new Parse.Query(Signature);
-        query.equalTo("petitionId", petitionId);
-        // Use the find method to retreive all signatures with the given petitionId
-        query.find({
-          success: function (results) {
-            callback(results);
-          },
-          error: function (error) {
-            alert("Error: " + error.message);
-          }
-        });
+      getCurrentUser: function() {
+        return Parse.User.current();
+      },
+      
+      // feedback form on every page
+      submitFeedback: function(userFeedback,section,category,question) {
+        
+        // Instantiate a feedback object
+        var feedback = new Feedback();
+
+        feedback.set("section",section);
+        feedback.set("category",category);
+        feedback.set("question",question);
+        feedback.set("message",userFeedback.message);
+        feedback.set("browser",userFeedback.browser);
+        feedback.set("OS",userFeedback.OS);
+
+
+
       }
+      
     
     };
 
@@ -36175,8 +36647,9 @@ angular.module('StateMachines', [])
 
 // @codekit-prepend "libs/jquery-1.8.3.js"
 // @codekit-prepend "libs/angular-1.0.2.js"
-// @codekit-prepend "libs/parse-1.1.11.js"
+// @codekit-prepend "libs/parse-1.1.15.js"
 // @codekit-prepend "libs/stately-1.0.0.js"
+// @codekit-prepend "libs/bootstrap-modal-2.2.2.js"
 
 // @codekit-prepend "libs/angular-ui/build/angular-ui.js"
 // @codekit-prepend "libs/select2/select2.js"
@@ -36184,11 +36657,6 @@ angular.module('StateMachines', [])
 
 
 // @codekit-prepend "libs/jquery-male-typewriter.js"
-
-
-
-
-
 
 
 
@@ -36214,6 +36682,8 @@ angular.module('StateMachines', [])
 // @codekit-prepend "controllers/question.js"
 // @codekit-prepend "controllers/dashboard.js"
 // @codekit-prepend "controllers/category.js"
+
+// @codekit-prepend "controllers/forms/BoxersFormController.js"
 
 // @codekit-prepend "controllers/main.js"
 
