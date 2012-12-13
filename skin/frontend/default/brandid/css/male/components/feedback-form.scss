@@ -1,0 +1,42 @@
+$fieldHeight: 40px;
+$submitButtonHeight: $fieldHeight * 0.8;
+$submitButtonMarginHeight: ($fieldHeight - $submitButtonHeight) / 2;
+$font-size: 14px;
+
+
+.feedback-on-this-page {
+	margin:100px 5% 0;
+
+	.field-with-submit-button-container {
+		width:96%;
+		padding:0px 2%;
+		
+		height:40px;
+		border:1px solid #D9D9D9;
+		background: whiteSmoke;
+
+		input {
+			border:none;
+			padding:10px 0;
+			height:auto;
+			font-size:$font-size;
+			width:70%;
+
+		}
+		button.submit.secondary {
+			background:#9F9F9F;
+			margin:$submitButtonMarginHeight 0;
+			height:$submitButtonHeight;
+			line-height:$submitButtonHeight;
+			font-size:$font-size;
+			font-weight:normal;
+			font-family:"proxima-nova",arial,sans-serif;
+			color:#eeeeee;
+		}
+		button.submit.secondary:hover {
+			color:#FFF;
+		}
+
+	}
+
+}

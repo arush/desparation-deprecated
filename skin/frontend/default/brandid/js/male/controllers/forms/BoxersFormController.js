@@ -21,7 +21,7 @@ function BoxersFormController($scope,$routeParams,brandsLoader,$locale) {
 
 			// Fetch the set of answers
 
-			$scope.typeBrandsTooltip = "Tag your brands here. If it's not listed, create it and we'll get it for you. 100% guaranteed.";
+			$scope.typeBrandsTooltip = "Tag your brands here. If it's not listed, create a new tag it and we'll get it for you. 100% guaranteed.";
 
 			$scope.brandsButtons = [
 				{

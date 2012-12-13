@@ -111,16 +111,17 @@
     <div id="detailView" ng-view>
     </div>
     <div class="feedback-on-this-page">
-        <form>
-          <input name="section" ng-model="routeParams.section">
-          <input name="category" ng-model="routeParams.category">
-          <input name="question" ng-model="routeParams.question">
-          <input name="browser" ng-model="feedback.browser">
-          <input name="OS" ng-model="feedback.OS">
-          <input name="text" ng-model="feedback.message" placeholder="Feedback on this question..." required/>
-
-          <button type="submit" ng-click="submitFeedback(routeParams.section,routeParams.category,routeParams.question)">submit</button>
-
+        <form name="feedbackForm">
+          <input type="hidden" name="section" ng-model="routeParams.section">
+          <input type="hidden" name="category" ng-model="routeParams.category">
+          <input type="hidden" name="question" ng-model="routeParams.question">
+          <input type="hidden" name="browser" ng-model="feedback.browser">
+          <input type="hidden" name="OS" ng-model="feedback.OS">
+          <div class="field-with-submit-button-container clearfix">
+            <input id="feedback-message-text" name="text" ng-model="feedback.message" placeholder="Feedback on this page..." required/>
+            <button ng-hide="feedbackForm.$invalid" type="submit" class="submit convert secondary" ng-click="submitFeedback(routeParams.section,routeParams.category,routeParams.question)">submit</button>
+          </div>
+          
         </form>
         
 

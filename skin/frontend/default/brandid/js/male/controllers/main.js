@@ -82,9 +82,13 @@ function MainController($scope,StateMachine,DataService,$locale,$routeParams) {
     // ***** FEEDBACK ON EVERY PAGE ***** //
 
         $scope.submitFeedback = function(section,category,question) {
-          alert('got it');
-          console.log($scope.feedback);
-          DataService.submitFeedback($scope.feedback, section, category, question);
+          if($scope.feedback.message !== "") {
+
+            // TODO: metrics
+
+            DataService.submitFeedback($scope.currentUser,$scope.feedback, section, category, question);  
+          }
+          
         }
     // ***** FEEDBACK ON EVERY PAGE ***** //
 

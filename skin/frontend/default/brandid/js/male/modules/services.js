@@ -66,8 +66,8 @@ angular.module('DataServices', [])
       },
       
       // feedback form on every page
-      submitFeedback: function(userFeedback,section,category,question) {
-        
+      submitFeedback: function(currentUser,userFeedback,section,category,question) {
+
         // Instantiate a feedback object
         var feedback = new Feedback();
 
@@ -78,8 +78,28 @@ angular.module('DataServices', [])
         feedback.set("browser",userFeedback.browser);
         feedback.set("OS",userFeedback.OS);
 
+        if(currentUser) {
+          feedback.set("user",currentUser);
+        }
 
 
+        // console.log(feedback);
+
+        feedback.save(null, {
+          success: function(feedbackSaved) {
+            // The object was saved successfully.
+
+            jQuery('#feedback-message-text').val("");
+
+            alert("Thanks for your feedback!");
+
+          },
+          error: function(feedbackSaved, error) {
+            // The save failed.
+            // error is a Parse.Error with an error code and description.
+
+          }
+        });
       }
       
     
