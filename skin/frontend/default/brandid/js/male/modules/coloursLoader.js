@@ -73,18 +73,32 @@ Colours.factory('coloursLoader', function() {
 	    getDiscoColoursAll: function(countryCode) {
 	    	var discoColoursAll = {
 	    			"en-gb": [
+	    				"red",
+	    				"green",
 	    				"pink",
 	    				"orange",
 	    				"blue",
 	    				"yellow",
+	    				"purple",
+	    				"multi-coloured",
 	    				"stripes",
-	    				"camouflage"
+	    				"camo",
+	    				"spots",
+	    				"chequered"
 	    			],
 	    			"en-us": [
-	    				"khaki",
-	    				"mauve",
-	    				"chequered",
-	    				"camo"
+	    				"red",
+	    				"green",
+	    				"pink",
+	    				"orange",
+	    				"blue",
+	    				"yellow",
+	    				"purple",
+	    				"multi-colored",
+	    				"stripes",
+	    				"camo",
+	    				"spots",
+	    				"chequered"
 	    			]
 		    };
 
@@ -103,13 +117,17 @@ Colours.factory('coloursLoader', function() {
 	    				"white",
 	    				"light grey",
 	    				"dark grey",
+	    				"navy",
+	    				"brown"
 	    			],
 	    			// this is just a joke, but this is how languages are done
 	    			"en-us": [
-	    				"sunrise",
-	    				"desert",
-	    				"dusk",
-	    				"mist"
+	    				"black",
+	    				"white",
+	    				"light grey",
+	    				"dark grey",
+	    				"navy",
+	    				"brown"
 	    			]
 		    };
 
