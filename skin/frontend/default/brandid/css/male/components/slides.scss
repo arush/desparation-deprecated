@@ -1,6 +1,15 @@
 .slide-container {
 	position:relative;
 	margin:5%;
+
+	h1.question-title {
+		font-weight:bold;
+		font-size:28px;
+		font-family:"proxima-nova",Helvetica,arial,sans-serif;
+		color:#222;
+		letter-spacing:-1px;
+		margin:0 0 20px 0;
+	}
 }
 
 .maleApp {

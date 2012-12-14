@@ -63,7 +63,9 @@
 
   <div  class="drawer-holder shadow-trick-holder {{routeParams.category}}" >
     <div class="drawer shadow-trick right">
-
+      
+      <a ng-click="drawerOpen = !drawerOpen" class="menu-button-dark"></a>
+      
       <a href="#/section/garms/category/intro" class="button-overlay over-male" style="width:100%">
         <div class="male-round">
           <div class="male-holder">
@@ -77,6 +79,8 @@
               <span id="male-label">M.A.L.E.</span>
             </div>
           </div>
+          <a href="https://twitter.com/intent/tweet?screen_name=male" class="twitter-mention-button" data-related="arush">Tweet to @male</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
         </div>
       </a>
 
@@ -160,7 +164,18 @@
       
       <!-- the link here skips the dashboard, because no need for a dashboard for simple questions -->
       <a href="#/section/{{routeParams.section}}/category/{{routeParams.category}}/question/{{submenuItem.question}}" class="button-overlay">
-        <div class="icon {{submenuItem.cssClass}}">{{submenuItem.label}}</div>
+        <div class="icon {{submenuItem.cssClass}}">
+          <div class="v-outer-container">
+
+            <div class="v-inner-container">
+
+              <div class="v-aligned-element">
+                <span class="submenuItem-label">{{submenuItem.label}}</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
         <div class="ani arrow-left"></div>
       </a>
     </div>
@@ -320,7 +335,8 @@
         <form ng-controller="BrandsFormController">
 
           <div class="curved-white-block withShadow withRadius fadeIn ani">
-            <span id="brands">{{brandsQuestion}}</span>
+            <h1 class="question-title">{{questionTitle}}</h1>
+            <span id="brands">{{question}}</span>
           </div>
 
           
@@ -345,7 +361,7 @@
 
 
             <div class="tag-section">
-              {{typeBrandsTooltip}}
+              {{tooltip}}
               <input class="tags-field" ui-select2="{tags:brands}" ng-model="selectedBrands" required/>
             </div>
 

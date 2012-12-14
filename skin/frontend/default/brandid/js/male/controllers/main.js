@@ -154,7 +154,7 @@ function MainController($scope,DataService,$locale,$routeParams) {
   });
 
 
-  $scope.drawerOpen = false;
+  $scope.drawerOpen = true;
 
   $locale.id = "en-gb";
 

@@ -22,6 +22,35 @@ Brands.factory('brandsLoader', function() {
 		    }
 		},
 
+		getQuestionTitle: function(countryCode) {
+			var questionTitle = {
+	    			"en-gb": "What's Your Brand iD?",
+	    			"en-us": "What's Your Brand iD?"
+		    };
+
+			return questionTitle[countryCode];
+
+		},
+
+		getTooltip: function(countryCode) {
+			var tooltip = {
+				"en-gb": "Hint: Type in your favourite brand and we’ll make sure you get it. 100% guaranteed. Got it? Good.",
+				"en-us": "Hint: Type in your favourite brand and we’ll make sure you get it. 100% guaranteed. Got it? Good."
+			};
+			
+			return tooltip[countryCode];
+
+		},
+
+		getQuestion: function(countryCode) {
+			var question = {
+	    			"en-gb": "Ok, this is as hard as it’s going to get. Select the price bracket your wallet likes the look of and we’ll serve you up some brands that fit.",
+	    			"en-us": "What's Your Brand iD?"
+		    };
+
+			return question[countryCode];
+		},
+
 		getSkateBrands: function(category) {
 
 	    	var lowerPriceRange, upperPriceRange;

@@ -13,15 +13,15 @@ function BrandsFormController($scope,$routeParams,brandsLoader,$locale) {
 		var premiumBrands = brandsLoader.getPremiumBrands($routeParams.category);
 		var skateBrands = brandsLoader.getSkateBrands($routeParams.category);
 
+		$scope.questionTitle = brandsLoader.getQuestionTitle($locale.id);
+		$scope.question = brandsLoader.getQuestion($locale.id);
+		$scope.tooltip = brandsLoader.getTooltip($locale.id);
+
 		// TODO: put these in a .json file and retrieve via AJAX
 
 		if ($locale.id === 'en-gb') {
 
-			$scope.brandsQuestion = "Ok, this is as hard as it’s going to get. Select the price bracket your wallet likes the look of and we’ll serve you up some brands that fit.";
-
 			// Fetch the set of answers
-
-			$scope.typeBrandsTooltip = "Hint: Type in your favourite brand and we’ll make sure you get it. 100% guaranteed. Got it? Good.";
 
 			$scope.brandsButtons = [
 				{
