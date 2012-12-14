@@ -15,7 +15,7 @@ Specifics.factory('specificsLoader', function() {
 
     var specificsLoader = {
 
-		getSpecificsQuestion: function(category,countryCode) {
+		getQuestion: function(category,countryCode) {
 
 
 	    	switch(category) {

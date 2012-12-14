@@ -36170,7 +36170,7 @@ Specifics.factory('specificsLoader', function() {
 
     var specificsLoader = {
 
-		getSpecificsQuestion: function(category,countryCode) {
+		getQuestion: function(category,countryCode) {
 
 
 	    	switch(category) {
@@ -36877,7 +36877,7 @@ function SpecificsFormController($scope,$routeParams,specificsLoader,$locale) {
 
 
 		// retrieve brand data from service so we can use it below in the buttons
-		$scope.specificsQuestion = specificsLoader.getSpecificsQuestion($routeParams.category,$locale.id);
+		$scope.question = specificsLoader.getQuestion($routeParams.category,$locale.id);
 
 		// TODO: put these in a .json file and retrieve via AJAX
 
