@@ -35889,18 +35889,32 @@ Colours.factory('coloursLoader', function() {
 	    getDiscoColoursAll: function(countryCode) {
 	    	var discoColoursAll = {
 	    			"en-gb": [
+	    				"red",
+	    				"green",
 	    				"pink",
 	    				"orange",
 	    				"blue",
 	    				"yellow",
+	    				"purple",
+	    				"multi-coloured",
 	    				"stripes",
-	    				"camouflage"
+	    				"camo",
+	    				"spots",
+	    				"chequered"
 	    			],
 	    			"en-us": [
-	    				"khaki",
-	    				"mauve",
-	    				"chequered",
-	    				"camo"
+	    				"red",
+	    				"green",
+	    				"pink",
+	    				"orange",
+	    				"blue",
+	    				"yellow",
+	    				"purple",
+	    				"multi-colored",
+	    				"stripes",
+	    				"camo",
+	    				"spots",
+	    				"chequered"
 	    			]
 		    };
 
@@ -35919,13 +35933,17 @@ Colours.factory('coloursLoader', function() {
 	    				"white",
 	    				"light grey",
 	    				"dark grey",
+	    				"navy",
+	    				"brown"
 	    			],
 	    			// this is just a joke, but this is how languages are done
 	    			"en-us": [
-	    				"sunrise",
-	    				"desert",
-	    				"dusk",
-	    				"mist"
+	    				"black",
+	    				"white",
+	    				"light grey",
+	    				"dark grey",
+	    				"navy",
+	    				"brown"
 	    			]
 		    };
 
@@ -36170,7 +36188,15 @@ Specifics.factory('specificsLoader', function() {
 
     var specificsLoader = {
 
+<<<<<<< HEAD
 		getQuestion: function(category,countryCode) {
+=======
+    	getQuestionTitle: function(countryCode) {
+
+    	},
+
+		getSpecificsQuestion: function(category,countryCode) {
+>>>>>>> 2044be7bffc7fc95b39ffe56c7423cac7161aad4
 
 
 	    	switch(category) {
@@ -36219,6 +36245,97 @@ Specifics.factory('specificsLoader', function() {
 		    
 
 		    return socksQuestionFiltered;
+
+		getBoxersQuestion: function(countryCode) {
+	    	var boxersQuestion = {
+	    			"en-gb": [
+	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Briefs or boxers? Snug or baggy? Long or longer? Give us those deets."
+	    			],
+	    			"en-us": [
+	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Briefs or boxers? Snug or baggy? Long or longer? Give us those deets."
+	    			]
+		    };
+
+		    var boxersQuestionFiltered = boxersQuestion[countryCode];
+		    
+
+		    return boxersQuestionFiltered;
+
+		getTeesQuestion: function(countryCode) {
+	    	var teesQuestion = {
+	    			"en-gb": [
+	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Slim fit or loose fit? Vee, crew or polo? Give us those deets."
+	    			],
+	    			"en-us": [
+	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Slim fit or loose fit? Vee, crew or polo? Give us those deets."
+	    			]
+		    };
+
+		    var teesQuestionFiltered = teesQuestion[countryCode];
+		    
+
+		    return teesQuestionFiltered;
+
+		getJumpersQuestion: function(countryCode) {
+	    	var jumpersQuestion = {
+	    			"en-gb": [
+	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Chunky or fine? Slim fit or loose fit? Vee, crew or turtle? Give us those deets."
+	    			],
+	    			"en-us": [
+	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Chunky or fine? Slim fit or loose fit? Vee, crew or turtle? Give us those deets."
+	    			]
+		    };
+
+		    var jumpersQuestionFiltered = jumpersQuestion[countryCode];
+		    
+
+		    return jumpersQuestionFiltered;
+
+		getHoodiesQuestion: function(countryCode) {
+	    	var hoodiesQuestion = {
+	    			"en-gb": [
+	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Zip or no zip? Heavyweight, lightweight or featherweight? Give us those deets."
+	    			],
+	    			"en-us": [
+	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Zip or no zip? Heavyweight, lightweight or featherweight? Give us those deets."
+	    			]
+		    };
+
+		    var hoodiesQuestionFiltered = hoodiesQuestion[countryCode];
+		    
+
+		    return hoodiesQuestionFiltered;
+
+		getShoesQuestion: function(countryCode) {
+	    	var shoesQuestion = {
+	    			"en-gb": [
+	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Laces or slip-on? Leather, suede or canvas? Low-top or high-top? Give us those deets."
+	    			],
+	    			"en-us": [
+	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Laces or slip-on? Leather, suede or canvas? Low-top or high-top? Give us those deets."
+	    			]
+		    };
+
+		    var shoesQuestionFiltered = shoesQuestion[countryCode];
+		    
+
+		    return shoesQuestionFiltered;
+
+		getOtherQuestion: function(countryCode) {
+	    	var otherQuestion = {
+	    			"en-gb": [
+	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Give us those deets."
+	    			],
+	    			"en-us": [
+	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Give us those deets."
+	    			]
+		    };
+
+		    var otherQuestionFiltered = otherQuestion[countryCode];
+		    
+
+		    return otherQuestionFiltered;
+
 	    }
 
 	};
