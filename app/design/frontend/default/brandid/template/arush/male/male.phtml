@@ -68,8 +68,6 @@
           <div class="male-holder">
             <div id="male-colour" class="male-back">
             </div>
-            <div id="male-loader" class="male-loader">
-            </div>
             
             <img src="<?php echo $this->getSkinUrl('images/male/male-transparent@2x.png'); ?>" alt="M.A.L.E." class="male-round ani" title="feed the male"/>
             <div class="male-label-box">
@@ -183,8 +181,20 @@
   </script>
   <script type=text/ng-template id=section/garms/category/intro.html>
       <div class="slide-container clearfix fadeIn ani">
-        <div class="curved-white-block withShadow withRadius">
-          <span id="intro">{{question}}</span>
+        <div class="curved-white-block withShadow withRadius intro">
+          <div class="male-round">
+            <div class="male-holder">
+              <div id="male-colour" class="male-back">
+              </div>
+              
+              <img src="<?php echo $this->getSkinUrl('images/male/male-round-white@2x.png'); ?>" alt="M.A.L.E." class="male-round ani" title="feed the male"/>
+              <div class="male-label-box">
+                <span id="male-label">M.A.L.E.</span>
+              </div>
+            </div>
+          </div>
+
+          <span id="intro" class="question">{{question}}</span>
         </div>
 
         <div class="answers multi-button-set">
@@ -227,7 +237,7 @@
             <div class="incentive-image-container">
               <img class="scale-with-grid float-left incentive-image" ng-src="<?php echo $this->getSkinUrl('images/male/checkout'); ?>/{{checkoutIncentiveUrl}}" alt="free touchscreen gloves"/>
             </div>
-            <div class="incentive-message float-left" id="intro">{{checkoutCopy}}</div>
+            <div class="incentive-message float-left" id="" class="question">{{checkoutCopy}}</div>
           </div>
           <div class="next-question-button-section">
             <button class="convert submit" type="submit" href="">
@@ -251,7 +261,7 @@
 
           <div class="curved-white-block withShadow withRadius">
           <h1 class="question-title">{{questionTitle}}</h1>
-            <span id="size">{{sizeQuestion}}</span>
+            <span id="size" class="question">{{sizeQuestion}}</span>
             
           </div>
 
@@ -293,7 +303,7 @@
 
           <div class="curved-white-block withShadow withRadius">
           <h1 class="question-title">{{questionTitle}}</h1>
-            <span id="specifics">{{question}}</span>
+            <span id="specifics" class="question">{{question}}</span>
           </div>
 
           
@@ -318,7 +328,7 @@
 
           <div class="curved-white-block withShadow withRadius">
             <h1 class="question-title">{{questionTitle}}</h1>
-            <span id="colours">{{question}}</span>
+            <span id="colours" class="question">{{question}}</span>
           </div>
 
           
@@ -364,7 +374,7 @@
 
           <div class="curved-white-block withShadow withRadius fadeIn ani">
             <h1 class="question-title">{{questionTitle}}</h1>
-            <span id="brands">{{question}}</span>
+            <span id="brands" class="question">{{question}}</span>
           </div>
 
           
@@ -423,18 +433,6 @@
       </div>
   </script>
 
-
-  <script type=text/ng-template id=garms/boxers/1.html>
-      <div class="page">First page</div>
-  </script>
-
-  <script type=text/ng-template id=garms/boxers/2.html>
-      <div class="page">Second Page</div>
-  </script>
-
-  <script type=text/ng-template id=garms/boxers/3.html>
-      <div class="page">Third Page</div>
-  </script>
 </div> <!-- ng-app -->
 
 

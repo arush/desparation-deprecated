@@ -1,14 +1,31 @@
+.male-talking {
+	font-family:"larabiefont",Helvetica,arial,sans-serif;
+	color:#222;
+	font-family:"larabiefont",Helvetica,arial,sans-serif;
+	font-size: 18px;
+	font-weight:bold;
+	display:none;
+}
+
 .slide-container {
 	position:relative;
 	margin:5%;
 
 	h1.question-title {
-		font-weight:bold;
-		font-size:28px;
+		
 		font-family:"proxima-nova",Helvetica,arial,sans-serif;
-		color:#222;
-		letter-spacing:-1px;
+		font-size:34px;
+		font-weight:bold;
+		letter-spacing:-2px;
+		// text-transform:uppercase;
 		margin:0 0 20px 0;
+	}
+
+	.question {
+		@extend .male-talking;
+	}
+	.intro {
+		// text-align:center;
 	}
 }
 

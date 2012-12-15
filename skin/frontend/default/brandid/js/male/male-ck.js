@@ -35196,6 +35196,7 @@ angular.module('ui.filters').filter('unique', function () {
 (function($) {
 
     $.fn.typewriter = function(callback) {
+        this.css('display','block');
         this.each(function() {
             var $ele = $(this), str = $ele.text(), progress = 0;
             $ele.text('');
@@ -35203,13 +35204,18 @@ angular.module('ui.filters').filter('unique', function () {
                 
                 $ele.text(str.substring(0, progress++) + (progress & 1 ? '_' : ''));
 
-                if (progress >= str.length) {
+                if (progress > str.length+1) {
                     clearInterval(timer);
                     // alert('bewbs');
-                    callback();
+                    
+                    if(typeof(callback) !== "undefined") {
+                        callback();
+                    }
+                        
+
                     // insert logic for callback here
                 } 
-            }, 15);
+            }, 25);
         });
         return this;
     };
@@ -36492,6 +36498,8 @@ SectionController.$inject = ['$scope','DataService','$routeParams'];
 
 function QuestionController($scope,$routeParams,DataService,questionLoader,brandsLoader,$location,$locale) {
 
+	// M.A.L.E. speaking
+	setTimeout(function() {jQuery('.question').typewriter();},500);
 	
 	/***** CONTROLLER PROPERTIES ******/
 
@@ -36673,6 +36681,8 @@ function CategoryController($scope,$routeParams,questionLoader,$locale,$location
 	*  Controller Properties
 	*/
 
+	$scope.drawerOpen = false;
+
 	//use the correct template
 	$scope.categoryTemplate = 'section/' + $routeParams.section + '/category/' + $routeParams.category +'.html';
 	
@@ -36775,6 +36785,9 @@ function CategoryController($scope,$routeParams,questionLoader,$locale,$location
 
 	  $scope.totalNumButtons = $scope.answers.length;
 
+	  // M.A.L.E. speaking
+	  setTimeout(function() {jQuery('#intro').typewriter();},500);
+
 
 }
 CategoryController.$inject = ['$scope','$routeParams','questionLoader','$locale','$location'];
@@ -36823,6 +36836,7 @@ CheckoutController.$inject = ['$scope','DataService','$routeParams','$locale','c
 ********************************************** */
 
 function BrandsFormController($scope,$routeParams,brandsLoader,$locale) {
+
 
 	/***** CONTROLLER PROPERTIES ******/
 
@@ -37197,6 +37211,8 @@ function MainController($scope,DataService,$locale,$routeParams) {
     //   }
     // };
     
+    $scope.drawerOpen = false;
+
     $scope.currentUser = false;
     $scope.loggedIn = false;
 
@@ -37304,14 +37320,16 @@ function MainController($scope,DataService,$locale,$routeParams) {
       // this matches against the "submenuItem.question" in ng-class
       if(next.params.category === 'intro') {
         $scope.selectedSubmenuItem = 'restart';
+        
       } else {
         // for all other cases, select the question 
         $scope.selectedSubmenuItem = next.params.question;
+        $scope.drawerOpen = true;
       }
   });
 
 
-  $scope.drawerOpen = true;
+  
 
   $locale.id = "en-gb";
 

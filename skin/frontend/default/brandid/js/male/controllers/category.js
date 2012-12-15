@@ -4,6 +4,8 @@ function CategoryController($scope,$routeParams,questionLoader,$locale,$location
 	*  Controller Properties
 	*/
 
+	$scope.drawerOpen = false;
+
 	//use the correct template
 	$scope.categoryTemplate = 'section/' + $routeParams.section + '/category/' + $routeParams.category +'.html';
 	
@@ -105,6 +107,9 @@ function CategoryController($scope,$routeParams,questionLoader,$locale,$location
 	  }
 
 	  $scope.totalNumButtons = $scope.answers.length;
+
+	  // M.A.L.E. speaking
+	  setTimeout(function() {jQuery('#intro').typewriter();},500);
 
 
 }

@@ -60,6 +60,8 @@ function MainController($scope,DataService,$locale,$routeParams) {
     //   }
     // };
     
+    $scope.drawerOpen = false;
+
     $scope.currentUser = false;
     $scope.loggedIn = false;
 
@@ -167,14 +169,16 @@ function MainController($scope,DataService,$locale,$routeParams) {
       // this matches against the "submenuItem.question" in ng-class
       if(next.params.category === 'intro') {
         $scope.selectedSubmenuItem = 'restart';
+        
       } else {
         // for all other cases, select the question 
         $scope.selectedSubmenuItem = next.params.question;
+        $scope.drawerOpen = true;
       }
   });
 
 
-  $scope.drawerOpen = true;
+  
 
   $locale.id = "en-gb";
 

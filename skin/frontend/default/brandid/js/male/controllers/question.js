@@ -1,5 +1,7 @@
 function QuestionController($scope,$routeParams,DataService,questionLoader,brandsLoader,$location,$locale) {
 
+	// M.A.L.E. speaking
+	setTimeout(function() {jQuery('.question').typewriter();},500);
 	
 	/***** CONTROLLER PROPERTIES ******/
 

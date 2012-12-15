@@ -1,5 +1,6 @@
 function BrandsFormController($scope,$routeParams,brandsLoader,$locale) {
 
+
 	/***** CONTROLLER PROPERTIES ******/
 
 		$scope.routeParams = $routeParams;
