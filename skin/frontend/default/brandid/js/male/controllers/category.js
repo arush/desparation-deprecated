@@ -45,7 +45,7 @@ function CategoryController($scope,$routeParams,questionLoader,$locale,$location
 	// TODO: put these in a .json file and retrieve via AJAX
 
 	if ($locale.id == 'en-gb') {
-		$scope.question = "I'm M.A.L.E. (Masculine Algorithmic Learning Engine). I do all the hard work around here.\n\nLet me know what you're in the market for, and I'll hook you the F up.";
+		$scope.question = "Hi, I’m M.A.L.E. the Masculine Algorithmic Learning Engine. I’m your digital wingman. Let me know your wardrobe needs and I’ll hook you up. Capiche?";
 
 	    $scope.answers = [
 	        {
@@ -82,21 +82,21 @@ function CategoryController($scope,$routeParams,questionLoader,$locale,$location
 	          category: "intro",
 	          cssClass: "hoodies",
 	          label: "hoodies"
-	        },
-	        {
-	          path: "/section/garms/category/shoes/question/brands",
-	          question: "restart", // when you click on this button, which question to go to
-	          category: "intro",
-	          cssClass: "shoes",
-	          label: "shoes"
-	        },
-	        {
-	          path: "/section/garms/category/other/question/brands",
-	          question: "restart", // when you click on this button, which question to go to
-	          category: "intro",
-	          cssClass: "other",
-	          label: "other"
 	        }
+	        // {
+	        //   path: "/section/garms/category/shoes/question/brands",
+	        //   question: "restart", // when you click on this button, which question to go to
+	        //   category: "intro",
+	        //   cssClass: "shoes",
+	        //   label: "shoes"
+	        // },
+	        // {
+	        //   path: "/section/garms/category/other/question/brands",
+	        //   question: "restart", // when you click on this button, which question to go to
+	        //   category: "intro",
+	        //   cssClass: "other",
+	        //   label: "other"
+	        // }
 	        
 	    ];
 	  } else {
@@ -104,6 +104,7 @@ function CategoryController($scope,$routeParams,questionLoader,$locale,$location
 	    // another language
 	  }
 
+	  $scope.totalNumButtons = $scope.answers.length;
 
 
 }

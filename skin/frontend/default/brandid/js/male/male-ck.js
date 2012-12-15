@@ -35222,7 +35222,7 @@ angular.module('ui.filters').filter('unique', function () {
 
 'use strict';
 
-var ngMaleApp = angular.module('ngMaleApp', ['ui','DataServices','QuestionsModule','BrandsModule','ColoursModule','SizeModule','SpecificsModule']);
+var ngMaleApp = angular.module('ngMaleApp', ['ui','DataServices','QuestionsModule','BrandsModule','ColoursModule','SizeModule','SpecificsModule','CheckoutModule']);
 
 ngMaleApp.config(function ($routeProvider) {
     $routeProvider
@@ -35263,7 +35263,7 @@ ngMaleApp.config(function ($routeProvider) {
         redirectTo: '/section/garms/category/intro'
       });
 });
-ngMaleApp.$inject = ['ui','DataServices','QuestionsModule','BrandsModule','ColoursModule','SizeModule','SpecificsModule'];
+ngMaleApp.$inject = ['ui','DataServices','QuestionsModule','BrandsModule','ColoursModule','SizeModule','SpecificsModule','CheckoutModule'];
 
 
 
@@ -35838,6 +35838,27 @@ Colours.factory('coloursLoader', function() {
 		    }
 		},
 
+		getQuestion: function(countryCode) {
+			var question = {
+				"en-gb": "Disco or classic, spots or stripes, patterned or graphic, or just plain old plain? We’ve got the full spectrum buddy. And if we show you any colours you’d never wear, ever. Just hit delete."
+			}
+			return question[countryCode];
+		},
+
+		getQuestionTitle: function(countryCode) {
+			var questionTitle = {
+				"en-gb": "What colours, chief?"
+			}
+			return questionTitle[countryCode];
+		},
+
+		getTooltip: function(countryCode) {
+			var tooltip = {
+				"en-gb": "This is a tooltip"
+			}
+			return tooltip[countryCode];
+		},
+
 		getColours: function(category, countryCode) {
 
 	    	var colours = [];
@@ -35879,8 +35900,6 @@ Colours.factory('coloursLoader', function() {
 
 		    		break;
 		    }
-		    console.log(colours);
-		    console.log(moreColours);
 
 		    return colours;
 
@@ -35923,7 +35942,10 @@ Colours.factory('coloursLoader', function() {
 			// use the dynamic sort function to order by label field
 			discoColoursFiltered.sort();
 
-		    return discoColoursFiltered;
+			// must format this into something SELECT2 understands for tagging
+		    var discoColoursFilteredFormatted = this.formatArrayForTagging(discoColoursFiltered);
+
+		    return discoColoursFilteredFormatted;
 	    },
 
 	    getClassicColoursAll: function(countryCode) {
@@ -35948,31 +35970,54 @@ Colours.factory('coloursLoader', function() {
 		    };
 
 		    var classicColoursFiltered = classicColoursAll[countryCode];
-		    
-			// use the dynamic sort function to order by label field
 
-		    return classicColoursFiltered;
+		    // use the dynamic sort function to order by label field
+			classicColoursFiltered.sort();
+
+		    // must format this into something SELECT2 understands for tagging
+		    var classicColoursFilteredFormatted = this.formatArrayForTagging(classicColoursFiltered);
+		    
+
+		    return classicColoursFilteredFormatted;
 	    },
 
+	    formatArrayForTagging: function(nonFormatted) {
+	    	var formattedArray = [];
+
+	    	angular.forEach(nonFormatted, function(item) {
+	    		
+	    		var formattedItem = {
+	    			id: item,
+	    			text: item
+	    		};
+
+	    		formattedArray.push(formattedItem);
+	    	});
+
+	    	return formattedArray;
+
+	    },
 
 	    // this is a function used by the "auto-populate colours" buttons
 
-	    getAllColoursFilteredBy: function(category, style) {
-	    	var selectedColours = {};
+	    getAllColoursFilteredBy: function(style, countryCode) {
+	    	var selectedColours = [];
 
 	    	switch(style) {
 	    		case 'classic':
-	    			selectedColours = this.getClassicColours(category);
+	    			selectedColours = this.getClassicColoursAll(countryCode);
+
 	    			break;
 	    		case 'disco':
-	    			selectedColours = this.getDiscoColours(category);
+	    			selectedColours = this.getDiscoColoursAll(countryCode);
+
 	    			break;
 	    		default:
-	    			selectedColours.colours = [];
+	    			selectedColours = [];
 	    			break;
 	    	}
 
-	    	return JSON.parse(JSON.stringify(selectedColours.colours));
+	    	return selectedColours;
 	    }
 
 
@@ -36011,45 +36056,45 @@ Size.factory('sizeLoader', function() {
     	
 		getSizes: function(category,countryCode) {
 
-	    	var sizeChoices;
+	    	var sizeOptions;
 	    	var instructionsText;
 
 	    	switch(category) {
 		    
 		    	case "boxers":
-		    		sizeChoices = this.getBoxerSizes();
+		    		sizeOptions = this.getBoxerSizes();
 		    		instructionsText = this.getBoxerInstructions(countryCode);
 		    		break;
 		    	case "tees":
-		    		sizeChoices = this.getTopSizes();
+		    		sizeOptions = this.getTopSizes();
 		    		instructionsText = this.getTopsInstructions(countryCode);
 		    		break;
 		    	case "jumpers":
-		    		sizeChoices = this.getTopSizes();
+		    		sizeOptions = this.getTopSizes();
 		    		instructionsText = this.getTopsInstructions(countryCode);
 		    		break;
 		    	case "hoodies":
-		    		sizeChoices = this.getTopSizes();
+		    		sizeOptions = this.getTopSizes();
 		    		instructionsText = this.getTopsInstructions(countryCode);
 		    		break;
 		    	case "shoes":
-		    		sizeChoices = this.getShoeSizes();
+		    		sizeOptions = this.getShoeSizes();
 		    		instructionsText = "";
 		    		break;
 		    	case "other":
-		    		sizeChoices = this.getOtherSizes();
+		    		sizeOptions = this.getOtherSizes();
 		    		instructionsText = "";
 		    		break;
 		    	default:
 		    	// this is just a catchall and should never have to be used
-		    		sizeChoices = this.getBoxerSizes();
+		    		sizeOptions = this.getBoxerSizes();
 		    		break;
 		    }
 
 
 			var sizes = {
 	    		instructions: instructionsText,
-	    		sizeChoices: sizeChoices
+	    		sizeChoices: sizeOptions
 			}
 
 		    return sizes;	
@@ -36083,19 +36128,23 @@ Size.factory('sizeLoader', function() {
 	    	var boxerSizes = [
 		    		{
 		    			label: "S",
-		    			measurements: "30 - 32in"
+		    			measurements: "30 - 32in",
+		    			isActive: false
 		    		},
 		    		{
 		    			label: "M",
-		    			measurements: "30 - 34in"
+		    			measurements: "30 - 34in",
+		    			isActive: false
 		    		},
 		    		{
 		    			label: "L",
-		    			measurements: "34 - 36in"
+		    			measurements: "34 - 36in",
+		    			isActive: false
 		    		},
 		    		{
 		    			label: "XL",
-		    			measurements: "36 - 38in"
+		    			measurements: "36 - 38in",
+		    			isActive: false
 		    		}
 			    ]
 			return boxerSizes;
@@ -36104,19 +36153,23 @@ Size.factory('sizeLoader', function() {
 	    	var topSizes = [
 		    		{
 		    			label: "S",
-		    			measurements: "36 - 38in"
+		    			measurements: "36 - 38in",
+		    			isActive: false
 		    		},
 		    		{
 		    			label: "M",
-		    			measurements: "38 - 40in"
+		    			measurements: "38 - 40in",
+		    			isActive: false
 		    		},
 		    		{
 		    			label: "L",
-		    			measurements: "40 - 42in"
+		    			measurements: "40 - 42in",
+		    			isActive: false
 		    		},
 		    		{
 		    			label: "XL",
-		    			measurements: "42 - 44in"
+		    			measurements: "42 - 44in",
+		    			isActive: false
 		    		}
 			    ]
 			return topSizes;
@@ -36125,31 +36178,38 @@ Size.factory('sizeLoader', function() {
 	    	var shoeSizes = [
 		    		{
 		    			label: "UK 6",
-		    			measurements: "EU 40"
+		    			measurements: "EU 40",
+		    			isActive: false
 		    		},
 		    		{
 		    			label: "UK 7",
-		    			measurements: "EU 41"
+		    			measurements: "EU 41",
+		    			isActive: false
 		    		},
 		    		{
 		    			label: "UK 8",
-		    			measurements: "EU 42"
+		    			measurements: "EU 42",
+		    			isActive: false
 		    		},
 		    		{
 		    			label: "UK 9",
-		    			measurements: "EU 43"
+		    			measurements: "EU 43",
+		    			isActive: false
 		    		},
 		    		{
 		    			label: "UK 10",
-		    			measurements: "EU 44"
+		    			measurements: "EU 44",
+		    			isActive: false
 		    		},
 		    		{
 		    			label: "UK 11",
-		    			measurements: "EU 45"
+		    			measurements: "EU 45",
+		    			isActive: false
 		    		},
 		    		{
 		    			label: "UK 12",
-		    			measurements: "EU 46"
+		    			measurements: "EU 46",
+		    			isActive: false
 		    		}
 
 			    ]
@@ -36188,15 +36248,11 @@ Specifics.factory('specificsLoader', function() {
 
     var specificsLoader = {
 
-<<<<<<< HEAD
-		getQuestion: function(category,countryCode) {
-=======
     	getQuestionTitle: function(countryCode) {
 
     	},
 
-		getSpecificsQuestion: function(category,countryCode) {
->>>>>>> 2044be7bffc7fc95b39ffe56c7423cac7161aad4
+		getQuestion: function(category,countryCode) {
 
 
 	    	switch(category) {
@@ -36233,108 +36289,65 @@ Specifics.factory('specificsLoader', function() {
 
 	    getSocksQuestion: function(countryCode) {
 	    	var socksQuestion = {
-	    			"en-gb": [
-	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Ankle socks or stockings? Woolen or cotton? Sporty or classy? Give us those deets."
-	    			],
-	    			"en-us": [
-	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Ankle socks or stockings? Woolen or cotton? Sporty or classy? Give us those deets."
-	    			]
+	    			"en-gb": "This is for those of you with an eye for detail. It’s where you help us to help you. Ankle socks or stockings? Woolen or cotton? Sporty or classy?",
+	    			"en-us": "This is for those of you with an eye for detail. It’s where you help us to help you. Ankle socks or stockings? Woolen or cotton? Sporty or classy?"
 		    };
 
-		    var socksQuestionFiltered = socksQuestion[countryCode];
-		    
-
-		    return socksQuestionFiltered;
-
+		    return socksQuestion[countryCode];
+		},
+ 
 		getBoxersQuestion: function(countryCode) {
 	    	var boxersQuestion = {
-	    			"en-gb": [
-	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Briefs or boxers? Snug or baggy? Long or longer? Give us those deets."
-	    			],
-	    			"en-us": [
-	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Briefs or boxers? Snug or baggy? Long or longer? Give us those deets."
-	    			]
+	    			"en-gb": "This is for those of you with an eye for detail. Briefs or boxers? Snug or baggy? Long or longer? Give us those deets.",
+	    			"en-us": "This is for those of you with an eye for detail. Briefs or boxers? Snug or baggy? Long or longer? Give us those deets."
 		    };
 
-		    var boxersQuestionFiltered = boxersQuestion[countryCode];
-		    
-
-		    return boxersQuestionFiltered;
+		    return boxersQuestion[countryCode];
+		},
 
 		getTeesQuestion: function(countryCode) {
 	    	var teesQuestion = {
-	    			"en-gb": [
-	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Slim fit or loose fit? Vee, crew or polo? Give us those deets."
-	    			],
-	    			"en-us": [
-	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Slim fit or loose fit? Vee, crew or polo? Give us those deets."
-	    			]
+	    			"en-gb": "This is for those of you with an eye for detail. Slim fit or loose fit? Vee, crew or polo? Give us those deets.",
+	    			"en-us": "This is for those of you with an eye for detail. Slim fit or loose fit? Vee, crew or polo? Give us those deets."
 		    };
 
-		    var teesQuestionFiltered = teesQuestion[countryCode];
-		    
-
-		    return teesQuestionFiltered;
+		    return teesQuestion[countryCode];
+		},
 
 		getJumpersQuestion: function(countryCode) {
 	    	var jumpersQuestion = {
-	    			"en-gb": [
-	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Chunky or fine? Slim fit or loose fit? Vee, crew or turtle? Give us those deets."
-	    			],
-	    			"en-us": [
-	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Chunky or fine? Slim fit or loose fit? Vee, crew or turtle? Give us those deets."
-	    			]
+	    			"en-gb": "This is for those of you with an eye for detail. Chunky or fine? Slim fit or loose fit? Vee, crew or turtle? Give us those deets.",
+	    			"en-us": "This is for those of you with an eye for detail. Chunky or fine? Slim fit or loose fit? Vee, crew or turtle? Give us those deets."
 		    };
 
-		    var jumpersQuestionFiltered = jumpersQuestion[countryCode];
-		    
-
-		    return jumpersQuestionFiltered;
+		    return jumpersQuestion[countryCode];
+		},
 
 		getHoodiesQuestion: function(countryCode) {
 	    	var hoodiesQuestion = {
-	    			"en-gb": [
-	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Zip or no zip? Heavyweight, lightweight or featherweight? Give us those deets."
-	    			],
-	    			"en-us": [
-	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Zip or no zip? Heavyweight, lightweight or featherweight? Give us those deets."
-	    			]
+	    			"en-gb": "This is for those of you with an eye for detail. Zip or no zip? Heavyweight, lightweight or featherweight? Give us those deets.",
+	    			"en-us": "This is for those of you with an eye for detail. Zip or no zip? Heavyweight, lightweight or featherweight? Give us those deets."
 		    };
 
-		    var hoodiesQuestionFiltered = hoodiesQuestion[countryCode];
-		    
-
-		    return hoodiesQuestionFiltered;
+		    return hoodiesQuestion[countryCode];
+		},
 
 		getShoesQuestion: function(countryCode) {
 	    	var shoesQuestion = {
-	    			"en-gb": [
-	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Laces or slip-on? Leather, suede or canvas? Low-top or high-top? Give us those deets."
-	    			],
-	    			"en-us": [
-	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Laces or slip-on? Leather, suede or canvas? Low-top or high-top? Give us those deets."
-	    			]
+	    			"en-gb": "This is for those of you with an eye for detail. Laces or slip-on? Leather, suede or canvas? Low-top or high-top? Give us those deets.",
+	    			"en-us": "This is for those of you with an eye for detail. Laces or slip-on? Leather, suede or canvas? Low-top or high-top? Give us those deets."
 		    };
 
-		    var shoesQuestionFiltered = shoesQuestion[countryCode];
-		    
-
-		    return shoesQuestionFiltered;
+		    return shoesQuestion[countryCode];
+		},
 
 		getOtherQuestion: function(countryCode) {
 	    	var otherQuestion = {
-	    			"en-gb": [
-	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Give us those deets."
-	    			],
-	    			"en-us": [
-	    				"This is for those of you with an eye for detail. It’s where you help us to help you. Really help you. At the micro level. Tell us anything that we need to know about your preferences. Give us those deets."
-	    			]
+	    			"en-gb": "This is for those of you with an eye for detail. It’s where you help us to help you. Give us those deets.",
+	    			"en-us": "This is for those of you with an eye for detail. It’s where you help us to help you. Give us those deets."
 		    };
 
-		    var otherQuestionFiltered = otherQuestion[countryCode];
-		    
-
-		    return otherQuestionFiltered;
+		    return otherQuestion[countryCode];
 
 	    }
 
@@ -36347,6 +36360,72 @@ Specifics.factory('specificsLoader', function() {
 	// brandLoader.$inject = ['boxersSpecifics','socksSpecifics'];
 
 	return specificsLoader;
+});
+
+/* **********************************************
+     Begin checkoutLoader.js
+********************************************** */
+
+
+/* Here we are defining a global variable Checkout so we can extend it with factory methods in other files.
+ * This allows us to make brand sets in separate files and make the main colleciton of checkout depend on them if we want
+ * But here we've just included all the brand sets in one file for simplicity. We could retrieve the list of checkout from
+ * an external data source if we wanted.
+ **/
+
+var Checkout = angular.module('CheckoutModule', []);
+
+Checkout.factory('checkoutLoader', function() {
+    
+	/* This factory method returns an object that is accessible to the controller which it is injected into.
+	 * Here we define the object including its own methods.
+	 **/
+
+    var checkoutLoader = {
+
+    	// this is used to sort arrays of objects
+    	
+
+		getCheckoutCopy: function(countryCode) {
+			var copy = {
+				"en-gb": "Ok, let’s talk turkey, let’s make something happen, let’s do a deal. If you register your card details today and credit your BRANDiD account with one English pound, we’ll send you a pair of Muji touchscreen gloves worth £12.95. Bargain right? Right."
+			}
+			return copy[countryCode];
+		},
+
+		getCheckoutTitle: function(countryCode) {
+			var checkoutTitle = {
+				"en-gb": "Load £1 into your account and get free touchscreen gloves!"
+			}
+			return checkoutTitle[countryCode];
+		},
+
+	    getCheckoutIncentiveUrl: function(countryCode) {
+	    	var imageUrl = {
+	    			"en-gb": "muji-gloves.png",
+	    			"en-us": ""
+		    };
+
+		    return imageUrl[countryCode];
+	    },
+
+	    getCheckoutSummaryTitle: function(countryCode) {
+	    	var title = {
+	    		"en-gb": "This is what we'll find for you"
+	    	}
+	    	return title[countryCode];
+	    }
+
+
+	};
+
+	/* This factory method is dependent on other factory methods as declared in function(...here...).
+	 * We must inject these dependencies as strings so the file can be minified
+	 **/
+
+	// brandLoader.$inject = ['boxersCheckout','socksCheckout'];
+
+	return checkoutLoader;
 });
 
 /* **********************************************
@@ -36411,7 +36490,7 @@ SectionController.$inject = ['$scope','DataService','$routeParams'];
      Begin question.js
 ********************************************** */
 
-function QuestionController($scope,$routeParams,questionLoader,brandsLoader,$location,$locale) {
+function QuestionController($scope,$routeParams,DataService,questionLoader,brandsLoader,$location,$locale) {
 
 	
 	/***** CONTROLLER PROPERTIES ******/
@@ -36439,48 +36518,15 @@ function QuestionController($scope,$routeParams,questionLoader,brandsLoader,$loc
     $scope.goToNextQuestion = function(section,category,question,answer) {
 
     	// save the answer to browser memory
-		$scope.user.male_answers[section][category][question] = answer;
+		// $scope.user.male_answers[section][category][question] = answer;
+		$scope.male_answers[category].set(question,answer);
 
-    	// and if the user is logged in, save overwriting old data
-    	if($scope.currentUser) {
-    		// for readability
-    		var objectToSave = $scope.user.male_answers;
-    		console.log(objectToSave);
-    		$scope.currentUser.set("male_answers",objectToSave);
-
-    		console.log($scope.currentUser);
-
-    		$scope.currentUser.save(null, {
-			  success: function(user) {
-			    // The object was saved successfully.
-			    $scope.currentUser.fetch({
-				  success: function(myObject) {
-				    // The object was refreshed successfully.
-				    alert('fetched successfully')
-				    console.log(myObject);
-				  },
-				  error: function(myObject, error) {
-				    // The object was not refreshed successfully.
-				    // error is a Parse.Error with an error code and description
-				    console.log(error);
-				  }
-				});
-
-			    // console.log(user);
-
-			  },
-			  error: function(user, error) {
-			    // The save failed.
-			    // error is a Parse.Error with an error code and description.
-			    alert("Cannot save right now, try again later");
-			    console.log(error);
-			  }
-			});
-
-    	}
-    	
-
-    	
+		
+		// if logged in, we want to save to parse
+		if($scope.loggedIn) {
+			DataService.saveAnswer($scope.male_answers[category]);
+		};
+		
     	var nextPath = $scope.getNextPath(question);
     	$location.path(nextPath);
       
@@ -36569,7 +36615,7 @@ function QuestionController($scope,$routeParams,questionLoader,brandsLoader,$loc
 	$scope.init();
 
 }
-QuestionController.$inject = ['$scope','$routeParams','questionLoader','brandsLoader','$location','$locale'];
+QuestionController.$inject = ['$scope','$routeParams','DataService','questionLoader','brandsLoader','$location','$locale'];
 
 /* **********************************************
      Begin dashboard.js
@@ -36668,7 +36714,7 @@ function CategoryController($scope,$routeParams,questionLoader,$locale,$location
 	// TODO: put these in a .json file and retrieve via AJAX
 
 	if ($locale.id == 'en-gb') {
-		$scope.question = "I'm M.A.L.E. (Masculine Algorithmic Learning Engine). I do all the hard work around here.\n\nLet me know what you're in the market for, and I'll hook you the F up.";
+		$scope.question = "Hi, I’m M.A.L.E. the Masculine Algorithmic Learning Engine. I’m your digital wingman. Let me know your wardrobe needs and I’ll hook you up. Capiche?";
 
 	    $scope.answers = [
 	        {
@@ -36705,21 +36751,21 @@ function CategoryController($scope,$routeParams,questionLoader,$locale,$location
 	          category: "intro",
 	          cssClass: "hoodies",
 	          label: "hoodies"
-	        },
-	        {
-	          path: "/section/garms/category/shoes/question/brands",
-	          question: "restart", // when you click on this button, which question to go to
-	          category: "intro",
-	          cssClass: "shoes",
-	          label: "shoes"
-	        },
-	        {
-	          path: "/section/garms/category/other/question/brands",
-	          question: "restart", // when you click on this button, which question to go to
-	          category: "intro",
-	          cssClass: "other",
-	          label: "other"
 	        }
+	        // {
+	        //   path: "/section/garms/category/shoes/question/brands",
+	        //   question: "restart", // when you click on this button, which question to go to
+	        //   category: "intro",
+	        //   cssClass: "shoes",
+	        //   label: "shoes"
+	        // },
+	        // {
+	        //   path: "/section/garms/category/other/question/brands",
+	        //   question: "restart", // when you click on this button, which question to go to
+	        //   category: "intro",
+	        //   cssClass: "other",
+	        //   label: "other"
+	        // }
 	        
 	    ];
 	  } else {
@@ -36727,6 +36773,7 @@ function CategoryController($scope,$routeParams,questionLoader,$locale,$location
 	    // another language
 	  }
 
+	  $scope.totalNumButtons = $scope.answers.length;
 
 
 }
@@ -36736,13 +36783,31 @@ CategoryController.$inject = ['$scope','$routeParams','questionLoader','$locale'
      Begin checkout.js
 ********************************************** */
 
-function CheckoutController($scope,DataService,$routeParams) {
+function CheckoutController($scope,DataService,$routeParams,$locale,checkoutLoader) {
 
 	/**
 	*  Controller Properties
 	*/
 
-	$scope.test = "this is a test";
+	
+	$scope.checkoutTitle = checkoutLoader.getCheckoutTitle($locale.id);
+
+	$scope.checkoutCopy = checkoutLoader.getCheckoutCopy($locale.id);
+
+	$scope.checkoutIncentiveUrl = checkoutLoader.getCheckoutIncentiveUrl($locale.id);
+
+
+	$scope.checkoutSummaryTitle = checkoutLoader.getCheckoutSummaryTitle($locale.id);
+
+
+	$scope.basket = {
+		item: $routeParams.category,
+		brands: $scope.male_answers[$routeParams.category].brands,
+		size: $scope.male_answers[$routeParams.category].size,
+		colours: $scope.male_answers[$routeParams.category].colours,
+		specifics: $scope.male_answers[$routeParams.category].specifics
+	}
+
 
 	/**
 	*  Controller Functions
@@ -36750,7 +36815,7 @@ function CheckoutController($scope,DataService,$routeParams) {
 
 
 }
-CheckoutController.$inject = ['$scope','DataService','$routeParams'];
+CheckoutController.$inject = ['$scope','DataService','$routeParams','$locale','checkoutLoader'];
 
 
 /* **********************************************
@@ -36786,27 +36851,32 @@ function BrandsFormController($scope,$routeParams,brandsLoader,$locale) {
 				{
 					brandType: 'value',
 					label: 'Value Brands',
+					isActive: false,
 					priceLower: valueBrands.priceRange.lower,
 					priceUpper: valueBrands.priceRange.upper
 				},
 				{
 					brandType: 'premium',
 					label: 'Premium Brands',
+					isActive: false,
 					priceLower: premiumBrands.priceRange.lower,
 					priceUpper: premiumBrands.priceRange.upper
 				},
 				{
 					brandType: 'skate',
 					label: 'Skate / Snow',
+					isActive: false,
 					priceLower: skateBrands.priceRange.lower,
 					priceUpper: skateBrands.priceRange.upper
-				},
-
+				}
 			];
 
 		} else {
 			// another language
 		}
+
+		// this is for correct skinning of the multi-button-set
+		$scope.totalNumButtons = $scope.brandsButtons.length;
 
 	/***** END BRANDS PRE-POPULATE BUTTONS ******/
 
@@ -36836,7 +36906,13 @@ function BrandsFormController($scope,$routeParams,brandsLoader,$locale) {
 
 	/***** CONTROLLER EVENT RESPONDERS ******/
 	
-		$scope.chooseBrands = function(category,brandType) {
+		$scope.chooseBrands = function(category,brandType,buttonIndex) {
+
+			// highlight the button
+			angular.forEach($scope.brandsButtons, function(button) {
+				button.isActive = false;
+			});
+			$scope.brandsButtons[buttonIndex].isActive = true;
 			$scope.selectedBrands = brandsLoader.getAllBrandsFilteredBy(category,brandType);
 		};
 
@@ -36862,6 +36938,8 @@ function SizeFormController($scope,$routeParams,sizeLoader,$locale) {
 
 		$scope.routeParams = $routeParams;
 		$locale.id = "en-gb";
+		$scope.totalNumButtons = 5;
+		$scope.selectedSize = {};
 
 	/***** END CONTROLLER PROPERTIES ******/
 		
@@ -36872,6 +36950,9 @@ function SizeFormController($scope,$routeParams,sizeLoader,$locale) {
 		$scope.howToMeasure = sizeData.instructions;
 
 		$scope.sizeButtons = sizeData.sizeChoices;
+
+		// this is for figuring out the width of the buttons
+		$scope.totalNumButtons = $scope.sizeButtons.length;
 
 		// TODO: put these in a .json file and retrieve via AJAX
 
@@ -36889,15 +36970,25 @@ function SizeFormController($scope,$routeParams,sizeLoader,$locale) {
 
 	/***** CONTROLLER EVENT RESPONDERS ******/
 	
-		$scope.chooseSize = function(category,brandType) {
-			// $scope.selectedSize = sizeLoader.getAllSizeFilteredBy(category,brandType);
+		$scope.chooseSize = function(category,style,buttonIndex) {
+			// we'll need category eventually to do a funny comment like "massive feet means..."
+			angular.forEach($scope.sizeButtons, function(button) {
+				button.isActive = false;
+			});
+
+			$scope.sizeButtons[buttonIndex].isActive = true;
+			$scope.selectedSize = {
+				size: $scope.sizeButtons[buttonIndex].label,
+				measurements: $scope.sizeButtons[buttonIndex].measurements
+			};
+
 		};
 
 		$scope.saveAnswer = function() {
 			// since we defined the answer in the question in the form controller, the parent controller doesn't have access to it
 			// therefore we need to pass the answer by reference
 			$scope.goToNextQuestion($routeParams.section,$routeParams.category,$routeParams.question,/*answer*/$scope.selectedSize);
-		}
+		};
 
 	/***** END CONTROLLER EVENT RESPONDERS ******/
 
@@ -36914,6 +37005,8 @@ function ColoursFormController($scope,$routeParams,coloursLoader,$locale) {
 	/***** CONTROLLER PROPERTIES ******/
 
 		$scope.routeParams = $routeParams;
+		$scope.colourButtons = [];
+		$scope.selectedColours = [];
 
 	/***** END CONTROLLER PROPERTIES ******/
 
@@ -36926,6 +37019,44 @@ function ColoursFormController($scope,$routeParams,coloursLoader,$locale) {
 		$scope.discoColours = coloursLoader.getDiscoColoursAll($locale.id);
 		$scope.classicColours = coloursLoader.getClassicColoursAll($locale.id);
 
+		$scope.question = coloursLoader.getQuestion($locale.id);
+		$scope.questionTitle = coloursLoader.getQuestionTitle($locale.id);
+
+
+
+		// TODO: put these in a .json file and retrieve via AJAX
+
+		if ($locale.id === 'en-gb') {
+
+			$scope.coloursButtons = [
+				{
+					style: "classic",
+					label: "Classic",
+					isActive: false,
+					colours: coloursLoader.getClassicColoursAll($locale.id)
+				},
+				{
+					style: "disco",
+					label: "Disco",
+					isActive: false,
+					colours: coloursLoader.getDiscoColoursAll($locale.id)
+				}
+			];
+			
+
+		} else {
+			// another language
+		}
+
+		// this is for skinning the buttons
+		$scope.totalNumButtons = $scope.coloursButtons.length;
+
+	/***** END COLOURS PRE-POPULATE BUTTONS ******/
+
+
+	/***** SELECT2 COLOURS DROPDOWN ******/
+
+		// make an array of all the colours for SELECT2
 		$scope.colours = $scope.classicColours;
 
 		angular.forEach($scope.discoColours, function(discoColour) {
@@ -36933,38 +37064,24 @@ function ColoursFormController($scope,$routeParams,coloursLoader,$locale) {
 			$scope.colours.push(discoColour);
 		});
 
-
-		// TODO: put these in a .json file and retrieve via AJAX
-
-		if ($locale.id === 'en-gb') {
-
-			$scope.coloursQuestion = "Disco or classic, spots or stripes, patterned or graphic, or just plain old plain? We’ve got the full spectrum buddy. And if we show you any colours you’d never wear, ever. Just hit delete.";
-
-			// Fetch the set of answers
-
-			$scope.typeColoursTooltip = "";
-
-			
-
-		} else {
-			// another language
-		}
-
-	/***** END COLOURS PRE-POPULATE BUTTONS ******/
-
-
-	/***** SELECT2 COLOURS DROPDOWN ******/
-
 		
-		$scope.selectedColours = [];
+		
 
 	/***** SELECT2 COLOURS DROPDOWN ******/
 
 
 	/***** CONTROLLER EVENT RESPONDERS ******/
 	
-		$scope.chooseColours = function(category,coloursType) {
-			$scope.selectedColours = coloursLoader.getAllColoursFilteredBy(category,coloursType);
+		$scope.chooseColours = function(coloursType, buttonIndex) {
+
+			angular.forEach($scope.coloursButtons, function(button) {
+				button.isActive = false;
+			});
+
+			$scope.coloursButtons[buttonIndex].isActive = true;
+
+			$scope.selectedColours = [];
+			$scope.selectedColours = coloursLoader.getAllColoursFilteredBy(coloursType,$locale.id);
 		};
 
 		$scope.saveAnswer = function() {
@@ -37031,56 +37148,104 @@ function MainController($scope,DataService,$locale,$routeParams) {
 
     // this is the current session's user, which gets destroyed when the browser closes. it will only hold one set of answers at a time per item,
     // and that answer get
-    $scope.user = {
-      male_answers: {
-        garms : {
-          socks: {
-            brands: [],
-            size: [],
-            colours: [],
-            specifics: []
-          },
-          boxers: {
-            brands: [],
-            size: [],
-            colours: [],
-            specifics: []
-          },
-          tees: {
-            brands: [],
-            size: [],
-            colours: [],
-            specifics: []
-          },
-          jumpers: {
-            brands: [],
-            size: [],
-            colours: [],
-            specifics: []
-          },
-          hoodies: {
-            brands: [],
-            size: [],
-            colours: [],
-            specifics: []
-          },
-          shoes: {
-            brands: [],
-            size: [],
-            colours: [],
-            specifics: []
-          },
-          other: {
-            brands: [],
-            size: [],
-            colours: [],
-            specifics: []
-          }
-        }
-      }
-    };
+    // $scope.user = {
+    //   male_answers: {
+    //     garms : {
+    //       socks: {
+    //         brands: [],
+    //         size: [],
+    //         colours: [],
+    //         specifics: []
+    //       },
+    //       boxers: {
+    //         brands: [],
+    //         size: [],
+    //         colours: [],
+    //         specifics: []
+    //       },
+    //       tees: {
+    //         brands: [],
+    //         size: [],
+    //         colours: [],
+    //         specifics: []
+    //       },
+    //       jumpers: {
+    //         brands: [],
+    //         size: [],
+    //         colours: [],
+    //         specifics: []
+    //       },
+    //       hoodies: {
+    //         brands: [],
+    //         size: [],
+    //         colours: [],
+    //         specifics: []
+    //       },
+    //       shoes: {
+    //         brands: [],
+    //         size: [],
+    //         colours: [],
+    //         specifics: []
+    //       },
+    //       other: {
+    //         brands: [],
+    //         size: [],
+    //         colours: [],
+    //         specifics: []
+    //       }
+    //     }
+    //   }
+    // };
+    
     $scope.currentUser = false;
     $scope.loggedIn = false;
+
+    // Define Parse Models
+    
+    var Boxers = Parse.Object.extend("Boxers");
+    var Socks = Parse.Object.extend("Socks");
+    var Tees = Parse.Object.extend("Tees");
+    var Jumpers = Parse.Object.extend("Jumpers");
+    var Hoodies = Parse.Object.extend("Hoodies");
+
+
+    // make a reference to the current Parse.User object
+    $scope.currentUser = Parse.User.current();
+    
+    if ($scope.currentUser) {
+
+        // DataService.fetch($scope.currentUser);
+        // $scope.setUserProfileImage();
+        $scope.loggedIn = true;
+
+    } else {
+
+      $scope.currentUser = new Parse.User();
+
+        // TODO: whatevers needed for not-logged-in users
+
+    };
+
+    $scope.male_answers = {};
+
+    $scope.male_answers.boxers = new Boxers();
+    // $scope.male_answers.boxers.set("user",$scope.currentUser);
+
+    $scope.male_answers.socks = new Socks();
+    // $scope.male_answers.socks.set("user",$scope.currentUser);
+
+    $scope.male_answers.tees = new Tees();
+    // $scope.male_answers.tees.set("user",$scope.currentUser);
+
+    $scope.male_answers.jumpers = new Jumpers();
+    // $scope.male_answers.jumpers.set("user",$scope.currentUser);
+
+    $scope.male_answers.hoodies = new Hoodies();
+    // $scope.male_answers.hoodies.set("user",$scope.currentUser);
+
+
+
+    // feedback object
     $scope.feedback = {
       section: $routeParams.section,
       category: $routeParams.category,
@@ -37091,7 +37256,10 @@ function MainController($scope,DataService,$locale,$routeParams) {
     if(typeof(BrowserDetect) !== "undefined") {
       $scope.feedback.OS = BrowserDetect.OS;
       $scope.feedback.browser = BrowserDetect.browser + " " + BrowserDetect.version;
-    }
+    };
+
+    
+    
     
 
   // ***** END CONTROLLER PROPERTIES ***** //
@@ -37114,45 +37282,14 @@ function MainController($scope,DataService,$locale,$routeParams) {
 
     // ***** LOGIN FUNCTIONS ***** //
 
-        $scope.setUserProfileImage = function() {
-
-          // we have 2 user objects, because one is a reference to the actual Parse.User object, and the other is for easy use in the templates
-          $scope.user.fbID = $scope.currentUser.attributes.authData.facebook.id;
-
-
-        };
-
-
         $scope.fbLogin = function() {
 
           // passes the angular scope object by reference, and the service sets $scope.user.profileImageUrl after logging them into facebook
-          var loggedIn = DataService.fbLogin($scope.user);
+          var loggedIn = DataService.fbLogin($scope.currentUser,$scope.male_answers);
 
         }
 
     // ***** END LOGIN FUNCTIONS ***** //
-
-
-    $scope.init = function() {
-
-      // make a reference to the Parse.User object
-      $scope.currentUser = Parse.User.current();
-      
-      if ($scope.currentUser) {
-          
-          $scope.setUserProfileImage();
-          $scope.loggedIn = true;
-
-      } else {
-          // TODO: whatevers needed for not-logged-in users
-
-      }
-      
-      
-    }
-
-
-    $scope.init();
 
 
   // ***** END CONTROLLER FUNCTIONS ***** //
@@ -37204,7 +37341,7 @@ function MainController($scope,DataService,$locale,$routeParams) {
 
   $scope.menu = [
     {
-      title: "1. Add an item",
+      title: "1. What do you need?",
       section: "intro",
       submenuTemplate: "menu/menuItems.html",
       submenuItems: [{
@@ -37216,7 +37353,7 @@ function MainController($scope,DataService,$locale,$routeParams) {
       }]
     },
     {
-      title: "2. Give me more detail",
+      title: "2. Lets get some details",
       section: "garms",
       submenuTemplate: "menu/menuItems.html",
       submenuItems: [{
@@ -37279,10 +37416,6 @@ angular.module('DataServices', [])
     Parse.initialize("oB4lSEsDL1MuJbLiTe4pHQbNvCJAzfu4nUMdsLL2", "LZ88ABUjZ0l92Nogc3TlCWRlGeKWBkqOXWw382hu");
 
 
-    // Define Parse Models
-    var Feedback = Parse.Object.extend("Feedback");
-    var MaleAnswers = Parse.Object.extend("MaleAnswers");
-
 
     // FACEBOOK init
 
@@ -37308,8 +37441,8 @@ angular.module('DataServices', [])
     var ParseService = {
       name: "Parse",
       
-      fbLogin: function(brandidUser) {
-      
+      fbLogin: function(currentUser,male_answers) {
+        
         var self = this;
 
         Parse.FacebookUtils.logIn("user_likes,email,user_photos", {
@@ -37318,19 +37451,71 @@ angular.module('DataServices', [])
 
             // self.updateUserWithFbDetails(brandidUser);
 
+            // attach all answered questions to logged in user
 
-            location.reload();
+            self.saveAllAnswers(currentUser,male_answers);
+
+            
 
           },
           error: function(user, error) {
             // Handle errors and cancellation
-            alert('Something went wrong, please let M.A.L.E. know so he can fix it - male@getbrandid.com or @MALE');
-
-            console.log("error:");
+            alert('Something went wrong, please let @male know so he can fix it - male@getbrandid.com or @male');
             console.log(error);
 
           }
 
+        });
+
+      },
+
+      saveAllAnswers: function(currentUser,male_answers) {
+        var self = this;
+        angular.forEach(male_answers, function(answer) {
+
+          answer.set("user",currentUser);
+          self.saveAnswer(answer);
+
+        });
+
+        location.reload();
+        
+      },
+
+      saveAnswer: function(answer) {
+        answer.save(null, {
+          success: function(answer) {
+            // The object was saved successfully.
+
+            // console.log(item);
+            // DataService.fetch($scope.currentUser);
+
+            // console.log(user);
+
+          },
+          error: function(answer, error) {
+            // The save failed.
+            // error is a Parse.Error with an error code and description.
+            // alert("Cannot save your answers right now, please contact @male");
+            console.log(error);
+            alert('arrrg');
+          }
+        });
+      },
+
+
+      fetch: function(currentUser) {
+        currentUser.fetch({
+          success: function(myObject) {
+            // The object was refreshed successfully.
+            alert('fetched successfully');
+
+          },
+          error: function(myObject, error) {
+            // The object was not refreshed successfully.
+            // error is a Parse.Error with an error code and description
+            alert("Something went wrong, please contact @male");
+          }
         });
 
       },
@@ -37451,11 +37636,12 @@ angular.module('DataServices', [])
 // @codekit-prepend "modules/boxers/boxersQuestions.js"
 // @codekit-prepend "modules/socks/socksQuestions.js"
 
+
 // @codekit-prepend "modules/brandsLoader.js"
 // @codekit-prepend "modules/coloursLoader.js"
 // @codekit-prepend "modules/sizeLoader.js"
 // @codekit-prepend "modules/specificsLoader.js"
-
+// @codekit-prepend "modules/checkoutLoader.js"
 
 
 // @codekit-prepend "controllers/detail.js"

@@ -4,6 +4,8 @@ function SizeFormController($scope,$routeParams,sizeLoader,$locale) {
 
 		$scope.routeParams = $routeParams;
 		$locale.id = "en-gb";
+		$scope.totalNumButtons = 5;
+		$scope.selectedSize = {};
 
 	/***** END CONTROLLER PROPERTIES ******/
 		
@@ -14,6 +16,9 @@ function SizeFormController($scope,$routeParams,sizeLoader,$locale) {
 		$scope.howToMeasure = sizeData.instructions;
 
 		$scope.sizeButtons = sizeData.sizeChoices;
+
+		// this is for figuring out the width of the buttons
+		$scope.totalNumButtons = $scope.sizeButtons.length;
 
 		// TODO: put these in a .json file and retrieve via AJAX
 
@@ -31,15 +36,25 @@ function SizeFormController($scope,$routeParams,sizeLoader,$locale) {
 
 	/***** CONTROLLER EVENT RESPONDERS ******/
 	
-		$scope.chooseSize = function(category,brandType) {
-			// $scope.selectedSize = sizeLoader.getAllSizeFilteredBy(category,brandType);
+		$scope.chooseSize = function(category,style,buttonIndex) {
+			// we'll need category eventually to do a funny comment like "massive feet means..."
+			angular.forEach($scope.sizeButtons, function(button) {
+				button.isActive = false;
+			});
+
+			$scope.sizeButtons[buttonIndex].isActive = true;
+			$scope.selectedSize = {
+				size: $scope.sizeButtons[buttonIndex].label,
+				measurements: $scope.sizeButtons[buttonIndex].measurements
+			};
+
 		};
 
 		$scope.saveAnswer = function() {
 			// since we defined the answer in the question in the form controller, the parent controller doesn't have access to it
 			// therefore we need to pass the answer by reference
 			$scope.goToNextQuestion($routeParams.section,$routeParams.category,$routeParams.question,/*answer*/$scope.selectedSize);
-		}
+		};
 
 	/***** END CONTROLLER EVENT RESPONDERS ******/
 

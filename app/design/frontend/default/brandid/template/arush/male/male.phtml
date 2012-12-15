@@ -4,7 +4,7 @@
     <div class="modal-header"><h1>Save Your Progress!</h1></div>
     <div class="modal-body">
       <p>
-        Use Facebook to register with us. We need your email and access to your photos so we can get a better feel of your style.
+        Log-in with Facebook and we can save you doing all of this again. We’ll scan your profile and start matching you up with the right gear. Smart right?
       </p>
       
     </div>
@@ -63,10 +63,7 @@
 
   <div  class="drawer-holder shadow-trick-holder {{routeParams.category}}" >
     <div class="drawer shadow-trick right">
-      
-      <a ng-click="drawerOpen = !drawerOpen" class="menu-button-dark"></a>
-      
-      <a href="#/section/garms/category/intro" class="button-overlay over-male" style="width:100%">
+      <a ng-click="drawerOpen = !drawerOpen" class="button-overlay over-male" style="width:100%">
         <div class="male-round">
           <div class="male-holder">
             <div id="male-colour" class="male-back">
@@ -190,11 +187,22 @@
           <span id="intro">{{question}}</span>
         </div>
 
-        <div class="withRadius male-button-holder" ng-repeat="answer in answers">
+        <div class="answers multi-button-set">
+                
+            <a class="convert secondary size-auto-populator total-num-buttons-{{totalNumButtons}} first-{{$first}} last-{{$last}}" ng-click="selectItem($index)" ng-repeat="answer in answers" ng-class="{active: sizeButton.isActive}">
+              <div class="v-outer-container">
 
-          <a ng-click="selectItem($index)" class="button-overlay convert secondary">
-            <div class="icon ">{{answer.label}}</div>
-          </a>
+                <div class="v-inner-container">
+
+                  <div class="v-aligned-element">
+                    <div class="icon ">{{answer.label}}</div>
+                  </div>
+                
+                </div>
+
+              </div>
+
+            </a>
 
         </div>
         
@@ -205,16 +213,32 @@
   <script type=text/ng-template id=checkout.html>
       <div class="slide-container clearfix fadeIn ani">
         <div class="curved-white-block withShadow withRadius">
-          <span id="intro">{{test}}</span>
+          
+          <div class="order-summary">
+            <h1 class="question-title">{{checkoutSummaryTitle}}</h1>
+            <div class="basket">
+
+              <span class="bold">Specifics:</span> <span class="basket-items" {{basket.specifics}}</span>
+            </div>
+          </div>
+
+          <div class="fullWidth clearfix">
+            <h1 class="question-title">{{checkoutTitle}}</h1>
+            <div class="incentive-image-container">
+              <img class="scale-with-grid float-left incentive-image" ng-src="<?php echo $this->getSkinUrl('images/male/checkout'); ?>/{{checkoutIncentiveUrl}}" alt="free touchscreen gloves"/>
+            </div>
+            <div class="incentive-message float-left" id="intro">{{checkoutCopy}}</div>
+          </div>
+          <div class="next-question-button-section">
+            <button class="convert submit" type="submit" href="">
+                  Next
+            </button>
+          </div>
+
+
+
         </div>
 
-        <div class="withRadius male-button-holder" ng-repeat="answer in answers">
-
-          <a ng-click="selectItem($index)" class="button-overlay convert secondary">
-            <div class="icon ">{{answer.label}}</div>
-          </a>
-
-        </div>
         
       </div>
 
@@ -226,14 +250,15 @@
         <form ng-controller="SizeFormController">
 
           <div class="curved-white-block withShadow withRadius">
+          <h1 class="question-title">{{questionTitle}}</h1>
             <span id="size">{{sizeQuestion}}</span>
-            <div class="hint">{{howToMeasure}}</div>
+            
           </div>
 
           
-            <div class="answers">
+            <div class="answers multi-button-set">
                 
-                <a class="convert secondary size-auto-populator one-third-button first-{{$first}} last-{{$last}}" ng-click="chooseSize(routeParams.category, sizeButton.brandType)" ng-repeat="sizeButton in sizeButtons">
+                <a class="convert secondary size-auto-populator total-num-buttons-{{totalNumButtons}} first-{{$first}} last-{{$last}}" ng-click="chooseSize(routeParams.category, sizeButton.style, $index)" ng-repeat="sizeButton in sizeButtons" ng-class="{active: sizeButton.isActive}">
                   <div class="v-outer-container">
 
                     <div class="v-inner-container">
@@ -249,6 +274,7 @@
                 </a>
 
             </div>
+            <div class="hint">{{howToMeasure}}</div>
 
             <div class="next-question-button-section">
               <button class="convert submit" type="submit" ng-click="saveAnswer()">
@@ -266,6 +292,7 @@
         <form ng-controller="SpecificsFormController">
 
           <div class="curved-white-block withShadow withRadius">
+          <h1 class="question-title">{{questionTitle}}</h1>
             <span id="specifics">{{question}}</span>
           </div>
 
@@ -290,13 +317,14 @@
         <form ng-controller="ColoursFormController">
 
           <div class="curved-white-block withShadow withRadius">
-            <span id="colours">{{coloursQuestion}}</span>
+            <h1 class="question-title">{{questionTitle}}</h1>
+            <span id="colours">{{question}}</span>
           </div>
 
           
-            <div class="answers">
+            <div class="answers multi-button-set">
                 
-                <a class="convert secondary colours-auto-populator one-third-button first-{{$first}} last-{{$last}}" ng-click="chooseColours(routeParams.category, coloursButton.style)" ng-repeat="coloursButton in coloursButtons">
+                <a class="convert secondary colours-auto-populator total-num-buttons-{{totalNumButtons}} first-{{$first}} last-{{$last}}" ng-click="chooseColours(coloursButton.style, $index)" ng-repeat="coloursButton in coloursButtons" ng-class="{active: coloursButton.isActive}">
                   <div class="v-outer-container">
 
                     <div class="v-inner-container">
@@ -340,9 +368,9 @@
           </div>
 
           
-            <div class="answers">
+            <div class="answers multi-button-set">
                 
-                <a class="convert secondary brands-auto-populator one-third-button first-{{$first}} last-{{$last}}" ng-click="chooseBrands(routeParams.category, brandsButton.brandType)" ng-repeat="brandsButton in brandsButtons">
+                <a class="convert secondary brands-auto-populator total-num-buttons-{{totalNumButtons}} first-{{$first}} last-{{$last}}" ng-click="chooseBrands(routeParams.category, brandsButton.brandType, $index)" ng-repeat="brandsButton in brandsButtons" ng-class="{active: brandsButton.isActive}">
                   <div class="v-outer-container">
 
                     <div class="v-inner-container">

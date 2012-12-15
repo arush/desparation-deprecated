@@ -22,6 +22,27 @@ Colours.factory('coloursLoader', function() {
 		    }
 		},
 
+		getQuestion: function(countryCode) {
+			var question = {
+				"en-gb": "Disco or classic, spots or stripes, patterned or graphic, or just plain old plain? We’ve got the full spectrum buddy. And if we show you any colours you’d never wear, ever. Just hit delete."
+			}
+			return question[countryCode];
+		},
+
+		getQuestionTitle: function(countryCode) {
+			var questionTitle = {
+				"en-gb": "What colours, chief?"
+			}
+			return questionTitle[countryCode];
+		},
+
+		getTooltip: function(countryCode) {
+			var tooltip = {
+				"en-gb": "This is a tooltip"
+			}
+			return tooltip[countryCode];
+		},
+
 		getColours: function(category, countryCode) {
 
 	    	var colours = [];
@@ -63,8 +84,6 @@ Colours.factory('coloursLoader', function() {
 
 		    		break;
 		    }
-		    console.log(colours);
-		    console.log(moreColours);
 
 		    return colours;
 
@@ -107,7 +126,10 @@ Colours.factory('coloursLoader', function() {
 			// use the dynamic sort function to order by label field
 			discoColoursFiltered.sort();
 
-		    return discoColoursFiltered;
+			// must format this into something SELECT2 understands for tagging
+		    var discoColoursFilteredFormatted = this.formatArrayForTagging(discoColoursFiltered);
+
+		    return discoColoursFilteredFormatted;
 	    },
 
 	    getClassicColoursAll: function(countryCode) {
@@ -132,31 +154,54 @@ Colours.factory('coloursLoader', function() {
 		    };
 
 		    var classicColoursFiltered = classicColoursAll[countryCode];
-		    
-			// use the dynamic sort function to order by label field
 
-		    return classicColoursFiltered;
+		    // use the dynamic sort function to order by label field
+			classicColoursFiltered.sort();
+
+		    // must format this into something SELECT2 understands for tagging
+		    var classicColoursFilteredFormatted = this.formatArrayForTagging(classicColoursFiltered);
+		    
+
+		    return classicColoursFilteredFormatted;
 	    },
 
+	    formatArrayForTagging: function(nonFormatted) {
+	    	var formattedArray = [];
+
+	    	angular.forEach(nonFormatted, function(item) {
+	    		
+	    		var formattedItem = {
+	    			id: item,
+	    			text: item
+	    		};
+
+	    		formattedArray.push(formattedItem);
+	    	});
+
+	    	return formattedArray;
+
+	    },
 
 	    // this is a function used by the "auto-populate colours" buttons
 
-	    getAllColoursFilteredBy: function(category, style) {
-	    	var selectedColours = {};
+	    getAllColoursFilteredBy: function(style, countryCode) {
+	    	var selectedColours = [];
 
 	    	switch(style) {
 	    		case 'classic':
-	    			selectedColours = this.getClassicColours(category);
+	    			selectedColours = this.getClassicColoursAll(countryCode);
+
 	    			break;
 	    		case 'disco':
-	    			selectedColours = this.getDiscoColours(category);
+	    			selectedColours = this.getDiscoColoursAll(countryCode);
+
 	    			break;
 	    		default:
-	    			selectedColours.colours = [];
+	    			selectedColours = [];
 	    			break;
 	    	}
 
-	    	return JSON.parse(JSON.stringify(selectedColours.colours));
+	    	return selectedColours;
 	    }
 
 

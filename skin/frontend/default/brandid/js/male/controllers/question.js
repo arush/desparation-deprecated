@@ -1,4 +1,4 @@
-function QuestionController($scope,$routeParams,questionLoader,brandsLoader,$location,$locale) {
+function QuestionController($scope,$routeParams,DataService,questionLoader,brandsLoader,$location,$locale) {
 
 	
 	/***** CONTROLLER PROPERTIES ******/
@@ -26,48 +26,15 @@ function QuestionController($scope,$routeParams,questionLoader,brandsLoader,$loc
     $scope.goToNextQuestion = function(section,category,question,answer) {
 
     	// save the answer to browser memory
-		$scope.user.male_answers[section][category][question] = answer;
+		// $scope.user.male_answers[section][category][question] = answer;
+		$scope.male_answers[category].set(question,answer);
 
-    	// and if the user is logged in, save overwriting old data
-    	if($scope.currentUser) {
-    		// for readability
-    		var objectToSave = $scope.user.male_answers;
-    		console.log(objectToSave);
-    		$scope.currentUser.set("male_answers",objectToSave);
-
-    		console.log($scope.currentUser);
-
-    		$scope.currentUser.save(null, {
-			  success: function(user) {
-			    // The object was saved successfully.
-			    $scope.currentUser.fetch({
-				  success: function(myObject) {
-				    // The object was refreshed successfully.
-				    alert('fetched successfully')
-				    console.log(myObject);
-				  },
-				  error: function(myObject, error) {
-				    // The object was not refreshed successfully.
-				    // error is a Parse.Error with an error code and description
-				    console.log(error);
-				  }
-				});
-
-			    // console.log(user);
-
-			  },
-			  error: function(user, error) {
-			    // The save failed.
-			    // error is a Parse.Error with an error code and description.
-			    alert("Cannot save right now, try again later");
-			    console.log(error);
-			  }
-			});
-
-    	}
-    	
-
-    	
+		
+		// if logged in, we want to save to parse
+		if($scope.loggedIn) {
+			DataService.saveAnswer($scope.male_answers[category]);
+		};
+		
     	var nextPath = $scope.getNextPath(question);
     	$location.path(nextPath);
       
@@ -156,4 +123,4 @@ function QuestionController($scope,$routeParams,questionLoader,brandsLoader,$loc
 	$scope.init();
 
 }
-QuestionController.$inject = ['$scope','$routeParams','questionLoader','brandsLoader','$location','$locale'];
+QuestionController.$inject = ['$scope','$routeParams','DataService','questionLoader','brandsLoader','$location','$locale'];

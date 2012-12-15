@@ -15,10 +15,6 @@ angular.module('DataServices', [])
     Parse.initialize("oB4lSEsDL1MuJbLiTe4pHQbNvCJAzfu4nUMdsLL2", "LZ88ABUjZ0l92Nogc3TlCWRlGeKWBkqOXWw382hu");
 
 
-    // Define Parse Models
-    var Feedback = Parse.Object.extend("Feedback");
-    var MaleAnswers = Parse.Object.extend("MaleAnswers");
-
 
     // FACEBOOK init
 
@@ -44,8 +40,8 @@ angular.module('DataServices', [])
     var ParseService = {
       name: "Parse",
       
-      fbLogin: function(brandidUser) {
-      
+      fbLogin: function(currentUser,male_answers) {
+        
         var self = this;
 
         Parse.FacebookUtils.logIn("user_likes,email,user_photos", {
@@ -54,19 +50,71 @@ angular.module('DataServices', [])
 
             // self.updateUserWithFbDetails(brandidUser);
 
+            // attach all answered questions to logged in user
 
-            location.reload();
+            self.saveAllAnswers(currentUser,male_answers);
+
+            
 
           },
           error: function(user, error) {
             // Handle errors and cancellation
-            alert('Something went wrong, please let M.A.L.E. know so he can fix it - male@getbrandid.com or @MALE');
-
-            console.log("error:");
+            alert('Something went wrong, please let @male know so he can fix it - male@getbrandid.com or @male');
             console.log(error);
 
           }
 
+        });
+
+      },
+
+      saveAllAnswers: function(currentUser,male_answers) {
+        var self = this;
+        angular.forEach(male_answers, function(answer) {
+
+          answer.set("user",currentUser);
+          self.saveAnswer(answer);
+
+        });
+
+        location.reload();
+        
+      },
+
+      saveAnswer: function(answer) {
+        answer.save(null, {
+          success: function(answer) {
+            // The object was saved successfully.
+
+            // console.log(item);
+            // DataService.fetch($scope.currentUser);
+
+            // console.log(user);
+
+          },
+          error: function(answer, error) {
+            // The save failed.
+            // error is a Parse.Error with an error code and description.
+            // alert("Cannot save your answers right now, please contact @male");
+            console.log(error);
+            alert('arrrg');
+          }
+        });
+      },
+
+
+      fetch: function(currentUser) {
+        currentUser.fetch({
+          success: function(myObject) {
+            // The object was refreshed successfully.
+            alert('fetched successfully');
+
+          },
+          error: function(myObject, error) {
+            // The object was not refreshed successfully.
+            // error is a Parse.Error with an error code and description
+            alert("Something went wrong, please contact @male");
+          }
         });
 
       },

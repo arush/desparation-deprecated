@@ -1,6 +1,6 @@
 'use strict';
 
-var ngMaleApp = angular.module('ngMaleApp', ['ui','DataServices','QuestionsModule','BrandsModule','ColoursModule','SizeModule','SpecificsModule']);
+var ngMaleApp = angular.module('ngMaleApp', ['ui','DataServices','QuestionsModule','BrandsModule','ColoursModule','SizeModule','SpecificsModule','CheckoutModule']);
 
 ngMaleApp.config(function ($routeProvider) {
     $routeProvider
@@ -41,6 +41,6 @@ ngMaleApp.config(function ($routeProvider) {
         redirectTo: '/section/garms/category/intro'
       });
 });
-ngMaleApp.$inject = ['ui','DataServices','QuestionsModule','BrandsModule','ColoursModule','SizeModule','SpecificsModule'];
+ngMaleApp.$inject = ['ui','DataServices','QuestionsModule','BrandsModule','ColoursModule','SizeModule','SpecificsModule','CheckoutModule'];
 
 

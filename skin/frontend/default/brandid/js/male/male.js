@@ -34,11 +34,12 @@
 // @codekit-prepend "modules/boxers/boxersQuestions.js"
 // @codekit-prepend "modules/socks/socksQuestions.js"
 
+
 // @codekit-prepend "modules/brandsLoader.js"
 // @codekit-prepend "modules/coloursLoader.js"
 // @codekit-prepend "modules/sizeLoader.js"
 // @codekit-prepend "modules/specificsLoader.js"
-
+// @codekit-prepend "modules/checkoutLoader.js"
 
 
 // @codekit-prepend "controllers/detail.js"

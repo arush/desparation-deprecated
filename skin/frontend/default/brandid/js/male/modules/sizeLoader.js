@@ -18,45 +18,45 @@ Size.factory('sizeLoader', function() {
     	
 		getSizes: function(category,countryCode) {
 
-	    	var sizeChoices;
+	    	var sizeOptions;
 	    	var instructionsText;
 
 	    	switch(category) {
 		    
 		    	case "boxers":
-		    		sizeChoices = this.getBoxerSizes();
+		    		sizeOptions = this.getBoxerSizes();
 		    		instructionsText = this.getBoxerInstructions(countryCode);
 		    		break;
 		    	case "tees":
-		    		sizeChoices = this.getTopSizes();
+		    		sizeOptions = this.getTopSizes();
 		    		instructionsText = this.getTopsInstructions(countryCode);
 		    		break;
 		    	case "jumpers":
-		    		sizeChoices = this.getTopSizes();
+		    		sizeOptions = this.getTopSizes();
 		    		instructionsText = this.getTopsInstructions(countryCode);
 		    		break;
 		    	case "hoodies":
-		    		sizeChoices = this.getTopSizes();
+		    		sizeOptions = this.getTopSizes();
 		    		instructionsText = this.getTopsInstructions(countryCode);
 		    		break;
 		    	case "shoes":
-		    		sizeChoices = this.getShoeSizes();
+		    		sizeOptions = this.getShoeSizes();
 		    		instructionsText = "";
 		    		break;
 		    	case "other":
-		    		sizeChoices = this.getOtherSizes();
+		    		sizeOptions = this.getOtherSizes();
 		    		instructionsText = "";
 		    		break;
 		    	default:
 		    	// this is just a catchall and should never have to be used
-		    		sizeChoices = this.getBoxerSizes();
+		    		sizeOptions = this.getBoxerSizes();
 		    		break;
 		    }
 
 
 			var sizes = {
 	    		instructions: instructionsText,
-	    		sizeChoices: sizeChoices
+	    		sizeChoices: sizeOptions
 			}
 
 		    return sizes;	
@@ -90,19 +90,23 @@ Size.factory('sizeLoader', function() {
 	    	var boxerSizes = [
 		    		{
 		    			label: "S",
-		    			measurements: "30 - 32in"
+		    			measurements: "30 - 32in",
+		    			isActive: false
 		    		},
 		    		{
 		    			label: "M",
-		    			measurements: "30 - 34in"
+		    			measurements: "30 - 34in",
+		    			isActive: false
 		    		},
 		    		{
 		    			label: "L",
-		    			measurements: "34 - 36in"
+		    			measurements: "34 - 36in",
+		    			isActive: false
 		    		},
 		    		{
 		    			label: "XL",
-		    			measurements: "36 - 38in"
+		    			measurements: "36 - 38in",
+		    			isActive: false
 		    		}
 			    ]
 			return boxerSizes;
@@ -111,19 +115,23 @@ Size.factory('sizeLoader', function() {
 	    	var topSizes = [
 		    		{
 		    			label: "S",
-		    			measurements: "36 - 38in"
+		    			measurements: "36 - 38in",
+		    			isActive: false
 		    		},
 		    		{
 		    			label: "M",
-		    			measurements: "38 - 40in"
+		    			measurements: "38 - 40in",
+		    			isActive: false
 		    		},
 		    		{
 		    			label: "L",
-		    			measurements: "40 - 42in"
+		    			measurements: "40 - 42in",
+		    			isActive: false
 		    		},
 		    		{
 		    			label: "XL",
-		    			measurements: "42 - 44in"
+		    			measurements: "42 - 44in",
+		    			isActive: false
 		    		}
 			    ]
 			return topSizes;
@@ -132,31 +140,38 @@ Size.factory('sizeLoader', function() {
 	    	var shoeSizes = [
 		    		{
 		    			label: "UK 6",
-		    			measurements: "EU 40"
+		    			measurements: "EU 40",
+		    			isActive: false
 		    		},
 		    		{
 		    			label: "UK 7",
-		    			measurements: "EU 41"
+		    			measurements: "EU 41",
+		    			isActive: false
 		    		},
 		    		{
 		    			label: "UK 8",
-		    			measurements: "EU 42"
+		    			measurements: "EU 42",
+		    			isActive: false
 		    		},
 		    		{
 		    			label: "UK 9",
-		    			measurements: "EU 43"
+		    			measurements: "EU 43",
+		    			isActive: false
 		    		},
 		    		{
 		    			label: "UK 10",
-		    			measurements: "EU 44"
+		    			measurements: "EU 44",
+		    			isActive: false
 		    		},
 		    		{
 		    			label: "UK 11",
-		    			measurements: "EU 45"
+		    			measurements: "EU 45",
+		    			isActive: false
 		    		},
 		    		{
 		    			label: "UK 12",
-		    			measurements: "EU 46"
+		    			measurements: "EU 46",
+		    			isActive: false
 		    		}
 
 			    ]

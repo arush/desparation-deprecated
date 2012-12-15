@@ -21,7 +21,7 @@
     		Login
     	</a>
         <a ng-show="loggedIn" class="profile-image-container" ng-click="myAccountModalShown=true">
-            <img class="scale-with-grid profile-image-circle withShadow" ng-src="https://graph.facebook.com/{{user.fbID}}/picture" alt="your profile image"/>
+            <img class="scale-with-grid profile-image-circle withShadow" ng-src="https://graph.facebook.com/{{currentUser.attributes.authData.facebook.id}}/picture" alt="your profile image"/>
         </a>
     </div>
   </div>

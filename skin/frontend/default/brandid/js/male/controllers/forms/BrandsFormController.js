@@ -27,27 +27,32 @@ function BrandsFormController($scope,$routeParams,brandsLoader,$locale) {
 				{
 					brandType: 'value',
 					label: 'Value Brands',
+					isActive: false,
 					priceLower: valueBrands.priceRange.lower,
 					priceUpper: valueBrands.priceRange.upper
 				},
 				{
 					brandType: 'premium',
 					label: 'Premium Brands',
+					isActive: false,
 					priceLower: premiumBrands.priceRange.lower,
 					priceUpper: premiumBrands.priceRange.upper
 				},
 				{
 					brandType: 'skate',
 					label: 'Skate / Snow',
+					isActive: false,
 					priceLower: skateBrands.priceRange.lower,
 					priceUpper: skateBrands.priceRange.upper
-				},
-
+				}
 			];
 
 		} else {
 			// another language
 		}
+
+		// this is for correct skinning of the multi-button-set
+		$scope.totalNumButtons = $scope.brandsButtons.length;
 
 	/***** END BRANDS PRE-POPULATE BUTTONS ******/
 
@@ -77,7 +82,13 @@ function BrandsFormController($scope,$routeParams,brandsLoader,$locale) {
 
 	/***** CONTROLLER EVENT RESPONDERS ******/
 	
-		$scope.chooseBrands = function(category,brandType) {
+		$scope.chooseBrands = function(category,brandType,buttonIndex) {
+
+			// highlight the button
+			angular.forEach($scope.brandsButtons, function(button) {
+				button.isActive = false;
+			});
+			$scope.brandsButtons[buttonIndex].isActive = true;
 			$scope.selectedBrands = brandsLoader.getAllBrandsFilteredBy(category,brandType);
 		};
 

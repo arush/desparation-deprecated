@@ -1,3 +1,23 @@
+@import "compass";
+// multi-button-set button width calcs
+$multi-button-margin-right-width: 0%;
+$multi-button-border-width: 1px;
+
+@mixin multi-button-set($num-buttons: 3) {
+	// number of gaps
+	$gaps: $num-buttons - 1;
+
+	// account for border width
+
+	/* minimum page width is about 300px therefore 1px / 300px = 0.3333%, so we must leave this gap */
+
+	$button-width: ((100% - ($gaps * $multi-button-margin-right-width)) / $num-buttons) - 0.3333%;
+
+	width:$button-width;
+	margin-right:$multi-button-margin-right-width;
+}
+// end multi-button width calcs
+
 a.convert, button.convert, .recurly button.submit {
 	font-family: ff-enzo-web,"proxima-nova",sans-serif,arial,"lucida grande",Verdana,"Bitstream Vera Sans",Arial,sans-serif;
 	text-align: center;
@@ -112,7 +132,7 @@ a.secondary, input.convert.secondary {
 
 a.convert.secondary:hover {
 	color:black;
-	border: 1px solid #ddd;
+	// border: 1px solid #ddd;
 }
 
 a.convert.secondary.active:hover, a.convert.secondary.true:hover {
@@ -216,4 +236,70 @@ a.continue.skip.secondary.convert {
 
 .planOther a.convert {
 	font-size: 11px;
+}
+
+.multi-button-set {
+	.total-num-buttons-2, .total-num-buttons-2:hover,
+	.total-num-buttons-3, .total-num-buttons-3:hover,
+	.total-num-buttons-4, .total-num-buttons-4:hover,
+	.total-num-buttons-5, .total-num-buttons-5:hover,
+	.total-num-buttons-6, .total-num-buttons-6:hover,
+	.total-num-buttons-7, .total-num-buttons-7:hover,
+	.total-num-buttons-8, .total-num-buttons-8:hover,
+	.total-num-buttons-9, .total-num-buttons-9:hover,
+	.total-num-buttons-10, .total-num-buttons-10:hover, {
+		@include border-radius(0);
+		border-right:1px solid #DDD;
+		border-left:1px solid #CCC;
+	}
+
+	.total-num-buttons-2, .total-num-buttons-2:hover  {
+		@include multi-button-set(2);
+	}
+
+	.total-num-buttons-3, .total-num-buttons-3:hover {
+		@include multi-button-set(3);
+	}
+
+	.total-num-buttons-4 {
+		@include multi-button-set(4);
+	}
+
+	.total-num-buttons-5 {
+		@include multi-button-set(5);
+	}
+
+	.total-num-buttons-6 {
+		@include multi-button-set(6);
+	}
+
+	.total-num-buttons-7 {
+		@include multi-button-set(7);
+	}
+
+	.total-num-buttons-8 {
+		@include multi-button-set(8);
+	}
+
+	.total-num-buttons-9 {
+		@include multi-button-set(9);
+	}
+
+	.total-num-buttons-10 {
+		@include multi-button-set(10);
+	}
+
+	a.convert.first-true, a.convert.first-true:hover {
+		@include border-top-left-radius(3px);
+		@include border-bottom-left-radius(3px);
+		border-left:none;
+	}
+
+	a.convert.last-true, a.convert.last-true:hover {
+		margin-right:0;
+		border-right:none;
+		@include border-top-right-radius(3px);
+		@include border-bottom-right-radius(3px);
+	}
+
 }
