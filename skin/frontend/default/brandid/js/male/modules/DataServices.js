@@ -11,15 +11,16 @@ angular.module('DataServices', [])
  * Parse Service
  * Use Parse.com as a back-end for the application.
  */
-.factory('ParseService', ['HelperService', function(HelperService){
+.factory('ParseService', ['HelperService', function(HelperService) {
     
 
     // Initialize Parse API and objects.
     if(HelperService.getDevOrLive()) {
       // initialise LIVE connection to Parse
+      Parse.initialize("cWsBzcLQQMy80sF7KOYWPkeVKDxshxQWUwWk1b27", "rhu8oSmv0Z7qms57HNvJaLlwpc9Mkl2kjIefkTXl");
     } else {
       // intitialise DEV connection to P
-      Parse.initialize("oB4lSEsDL1MuJbLiTe4pHQbNvCJAzfu4nUMdsLL2", "LZ88ABUjZ0l92Nogc3TlCWRlGeKWBkqOXWw382hu");  
+      Parse.initialize("oB4lSEsDL1MuJbLiTe4pHQbNvCJAzfu4nUMdsLL2", "LZ88ABUjZ0l92Nogc3TlCWRlGeKWBkqOXWw382hu");
     }
 
     // FACEBOOK init
@@ -78,6 +79,7 @@ angular.module('DataServices', [])
           error: function(user, error) {
             // Handle errors and cancellation
             alert('Something went wrong, please let @male know so he can fix it - male@getbrandid.com or @male');
+            console.log(error);
 
           }
 
