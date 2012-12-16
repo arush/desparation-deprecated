@@ -1,6 +1,11 @@
 .male-round {
 	margin-bottom:30px;
 	text-align:center;
+	border-right: 2px solid $drawerBg;
+}
+
+.intro .male-round {
+	border-right: 2px solid #FFF;	
 }
 
 .male-holder {

@@ -24,7 +24,7 @@ Brands.factory('brandsLoader', function() {
 
 		getQuestionTitle: function(countryCode) {
 			var questionTitle = {
-	    			"en-gb": "What's Your Brand iD?",
+	    			"en-gb": "What's your Brand iD?",
 	    			"en-us": "What's Your Brand iD?"
 		    };
 

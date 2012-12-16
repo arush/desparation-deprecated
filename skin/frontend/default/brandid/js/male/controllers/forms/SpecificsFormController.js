@@ -1,4 +1,4 @@
-function SpecificsFormController($scope,$routeParams,specificsLoader,$locale) {
+var SpecificsFormController = function SpecificsFormController($scope,$routeParams,specificsLoader,$locale) {
 
 	/***** CONTROLLER PROPERTIES ******/
 
@@ -10,10 +10,11 @@ function SpecificsFormController($scope,$routeParams,specificsLoader,$locale) {
 
 		// retrieve brand data from service so we can use it below in the buttons
 		$scope.question = specificsLoader.getQuestion($routeParams.category,$locale.id);
+		$scope.questionTitle = specificsLoader.getQuestionTitle($locale.id);
 
 		// TODO: put these in a .json file and retrieve via AJAX
 
-	
+
 
 	/***** CONTROLLER EVENT RESPONDERS ******/
 	

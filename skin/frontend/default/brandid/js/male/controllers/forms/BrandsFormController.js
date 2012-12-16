@@ -1,4 +1,4 @@
-function BrandsFormController($scope,$routeParams,brandsLoader,$locale) {
+var BrandsFormController = function BrandsFormController($scope,$routeParams,brandsLoader,$locale) {
 
 
 	/***** CONTROLLER PROPERTIES ******/

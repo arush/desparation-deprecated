@@ -24,7 +24,7 @@ Colours.factory('coloursLoader', function() {
 
 		getQuestion: function(countryCode) {
 			var question = {
-				"en-gb": "Disco or classic, spots or stripes, patterned or graphic, or just plain old plain? We’ve got the full spectrum buddy. And if we show you any colours you’d never wear, ever. Just hit delete."
+				"en-gb": "Disco or classic, spots or stripes, patterned or graphic, or just plain old plain? We’ve got the full spectrum buddy. And if we show you any colours you’d never wear, just hit delete."
 			}
 			return question[countryCode];
 		},

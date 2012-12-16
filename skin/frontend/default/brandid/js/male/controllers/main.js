@@ -5,61 +5,17 @@
  * given the simplistic nature of the application.  
  *
  */
-function MainController($scope,DataService,$locale,$routeParams) {
+var MainController = function MainController($scope,DataService,HelperService,$locale,$routeParams) {
+
+  $scope.live = false;
+  $scope.live = HelperService.getDevOrLive();
+
+
 
   // ***** CONTROLLER PROPERTIES ***** //
-
-    // this is the current session's user, which gets destroyed when the browser closes. it will only hold one set of answers at a time per item,
-    // and that answer get
-    // $scope.user = {
-    //   male_answers: {
-    //     garms : {
-    //       socks: {
-    //         brands: [],
-    //         size: [],
-    //         colours: [],
-    //         specifics: []
-    //       },
-    //       boxers: {
-    //         brands: [],
-    //         size: [],
-    //         colours: [],
-    //         specifics: []
-    //       },
-    //       tees: {
-    //         brands: [],
-    //         size: [],
-    //         colours: [],
-    //         specifics: []
-    //       },
-    //       jumpers: {
-    //         brands: [],
-    //         size: [],
-    //         colours: [],
-    //         specifics: []
-    //       },
-    //       hoodies: {
-    //         brands: [],
-    //         size: [],
-    //         colours: [],
-    //         specifics: []
-    //       },
-    //       shoes: {
-    //         brands: [],
-    //         size: [],
-    //         colours: [],
-    //         specifics: []
-    //       },
-    //       other: {
-    //         brands: [],
-    //         size: [],
-    //         colours: [],
-    //         specifics: []
-    //       }
-    //     }
-    //   }
-    // };
     
+    $locale.id = "en-gb";
+
     $scope.drawerOpen = false;
 
     $scope.currentUser = false;
@@ -79,15 +35,11 @@ function MainController($scope,DataService,$locale,$routeParams) {
     
     if ($scope.currentUser) {
 
-        // DataService.fetch($scope.currentUser);
-        // $scope.setUserProfileImage();
         $scope.loggedIn = true;
 
     } else {
 
       $scope.currentUser = new Parse.User();
-
-        // TODO: whatevers needed for not-logged-in users
 
     };
 
@@ -133,28 +85,32 @@ function MainController($scope,DataService,$locale,$routeParams) {
   // ***** CONTROLLER FUNCTIONS ***** //
 
     // ***** FEEDBACK ON EVERY PAGE ***** //
+    $scope.submitFeedback = function(section,category,question) {
+      if($scope.feedback.message !== "") {
 
-        $scope.submitFeedback = function(section,category,question) {
-          if($scope.feedback.message !== "") {
+        // TODO: metrics
 
-            // TODO: metrics
+        DataService.submitFeedback($scope.currentUser,$scope.feedback, $scope.feedbackForm, section, category, question);  
+      }
+      
+    };
 
-            DataService.submitFeedback($scope.currentUser,$scope.feedback, $scope.feedbackForm, section, category, question);  
-          }
-          
-        }
-    // ***** FEEDBACK ON EVERY PAGE ***** //
 
     // ***** LOGIN FUNCTIONS ***** //
+    $scope.fbLoginFromHeader = function() {
 
-        $scope.fbLogin = function() {
+      // TODO: this breaks when 'intro' changes
+      var saveNeeded = true;
+      // if they are in the intro they have nothing to save
+      if($routeParams.category === 'intro') {
+        saveNeeded = false;
+      }
 
-          // passes the angular scope object by reference, and the service sets $scope.user.profileImageUrl after logging them into facebook
-          var loggedIn = DataService.fbLogin($scope.currentUser,$scope.male_answers);
+      // log them in with nothing to save
+      DataService.fbLoginAndSave($male_answers,$routeParams.category,$scope.currentUser,saveNeeded);
 
-        }
+    };
 
-    // ***** END LOGIN FUNCTIONS ***** //
 
 
   // ***** END CONTROLLER FUNCTIONS ***** //
@@ -170,40 +126,20 @@ function MainController($scope,DataService,$locale,$routeParams) {
       if(next.params.category === 'intro') {
         $scope.selectedSubmenuItem = 'restart';
         
+      } else if(next.params.question === 'checkout') {
+        
+        $scope.drawerOpen = false;
+
       } else {
         // for all other cases, select the question 
         $scope.selectedSubmenuItem = next.params.question;
-        $scope.drawerOpen = true;
+        // $scope.drawerOpen = true;
+
       }
   });
 
 
-  
-
-  $locale.id = "en-gb";
-
-  // TODO: put these in a .json file and retrieve via AJAX
-
-  if ($locale.id === 'en-gb') {
-    
-    var catalogItems = [
-        // {
-        //   path: "#/section/garms/category/boxers/outsource",
-        //   category: "boxers",
-        //   cssClass: "boxers",
-        //   label: "pants"
-        // },
-        // {
-        //   path: "#/section/garms/category/socks/outsource",
-        //   category: "socks",
-        //   cssClass: "socks",
-        //   label: "socks"
-        // }
-    ];
-  } else {
-    // another language
-    // another currency
-  }
+  // TODO: sort out the languages for the menu
 
 
   $scope.menu = [
@@ -259,5 +195,6 @@ function MainController($scope,DataService,$locale,$routeParams) {
 
 
   
-}
-MainController.$inject = ['$scope','DataService','$locale','$routeParams'];
+};
+
+MainController.$inject = ['$scope','DataService','HelperService','$locale','$routeParams'];

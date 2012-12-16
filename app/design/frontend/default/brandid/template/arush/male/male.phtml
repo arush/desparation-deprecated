@@ -9,7 +9,7 @@
       
     </div>
     <div class="modal-footer">
-      <a class="convert secondary facebook-connect" ng-click="fbLogin()">Connect with Facebook</a>
+      <a class="convert secondary facebook-connect" ng-click="fbLoginFromHeader()">Connect with Facebook</a>
       <!-- <a class="convert secondary" ng-click="loginModalShown=false" href="">Close</a> -->
     </div>
   </div>
@@ -58,10 +58,10 @@
     </div>
   </div>
    -->
- <div class="container maleApp withShadow drawerOpen-{{drawerOpen}}">
+ <div class="container maleApp withShadow drawerOpen-{{drawerOpen}}" ng-init="drawerOpen = false">
 
 
-  <div  class="drawer-holder shadow-trick-holder {{routeParams.category}}" >
+  <div  class="drawer-holder shadow-trick-holder" >
     <div class="drawer shadow-trick right">
       <a ng-click="drawerOpen = !drawerOpen" class="button-overlay over-male" style="width:100%">
         <div class="male-round">
@@ -95,7 +95,7 @@
     </div>
   </div>
 
-  <div class="rest-of-page">
+  <div class="rest-of-page {{routeParams.category}}">
     <div class="controls chisel-block clearfix" ng-controller="DetailControlsController">
       <div class="controls-content clearfix">
         <a ng-click="$parent.drawerOpen = !$parent.drawerOpen" class="button-overlay">
@@ -155,7 +155,7 @@
 
   <!-- this is for all other submenu items -->
   <script type=text/ng-template id=menu/menuItems.html>
-    <div ng-repeat="submenuItem in menuItem.submenuItems"  class="ani big-block clearfix {{submenuItem.cssClass}}-container" ng-class="{selected: submenuItem.question==selectedSubmenuItem}">
+    <div ng-repeat="submenuItem in menuItem.submenuItems" class="ani big-block clearfix {{submenuItem.cssClass}}-container" ng-class="{selected: submenuItem.question==selectedSubmenuItem}">
       
       <!-- the link here skips the dashboard, because no need for a dashboard for simple questions -->
       <a href="#/section/{{routeParams.section}}/category/{{routeParams.category}}/question/{{submenuItem.question}}" class="button-overlay">
@@ -220,34 +220,76 @@
 
   </script>
 
-  <script type=text/ng-template id=checkout.html>
+  <script type=text/ng-template id=section/garms/category/generic/question/save.html>
       <div class="slide-container clearfix fadeIn ani">
-        <div class="curved-white-block withShadow withRadius">
-          
-          <div class="order-summary">
-            <h1 class="question-title">{{checkoutSummaryTitle}}</h1>
-            <div class="basket">
+        <form ng-controller="SaveFormController">
+          <div class="curved-white-block withShadow withRadius">
+            
+            <div class="order-summary">
+              <h1 class="question-title">{{checkoutSummaryTitle}}</h1>
+              <div class="basket">
 
-              <span class="bold">Specifics:</span> <span class="basket-items" {{basket.specifics}}</span>
+                <span class="bold">Brands:</span> <span class="basket-items">{{basket.brands}}</span><br/>
+                <span class="bold">Size:</span> <span class="basket-items">{{basket.size}}</span><br/>
+                <span class="bold">Colours:</span> <span class="basket-items">{{basket.colours}}</span><br/>
+                <span class="bold">Specifics:</span> <span class="basket-items">{{basket.specifics}}</span>
+              </div>
             </div>
-          </div>
 
-          <div class="fullWidth clearfix">
-            <h1 class="question-title">{{checkoutTitle}}</h1>
-            <div class="incentive-image-container">
-              <img class="scale-with-grid float-left incentive-image" ng-src="<?php echo $this->getSkinUrl('images/male/checkout'); ?>/{{checkoutIncentiveUrl}}" alt="free touchscreen gloves"/>
+            <div class="next-question-button-section">
+              <button class="convert submit" type="submit" ng-click="fbLoginAndSave()">
+                    Connect with Facebook
+              </button>
             </div>
-            <div class="incentive-message float-left" id="" class="question">{{checkoutCopy}}</div>
+
           </div>
-          <div class="next-question-button-section">
-            <button class="convert submit" type="submit" href="">
-                  Next
-            </button>
+        </form>
+
+        
+      </div>
+
+  </script>
+
+  <script type=text/ng-template id=section/garms/category/generic/question/checkout.html>
+      <div class="slide-container clearfix fadeIn ani">
+        <form ng-controller="CheckoutFormController">
+          <div class="curved-white-block withShadow withRadius">
+            
+            <div class="fullWidth clearfix">
+              <h1 class="question-title">{{checkoutTitle}}</h1>
+              <div class="incentive-image-container">
+                <img class="scale-with-grid float-left incentive-image" ng-src="<?php echo $this->getSkinUrl('images/male/checkout'); ?>/{{checkoutIncentiveUrl}}" alt="free touchscreen gloves"/>
+              </div>
+              <div class="incentive-message float-left" class="question">{{checkoutCopy}}</div>
+            </div>
+            <div class="next-question-button-section">
+              <a class="convert submit" type="submit" href="{{paymentPageUrl}}">
+                    Credit my account with {{currencySymbol}}1
+              </a>
+            </div>
+
+
+
           </div>
+        </form>
 
+        
+      </div>
 
+  </script>
 
-        </div>
+  <script type=text/ng-template id=section/garms/category/generic/question/success.html>
+      <div class="slide-container clearfix fadeIn ani">
+        <form ng-controller="SuccessFormController">
+          <div class="curved-white-block withShadow withRadius">
+            
+            <div class="fullWidth clearfix">
+              <h1 class="question-title">{{successTitle}}</h1>
+              <div class="incentive-message float-left" class="question">{{successCopy}}</div>
+            </div>
+
+          </div>
+        </form>
 
         
       </div>
@@ -261,11 +303,11 @@
 
           <div class="curved-white-block withShadow withRadius">
           <h1 class="question-title">{{questionTitle}}</h1>
-            <span id="size" class="question">{{sizeQuestion}}</span>
+            <span id="size" class="question">{{question}}</span>
             
           </div>
 
-          
+            <div class="hint">{{howToMeasure}}</div>
             <div class="answers multi-button-set">
                 
                 <a class="convert secondary size-auto-populator total-num-buttons-{{totalNumButtons}} first-{{$first}} last-{{$last}}" ng-click="chooseSize(routeParams.category, sizeButton.style, $index)" ng-repeat="sizeButton in sizeButtons" ng-class="{active: sizeButton.isActive}">
@@ -284,7 +326,7 @@
                 </a>
 
             </div>
-            <div class="hint">{{howToMeasure}}</div>
+            
 
             <div class="next-question-button-section">
               <button class="convert submit" type="submit" ng-click="saveAnswer()">

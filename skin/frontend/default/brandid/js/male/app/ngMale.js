@@ -1,8 +1,8 @@
 'use strict';
 
-var ngMaleApp = angular.module('ngMaleApp', ['ui','DataServices','QuestionsModule','BrandsModule','ColoursModule','SizeModule','SpecificsModule','CheckoutModule']);
+var ngMaleApp = angular.module('ngMaleApp', ['ui','DataServices','HelperServices','BrandsModule','ColoursModule','SizeModule','SpecificsModule','CheckoutModule','SuccessModule']);
 
-ngMaleApp.config(function ($routeProvider) {
+ngMaleApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/', {
         redirectTo:'/section/garms/category/intro',
@@ -28,11 +28,11 @@ ngMaleApp.config(function ($routeProvider) {
          redirectTo:'/section/garms/category/intro',
          controller:MainController
       })
-      .when('/section/garms/category/:category/question/checkout', {
-         templateUrl: 'checkout.html',
-         controller:CheckoutController
-      })
       .when('/section/:section/category/:category/question/:question', {
+         templateUrl: 'detailViewProxy.html',
+         controller:QuestionController
+      })
+      .when('/section/:section/category/:category/question/:question/account_code/:account_code/key/:key', {
          templateUrl: 'detailViewProxy.html',
          controller:QuestionController
       })
@@ -40,7 +40,5 @@ ngMaleApp.config(function ($routeProvider) {
       .otherwise({
         redirectTo: '/section/garms/category/intro'
       });
-});
-ngMaleApp.$inject = ['ui','DataServices','QuestionsModule','BrandsModule','ColoursModule','SizeModule','SpecificsModule','CheckoutModule'];
-
+}]);
 

@@ -15,7 +15,21 @@ Size.factory('sizeLoader', function() {
 
     var sizeLoader = {
 
+    	getQuestion: function(countryCode) {
+    		var question = {
+    			"en-gb": "Are you a big ‘un or a little ‘un? Whatever, we’ve got you covered. Just click the correct box and we’ll make sure it fits."
+    		}
+
+    		return question[countryCode];
+    	},
     	
+    	getQuestionTitle: function(countryCode) {
+    		var questionTitle = {
+    			"en-gb": "Size matters."
+    		}
+    		return questionTitle[countryCode];
+    	},
+
 		getSizes: function(category,countryCode) {
 
 	    	var sizeOptions;

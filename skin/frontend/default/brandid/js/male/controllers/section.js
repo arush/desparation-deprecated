@@ -1,4 +1,4 @@
-function SectionController($scope,DataService,$routeParams) {
+var SectionController = function SectionController($scope,DataService,$routeParams) {
 
 	/**
 	*  Controller Properties

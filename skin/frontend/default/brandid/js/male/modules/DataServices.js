@@ -5,16 +5,22 @@
  *  and retrieving data.  StackMob.com and Parse.com are Backend-as-a-Service companies.
  *  They provide easy to use databases for mobile and HTML5 applications.
  */
+
 angular.module('DataServices', []) 
 /**
  * Parse Service
  * Use Parse.com as a back-end for the application.
  */
-.factory('ParseService', function(){
+.factory('ParseService', ['HelperService', function(HelperService){
+    
+
     // Initialize Parse API and objects.
-    Parse.initialize("oB4lSEsDL1MuJbLiTe4pHQbNvCJAzfu4nUMdsLL2", "LZ88ABUjZ0l92Nogc3TlCWRlGeKWBkqOXWw382hu");
-
-
+    if(HelperService.getDevOrLive()) {
+      // initialise LIVE connection to Parse
+    } else {
+      // intitialise DEV connection to P
+      Parse.initialize("oB4lSEsDL1MuJbLiTe4pHQbNvCJAzfu4nUMdsLL2", "LZ88ABUjZ0l92Nogc3TlCWRlGeKWBkqOXWw382hu");  
+    }
 
     // FACEBOOK init
 
@@ -39,8 +45,9 @@ angular.module('DataServices', [])
      */
     var ParseService = {
       name: "Parse",
-      
-      fbLogin: function(currentUser,male_answers) {
+
+
+      fbLoginAndSave: function(male_answers,category,currentUser,saveNeeded) {
         
         var self = this;
 
@@ -48,19 +55,29 @@ angular.module('DataServices', [])
           success: function(user) {
             // Handle successful login
 
-            // self.updateUserWithFbDetails(brandidUser);
+            // attach answered question to logged in user
+            if(saveNeeded) {
+              self.setAnswer(male_answers,category,'user',user);
 
-            // attach all answered questions to logged in user
+              // this sends user to the checkout with a callback after save
+              var callback = function(category) {
+                // window.location = "/male/#/section/garms/category/" + category + "/question/checkout";
+                location.reload();
+              };
 
-            self.saveAllAnswers(currentUser,male_answers);
-
+              self.saveAnswer(male_answers,category,callback);
+              
+            } else {
+              // user has nothing to save, so login is done
+              location.reload();  
+            }
             
+
 
           },
           error: function(user, error) {
             // Handle errors and cancellation
             alert('Something went wrong, please let @male know so he can fix it - male@getbrandid.com or @male');
-            console.log(error);
 
           }
 
@@ -68,36 +85,57 @@ angular.module('DataServices', [])
 
       },
 
-      saveAllAnswers: function(currentUser,male_answers) {
-        var self = this;
-        angular.forEach(male_answers, function(answer) {
+      setAnswer: function(male_answers,category,question,answer) {
 
-          answer.set("user",currentUser);
-          self.saveAnswer(answer);
+        var parseAnswerObject = this.getObjectFromMaleAnswers(male_answers,category);
 
-        });
+        parseAnswerObject.set(question,answer);
 
-        location.reload();
-        
+
       },
 
-      saveAnswer: function(answer) {
-        answer.save(null, {
-          success: function(answer) {
+      getObjectFromMaleAnswers: function(male_answers,category) {
+        var returnObject;
+
+        switch(category) {
+          case 'socks':
+            returnObject = male_answers.socks;
+            break;
+          case 'boxers':
+            returnObject = male_answers.boxers;
+            break;
+          case 'tees':
+            returnObject = male_answers.tees;
+            break;
+          case 'jumpers':
+            returnObject = male_answers.jumpers;
+            break;
+          case 'hoodies':
+            returnObject = male_answers.hoodies;
+            break;
+        };
+
+        return returnObject;
+      },
+
+      saveAnswer: function(male_answers, category, callback) {
+
+        var parseAnswerObject = this.getObjectFromMaleAnswers(male_answers,category);
+
+        parseAnswerObject.save(null, {
+          success: function(savedAnswer) {
             // The object was saved successfully.
 
-            // console.log(item);
-            // DataService.fetch($scope.currentUser);
-
-            // console.log(user);
+            if(callback !== null) {
+              callback(category);
+            }
 
           },
-          error: function(answer, error) {
+          error: function(savedAnswer, error) {
             // The save failed.
             // error is a Parse.Error with an error code and description.
-            // alert("Cannot save your answers right now, please contact @male");
+            console.log(savedAnswer);
             console.log(error);
-            alert('arrrg');
           }
         });
       },
@@ -119,14 +157,39 @@ angular.module('DataServices', [])
 
       },
 
-      updateUserWithFbDetails: function(brandidUser) {
-
-        brandidUser.fbID = FB.getUserID();
-
-      },
-
       getCurrentUser: function() {
         return Parse.User.current();
+      },
+
+      setToUser: function(currentUser, key, value) {
+        
+        currentUser.set(key,value);
+        
+      },
+
+      saveUser: function(currentUser) {
+        currentUser.save(null, {
+          success: function(user) {
+            // The object was saved successfully.
+
+
+            // Due to a bug in the Parse SDK, need to do a fetch here
+            currentUser.fetch({
+              success: function (user) {
+                // nothing really to do
+              },
+              error: function (user,error) {
+                  console.log(user);
+              }
+            });
+          },
+          error: function(user, error) {
+            // The save failed.
+            // error is a Parse.Error with an error code and description.
+            console.log(error);
+          }
+        });
+
       },
       
       // feedback form on every page
@@ -171,14 +234,14 @@ angular.module('DataServices', [])
 
     // The factory function returns ParseService, which is injected into controllers.
     return ParseService;
-})
+}])
 
 /**
  * DataService is a simple adapter that returns either the Parse Service, StackMob Service,
  * or single-session Backbone service.
  * This service is injected into the Main Controller
  */
-.factory('DataService', function (ParseService,$location) {
+.factory('DataService', ['ParseService', '$location', function (ParseService,$location) {
   // Use the BackboneService by default
   // var serviceToUse = BackboneService;
 
@@ -191,5 +254,5 @@ angular.module('DataServices', [])
   var serviceToUse = ParseService;
 
   return serviceToUse;
-});
+}]);
 

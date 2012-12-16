@@ -16,7 +16,10 @@ Specifics.factory('specificsLoader', function() {
     var specificsLoader = {
 
     	getQuestionTitle: function(countryCode) {
-
+    		var questionTitle = {
+    			"en-gb": "What did I miss?"
+    		}
+    		return questionTitle[countryCode];
     	},
 
 		getQuestion: function(category,countryCode) {
@@ -65,8 +68,8 @@ Specifics.factory('specificsLoader', function() {
  
 		getBoxersQuestion: function(countryCode) {
 	    	var boxersQuestion = {
-	    			"en-gb": "This is for those of you with an eye for detail. Briefs or boxers? Snug or baggy? Long or longer? Give us those deets.",
-	    			"en-us": "This is for those of you with an eye for detail. Briefs or boxers? Snug or baggy? Long or longer? Give us those deets."
+	    			"en-gb": "This is for those of you with an eye for detail. Briefs or boxers? Snug or baggy? Long or longer? Give me those deets.",
+	    			"en-us": "This is for those of you with an eye for detail. Briefs or boxers? Snug or baggy? Long or longer? Give me those deets."
 		    };
 
 		    return boxersQuestion[countryCode];
@@ -74,8 +77,8 @@ Specifics.factory('specificsLoader', function() {
 
 		getTeesQuestion: function(countryCode) {
 	    	var teesQuestion = {
-	    			"en-gb": "This is for those of you with an eye for detail. Slim fit or loose fit? Vee, crew or polo? Give us those deets.",
-	    			"en-us": "This is for those of you with an eye for detail. Slim fit or loose fit? Vee, crew or polo? Give us those deets."
+	    			"en-gb": "This is for those of you with an eye for detail. Slim fit or loose fit? Vee, crew or polo? Give me those deets.",
+	    			"en-us": "This is for those of you with an eye for detail. Slim fit or loose fit? Vee, crew or polo? Give me those deets."
 		    };
 
 		    return teesQuestion[countryCode];
@@ -83,8 +86,8 @@ Specifics.factory('specificsLoader', function() {
 
 		getJumpersQuestion: function(countryCode) {
 	    	var jumpersQuestion = {
-	    			"en-gb": "This is for those of you with an eye for detail. Chunky or fine? Slim fit or loose fit? Vee, crew or turtle? Give us those deets.",
-	    			"en-us": "This is for those of you with an eye for detail. Chunky or fine? Slim fit or loose fit? Vee, crew or turtle? Give us those deets."
+	    			"en-gb": "This is for those of you with an eye for detail. Chunky or fine? Slim fit or loose fit? Vee, crew or turtle? Give me those deets.",
+	    			"en-us": "This is for those of you with an eye for detail. Chunky or fine? Slim fit or loose fit? Vee, crew or turtle? Give me those deets."
 		    };
 
 		    return jumpersQuestion[countryCode];
@@ -92,8 +95,8 @@ Specifics.factory('specificsLoader', function() {
 
 		getHoodiesQuestion: function(countryCode) {
 	    	var hoodiesQuestion = {
-	    			"en-gb": "This is for those of you with an eye for detail. Zip or no zip? Heavyweight, lightweight or featherweight? Give us those deets.",
-	    			"en-us": "This is for those of you with an eye for detail. Zip or no zip? Heavyweight, lightweight or featherweight? Give us those deets."
+	    			"en-gb": "This is for those of you with an eye for detail. Zip or no zip? Heavyweight, lightweight or featherweight? Give me those deets.",
+	    			"en-us": "This is for those of you with an eye for detail. Zip or no zip? Heavyweight, lightweight or featherweight? Give me those deets."
 		    };
 
 		    return hoodiesQuestion[countryCode];
@@ -101,8 +104,8 @@ Specifics.factory('specificsLoader', function() {
 
 		getShoesQuestion: function(countryCode) {
 	    	var shoesQuestion = {
-	    			"en-gb": "This is for those of you with an eye for detail. Laces or slip-on? Leather, suede or canvas? Low-top or high-top? Give us those deets.",
-	    			"en-us": "This is for those of you with an eye for detail. Laces or slip-on? Leather, suede or canvas? Low-top or high-top? Give us those deets."
+	    			"en-gb": "This is for those of you with an eye for detail. Laces or slip-on? Leather, suede or canvas? Low-top or high-top? Give me those deets.",
+	    			"en-us": "This is for those of you with an eye for detail. Laces or slip-on? Leather, suede or canvas? Low-top or high-top? Give me those deets."
 		    };
 
 		    return shoesQuestion[countryCode];
@@ -110,8 +113,8 @@ Specifics.factory('specificsLoader', function() {
 
 		getOtherQuestion: function(countryCode) {
 	    	var otherQuestion = {
-	    			"en-gb": "This is for those of you with an eye for detail. It’s where you help us to help you. Give us those deets.",
-	    			"en-us": "This is for those of you with an eye for detail. It’s where you help us to help you. Give us those deets."
+	    			"en-gb": "This is for those of you with an eye for detail. It’s where you help us to help you. Give me those deets.",
+	    			"en-us": "This is for those of you with an eye for detail. It’s where you help us to help you. Give me those deets."
 		    };
 
 		    return otherQuestion[countryCode];

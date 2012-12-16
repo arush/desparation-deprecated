@@ -1,4 +1,4 @@
-function ColoursFormController($scope,$routeParams,coloursLoader,$locale) {
+var ColoursFormController = function ColoursFormController($scope,$routeParams,coloursLoader,$locale) {
 
 	/***** CONTROLLER PROPERTIES ******/
 

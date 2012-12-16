@@ -1,4 +1,4 @@
-function DashboardController($scope,$routeParams,questionLoader,$location) {
+var DashboardController = function DashboardController($scope,$routeParams,questionLoader,$location) {
 
 	/**
 	*  Controller Properties

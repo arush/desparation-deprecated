@@ -1,4 +1,4 @@
-function QuestionController($scope,$routeParams,DataService,questionLoader,brandsLoader,$location,$locale) {
+var QuestionController = function QuestionController($scope,$routeParams,DataService,HelperService,$location,$locale) {
 
 	// M.A.L.E. speaking
 	setTimeout(function() {jQuery('.question').typewriter();},500);
@@ -29,12 +29,12 @@ function QuestionController($scope,$routeParams,DataService,questionLoader,brand
 
     	// save the answer to browser memory
 		// $scope.user.male_answers[section][category][question] = answer;
-		$scope.male_answers[category].set(question,answer);
-
+		DataService.setAnswer($scope.male_answers,category,question,answer);
 		
 		// if logged in, we want to save to parse
 		if($scope.loggedIn) {
-			DataService.saveAnswer($scope.male_answers[category]);
+			DataService.setAnswer($scope.male_answers,category,"user",$scope.currentUser);
+			DataService.saveAnswer($scope.male_answers,category, null);
 		};
 		
     	var nextPath = $scope.getNextPath(question);
@@ -102,16 +102,57 @@ function QuestionController($scope,$routeParams,DataService,questionLoader,brand
 				$scope.detailTemplate = 'section/' + $routeParams.section + '/category/generic/question/' + questionDecider + '.html';
 				break;
 			case 'colours':
-				// set generic size template
+
 				questionDecider = 'colours';
 				$scope.detailTemplate = 'section/' + $routeParams.section + '/category/generic/question/' + questionDecider + '.html';
 				break;
 			case 'specifics':
-				// set generic size template
+
 				questionDecider = 'specifics';
 				$scope.detailTemplate = 'section/' + $routeParams.section + '/category/generic/question/' + questionDecider + '.html';
 				break;
+			case 'checkout':
 
+				if(!DataService.getCurrentUser()) {
+					questionDecider = 'save';
+				} else {
+
+					var account_code = $scope.currentUser.get("account_code");
+					// check if we already have credit card on file, if so redirect to success page
+					if(account_code) {
+						// TODO: look up valid credit card info from recurly
+						questionDecider = 'success';
+
+						var key = HelperService.getKey();
+
+						var newPath = '/section/' + $routeParams.section + '/category/generic/question/' + questionDecider + '/account_code/' + account_code + '/key/' + key;
+						$location.path(newPath);
+
+						break;
+
+					} else {
+						// no credit card on file
+						questionDecider = 'checkout';
+					}
+					
+				}
+				
+				$scope.detailTemplate = 'section/' + $routeParams.section + '/category/generic/question/' + questionDecider + '.html';
+				break;
+			case 'success':
+
+				// first check the key, this is basic security
+				if(typeof($routeParams.key) !== "undefined") {
+					var auth = HelperService.authorizeSuccessKey($routeParams.key);
+					if(auth) {
+						questionDecider = 'success';
+						$scope.detailTemplate = 'section/' + $routeParams.section + '/category/generic/question/' + questionDecider + '.html';
+					}
+				} else {
+					// unauthorized access to success page
+					window.location = '/male';
+				}
+				break;
 			default:
 				// or dashboard
 				questionDecider = $routeParams.question;
@@ -125,4 +166,4 @@ function QuestionController($scope,$routeParams,DataService,questionLoader,brand
 	$scope.init();
 
 }
-QuestionController.$inject = ['$scope','$routeParams','DataService','questionLoader','brandsLoader','$location','$locale'];
+QuestionController.$inject = ['$scope','$routeParams','DataService','HelperService','$location','$locale'];

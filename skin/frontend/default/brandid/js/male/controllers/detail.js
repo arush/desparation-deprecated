@@ -6,7 +6,7 @@
  */
 
 
-function DetailControlsController($scope,DataService,$routeParams) {
+var DetailControlsController = function DetailControlsController($scope,DataService,$routeParams) {
 
 	/**
 	*  Controller Properties

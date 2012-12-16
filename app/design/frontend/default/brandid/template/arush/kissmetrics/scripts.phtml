@@ -4,7 +4,9 @@
 	<script type="text/javascript">
 		
 		//detect browser and OS
-		_kmq.push(['set', {'Browser' : BrowserDetect.browser + " " + BrowserDetect.version, 'Operating System' : BrowserDetect.OS}]);
+		if(typeof(_kmq) !== "undefined" && typeof(BrowserDetect) !== "undefined") {
+			_kmq.push(['set', {'Browser' : BrowserDetect.browser + " " + BrowserDetect.version, 'Operating System' : BrowserDetect.OS}]);
+		}
 
 		<?php /* What page is this */
 

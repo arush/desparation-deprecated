@@ -1,10 +1,10 @@
-function CategoryController($scope,$routeParams,questionLoader,$locale,$location) {
+var CategoryController = function CategoryController($scope,$routeParams,$locale,$location) {
 
 	/**
 	*  Controller Properties
 	*/
 
-	$scope.drawerOpen = false;
+	// $scope.drawerOpen = !$scope.drawerOpen;
 
 	//use the correct template
 	$scope.categoryTemplate = 'section/' + $routeParams.section + '/category/' + $routeParams.category +'.html';
@@ -113,4 +113,4 @@ function CategoryController($scope,$routeParams,questionLoader,$locale,$location
 
 
 }
-CategoryController.$inject = ['$scope','$routeParams','questionLoader','$locale','$location'];
+CategoryController.$inject = ['$scope','$routeParams','$locale','$location'];

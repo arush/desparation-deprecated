@@ -1,4 +1,4 @@
-function SizeFormController($scope,$routeParams,sizeLoader,$locale) {
+var SizeFormController = function SizeFormController($scope,$routeParams,sizeLoader,$locale) {
 
 	/***** CONTROLLER PROPERTIES ******/
 
@@ -13,6 +13,9 @@ function SizeFormController($scope,$routeParams,sizeLoader,$locale) {
 		// retrieve brand data from service so we can use it below in the buttons
 		var sizeData = sizeLoader.getSizes($routeParams.category,$locale.id);
 
+		$scope.question = sizeLoader.getQuestion($locale.id);
+		$scope.questionTitle = sizeLoader.getQuestionTitle($locale.id);
+
 		$scope.howToMeasure = sizeData.instructions;
 
 		$scope.sizeButtons = sizeData.sizeChoices;
@@ -20,16 +23,7 @@ function SizeFormController($scope,$routeParams,sizeLoader,$locale) {
 		// this is for figuring out the width of the buttons
 		$scope.totalNumButtons = $scope.sizeButtons.length;
 
-		// TODO: put these in a .json file and retrieve via AJAX
 
-		if ($locale.id === 'en-gb') {
-
-			$scope.sizeQuestion = "Are you a big ‘un or a little ‘un? Whatever, we’ve got you covered. Just click the correct box and we’ll make sure it fits. ";
-
-
-		} else {
-			// another language
-		}
 
 	/***** END SIZE PRE-POPULATE BUTTONS ******/
 
