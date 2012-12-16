@@ -73,8 +73,6 @@ angular.module('DataServices', [])
               location.reload();  
             }
             
-
-
           },
           error: function(user, error) {
             // Handle errors and cancellation
