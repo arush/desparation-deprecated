@@ -7,10 +7,6 @@
  */
 var MainController = function MainController($scope,DataService,HelperService,$locale,$routeParams) {
 
-  $scope.live = false;
-  $scope.live = HelperService.getDevOrLive();
-
-
 
   // ***** CONTROLLER PROPERTIES ***** //
     
