@@ -103,7 +103,7 @@ var MainController = function MainController($scope,DataService,HelperService,$l
       }
 
       // log them in with nothing to save
-      DataService.fbLoginAndSave($male_answers,$routeParams.category,$scope.currentUser,saveNeeded);
+      DataService.fbLoginAndSave($scope.male_answers,$routeParams.category,$scope.currentUser,saveNeeded);
 
     };
 

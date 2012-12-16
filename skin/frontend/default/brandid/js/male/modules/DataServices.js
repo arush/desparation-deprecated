@@ -14,12 +14,14 @@ angular.module('DataServices', [])
 .factory('ParseService', ['HelperService', function(HelperService) {
     
     var environment = HelperService.getEnvironment();
+    console.log(environment);
 
     // Initialize Parse API and objects.
     if(environment === "www") {
       // initialise LIVE connection to Parse
       Parse.initialize("cWsBzcLQQMy80sF7KOYWPkeVKDxshxQWUwWk1b27", "rhu8oSmv0Z7qms57HNvJaLlwpc9Mkl2kjIefkTXl");
     } else if(environment === "hack") {
+      console.log('im on hack');
       // intitialise HACK connection to Parse
       Parse.initialize("FSjSiuBpXRS5vSeDVLlhbiraR2jkfH4D9HkFFzzu", "I8ZQlxqbAkSWn5oJq4YNHSvMEgT87hYy5r0cA3jV");
     } else {
