@@ -18,22 +18,15 @@ angular.module('HelperServices', [])
 			return key;
 		},
 
-		getDevOrLive: function() {
+		getEnvironment: function() {
 
 			// as long as the live site is the only one using www, then this returns true if live
-
-			var liveStatus = false;
 
 			var host = window.location.host;
 			var hostSplit = host.split(".");
 
-			if(hostSplit[0] === "www") {
-			  liveStatus = true;
-			} else {
-			  liveStatus = false;
-			}
-
-			return liveStatus;
+			
+			return hostSplit[0];
 		},
 
 		// this function is to restrict access to the success page so as not to accidentally trigger conversion metrics
