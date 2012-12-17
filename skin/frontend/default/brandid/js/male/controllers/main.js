@@ -128,21 +128,15 @@ var MainController = function MainController($scope,DataService,HelperService,$l
 
       // this matches against the "submenuItem.question" in ng-class
       if(next.params.category === 'intro') {
-        // track intro from controller
 
         $scope.selectedSubmenuItem = 'restart';
         
       } else if(next.params.question === 'checkout') {
         
-        // leave tracking to controller for checkout
-        trackPage = 'checkout';
         $scope.drawerOpen = false;
 
       } else {
 
-        // track
-        trackPage = next.params.question;
-        HelperService.metrics.trackPage(trackPage);
         // for all other cases, select the question 
         $scope.selectedSubmenuItem = next.params.question;
         // $scope.drawerOpen = true;

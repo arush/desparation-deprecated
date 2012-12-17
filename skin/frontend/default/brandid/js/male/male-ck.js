@@ -25956,21 +25956,15 @@ var MainController = function MainController($scope,DataService,HelperService,$l
 
       // this matches against the "submenuItem.question" in ng-class
       if(next.params.category === 'intro') {
-        // track intro from controller
 
         $scope.selectedSubmenuItem = 'restart';
         
       } else if(next.params.question === 'checkout') {
         
-        // leave tracking to controller for checkout
-        trackPage = 'checkout';
         $scope.drawerOpen = false;
 
       } else {
 
-        // track
-        trackPage = next.params.question;
-        HelperService.metrics.trackPage(trackPage);
         // for all other cases, select the question 
         $scope.selectedSubmenuItem = next.params.question;
         // $scope.drawerOpen = true;
@@ -26508,6 +26502,9 @@ var BrandsFormController = function BrandsFormController($scope,$routeParams,bra
 	/***** END CONTROLLER EVENT RESPONDERS ******/
 
 
+	// track
+    HelperService.metrics.trackPage($routeParams.category + ': brands');
+
 }
 BrandsFormController.$inject = ['$scope','$routeParams','brandsLoader','$locale'];
 
@@ -26569,6 +26566,8 @@ var SizeFormController = function SizeFormController($scope,$routeParams,sizeLoa
 
 	/***** END CONTROLLER EVENT RESPONDERS ******/
 
+	// track
+    HelperService.metrics.trackPage($routeParams.category + ': size');
 
 }
 SizeFormController.$inject = ['$scope','$routeParams','sizeLoader','$locale'];
@@ -26669,6 +26668,9 @@ var ColoursFormController = function ColoursFormController($scope,$routeParams,c
 
 	/***** END CONTROLLER EVENT RESPONDERS ******/
 
+	// track
+    HelperService.metrics.trackPage($routeParams.category + ': colours');
+
 
 }
 ColoursFormController.$inject = ['$scope','$routeParams','coloursLoader','$locale'];
@@ -26705,6 +26707,8 @@ var SpecificsFormController = function SpecificsFormController($scope,$routePara
 
 	/***** END CONTROLLER EVENT RESPONDERS ******/
 
+	// track
+    HelperService.metrics.trackPage($routeParams.category + ': specifics');
 
 }
 SpecificsFormController.$inject = ['$scope','$routeParams','specificsLoader','$locale'];

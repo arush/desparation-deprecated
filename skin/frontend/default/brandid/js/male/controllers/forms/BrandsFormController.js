@@ -102,5 +102,8 @@ var BrandsFormController = function BrandsFormController($scope,$routeParams,bra
 	/***** END CONTROLLER EVENT RESPONDERS ******/
 
 
+	// track
+    HelperService.metrics.trackPage($routeParams.category + ': brands');
+
 }
 BrandsFormController.$inject = ['$scope','$routeParams','brandsLoader','$locale'];

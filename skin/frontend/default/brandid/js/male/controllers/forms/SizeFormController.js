@@ -52,6 +52,8 @@ var SizeFormController = function SizeFormController($scope,$routeParams,sizeLoa
 
 	/***** END CONTROLLER EVENT RESPONDERS ******/
 
+	// track
+    HelperService.metrics.trackPage($routeParams.category + ': size');
 
 }
 SizeFormController.$inject = ['$scope','$routeParams','sizeLoader','$locale'];

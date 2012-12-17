@@ -26,6 +26,8 @@ var SpecificsFormController = function SpecificsFormController($scope,$routePara
 
 	/***** END CONTROLLER EVENT RESPONDERS ******/
 
+	// track
+    HelperService.metrics.trackPage($routeParams.category + ': specifics');
 
 }
 SpecificsFormController.$inject = ['$scope','$routeParams','specificsLoader','$locale'];

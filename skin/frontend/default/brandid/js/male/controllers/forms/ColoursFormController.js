@@ -90,6 +90,9 @@ var ColoursFormController = function ColoursFormController($scope,$routeParams,c
 
 	/***** END CONTROLLER EVENT RESPONDERS ******/
 
+	// track
+    HelperService.metrics.trackPage($routeParams.category + ': colours');
+
 
 }
 ColoursFormController.$inject = ['$scope','$routeParams','coloursLoader','$locale'];
