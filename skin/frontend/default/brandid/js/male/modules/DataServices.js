@@ -94,21 +94,47 @@ angular.module('DataServices', [])
 
         FB.api(requestURI, function(response) {
           
-          self.setToUser( user, "first_name", response.first_name);
-          self.setToUser( user, "last_name", response.last_name);
-          self.setToUser( user, "gender", response.gender);
-          self.setToUser( user, "birthday", response.birthday);
-          self.setToUser( user, "location", response.location);
+          // Facebook response is unreliable. Need to check if objects exist first
+          // i wish we were doing this in coffeescript
+          var metricsPayload = {
+            "Registration Method": "Facebook Connect",
+            "$created": new Date(),
+            "$last_login": new Date()
+          };
+
+          if(response.first_name !== "undefined") {
+            self.setToUser( user, "first_name", response.first_name);
+            metricsPayload.push({"first_name": response.first_name});
+          }
+          if(response.last_name !== "undefined") {
+            self.setToUser( user, "last_name", response.last_name);
+            metricsPayload.push({"last_name": response.last_name});
+          }
+          if(response.gender !== "undefined") {
+            self.setToUser( user, "gender", response.gender);
+            metricsPayload.push({"gender": response.gender});
+          }
+          if(response.birthday !== "undefined") {
+            self.setToUser( user, "birthday", response.birthday);
+            metricsPayload.push({"birthday": response.birthday});
+          }
+          if(response.location !== "undefined") {
+            self.setToUser( user, "location", response.location);
+            if(response.location.name !== "undefined") {
+              metricsPayload.push({"location": response.location.name});
+            }
+          }
+
+          // if email exists, use that as the identity in metrics
+          if(response.email !== "undefined") {
+            self.setToUser( user, "email", response.email);
+            HelperService.metrics.identify(response.email);
+            metricsPayload.push({"$email": response.email});
+          }
 
           /* KISSmetrics Tracking */
           if(typeof(_kmq) !== "undefined") {
-            _kmq.push(['identify', response.email]);
-            _kmq.push(['record', 'Registered', {
-              "Registration Method": "Facebook Connect",
-              "gender": response.gender,
-              "birthday": response.birthday,
-              "location": response.location
-            }]);
+            _kmq.push(['record', 'Registered', metricsPayload]);
           }
           /* Mixpanel Tracking */
           if(typeof(mixpanel) !== "undefined") {
@@ -117,18 +143,10 @@ angular.module('DataServices', [])
             /*****/
             // mixpanel.alias(response.email);
             /*****/
-            mixpanel.identify(response.email);
 
-            mixpanel.people.set({
-                "$email": response.email,
-                "$created": new Date(),
-                "$last_login": new Date(),
-                "first_name": response.first_name,
-                "last_name": response.last_name,
-                "gender": response.gender,
-                "birthday": response.birthday,
-                "location": response.location.name
-            });
+            // NB - mixpanel.identify may or may not have been called earlier depending if email address was given or not
+            mixpanel.track('Registered',metricsPayload);
+            mixpanel.people.set(metricsPayload);
             // mixpanel.register({
             //   first_name: response.first_name,
             //   last_name: response.last_name,

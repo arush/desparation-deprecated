@@ -34,11 +34,17 @@ angular.module('HelperServices', [])
 				}
 			},
 			setLastLogin: function() {
+				var loginTime = new Date();
+				var metricsPayload = {"$last_login": loginTime};
+
+				/* KISSmetrics Tracking */
+				if(typeof(_kmq) !== "undefined") {
+		            _kmq.push(['record', 'Logged In', metricsPayload]);
+				}
 				/* Mixpanel Tracking */
 				if(typeof(mixpanel) !== "undefined") {
-					mixpanel.people.set({
-					    "$last_login": new Date()
-					});
+					mixpanel.track('Logged In', metricsPayload);
+					mixpanel.people.set(metricsPayload);
 				}
 			}
 		},
