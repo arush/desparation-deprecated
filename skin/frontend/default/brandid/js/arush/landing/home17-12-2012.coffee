@@ -18,7 +18,7 @@ root.TwitterController = ($scope,$http) ->
 			profile_image_url_https: "https://si0.twimg.com/profile_images/2912023785/5ad786af7826794f6d0f6f38b0a5529c_bigger.jpeg"
 		media_url_https: "https://pbs.twimg.com/media/A8z9PjcCEAInIY0.jpg"
 	,
-		created_at_1: "A crisp Monday morning"
+		created_at_1: "One fine Thursday evening"
 		created_at_2: "in December"
 		text: "My best purchase in 2012? This amazing hoodie. Best value for money! I just got @BRANDiD . Go on winter, try me."
 		user:
