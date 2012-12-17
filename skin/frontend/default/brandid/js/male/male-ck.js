@@ -25459,8 +25459,10 @@ angular.module('DataServices', [])
             if(!user.get('email')) {
               self.saveRegistrationDataFromFacebook(male_answers,category,user,saveNeeded);
             } else {
+              
               // if not identify the user in metrics and continue the save
               HelperService.metrics.identify(user.get('email'));
+              HelperService.metrics.setLastLogin();
 
               self.saveAnswersAfterSuccessfulLogin(male_answers,category,user,saveNeeded);
             }
@@ -25506,17 +25508,28 @@ angular.module('DataServices', [])
 
             // it is imperative alias is only called once on a user - at registration. all other places, use identify
             /*****/
-            mixpanel.alias(response.email);
+            // mixpanel.alias(response.email);
             /*****/
+            mixpanel.identify(response.email);
 
-            mixpanel.register({
-              first_name: response.first_name,
-              last_name: response.last_name,
-              email: response.email,
-              gender: response.gender,
-              birthday: response.birthday,
-              location: response.location.name
+            mixpanel.people.set({
+                "$email": response.email,
+                "$created": new Date(),
+                "$last_login": new Date(),
+                "first_name": response.first_name,
+                "last_name": response.last_name,
+                "gender": response.gender,
+                "birthday": response.birthday,
+                "location": response.location.name
             });
+            // mixpanel.register({
+            //   first_name: response.first_name,
+            //   last_name: response.last_name,
+            //   email: response.email,
+            //   gender: response.gender,
+            //   birthday: response.birthday,
+            //   location: response.location.name
+            // });
           }
 
           user.save(null, {
@@ -25780,6 +25793,14 @@ angular.module('HelperServices', [])
 				/* Mixpanel Tracking */
 				if(typeof(mixpanel) !== "undefined") {
 					mixpanel.identify(identity);
+				}
+			},
+			setLastLogin: function() {
+				/* Mixpanel Tracking */
+				if(typeof(mixpanel) !== "undefined") {
+					mixpanel.people.set({
+					    "$last_login": new Date()
+					});
 				}
 			}
 		},
@@ -26818,14 +26839,14 @@ var SuccessFormController = function SuccessFormController($scope,DataService,He
 
 
 	// receive the account code from Recurly success form and store it against the user as teh email and the account_code
-	DataService.setToUser($scope.currentUser,"account_code",$routeParams.account_code);
-	
-	// only use the recurly email as the user's email if it was not saved before, e.g. if they blocked access to email when connecting to facebook
-	if(!$scope.currentUser.get("email")) {
-		DataService.setToUser($scope.currentUser,"email",$routeParams.account_code);
+	if($scope.currentUser) {
+		DataService.setToUser($scope.currentUser,"account_code",$routeParams.account_code);
+		// only use the recurly email as the user's email if it was not saved before, e.g. if they blocked access to email when connecting to facebook
+		if(!$scope.currentUser.get("email")) {
+			DataService.setToUser($scope.currentUser,"email",$routeParams.account_code);
+		}
+		DataService.saveUser($scope.currentUser);
 	}
-	
-	DataService.saveUser($scope.currentUser);
 
 	// success title
 	$scope.successTitle = successLoader.getSuccessTitle($locale.id);
@@ -28066,7 +28087,7 @@ Success.factory('successLoader', function() {
 
 		getSuccessCopy: function(countryCode) {
 			var copy = {
-				"en-gb": "You're the fucking man"
+				"en-gb": "Ok, now I've got your card on file you won't have to go through that again. I'm working on some options for you, so keep a lookout for an email from male@getbrandid.com in a few hours. Don't forget to check your spam folder just in case."
 			}
 			return copy[countryCode];
 		},

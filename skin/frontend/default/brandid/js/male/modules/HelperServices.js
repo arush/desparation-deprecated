@@ -32,6 +32,14 @@ angular.module('HelperServices', [])
 				if(typeof(mixpanel) !== "undefined") {
 					mixpanel.identify(identity);
 				}
+			},
+			setLastLogin: function() {
+				/* Mixpanel Tracking */
+				if(typeof(mixpanel) !== "undefined") {
+					mixpanel.people.set({
+					    "$last_login": new Date()
+					});
+				}
 			}
 		},
 

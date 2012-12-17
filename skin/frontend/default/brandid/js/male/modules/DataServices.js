@@ -66,8 +66,10 @@ angular.module('DataServices', [])
             if(!user.get('email')) {
               self.saveRegistrationDataFromFacebook(male_answers,category,user,saveNeeded);
             } else {
+              
               // if not identify the user in metrics and continue the save
               HelperService.metrics.identify(user.get('email'));
+              HelperService.metrics.setLastLogin();
 
               self.saveAnswersAfterSuccessfulLogin(male_answers,category,user,saveNeeded);
             }
@@ -113,17 +115,28 @@ angular.module('DataServices', [])
 
             // it is imperative alias is only called once on a user - at registration. all other places, use identify
             /*****/
-            mixpanel.alias(response.email);
+            // mixpanel.alias(response.email);
             /*****/
+            mixpanel.identify(response.email);
 
-            mixpanel.register({
-              first_name: response.first_name,
-              last_name: response.last_name,
-              email: response.email,
-              gender: response.gender,
-              birthday: response.birthday,
-              location: response.location.name
+            mixpanel.people.set({
+                "$email": response.email,
+                "$created": new Date(),
+                "$last_login": new Date(),
+                "first_name": response.first_name,
+                "last_name": response.last_name,
+                "gender": response.gender,
+                "birthday": response.birthday,
+                "location": response.location.name
             });
+            // mixpanel.register({
+            //   first_name: response.first_name,
+            //   last_name: response.last_name,
+            //   email: response.email,
+            //   gender: response.gender,
+            //   birthday: response.birthday,
+            //   location: response.location.name
+            // });
           }
 
           user.save(null, {
