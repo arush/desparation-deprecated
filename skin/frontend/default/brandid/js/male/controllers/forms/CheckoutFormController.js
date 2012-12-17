@@ -16,7 +16,8 @@ var CheckoutFormController = function CheckoutFormController($scope,DataService,
 
 	var environment = HelperService.getEnvironment();
 	var liveOrDevUrl;
-
+	console.log(environment);
+	
 	if(environment === "www") {
 		liveOrDevUrl = "brandid";
 	} else {
