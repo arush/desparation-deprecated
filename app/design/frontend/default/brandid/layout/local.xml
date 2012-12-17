@@ -31,7 +31,7 @@
         <remove name="storerestriction"/>
         
         <reference name="head">
-            <action method="addCss"><stylesheet>css/arush/leanlanding/core4.css</stylesheet></action>
+            <action method="addCss"><stylesheet>css/arush/leanlanding/core5.css</stylesheet></action>
         </reference>
         
         <remove name="header"/>
@@ -60,7 +60,7 @@
         <reference name="head">
             <action method="addCss"><stylesheet>css/arush/landing4.css</stylesheet></action>
             <action method="addCss"><stylesheet>css/male/male.css</stylesheet></action>
-            <action method="addCss"><stylesheet>css/arush/leanlanding/core4.css</stylesheet></action>
+            <action method="addCss"><stylesheet>css/arush/leanlanding/core5.css</stylesheet></action>
             
             <action method="addItem"><type>skin_js</type><name>js/arush/male/json2.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/arush/subscribe/jquery.cookie.js</name></action>
@@ -121,7 +121,7 @@
             <action method="addItem"><type>skin_js</type><name>js/brandid1-ck.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/arush/subscribe/jquery.cookie.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/arush/male/json2.js</name></action>
-            <action method="addCss"><stylesheet>css/arush/leanlanding/core4.css</stylesheet></action>
+            <action method="addCss"><stylesheet>css/arush/leanlanding/core5.css</stylesheet></action>
     	</reference>
 
         <reference name="root">
@@ -278,7 +278,7 @@
    <cms_index_index>
         <reference name="head">
             <action method="addCss"><stylesheet>css/arush/landing4.css</stylesheet></action>
-            <action method="addCss"><stylesheet>css/arush/leanlanding/core4.css</stylesheet></action>
+            <action method="addCss"><stylesheet>css/arush/leanlanding/core5.css</stylesheet></action>
             <!-- <action method="addCss"><stylesheet>css/male/male.css</stylesheet></action> -->
             <block type="page/html" name="bg_css" template="page/keep-calm-base64.phtml"/>
             <block type="core/text" name="fb-meta">

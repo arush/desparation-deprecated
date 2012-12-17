@@ -66,8 +66,11 @@ img.profile-image-circle {
 	vertical-align:bottom;
 	margin:0 0 -15px 0;
 }
-
 .profile-image-container {
+	display:none;
+}
+.ng-scope .profile-image-container {
+	display:block;
 	cursor:pointer;
 	width:40px;
 	display:inline-block;
