@@ -1,4 +1,4 @@
-var SuccessFormController = function SuccessFormController($scope,DataService,$routeParams,$locale,successLoader) {
+var SuccessFormController = function SuccessFormController($scope,DataService,HelperService,$routeParams,$locale,successLoader) {
 
 	/**
 	*  Controller Properties
@@ -33,4 +33,4 @@ var SuccessFormController = function SuccessFormController($scope,DataService,$r
 
 
 }
-SuccessFormController.$inject = ['$scope','DataService','$routeParams','$locale','successLoader'];
+SuccessFormController.$inject = ['$scope','DataService','HelperService','$routeParams','$locale','successLoader'];

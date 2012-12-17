@@ -1,4 +1,4 @@
-var SpecificsFormController = function SpecificsFormController($scope,$routeParams,specificsLoader,$locale) {
+var SpecificsFormController = function SpecificsFormController($scope,HelperService,$routeParams,specificsLoader,$locale) {
 
 	/***** CONTROLLER PROPERTIES ******/
 
@@ -30,4 +30,4 @@ var SpecificsFormController = function SpecificsFormController($scope,$routePara
     HelperService.metrics.trackPage($routeParams.category + ': specifics');
 
 }
-SpecificsFormController.$inject = ['$scope','$routeParams','specificsLoader','$locale'];
+SpecificsFormController.$inject = ['$scope','HelperService','$routeParams','specificsLoader','$locale'];

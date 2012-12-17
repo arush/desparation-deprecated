@@ -26398,7 +26398,7 @@ DetailControlsController.$inject = ['$scope','DataService','$routeParams'];
      Begin BrandsFormController.js
 ********************************************** */
 
-var BrandsFormController = function BrandsFormController($scope,$routeParams,brandsLoader,$locale) {
+var BrandsFormController = function BrandsFormController($scope,HelperService,$routeParams,brandsLoader,$locale) {
 
 
 	/***** CONTROLLER PROPERTIES ******/
@@ -26506,13 +26506,13 @@ var BrandsFormController = function BrandsFormController($scope,$routeParams,bra
     HelperService.metrics.trackPage($routeParams.category + ': brands');
 
 }
-BrandsFormController.$inject = ['$scope','$routeParams','brandsLoader','$locale'];
+BrandsFormController.$inject = ['$scope','HelperService','$routeParams','brandsLoader','$locale'];
 
 /* **********************************************
      Begin SizeFormController.js
 ********************************************** */
 
-var SizeFormController = function SizeFormController($scope,$routeParams,sizeLoader,$locale) {
+var SizeFormController = function SizeFormController($scope,HelperService,$routeParams,sizeLoader,$locale) {
 
 	/***** CONTROLLER PROPERTIES ******/
 
@@ -26570,13 +26570,13 @@ var SizeFormController = function SizeFormController($scope,$routeParams,sizeLoa
     HelperService.metrics.trackPage($routeParams.category + ': size');
 
 }
-SizeFormController.$inject = ['$scope','$routeParams','sizeLoader','$locale'];
+SizeFormController.$inject = ['$scope','HelperService','$routeParams','sizeLoader','$locale'];
 
 /* **********************************************
      Begin ColoursFormController.js
 ********************************************** */
 
-var ColoursFormController = function ColoursFormController($scope,$routeParams,coloursLoader,$locale) {
+var ColoursFormController = function ColoursFormController($scope,HelperService,$routeParams,coloursLoader,$locale) {
 
 	/***** CONTROLLER PROPERTIES ******/
 
@@ -26673,13 +26673,13 @@ var ColoursFormController = function ColoursFormController($scope,$routeParams,c
 
 
 }
-ColoursFormController.$inject = ['$scope','$routeParams','coloursLoader','$locale'];
+ColoursFormController.$inject = ['$scope','HelperService','$routeParams','coloursLoader','$locale'];
 
 /* **********************************************
      Begin SpecificsFormController.js
 ********************************************** */
 
-var SpecificsFormController = function SpecificsFormController($scope,$routeParams,specificsLoader,$locale) {
+var SpecificsFormController = function SpecificsFormController($scope,HelperService,$routeParams,specificsLoader,$locale) {
 
 	/***** CONTROLLER PROPERTIES ******/
 
@@ -26711,7 +26711,7 @@ var SpecificsFormController = function SpecificsFormController($scope,$routePara
     HelperService.metrics.trackPage($routeParams.category + ': specifics');
 
 }
-SpecificsFormController.$inject = ['$scope','$routeParams','specificsLoader','$locale'];
+SpecificsFormController.$inject = ['$scope','HelperService','$routeParams','specificsLoader','$locale'];
 
 /* **********************************************
      Begin SaveFormController.js
@@ -26810,7 +26810,7 @@ CheckoutFormController.$inject = ['$scope','DataService','HelperService','$route
      Begin SuccessFormController.js
 ********************************************** */
 
-var SuccessFormController = function SuccessFormController($scope,DataService,$routeParams,$locale,successLoader) {
+var SuccessFormController = function SuccessFormController($scope,DataService,HelperService,$routeParams,$locale,successLoader) {
 
 	/**
 	*  Controller Properties
@@ -26845,7 +26845,7 @@ var SuccessFormController = function SuccessFormController($scope,DataService,$r
 
 
 }
-SuccessFormController.$inject = ['$scope','DataService','$routeParams','$locale','successLoader'];
+SuccessFormController.$inject = ['$scope','DataService','HelperService','$routeParams','$locale','successLoader'];
 
 
 /* **********************************************

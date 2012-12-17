@@ -1,4 +1,4 @@
-var ColoursFormController = function ColoursFormController($scope,$routeParams,coloursLoader,$locale) {
+var ColoursFormController = function ColoursFormController($scope,HelperService,$routeParams,coloursLoader,$locale) {
 
 	/***** CONTROLLER PROPERTIES ******/
 
@@ -95,4 +95,4 @@ var ColoursFormController = function ColoursFormController($scope,$routeParams,c
 
 
 }
-ColoursFormController.$inject = ['$scope','$routeParams','coloursLoader','$locale'];
+ColoursFormController.$inject = ['$scope','HelperService','$routeParams','coloursLoader','$locale'];

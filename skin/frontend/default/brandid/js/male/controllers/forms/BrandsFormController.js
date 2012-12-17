@@ -1,4 +1,4 @@
-var BrandsFormController = function BrandsFormController($scope,$routeParams,brandsLoader,$locale) {
+var BrandsFormController = function BrandsFormController($scope,HelperService,$routeParams,brandsLoader,$locale) {
 
 
 	/***** CONTROLLER PROPERTIES ******/
@@ -106,4 +106,4 @@ var BrandsFormController = function BrandsFormController($scope,$routeParams,bra
     HelperService.metrics.trackPage($routeParams.category + ': brands');
 
 }
-BrandsFormController.$inject = ['$scope','$routeParams','brandsLoader','$locale'];
+BrandsFormController.$inject = ['$scope','HelperService','$routeParams','brandsLoader','$locale'];

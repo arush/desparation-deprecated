@@ -1,4 +1,4 @@
-var SizeFormController = function SizeFormController($scope,$routeParams,sizeLoader,$locale) {
+var SizeFormController = function SizeFormController($scope,HelperService,$routeParams,sizeLoader,$locale) {
 
 	/***** CONTROLLER PROPERTIES ******/
 
@@ -56,4 +56,4 @@ var SizeFormController = function SizeFormController($scope,$routeParams,sizeLoa
     HelperService.metrics.trackPage($routeParams.category + ': size');
 
 }
-SizeFormController.$inject = ['$scope','$routeParams','sizeLoader','$locale'];
+SizeFormController.$inject = ['$scope','HelperService','$routeParams','sizeLoader','$locale'];
