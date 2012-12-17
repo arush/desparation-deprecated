@@ -151,7 +151,7 @@
     <get_that_butler>
 
         <reference name="head">
-            <action method="addCss"><stylesheet>css/arush/landing4.css</stylesheet></action>     
+            <action method="addCss"><stylesheet>css/arush/landing5.css</stylesheet></action>     
             <block type="page/html" name="bg_css" template="page/keep-calm-base64.phtml"/>
             <block type="core/text" name="fb-meta">
                 <action method="setText">
@@ -248,7 +248,7 @@
     <get_that_app>
 
         <reference name="head">
-            <action method="addCss"><stylesheet>css/arush/landing4.css</stylesheet></action>     
+            <action method="addCss"><stylesheet>css/arush/landing5.css</stylesheet></action>     
             <block type="page/html" name="bg_css" template="page/keep-calm-base64.phtml"/>
             <block type="core/text" name="fb-meta">
                 <action method="setText">
