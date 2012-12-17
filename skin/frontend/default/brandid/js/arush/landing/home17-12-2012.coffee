@@ -19,12 +19,12 @@ root.TwitterController = ($scope,$http) ->
 		media_url_https: "https://pbs.twimg.com/media/A8z9PjcCEAInIY0.jpg"
 	,
 		created_at_1: "A crisp Monday morning"
-		created_at_2: "in November"
-		text: "Colourful toes. http://t.co/BstLnVXA”- thanks to @BRANDiD"
+		created_at_2: "in December"
+		text: "My best purchase in 2012? This amazing hoodie. Best value for money! I just got @BRANDiD . Go on winter, try me."
 		user:
-			screen_name: "patrickjpr"
-			profile_image_url_https: "https://si0.twimg.com/profile_images/2286049346/cuuye3eggcyz2xq17pyy_bigger.jpeg"
-		media_url_https: "https://instagr.am/p/R68nbWoThX/media/?size=m"
+			screen_name: "lucegary"
+			profile_image_url_https: "https://si0.twimg.com/profile_images/2455057810/k4toydz555vo366f9l5v_normal.jpeg"
+		media_url_https: "https://pbs.twimg.com/media/A9_nmSJCcAAr9QS.jpg"
 	,
 		created_at_1: "One fine Saturday evening"
 		created_at_2: "in November"
