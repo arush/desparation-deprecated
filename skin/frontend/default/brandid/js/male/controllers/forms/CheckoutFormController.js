@@ -14,10 +14,13 @@ var CheckoutFormController = function CheckoutFormController($scope,DataService,
 	// gloves image
 	$scope.checkoutIncentiveUrl = checkoutLoader.getCheckoutIncentiveUrl($locale.id);
 
-	var liveOrDevUrl = "hackbrandid";
+	var environment = HelperService.getEnvironment();
+	var liveOrDevUrl;
 
-	if($scope.live) {
+	if(environment === "www") {
 		liveOrDevUrl = "brandid";
+	} else {
+		liveOrDevUrl = "hackbrandid";
 	}
 
 	$scope.paymentPageUrl = "https://" + liveOrDevUrl + ".recurly.com/subscribe/onboardfee";
