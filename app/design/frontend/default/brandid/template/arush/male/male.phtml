@@ -1,7 +1,7 @@
 <div ng-app="ngMaleApp" ng-controller="MainController">
 
   <div id="loginModalGuy" class="fade modal" ui-modal style="display:none;" ng-model="loginModalShown">
-    <div class="modal-header"><h1>Save Your Progress!</h1></div>
+    <div class="modal-header"><h1>Login / Register</h1></div>
     <div class="modal-body">
       <p>
         Log-in with Facebook and we can save you doing all of this again. We’ll scan your profile and start matching you up with the right gear. Smart right?
@@ -9,7 +9,7 @@
       
     </div>
     <div class="modal-footer">
-      <a class="convert secondary facebook-connect" ng-click="fbLoginFromHeader()">Connect with Facebook</a>
+      <a class="convert secondary facebook-connect" ng-click="fbLoginFromHeader(routeParams.category)">Connect with Facebook</a>
       <!-- <a class="convert secondary" ng-click="loginModalShown=false" href="">Close</a> -->
     </div>
   </div>
@@ -237,7 +237,7 @@
             </div>
 
             <div class="next-question-button-section">
-              <button class="convert submit" type="submit" ng-click="fbLoginAndSave()">
+              <button class="convert facebook-connect" type="submit" ng-click="fbLoginAndSave()">
                     Connect with Facebook
               </button>
             </div>
@@ -260,20 +260,16 @@
               <div class="incentive-image-container">
                 <img class="scale-with-grid float-left incentive-image" ng-src="<?php echo $this->getSkinUrl('images/male/checkout'); ?>/{{checkoutIncentiveUrl}}" alt="free touchscreen gloves"/>
               </div>
-              <div class="incentive-message float-left" class="question">{{checkoutCopy}}</div>
+              <div class="incentive-message float-left question" class="question">{{checkoutCopy}}</div>
             </div>
-            <div class="next-question-button-section">
-              <a class="convert submit" type="submit" href="{{paymentPageUrl}}">
+            <div class="next-question-button-section clearfix">
+              <a class="convert submit checkout" type="submit" href="{{paymentPageUrl}}">
                     Credit my account with {{currencySymbol}}1
               </a>
             </div>
 
-
-
           </div>
         </form>
-
-        
       </div>
 
   </script>
@@ -285,7 +281,7 @@
             
             <div class="fullWidth clearfix">
               <h1 class="question-title">{{successTitle}}</h1>
-              <div class="incentive-message float-left" class="question">{{successCopy}}</div>
+              <div class="incentive-message float-left question" class="question">{{successCopy}}</div>
             </div>
 
           </div>

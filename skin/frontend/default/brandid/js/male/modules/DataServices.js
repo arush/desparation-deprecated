@@ -14,14 +14,12 @@ angular.module('DataServices', [])
 .factory('ParseService', ['HelperService', function(HelperService) {
     
     var environment = HelperService.getEnvironment();
-    console.log(environment);
 
     // Initialize Parse API and objects.
     if(environment === "www") {
       // initialise LIVE connection to Parse
       Parse.initialize("cWsBzcLQQMy80sF7KOYWPkeVKDxshxQWUwWk1b27", "rhu8oSmv0Z7qms57HNvJaLlwpc9Mkl2kjIefkTXl");
     } else if(environment === "hack") {
-      console.log('im on hack');
       // intitialise HACK connection to Parse
       Parse.initialize("FSjSiuBpXRS5vSeDVLlhbiraR2jkfH4D9HkFFzzu", "I8ZQlxqbAkSWn5oJq4YNHSvMEgT87hYy5r0cA3jV");
     } else {
@@ -62,22 +60,18 @@ angular.module('DataServices', [])
           success: function(user) {
             // Handle successful login
 
-            // attach answered question to logged in user
-            if(saveNeeded) {
-              self.setAnswer(male_answers,category,'user',user);
 
-              // this sends user to the checkout with a callback after save
-              var callback = function(category) {
-                // window.location = "/male/#/section/garms/category/" + category + "/question/checkout";
-                location.reload();
-              };
 
-              self.saveAnswer(male_answers,category,callback);
-              
+            // if this is a registration, we need to capture some data from FB
+            if(!user.get('email')) {
+              self.saveRegistrationDataFromFacebook(male_answers,category,user,saveNeeded);
             } else {
-              // user has nothing to save, so login is done
-              location.reload();  
+              // if not identify the user in metrics and continue the save
+              HelperService.metrics.identify(user.get('email'));
+
+              self.saveAnswersAfterSuccessfulLogin(male_answers,category,user,saveNeeded);
             }
+
             
           },
           error: function(user, error) {
@@ -89,6 +83,97 @@ angular.module('DataServices', [])
 
         });
 
+      },
+
+      saveRegistrationDataFromFacebook: function(male_answers,category,user,saveNeeded) {
+        var authData = user.get("authData");
+        var requestURI = '/' + authData.facebook.id + '?fields=first_name,last_name,gender,email,birthday,location';
+        var self = this;
+
+        FB.api(requestURI, function(response) {
+          
+          self.setToUser( user, "first_name", response.first_name);
+          self.setToUser( user, "last_name", response.last_name);
+          self.setToUser( user, "gender", response.gender);
+          self.setToUser( user, "birthday", response.birthday);
+          self.setToUser( user, "location", response.location);
+
+          /* KISSmetrics Tracking */
+          if(typeof(_kmq) !== "undefined") {
+            _kmq.push(['identify', response.email]);
+            _kmq.push(['record', 'Registered', {
+              "Registration Method": "Facebook Connect",
+              "gender": response.gender,
+              "birthday": response.birthday,
+              "location": response.location
+            }]);
+          }
+          /* Mixpanel Tracking */
+          if(typeof(mixpanel) !== "undefined") {
+
+            // it is imperative alias is only called once on a user - at registration. all other places, use identify
+            /*****/
+            mixpanel.alias(response.email);
+            /*****/
+
+            mixpanel.register({
+              first_name: response.first_name,
+              last_name: response.last_name,
+              email: response.email,
+              gender: response.gender,
+              birthday: response.birthday,
+              location: response.location.name
+            });
+          }
+
+          user.save(null, {
+            success: function(user) {
+              // The object was saved successfully.
+
+              // Due to a bug in the Parse SDK, need to do a fetch here
+              user.fetch({
+                success: function (user) {
+                  // now we can save the answers against the user
+                  self.saveAnswersAfterSuccessfulLogin(male_answers,category,user,saveNeeded);
+                },
+                error: function (user,error) {
+                    self.saveAnswersAfterSuccessfulLogin(male_answers,category,user,saveNeeded);
+                    console.log(user);
+                }
+              });
+            },
+            error: function(user, error) {
+              // The save failed.
+              // error is a Parse.Error with an error code and description.
+              self.saveAnswersAfterSuccessfulLogin(male_answers,category,user,saveNeeded);
+              console.log(error);
+            }
+          });
+
+
+        });
+
+        // save user and execute saveAnswersAfterSuccessfulLogin callback
+
+      },
+
+      saveAnswersAfterSuccessfulLogin: function(male_answers,category,user,saveNeeded) {
+        // attach answered question to logged in user
+
+        if(saveNeeded) {
+          this.setAnswer(male_answers,category,'user',user);
+
+          // this sends user to the checkout with a callback after save
+          var callback = function() {
+            location.reload();
+          };
+
+          this.saveAnswer(male_answers,category,callback);
+          
+        } else {
+          // user has nothing to save, so login is done
+          location.reload();  
+        }
       },
 
       setAnswer: function(male_answers,category,question,answer) {
@@ -133,7 +218,7 @@ angular.module('DataServices', [])
             // The object was saved successfully.
 
             if(callback !== null) {
-              callback(category);
+              callback();
             }
 
           },
@@ -149,15 +234,16 @@ angular.module('DataServices', [])
 
       fetch: function(currentUser) {
         currentUser.fetch({
-          success: function(myObject) {
+          success: function(user) {
             // The object was refreshed successfully.
-            alert('fetched successfully');
+            // alert('fetched successfully');
 
           },
-          error: function(myObject, error) {
+          error: function(user, error) {
             // The object was not refreshed successfully.
             // error is a Parse.Error with an error code and description
             alert("Something went wrong, please contact @male");
+            console.log(error);
           }
         });
 

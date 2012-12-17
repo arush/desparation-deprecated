@@ -6,12 +6,34 @@
 
 angular.module('HelperServices', []) 
 
-
 .factory('HelperService', function () {
     
     
     var HelperService = {
 		name: "Helper",
+
+		metrics: {
+			trackPage: function(trackPage) {
+				/* KISSmetrics Tracking */
+				if(typeof(_kmq) !== "undefined") {
+					_kmq.push(['record', 'Reached ' + trackPage]);
+				}
+				/* Mixpanel Tracking */
+				if(typeof(mixpanel) !== "undefined") {
+					mixpanel.track('Reached ' + trackPage);
+				}
+			},
+			identify: function(identity) {
+				/* KISSmetrics Tracking */
+				if(typeof(_kmq) !== "undefined") {
+		            _kmq.push(['identify', identity]);
+				}
+				/* Mixpanel Tracking */
+				if(typeof(mixpanel) !== "undefined") {
+					mixpanel.identify(identity);
+				}
+			}
+		},
 
 		getKey: function() {
 			var key = '5wZ821rKIQ804Xe';

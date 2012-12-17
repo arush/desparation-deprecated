@@ -1,4 +1,4 @@
-var CategoryController = function CategoryController($scope,$routeParams,$locale,$location) {
+var CategoryController = function CategoryController($scope,HelperService,$routeParams,$locale,$location) {
 
 	/**
 	*  Controller Properties
@@ -39,7 +39,7 @@ var CategoryController = function CategoryController($scope,$routeParams,$locale
 		$location.path(newPath);
 
 
-	}
+	};
 
 
 	$locale.id = "en-gb";
@@ -112,5 +112,8 @@ var CategoryController = function CategoryController($scope,$routeParams,$locale
 	  setTimeout(function() {jQuery('#intro').typewriter();},500);
 
 
+	// track
+    HelperService.metrics.trackPage('intro');
+
 }
-CategoryController.$inject = ['$scope','$routeParams','$locale','$location'];
+CategoryController.$inject = ['$scope','HelperService','$routeParams','$locale','$location'];

@@ -17,6 +17,9 @@ var MainController = function MainController($scope,DataService,HelperService,$l
     $scope.currentUser = false;
     $scope.loggedIn = false;
 
+    // this is so the menu can access current url parameters and highlight the current menu selection
+    $scope.routeParams = $routeParams;
+
     // Define Parse Models
     
     var Boxers = Parse.Object.extend("Boxers");
@@ -32,6 +35,10 @@ var MainController = function MainController($scope,DataService,HelperService,$l
     if ($scope.currentUser) {
 
         $scope.loggedIn = true;
+
+        // track the identity in case user has cleared their cache
+        var identity = $scope.currentUser.get('email');
+        HelperService.metrics.identify(identity);
 
     } else {
 
@@ -93,7 +100,7 @@ var MainController = function MainController($scope,DataService,HelperService,$l
 
 
     // ***** LOGIN FUNCTIONS ***** //
-    $scope.fbLoginFromHeader = function() {
+    $scope.fbLoginFromHeader = function(category) {
 
       // TODO: this breaks when 'intro' changes
       var saveNeeded = true;
@@ -112,29 +119,43 @@ var MainController = function MainController($scope,DataService,HelperService,$l
   // ***** END CONTROLLER FUNCTIONS ***** //
 
 
-  // this is so the menu can access current url parameters and highlight the current menu selection
-  $scope.routeParams = $routeParams;
 
   // select the correct option in the menu
   $scope.$on('$routeChangeSuccess', function(scope, next, current){
       
+      // this is for metrics tracking
+      var trackPage;
+
       // this matches against the "submenuItem.question" in ng-class
       if(next.params.category === 'intro') {
+        // track intro from controller
+
         $scope.selectedSubmenuItem = 'restart';
         
       } else if(next.params.question === 'checkout') {
         
+        // leave tracking to controller for checkout
+        trackPage = 'checkout';
         $scope.drawerOpen = false;
 
       } else {
+
+        // track
+        trackPage = next.params.question;
+        HelperService.metrics.trackPage(trackPage);
         // for all other cases, select the question 
         $scope.selectedSubmenuItem = next.params.question;
         // $scope.drawerOpen = true;
 
       }
+
+
   });
 
 
+  
+
+  
   // TODO: sort out the languages for the menu
 
 

@@ -1,4 +1,4 @@
-var CheckoutFormController = function CheckoutFormController($scope,DataService,$routeParams,$locale,checkoutLoader) {
+var CheckoutFormController = function CheckoutFormController($scope,DataService,HelperService,$routeParams,$locale,checkoutLoader) {
 
 	/**
 	*  Controller Properties
@@ -27,6 +27,8 @@ var CheckoutFormController = function CheckoutFormController($scope,DataService,
 	*  Controller Functions
 	*/
 
+	// track
+	HelperService.metrics.trackPage('£1 checkout');
 
 }
-CheckoutFormController.$inject = ['$scope','DataService','$routeParams','$locale','checkoutLoader'];
+CheckoutFormController.$inject = ['$scope','DataService','HelperService','$routeParams','$locale','checkoutLoader'];

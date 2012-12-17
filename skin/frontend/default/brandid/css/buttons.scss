@@ -303,3 +303,11 @@ a.continue.skip.secondary.convert {
 	}
 
 }
+
+a.convert.facebook-connect, button.convert.facebook-connect {
+	color:white;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
+	background-color: #6c9ce1;
+	@include background-image(linear-gradient(top, rgb(108, 156, 225), rgb(50, 94, 155)));
+	@include filter-gradient(rgb(108, 156, 225), rgb(50, 94, 155), vertical);
+}

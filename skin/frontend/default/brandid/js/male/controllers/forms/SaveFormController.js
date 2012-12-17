@@ -1,4 +1,4 @@
-var SaveFormController = function SaveFormController($scope,DataService,$routeParams,$locale,checkoutLoader) {
+var SaveFormController = function SaveFormController($scope,DataService,HelperService,$routeParams,$locale,checkoutLoader) {
 
 	/**
 	*  Controller Properties
@@ -38,5 +38,10 @@ var SaveFormController = function SaveFormController($scope,DataService,$routePa
 		DataService.fbLoginAndSave($scope.male_answers, $routeParams.category, $scope.currentUser, /* save is needed */ true);
 	}
 
+
+	// track
+	HelperService.metrics.trackPage('save basket');
+
+
 }
-SaveFormController.$inject = ['$scope','DataService','$routeParams','$locale','checkoutLoader'];
+SaveFormController.$inject = ['$scope','DataService','HelperService','$routeParams','$locale','checkoutLoader'];
