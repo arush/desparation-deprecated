@@ -12,20 +12,6 @@ angular.module('DataServices', [])
  * Use Parse.com as a back-end for the application.
  */
 .factory('ParseService', ['HelperService', function(HelperService) {
-    
-    var environment = HelperService.getEnvironment();
-
-    // Initialize Parse API and objects.
-    if(environment === "www") {
-      // initialise LIVE connection to Parse
-      Parse.initialize("cWsBzcLQQMy80sF7KOYWPkeVKDxshxQWUwWk1b27", "rhu8oSmv0Z7qms57HNvJaLlwpc9Mkl2kjIefkTXl");
-    } else if(environment === "hack") {
-      // intitialise HACK connection to Parse
-      Parse.initialize("FSjSiuBpXRS5vSeDVLlhbiraR2jkfH4D9HkFFzzu", "I8ZQlxqbAkSWn5oJq4YNHSvMEgT87hYy5r0cA3jV");
-    } else {
-      // intitialise TEST connection to Parse
-      Parse.initialize("oB4lSEsDL1MuJbLiTe4pHQbNvCJAzfu4nUMdsLL2", "LZ88ABUjZ0l92Nogc3TlCWRlGeKWBkqOXWw382hu");
-    }
 
     // FACEBOOK init
 
@@ -51,8 +37,23 @@ angular.module('DataServices', [])
     var ParseService = {
       name: "Parse",
 
+      init: function() {
+        var environment = HelperService.getEnvironment();
 
-      fbLoginAndSave: function(male_answers,category,currentUser,saveNeeded) {
+        // Initialize Parse API and objects.
+        if(environment === "www") {
+          // initialise LIVE connection to Parse
+          Parse.initialize("cWsBzcLQQMy80sF7KOYWPkeVKDxshxQWUwWk1b27", "rhu8oSmv0Z7qms57HNvJaLlwpc9Mkl2kjIefkTXl");
+        } else if(environment === "hack") {
+          // intitialise HACK connection to Parse
+          Parse.initialize("FSjSiuBpXRS5vSeDVLlhbiraR2jkfH4D9HkFFzzu", "I8ZQlxqbAkSWn5oJq4YNHSvMEgT87hYy5r0cA3jV");
+        } else {
+          // intitialise TEST connection to Parse
+          Parse.initialize("oB4lSEsDL1MuJbLiTe4pHQbNvCJAzfu4nUMdsLL2", "LZ88ABUjZ0l92Nogc3TlCWRlGeKWBkqOXWw382hu");
+        }
+      },
+
+      fbLoginAndSave: function(male_answers,category,currentUser) {
         
         var self = this;
 
@@ -64,14 +65,14 @@ angular.module('DataServices', [])
 
             // if this is a registration, we need to capture some data from FB
             if(!user.get('email')) {
-              self.saveRegistrationDataFromFacebook(male_answers,category,user,saveNeeded);
+              self.saveRegistrationDataFromFacebook(male_answers,category,user);
             } else {
               
               // if not identify the user in metrics and continue the save
               HelperService.metrics.identify(user.get('email'));
               HelperService.metrics.setLastLogin();
 
-              self.saveAnswersAfterSuccessfulLogin(male_answers,category,user,saveNeeded);
+              self.saveAnswersAfterSuccessfulLogin(male_answers,category,user);
             }
 
             
@@ -87,7 +88,7 @@ angular.module('DataServices', [])
 
       },
 
-      saveRegistrationDataFromFacebook: function(male_answers,category,user,saveNeeded) {
+      saveRegistrationDataFromFacebook: function(male_answers,category,user) {
         var authData = user.get("authData");
         var requestURI = '/' + authData.facebook.id + '?fields=first_name,last_name,gender,email,birthday,location';
         var self = this;
@@ -104,24 +105,24 @@ angular.module('DataServices', [])
 
           if(response.first_name !== "undefined") {
             self.setToUser( user, "first_name", response.first_name);
-            metricsPayload.push({"first_name": response.first_name});
+            metricsPayload.first_name = response.first_name;
           }
           if(response.last_name !== "undefined") {
             self.setToUser( user, "last_name", response.last_name);
-            metricsPayload.push({"last_name": response.last_name});
+            metricsPayload.last_name = response.last_name;
           }
           if(response.gender !== "undefined") {
             self.setToUser( user, "gender", response.gender);
-            metricsPayload.push({"gender": response.gender});
+            metricsPayload.gender = response.gender;
           }
           if(response.birthday !== "undefined") {
             self.setToUser( user, "birthday", response.birthday);
-            metricsPayload.push({"birthday": response.birthday});
+            metricsPayload.birthday = response.birthday;
           }
           if(response.location !== "undefined") {
             self.setToUser( user, "location", response.location);
             if(response.location.name !== "undefined") {
-              metricsPayload.push({"location": response.location.name});
+              metricsPayload.location = response.location.name;
             }
           }
 
@@ -129,7 +130,7 @@ angular.module('DataServices', [])
           if(response.email !== "undefined") {
             self.setToUser( user, "email", response.email);
             HelperService.metrics.identify(response.email);
-            metricsPayload.push({"$email": response.email});
+            metricsPayload.email = response.email;
           }
 
           /* KISSmetrics Tracking */
@@ -165,10 +166,10 @@ angular.module('DataServices', [])
               user.fetch({
                 success: function (user) {
                   // now we can save the answers against the user
-                  self.saveAnswersAfterSuccessfulLogin(male_answers,category,user,saveNeeded);
+                  self.saveAnswersAfterSuccessfulLogin(male_answers,category,user);
                 },
                 error: function (user,error) {
-                    self.saveAnswersAfterSuccessfulLogin(male_answers,category,user,saveNeeded);
+                    self.saveAnswersAfterSuccessfulLogin(male_answers,category,user);
                     console.log(user);
                 }
               });
@@ -176,7 +177,7 @@ angular.module('DataServices', [])
             error: function(user, error) {
               // The save failed.
               // error is a Parse.Error with an error code and description.
-              self.saveAnswersAfterSuccessfulLogin(male_answers,category,user,saveNeeded);
+              self.saveAnswersAfterSuccessfulLogin(male_answers,category,user);
               console.log(error);
             }
           });
@@ -188,8 +189,10 @@ angular.module('DataServices', [])
 
       },
 
-      saveAnswersAfterSuccessfulLogin: function(male_answers,category,user,saveNeeded) {
+      saveAnswersAfterSuccessfulLogin: function(male_answers,category,user) {
         // attach answered question to logged in user
+
+        var saveNeeded = HelperService.isSaveNeeded(category);
 
         if(saveNeeded) {
           this.setAnswer(male_answers,category,'user',user);

@@ -6,7 +6,7 @@
 
 angular.module('HelperServices', []) 
 
-.factory('HelperService', function () {
+.factory('HelperService', ['$routeParams', function ($routeParams) {
     
     
     var HelperService = {
@@ -48,6 +48,46 @@ angular.module('HelperServices', [])
 				}
 			}
 		},
+		urls: {
+			getBaseUrl: function() {
+				var url = "//" + document.location.host + '/';
+				return url;
+			},
+			getSkinUrl: function() {
+				var baseUrl = this.getBaseUrl();
+				var url = baseUrl + 'skin/frontend/default/brandid/';
+				return url;	
+			} 
+		},
+
+		format: {
+
+			first_name: function(input) {
+				var first_name = jQuery.trim(input);
+				first_name = first_name.toLowerCase();
+				first_name = this.capitaliseFirstLetter(first_name);
+			},
+
+			capitaliseFirstLetter: function(string) {
+				return string.charAt(0).toUpperCase() + string.slice(1);
+			}
+		},
+
+		isSaveNeeded: function(male_answers) {
+
+			var saveNeeded = false;
+
+			// check if any answers have changed using the awesome Parse changedAttributes function
+
+			for(var i = 0; i < male_answers.length; i++) {
+				if(male_answers[i].changedAttributes) {
+					saveNeeded = true;
+					break;
+				}
+			}
+
+			return saveNeeded;
+		},
 
 		getKey: function() {
 			var key = '5wZ821rKIQ804Xe';
@@ -83,5 +123,5 @@ angular.module('HelperServices', [])
 
     // The factory function returns ParseService, which is injected into controllers.
     return HelperService;
-});
+}]);
 

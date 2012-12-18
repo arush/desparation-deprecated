@@ -1,15 +1,51 @@
-<div ng-app="ngMaleApp" ng-controller="MainController">
+<div ng-app="ngMaleApp">
 
-  <div id="loginModalGuy" class="fade modal" ui-modal style="display:none;" ng-model="loginModalShown">
-    <div class="modal-header"><h1>Login / Register</h1></div>
+  <div id="loginModalGuy" class="fade modal login" ui-modal style="display:none;" ng-model="loginModalShown">
+    <div class="modal-header clearfix"><h1 class="float-left">Login</h1></div>
     <div class="modal-body">
-      <p>
-        Log-in with Facebook and we can save you doing all of this again. We’ll scan your profile and start matching you up with the right gear. Smart right?
-      </p>
       
+      <a class="facebook-connect center-align" ng-click="fbLoginFromHeader(routeParams.category)"></a>
+      <div class="fullWidth center-align facebook-connect-label">Supercharge M.A.L.E.'s intelligence with Facebook</div>
+
     </div>
     <div class="modal-footer">
-      <a class="convert secondary facebook-connect" ng-click="fbLoginFromHeader(routeParams.category)">Connect with Facebook</a>
+      <form name="modalLoginForm" id="modal-login-form" class="modal-form" ng-submit="loginWithEmail()" novalidate>
+        <div class="error ani fadeIn" style="display:none"></div>
+        <span class="input-label">Email</span>
+        <input type="email" ng-model="loginAttempt.email" placeholder="bruce@wayne-enterprises.com" ui-validate required>
+        <span class="input-label">Password</span>
+        <input type="password" ng-model="loginAttempt.password" placeholder="iamthebatman" required>
+        <button type="submit" class="convert" ng-disabled="modalLoginForm.$invalid">Login</button>
+      </form>
+        <!-- <div class="image-and-copy-container small clearfix">
+            
+            <div class="v-outer-container aside-facebook-connect">
+              <div class="v-inner-container">
+                <div class="v-aligned-element">
+                  <span class="facebook-reason-copy">or <a ng-click="$emit('goToRegister')">Register via email</a></span>
+                </div>
+              </div>
+            </div> 
+        </div> -->
+    </div>
+  </div>
+
+  <div id="registerModalGuy" class="fade modal register" ui-modal style="display:none;" ng-model="registerModalShown">
+    <div class="modal-header"><h1>Register</h1></div>
+    <div class="modal-body">
+      <form name="modalRegisterForm" id="modal-register-form" class="modal-form" ng-submit="register()" novalidate>
+        <div class="error ani fadeIn" style="display:none"></div>
+        <span class="input-label">First name</span>
+        <input type="text" ng-model="registrationAttempt.first_name" placeholder="Bruce" autofocus="autofocus" required>
+        <span class="input-label">Email</span>
+        <input type="email" ng-model="registrationAttempt.email" placeholder="bruce@wayne-enterprises.com" ui-validate required>
+        <span class="input-label">Choose a password</span>
+        <input type="password" ng-model="registrationAttempt.password" placeholder="iamthebatman" required>
+        <button type="submit" class="convert" ng-disabled="modalRegisterForm.$invalid">Register</button>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <span class="">Already registered? <a ng-click="$emit('goToLogin')">Login</a></span>
       <!-- <a class="convert secondary" ng-click="loginModalShown=false" href="">Close</a> -->
     </div>
   </div>
@@ -58,7 +94,7 @@
     </div>
   </div>
    -->
- <div class="container maleApp withShadow drawerOpen-{{drawerOpen}}" ng-init="drawerOpen = false">
+ <div class="container maleApp withShadow drawerOpen-{{drawerOpen}}" ng-init="drawerOpen = false" ng-controller="MainController">
 
 
   <div  class="drawer-holder shadow-trick-holder" >
@@ -224,22 +260,41 @@
       <div class="slide-container clearfix fadeIn ani">
         <form ng-controller="SaveFormController">
           <div class="curved-white-block withShadow withRadius">
-            
-            <div class="order-summary">
-              <h1 class="question-title">{{checkoutSummaryTitle}}</h1>
-              <div class="basket">
+            <h1 class="question-title">{{saveTitle}}</h1>
+            <span class="question">{{question}}</span>
 
-                <span class="bold">Brands:</span> <span class="basket-items">{{basket.brands}}</span><br/>
-                <span class="bold">Size:</span> <span class="basket-items">{{basket.size}}</span><br/>
-                <span class="bold">Colours:</span> <span class="basket-items">{{basket.colours}}</span><br/>
-                <span class="bold">Specifics:</span> <span class="basket-items">{{basket.specifics}}</span>
+            <div class="image-and-copy-container small">
+              <div class="image-and-copy clearfix" ng-repeat="facebookReason in facebookReasons">
+                <img ng-src="{{facebookReason.imageUrl}}" class="float-left small-square-image">
+                <div class="v-outer-container">
+
+                <div class="v-inner-container">
+
+                  <div class="v-aligned-element">
+                    <span class="facebook-reason-copy">{{facebookReason.reasonCopy}}</span>
+                  </div>
+                
+                </div>
+
               </div>
             </div>
 
             <div class="next-question-button-section">
-              <button class="convert facebook-connect" type="submit" ng-click="fbLoginAndSave()">
-                    Connect with Facebook
-              </button>
+              <div class="image-and-copy-container small clearfix">
+                
+                  <a class="facebook-connect float-left" type="submit" ng-click="fbLoginAndSave()">
+                  </a>
+                  <div class="v-outer-container aside-facebook-connect">
+
+                  <div class="v-inner-container">
+
+                    <div class="v-aligned-element">
+                      <span class="facebook-reason-copy">otherwise <a ng-click="$emit('goToRegister')">Register via email</a></span>
+                    </div>
+                  
+                  </div>
+
+              </div>
             </div>
 
           </div>
@@ -254,7 +309,16 @@
       <div class="slide-container clearfix fadeIn ani">
         <form ng-controller="CheckoutFormController">
           <div class="curved-white-block withShadow withRadius">
-            
+            <div class="order-summary">
+              <h1 class="question-title">{{basketTitle}}</h1>
+              <div class="basket">
+
+                <span class="bold">Brands:</span> <span class="basket-items">{{basket.brands}}</span><br/>
+                <span class="bold">Size:</span> <span class="basket-items">{{basket.size}}</span><br/>
+                <span class="bold">Colours:</span> <span class="basket-items">{{basket.colours}}</span><br/>
+                <span class="bold">Specifics:</span> <span class="basket-items">{{basket.specifics}}</span>
+              </div>
+            </div>
             <div class="fullWidth clearfix">
               <h1 class="question-title">{{checkoutTitle}}</h1>
               <div class="incentive-image-container">

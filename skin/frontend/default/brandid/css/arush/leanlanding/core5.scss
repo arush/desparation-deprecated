@@ -4,6 +4,7 @@
 $back: #FFF;
 $radius: 5px;
 $colour: #444;
+$textLinkColor: #d2002b;
 $heading-font: bold 36px/36px "proxima-nova",Helvetica,Arial,sans-serif;
 $title-font: bold 36px/36px "ff-enzo-web",Helvetica,Arial,sans-serif;
 $subtitle-font: normal 18px/18px "proxima-nova",Helvetica,Arial,sans-serif;
@@ -219,6 +220,10 @@ span.bold {
 	}
 }
 
+.center-align {
+	margin:0 auto;
+	text-align:center;
+}
 
 /* vertical align code */
 
@@ -259,6 +264,23 @@ span.bold {
 	top: -50%;
 }
 
+
+.image-and-copy-container {
+	margin:40px 0;
+	.image-and-copy {
+		margin:20px 0;
+	}
+	.v-outer-container {
+		float: left;
+		width: auto;
+	}
+}
+
+.image-and-copy-container.small {
+	.v-outer-container {
+		height: 75px;
+	}
+}
 
 
 /* core elements */

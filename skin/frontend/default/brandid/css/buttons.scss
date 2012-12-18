@@ -304,10 +304,26 @@ a.continue.skip.secondary.convert {
 
 }
 
-a.convert.facebook-connect, button.convert.facebook-connect {
-	color:white;
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
-	background-color: #6c9ce1;
-	@include background-image(linear-gradient(top, rgb(108, 156, 225), rgb(50, 94, 155)));
-	@include filter-gradient(rgb(108, 156, 225), rgb(50, 94, 155), vertical);
+.facebook-connect, .facebook-connect {
+	// color:white;
+	// text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
+	// background-color: #6c9ce1;
+	// @include background-image(linear-gradient(top, rgb(108, 156, 225), rgb(50, 94, 155)));
+	// @include filter-gradient(rgb(108, 156, 225), rgb(50, 94, 155), vertical);
+}
+
+.facebook-connect {
+	height:44px;
+	width:300px;
+	display:block;
+	// background-color:#8ea9e0;
+	background-image:url('../images/social/social-convert.png');
+	background-position:0px 0px;
+}
+.facebook-connect:hover {
+	background-position:0px -45px;
+}
+
+.facebook-connect:active {
+	background-position:0px -90px;
 }

@@ -7,7 +7,7 @@
 
 var Checkout = angular.module('CheckoutModule', []);
 
-Checkout.factory('checkoutLoader', function() {
+Checkout.factory('checkoutLoader', ['HelperService', function(HelperService) {
     
 	/* This factory method returns an object that is accessible to the controller which it is injected into.
 	 * Here we define the object including its own methods.
@@ -23,6 +23,13 @@ Checkout.factory('checkoutLoader', function() {
 				"en-gb": "Ok, let’s talk turkey, let’s make something happen, let’s do a deal. If you register your card details today and credit your BRANDiD account with one English pound, we’ll send you a pair of Muji touchscreen gloves worth £12.95. Bargain right? Right. You don’t need to buy anything, it’s just to make sure that when you are good to go, you can buy your gear with a single click."
 			}
 			return copy[countryCode];
+		},
+
+		getBasketTitle: function(countryCode) {
+			var basketTitle = {
+				"en-gb": "Your email will be based on:"
+			}
+			return basketTitle[countryCode];
 		},
 
 		getCheckoutTitle: function(countryCode) {
@@ -41,11 +48,40 @@ Checkout.factory('checkoutLoader', function() {
 		    return imageUrl[countryCode];
 	    },
 
-	    getCheckoutSummaryTitle: function(countryCode) {
+	    getSaveTitle: function(countryCode) {
 	    	var title = {
-	    		"en-gb": "Save your progress!"
+	    		"en-gb": "Supercharge my intelligence with Facebook"
 	    	}
 	    	return title[countryCode];
+	    },
+
+	    getSaveCopy: function(countryCode) {
+	    	var saveCopy = {
+	    			"en-gb": "If you want me to be better at shopping for you than your own mother, I need to get to know you better. It would be amazeballs if you let me...",
+	    			"en-us": ""
+		    };
+
+		    return saveCopy[countryCode];
+	    },
+
+	    getFacebookConnectReasons: function(countryCode) {
+	    	var reasons = {
+	    		"en-gb": [
+	    			{
+	    				reasonCopy: "See photos of you (hopefully wearing clothes)",
+	    				imageUrl: HelperService.urls.getSkinUrl() + "images/facebook-connect/reason1.png",
+	    			},
+	    			{
+	    				reasonCopy: "Check the weather where you are",
+	    				imageUrl: HelperService.urls.getSkinUrl() + "images/facebook-connect/reason2.png",
+	    			},
+	    			{
+	    				reasonCopy: "Send a Facebook Notification when your recommendation is ready",
+	    				imageUrl: HelperService.urls.getSkinUrl() + "images/facebook-connect/reason3.png",
+	    			}
+	    		]
+	    	}
+	    	return reasons[countryCode];
 	    },
 
 	    getBasket: function(category,male_answers) {
@@ -195,4 +231,4 @@ Checkout.factory('checkoutLoader', function() {
 	// brandLoader.$inject = ['boxersCheckout','socksCheckout'];
 
 	return checkoutLoader;
-});
+}]);

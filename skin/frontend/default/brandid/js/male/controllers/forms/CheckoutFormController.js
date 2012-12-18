@@ -4,6 +4,25 @@ var CheckoutFormController = function CheckoutFormController($scope,DataService,
 	*  Controller Properties
 	*/
 
+	// basket title
+	$scope.basketTitle = checkoutLoader.getBasketTitle($locale.id);
+
+	// basket
+	$scope.basket = checkoutLoader.getBasket($routeParams.category, $scope.male_answers);
+	
+	// make human readable answers, we made this non-default because the raw basket can be used
+	if(typeof($scope.basket.brands) !== "undefined") {
+		$scope.basket.brands = checkoutLoader.humanizeAnswer($scope.basket.brands);
+	};
+	
+	if(typeof($scope.basket.colours) !== "undefined") {
+		$scope.basket.colours = checkoutLoader.humanizeAnswer($scope.basket.colours);
+	};
+	
+	if(typeof($scope.basket.size) !== "undefined") {
+		$scope.basket.size = checkoutLoader.humanizeSize($scope.basket.size);
+	};
+
 
 	// checkout title
 	$scope.checkoutTitle = checkoutLoader.getCheckoutTitle($locale.id);
@@ -16,7 +35,6 @@ var CheckoutFormController = function CheckoutFormController($scope,DataService,
 
 	var environment = HelperService.getEnvironment();
 	var liveOrDevUrl;
-	console.log(environment);
 	
 	if(environment === "www") {
 		liveOrDevUrl = "brandid";
