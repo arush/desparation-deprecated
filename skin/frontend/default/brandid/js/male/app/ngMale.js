@@ -150,9 +150,6 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
 
     
     $rootScope.fbLoginFromHeader = function(category){
-      
-      var saveNeeded = HelperService.isSaveNeeded();
-
       // log them in with nothing to save
       DataService.fbLoginAndSave($rootScope.male_answers,category /* if this is 'intro', nothing happens */,$rootScope.currentUser);
 
