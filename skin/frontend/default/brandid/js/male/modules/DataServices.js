@@ -192,7 +192,7 @@ angular.module('DataServices', [])
       saveAnswersAfterSuccessfulLogin: function(male_answers,category,user) {
         // attach answered question to logged in user
 
-        var saveNeeded = HelperService.isSaveNeeded(category);
+        var saveNeeded = HelperService.isSaveNeeded(male_answers);
 
         if(saveNeeded) {
           this.setAnswer(male_answers,category,'user',user);
