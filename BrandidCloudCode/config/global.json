@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "MALE local": {
+            "applicationId": "oB4lSEsDL1MuJbLiTe4pHQbNvCJAzfu4nUMdsLL2", 
+            "masterKey": "ZJT0EjWExU7S7l6sUkKG13Dc6DI8nbssSFoxCv3P"
+        }, 
+        "_default": {
+            "link": "MALE local"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.1.15"
+    }
+}
