@@ -117,6 +117,65 @@ angular.module('HelperServices', [])
 
 
 			return authorized;
+		},
+		getIntercomAppId: function() {
+			var app_id;
+
+			var environment = this.getEnvironment();
+	        
+	        if(environment === "www") {
+		      // LIVE connection to Intercom
+		      app_id = "myporahm";
+		    } else if(environment === "hack") {
+		      // DEV connection to Intercom
+		      app_id = "2eqflc09";
+		    } else {
+		      // LOCAL connection to Intercom
+		      app_id = "2eqflc09";
+		    }
+
+			return app_id;
+		},
+		setIntercomSettings: function(user) {
+			// this relies on a global variable intercomSettings being defined somewhere
+		    if(user !== null) {
+		      
+		      var email;
+		      email = user.get("email");
+		      
+		      if(typeof(email) !== "undefined") {
+		        
+		        var createdAtTimeStamp = Math.round(user.createdAt.getTime() / 1000);
+		        var intercomAppId = this.getIntercomAppId();
+		        
+		        // see if Facebook is connected
+		        var facebookConnected = false;
+		        if(user.get("authData")) {
+		        	facebookConnected = true;
+		        };
+
+				intercomSettings = {
+					// TODO: The current logged in user's email address.
+					email: email,
+					// TODO: The current logged in user's sign-up date as a Unix timestamp.
+					created_at: createdAtTimeStamp,
+
+					'Facebook Connected': facebookConnected,
+
+					app_id: intercomAppId
+				};
+		      };
+		    };
+		},
+		setIntercomLoggedOutSettings: function(user) {
+	        var intercomAppId = this.getIntercomAppId();
+			intercomSettings = {
+	            // TODO: The current logged in user's email address.
+	            email: "guest",
+	            // TODO: The current logged in user's sign-up date as a Unix timestamp.
+	            created_at: "guest",
+	            app_id: intercomAppId
+	        };
 		}
 	}
 	

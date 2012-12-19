@@ -13,6 +13,39 @@ angular.module('DataServices', [])
  */
 .factory('ParseService', ['HelperService', function(HelperService) {
 
+    var environment = HelperService.getEnvironment();
+    // Initialize Parse API and objects.
+    if(environment === "www") {
+      // initialise LIVE connection to Parse
+      Parse.initialize("cWsBzcLQQMy80sF7KOYWPkeVKDxshxQWUwWk1b27", "rhu8oSmv0Z7qms57HNvJaLlwpc9Mkl2kjIefkTXl");
+    } else if(environment === "hack") {
+      // intitialise HACK connection to Parse
+      Parse.initialize("FSjSiuBpXRS5vSeDVLlhbiraR2jkfH4D9HkFFzzu", "I8ZQlxqbAkSWn5oJq4YNHSvMEgT87hYy5r0cA3jV");
+    } else {
+      // intitialise TEST connection to Parse
+      Parse.initialize("oB4lSEsDL1MuJbLiTe4pHQbNvCJAzfu4nUMdsLL2", "LZ88ABUjZ0l92Nogc3TlCWRlGeKWBkqOXWw382hu");
+    }
+
+    // Define Parse Models
+    
+    var Boxers = Parse.Object.extend("Boxers");
+    var Socks = Parse.Object.extend("Socks");
+    var Tees = Parse.Object.extend("Tees");
+    var Jumpers = Parse.Object.extend("Jumpers");
+    var Hoodies = Parse.Object.extend("Hoodies");
+
+    var BrandidUser = Parse.Object.extend("User", {
+      initialize: function() {
+        // if (!this.get("createdAt_unix")) {
+
+        //   var createdAtTimeStamp = Math.round((new Date()).getTime() / 1000);
+
+        //   this.set({ "createdAt_unix": this.createdAt });
+
+        // }
+      }
+    });
+
     // FACEBOOK init
 
     // window.fbAsyncInit = function() {
@@ -37,20 +70,26 @@ angular.module('DataServices', [])
     var ParseService = {
       name: "Parse",
 
-      init: function() {
-        var environment = HelperService.getEnvironment();
+      initNewAnswersForUser: function(male_answers,user) {
+        male_answers.boxers = new Boxers();
+        male_answers.boxers.set("user",user);
 
-        // Initialize Parse API and objects.
-        if(environment === "www") {
-          // initialise LIVE connection to Parse
-          Parse.initialize("cWsBzcLQQMy80sF7KOYWPkeVKDxshxQWUwWk1b27", "rhu8oSmv0Z7qms57HNvJaLlwpc9Mkl2kjIefkTXl");
-        } else if(environment === "hack") {
-          // intitialise HACK connection to Parse
-          Parse.initialize("FSjSiuBpXRS5vSeDVLlhbiraR2jkfH4D9HkFFzzu", "I8ZQlxqbAkSWn5oJq4YNHSvMEgT87hYy5r0cA3jV");
-        } else {
-          // intitialise TEST connection to Parse
-          Parse.initialize("oB4lSEsDL1MuJbLiTe4pHQbNvCJAzfu4nUMdsLL2", "LZ88ABUjZ0l92Nogc3TlCWRlGeKWBkqOXWw382hu");
-        }
+        male_answers.socks = new Socks();
+        male_answers.socks.set("user",user);
+
+        male_answers.tees = new Tees();
+        male_answers.tees.set("user",user);
+
+        male_answers.jumpers = new Jumpers();
+        male_answers.jumpers.set("user",user);
+
+        male_answers.hoodies = new Hoodies();
+        male_answers.hoodies.set("user",user);
+
+      },
+
+      initNewUser: function(user) {
+        user = new BrandidUser();
       },
 
       fbLoginAndSave: function(male_answers,category,currentUser) {
@@ -281,6 +320,15 @@ angular.module('DataServices', [])
           }
         });
 
+      },
+
+      user: {
+        // wrapper for Parse's user.get()
+        get: function(attribute) {
+          var user = this.getCurrentUser();
+          var attributeValue = user.get(attribute);
+          return attributeValue;
+        }
       },
 
       getCurrentUser: function() {

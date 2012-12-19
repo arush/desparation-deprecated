@@ -25343,6 +25343,9 @@ angular.module('ui.filters').filter('unique', function () {
 
 'use strict';
 
+// this is for intercom.io integration
+var intercomSettings = {};
+
 var ngMaleApp = angular.module('ngMaleApp', ['ui','DataServices','HelperServices','BrandsModule','ColoursModule','SizeModule','SpecificsModule','CheckoutModule','SuccessModule']);
 
 ngMaleApp.config(['$routeProvider', function ($routeProvider) {
@@ -25391,8 +25394,6 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
     
     $locale.id = "en-gb";
 
-    // this intialises the connection to Parse
-    DataService.init();
 
     $rootScope.drawerOpen = false;
 
@@ -25400,21 +25401,16 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
     $rootScope.loggedIn = false;
     $rootScope.facebookConnected = false;
 
-    // Define Parse Models
-    
-    var Boxers = Parse.Object.extend("Boxers");
-    var Socks = Parse.Object.extend("Socks");
-    var Tees = Parse.Object.extend("Tees");
-    var Jumpers = Parse.Object.extend("Jumpers");
-    var Hoodies = Parse.Object.extend("Hoodies");
-
-
     // make a reference to the current Parse.User object
-    $rootScope.currentUser = Parse.User.current();
+    $rootScope.currentUser = DataService.getCurrentUser();
     
     if ($rootScope.currentUser) {
 
         $rootScope.loggedIn = true;
+        HelperService.setIntercomSettings($rootScope.currentUser);
+
+        // also need to set last login time here
+
 
         // if authData exists, we assume facebook is connected, and load the facebook profile image, else load blank profile image
         if($rootScope.currentUser.get("authData")) {
@@ -25432,27 +25428,15 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
 
     } else {
 
-      $rootScope.currentUser = new Parse.User();
+      $rootScope.currentUser = DataService.initNewUser($rootScope.currentUser);
+      HelperService.setIntercomLoggedOutSettings($rootScope.currentUser);
 
     };
 
     $rootScope.male_answers = {};
 
-    $rootScope.male_answers.boxers = new Boxers();
-    // $rootScope.male_answers.boxers.set("user",$rootScope.currentUser);
-
-    $rootScope.male_answers.socks = new Socks();
-    // $rootScope.male_answers.socks.set("user",$rootScope.currentUser);
-
-    $rootScope.male_answers.tees = new Tees();
-    // $rootScope.male_answers.tees.set("user",$rootScope.currentUser);
-
-    $rootScope.male_answers.jumpers = new Jumpers();
-    // $rootScope.male_answers.jumpers.set("user",$rootScope.currentUser);
-
-    $rootScope.male_answers.hoodies = new Hoodies();
-    // $rootScope.male_answers.hoodies.set("user",$rootScope.currentUser);
-
+    // this creates all the answer objects in male_answers and sets them all to the current user
+    DataService.initNewAnswersForUser($rootScope.male_answers,$rootScope.currentUser);
 
 
     // feedback object
@@ -25609,6 +25593,39 @@ angular.module('DataServices', [])
  */
 .factory('ParseService', ['HelperService', function(HelperService) {
 
+    var environment = HelperService.getEnvironment();
+    // Initialize Parse API and objects.
+    if(environment === "www") {
+      // initialise LIVE connection to Parse
+      Parse.initialize("cWsBzcLQQMy80sF7KOYWPkeVKDxshxQWUwWk1b27", "rhu8oSmv0Z7qms57HNvJaLlwpc9Mkl2kjIefkTXl");
+    } else if(environment === "hack") {
+      // intitialise HACK connection to Parse
+      Parse.initialize("FSjSiuBpXRS5vSeDVLlhbiraR2jkfH4D9HkFFzzu", "I8ZQlxqbAkSWn5oJq4YNHSvMEgT87hYy5r0cA3jV");
+    } else {
+      // intitialise TEST connection to Parse
+      Parse.initialize("oB4lSEsDL1MuJbLiTe4pHQbNvCJAzfu4nUMdsLL2", "LZ88ABUjZ0l92Nogc3TlCWRlGeKWBkqOXWw382hu");
+    }
+
+    // Define Parse Models
+    
+    var Boxers = Parse.Object.extend("Boxers");
+    var Socks = Parse.Object.extend("Socks");
+    var Tees = Parse.Object.extend("Tees");
+    var Jumpers = Parse.Object.extend("Jumpers");
+    var Hoodies = Parse.Object.extend("Hoodies");
+
+    var BrandidUser = Parse.Object.extend("User", {
+      initialize: function() {
+        // if (!this.get("createdAt_unix")) {
+
+        //   var createdAtTimeStamp = Math.round((new Date()).getTime() / 1000);
+
+        //   this.set({ "createdAt_unix": this.createdAt });
+
+        // }
+      }
+    });
+
     // FACEBOOK init
 
     // window.fbAsyncInit = function() {
@@ -25633,20 +25650,26 @@ angular.module('DataServices', [])
     var ParseService = {
       name: "Parse",
 
-      init: function() {
-        var environment = HelperService.getEnvironment();
+      initNewAnswersForUser: function(male_answers,user) {
+        male_answers.boxers = new Boxers();
+        male_answers.boxers.set("user",user);
 
-        // Initialize Parse API and objects.
-        if(environment === "www") {
-          // initialise LIVE connection to Parse
-          Parse.initialize("cWsBzcLQQMy80sF7KOYWPkeVKDxshxQWUwWk1b27", "rhu8oSmv0Z7qms57HNvJaLlwpc9Mkl2kjIefkTXl");
-        } else if(environment === "hack") {
-          // intitialise HACK connection to Parse
-          Parse.initialize("FSjSiuBpXRS5vSeDVLlhbiraR2jkfH4D9HkFFzzu", "I8ZQlxqbAkSWn5oJq4YNHSvMEgT87hYy5r0cA3jV");
-        } else {
-          // intitialise TEST connection to Parse
-          Parse.initialize("oB4lSEsDL1MuJbLiTe4pHQbNvCJAzfu4nUMdsLL2", "LZ88ABUjZ0l92Nogc3TlCWRlGeKWBkqOXWw382hu");
-        }
+        male_answers.socks = new Socks();
+        male_answers.socks.set("user",user);
+
+        male_answers.tees = new Tees();
+        male_answers.tees.set("user",user);
+
+        male_answers.jumpers = new Jumpers();
+        male_answers.jumpers.set("user",user);
+
+        male_answers.hoodies = new Hoodies();
+        male_answers.hoodies.set("user",user);
+
+      },
+
+      initNewUser: function(user) {
+        user = new BrandidUser();
       },
 
       fbLoginAndSave: function(male_answers,category,currentUser) {
@@ -25879,6 +25902,15 @@ angular.module('DataServices', [])
 
       },
 
+      user: {
+        // wrapper for Parse's user.get()
+        get: function(attribute) {
+          var user = this.getCurrentUser();
+          var attributeValue = user.get(attribute);
+          return attributeValue;
+        }
+      },
+
       getCurrentUser: function() {
         return Parse.User.current();
       },
@@ -26103,6 +26135,65 @@ angular.module('HelperServices', [])
 
 
 			return authorized;
+		},
+		getIntercomAppId: function() {
+			var app_id;
+
+			var environment = this.getEnvironment();
+	        
+	        if(environment === "www") {
+		      // LIVE connection to Intercom
+		      app_id = "myporahm";
+		    } else if(environment === "hack") {
+		      // DEV connection to Intercom
+		      app_id = "2eqflc09";
+		    } else {
+		      // LOCAL connection to Intercom
+		      app_id = "2eqflc09";
+		    }
+
+			return app_id;
+		},
+		setIntercomSettings: function(user) {
+			// this relies on a global variable intercomSettings being defined somewhere
+		    if(user !== null) {
+		      
+		      var email;
+		      email = user.get("email");
+		      
+		      if(typeof(email) !== "undefined") {
+		        
+		        var createdAtTimeStamp = Math.round(user.createdAt.getTime() / 1000);
+		        var intercomAppId = this.getIntercomAppId();
+		        
+		        // see if Facebook is connected
+		        var facebookConnected = false;
+		        if(user.get("authData")) {
+		        	facebookConnected = true;
+		        };
+
+				intercomSettings = {
+					// TODO: The current logged in user's email address.
+					email: email,
+					// TODO: The current logged in user's sign-up date as a Unix timestamp.
+					created_at: createdAtTimeStamp,
+
+					'Facebook Connected': facebookConnected,
+
+					app_id: intercomAppId
+				};
+		      };
+		    };
+		},
+		setIntercomLoggedOutSettings: function(user) {
+	        var intercomAppId = this.getIntercomAppId();
+			intercomSettings = {
+	            // TODO: The current logged in user's email address.
+	            email: "guest",
+	            // TODO: The current logged in user's sign-up date as a Unix timestamp.
+	            created_at: "guest",
+	            app_id: intercomAppId
+	        };
 		}
 	}
 	
@@ -27009,12 +27100,13 @@ var SuccessFormController = function SuccessFormController($scope,DataService,He
 
 	// receive the account code from Recurly success form and store it against the user as teh email and the account_code
 	if($scope.currentUser) {
-		DataService.setToUser($scope.currentUser,"account_code",$routeParams.account_code);
+		DataService.setToUser($scope.currentUser,"recurly_account_code",$routeParams.account_code);
 		// only use the recurly email as the user's email if it was not saved before, e.g. if they blocked access to email when connecting to facebook
 		if(!$scope.currentUser.get("email")) {
 			DataService.setToUser($scope.currentUser,"email",$routeParams.account_code);
 		}
 		DataService.saveUser($scope.currentUser);
+		console.log($routeParams.account_code);
 	}
 
 	// success title

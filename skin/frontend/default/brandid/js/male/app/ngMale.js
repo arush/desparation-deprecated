@@ -1,5 +1,8 @@
 'use strict';
 
+// this is for intercom.io integration
+var intercomSettings = {};
+
 var ngMaleApp = angular.module('ngMaleApp', ['ui','DataServices','HelperServices','BrandsModule','ColoursModule','SizeModule','SpecificsModule','CheckoutModule','SuccessModule']);
 
 ngMaleApp.config(['$routeProvider', function ($routeProvider) {
@@ -48,8 +51,6 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
     
     $locale.id = "en-gb";
 
-    // this intialises the connection to Parse
-    DataService.init();
 
     $rootScope.drawerOpen = false;
 
@@ -57,21 +58,16 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
     $rootScope.loggedIn = false;
     $rootScope.facebookConnected = false;
 
-    // Define Parse Models
-    
-    var Boxers = Parse.Object.extend("Boxers");
-    var Socks = Parse.Object.extend("Socks");
-    var Tees = Parse.Object.extend("Tees");
-    var Jumpers = Parse.Object.extend("Jumpers");
-    var Hoodies = Parse.Object.extend("Hoodies");
-
-
     // make a reference to the current Parse.User object
-    $rootScope.currentUser = Parse.User.current();
+    $rootScope.currentUser = DataService.getCurrentUser();
     
     if ($rootScope.currentUser) {
 
         $rootScope.loggedIn = true;
+        HelperService.setIntercomSettings($rootScope.currentUser);
+
+        // also need to set last login time here
+
 
         // if authData exists, we assume facebook is connected, and load the facebook profile image, else load blank profile image
         if($rootScope.currentUser.get("authData")) {
@@ -89,27 +85,15 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
 
     } else {
 
-      $rootScope.currentUser = new Parse.User();
+      $rootScope.currentUser = DataService.initNewUser($rootScope.currentUser);
+      HelperService.setIntercomLoggedOutSettings($rootScope.currentUser);
 
     };
 
     $rootScope.male_answers = {};
 
-    $rootScope.male_answers.boxers = new Boxers();
-    // $rootScope.male_answers.boxers.set("user",$rootScope.currentUser);
-
-    $rootScope.male_answers.socks = new Socks();
-    // $rootScope.male_answers.socks.set("user",$rootScope.currentUser);
-
-    $rootScope.male_answers.tees = new Tees();
-    // $rootScope.male_answers.tees.set("user",$rootScope.currentUser);
-
-    $rootScope.male_answers.jumpers = new Jumpers();
-    // $rootScope.male_answers.jumpers.set("user",$rootScope.currentUser);
-
-    $rootScope.male_answers.hoodies = new Hoodies();
-    // $rootScope.male_answers.hoodies.set("user",$rootScope.currentUser);
-
+    // this creates all the answer objects in male_answers and sets them all to the current user
+    DataService.initNewAnswersForUser($rootScope.male_answers,$rootScope.currentUser);
 
 
     // feedback object
