@@ -31,10 +31,6 @@ ngMaleApp.config(['$routeProvider', function ($routeProvider) {
          redirectTo:'/section/garms/category/intro',
          controller:MainController
       })
-      // .when('/section/:section/category/:category/question/checkout', {
-      //    templateUrl: 'section/garms/category/generic/question/checkout.html',
-      //    controller:CheckoutController
-      // })
       .when('/section/:section/category/:category/question/:question', {
          templateUrl: 'detailViewProxy.html',
          controller:QuestionController
@@ -92,7 +88,7 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
         //
 
         // this creates new answer objects in male_answers if parameter is null, otherwise retrieves latest answers from database
-        DataService.initMaleAnswersForUser($rootScope.currentUser, $rootScope.male_answers);
+        // DataService.initMaleAnswersForUser($rootScope.currentUser, $rootScope.male_answers, $rootScope);
 
     } else {
 
@@ -102,11 +98,12 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
       
       HelperService.setIntercomLoggedOutSettings($rootScope.currentUser);
 
-      // this creates new answer objects in male_answers if parameter is null, otherwise retrieves latest answers from database
-      DataService.initMaleAnswersForUser(null, $rootScope.male_answers);
+      
 
     };
 
+    // this creates new answer objects in male_answers if parameter is null, otherwise retrieves latest answers from database
+    DataService.initMaleAnswersForUser(null, $rootScope.male_answers);
 
 
     // feedback object

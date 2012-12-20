@@ -25374,10 +25374,6 @@ ngMaleApp.config(['$routeProvider', function ($routeProvider) {
          redirectTo:'/section/garms/category/intro',
          controller:MainController
       })
-      // .when('/section/:section/category/:category/question/checkout', {
-      //    templateUrl: 'section/garms/category/generic/question/checkout.html',
-      //    controller:CheckoutController
-      // })
       .when('/section/:section/category/:category/question/:question', {
          templateUrl: 'detailViewProxy.html',
          controller:QuestionController
@@ -25435,7 +25431,7 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
         //
 
         // this creates new answer objects in male_answers if parameter is null, otherwise retrieves latest answers from database
-        DataService.initMaleAnswersForUser($rootScope.currentUser, $rootScope.male_answers);
+        // DataService.initMaleAnswersForUser($rootScope.currentUser, $rootScope.male_answers, $rootScope);
 
     } else {
 
@@ -25445,11 +25441,12 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
       
       HelperService.setIntercomLoggedOutSettings($rootScope.currentUser);
 
-      // this creates new answer objects in male_answers if parameter is null, otherwise retrieves latest answers from database
-      DataService.initMaleAnswersForUser(null, $rootScope.male_answers);
+      
 
     };
 
+    // this creates new answer objects in male_answers if parameter is null, otherwise retrieves latest answers from database
+    DataService.initMaleAnswersForUser(null, $rootScope.male_answers);
 
 
     // feedback object
@@ -25604,7 +25601,7 @@ angular.module('DataServices', [])
  * Parse Service
  * Use Parse.com as a back-end for the application.
  */
-.factory('ParseService', ['HelperService', function(HelperService) {
+.factory('ParseService', ['HelperService','$q', function(HelperService,$q) {
 
     var environment = HelperService.getEnvironment();
     // Initialize Parse API and objects.
@@ -25663,7 +25660,7 @@ angular.module('DataServices', [])
     var ParseService = {
       name: "Parse",
 
-      initMaleAnswersForUser: function(user, male_answers) {
+      initMaleAnswersForUser: function(user, male_answers, scope) {
 
         // logged out users
         male_answers.boxers = new Boxers();
@@ -25671,32 +25668,14 @@ angular.module('DataServices', [])
         male_answers.tees = new Tees();
         male_answers.jumpers = new Jumpers();
         male_answers.hoodies = new Hoodies();
-        
+
         // logged in users
         if(user !== null) {
           
           // users might have answers stored in database, so go get them
-          // TODO: this will be so much easier if we use colletions of questions and collections of answers
+          // TODO: this will be so much easier if we use colletions
 
           // this.query.usersBoxers(user, male_answers);
-
-          var query = new Parse.Query(Boxers);
-          query.equalTo("user", user);
-          query.first({
-            success: function(result) {
-
-              if(typeof(result) === "undefined") {
-                male_answers.boxers = new Boxers();
-              } else {
-                male_answers.boxers = result;
-              }
-
-            },
-            error: function(result,error) {
-              console.log(result);
-              console.log(error);
-            }
-          });
 
           // this.query.usersSocks(user, male_answers);
           // this.query.usersTees(user, male_answers);
@@ -25710,25 +25689,33 @@ angular.module('DataServices', [])
 
       // TODO: use collections instead
       query: {
-        usersBoxers: function(user, male_answers) {
-          // Assume Parse.Object myPost was previously created.
-          var query = new Parse.Query(Boxers);
-          query.equalTo("user", user);
-          query.first({
-            success: function(result) {
+        usersBoxers: function(user, male_answers, scope) {
+          var deferred = $q.defer();
 
-              if(typeof(result) === "undefined") {
-                male_answers.boxers = new Boxers();
-              } else {
-                male_answers.boxers = result;
+          
+            // Parse.Object was previously created
+            var query = new Parse.Query(Boxers);
+            query.equalTo("user", user);
+            query.first({
+              success: function(result) {
+                // console.log(result);
+                scope.$apply(function() {
+                  deferred.resolve(result);
+                });
+
+              },
+              error: function(result,error) {
+                
+                deferred.reject(error);
+
+                console.log(result);
+                console.log(error);
               }
+            });
+          
 
-            },
-            error: function(result,error) {
-              console.log(result);
-              console.log(error);
-            }
-          });
+          return deferred.promise;
+            
         },
         usersSocks: function(user, male_answers) {
           // Assume Parse.Object myPost was previously created.
@@ -26646,7 +26633,7 @@ var QuestionController = function QuestionController($scope,$routeParams,DataSer
 
 					var account_code = $scope.currentUser.get("account_code");
 					// check if we already have credit card on file, if so redirect to success page
-					if(account_code) {
+					if(typeof(account_code) !== "undefined") {
 						// TODO: look up valid credit card info from recurly
 						questionDecider = 'success';
 
@@ -27219,24 +27206,42 @@ var CheckoutFormController = function CheckoutFormController($scope,DataService,
 	*  Controller Properties
 	*/
 
+
 	// basket title
 	$scope.basketTitle = checkoutLoader.getBasketTitle($locale.id);
 
-	// basket
-	$scope.basket = checkoutLoader.getBasket($routeParams.category, $scope.male_answers);
 	
-	// make human readable answers, we made this non-default because the raw basket can be used
-	if(typeof($scope.basket.brands) !== "undefined") {
-		$scope.basket.brands = checkoutLoader.humanizeAnswer($scope.basket.brands);
-	};
+
+
+	var promise = DataService.query.usersBoxers($scope.currentUser, $scope.male_answers, $scope);
+    
+    promise.then(function(boxers) {
+      // finally perform the action after API call completes
+	  $scope.male_answers.boxers = boxers;
+
+	  $scope.basket = checkoutLoader.getBasket($routeParams.category, $scope.male_answers);
 	
-	if(typeof($scope.basket.colours) !== "undefined") {
-		$scope.basket.colours = checkoutLoader.humanizeAnswer($scope.basket.colours);
-	};
-	
-	if(typeof($scope.basket.size) !== "undefined") {
-		$scope.basket.size = checkoutLoader.humanizeSize($scope.basket.size);
-	};
+		// make human readable answers, we made this non-default because the raw basket can be used
+		if(typeof($scope.basket.brands) !== "undefined") {
+			$scope.basket.brands = checkoutLoader.humanizeAnswer($scope.basket.brands);
+		};
+		
+		if(typeof($scope.basket.colours) !== "undefined") {
+			$scope.basket.colours = checkoutLoader.humanizeAnswer($scope.basket.colours);
+		};
+		
+		if(typeof($scope.basket.size) !== "undefined") {
+			$scope.basket.size = checkoutLoader.humanizeSize($scope.basket.size);
+		};
+		
+	  console.log($scope.male_answers.boxers);
+
+    }, function(reason) {
+      // something went wrong in the API call, so init new object
+      console.log(reason);
+      // male_answers.boxers = new Boxers();
+    });
+
 
 
 	// checkout title

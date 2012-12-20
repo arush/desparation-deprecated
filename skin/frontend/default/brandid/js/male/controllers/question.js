@@ -119,7 +119,7 @@ var QuestionController = function QuestionController($scope,$routeParams,DataSer
 
 					var account_code = $scope.currentUser.get("account_code");
 					// check if we already have credit card on file, if so redirect to success page
-					if(account_code) {
+					if(typeof(account_code) !== "undefined") {
 						// TODO: look up valid credit card info from recurly
 						questionDecider = 'success';
 

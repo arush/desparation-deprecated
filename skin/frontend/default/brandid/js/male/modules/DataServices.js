@@ -11,7 +11,7 @@ angular.module('DataServices', [])
  * Parse Service
  * Use Parse.com as a back-end for the application.
  */
-.factory('ParseService', ['HelperService', function(HelperService) {
+.factory('ParseService', ['HelperService','$q', function(HelperService,$q) {
 
     var environment = HelperService.getEnvironment();
     // Initialize Parse API and objects.
@@ -70,7 +70,7 @@ angular.module('DataServices', [])
     var ParseService = {
       name: "Parse",
 
-      initMaleAnswersForUser: function(user, male_answers) {
+      initMaleAnswersForUser: function(user, male_answers, scope) {
 
         // logged out users
         male_answers.boxers = new Boxers();
@@ -78,32 +78,14 @@ angular.module('DataServices', [])
         male_answers.tees = new Tees();
         male_answers.jumpers = new Jumpers();
         male_answers.hoodies = new Hoodies();
-        
+
         // logged in users
         if(user !== null) {
           
           // users might have answers stored in database, so go get them
-          // TODO: this will be so much easier if we use colletions of questions and collections of answers
+          // TODO: this will be so much easier if we use colletions
 
           // this.query.usersBoxers(user, male_answers);
-
-          var query = new Parse.Query(Boxers);
-          query.equalTo("user", user);
-          query.first({
-            success: function(result) {
-
-              if(typeof(result) === "undefined") {
-                male_answers.boxers = new Boxers();
-              } else {
-                male_answers.boxers = result;
-              }
-
-            },
-            error: function(result,error) {
-              console.log(result);
-              console.log(error);
-            }
-          });
 
           // this.query.usersSocks(user, male_answers);
           // this.query.usersTees(user, male_answers);
@@ -117,25 +99,33 @@ angular.module('DataServices', [])
 
       // TODO: use collections instead
       query: {
-        usersBoxers: function(user, male_answers) {
-          // Assume Parse.Object myPost was previously created.
-          var query = new Parse.Query(Boxers);
-          query.equalTo("user", user);
-          query.first({
-            success: function(result) {
+        usersBoxers: function(user, male_answers, scope) {
+          var deferred = $q.defer();
 
-              if(typeof(result) === "undefined") {
-                male_answers.boxers = new Boxers();
-              } else {
-                male_answers.boxers = result;
+          
+            // Parse.Object was previously created
+            var query = new Parse.Query(Boxers);
+            query.equalTo("user", user);
+            query.first({
+              success: function(result) {
+                // console.log(result);
+                scope.$apply(function() {
+                  deferred.resolve(result);
+                });
+
+              },
+              error: function(result,error) {
+                
+                deferred.reject(error);
+
+                console.log(result);
+                console.log(error);
               }
+            });
+          
 
-            },
-            error: function(result,error) {
-              console.log(result);
-              console.log(error);
-            }
-          });
+          return deferred.promise;
+            
         },
         usersSocks: function(user, male_answers) {
           // Assume Parse.Object myPost was previously created.
