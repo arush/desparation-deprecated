@@ -31,6 +31,10 @@ ngMaleApp.config(['$routeProvider', function ($routeProvider) {
          redirectTo:'/section/garms/category/intro',
          controller:MainController
       })
+      // .when('/section/:section/category/:category/question/checkout', {
+      //    templateUrl: 'section/garms/category/generic/question/checkout.html',
+      //    controller:CheckoutController
+      // })
       .when('/section/:section/category/:category/question/:question', {
          templateUrl: 'detailViewProxy.html',
          controller:QuestionController
@@ -55,6 +59,7 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
     $rootScope.drawerOpen = false;
 
     $rootScope.currentUser = false;
+    $rootScope.male_answers = {};
     $rootScope.loggedIn = false;
     $rootScope.facebookConnected = false;
 
@@ -83,17 +88,25 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
         var identity = $rootScope.currentUser.get('email');
         HelperService.metrics.identify(identity);
 
+
+        //
+
+        // this creates new answer objects in male_answers if parameter is null, otherwise retrieves latest answers from database
+        DataService.initMaleAnswersForUser($rootScope.currentUser, $rootScope.male_answers);
+
     } else {
 
-      $rootScope.currentUser = DataService.initNewUser($rootScope.currentUser);
+      if($rootScope.currentUser === null) {
+        $rootScope.currentUser = DataService.initNewUser();  
+      }
+      
       HelperService.setIntercomLoggedOutSettings($rootScope.currentUser);
+
+      // this creates new answer objects in male_answers if parameter is null, otherwise retrieves latest answers from database
+      DataService.initMaleAnswersForUser(null, $rootScope.male_answers);
 
     };
 
-    $rootScope.male_answers = {};
-
-    // this creates all the answer objects in male_answers and sets them all to the current user
-    DataService.initNewAnswersForUser($rootScope.male_answers,$rootScope.currentUser);
 
 
     // feedback object

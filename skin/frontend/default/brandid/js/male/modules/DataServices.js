@@ -34,17 +34,17 @@ angular.module('DataServices', [])
     var Jumpers = Parse.Object.extend("Jumpers");
     var Hoodies = Parse.Object.extend("Hoodies");
 
-    var BrandidUser = Parse.Object.extend("User", {
-      initialize: function() {
-        // if (!this.get("createdAt_unix")) {
+    // var BrandidUser = Parse.User.extend({
+    //   initialize: function() {
+    //     // if (!this.get("createdAt_unix")) {
 
-        //   var createdAtTimeStamp = Math.round((new Date()).getTime() / 1000);
+    //     //   var createdAtTimeStamp = Math.round((new Date()).getTime() / 1000);
 
-        //   this.set({ "createdAt_unix": this.createdAt });
+    //     //   this.set({ "createdAt_unix": this.createdAt });
 
-        // }
-      }
-    });
+    //     // }
+    //   }
+    // });
 
     // FACEBOOK init
 
@@ -70,26 +70,157 @@ angular.module('DataServices', [])
     var ParseService = {
       name: "Parse",
 
-      initNewAnswersForUser: function(male_answers,user) {
+      initMaleAnswersForUser: function(user, male_answers) {
+
+        // logged out users
         male_answers.boxers = new Boxers();
-        male_answers.boxers.set("user",user);
-
         male_answers.socks = new Socks();
-        male_answers.socks.set("user",user);
-
         male_answers.tees = new Tees();
-        male_answers.tees.set("user",user);
-
         male_answers.jumpers = new Jumpers();
-        male_answers.jumpers.set("user",user);
-
         male_answers.hoodies = new Hoodies();
-        male_answers.hoodies.set("user",user);
+        
+        // logged in users
+        if(user !== null) {
+          
+          // users might have answers stored in database, so go get them
+          // TODO: this will be so much easier if we use colletions of questions and collections of answers
+
+          // this.query.usersBoxers(user, male_answers);
+
+          var query = new Parse.Query(Boxers);
+          query.equalTo("user", user);
+          query.first({
+            success: function(result) {
+
+              if(typeof(result) === "undefined") {
+                male_answers.boxers = new Boxers();
+              } else {
+                male_answers.boxers = result;
+              }
+
+            },
+            error: function(result,error) {
+              console.log(result);
+              console.log(error);
+            }
+          });
+
+          // this.query.usersSocks(user, male_answers);
+          // this.query.usersTees(user, male_answers);
+          // this.query.usersJumpers(user, male_answers);
+          // this.query.usersHoodies(user, male_answers);
+
+        }
+
+        // return male_answers;
+      },
+
+      // TODO: use collections instead
+      query: {
+        usersBoxers: function(user, male_answers) {
+          // Assume Parse.Object myPost was previously created.
+          var query = new Parse.Query(Boxers);
+          query.equalTo("user", user);
+          query.first({
+            success: function(result) {
+
+              if(typeof(result) === "undefined") {
+                male_answers.boxers = new Boxers();
+              } else {
+                male_answers.boxers = result;
+              }
+
+            },
+            error: function(result,error) {
+              console.log(result);
+              console.log(error);
+            }
+          });
+        },
+        usersSocks: function(user, male_answers) {
+          // Assume Parse.Object myPost was previously created.
+          var query = new Parse.Query(Socks);
+          query.equalTo("user", user);
+          query.first({
+            success: function(result) {
+              // if query results are undefined, init the item with empty answers
+              if(typeof(result) === "undefined") {
+                male_answers.socks = new Socks();
+              } else {
+                male_answers.socks = result;
+              }
+
+            },
+            error: function(result,error) {
+              console.log(result);
+              console.log(error);
+            }
+          });
+        },
+        usersTees: function(user, male_answers) {
+          // Assume Parse.Object myPost was previously created.
+          var query = new Parse.Query(Tees);
+          query.equalTo("user", user);
+          query.first({
+            success: function(result) {
+              // if query results are undefined, init the item with empty answers
+              if(typeof(result) === "undefined") {
+                male_answers.tees = new Tees();
+              } else {
+                male_answers.tees = result;
+              }
+
+            },
+            error: function(result,error) {
+              console.log(result);
+              console.log(error);
+            }
+          });
+        },
+        usersJumpers: function(user, male_answers) {
+          // Assume Parse.Object myPost was previously created.
+          var query = new Parse.Query(Jumpers);
+          query.equalTo("user", user);
+          query.first({
+            success: function(result) {
+              // if query results are undefined, init the item with empty answers
+              if(typeof(result) === "undefined") {
+                male_answers.jumpers = new Jumpers();
+              } else {
+                male_answers.jumpers = result;
+              }
+            },
+            error: function(result,error) {
+              console.log(result);
+              console.log(error);
+            }
+          });
+        },
+        usersHoodies: function(user, male_answers) {
+          // Assume Parse.Object myPost was previously created.
+          var query = new Parse.Query(Hoodies);
+          query.equalTo("user", user);
+          query.first({
+            success: function(result) {
+              // if query results are undefined, init the item with empty answers
+              if(typeof(result) === "undefined") {
+                male_answers.hoodies = new Hoodies();
+              } else {
+                male_answers.hoodies = result;
+              }
+            },
+            error: function(result,error) {
+              console.log(result);
+              console.log(error);
+            }
+          });
+        }
 
       },
 
-      initNewUser: function(user) {
-        user = new BrandidUser();
+      initNewUser: function() {
+        var user = new Parse.User();
+        return user;
       },
 
       fbLoginAndSave: function(male_answers,category,currentUser) {
@@ -277,6 +408,10 @@ angular.module('DataServices', [])
           case 'hoodies':
             returnObject = male_answers.hoodies;
             break;
+          case 'default':
+            // this means category is checkout or intro or something else
+            returnObject = null;
+            break;
         };
 
         return returnObject;
@@ -286,22 +421,24 @@ angular.module('DataServices', [])
 
         var parseAnswerObject = this.getObjectFromMaleAnswers(male_answers,category);
 
-        parseAnswerObject.save(null, {
-          success: function(savedAnswer) {
-            // The object was saved successfully.
+        if(parseAnswerObject !== null) {
+          parseAnswerObject.save(null, {
+            success: function(savedAnswer) {
+              // The object was saved successfully.
 
-            if(callback !== null) {
-              callback();
+              if(callback !== null) {
+                callback();
+              }
+
+            },
+            error: function(savedAnswer, error) {
+              // The save failed.
+              // error is a Parse.Error with an error code and description.
+              console.log(savedAnswer);
+              console.log(error);
             }
-
-          },
-          error: function(savedAnswer, error) {
-            // The save failed.
-            // error is a Parse.Error with an error code and description.
-            console.log(savedAnswer);
-            console.log(error);
-          }
-        });
+          });
+        }
       },
 
 

@@ -25374,6 +25374,10 @@ ngMaleApp.config(['$routeProvider', function ($routeProvider) {
          redirectTo:'/section/garms/category/intro',
          controller:MainController
       })
+      // .when('/section/:section/category/:category/question/checkout', {
+      //    templateUrl: 'section/garms/category/generic/question/checkout.html',
+      //    controller:CheckoutController
+      // })
       .when('/section/:section/category/:category/question/:question', {
          templateUrl: 'detailViewProxy.html',
          controller:QuestionController
@@ -25398,6 +25402,7 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
     $rootScope.drawerOpen = false;
 
     $rootScope.currentUser = false;
+    $rootScope.male_answers = {};
     $rootScope.loggedIn = false;
     $rootScope.facebookConnected = false;
 
@@ -25426,17 +25431,25 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
         var identity = $rootScope.currentUser.get('email');
         HelperService.metrics.identify(identity);
 
+
+        //
+
+        // this creates new answer objects in male_answers if parameter is null, otherwise retrieves latest answers from database
+        DataService.initMaleAnswersForUser($rootScope.currentUser, $rootScope.male_answers);
+
     } else {
 
-      $rootScope.currentUser = DataService.initNewUser($rootScope.currentUser);
+      if($rootScope.currentUser === null) {
+        $rootScope.currentUser = DataService.initNewUser();  
+      }
+      
       HelperService.setIntercomLoggedOutSettings($rootScope.currentUser);
+
+      // this creates new answer objects in male_answers if parameter is null, otherwise retrieves latest answers from database
+      DataService.initMaleAnswersForUser(null, $rootScope.male_answers);
 
     };
 
-    $rootScope.male_answers = {};
-
-    // this creates all the answer objects in male_answers and sets them all to the current user
-    DataService.initNewAnswersForUser($rootScope.male_answers,$rootScope.currentUser);
 
 
     // feedback object
@@ -25614,17 +25627,17 @@ angular.module('DataServices', [])
     var Jumpers = Parse.Object.extend("Jumpers");
     var Hoodies = Parse.Object.extend("Hoodies");
 
-    var BrandidUser = Parse.Object.extend("User", {
-      initialize: function() {
-        // if (!this.get("createdAt_unix")) {
+    // var BrandidUser = Parse.User.extend({
+    //   initialize: function() {
+    //     // if (!this.get("createdAt_unix")) {
 
-        //   var createdAtTimeStamp = Math.round((new Date()).getTime() / 1000);
+    //     //   var createdAtTimeStamp = Math.round((new Date()).getTime() / 1000);
 
-        //   this.set({ "createdAt_unix": this.createdAt });
+    //     //   this.set({ "createdAt_unix": this.createdAt });
 
-        // }
-      }
-    });
+    //     // }
+    //   }
+    // });
 
     // FACEBOOK init
 
@@ -25650,26 +25663,157 @@ angular.module('DataServices', [])
     var ParseService = {
       name: "Parse",
 
-      initNewAnswersForUser: function(male_answers,user) {
+      initMaleAnswersForUser: function(user, male_answers) {
+
+        // logged out users
         male_answers.boxers = new Boxers();
-        male_answers.boxers.set("user",user);
-
         male_answers.socks = new Socks();
-        male_answers.socks.set("user",user);
-
         male_answers.tees = new Tees();
-        male_answers.tees.set("user",user);
-
         male_answers.jumpers = new Jumpers();
-        male_answers.jumpers.set("user",user);
-
         male_answers.hoodies = new Hoodies();
-        male_answers.hoodies.set("user",user);
+        
+        // logged in users
+        if(user !== null) {
+          
+          // users might have answers stored in database, so go get them
+          // TODO: this will be so much easier if we use colletions of questions and collections of answers
+
+          // this.query.usersBoxers(user, male_answers);
+
+          var query = new Parse.Query(Boxers);
+          query.equalTo("user", user);
+          query.first({
+            success: function(result) {
+
+              if(typeof(result) === "undefined") {
+                male_answers.boxers = new Boxers();
+              } else {
+                male_answers.boxers = result;
+              }
+
+            },
+            error: function(result,error) {
+              console.log(result);
+              console.log(error);
+            }
+          });
+
+          // this.query.usersSocks(user, male_answers);
+          // this.query.usersTees(user, male_answers);
+          // this.query.usersJumpers(user, male_answers);
+          // this.query.usersHoodies(user, male_answers);
+
+        }
+
+        // return male_answers;
+      },
+
+      // TODO: use collections instead
+      query: {
+        usersBoxers: function(user, male_answers) {
+          // Assume Parse.Object myPost was previously created.
+          var query = new Parse.Query(Boxers);
+          query.equalTo("user", user);
+          query.first({
+            success: function(result) {
+
+              if(typeof(result) === "undefined") {
+                male_answers.boxers = new Boxers();
+              } else {
+                male_answers.boxers = result;
+              }
+
+            },
+            error: function(result,error) {
+              console.log(result);
+              console.log(error);
+            }
+          });
+        },
+        usersSocks: function(user, male_answers) {
+          // Assume Parse.Object myPost was previously created.
+          var query = new Parse.Query(Socks);
+          query.equalTo("user", user);
+          query.first({
+            success: function(result) {
+              // if query results are undefined, init the item with empty answers
+              if(typeof(result) === "undefined") {
+                male_answers.socks = new Socks();
+              } else {
+                male_answers.socks = result;
+              }
+
+            },
+            error: function(result,error) {
+              console.log(result);
+              console.log(error);
+            }
+          });
+        },
+        usersTees: function(user, male_answers) {
+          // Assume Parse.Object myPost was previously created.
+          var query = new Parse.Query(Tees);
+          query.equalTo("user", user);
+          query.first({
+            success: function(result) {
+              // if query results are undefined, init the item with empty answers
+              if(typeof(result) === "undefined") {
+                male_answers.tees = new Tees();
+              } else {
+                male_answers.tees = result;
+              }
+
+            },
+            error: function(result,error) {
+              console.log(result);
+              console.log(error);
+            }
+          });
+        },
+        usersJumpers: function(user, male_answers) {
+          // Assume Parse.Object myPost was previously created.
+          var query = new Parse.Query(Jumpers);
+          query.equalTo("user", user);
+          query.first({
+            success: function(result) {
+              // if query results are undefined, init the item with empty answers
+              if(typeof(result) === "undefined") {
+                male_answers.jumpers = new Jumpers();
+              } else {
+                male_answers.jumpers = result;
+              }
+            },
+            error: function(result,error) {
+              console.log(result);
+              console.log(error);
+            }
+          });
+        },
+        usersHoodies: function(user, male_answers) {
+          // Assume Parse.Object myPost was previously created.
+          var query = new Parse.Query(Hoodies);
+          query.equalTo("user", user);
+          query.first({
+            success: function(result) {
+              // if query results are undefined, init the item with empty answers
+              if(typeof(result) === "undefined") {
+                male_answers.hoodies = new Hoodies();
+              } else {
+                male_answers.hoodies = result;
+              }
+            },
+            error: function(result,error) {
+              console.log(result);
+              console.log(error);
+            }
+          });
+        }
 
       },
 
-      initNewUser: function(user) {
-        user = new BrandidUser();
+      initNewUser: function() {
+        var user = new Parse.User();
+        return user;
       },
 
       fbLoginAndSave: function(male_answers,category,currentUser) {
@@ -25857,6 +26001,10 @@ angular.module('DataServices', [])
           case 'hoodies':
             returnObject = male_answers.hoodies;
             break;
+          case 'default':
+            // this means category is checkout or intro or something else
+            returnObject = null;
+            break;
         };
 
         return returnObject;
@@ -25866,22 +26014,24 @@ angular.module('DataServices', [])
 
         var parseAnswerObject = this.getObjectFromMaleAnswers(male_answers,category);
 
-        parseAnswerObject.save(null, {
-          success: function(savedAnswer) {
-            // The object was saved successfully.
+        if(parseAnswerObject !== null) {
+          parseAnswerObject.save(null, {
+            success: function(savedAnswer) {
+              // The object was saved successfully.
 
-            if(callback !== null) {
-              callback();
+              if(callback !== null) {
+                callback();
+              }
+
+            },
+            error: function(savedAnswer, error) {
+              // The save failed.
+              // error is a Parse.Error with an error code and description.
+              console.log(savedAnswer);
+              console.log(error);
             }
-
-          },
-          error: function(savedAnswer, error) {
-            // The save failed.
-            // error is a Parse.Error with an error code and description.
-            console.log(savedAnswer);
-            console.log(error);
-          }
-        });
+          });
+        }
       },
 
 
@@ -26084,6 +26234,7 @@ angular.module('HelperServices', [])
 				var first_name = jQuery.trim(input);
 				first_name = first_name.toLowerCase();
 				first_name = this.capitaliseFirstLetter(first_name);
+				return first_name;
 			},
 
 			capitaliseFirstLetter: function(string) {
@@ -26095,16 +26246,49 @@ angular.module('HelperServices', [])
 
 			var saveNeeded = false;
 
-			// check if any answers have changed using the awesome Parse changedAttributes function
+			// if our questions or items change, this needs to be updated
+			// TODO: refactor this so we can add more questions and items and it works automatically
 
-			for(var i = 0; i < male_answers.length; i++) {
-				if(male_answers[i].changedAttributes) {
-					saveNeeded = true;
-					break;
-				}
+			if(this.haveAnswersBeenSet(male_answers.boxers)) {
+				saveNeeded = true;	
+			} else if(this.haveAnswersBeenSet(male_answers.socks)) {
+				saveNeeded = true;
+			} else if(this.haveAnswersBeenSet(male_answers.tees)) {
+				saveNeeded = true;
+			} else if(this.haveAnswersBeenSet(male_answers.jumpers)) {
+				saveNeeded = true;
+			} else if(this.haveAnswersBeenSet(male_answers.hoodies)) {
+				saveNeeded = true;
 			}
-
+			
 			return saveNeeded;
+		},
+
+		haveAnswersBeenSet: function(answer) {
+			var changed = false;
+
+			if(typeof(answer.attributes.brands) !== "undefined") {
+				if(answer.attributes.brands.length > 0) {
+					changed = true;
+				};
+			};
+			if(typeof(answer.attributes.size) !== "undefined") {
+				if(answer.attributes.size !== "") {
+					changed = true;
+				}
+			};
+			if(typeof(answer.attributes.colours) !== "undefined") {
+				if(answer.attributes.colours.length > 0) {
+					changed = true;
+				}
+			};
+			if(typeof(answer.attributes.specifics) !== "undefined") {
+				if(answer.attributes.specifics !== "") {
+					changed = true;
+				}
+			};
+
+			return changed;
 		},
 
 		getKey: function() {
