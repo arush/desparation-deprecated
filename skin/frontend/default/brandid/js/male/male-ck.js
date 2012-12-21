@@ -25429,7 +25429,7 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
 
 
         // fetch collection of answers for the user
-        var promise = DataService.getUserAnswers($rootScope.currentUser);
+        var promise = DataService.getUserAnswers($rootScope.currentUser,$rootScope);
     
         promise.then(function(answers) {
           $rootScope.male_answers = answers;
@@ -25449,7 +25449,7 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
       HelperService.setIntercomLoggedOutSettings($rootScope.currentUser);
 
       // initialize empty collection of answers for the user
-      $rootScope.male_answers = DataService.initNewAnswers();
+      $rootScope.male_answers = DataService.initNewAnswers($rootScope.currentUser);
 
     };
 
@@ -25481,7 +25481,6 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
       if($rootScope.feedback.message !== "") {
 
         // TODO: metrics
-
         DataService.submitFeedback($rootScope.currentUser,$rootScope.feedback, $rootScope.feedbackForm, section, category, question);  
       }
       
@@ -25506,9 +25505,16 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
 
     $rootScope.loginWithEmail = function() {
 
+      // TODO: Make promise-aware
+      // DataService.emailLogin($rootScope.loginAttempt)
+
       Parse.User.logIn($rootScope.loginAttempt.email, $rootScope.loginAttempt.password, {
         success: function(user) {
+
+          // track login
+          HelperService.metrics.setLastLogin();
           // this handles the save and reload
+
           DataService.saveAnswersAfterSuccessfulLogin($rootScope.male_answers,$routeParams.category /* if this is 'intro', nothing happens */,$rootScope.currentUser);
         },
         error: function(user, error) {
@@ -25558,6 +25564,7 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
 
     $rootScope.register = function() {
 
+
       var first_name = HelperService.format.first_name($rootScope.registrationAttempt.first_name);
       
       $rootScope.currentUser.set("first_name", first_name);
@@ -25565,8 +25572,10 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
       $rootScope.currentUser.set("email", $rootScope.registrationAttempt.email);
       $rootScope.currentUser.set("password", $rootScope.registrationAttempt.password);
 
-      $rootScope.currentUser.signUp(null, {
-        success: function(user) {
+
+      var promise = DataService.emailSignUp($rootScope.currentUser,$rootScope);
+
+      promise.then(function() {
 
           // track registration
           var metricsPayload = {
@@ -25574,24 +25583,28 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
             "$created": new Date(),
             "$last_login": new Date()
           };
+          HelperService.metrics.track("Registered", metricsPayload);
 
-          HelperService.track("Registered", metricsPayload);
+          var savePromise = DataService.saveAnswer($rootScope.male_answers,$routeParams.category /* not currently used because we just save the whole collection */,$rootScope.currentUser,$rootScope);
 
-          DataService.saveAnswersAfterSuccessfulLogin($rootScope.male_answers,$routeParams.category /* if this is 'intro', nothing happens */,$rootScope.currentUser, /* saveNeeded */ true);
+          return savePromise;
 
-        },
+      })
+      .then(function() {
+      
+        location.reload();
+      
+      }, function(error) {
 
-        error: function(user, error) {
-          console.log(error);
-          jQuery("#modal-register-form .error").text('Computer says: ' + error.message).show();
-          jQuery("#modal-register-form button").removeAttr("disabled");
-          jQuery("#modal-register-form button").text("Try Again");
-        }
+        console.log(error);
+        jQuery("#modal-register-form .error").text('Computer says: ' + error.message).show();
+        jQuery("#modal-register-form button").removeAttr("disabled");
+        jQuery("#modal-register-form button").text("Try Again");
+
       });
 
       jQuery("#modal-register-form button").attr("disabled", "disabled");
       jQuery("#modal-register-form button").text("Hold Tight");
-
 
     };
 
@@ -25632,14 +25645,22 @@ angular.module('DataServices', [])
 
     // Define Parse Models
     
-    // every Answer must have a question property which directly matches the routParams.category in the frontend
+    // every Answer must have a question property which directly matches the routeParams.category in the frontend
     var Answer = Parse.Object.extend({
       className: "Answer",
       initialize: function(attributes,options) {
-        this.question = attributes.question;
+        this.category = attributes.category;
+      },
+
+    });
+    var AnswerCollection = Parse.Collection.extend({
+      model: Answer,
+
+      getByCategory: function(category) {
+        var itemToGet = this.find(function(item){return item.get("category") === category;});
+        return itemToGet;
       }
     });
-    var AnswerCollection = Parse.Collection.extend({ model: Answer });
 
     // FACEBOOK init
 
@@ -25669,13 +25690,20 @@ angular.module('DataServices', [])
         return Parse.User.current();
       },
 
-      initNewAnswers: function() {
+      initNewAnswers: function(user) {
         // The Collection of Answer objects that match a query.
         var newAnswers = new AnswerCollection();
+
+        newAnswers.add({"category": "boxers", "user":user});
+        newAnswers.add({"category": "socks", "user":user});
+        newAnswers.add({"category": "tees", "user":user});
+        newAnswers.add({"category": "jumpers", "user":user});
+        newAnswers.add({"category": "hoodies", "user":user});
+
         return newAnswers;
       },
 
-      getUserAnswers: function(user) {
+      getUserAnswers: function(user,scope) {
         // to make this promise-aware, we always return a promise
         var deferred = $q.defer();
 
@@ -25699,6 +25727,25 @@ angular.module('DataServices', [])
             console.log(error);
           }
 
+        });
+
+        return deferred.promise;
+      },
+
+      emailSignUp: function(user,scope) {
+        var deferred = $q.defer();
+
+        user.signUp(null, {
+          success: function(user) {
+            // we wrap this in $apply using the correct scope passed in because we always need angular to recognise changes
+            scope.$apply(function() {
+              deferred.resolve(user);
+            });
+          },
+          error: function(user, error) {
+            // something went wrong
+            deferred.reject(error);
+          }
         });
 
         return deferred.promise;
@@ -25758,11 +25805,12 @@ angular.module('DataServices', [])
               self.saveRegistrationDataFromFacebook(male_answers,category,user);
             } else {
               
-              // if not identify the user in metrics and continue the save
+              // if not identify the user in metrics and reload the page
               HelperService.metrics.identify(user.get('email'));
               HelperService.metrics.setLastLogin();
 
-              self.saveAnswersAfterSuccessfulLogin(male_answers,category,user);
+              location.reload();
+              // self.saveAnswersAfterSuccessfulLogin(male_answers,category,user);
             }
 
             
@@ -25775,6 +25823,17 @@ angular.module('DataServices', [])
           }
 
         });
+
+      },
+
+      setAnswer: function(male_answers,category,question,answer) {
+        
+        // get the Answer model for this category. Returns an array
+
+        var model = male_answers.getByCategory(category);
+
+        // just get the first one from the array - assumption is there is only one of each category anyway
+        model.set(question,answer);
 
       },
 
@@ -25824,7 +25883,7 @@ angular.module('DataServices', [])
           }
 
 
-          HelperService.track("Registered", metricsPayload);
+          HelperService.metrics.track("Registered", metricsPayload);
           
           // /* KISSmetrics Tracking */
           // if(typeof(_kmq) !== "undefined") {
@@ -25859,10 +25918,10 @@ angular.module('DataServices', [])
               user.fetch({
                 success: function (user) {
                   // now we can save the answers against the user
-                  self.saveAnswersAfterSuccessfulLogin(male_answers,category,user);
+                  self.saveAnswer(male_answers,category,user /* add scope */);
                 },
                 error: function (user,error) {
-                    self.saveAnswersAfterSuccessfulLogin(male_answers,category,user);
+                    self.saveAnswer(male_answers,category,user /* add scope */);
                     console.log(user);
                 }
               });
@@ -25870,7 +25929,7 @@ angular.module('DataServices', [])
             error: function(user, error) {
               // The save failed.
               // error is a Parse.Error with an error code and description.
-              self.saveAnswersAfterSuccessfulLogin(male_answers,category,user);
+              self.saveAnswer(male_answers,category,user /* add scope */);
               console.log(error);
             }
           });
@@ -25878,55 +25937,34 @@ angular.module('DataServices', [])
 
         });
 
-        // save user and execute saveAnswersAfterSuccessfulLogin callback
-
       },
 
-      saveAnswersAfterSuccessfulLogin: function(male_answers,category,user) {
-        // attach answered question to logged in user
-
-        var saveNeeded = HelperService.isSaveNeeded(male_answers);
-
-        if(saveNeeded) {
-          this.setAnswer(male_answers,category,'user',user);
-
-          // this sends user to the checkout with a callback after save
-          var callback = function() {
-            location.reload();
-          };
-
-          this.saveAnswer(male_answers,category,callback);
-          
-        } else {
-          // user has nothing to save, so login is done
-          location.reload();  
-        }
-      },
-
-      saveAnswer: function(male_answers, category, callback) {
+      // still need this?
+      saveAnswer: function(male_answers, category, user, scope) {
 
         // make promise-aware
+        // to make this promise-aware, we always return a promise
+        var deferred = $q.defer();
+        var model = male_answers.getByCategory(category);
 
-        // var parseAnswerObject = this.getObjectFromMaleAnswers(male_answers,category);
+        model.save({
+          success: function(results) {
 
-        // if(parseAnswerObject !== null) {
-        //   parseAnswerObject.save(null, {
-        //     success: function(savedAnswer) {
-        //       // The object was saved successfully.
+            // we wrap this in $apply using the correct scope passed in because we always need angular to recognise changes
+            scope.$apply(function() {
+              deferred.resolve(results);
+            });
 
-        //       if(callback !== null) {
-        //         callback();
-        //       }
+          },
+          error: function(results,error) {
+            console.log(error);
+            deferred.reject(error);
+          }
 
-        //     },
-        //     error: function(savedAnswer, error) {
-        //       // The save failed.
-        //       // error is a Parse.Error with an error code and description.
-        //       console.log(savedAnswer);
-        //       console.log(error);
-        //     }
-        //   });
-        // }
+        });
+
+        return deferred.promise;
+
       },
 
 
@@ -26135,55 +26173,6 @@ angular.module('HelperServices', [])
 			capitaliseFirstLetter: function(string) {
 				return string.charAt(0).toUpperCase() + string.slice(1);
 			}
-		},
-
-		isSaveNeeded: function(male_answers) {
-
-			var saveNeeded = false;
-
-			// if our questions or items change, this needs to be updated
-			// TODO: refactor this so we can add more questions and items and it works automatically
-
-			if(this.haveAnswersBeenSet(male_answers.boxers)) {
-				saveNeeded = true;	
-			} else if(this.haveAnswersBeenSet(male_answers.socks)) {
-				saveNeeded = true;
-			} else if(this.haveAnswersBeenSet(male_answers.tees)) {
-				saveNeeded = true;
-			} else if(this.haveAnswersBeenSet(male_answers.jumpers)) {
-				saveNeeded = true;
-			} else if(this.haveAnswersBeenSet(male_answers.hoodies)) {
-				saveNeeded = true;
-			}
-			
-			return saveNeeded;
-		},
-
-		haveAnswersBeenSet: function(answer) {
-			var changed = false;
-
-			if(typeof(answer.attributes.brands) !== "undefined") {
-				if(answer.attributes.brands.length > 0) {
-					changed = true;
-				};
-			};
-			if(typeof(answer.attributes.size) !== "undefined") {
-				if(answer.attributes.size !== "") {
-					changed = true;
-				}
-			};
-			if(typeof(answer.attributes.colours) !== "undefined") {
-				if(answer.attributes.colours.length > 0) {
-					changed = true;
-				}
-			};
-			if(typeof(answer.attributes.specifics) !== "undefined") {
-				if(answer.attributes.specifics !== "") {
-					changed = true;
-				}
-			};
-
-			return changed;
 		},
 
 		getKey: function() {
@@ -27140,7 +27129,6 @@ var CheckoutFormController = function CheckoutFormController($scope,DataService,
       console.log(reason);
       // male_answers.boxers = new Boxers();
     });
-
 
 
 	// checkout title

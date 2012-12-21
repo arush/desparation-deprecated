@@ -28,14 +28,22 @@ angular.module('DataServices', [])
 
     // Define Parse Models
     
-    // every Answer must have a question property which directly matches the routParams.category in the frontend
+    // every Answer must have a question property which directly matches the routeParams.category in the frontend
     var Answer = Parse.Object.extend({
       className: "Answer",
       initialize: function(attributes,options) {
-        this.question = attributes.question;
+        this.category = attributes.category;
+      },
+
+    });
+    var AnswerCollection = Parse.Collection.extend({
+      model: Answer,
+
+      getByCategory: function(category) {
+        var itemToGet = this.find(function(item){return item.get("category") === category;});
+        return itemToGet;
       }
     });
-    var AnswerCollection = Parse.Collection.extend({ model: Answer });
 
     // FACEBOOK init
 
@@ -65,13 +73,20 @@ angular.module('DataServices', [])
         return Parse.User.current();
       },
 
-      initNewAnswers: function() {
+      initNewAnswers: function(user) {
         // The Collection of Answer objects that match a query.
         var newAnswers = new AnswerCollection();
+
+        newAnswers.add({"category": "boxers", "user":user});
+        newAnswers.add({"category": "socks", "user":user});
+        newAnswers.add({"category": "tees", "user":user});
+        newAnswers.add({"category": "jumpers", "user":user});
+        newAnswers.add({"category": "hoodies", "user":user});
+
         return newAnswers;
       },
 
-      getUserAnswers: function(user) {
+      getUserAnswers: function(user,scope) {
         // to make this promise-aware, we always return a promise
         var deferred = $q.defer();
 
@@ -95,6 +110,25 @@ angular.module('DataServices', [])
             console.log(error);
           }
 
+        });
+
+        return deferred.promise;
+      },
+
+      emailSignUp: function(user,scope) {
+        var deferred = $q.defer();
+
+        user.signUp(null, {
+          success: function(user) {
+            // we wrap this in $apply using the correct scope passed in because we always need angular to recognise changes
+            scope.$apply(function() {
+              deferred.resolve(user);
+            });
+          },
+          error: function(user, error) {
+            // something went wrong
+            deferred.reject(error);
+          }
         });
 
         return deferred.promise;
@@ -154,11 +188,12 @@ angular.module('DataServices', [])
               self.saveRegistrationDataFromFacebook(male_answers,category,user);
             } else {
               
-              // if not identify the user in metrics and continue the save
+              // if not identify the user in metrics and reload the page
               HelperService.metrics.identify(user.get('email'));
               HelperService.metrics.setLastLogin();
 
-              self.saveAnswersAfterSuccessfulLogin(male_answers,category,user);
+              location.reload();
+              // self.saveAnswersAfterSuccessfulLogin(male_answers,category,user);
             }
 
             
@@ -171,6 +206,17 @@ angular.module('DataServices', [])
           }
 
         });
+
+      },
+
+      setAnswer: function(male_answers,category,question,answer) {
+        
+        // get the Answer model for this category. Returns an array
+
+        var model = male_answers.getByCategory(category);
+
+        // just get the first one from the array - assumption is there is only one of each category anyway
+        model.set(question,answer);
 
       },
 
@@ -220,7 +266,7 @@ angular.module('DataServices', [])
           }
 
 
-          HelperService.track("Registered", metricsPayload);
+          HelperService.metrics.track("Registered", metricsPayload);
           
           // /* KISSmetrics Tracking */
           // if(typeof(_kmq) !== "undefined") {
@@ -255,10 +301,10 @@ angular.module('DataServices', [])
               user.fetch({
                 success: function (user) {
                   // now we can save the answers against the user
-                  self.saveAnswersAfterSuccessfulLogin(male_answers,category,user);
+                  self.saveAnswer(male_answers,category,user /* add scope */);
                 },
                 error: function (user,error) {
-                    self.saveAnswersAfterSuccessfulLogin(male_answers,category,user);
+                    self.saveAnswer(male_answers,category,user /* add scope */);
                     console.log(user);
                 }
               });
@@ -266,7 +312,7 @@ angular.module('DataServices', [])
             error: function(user, error) {
               // The save failed.
               // error is a Parse.Error with an error code and description.
-              self.saveAnswersAfterSuccessfulLogin(male_answers,category,user);
+              self.saveAnswer(male_answers,category,user /* add scope */);
               console.log(error);
             }
           });
@@ -274,55 +320,34 @@ angular.module('DataServices', [])
 
         });
 
-        // save user and execute saveAnswersAfterSuccessfulLogin callback
-
       },
 
-      saveAnswersAfterSuccessfulLogin: function(male_answers,category,user) {
-        // attach answered question to logged in user
-
-        var saveNeeded = HelperService.isSaveNeeded(male_answers);
-
-        if(saveNeeded) {
-          this.setAnswer(male_answers,category,'user',user);
-
-          // this sends user to the checkout with a callback after save
-          var callback = function() {
-            location.reload();
-          };
-
-          this.saveAnswer(male_answers,category,callback);
-          
-        } else {
-          // user has nothing to save, so login is done
-          location.reload();  
-        }
-      },
-
-      saveAnswer: function(male_answers, category, callback) {
+      // still need this?
+      saveAnswer: function(male_answers, category, user, scope) {
 
         // make promise-aware
+        // to make this promise-aware, we always return a promise
+        var deferred = $q.defer();
+        var model = male_answers.getByCategory(category);
 
-        // var parseAnswerObject = this.getObjectFromMaleAnswers(male_answers,category);
+        model.save({
+          success: function(results) {
 
-        // if(parseAnswerObject !== null) {
-        //   parseAnswerObject.save(null, {
-        //     success: function(savedAnswer) {
-        //       // The object was saved successfully.
+            // we wrap this in $apply using the correct scope passed in because we always need angular to recognise changes
+            scope.$apply(function() {
+              deferred.resolve(results);
+            });
 
-        //       if(callback !== null) {
-        //         callback();
-        //       }
+          },
+          error: function(results,error) {
+            console.log(error);
+            deferred.reject(error);
+          }
 
-        //     },
-        //     error: function(savedAnswer, error) {
-        //       // The save failed.
-        //       // error is a Parse.Error with an error code and description.
-        //       console.log(savedAnswer);
-        //       console.log(error);
-        //     }
-        //   });
-        // }
+        });
+
+        return deferred.promise;
+
       },
 
 

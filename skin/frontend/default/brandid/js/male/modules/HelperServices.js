@@ -75,55 +75,6 @@ angular.module('HelperServices', [])
 			}
 		},
 
-		isSaveNeeded: function(male_answers) {
-
-			var saveNeeded = false;
-
-			// if our questions or items change, this needs to be updated
-			// TODO: refactor this so we can add more questions and items and it works automatically
-
-			if(this.haveAnswersBeenSet(male_answers.boxers)) {
-				saveNeeded = true;	
-			} else if(this.haveAnswersBeenSet(male_answers.socks)) {
-				saveNeeded = true;
-			} else if(this.haveAnswersBeenSet(male_answers.tees)) {
-				saveNeeded = true;
-			} else if(this.haveAnswersBeenSet(male_answers.jumpers)) {
-				saveNeeded = true;
-			} else if(this.haveAnswersBeenSet(male_answers.hoodies)) {
-				saveNeeded = true;
-			}
-			
-			return saveNeeded;
-		},
-
-		haveAnswersBeenSet: function(answer) {
-			var changed = false;
-
-			if(typeof(answer.attributes.brands) !== "undefined") {
-				if(answer.attributes.brands.length > 0) {
-					changed = true;
-				};
-			};
-			if(typeof(answer.attributes.size) !== "undefined") {
-				if(answer.attributes.size !== "") {
-					changed = true;
-				}
-			};
-			if(typeof(answer.attributes.colours) !== "undefined") {
-				if(answer.attributes.colours.length > 0) {
-					changed = true;
-				}
-			};
-			if(typeof(answer.attributes.specifics) !== "undefined") {
-				if(answer.attributes.specifics !== "") {
-					changed = true;
-				}
-			};
-
-			return changed;
-		},
-
 		getKey: function() {
 			var key = '5wZ821rKIQ804Xe';
 			return key;

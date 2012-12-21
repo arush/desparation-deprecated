@@ -39,7 +39,6 @@ var CheckoutFormController = function CheckoutFormController($scope,DataService,
     });
 
 
-
 	// checkout title
 	$scope.checkoutTitle = checkoutLoader.getCheckoutTitle($locale.id);
 

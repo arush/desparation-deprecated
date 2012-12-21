@@ -86,7 +86,7 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
 
 
         // fetch collection of answers for the user
-        var promise = DataService.getUserAnswers($rootScope.currentUser);
+        var promise = DataService.getUserAnswers($rootScope.currentUser,$rootScope);
     
         promise.then(function(answers) {
           $rootScope.male_answers = answers;
@@ -106,7 +106,7 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
       HelperService.setIntercomLoggedOutSettings($rootScope.currentUser);
 
       // initialize empty collection of answers for the user
-      $rootScope.male_answers = DataService.initNewAnswers();
+      $rootScope.male_answers = DataService.initNewAnswers($rootScope.currentUser);
 
     };
 
@@ -138,7 +138,6 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
       if($rootScope.feedback.message !== "") {
 
         // TODO: metrics
-
         DataService.submitFeedback($rootScope.currentUser,$rootScope.feedback, $rootScope.feedbackForm, section, category, question);  
       }
       
@@ -163,9 +162,16 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
 
     $rootScope.loginWithEmail = function() {
 
+      // TODO: Make promise-aware
+      // DataService.emailLogin($rootScope.loginAttempt)
+
       Parse.User.logIn($rootScope.loginAttempt.email, $rootScope.loginAttempt.password, {
         success: function(user) {
+
+          // track login
+          HelperService.metrics.setLastLogin();
           // this handles the save and reload
+
           DataService.saveAnswersAfterSuccessfulLogin($rootScope.male_answers,$routeParams.category /* if this is 'intro', nothing happens */,$rootScope.currentUser);
         },
         error: function(user, error) {
@@ -215,6 +221,7 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
 
     $rootScope.register = function() {
 
+
       var first_name = HelperService.format.first_name($rootScope.registrationAttempt.first_name);
       
       $rootScope.currentUser.set("first_name", first_name);
@@ -222,8 +229,10 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
       $rootScope.currentUser.set("email", $rootScope.registrationAttempt.email);
       $rootScope.currentUser.set("password", $rootScope.registrationAttempt.password);
 
-      $rootScope.currentUser.signUp(null, {
-        success: function(user) {
+
+      var promise = DataService.emailSignUp($rootScope.currentUser,$rootScope);
+
+      promise.then(function() {
 
           // track registration
           var metricsPayload = {
@@ -231,24 +240,28 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
             "$created": new Date(),
             "$last_login": new Date()
           };
+          HelperService.metrics.track("Registered", metricsPayload);
 
-          HelperService.track("Registered", metricsPayload);
+          var savePromise = DataService.saveAnswer($rootScope.male_answers,$routeParams.category /* not currently used because we just save the whole collection */,$rootScope.currentUser,$rootScope);
 
-          DataService.saveAnswersAfterSuccessfulLogin($rootScope.male_answers,$routeParams.category /* if this is 'intro', nothing happens */,$rootScope.currentUser, /* saveNeeded */ true);
+          return savePromise;
 
-        },
+      })
+      .then(function() {
+      
+        location.reload();
+      
+      }, function(error) {
 
-        error: function(user, error) {
-          console.log(error);
-          jQuery("#modal-register-form .error").text('Computer says: ' + error.message).show();
-          jQuery("#modal-register-form button").removeAttr("disabled");
-          jQuery("#modal-register-form button").text("Try Again");
-        }
+        console.log(error);
+        jQuery("#modal-register-form .error").text('Computer says: ' + error.message).show();
+        jQuery("#modal-register-form button").removeAttr("disabled");
+        jQuery("#modal-register-form button").text("Try Again");
+
       });
 
       jQuery("#modal-register-form button").attr("disabled", "disabled");
       jQuery("#modal-register-form button").text("Hold Tight");
-
 
     };
 
