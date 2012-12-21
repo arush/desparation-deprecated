@@ -30,7 +30,8 @@ var SuccessFormController = function SuccessFormController($scope,DataService,He
 
 
 	// track
-	HelperService.metrics.trackPage('Registered credit card');
+	var metricsPayload = {"B4.0_Funnel": $routeParams.category, "B4.0_Step": "Success"};
+    HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
 
 
 }

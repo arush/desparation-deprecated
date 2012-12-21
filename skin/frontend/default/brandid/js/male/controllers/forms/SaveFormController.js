@@ -23,9 +23,9 @@ var SaveFormController = function SaveFormController($scope,DataService,HelperSe
 		DataService.fbLoginAndSave($scope.male_answers, $routeParams.category, $scope.currentUser, /* save is needed */ true);
 	}
 
-
 	// track
-	HelperService.metrics.trackPage('save basket');
+	var metricsPayload = {"B4.0_Funnel": $routeParams.category, "B4.0_Step": "Register (Save Basket)"};
+    HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
 
 
 }

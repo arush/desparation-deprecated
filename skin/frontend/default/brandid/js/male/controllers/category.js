@@ -12,32 +12,19 @@ var CategoryController = function CategoryController($scope,HelperService,$route
 
 	$scope.selectItem = function (indexOfItemToSelect) {
 		
-		// NB: if the user does this multiple times, their configuredItems list keeps growing
-
-		var hasChosenThisAlready = false;
-
 		// this is the item category they've chosen. Extracting into a variable for legibility
 		var chosenCategory = $scope.answers[indexOfItemToSelect].category;
 
+		var metricsPayload = {"B4.0_Item Name":chosenCategory};
+		HelperService.metrics.track("B4.0_Chose Basket Item",metricsPayload);
 
-		/* USE THE FOREACH IF YOU WANT SHOPPING BASKET FUNCTIONALITY */
-
-		// angular.forEach($scope.menu[1].submenuItems, function(submenuItem) {
-	 //      if (item.category === chosenCategory) hasChosenThisAlready = true;
-	 //      return;
-	 //    });
-// 		if(!hasChosenThisAlready) $scope.chosenItems.push($scope.answers[indexOfItemToSelect]);
-
-		/* JUST CLEAR THE SHOPPING BASKET AND REPLACE WITH CHOSEN ITEM IF YOU CAN ONLY SHOP FOR ONE THING AT A TIME */
+		/* JUST CLEAR THE submenuItems AND REPLACE WITH CHOSEN ITEM IF YOU CAN ONLY SHOP FOR ONE THING AT A TIME */
 
 		$scope.menu[0].submenuItems = [];
 		$scope.menu[0].submenuItems.push($scope.answers[indexOfItemToSelect]);
 
-
-
 		var newPath = $scope.answers[indexOfItemToSelect].path;
 		$location.path(newPath);
-
 
 	};
 
@@ -113,7 +100,8 @@ var CategoryController = function CategoryController($scope,HelperService,$route
 
 
 	// track
-    HelperService.metrics.trackPage('intro');
+	var metricsPayload = {"B4.0_Funnel": "M.A.L.E.","B4.0_Step": "Intro"};
+    HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
 
 }
 CategoryController.$inject = ['$scope','HelperService','$routeParams','$locale','$location'];

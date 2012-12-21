@@ -13,16 +13,17 @@ angular.module('HelperServices', [])
 		name: "Helper",
 
 		metrics: {
-			trackPage: function(trackPage) {
+			track: function(event,payload) {
 				/* KISSmetrics Tracking */
 				if(typeof(_kmq) !== "undefined") {
-					_kmq.push(['record', 'Reached ' + trackPage]);
+					_kmq.push(['record', event, payload]);
 				}
 				/* Mixpanel Tracking */
 				if(typeof(mixpanel) !== "undefined") {
-					mixpanel.track('Reached ' + trackPage);
+					mixpanel.track(event,payload);
 				}
 			},
+
 			identify: function(identity) {
 				/* KISSmetrics Tracking */
 				if(typeof(_kmq) !== "undefined") {

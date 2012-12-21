@@ -25428,10 +25428,17 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
         HelperService.metrics.identify(identity);
 
 
-        //
-
-        // this creates new answer objects in male_answers if parameter is null, otherwise retrieves latest answers from database
-        // DataService.initMaleAnswersForUser($rootScope.currentUser, $rootScope.male_answers, $rootScope);
+        // fetch collection of answers for the user
+        var promise = DataService.getUserAnswers($rootScope.currentUser);
+    
+        promise.then(function(answers) {
+          $rootScope.male_answers = answers;
+        }, function(reason) {
+          // something went wrong in the API call, so init new object
+          console.log("Could not fetch users answers collection");
+          console.log(reason);[]
+          // male_answers.boxers = new Boxers();
+        });
 
     } else {
 
@@ -25441,12 +25448,10 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
       
       HelperService.setIntercomLoggedOutSettings($rootScope.currentUser);
 
-      
+      // initialize empty collection of answers for the user
+      $rootScope.male_answers = DataService.initNewAnswers();
 
     };
-
-    // this creates new answer objects in male_answers if parameter is null, otherwise retrieves latest answers from database
-    DataService.initMaleAnswersForUser(null, $rootScope.male_answers);
 
 
     // feedback object
@@ -25563,6 +25568,15 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
       $rootScope.currentUser.signUp(null, {
         success: function(user) {
 
+          // track registration
+          var metricsPayload = {
+            "Registration Method": "Email Signup",
+            "$created": new Date(),
+            "$last_login": new Date()
+          };
+
+          HelperService.track("Registered", metricsPayload);
+
           DataService.saveAnswersAfterSuccessfulLogin($rootScope.male_answers,$routeParams.category /* if this is 'intro', nothing happens */,$rootScope.currentUser, /* saveNeeded */ true);
 
         },
@@ -25618,23 +25632,14 @@ angular.module('DataServices', [])
 
     // Define Parse Models
     
-    var Boxers = Parse.Object.extend("Boxers");
-    var Socks = Parse.Object.extend("Socks");
-    var Tees = Parse.Object.extend("Tees");
-    var Jumpers = Parse.Object.extend("Jumpers");
-    var Hoodies = Parse.Object.extend("Hoodies");
-
-    // var BrandidUser = Parse.User.extend({
-    //   initialize: function() {
-    //     // if (!this.get("createdAt_unix")) {
-
-    //     //   var createdAtTimeStamp = Math.round((new Date()).getTime() / 1000);
-
-    //     //   this.set({ "createdAt_unix": this.createdAt });
-
-    //     // }
-    //   }
-    // });
+    // every Answer must have a question property which directly matches the routParams.category in the frontend
+    var Answer = Parse.Object.extend({
+      className: "Answer",
+      initialize: function(attributes,options) {
+        this.question = attributes.question;
+      }
+    });
+    var AnswerCollection = Parse.Collection.extend({ model: Answer });
 
     // FACEBOOK init
 
@@ -25660,144 +25665,76 @@ angular.module('DataServices', [])
     var ParseService = {
       name: "Parse",
 
-      initMaleAnswersForUser: function(user, male_answers, scope) {
-
-        // logged out users
-        male_answers.boxers = new Boxers();
-        male_answers.socks = new Socks();
-        male_answers.tees = new Tees();
-        male_answers.jumpers = new Jumpers();
-        male_answers.hoodies = new Hoodies();
-
-        // logged in users
-        if(user !== null) {
-          
-          // users might have answers stored in database, so go get them
-          // TODO: this will be so much easier if we use colletions
-
-          // this.query.usersBoxers(user, male_answers);
-
-          // this.query.usersSocks(user, male_answers);
-          // this.query.usersTees(user, male_answers);
-          // this.query.usersJumpers(user, male_answers);
-          // this.query.usersHoodies(user, male_answers);
-
-        }
-
-        // return male_answers;
+      getCurrentUser: function() {
+        return Parse.User.current();
       },
 
-      // TODO: use collections instead
-      query: {
-        usersBoxers: function(user, male_answers, scope) {
-          var deferred = $q.defer();
+      initNewAnswers: function() {
+        // The Collection of Answer objects that match a query.
+        var newAnswers = new AnswerCollection();
+        return newAnswers;
+      },
 
-          
-            // Parse.Object was previously created
-            var query = new Parse.Query(Boxers);
-            query.equalTo("user", user);
-            query.first({
-              success: function(result) {
-                // console.log(result);
-                scope.$apply(function() {
-                  deferred.resolve(result);
-                });
+      getUserAnswers: function(user) {
+        // to make this promise-aware, we always return a promise
+        var deferred = $q.defer();
 
-              },
-              error: function(result,error) {
-                
-                deferred.reject(error);
+        // The Collection of Answer objects that match a query.
+        var query = new Parse.Query(Answer);
+        query.equalTo("user", user);
+        var userAnswers = query.collection();
 
-                console.log(result);
-                console.log(error);
-              }
-            });
-          
-
-          return deferred.promise;
+        // Now we've subclassed Parse.Collection, lets fetch it
             
-        },
-        usersSocks: function(user, male_answers) {
-          // Assume Parse.Object myPost was previously created.
-          var query = new Parse.Query(Socks);
-          query.equalTo("user", user);
-          query.first({
-            success: function(result) {
-              // if query results are undefined, init the item with empty answers
-              if(typeof(result) === "undefined") {
-                male_answers.socks = new Socks();
-              } else {
-                male_answers.socks = result;
-              }
+        userAnswers.fetch({
+          success: function(results) {
 
-            },
-            error: function(result,error) {
-              console.log(result);
-              console.log(error);
-            }
-          });
-        },
-        usersTees: function(user, male_answers) {
-          // Assume Parse.Object myPost was previously created.
-          var query = new Parse.Query(Tees);
-          query.equalTo("user", user);
-          query.first({
-            success: function(result) {
-              // if query results are undefined, init the item with empty answers
-              if(typeof(result) === "undefined") {
-                male_answers.tees = new Tees();
-              } else {
-                male_answers.tees = result;
-              }
+            // we wrap this in $apply using the correct scope passed in because we always need angular to recognise changes
+            scope.$apply(function() {
+              deferred.resolve(result);
+            });
 
-            },
-            error: function(result,error) {
-              console.log(result);
-              console.log(error);
-            }
-          });
-        },
-        usersJumpers: function(user, male_answers) {
-          // Assume Parse.Object myPost was previously created.
-          var query = new Parse.Query(Jumpers);
-          query.equalTo("user", user);
-          query.first({
-            success: function(result) {
-              // if query results are undefined, init the item with empty answers
-              if(typeof(result) === "undefined") {
-                male_answers.jumpers = new Jumpers();
-              } else {
-                male_answers.jumpers = result;
-              }
-            },
-            error: function(result,error) {
-              console.log(result);
-              console.log(error);
-            }
-          });
-        },
-        usersHoodies: function(user, male_answers) {
-          // Assume Parse.Object myPost was previously created.
-          var query = new Parse.Query(Hoodies);
-          query.equalTo("user", user);
-          query.first({
-            success: function(result) {
-              // if query results are undefined, init the item with empty answers
-              if(typeof(result) === "undefined") {
-                male_answers.hoodies = new Hoodies();
-              } else {
-                male_answers.hoodies = result;
-              }
-            },
-            error: function(result,error) {
-              console.log(result);
-              console.log(error);
-            }
-          });
-        }
+          },
+          error: function(results,error) {
+            console.log(error);
+          }
 
+        });
+
+        return deferred.promise;
       },
 
+      // // TODO: use collections instead
+      // query: {
+      //   usersBoxers: function(user, male_answers, scope) {
+      //     var deferred = $q.defer();
+
+          
+      //       // Parse.Object was previously created
+      //       var query = new Parse.Query(Boxers);
+      //       query.equalTo("user", user);
+      //       query.first({
+      //         success: function(result) {
+      //           // console.log(result);
+      //           scope.$apply(function() {
+      //             deferred.resolve(result);
+      //           });
+
+      //         },
+      //         error: function(result,error) {
+                
+      //           deferred.reject(error);
+
+      //           console.log(result);
+      //           console.log(error);
+      //         }
+      //       });
+          
+
+      //     return deferred.promise;
+            
+      //   },
+        
       initNewUser: function() {
         var user = new Parse.User();
         return user;
@@ -25812,9 +25749,12 @@ angular.module('DataServices', [])
             // Handle successful login
 
 
-
             // if this is a registration, we need to capture some data from FB
             if(!user.get('email')) {
+              // track
+              var metricsPayload = {"B4.0_Funnel": $routeParams.category,"B4.0_Step": "Register (Save Basket)", "B4.0_Registration Method": "Facebook Connect"};
+              HelperService.metrics.track('B4.0_Attempted Registration', metricsPayload);
+
               self.saveRegistrationDataFromFacebook(male_answers,category,user);
             } else {
               
@@ -25883,30 +25823,33 @@ angular.module('DataServices', [])
             metricsPayload.email = response.email;
           }
 
-          /* KISSmetrics Tracking */
-          if(typeof(_kmq) !== "undefined") {
-            _kmq.push(['record', 'Registered', metricsPayload]);
-          }
-          /* Mixpanel Tracking */
-          if(typeof(mixpanel) !== "undefined") {
 
-            // it is imperative alias is only called once on a user - at registration. all other places, use identify
-            /*****/
-            // mixpanel.alias(response.email);
-            /*****/
+          HelperService.track("Registered", metricsPayload);
+          
+          // /* KISSmetrics Tracking */
+          // if(typeof(_kmq) !== "undefined") {
+          //   _kmq.push(['record', 'Registered', metricsPayload]);
+          // }
+          // /* Mixpanel Tracking */
+          // if(typeof(mixpanel) !== "undefined") {
 
-            // NB - mixpanel.identify may or may not have been called earlier depending if email address was given or not
-            mixpanel.track('Registered',metricsPayload);
-            mixpanel.people.set(metricsPayload);
-            // mixpanel.register({
-            //   first_name: response.first_name,
-            //   last_name: response.last_name,
-            //   email: response.email,
-            //   gender: response.gender,
-            //   birthday: response.birthday,
-            //   location: response.location.name
-            // });
-          }
+          //   // it is imperative alias is only called once on a user - at registration. all other places, use identify
+          //   /*****/
+          //   // mixpanel.alias(response.email);
+          //   /*****/
+
+          //   // NB - mixpanel.identify may or may not have been called earlier depending if email address was given or not
+          //   mixpanel.track('Registered',metricsPayload);
+          //   mixpanel.people.set(metricsPayload);
+          //   // mixpanel.register({
+          //   //   first_name: response.first_name,
+          //   //   last_name: response.last_name,
+          //   //   email: response.email,
+          //   //   gender: response.gender,
+          //   //   birthday: response.birthday,
+          //   //   location: response.location.name
+          //   // });
+          // }
 
           user.save(null, {
             success: function(user) {
@@ -25960,97 +25903,60 @@ angular.module('DataServices', [])
         }
       },
 
-      setAnswer: function(male_answers,category,question,answer) {
-
-        var parseAnswerObject = this.getObjectFromMaleAnswers(male_answers,category);
-
-        parseAnswerObject.set(question,answer);
-
-
-      },
-
-      getObjectFromMaleAnswers: function(male_answers,category) {
-        var returnObject;
-
-        switch(category) {
-          case 'socks':
-            returnObject = male_answers.socks;
-            break;
-          case 'boxers':
-            returnObject = male_answers.boxers;
-            break;
-          case 'tees':
-            returnObject = male_answers.tees;
-            break;
-          case 'jumpers':
-            returnObject = male_answers.jumpers;
-            break;
-          case 'hoodies':
-            returnObject = male_answers.hoodies;
-            break;
-          case 'default':
-            // this means category is checkout or intro or something else
-            returnObject = null;
-            break;
-        };
-
-        return returnObject;
-      },
-
       saveAnswer: function(male_answers, category, callback) {
 
-        var parseAnswerObject = this.getObjectFromMaleAnswers(male_answers,category);
+        // make promise-aware
 
-        if(parseAnswerObject !== null) {
-          parseAnswerObject.save(null, {
-            success: function(savedAnswer) {
-              // The object was saved successfully.
+        // var parseAnswerObject = this.getObjectFromMaleAnswers(male_answers,category);
 
-              if(callback !== null) {
-                callback();
-              }
+        // if(parseAnswerObject !== null) {
+        //   parseAnswerObject.save(null, {
+        //     success: function(savedAnswer) {
+        //       // The object was saved successfully.
 
-            },
-            error: function(savedAnswer, error) {
-              // The save failed.
-              // error is a Parse.Error with an error code and description.
-              console.log(savedAnswer);
-              console.log(error);
-            }
-          });
-        }
+        //       if(callback !== null) {
+        //         callback();
+        //       }
+
+        //     },
+        //     error: function(savedAnswer, error) {
+        //       // The save failed.
+        //       // error is a Parse.Error with an error code and description.
+        //       console.log(savedAnswer);
+        //       console.log(error);
+        //     }
+        //   });
+        // }
       },
 
 
-      fetch: function(currentUser) {
-        currentUser.fetch({
-          success: function(user) {
-            // The object was refreshed successfully.
-            // alert('fetched successfully');
+      // fetch: function(currentUser) {
+      //   currentUser.fetch({
+      //     success: function(user) {
+      //       // The object was refreshed successfully.
+      //       // alert('fetched successfully');
 
-          },
-          error: function(user, error) {
-            // The object was not refreshed successfully.
-            // error is a Parse.Error with an error code and description
-            alert("Something went wrong, please contact @male");
-            console.log(error);
-          }
-        });
+      //     },
+      //     error: function(user, error) {
+      //       // The object was not refreshed successfully.
+      //       // error is a Parse.Error with an error code and description
+      //       alert("Something went wrong, please contact @male");
+      //       console.log(error);
+      //     }
+      //   });
 
-      },
+      // },
 
-      user: {
-        // wrapper for Parse's user.get()
-        get: function(attribute) {
-          var user = this.getCurrentUser();
-          var attributeValue = user.get(attribute);
-          return attributeValue;
-        }
-      },
+      // user: {
+      //   // wrapper for Parse's user.get()
+      //   get: function(attribute) {
+      //     var user = this.getCurrentUser();
+      //     var attributeValue = user.get(attribute);
+      //     return attributeValue;
+      //   }
+      // },
 
-      getCurrentUser: function() {
-        return Parse.User.current();
-      },
+      
 
       setToUser: function(currentUser, key, value) {
         
@@ -26059,27 +25965,30 @@ angular.module('DataServices', [])
       },
 
       saveUser: function(currentUser) {
-        currentUser.save(null, {
-          success: function(user) {
-            // The object was saved successfully.
+
+        // TODO: make promise-aware
+
+        // currentUser.save(null, {
+        //   success: function(user) {
+        //     // The object was saved successfully.
 
 
-            // Due to a bug in the Parse SDK, need to do a fetch here
-            currentUser.fetch({
-              success: function (user) {
-                // nothing really to do
-              },
-              error: function (user,error) {
-                  console.log(user);
-              }
-            });
-          },
-          error: function(user, error) {
-            // The save failed.
-            // error is a Parse.Error with an error code and description.
-            console.log(error);
-          }
-        });
+        //     // Due to a bug in the Parse SDK, need to do a fetch here
+        //     currentUser.fetch({
+        //       success: function (user) {
+        //         // nothing really to do
+        //       },
+        //       error: function (user,error) {
+        //           console.log(user);
+        //       }
+        //     });
+        //   },
+        //   error: function(user, error) {
+        //     // The save failed.
+        //     // error is a Parse.Error with an error code and description.
+        //     console.log(error);
+        //   }
+        // });
 
       },
       
@@ -26101,8 +26010,6 @@ angular.module('DataServices', [])
         }
 
 
-        // console.log(feedback);
-
         feedback.save(null, {
           success: function(feedbackSaved) {
             // The object was saved successfully.
@@ -26115,7 +26022,7 @@ angular.module('DataServices', [])
           error: function(feedbackSaved, error) {
             // The save failed.
             // error is a Parse.Error with an error code and description.
-
+            console.log(error);
           }
         });
       }
@@ -26168,16 +26075,17 @@ angular.module('HelperServices', [])
 		name: "Helper",
 
 		metrics: {
-			trackPage: function(trackPage) {
+			track: function(event,payload) {
 				/* KISSmetrics Tracking */
 				if(typeof(_kmq) !== "undefined") {
-					_kmq.push(['record', 'Reached ' + trackPage]);
+					_kmq.push(['record', event, payload]);
 				}
 				/* Mixpanel Tracking */
 				if(typeof(mixpanel) !== "undefined") {
-					mixpanel.track('Reached ' + trackPage);
+					mixpanel.track(event,payload);
 				}
 			},
+
 			identify: function(identity) {
 				/* KISSmetrics Tracking */
 				if(typeof(_kmq) !== "undefined") {
@@ -26700,32 +26608,19 @@ var CategoryController = function CategoryController($scope,HelperService,$route
 
 	$scope.selectItem = function (indexOfItemToSelect) {
 		
-		// NB: if the user does this multiple times, their configuredItems list keeps growing
-
-		var hasChosenThisAlready = false;
-
 		// this is the item category they've chosen. Extracting into a variable for legibility
 		var chosenCategory = $scope.answers[indexOfItemToSelect].category;
 
+		var metricsPayload = {"B4.0_Item Name":chosenCategory};
+		HelperService.metrics.track("B4.0_Chose Basket Item",metricsPayload);
 
-		/* USE THE FOREACH IF YOU WANT SHOPPING BASKET FUNCTIONALITY */
-
-		// angular.forEach($scope.menu[1].submenuItems, function(submenuItem) {
-	 //      if (item.category === chosenCategory) hasChosenThisAlready = true;
-	 //      return;
-	 //    });
-// 		if(!hasChosenThisAlready) $scope.chosenItems.push($scope.answers[indexOfItemToSelect]);
-
-		/* JUST CLEAR THE SHOPPING BASKET AND REPLACE WITH CHOSEN ITEM IF YOU CAN ONLY SHOP FOR ONE THING AT A TIME */
+		/* JUST CLEAR THE submenuItems AND REPLACE WITH CHOSEN ITEM IF YOU CAN ONLY SHOP FOR ONE THING AT A TIME */
 
 		$scope.menu[0].submenuItems = [];
 		$scope.menu[0].submenuItems.push($scope.answers[indexOfItemToSelect]);
 
-
-
 		var newPath = $scope.answers[indexOfItemToSelect].path;
 		$location.path(newPath);
-
 
 	};
 
@@ -26801,7 +26696,8 @@ var CategoryController = function CategoryController($scope,HelperService,$route
 
 
 	// track
-    HelperService.metrics.trackPage('intro');
+	var metricsPayload = {"B4.0_Funnel": "M.A.L.E.","B4.0_Step": "Intro"};
+    HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
 
 }
 CategoryController.$inject = ['$scope','HelperService','$routeParams','$locale','$location'];
@@ -26948,7 +26844,8 @@ var BrandsFormController = function BrandsFormController($scope,HelperService,$r
 
 
 	// track
-    HelperService.metrics.trackPage($routeParams.category + ': brands');
+	var metricsPayload = {"B4.0_Funnel": $routeParams.category,"B4.0_Step": "Brands"};
+    HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
 
 }
 BrandsFormController.$inject = ['$scope','HelperService','$routeParams','brandsLoader','$locale'];
@@ -27012,7 +26909,9 @@ var SizeFormController = function SizeFormController($scope,HelperService,$route
 	/***** END CONTROLLER EVENT RESPONDERS ******/
 
 	// track
-    HelperService.metrics.trackPage($routeParams.category + ': size');
+	var metricsPayload = {"B4.0_Funnel": $routeParams.category, "B4.0_Step": "Size"};
+    HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
+
 
 }
 SizeFormController.$inject = ['$scope','HelperService','$routeParams','sizeLoader','$locale'];
@@ -27113,8 +27012,9 @@ var ColoursFormController = function ColoursFormController($scope,HelperService,
 
 	/***** END CONTROLLER EVENT RESPONDERS ******/
 
-	// track
-    HelperService.metrics.trackPage($routeParams.category + ': colours');
+    // track
+	var metricsPayload = {"B4.0_Funnel": $routeParams.category, "B4.0_Step": "Colours"};
+    HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
 
 
 }
@@ -27153,7 +27053,8 @@ var SpecificsFormController = function SpecificsFormController($scope,HelperServ
 	/***** END CONTROLLER EVENT RESPONDERS ******/
 
 	// track
-    HelperService.metrics.trackPage($routeParams.category + ': specifics');
+	var metricsPayload = {"B4.0_Funnel": $routeParams.category, "B4.0_Step": "Specifics"};
+    HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
 
 }
 SpecificsFormController.$inject = ['$scope','HelperService','$routeParams','specificsLoader','$locale'];
@@ -27187,9 +27088,9 @@ var SaveFormController = function SaveFormController($scope,DataService,HelperSe
 		DataService.fbLoginAndSave($scope.male_answers, $routeParams.category, $scope.currentUser, /* save is needed */ true);
 	}
 
-
 	// track
-	HelperService.metrics.trackPage('save basket');
+	var metricsPayload = {"B4.0_Funnel": $routeParams.category, "B4.0_Step": "Register (Save Basket)"};
+    HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
 
 
 }
@@ -27209,8 +27110,6 @@ var CheckoutFormController = function CheckoutFormController($scope,DataService,
 
 	// basket title
 	$scope.basketTitle = checkoutLoader.getBasketTitle($locale.id);
-
-	
 
 
 	var promise = DataService.query.usersBoxers($scope.currentUser, $scope.male_answers, $scope);
@@ -27234,7 +27133,7 @@ var CheckoutFormController = function CheckoutFormController($scope,DataService,
 			$scope.basket.size = checkoutLoader.humanizeSize($scope.basket.size);
 		};
 		
-	  console.log($scope.male_answers.boxers);
+	  // console.log($scope.male_answers.boxers);
 
     }, function(reason) {
       // something went wrong in the API call, so init new object
@@ -27270,7 +27169,8 @@ var CheckoutFormController = function CheckoutFormController($scope,DataService,
 	*/
 
 	// track
-	HelperService.metrics.trackPage('£1 checkout');
+	var metricsPayload = {"B4.0_Funnel": $routeParams.category, "B4.0_Step": "£1 Checkout"};
+    HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
 
 }
 CheckoutFormController.$inject = ['$scope','DataService','HelperService','$routeParams','$locale','checkoutLoader'];
@@ -27312,7 +27212,8 @@ var SuccessFormController = function SuccessFormController($scope,DataService,He
 
 
 	// track
-	HelperService.metrics.trackPage('Registered credit card');
+	var metricsPayload = {"B4.0_Funnel": $routeParams.category, "B4.0_Step": "Success"};
+    HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
 
 
 }

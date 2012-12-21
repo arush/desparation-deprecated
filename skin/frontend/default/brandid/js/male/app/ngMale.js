@@ -85,10 +85,17 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
         HelperService.metrics.identify(identity);
 
 
-        //
-
-        // this creates new answer objects in male_answers if parameter is null, otherwise retrieves latest answers from database
-        // DataService.initMaleAnswersForUser($rootScope.currentUser, $rootScope.male_answers, $rootScope);
+        // fetch collection of answers for the user
+        var promise = DataService.getUserAnswers($rootScope.currentUser);
+    
+        promise.then(function(answers) {
+          $rootScope.male_answers = answers;
+        }, function(reason) {
+          // something went wrong in the API call, so init new object
+          console.log("Could not fetch users answers collection");
+          console.log(reason);[]
+          // male_answers.boxers = new Boxers();
+        });
 
     } else {
 
@@ -98,12 +105,10 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
       
       HelperService.setIntercomLoggedOutSettings($rootScope.currentUser);
 
-      
+      // initialize empty collection of answers for the user
+      $rootScope.male_answers = DataService.initNewAnswers();
 
     };
-
-    // this creates new answer objects in male_answers if parameter is null, otherwise retrieves latest answers from database
-    DataService.initMaleAnswersForUser(null, $rootScope.male_answers);
 
 
     // feedback object
@@ -219,6 +224,15 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
 
       $rootScope.currentUser.signUp(null, {
         success: function(user) {
+
+          // track registration
+          var metricsPayload = {
+            "Registration Method": "Email Signup",
+            "$created": new Date(),
+            "$last_login": new Date()
+          };
+
+          HelperService.track("Registered", metricsPayload);
 
           DataService.saveAnswersAfterSuccessfulLogin($rootScope.male_answers,$routeParams.category /* if this is 'intro', nothing happens */,$rootScope.currentUser, /* saveNeeded */ true);
 

@@ -8,8 +8,6 @@ var CheckoutFormController = function CheckoutFormController($scope,DataService,
 	// basket title
 	$scope.basketTitle = checkoutLoader.getBasketTitle($locale.id);
 
-	
-
 
 	var promise = DataService.query.usersBoxers($scope.currentUser, $scope.male_answers, $scope);
     
@@ -32,7 +30,7 @@ var CheckoutFormController = function CheckoutFormController($scope,DataService,
 			$scope.basket.size = checkoutLoader.humanizeSize($scope.basket.size);
 		};
 		
-	  console.log($scope.male_answers.boxers);
+	  // console.log($scope.male_answers.boxers);
 
     }, function(reason) {
       // something went wrong in the API call, so init new object
@@ -68,7 +66,8 @@ var CheckoutFormController = function CheckoutFormController($scope,DataService,
 	*/
 
 	// track
-	HelperService.metrics.trackPage('£1 checkout');
+	var metricsPayload = {"B4.0_Funnel": $routeParams.category, "B4.0_Step": "£1 Checkout"};
+    HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
 
 }
 CheckoutFormController.$inject = ['$scope','DataService','HelperService','$routeParams','$locale','checkoutLoader'];

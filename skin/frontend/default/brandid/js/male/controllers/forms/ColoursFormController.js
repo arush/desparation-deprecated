@@ -90,8 +90,9 @@ var ColoursFormController = function ColoursFormController($scope,HelperService,
 
 	/***** END CONTROLLER EVENT RESPONDERS ******/
 
-	// track
-    HelperService.metrics.trackPage($routeParams.category + ': colours');
+    // track
+	var metricsPayload = {"B4.0_Funnel": $routeParams.category, "B4.0_Step": "Colours"};
+    HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
 
 
 }
