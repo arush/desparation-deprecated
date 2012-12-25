@@ -30,20 +30,19 @@ angular.module('DataServices', [])
     
     // every Answer must have a question property which directly matches the routeParams.category in the frontend
     var Answer = Parse.Object.extend({
-      className: "Answer",
-      initialize: function(attributes,options) {
-        this.category = attributes.category;
-      },
+      className: "Answer"
+      // initialize: function(attributes,options) {
+      //   this.category = attributes.category;
+      // }
 
     });
-    var AnswerCollection = Parse.Collection.extend({
-      model: Answer,
-
-      getByCategory: function(category) {
-        var itemToGet = this.find(function(item){return item.get("category") === category;});
-        return itemToGet;
-      }
-    });
+    // var AnswerCollection = Parse.Collection.extend({
+    //   model: Answer,
+    //   getByCategory: function(category) {
+    //     var itemToGet = this.find(function(item){return item.get("category") === category;});
+    //     return itemToGet;
+    //   }
+    // });
 
     // FACEBOOK init
 
@@ -72,16 +71,37 @@ angular.module('DataServices', [])
       getCurrentUser: function() {
         return Parse.User.current();
       },
+      isParseObject: function(object) {
+        var is = false;
+        
+        if(object instanceof Parse.Object) {
+          is = true;
+        }
 
-      initNewAnswers: function(user) {
+        return is;
+      },
+
+      initNewAnswer: function() {
         // The Collection of Answer objects that match a query.
-        var newAnswers = new AnswerCollection();
+        var newAnswer = new Answer();
 
-        newAnswers.add({"category": "boxers", "user":user});
-        newAnswers.add({"category": "socks", "user":user});
-        newAnswers.add({"category": "tees", "user":user});
-        newAnswers.add({"category": "jumpers", "user":user});
-        newAnswers.add({"category": "hoodies", "user":user});
+        return newAnswer;
+      },
+      initNewAnswerCollection: function(user) {
+        // var newAnswers = new AnswerCollection({"user":user});
+
+        var UserAnswersCollection = Parse.Collection.extend({
+          model: Answer,
+          query: (new Parse.Query(Answer)).equalTo("user", user),
+          getByCategory: function(category) {
+
+            // TODO: fix this so it only returns the latest matching answer
+            var itemToGet = this.find(function(item){return item.get("category") === category;});
+            return itemToGet;
+          }
+          
+        });
+        var newAnswers = new UserAnswersCollection();
 
         return newAnswers;
       },
@@ -90,23 +110,32 @@ angular.module('DataServices', [])
         // to make this promise-aware, we always return a promise
         var deferred = $q.defer();
 
-        // The Collection of Answer objects that match a query.
-        var query = new Parse.Query(Answer);
-        query.equalTo("user", user);
-        var userAnswers = query.collection();
+        var userAnswers = this.initNewAnswerCollection(user);
 
         // Now we've subclassed Parse.Collection, lets fetch it
-            
+        
+        var self = this;
+
         userAnswers.fetch({
           success: function(results) {
 
+            // TODO: is this still necessary?
+            if(typeof(results) === "undefined") {
+              // user has no answers in Parse, so create a new collection
+              console.log(results);
+              alert('creating new collection');
+              results = self.initNewAnswerCollection(user);
+            }
+
             // we wrap this in $apply using the correct scope passed in because we always need angular to recognise changes
             scope.$apply(function() {
-              deferred.resolve(result);
+              deferred.resolve(results);
             });
 
           },
           error: function(results,error) {
+            alert('error');
+            console.log(results);
             console.log(error);
           }
 
@@ -181,19 +210,19 @@ angular.module('DataServices', [])
 
             // if this is a registration, we need to capture some data from FB
             if(!user.get('email')) {
-              // track
-              var metricsPayload = {"B4.0_Funnel": $routeParams.category,"B4.0_Step": "Register (Save Basket)", "B4.0_Registration Method": "Facebook Connect"};
-              HelperService.metrics.track('B4.0_Attempted Registration', metricsPayload);
+                // track
+                var metricsPayload = {"B4.0_Funnel": $routeParams.category,"B4.0_Step": "Register (Save Basket)", "B4.0_Registration Method": "Facebook Connect"};
+                HelperService.metrics.track('B4.0_Attempted Registration', metricsPayload);
 
-              self.saveRegistrationDataFromFacebook(male_answers,category,user);
+                self.saveRegistrationDataFromFacebook(male_answers,category,user);
             } else {
-              
-              // if not identify the user in metrics and reload the page
-              HelperService.metrics.identify(user.get('email'));
-              HelperService.metrics.setLastLogin();
 
-              location.reload();
-              // self.saveAnswersAfterSuccessfulLogin(male_answers,category,user);
+                // if not identify the user in metrics and reload the page
+                HelperService.metrics.identify(user.get('email'));
+                HelperService.metrics.setLastLogin();
+
+                location.reload();
+                // self.saveAnswersAfterSuccessfulLogin(male_answers,category,user);
             }
 
             
@@ -209,14 +238,10 @@ angular.module('DataServices', [])
 
       },
 
-      setAnswer: function(male_answers,category,question,answer) {
+      setAnswer: function(currentAnswer,question,answer) {
         
-        // get the Answer model for this category. Returns an array
-
-        var model = male_answers.getByCategory(category);
-
         // just get the first one from the array - assumption is there is only one of each category anyway
-        model.set(question,answer);
+        currentAnswer.set(question,answer);
 
       },
 
@@ -322,15 +347,37 @@ angular.module('DataServices', [])
 
       },
 
-      // still need this?
-      saveAnswer: function(male_answers, category, user, scope) {
+      saveAnswer: function(currentAnswer,scope) {
 
-        // make promise-aware
         // to make this promise-aware, we always return a promise
         var deferred = $q.defer();
-        var model = male_answers.getByCategory(category);
 
-        model.save({
+        currentAnswer.save({
+          success: function(results) {
+
+            // for some reason, we scope.$apply caused an error (digest already in progress) so removed it
+              deferred.resolve(results);
+
+          },
+          error: function(results,error) {
+            console.log(error);
+            deferred.reject(error);
+          }
+
+        });
+
+        return deferred.promise;
+
+      },
+      // this happens after registration
+      addAnswerToMale: function(male_answers,currentAnswer, user, scope) {
+
+        // we always need to save the answer to the user's collection stored in Parse
+
+        // to make this promise-aware, we always return a promise
+        var deferred = $q.defer();
+
+        male_answers.create(currentAnswer,{
           success: function(results) {
 
             // we wrap this in $apply using the correct scope passed in because we always need angular to recognise changes

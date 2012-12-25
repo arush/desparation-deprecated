@@ -4,40 +4,48 @@ var CheckoutFormController = function CheckoutFormController($scope,DataService,
 	*  Controller Properties
 	*/
 
+	// need to define this up here first so they can be used in the promise closure below
+	
+	// NB we are not using $scope.male_answers because there is a chance it could be asyncronously fetching from DB at this very moment
+	var all_user_answers;
+	var currentAnswer = $scope.currentAnswer;
+	$scope.basket = {};
 
 	// basket title
 	$scope.basketTitle = checkoutLoader.getBasketTitle($locale.id);
 
-
-	var promise = DataService.query.usersBoxers($scope.currentUser, $scope.male_answers, $scope);
-    
-    promise.then(function(boxers) {
-      // finally perform the action after API call completes
-	  $scope.male_answers.boxers = boxers;
-
-	  $scope.basket = checkoutLoader.getBasket($routeParams.category, $scope.male_answers);
 	
-		// make human readable answers, we made this non-default because the raw basket can be used
-		if(typeof($scope.basket.brands) !== "undefined") {
-			$scope.basket.brands = checkoutLoader.humanizeAnswer($scope.basket.brands);
-		};
-		
-		if(typeof($scope.basket.colours) !== "undefined") {
-			$scope.basket.colours = checkoutLoader.humanizeAnswer($scope.basket.colours);
-		};
-		
-		if(typeof($scope.basket.size) !== "undefined") {
-			$scope.basket.size = checkoutLoader.humanizeSize($scope.basket.size);
-		};
-		
-	  // console.log($scope.male_answers.boxers);
 
-    }, function(reason) {
-      // something went wrong in the API call, so init new object
-      console.log(reason);
-      // male_answers.boxers = new Boxers();
-    });
+		// fetch collection of answers for the user
+	  var promise = DataService.getUserAnswers($scope.currentUser,$scope);
 
+	  promise.then(function(answers) {
+
+	    all_user_answers = answers;
+	    currentAnswer = all_user_answers.getByCategory($routeParams.category);
+
+	    // make human readable answers, we made this non-default because the raw basket can be used
+		  if(typeof(currentAnswer.get("brands")) !== "undefined") {
+				$scope.basket.brands = checkoutLoader.humanizeAnswer(currentAnswer.get("brands"));
+		  };
+
+			if(typeof(currentAnswer.get("colours")) !== "undefined") {
+				$scope.basket.colours = checkoutLoader.humanizeAnswer(currentAnswer.get("colours"));
+			};
+
+			if(typeof(currentAnswer.get("size")) !== "undefined") {
+				$scope.basket.size = checkoutLoader.humanizeSize(currentAnswer.get("size"));
+			};
+
+			$scope.basket.specifics = currentAnswer.get("specifics");
+
+
+	  }, function(reason) {
+	    // something went wrong in the API call, so init new object
+	    console.log("Could not fetch users answers collection");
+	    console.log(reason);
+	    // male_answers.boxers = new Boxers();
+	  });
 
 	// checkout title
 	$scope.checkoutTitle = checkoutLoader.getCheckoutTitle($locale.id);

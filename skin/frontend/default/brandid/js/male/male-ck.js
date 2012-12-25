@@ -25382,7 +25382,6 @@ ngMaleApp.config(['$routeProvider', function ($routeProvider) {
          templateUrl: 'detailViewProxy.html',
          controller:QuestionController
       })
-      
       .otherwise({
         redirectTo: '/section/garms/category/intro'
       });
@@ -25398,9 +25397,15 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
     $rootScope.drawerOpen = false;
 
     $rootScope.currentUser = false;
-    $rootScope.male_answers = {};
     $rootScope.loggedIn = false;
     $rootScope.facebookConnected = false;
+
+    // male_answers only gets set when user registers or when user logs in
+    $rootScope.male_answers = {};
+
+    // currentAnswer only gets set when user chooses a category. At that point it will try and load previous answers and init a new answer if none exists
+    $rootScope.currentAnswer = {};
+    
 
     // make a reference to the current Parse.User object
     $rootScope.currentUser = DataService.getCurrentUser();
@@ -25412,6 +25417,18 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
 
         // also need to set last login time here
 
+        // fetch collection of answers for the user
+        var promise = DataService.getUserAnswers($rootScope.currentUser,$rootScope);
+
+        promise.then(function(answers) {
+          $rootScope.male_answers = answers;
+
+        }, function(reason) {
+          // something went wrong in the API call, so init new object
+          console.log("Could not fetch users answers collection");
+          console.log(reason);
+          // male_answers.boxers = new Boxers();
+        });
 
         // if authData exists, we assume facebook is connected, and load the facebook profile image, else load blank profile image
         if($rootScope.currentUser.get("authData")) {
@@ -25421,24 +25438,12 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
           $rootScope.profileImageUrl = HelperService.urls.getSkinUrl() + 'images/facebook-connect/blank-profile.png';
           $rootScope.facebookConnected = false;
         }
-          
+
 
         // track the identity in case user has cleared their cache
         var identity = $rootScope.currentUser.get('email');
         HelperService.metrics.identify(identity);
-
-
-        // fetch collection of answers for the user
-        var promise = DataService.getUserAnswers($rootScope.currentUser,$rootScope);
-    
-        promise.then(function(answers) {
-          $rootScope.male_answers = answers;
-        }, function(reason) {
-          // something went wrong in the API call, so init new object
-          console.log("Could not fetch users answers collection");
-          console.log(reason);[]
-          // male_answers.boxers = new Boxers();
-        });
+        
 
     } else {
 
@@ -25448,11 +25453,8 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
       
       HelperService.setIntercomLoggedOutSettings($rootScope.currentUser);
 
-      // initialize empty collection of answers for the user
-      $rootScope.male_answers = DataService.initNewAnswers($rootScope.currentUser);
-
+      
     };
-
 
     // feedback object
     $rootScope.feedback = {
@@ -25515,7 +25517,8 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
           HelperService.metrics.setLastLogin();
           // this handles the save and reload
 
-          DataService.saveAnswersAfterSuccessfulLogin($rootScope.male_answers,$routeParams.category /* if this is 'intro', nothing happens */,$rootScope.currentUser);
+          // TODO: is this still needed?
+          // DataService.saveAnswersAfterSuccessfulLogin($rootScope.male_answers,$routeParams.category /* if this is 'intro', nothing happens */,$rootScope.currentUser);
         },
         error: function(user, error) {
           // The login failed. Check error to see why.
@@ -25575,7 +25578,7 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
 
       var promise = DataService.emailSignUp($rootScope.currentUser,$rootScope);
 
-      promise.then(function() {
+      promise.then(function(user) {
 
           // track registration
           var metricsPayload = {
@@ -25585,10 +25588,24 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
           };
           HelperService.metrics.track("Registered", metricsPayload);
 
-          var savePromise = DataService.saveAnswer($rootScope.male_answers,$routeParams.category /* not currently used because we just save the whole collection */,$rootScope.currentUser,$rootScope);
+          // we must nest the 'then' statement here because we need access to 'user' in a nested call below
 
-          return savePromise;
+          // User has no answers in Parse, so create the collection and save the answer to it
+          $rootScope.male_answers = DataService.initNewAnswerCollection($rootScope.currentUser);
 
+          // if the user has answered a question
+          if(DataService.isParseObject($rootScope.currentAnswer)) {
+            // create an association with the newly created user
+            $rootScope.currentAnswer.set("user",user);
+
+            // create the answer in the answers collection, which pushes it to Parse also
+            return DataService.addAnswerToMale($rootScope.male_answers,$rootScope.currentAnswer,user,$rootScope)
+          
+          } else {
+            // this is to protect against situations where the user can register without answering any questions
+            // progress without saving anything because there is nothing to save
+            location.reload();
+          }
       })
       .then(function() {
       
@@ -25608,6 +25625,44 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
 
     };
 
+
+    $rootScope.setCurrentAnswer = function(chosenCategory) {
+      // init a new answer if one doesn't exist in the user's existing answers
+      // but first check if male_answers collection has been initialised so we can call 'getByCategory'
+      if($rootScope.loggedIn) { 
+        var existingAnswer = $rootScope.male_answers.getByCategory(chosenCategory);
+        // does the item exist in the user's Answer collection?
+        if(typeof(existingAnswer) !== "undefined") {
+          // retrieve selected answer so user can edit it
+
+          $rootScope.currentAnswer = $rootScope.male_answers.getByCategory(chosenCategory);
+
+        } else {
+          // no existing answer in the user's Answer collection, so create it
+          $rootScope.currentAnswer = DataService.initNewAnswer();
+          $rootScope.currentAnswer.set("category",chosenCategory);
+        }
+
+      } else {
+        // user is either logged out or has not initialised male_answers somewhow, either way we can init a new Answer safely
+
+        $rootScope.currentAnswer = DataService.initNewAnswer();
+        $rootScope.currentAnswer.set("category",chosenCategory);
+      }
+      
+      // just to be sure, lets set the category
+      
+      // we also want to associate this answer with the user if logged in. Otherwise this association gets created on register
+      if($rootScope.loggedIn) {
+        var existingAnswer = $rootScope.male_answers.getByCategory(chosenCategory);
+
+        //$rootScope.currentAnswer.set("user",$rootScope.currentUser);
+        // must save here as QuestionController logic assumes the answer exists in the DB
+        if(typeof(existingAnswer) === "undefined") {
+          DataService.saveAnswer($rootScope.currentAnswer);
+        }
+      }
+    };
   // ***** END CONTROLLER FUNCTIONS ***** //
 }]);
 
@@ -25647,20 +25702,19 @@ angular.module('DataServices', [])
     
     // every Answer must have a question property which directly matches the routeParams.category in the frontend
     var Answer = Parse.Object.extend({
-      className: "Answer",
-      initialize: function(attributes,options) {
-        this.category = attributes.category;
-      },
+      className: "Answer"
+      // initialize: function(attributes,options) {
+      //   this.category = attributes.category;
+      // }
 
     });
-    var AnswerCollection = Parse.Collection.extend({
-      model: Answer,
-
-      getByCategory: function(category) {
-        var itemToGet = this.find(function(item){return item.get("category") === category;});
-        return itemToGet;
-      }
-    });
+    // var AnswerCollection = Parse.Collection.extend({
+    //   model: Answer,
+    //   getByCategory: function(category) {
+    //     var itemToGet = this.find(function(item){return item.get("category") === category;});
+    //     return itemToGet;
+    //   }
+    // });
 
     // FACEBOOK init
 
@@ -25689,16 +25743,37 @@ angular.module('DataServices', [])
       getCurrentUser: function() {
         return Parse.User.current();
       },
+      isParseObject: function(object) {
+        var is = false;
+        
+        if(object instanceof Parse.Object) {
+          is = true;
+        }
 
-      initNewAnswers: function(user) {
+        return is;
+      },
+
+      initNewAnswer: function() {
         // The Collection of Answer objects that match a query.
-        var newAnswers = new AnswerCollection();
+        var newAnswer = new Answer();
 
-        newAnswers.add({"category": "boxers", "user":user});
-        newAnswers.add({"category": "socks", "user":user});
-        newAnswers.add({"category": "tees", "user":user});
-        newAnswers.add({"category": "jumpers", "user":user});
-        newAnswers.add({"category": "hoodies", "user":user});
+        return newAnswer;
+      },
+      initNewAnswerCollection: function(user) {
+        // var newAnswers = new AnswerCollection({"user":user});
+
+        var UserAnswersCollection = Parse.Collection.extend({
+          model: Answer,
+          query: (new Parse.Query(Answer)).equalTo("user", user),
+          getByCategory: function(category) {
+
+            // TODO: fix this so it only returns the latest matching answer
+            var itemToGet = this.find(function(item){return item.get("category") === category;});
+            return itemToGet;
+          }
+          
+        });
+        var newAnswers = new UserAnswersCollection();
 
         return newAnswers;
       },
@@ -25707,23 +25782,32 @@ angular.module('DataServices', [])
         // to make this promise-aware, we always return a promise
         var deferred = $q.defer();
 
-        // The Collection of Answer objects that match a query.
-        var query = new Parse.Query(Answer);
-        query.equalTo("user", user);
-        var userAnswers = query.collection();
+        var userAnswers = this.initNewAnswerCollection(user);
 
         // Now we've subclassed Parse.Collection, lets fetch it
-            
+        
+        var self = this;
+
         userAnswers.fetch({
           success: function(results) {
 
+            // TODO: is this still necessary?
+            if(typeof(results) === "undefined") {
+              // user has no answers in Parse, so create a new collection
+              console.log(results);
+              alert('creating new collection');
+              results = self.initNewAnswerCollection(user);
+            }
+
             // we wrap this in $apply using the correct scope passed in because we always need angular to recognise changes
             scope.$apply(function() {
-              deferred.resolve(result);
+              deferred.resolve(results);
             });
 
           },
           error: function(results,error) {
+            alert('error');
+            console.log(results);
             console.log(error);
           }
 
@@ -25798,19 +25882,19 @@ angular.module('DataServices', [])
 
             // if this is a registration, we need to capture some data from FB
             if(!user.get('email')) {
-              // track
-              var metricsPayload = {"B4.0_Funnel": $routeParams.category,"B4.0_Step": "Register (Save Basket)", "B4.0_Registration Method": "Facebook Connect"};
-              HelperService.metrics.track('B4.0_Attempted Registration', metricsPayload);
+                // track
+                var metricsPayload = {"B4.0_Funnel": $routeParams.category,"B4.0_Step": "Register (Save Basket)", "B4.0_Registration Method": "Facebook Connect"};
+                HelperService.metrics.track('B4.0_Attempted Registration', metricsPayload);
 
-              self.saveRegistrationDataFromFacebook(male_answers,category,user);
+                self.saveRegistrationDataFromFacebook(male_answers,category,user);
             } else {
-              
-              // if not identify the user in metrics and reload the page
-              HelperService.metrics.identify(user.get('email'));
-              HelperService.metrics.setLastLogin();
 
-              location.reload();
-              // self.saveAnswersAfterSuccessfulLogin(male_answers,category,user);
+                // if not identify the user in metrics and reload the page
+                HelperService.metrics.identify(user.get('email'));
+                HelperService.metrics.setLastLogin();
+
+                location.reload();
+                // self.saveAnswersAfterSuccessfulLogin(male_answers,category,user);
             }
 
             
@@ -25826,14 +25910,10 @@ angular.module('DataServices', [])
 
       },
 
-      setAnswer: function(male_answers,category,question,answer) {
+      setAnswer: function(currentAnswer,question,answer) {
         
-        // get the Answer model for this category. Returns an array
-
-        var model = male_answers.getByCategory(category);
-
         // just get the first one from the array - assumption is there is only one of each category anyway
-        model.set(question,answer);
+        currentAnswer.set(question,answer);
 
       },
 
@@ -25939,15 +26019,37 @@ angular.module('DataServices', [])
 
       },
 
-      // still need this?
-      saveAnswer: function(male_answers, category, user, scope) {
+      saveAnswer: function(currentAnswer,scope) {
 
-        // make promise-aware
         // to make this promise-aware, we always return a promise
         var deferred = $q.defer();
-        var model = male_answers.getByCategory(category);
 
-        model.save({
+        currentAnswer.save({
+          success: function(results) {
+
+            // for some reason, we scope.$apply caused an error (digest already in progress) so removed it
+              deferred.resolve(results);
+
+          },
+          error: function(results,error) {
+            console.log(error);
+            deferred.reject(error);
+          }
+
+        });
+
+        return deferred.promise;
+
+      },
+      // this happens after registration
+      addAnswerToMale: function(male_answers,currentAnswer, user, scope) {
+
+        // we always need to save the answer to the user's collection stored in Parse
+
+        // to make this promise-aware, we always return a promise
+        var deferred = $q.defer();
+
+        male_answers.create(currentAnswer,{
           success: function(results) {
 
             // we wrap this in $apply using the correct scope passed in because we always need angular to recognise changes
@@ -26440,12 +26542,12 @@ var QuestionController = function QuestionController($scope,$routeParams,DataSer
 
     	// save the answer to browser memory
 		// $scope.user.male_answers[section][category][question] = answer;
-		DataService.setAnswer($scope.male_answers,category,question,answer);
+		DataService.setAnswer($scope.currentAnswer,question,answer);
 		
 		// if logged in, we want to save to parse
 		if($scope.loggedIn) {
-			DataService.setAnswer($scope.male_answers,category,"user",$scope.currentUser);
-			DataService.saveAnswer($scope.male_answers,category, null);
+			DataService.setAnswer($scope.currentAnswer,"user",$scope.currentUser);
+			DataService.saveAnswer($scope.currentAnswer,$scope);
 		};
 		
     	var nextPath = $scope.getNextPath(question);
@@ -26583,13 +26685,12 @@ QuestionController.$inject = ['$scope','$routeParams','DataService','HelperServi
      Begin category.js
 ********************************************** */
 
-var CategoryController = function CategoryController($scope,HelperService,$routeParams,$locale,$location) {
+var CategoryController = function CategoryController($scope,DataService,HelperService,$routeParams,$locale,$location) {
 
 	/**
 	*  Controller Properties
 	*/
 
-	// $scope.drawerOpen = !$scope.drawerOpen;
 
 	//use the correct template
 	$scope.categoryTemplate = 'section/' + $routeParams.section + '/category/' + $routeParams.category +'.html';
@@ -26597,21 +26698,25 @@ var CategoryController = function CategoryController($scope,HelperService,$route
 
 	$scope.selectItem = function (indexOfItemToSelect) {
 		
+		
 		// this is the item category they've chosen. Extracting into a variable for legibility
 		var chosenCategory = $scope.answers[indexOfItemToSelect].category;
+		
+
+		$scope.setCurrentAnswer(chosenCategory);
+
 
 		var metricsPayload = {"B4.0_Item Name":chosenCategory};
 		HelperService.metrics.track("B4.0_Chose Basket Item",metricsPayload);
 
-		/* JUST CLEAR THE submenuItems AND REPLACE WITH CHOSEN ITEM IF YOU CAN ONLY SHOP FOR ONE THING AT A TIME */
-
+		/* Clear the submenuItems and replace with chosenItem to update the menu */
 		$scope.menu[0].submenuItems = [];
 		$scope.menu[0].submenuItems.push($scope.answers[indexOfItemToSelect]);
 
 		var newPath = $scope.answers[indexOfItemToSelect].path;
 		$location.path(newPath);
-
 	};
+
 
 
 	$locale.id = "en-gb";
@@ -26625,35 +26730,35 @@ var CategoryController = function CategoryController($scope,HelperService,$route
 	        {
 	          path: "/section/garms/category/socks/question/brands",
 	          question: "restart", // when you click on this button, which question to go to
-	          category: "intro",
+	          category: "socks",
 	          cssClass: "socks",
 	          label: "socks"
 	        },
 	        {
 	          path: "/section/garms/category/boxers/question/brands",
 	          question: "restart", // when you click on this button, which question to go to
-	          category: "intro",
+	          category: "boxers",
 	          cssClass: "boxers",
-	          label: "pants"
+	          label: "underwear"
 	        },
 	        {
 	          path: "/section/garms/category/tees/question/brands",
 	          question: "restart", // when you click on this button, which question to go to
-	          category: "intro",
+	          category: "tees",
 	          cssClass: "tees",
 	          label: "t-shirts"
 	        },
 	        {
 	          path: "/section/garms/category/jumpers/question/brands",
 	          question: "restart", // when you click on this button, which question to go to
-	          category: "intro",
+	          category: "jumpers",
 	          cssClass: "jumpers",
 	          label: "jumpers"
 	        },
 	        {
 	          path: "/section/garms/category/hoodies/question/brands",
 	          question: "restart", // when you click on this button, which question to go to
-	          category: "intro",
+	          category: "hoodies",
 	          cssClass: "hoodies",
 	          label: "hoodies"
 	        }
@@ -26689,7 +26794,7 @@ var CategoryController = function CategoryController($scope,HelperService,$route
     HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
 
 }
-CategoryController.$inject = ['$scope','HelperService','$routeParams','$locale','$location'];
+CategoryController.$inject = ['$scope','DataService','HelperService','$routeParams','$locale','$location'];
 
 /* **********************************************
      Begin detail.js
@@ -27096,40 +27201,48 @@ var CheckoutFormController = function CheckoutFormController($scope,DataService,
 	*  Controller Properties
 	*/
 
+	// need to define this up here first so they can be used in the promise closure below
+	
+	// NB we are not using $scope.male_answers because there is a chance it could be asyncronously fetching from DB at this very moment
+	var all_user_answers;
+	var currentAnswer = $scope.currentAnswer;
+	$scope.basket = {};
 
 	// basket title
 	$scope.basketTitle = checkoutLoader.getBasketTitle($locale.id);
 
-
-	var promise = DataService.query.usersBoxers($scope.currentUser, $scope.male_answers, $scope);
-    
-    promise.then(function(boxers) {
-      // finally perform the action after API call completes
-	  $scope.male_answers.boxers = boxers;
-
-	  $scope.basket = checkoutLoader.getBasket($routeParams.category, $scope.male_answers);
 	
-		// make human readable answers, we made this non-default because the raw basket can be used
-		if(typeof($scope.basket.brands) !== "undefined") {
-			$scope.basket.brands = checkoutLoader.humanizeAnswer($scope.basket.brands);
-		};
-		
-		if(typeof($scope.basket.colours) !== "undefined") {
-			$scope.basket.colours = checkoutLoader.humanizeAnswer($scope.basket.colours);
-		};
-		
-		if(typeof($scope.basket.size) !== "undefined") {
-			$scope.basket.size = checkoutLoader.humanizeSize($scope.basket.size);
-		};
-		
-	  // console.log($scope.male_answers.boxers);
 
-    }, function(reason) {
-      // something went wrong in the API call, so init new object
-      console.log(reason);
-      // male_answers.boxers = new Boxers();
-    });
+		// fetch collection of answers for the user
+	  var promise = DataService.getUserAnswers($scope.currentUser,$scope);
 
+	  promise.then(function(answers) {
+
+	    all_user_answers = answers;
+	    currentAnswer = all_user_answers.getByCategory($routeParams.category);
+
+	    // make human readable answers, we made this non-default because the raw basket can be used
+		  if(typeof(currentAnswer.get("brands")) !== "undefined") {
+				$scope.basket.brands = checkoutLoader.humanizeAnswer(currentAnswer.get("brands"));
+		  };
+
+			if(typeof(currentAnswer.get("colours")) !== "undefined") {
+				$scope.basket.colours = checkoutLoader.humanizeAnswer(currentAnswer.get("colours"));
+			};
+
+			if(typeof(currentAnswer.get("size")) !== "undefined") {
+				$scope.basket.size = checkoutLoader.humanizeSize(currentAnswer.get("size"));
+			};
+
+			$scope.basket.specifics = currentAnswer.get("specifics");
+
+
+	  }, function(reason) {
+	    // something went wrong in the API call, so init new object
+	    console.log("Could not fetch users answers collection");
+	    console.log(reason);
+	    // male_answers.boxers = new Boxers();
+	  });
 
 	// checkout title
 	$scope.checkoutTitle = checkoutLoader.getCheckoutTitle($locale.id);

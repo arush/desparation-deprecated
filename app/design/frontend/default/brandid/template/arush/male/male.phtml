@@ -234,22 +234,15 @@
         </div>
 
         <div class="answers multi-button-set">
-                
-            <a class="convert secondary size-auto-populator total-num-buttons-{{totalNumButtons}} first-{{$first}} last-{{$last}}" ng-click="selectItem($index)" ng-repeat="answer in answers" ng-class="{active: sizeButton.isActive}">
-              <div class="v-outer-container">
-
-                <div class="v-inner-container">
-
-                  <div class="v-aligned-element">
-                    <div class="icon ">{{answer.label}}</div>
-                  </div>
-                
+          <a class="convert secondary size-auto-populator total-num-buttons-{{totalNumButtons}} first-{{$first}} last-{{$last}}" ng-click="selectItem($index)" ng-repeat="answer in answers" ng-class="{active: sizeButton.isActive}">
+            <div class="v-outer-container">
+              <div class="v-inner-container">
+                <div class="v-aligned-element">
+                  <div class="icon ">{{answer.label}}</div>
                 </div>
-
               </div>
-
-            </a>
-
+            </div>
+          </a>
         </div>
         
       </div>

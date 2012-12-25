@@ -1,10 +1,9 @@
-var CategoryController = function CategoryController($scope,HelperService,$routeParams,$locale,$location) {
+var CategoryController = function CategoryController($scope,DataService,HelperService,$routeParams,$locale,$location) {
 
 	/**
 	*  Controller Properties
 	*/
 
-	// $scope.drawerOpen = !$scope.drawerOpen;
 
 	//use the correct template
 	$scope.categoryTemplate = 'section/' + $routeParams.section + '/category/' + $routeParams.category +'.html';
@@ -12,21 +11,25 @@ var CategoryController = function CategoryController($scope,HelperService,$route
 
 	$scope.selectItem = function (indexOfItemToSelect) {
 		
+		
 		// this is the item category they've chosen. Extracting into a variable for legibility
 		var chosenCategory = $scope.answers[indexOfItemToSelect].category;
+		
+
+		$scope.setCurrentAnswer(chosenCategory);
+
 
 		var metricsPayload = {"B4.0_Item Name":chosenCategory};
 		HelperService.metrics.track("B4.0_Chose Basket Item",metricsPayload);
 
-		/* JUST CLEAR THE submenuItems AND REPLACE WITH CHOSEN ITEM IF YOU CAN ONLY SHOP FOR ONE THING AT A TIME */
-
+		/* Clear the submenuItems and replace with chosenItem to update the menu */
 		$scope.menu[0].submenuItems = [];
 		$scope.menu[0].submenuItems.push($scope.answers[indexOfItemToSelect]);
 
 		var newPath = $scope.answers[indexOfItemToSelect].path;
 		$location.path(newPath);
-
 	};
+
 
 
 	$locale.id = "en-gb";
@@ -40,35 +43,35 @@ var CategoryController = function CategoryController($scope,HelperService,$route
 	        {
 	          path: "/section/garms/category/socks/question/brands",
 	          question: "restart", // when you click on this button, which question to go to
-	          category: "intro",
+	          category: "socks",
 	          cssClass: "socks",
 	          label: "socks"
 	        },
 	        {
 	          path: "/section/garms/category/boxers/question/brands",
 	          question: "restart", // when you click on this button, which question to go to
-	          category: "intro",
+	          category: "boxers",
 	          cssClass: "boxers",
-	          label: "pants"
+	          label: "underwear"
 	        },
 	        {
 	          path: "/section/garms/category/tees/question/brands",
 	          question: "restart", // when you click on this button, which question to go to
-	          category: "intro",
+	          category: "tees",
 	          cssClass: "tees",
 	          label: "t-shirts"
 	        },
 	        {
 	          path: "/section/garms/category/jumpers/question/brands",
 	          question: "restart", // when you click on this button, which question to go to
-	          category: "intro",
+	          category: "jumpers",
 	          cssClass: "jumpers",
 	          label: "jumpers"
 	        },
 	        {
 	          path: "/section/garms/category/hoodies/question/brands",
 	          question: "restart", // when you click on this button, which question to go to
-	          category: "intro",
+	          category: "hoodies",
 	          cssClass: "hoodies",
 	          label: "hoodies"
 	        }
@@ -104,4 +107,4 @@ var CategoryController = function CategoryController($scope,HelperService,$route
     HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
 
 }
-CategoryController.$inject = ['$scope','HelperService','$routeParams','$locale','$location'];
+CategoryController.$inject = ['$scope','DataService','HelperService','$routeParams','$locale','$location'];

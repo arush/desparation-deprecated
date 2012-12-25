@@ -29,12 +29,12 @@ var QuestionController = function QuestionController($scope,$routeParams,DataSer
 
     	// save the answer to browser memory
 		// $scope.user.male_answers[section][category][question] = answer;
-		DataService.setAnswer($scope.male_answers,category,question,answer);
+		DataService.setAnswer($scope.currentAnswer,question,answer);
 		
 		// if logged in, we want to save to parse
 		if($scope.loggedIn) {
-			DataService.setAnswer($scope.male_answers,category,"user",$scope.currentUser);
-			DataService.saveAnswer($scope.male_answers,category, null);
+			DataService.setAnswer($scope.currentAnswer,"user",$scope.currentUser);
+			DataService.saveAnswer($scope.currentAnswer,$scope);
 		};
 		
     	var nextPath = $scope.getNextPath(question);
