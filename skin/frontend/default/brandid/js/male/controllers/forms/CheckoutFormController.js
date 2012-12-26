@@ -6,6 +6,7 @@ var CheckoutFormController = function CheckoutFormController($scope,DataService,
 
 	// need to define this up here first so they can be used in the promise closure below
 	
+	// TODO: should we set male_answers here?
 	// NB we are not using $scope.male_answers because there is a chance it could be asyncronously fetching from DB at this very moment
 	var all_user_answers;
 	var currentAnswer = $scope.currentAnswer;
@@ -14,12 +15,11 @@ var CheckoutFormController = function CheckoutFormController($scope,DataService,
 	// basket title
 	$scope.basketTitle = checkoutLoader.getBasketTitle($locale.id);
 
-	
 
 		// fetch collection of answers for the user
-	  var promise = DataService.getUserAnswers($scope.currentUser,$scope);
+		var promise = DataService.getUserAnswers($scope.currentUser,$scope);
 
-	  promise.then(function(answers) {
+		promise.then(function(answers) {
 
 	    all_user_answers = answers;
 	    currentAnswer = all_user_answers.getByCategory($routeParams.category);

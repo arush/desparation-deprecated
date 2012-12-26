@@ -137,13 +137,30 @@ angular.module('DataServices', [])
             alert('error');
             console.log(results);
             console.log(error);
+            deferred.reject(error);
           }
 
         });
 
         return deferred.promise;
       },
+      emailLogin: function(loginAttempt,scope) {
+        var deferred = $q.defer();
+        
+        Parse.User.logIn(loginAttempt.email, loginAttempt.password, {
+          success: function(user) {
+            // we wrap this in $apply using the correct scope passed in because we always need angular to recognise changes
+            scope.$apply(function() {
+              deferred.resolve(user);
+            });
+          },
+          error: function(user, error) {
+            deferred.reject(error);
+          }
+        });
 
+        return deferred.promise;
+      },
       emailSignUp: function(user,scope) {
         var deferred = $q.defer();
 
@@ -162,41 +179,32 @@ angular.module('DataServices', [])
 
         return deferred.promise;
       },
-
-      // // TODO: use collections instead
-      // query: {
-      //   usersBoxers: function(user, male_answers, scope) {
-      //     var deferred = $q.defer();
-
-          
-      //       // Parse.Object was previously created
-      //       var query = new Parse.Query(Boxers);
-      //       query.equalTo("user", user);
-      //       query.first({
-      //         success: function(result) {
-      //           // console.log(result);
-      //           scope.$apply(function() {
-      //             deferred.resolve(result);
-      //           });
-
-      //         },
-      //         error: function(result,error) {
-                
-      //           deferred.reject(error);
-
-      //           console.log(result);
-      //           console.log(error);
-      //         }
-      //       });
-          
-
-      //     return deferred.promise;
-            
-      //   },
         
       initNewUser: function() {
         var user = new Parse.User();
         return user;
+      },
+
+      fbLogin: function(scope) {
+        var deferred = $q.defer();
+        Parse.FacebookUtils.logIn("user_likes,email,user_photos", {
+          success: function(user) {
+            // Handle successful login
+            scope.$apply(function() {
+              deferred.resolve(user);
+            });
+          },
+          error: function(user, error) {
+            // Handle errors and cancellation
+            alert('Something went wrong, please let @male know so he can fix it - male@getbrandid.com or @male');
+            console.log(error);
+
+            deferred.reject(error);
+
+          }
+        });
+
+        return deferred.promise;
       },
 
       fbLoginAndSave: function(male_answers,category,currentUser) {
@@ -210,10 +218,6 @@ angular.module('DataServices', [])
 
             // if this is a registration, we need to capture some data from FB
             if(!user.get('email')) {
-                // track
-                var metricsPayload = {"B4.0_Funnel": $routeParams.category,"B4.0_Step": "Register (Save Basket)", "B4.0_Registration Method": "Facebook Connect"};
-                HelperService.metrics.track('B4.0_Attempted Registration', metricsPayload);
-
                 self.saveRegistrationDataFromFacebook(male_answers,category,user);
             } else {
 
@@ -240,20 +244,35 @@ angular.module('DataServices', [])
 
       setAnswer: function(currentAnswer,question,answer) {
         
-        // just get the first one from the array - assumption is there is only one of each category anyway
+        // this is just a wrapper function for Parse's object.set
         currentAnswer.set(question,answer);
 
       },
 
-      saveRegistrationDataFromFacebook: function(male_answers,category,user) {
+      getFbData: function(user,scope) {
+        var deferred = $q.defer();
+        
         var authData = user.get("authData");
         var requestURI = '/' + authData.facebook.id + '?fields=first_name,last_name,gender,email,birthday,location';
         var self = this;
 
         FB.api(requestURI, function(response) {
-          
+
+          scope.$apply(function() {
+              self.setFbData(user,response);
+              deferred.resolve(user);
+            });
+
+        });
+
+        return deferred.promise;
+
+      },
+
+      setFbData: function(user, response) {
+
           // Facebook response is unreliable. Need to check if objects exist first
-          // i wish we were doing this in coffeescript
+          // this is so much easier in coffeescript
           var metricsPayload = {
             "Registration Method": "Facebook Connect",
             "$created": new Date(),
@@ -261,23 +280,23 @@ angular.module('DataServices', [])
           };
 
           if(response.first_name !== "undefined") {
-            self.setToUser( user, "first_name", response.first_name);
+            this.setToUser( user, "first_name", response.first_name);
             metricsPayload.first_name = response.first_name;
           }
           if(response.last_name !== "undefined") {
-            self.setToUser( user, "last_name", response.last_name);
+            this.setToUser( user, "last_name", response.last_name);
             metricsPayload.last_name = response.last_name;
           }
           if(response.gender !== "undefined") {
-            self.setToUser( user, "gender", response.gender);
+            this.setToUser( user, "gender", response.gender);
             metricsPayload.gender = response.gender;
           }
           if(response.birthday !== "undefined") {
-            self.setToUser( user, "birthday", response.birthday);
+            this.setToUser( user, "birthday", response.birthday);
             metricsPayload.birthday = response.birthday;
           }
           if(response.location !== "undefined") {
-            self.setToUser( user, "location", response.location);
+            this.setToUser( user, "location", response.location);
             if(response.location.name !== "undefined") {
               metricsPayload.location = response.location.name;
             }
@@ -285,14 +304,13 @@ angular.module('DataServices', [])
 
           // if email exists, use that as the identity in metrics
           if(response.email !== "undefined") {
-            self.setToUser( user, "email", response.email);
+            this.setToUser( user, "email", response.email);
             HelperService.metrics.identify(response.email);
             metricsPayload.email = response.email;
           }
 
-
           HelperService.metrics.track("Registered", metricsPayload);
-          
+
           // /* KISSmetrics Tracking */
           // if(typeof(_kmq) !== "undefined") {
           //   _kmq.push(['record', 'Registered', metricsPayload]);
@@ -318,35 +336,42 @@ angular.module('DataServices', [])
           //   // });
           // }
 
-          user.save(null, {
-            success: function(user) {
-              // The object was saved successfully.
-
-              // Due to a bug in the Parse SDK, need to do a fetch here
-              user.fetch({
-                success: function (user) {
-                  // now we can save the answers against the user
-                  self.saveAnswer(male_answers,category,user /* add scope */);
-                },
-                error: function (user,error) {
-                    self.saveAnswer(male_answers,category,user /* add scope */);
-                    console.log(user);
-                }
-              });
-            },
-            error: function(user, error) {
-              // The save failed.
-              // error is a Parse.Error with an error code and description.
-              self.saveAnswer(male_answers,category,user /* add scope */);
-              console.log(error);
-            }
-          });
-
-
-        });
-
       },
 
+      saveUser: function(user,scope) {
+
+        var deferred = $q.defer();
+
+        user.save(null, {
+          success: function(user) {
+            
+            // Due to a bug in the Parse SDK, need to do a fetch here
+            user.fetch({
+              success: function (user) {
+                
+                // we wrap this in $apply using the correct scope passed in because we always need angular to recognise changes
+                scope.$apply(function() {
+                  deferred.resolve(user);
+                });
+              },
+              error: function (user,error) {
+                  console.log(user);
+                  deferred.reject(error);
+              }
+            });
+
+          },
+          error: function(user, error) {
+            // something went wrong
+            deferred.reject(error);
+          }
+        });
+
+        return deferred.promise;
+
+      },
+            
+      // TODO: execute this after FB registration
       saveAnswer: function(currentAnswer,scope) {
 
         // to make this promise-aware, we always return a promise
@@ -397,67 +422,10 @@ angular.module('DataServices', [])
 
       },
 
-
-      // fetch: function(currentUser) {
-      //   currentUser.fetch({
-      //     success: function(user) {
-      //       // The object was refreshed successfully.
-      //       // alert('fetched successfully');
-
-      //     },
-      //     error: function(user, error) {
-      //       // The object was not refreshed successfully.
-      //       // error is a Parse.Error with an error code and description
-      //       alert("Something went wrong, please contact @male");
-      //       console.log(error);
-      //     }
-      //   });
-
-      // },
-
-      // user: {
-      //   // wrapper for Parse's user.get()
-      //   get: function(attribute) {
-      //     var user = this.getCurrentUser();
-      //     var attributeValue = user.get(attribute);
-      //     return attributeValue;
-      //   }
-      // },
-
-      
-
       setToUser: function(currentUser, key, value) {
         
         currentUser.set(key,value);
         
-      },
-
-      saveUser: function(currentUser) {
-
-        // TODO: make promise-aware
-
-        // currentUser.save(null, {
-        //   success: function(user) {
-        //     // The object was saved successfully.
-
-
-        //     // Due to a bug in the Parse SDK, need to do a fetch here
-        //     currentUser.fetch({
-        //       success: function (user) {
-        //         // nothing really to do
-        //       },
-        //       error: function (user,error) {
-        //           console.log(user);
-        //       }
-        //     });
-        //   },
-        //   error: function(user, error) {
-        //     // The save failed.
-        //     // error is a Parse.Error with an error code and description.
-        //     console.log(error);
-        //   }
-        // });
-
       },
       
       // feedback form on every page
@@ -495,7 +463,6 @@ angular.module('DataServices', [])
         });
       }
       
-    
     };
 
     // The factory function returns ParseService, which is injected into controllers.

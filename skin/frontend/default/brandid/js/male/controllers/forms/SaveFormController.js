@@ -20,7 +20,8 @@ var SaveFormController = function SaveFormController($scope,DataService,HelperSe
 
 	$scope.fbLoginAndSave = function() {
 
-		DataService.fbLoginAndSave($scope.male_answers, $routeParams.category, $scope.currentUser, /* save is needed */ true);
+		$scope.fbRegisterAndSave();
+
 	}
 
 	// track

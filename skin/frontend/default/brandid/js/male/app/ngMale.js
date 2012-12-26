@@ -148,10 +148,44 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
 
     // ***** LOGIN FUNCTIONS ***** //
 
-    
-    $rootScope.fbLoginFromHeader = function(category){
+    // TODO: update view to disable input and explain what's happing while loading
+    $rootScope.fbLoginFromHeader = function(){
       // log them in with nothing to save
-      DataService.fbLoginAndSave($rootScope.male_answers,category /* if this is 'intro', nothing happens */,$rootScope.currentUser);
+      // DataService.fbLoginAndSave($rootScope.male_answers,category /* if this is 'intro', nothing happens */,$rootScope.currentUser);
+      
+      var promise = DataService.fbLogin($rootScope);
+
+      promise.then(function(user) {
+
+        $rootScope.loggedIn = true;
+        
+        // track login
+        HelperService.metrics.setLastLogin('facebook login');
+
+        // if we don't have the user's email we try and capture it now
+        if(typeof(user.get('email')) === "undefined") {
+
+          // need nested promise here because if the if/else branches
+          var fb_data_promise = DataService.getFbData(user,$rootScope); // includes an identify call
+
+          fb_data_promise.then(function(user) {
+            return DataService.saveUser(user,$rootScope);
+          }).then(function() {
+            window.location = "/male";
+          });
+
+        } else {
+
+          HelperService.metrics.identify(user.get('email'));
+          window.location = "/male";
+        }
+      }, function(error) {
+        // Handle errors and cancellation
+        alert('Something went wrong, please let @male know so he can fix it - male@getbrandid.com or @male');
+        console.log(error);
+        jQuery("#modal-login-form .error").html(error.message).show();
+
+      });
 
     };
 
@@ -162,32 +196,38 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
       password: ""
     };
 
+    // TODO: update view to disable input and explain what's happing while loading
     $rootScope.loginWithEmail = function() {
 
-      // TODO: Make promise-aware
-      // DataService.emailLogin($rootScope.loginAttempt)
-
-      Parse.User.logIn($rootScope.loginAttempt.email, $rootScope.loginAttempt.password, {
-        success: function(user) {
-
-          // track login
-          HelperService.metrics.setLastLogin();
-          // this handles the save and reload
-
-          // TODO: is this still needed?
-          // DataService.saveAnswersAfterSuccessfulLogin($rootScope.male_answers,$routeParams.category /* if this is 'intro', nothing happens */,$rootScope.currentUser);
-        },
-        error: function(user, error) {
-          // The login failed. Check error to see why.
-          jQuery("#modal-login-form .error").html(error.message).show();
-          jQuery("#modal-login-form button").removeAttr("disabled");
-          jQuery("#modal-login-form button").text("Try Again");
-        }
-      });
+      // NB there is no save at login, otherwise we would need conflict handling
 
       jQuery("#modal-login-form button").attr("disabled", "disabled");
       jQuery("#modal-login-form button").text("Hold Tight");
-    }
+
+
+      var promise = DataService.emailLogin($rootScope.loginAttempt, $rootScope);
+
+      promise.then(function(user) {
+
+        $rootScope.loggedIn = true;
+
+        // track login
+        HelperService.metrics.identify($rootScope.loginAttempt.email);
+        HelperService.metrics.setLastLogin('email login');
+
+        // delaying reload to allow time for the metrics calls to complete, just to be sure
+        setTimeout(function(){
+          window.location = "/male";
+        },500);
+      
+      }, function(error) {
+        // The login failed. Check error to see why.
+          jQuery("#modal-login-form .error").html(error.message).show();
+          jQuery("#modal-login-form button").removeAttr("disabled");
+          jQuery("#modal-login-form button").text("Try Again");
+      });
+
+    };
 
     // Register modal
     
@@ -222,6 +262,7 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
       });
     };
 
+    // TODO: update view to disable input and explain what's happing while loading
     $rootScope.register = function() {
 
 
@@ -236,6 +277,8 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
       var promise = DataService.emailSignUp($rootScope.currentUser,$rootScope);
 
       promise.then(function(user) {
+          
+          $rootScope.loggedIn = true;
 
           // track registration
           var metricsPayload = {
@@ -245,7 +288,6 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
           };
           HelperService.metrics.track("Registered", metricsPayload);
 
-          // we must nest the 'then' statement here because we need access to 'user' in a nested call below
 
           // User has no answers in Parse, so create the collection and save the answer to it
           $rootScope.male_answers = DataService.initNewAnswerCollection($rootScope.currentUser);
@@ -283,6 +325,53 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
     };
 
 
+    $rootScope.fbRegisterAndSave = function() {
+
+      // this is a first time Facebook Connect after choosing answers
+      // TODO: update view to disable input and explain what's happing while loading
+
+      var promise = DataService.fbLogin($rootScope);
+
+      // capture facebook database
+      promise.then(function(user) {
+        
+        $rootScope.loggedIn = true;
+
+        var fb_api_promise = DataService.getFbData(user,$rootScope); // includes an identify and registered call to metrics
+        
+        // we need a nested promise here because need access to 'user' from above
+        fb_api_promise.then(function(response) {
+          
+          // after getting the facebook data and setting it to the user, must save user
+          return DataService.saveUser(user,$rootScope);
+
+        }).then(function(user) {
+
+          // after saving the user, must assciate the new user to the user's answers
+          DataService.setAnswer($rootScope.currentAnswer,"user",user);
+
+          // init an answers collection
+          $rootScope.male_answers = DataService.initNewAnswerCollection(user);
+
+          // after setting the user, add the answer to user's answer collection. This auto-saves to database.
+          return DataService.addAnswerToMale($rootScope.male_answers,$rootScope.currentAnswer,$rootScope.currentUser,$rootScope);
+
+        }).then(function() {
+
+          location.reload();
+
+        });
+
+      }, function(error) {
+      // Handle errors and cancellation
+      alert('Something went wrong, please let @male know so he can fix it - male@getbrandid.com or @male');
+      console.log(error);
+      // jQuery("#modal-login-form .error").html(error.message).show();
+
+      });
+
+    };
+
     $rootScope.setCurrentAnswer = function(chosenCategory) {
       // init a new answer if one doesn't exist in the user's existing answers
       // but first check if male_answers collection has been initialised so we can call 'getByCategory'
@@ -316,6 +405,8 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
         //$rootScope.currentAnswer.set("user",$rootScope.currentUser);
         // must save here as QuestionController logic assumes the answer exists in the DB
         if(typeof(existingAnswer) === "undefined") {
+          // for new answers, need to set the user, otherwise turns up sans-user in Parse
+          $rootScope.currentAnswer.set("user",$rootScope.currentUser);
           DataService.saveAnswer($rootScope.currentAnswer);
         }
       }

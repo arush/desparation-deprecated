@@ -34,9 +34,9 @@ angular.module('HelperServices', [])
 					mixpanel.identify(identity);
 				}
 			},
-			setLastLogin: function() {
+			setLastLogin: function(loginMethod) {
 				var loginTime = new Date();
-				var metricsPayload = {"$last_login": loginTime};
+				var metricsPayload = {"$last_login": loginTime, "login_method": loginMethod};
 
 				/* KISSmetrics Tracking */
 				if(typeof(_kmq) !== "undefined") {
