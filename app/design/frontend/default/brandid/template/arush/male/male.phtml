@@ -94,7 +94,7 @@
     </div>
   </div>
    -->
- <div class="container maleApp withShadow drawerOpen-{{drawerOpen}}" ng-init="drawerOpen = false" ng-controller="MainController">
+ <div class="container maleApp withShadow grey-back drawerOpen-{{drawerOpen}}" ng-init="drawerOpen = false" ng-controller="MainController">
 
 
   <div  class="drawer-holder shadow-trick-holder" >
@@ -465,6 +465,9 @@
       </div>
   </script>
 
+  <script type=text/ng-template id=tag.html>
+    <a>{{label}}</a>
+  </script>
   <script type=text/ng-template id=section/garms/category/generic/question/brands.html>
       <div class="slide-container clearfix fadeIn ani">
         <form ng-controller="BrandsFormController">
@@ -474,7 +477,6 @@
             <span id="brands" class="question">{{question}}</span>
           </div>
 
-          
             <div class="answers multi-button-set">
                 
                 <a class="convert secondary brands-auto-populator total-num-buttons-{{totalNumButtons}} first-{{$first}} last-{{$last}}" ng-click="chooseBrands(routeParams.category, brandsButton.brandType, $index)" ng-repeat="brandsButton in brandsButtons" ng-class="{active: brandsButton.isActive}">
@@ -497,16 +499,26 @@
 
             <div class="tag-section">
               {{tooltip}}
-              <input class="tags-field" ui-select2="{tags:brands}" ng-model="selectedBrands" required/>
             </div>
-
-            <div class="next-question-button-section">
+            <div class="next-question-button-section clearfix">
               <button class="convert submit" type="submit" ng-click="saveAnswer()">
-                    Next
+                    Done!
               </button>
             </div>
-
         </form>
+
+        <form name="addTagForm" ng-controller="TagController">
+            <div class="field-with-submit-button-container clearfix">
+              <input class="tag-input" type="text" ng-model="typeahead.typeaheadValue" placeholder="Enter any brand" bs-typeahead="typeahead.allBrands" required/>
+              <button ng-hide="addTagForm.$invalid" type="submit" class="submit convert secondary" ng-click="addTag()">Add</button>
+            </div>
+
+            <text-tag ng-repeat="tag in selectedBrands" label="tag.text"></text-tag>
+          </form>
+
+          
+          
+          
 
       </div>
   </script>

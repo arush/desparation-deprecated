@@ -5,7 +5,6 @@ var BrandsFormController = function BrandsFormController($scope,HelperService,$r
 
 		$scope.routeParams = $routeParams;
 
-
 	/***** END CONTROLLER PROPERTIES ******/
 
 
@@ -76,11 +75,8 @@ var BrandsFormController = function BrandsFormController($scope,HelperService,$r
 			$scope.brands.push(copyOfSkateBrand);
 		});
 
-		$scope.selectedBrands = [];
-
-	/***** SELECT2 BRANDS DROPDOWN ******/
-
-
+		
+	
 	/***** CONTROLLER EVENT RESPONDERS ******/
 	
 		$scope.chooseBrands = function(category,brandType,buttonIndex) {
@@ -108,3 +104,50 @@ var BrandsFormController = function BrandsFormController($scope,HelperService,$r
 
 }
 BrandsFormController.$inject = ['$scope','HelperService','$routeParams','brandsLoader','$locale'];
+
+var TagController = function TagController($scope,HelperService,$routeParams,brandsLoader,$locale) {
+	$scope.typeahead = {
+			typeaheadValue: ""
+		};
+
+
+	$scope.selectedBrands = [
+				{
+	    			id: "Ralph Lauren",
+	    			text: "Ralph Lauren"
+	    		},
+	    		{
+	    			id: "French Connection",
+	    			text: "French Connection"
+	    		},
+	    		{
+	    			id: "Paul Smith",
+	    			text: "Paul Smith"
+	    		},
+	    		{
+	    			id: "Ted Baker",
+	    			text: "Ted Baker"
+	    		}
+	    	];
+
+	/***** TYPEAHEAD ******/
+
+
+		$scope.typeahead.allBrands = ['thing','thing2'];
+
+		$scope.addTag = function() {
+	      if($scope.typeahead.typeaheadValue !== "") {
+	      	var tagToAdd = {
+	      		id: $scope.typeahead.typeaheadValue,
+	      		text: $scope.typeahead.typeaheadValue
+	      	};
+	      	
+	      	$scope.selectedBrands.push(tagToAdd);
+	      	$scope.typeahead.typeaheadValue = "";
+
+	      }
+	      
+	    };
+
+}
+TagController.$inject = ['$scope','HelperService','$routeParams','brandsLoader','$locale'];

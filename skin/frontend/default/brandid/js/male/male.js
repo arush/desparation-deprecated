@@ -3,9 +3,11 @@
 
 // @codekit-prepend "libs/parse-1.1.15.js"
 
-// @codekit-prepend "libs/bootstrap-modal-2.2.2.js"
+// @codekit-prepend "libs/bootstrap/modal-2.2.2.js"
+// @codekit-prepend "libs/bootstrap/typeahead-2.2.2.js"
 
 // @codekit-prepend "libs/angular-ui/build/angular-ui.js"
+// @codekit-prepend "libs/angular-strap/angular-strap-0.5.7.js"
 // @codekit-prepend "libs/select2/select2.js"
 
 
@@ -40,6 +42,8 @@
 // @codekit-prepend "controllers/forms/SaveFormController.js"
 // @codekit-prepend "controllers/forms/CheckoutFormController.js"
 // @codekit-prepend "controllers/forms/SuccessFormController.js"
+
+// @codekit-prepend "modules/directives/maleUI.js"
 
 // @codekit-prepend "modules/brandsLoader.js"
 // @codekit-prepend "modules/coloursLoader.js"

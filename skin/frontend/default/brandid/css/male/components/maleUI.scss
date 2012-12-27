@@ -1,0 +1,44 @@
+.tag-input {
+	font-size: 2em;
+	line-height: 1em;
+	font-weight:normal;
+	color:#595959;
+	// width: 300px;
+}
+.typeahead.dropdown-menu {
+	// Links within the dropdown menu
+	li > a {
+		display: block;
+		// padding: 2% 5%;
+		clear: both;
+		font-weight: normal;
+		font-size: 2em;
+		line-height:2em;
+		// line-height: $baseLineHeight;
+		// color: $dropdownLinkColor;
+		white-space: nowrap;
+	}
+}
+.male-tag {
+	display: inline-block;
+	padding: 8px 11px;
+	background: #A0A096;
+	font-size: 2em;
+	line-height: 1em;
+	font-weight:bold;
+	white-space: nowrap;
+	color: white;
+	@include border-radius(5px);
+	@include text-shadow(rgba(0, 0, 0, .2) 0 -1px 0);
+	@include transition-property(all);
+	@include transition-timing-function(ease);
+	@include transition-duration(.3s);
+	cursor: pointer;
+	// border:4px solid #F1F1F1;
+	@include box-shadow(5px);
+	margin: 0 15px 15px 0;
+}
+
+.male-tag:hover {
+	background: #d2002b;
+}

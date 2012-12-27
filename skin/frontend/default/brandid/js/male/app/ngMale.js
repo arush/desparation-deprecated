@@ -3,7 +3,7 @@
 // this is for intercom.io integration
 var intercomSettings = {};
 
-var ngMaleApp = angular.module('ngMaleApp', ['ui','DataServices','HelperServices','BrandsModule','ColoursModule','SizeModule','SpecificsModule','CheckoutModule','SuccessModule']);
+var ngMaleApp = angular.module('ngMaleApp', ['ui','$strap','maleUI','DataServices','HelperServices','BrandsModule','ColoursModule','SizeModule','SpecificsModule','CheckoutModule','SuccessModule']);
 
 ngMaleApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider

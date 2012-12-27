@@ -69,6 +69,7 @@ $detailSize: calc-percent($detailTargetWidth);
 @import "components/questions/brands.scss";
 @import "components/questions/size.scss";
 @import "components/checkout.scss";
+@import "components/maleUI.scss";
 
 @import "components/feedback-form.scss";
 
@@ -89,7 +90,7 @@ $detailSize: calc-percent($detailTargetWidth);
 
 
 .container.maleApp.withShadow {
-	background:$paneBg;
+	// background:$paneBg;
 }
 
 
