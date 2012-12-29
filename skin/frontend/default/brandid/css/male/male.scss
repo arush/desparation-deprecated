@@ -73,7 +73,9 @@ $detailSize: calc-percent($detailTargetWidth);
 
 @import "components/feedback-form.scss";
 
-
+.male-font {
+	font-family:"larabiefont",Helvetica,arial,sans-serif;
+}
 
 #detailView {
 	overflow:hidden;	

@@ -466,7 +466,10 @@
   </script>
 
   <script type=text/ng-template id=tag.html>
-    <a>{{label}}</a>
+    <a ng-click="clickedTag(id)" class="male-tag float-left" ng-class="{selected: isSelected}">
+      <div class="status float-left"></div>
+      <div class="label float-left">{{label}}</div>
+    </a>
   </script>
   <script type=text/ng-template id=section/garms/category/generic/question/brands.html>
       <div class="slide-container clearfix fadeIn ani">
@@ -507,18 +510,19 @@
             </div>
         </form>
 
-        <form name="addTagForm" ng-controller="TagController">
-            <div class="field-with-submit-button-container clearfix">
-              <input class="tag-input" type="text" ng-model="typeahead.typeaheadValue" placeholder="Enter any brand" bs-typeahead="typeahead.allBrands" required/>
-              <button ng-hide="addTagForm.$invalid" type="submit" class="submit convert secondary" ng-click="addTag()">Add</button>
-            </div>
+        <form name="addTagForm" ng-controller="TagController" novalidate>
+          
+          <div class="selected-tags clearfix">
+            <text-tag ng-repeat="tag in selectedTags" label="tag.text" id="tag.id" is-selected="tag.isSelected" click-delegate="toggleTag"></text-tag>
+          </div>
 
-            <text-tag ng-repeat="tag in selectedBrands" label="tag.text"></text-tag>
-          </form>
+          <div class="male-font field-with-submit-button-container clearfix">
+            <input class="tag-input" type="text" ng-model="typeahead.typeaheadValue" placeholder="Enter any brand" bs-typeahead="typeahead.allBrands" required/>
+            <button ng-hide="addTagForm.$invalid" type="submit" class="submit convert secondary" ng-click="addTag()">Add</button>
+          </div>
 
           
-          
-          
+        </form>
 
       </div>
   </script>

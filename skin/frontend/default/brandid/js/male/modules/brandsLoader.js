@@ -385,24 +385,24 @@ Brands.factory('brandsLoader', function() {
 	    // this is a function used by the "auto-populate brands" buttons
 
 	    getAllBrandsFilteredBy: function(category, brandType) {
-	    	var selectedBrands = {};
+	    	var selectedTags = {};
 
 	    	switch(brandType) {
 	    		case 'skate':
-	    			selectedBrands = this.getSkateBrands(category);
+	    			selectedTags = this.getSkateBrands(category);
 	    			break;
 	    		case 'premium':
-	    			selectedBrands = this.getPremiumBrands(category);
+	    			selectedTags = this.getPremiumBrands(category);
 	    			break;
 	    		case 'value':
-	    			selectedBrands = this.getValueBrands(category);
+	    			selectedTags = this.getValueBrands(category);
 	    			break;
 	    		default:
-	    			selectedBrands.brands = [];
+	    			selectedTags.brands = [];
 	    			break;
 	    	}
 
-	    	return JSON.parse(JSON.stringify(selectedBrands.brands));
+	    	return JSON.parse(JSON.stringify(selectedTags.brands));
 	    }
 
 

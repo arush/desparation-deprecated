@@ -27930,13 +27930,13 @@ var BrandsFormController = function BrandsFormController($scope,HelperService,$r
 				button.isActive = false;
 			});
 			$scope.brandsButtons[buttonIndex].isActive = true;
-			$scope.selectedBrands = brandsLoader.getAllBrandsFilteredBy(category,brandType);
+			$scope.selectedTags = brandsLoader.getAllBrandsFilteredBy(category,brandType);
 		};
 
 		$scope.saveAnswer = function() {
 			// since we defined the answer in the question in the form controller, the parent controller doesn't have access to it
 			// therefore we need to pass the answer by reference
-			$scope.goToNextQuestion($routeParams.section,$routeParams.category,$routeParams.question,/*answer*/$scope.selectedBrands);
+			$scope.goToNextQuestion($routeParams.section,$routeParams.category,$routeParams.question,/*answer*/$scope.selectedTags);
 		}
 
 	/***** END CONTROLLER EVENT RESPONDERS ******/
@@ -27948,53 +27948,6 @@ var BrandsFormController = function BrandsFormController($scope,HelperService,$r
 
 }
 BrandsFormController.$inject = ['$scope','HelperService','$routeParams','brandsLoader','$locale'];
-
-var TagController = function TagController($scope,HelperService,$routeParams,brandsLoader,$locale) {
-	$scope.typeahead = {
-			typeaheadValue: ""
-		};
-
-
-	$scope.selectedBrands = [
-				{
-	    			id: "Ralph Lauren",
-	    			text: "Ralph Lauren"
-	    		},
-	    		{
-	    			id: "French Connection",
-	    			text: "French Connection"
-	    		},
-	    		{
-	    			id: "Paul Smith",
-	    			text: "Paul Smith"
-	    		},
-	    		{
-	    			id: "Ted Baker",
-	    			text: "Ted Baker"
-	    		}
-	    	];
-
-	/***** TYPEAHEAD ******/
-
-
-		$scope.typeahead.allBrands = ['thing','thing2'];
-
-		$scope.addTag = function() {
-	      if($scope.typeahead.typeaheadValue !== "") {
-	      	var tagToAdd = {
-	      		id: $scope.typeahead.typeaheadValue,
-	      		text: $scope.typeahead.typeaheadValue
-	      	};
-	      	
-	      	$scope.selectedBrands.push(tagToAdd);
-	      	$scope.typeahead.typeaheadValue = "";
-
-	      }
-	      
-	    };
-
-}
-TagController.$inject = ['$scope','HelperService','$routeParams','brandsLoader','$locale'];
 
 
 /* **********************************************
@@ -28376,6 +28329,99 @@ SuccessFormController.$inject = ['$scope','DataService','HelperService','$routeP
 
 
 /* **********************************************
+     Begin TagController.js
+********************************************** */
+
+
+var TagController = function TagController($scope,HelperService,brandsLoader,$routeParams,brandsLoader,$locale) {
+	$scope.typeahead = {
+			typeaheadValue: ""
+		};
+
+
+	$scope.selectedTags = [
+		{
+			id: "Ralph Lauren",
+			isSelected:true,
+			text: "Ralph Lauren"
+		},
+		{
+			id: "French Connection",
+			isSelected:true,
+			text: "French Connection"
+		},
+		{
+			id: "Paul Smith",
+			isSelected:true,
+			text: "Paul Smith"
+		},
+		{
+			id: "Ted Baker",
+			isSelected:true,
+			text: "Ted Baker"
+		}
+	];
+
+	/***** TYPEAHEAD ******/
+
+	$scope.toggleTag = function(senderId) {
+		// alert('called');
+		console.log(senderId);
+
+		var found = false;
+
+		// search for and remove it
+		for(var i = 0; i < $scope.selectedTags.length; i++){
+			if($scope.selectedTags[i].id === senderId) {
+				
+				console.log('found');
+				found = true;
+				
+				$scope.selectedTags.splice(i,1);
+					
+				break;
+			}
+
+		}
+
+		// add it if it wasn't there already
+		if(!found) {
+			console.log('not found');
+			var tagToAdd = {
+				id: senderId,
+				isSelected:true,
+				text: senderId
+			}
+			// TODO: add element model instead of fakie
+			$scope.selectedTags.unshift(tagToAdd);
+
+		}
+		// search selected brands, if exists, add, if not, remove
+
+	}
+
+		$scope.typeahead.allBrands = ['thing','thing2'];
+
+		$scope.addTag = function() {
+	      if($scope.typeahead.typeaheadValue !== "") {
+	      	var tagToAdd = {
+	      		id: $scope.typeahead.typeaheadValue,
+	      		isSelected:true,
+	      		text: $scope.typeahead.typeaheadValue
+	      	};
+
+	      	$scope.selectedTags.unshift(tagToAdd);
+	      	$scope.typeahead.typeaheadValue = "";
+
+	      }
+	      
+	    };
+
+}
+TagController.$inject = ['$scope','HelperService','brandsLoader','$routeParams','brandsLoader','$locale'];
+
+
+/* **********************************************
      Begin maleUI.js
 ********************************************** */
 
@@ -28383,15 +28429,25 @@ var maleUI = angular.module('maleUI', [])
 
 .directive('textTag', function() {
 	return {
-		restrict: 'E,A,C',
+		restrict: 'E',
 		templateUrl:'tag.html',
 		replace:true,
 		// transclude:true,
 		scope: {
-			label: '='
+			label: '=',
+			id: '=',
+			isSelected: '=',
+			clickedTag: '=clickDelegate' // this calls the parent controller's function defined in the markup
 		},
 		link:function (scope, element, attrs) {
-            element.addClass('text male-tag ani fadeIn');
+            element.addClass('text ani fadeIn');
+            
+            // need to do stuff to the element when it is clicked
+            element.on('click',function() {
+            	// element.toggleClass('selected');
+            	scope.isSelected = !scope.isSelected;
+            	
+            });
         }
 	}
 });
@@ -28787,24 +28843,24 @@ Brands.factory('brandsLoader', function() {
 	    // this is a function used by the "auto-populate brands" buttons
 
 	    getAllBrandsFilteredBy: function(category, brandType) {
-	    	var selectedBrands = {};
+	    	var selectedTags = {};
 
 	    	switch(brandType) {
 	    		case 'skate':
-	    			selectedBrands = this.getSkateBrands(category);
+	    			selectedTags = this.getSkateBrands(category);
 	    			break;
 	    		case 'premium':
-	    			selectedBrands = this.getPremiumBrands(category);
+	    			selectedTags = this.getPremiumBrands(category);
 	    			break;
 	    		case 'value':
-	    			selectedBrands = this.getValueBrands(category);
+	    			selectedTags = this.getValueBrands(category);
 	    			break;
 	    		default:
-	    			selectedBrands.brands = [];
+	    			selectedTags.brands = [];
 	    			break;
 	    	}
 
-	    	return JSON.parse(JSON.stringify(selectedBrands.brands));
+	    	return JSON.parse(JSON.stringify(selectedTags.brands));
 	    }
 
 
@@ -29721,6 +29777,7 @@ Success.factory('successLoader', function() {
 // @codekit-prepend "controllers/forms/SaveFormController.js"
 // @codekit-prepend "controllers/forms/CheckoutFormController.js"
 // @codekit-prepend "controllers/forms/SuccessFormController.js"
+// @codekit-prepend "controllers/forms/TagController.js"
 
 // @codekit-prepend "modules/directives/maleUI.js"
 

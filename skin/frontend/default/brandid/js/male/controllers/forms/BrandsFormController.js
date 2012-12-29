@@ -86,13 +86,13 @@ var BrandsFormController = function BrandsFormController($scope,HelperService,$r
 				button.isActive = false;
 			});
 			$scope.brandsButtons[buttonIndex].isActive = true;
-			$scope.selectedBrands = brandsLoader.getAllBrandsFilteredBy(category,brandType);
+			$scope.selectedTags = brandsLoader.getAllBrandsFilteredBy(category,brandType);
 		};
 
 		$scope.saveAnswer = function() {
 			// since we defined the answer in the question in the form controller, the parent controller doesn't have access to it
 			// therefore we need to pass the answer by reference
-			$scope.goToNextQuestion($routeParams.section,$routeParams.category,$routeParams.question,/*answer*/$scope.selectedBrands);
+			$scope.goToNextQuestion($routeParams.section,$routeParams.category,$routeParams.question,/*answer*/$scope.selectedTags);
 		}
 
 	/***** END CONTROLLER EVENT RESPONDERS ******/
@@ -104,50 +104,3 @@ var BrandsFormController = function BrandsFormController($scope,HelperService,$r
 
 }
 BrandsFormController.$inject = ['$scope','HelperService','$routeParams','brandsLoader','$locale'];
-
-var TagController = function TagController($scope,HelperService,$routeParams,brandsLoader,$locale) {
-	$scope.typeahead = {
-			typeaheadValue: ""
-		};
-
-
-	$scope.selectedBrands = [
-				{
-	    			id: "Ralph Lauren",
-	    			text: "Ralph Lauren"
-	    		},
-	    		{
-	    			id: "French Connection",
-	    			text: "French Connection"
-	    		},
-	    		{
-	    			id: "Paul Smith",
-	    			text: "Paul Smith"
-	    		},
-	    		{
-	    			id: "Ted Baker",
-	    			text: "Ted Baker"
-	    		}
-	    	];
-
-	/***** TYPEAHEAD ******/
-
-
-		$scope.typeahead.allBrands = ['thing','thing2'];
-
-		$scope.addTag = function() {
-	      if($scope.typeahead.typeaheadValue !== "") {
-	      	var tagToAdd = {
-	      		id: $scope.typeahead.typeaheadValue,
-	      		text: $scope.typeahead.typeaheadValue
-	      	};
-	      	
-	      	$scope.selectedBrands.push(tagToAdd);
-	      	$scope.typeahead.typeaheadValue = "";
-
-	      }
-	      
-	    };
-
-}
-TagController.$inject = ['$scope','HelperService','$routeParams','brandsLoader','$locale'];

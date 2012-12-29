@@ -22,12 +22,12 @@
 .male-tag {
 	display: inline-block;
 	padding: 8px 11px;
-	background: #A0A096;
-	font-size: 2em;
+	background: #F9F9F9;
+	font-size: 1.8em;
 	line-height: 1em;
 	font-weight:bold;
 	white-space: nowrap;
-	color: white;
+	color: #595959;
 	@include border-radius(5px);
 	@include text-shadow(rgba(0, 0, 0, .2) 0 -1px 0);
 	@include transition-property(all);
@@ -35,10 +35,29 @@
 	@include transition-duration(.3s);
 	cursor: pointer;
 	// border:4px solid #F1F1F1;
-	@include box-shadow(5px);
+	@include box-shadow(rgba(#595959, 0.4) 0 0 4px);
 	margin: 0 15px 15px 0;
+	font-family:"larabiefont",Helvetica,arial,sans-serif;
 }
 
-.male-tag:hover {
-	background: #d2002b;
+.male-tag.selected .status {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAASCAYAAAC9+TVUAAABaUlEQVQ4EWNkoAywALX/Z6TADI6UlERjAQGB1+SawTVpUn/Ax49vXn369LaeHEN4Fy6cGw3U/Onz53dnv3x5z0mqIQKbNq3LBmr+DsRPgQZIk2qA8N69uyqAmv8CNX8DYmNSDRA7efJoO1Djfyj2I9UAyUuXzk5DMqCCFANA0S9z69a1FTADgIG5EpcB/EAJRSAWAGImqCImLS1N5QcPbm+BGQAMi2tANg9UHpUCxnXEq1fPzoECTU9P1wAoK2FmZqL55Mn9g0gGfASy1VF1IniMQEnmf//+nWNiYtL7+/fvx2fPnm8QEhLU5ebmNkIoYwjl4RFcg8RHYYKTPdAgG6DoYRQZBGci0IACBBeTBQ4DoKIjQFesQJf+////FaBYGbo4Oh+eAYGuUQFqusbIyMgKUgRk/wCyjYEWXEPXhM6HxQYDUPEdoMY+mAKgAaXEGABTD6eBruEB5Qkg3gEXJIcBNEgRZBgpegHGDcz/EW/l+AAAAABJRU5ErkJggg==);
+	width:17px;
+	height:18px;
+	margin:3px 10px 6px 0;
+}
+
+.male-tag .status {
+}
+
+.male-tag:hover, .male-tag.selected {
+	background: #70AA1B;
+	text-shadow: rgba(0, 0, 0, .3) 0 -1px 0;
+	color:white;
+}
+.male-tag.selected:hover {
+	background-color: #d2002b;
+	.status {
+			background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAASCAYAAAC9+TVUAAABNklEQVQ4EaWTu2oCQRSGVxEJwVJSBBECeYBgkcIq2KROwC5Y+gj2eQQLi5Aq+ACxEbROaS6VEEhgCaRJCptAqsD6HZhdz5wdg+KBj5n/PxfX2dlCkiTRrlHcdYD02yFnGwytUNPQdXbIHslrXWD2ZfQAXrVvh0xInkBoUAl/DDP4hVXIwRpO0TH0lF9kfw9Pysv6so1J9tExdJx/5/SV015fQcxAVPGm8AefIAf5CG3IR2iy8y5ZddQR3hOk2h6s/pWFFuy/jV7JdJpZD9APoOMGEXySoEnxresesrZA3sobdCHXkzMokjcQwxhKIDVNmMMLHILX5wmS8jdGIHdiH3S+gZYh8nTaz30755zWB1yAfyuj6BlP8u9Qgyz0PTnG/YGvLLt+c0QqTtN6SOptvf53TzYetgQapp2NZADQYgAAAABJRU5ErkJggg==);
+	}
 }
