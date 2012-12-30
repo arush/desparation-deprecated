@@ -16,11 +16,6 @@ var maleUI = angular.module('maleUI', [])
             element.addClass('text ani fadeIn');
             
             // need to do stuff to the element when it is clicked
-            element.on('click',function() {
-            	// element.toggleClass('selected');
-            	scope.isSelected = !scope.isSelected;
-            	
-            });
         }
 	}
 });

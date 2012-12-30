@@ -146,7 +146,7 @@
 
     <div id="detailView" class="grey-back" ng-view>
     </div>
-    <div class="feedback-on-this-page">
+    <div class="feedback-on-this-page big-bottom-margin">
         <form name="feedbackForm">
           <input type="hidden" name="section" ng-model="routeParams.section">
           <input type="hidden" name="category" ng-model="routeParams.category">
@@ -473,12 +473,14 @@
   </script>
   <script type=text/ng-template id=section/garms/category/generic/question/brands.html>
       <div class="slide-container clearfix fadeIn ani">
-        <form ng-controller="BrandsFormController">
+        <div ng-controller="BrandsFormController">
 
-          <div class="curved-white-block withShadow withRadius fadeIn ani">
+          <span id="brands" class="question">{{question}}</span>
+
+          <!-- <div class="curved-white-block withShadow withRadius fadeIn ani">
             <h1 class="question-title">{{questionTitle}}</h1>
-            <span id="brands" class="question">{{question}}</span>
-          </div>
+            
+          </div> -->
 
             <div class="answers multi-button-set">
                 
@@ -498,31 +500,56 @@
                 </a>
 
             </div>
+            
 
+            <form name="addTagForm" class="type-tag-form" novalidate>
+              
+              <h1 class="big-top-margin question-title on-grey">{{myTagsTitle}}</h1>
 
-            <div class="tag-section">
-              {{tooltip}}
-            </div>
-            <div class="next-question-button-section clearfix">
-              <button class="convert submit" type="submit" ng-click="saveAnswer()">
-                    Done!
-              </button>
-            </div>
-        </form>
+              <div class="clearfix top-margin">
+                <div class="male-font field-with-submit-button-container float-left">
+                  <input class="tag-input" type="text" ng-model="assets.typeahead.typeaheadValue" placeholder="Enter any brand" bs-typeahead="assets.typeahead.allBrands" autofocus="autofocus" required/>
 
-        <form name="addTagForm" ng-controller="TagController" novalidate>
-          
-          <div class="selected-tags clearfix">
-            <text-tag ng-repeat="tag in selectedTags" label="tag.text" id="tag.id" is-selected="tag.isSelected" click-delegate="toggleTag"></text-tag>
-          </div>
+                  <button ng-hide="addTagForm.$invalid" type="submit" class="submit convert secondary" ng-click="typeTag()">Add</button>
+                </div>
+                <div class="input-tooltip float-left">
+                  {{tooltip}}
+                </div>
+              </div>
 
-          <div class="male-font field-with-submit-button-container clearfix">
-            <input class="tag-input" type="text" ng-model="typeahead.typeaheadValue" placeholder="Enter any brand" bs-typeahead="typeahead.allBrands" required/>
-            <button ng-hide="addTagForm.$invalid" type="submit" class="submit convert secondary" ng-click="addTag()">Add</button>
-          </div>
+              
 
-          
-        </form>
+              <div class="big-top-margin selected-tags clearfix">
+                <text-tag ng-repeat="tag in assets.selectedTags" label="tag.text" id="tag.id" is-selected="tag.isSelected" click-delegate="toggleTag"></text-tag>
+              </div>
+
+              <div class="big-top-margin next-question-button-section clearfix">
+                <button class="convert submit" ng-click="saveAnswer()">
+                      Done!
+                </button>
+              </div>
+              
+              <hr class="big-top-margin"/>
+
+              <h1 class="top-margin question-title on-grey">{{suggestionsTitle}}</h1>
+
+              <div class="suggestions big-top-margin fullWidth" ng-repeat="brand in assets.allBrands">
+                <div class="third-column">
+
+                  <div class="top-margin bottom-margin">
+                    <span class="question-title on-grey smaller">{{brand.label}}</span><br/>
+
+                    <span class="question-title on-grey">{{currencySymbol}}{{brand.data.priceRange.lower}} - {{currencySymbol}}{{brand.data.priceRange.upper}}</span>
+                  </div>
+                  <text-tag ng-repeat="tag in brand.data.tags" label="tag.text" id="tag.id" is-selected="tag.isSelected" click-delegate="toggleTag"></text-tag>
+                </div>
+              </div>
+
+            </form>
+
+        </div>
+
+        
 
       </div>
   </script>

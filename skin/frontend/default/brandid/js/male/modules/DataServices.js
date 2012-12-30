@@ -28,7 +28,12 @@ angular.module('DataServices', [])
 
     // Define Parse Models
     
+    var Feedback = Parse.Object.extend({
+      className: "Feedback"
+    });
+    
     // every Answer must have a question property which directly matches the routeParams.category in the frontend
+
     var Answer = Parse.Object.extend({
       className: "Answer"
       // initialize: function(attributes,options) {

@@ -1,30 +1,59 @@
-.tag-input {
-	font-size: 2em;
-	line-height: 1em;
-	font-weight:normal;
-	color:#595959;
-	// width: 300px;
+$tagFontSize: 1.4em;
+
+
+// delete this when no longer using select2
+
+.select2-container {
+	width:100%;
 }
-.typeahead.dropdown-menu {
-	// Links within the dropdown menu
-	li > a {
-		display: block;
-		// padding: 2% 5%;
-		clear: both;
-		font-weight: normal;
-		font-size: 2em;
-		line-height:2em;
-		// line-height: $baseLineHeight;
-		// color: $dropdownLinkColor;
-		white-space: nowrap;
+
+.type-tag-form .field-with-submit-button-container {
+
+	width:50%;
+
+	.tag-input {
+		font-size: $tagFontSize * 1.5;
+		// line-height: 1em;
+		font-weight:normal;
+		color:#595959;
 	}
+	button {
+		width:28%;
+		font-weight: bold;
+		font-size: $tagFontSize / 1.5;
+		line-height: 1em;
+	}
+
+	.typeahead.dropdown-menu {
+		// Links within the dropdown menu
+		li > a {
+			display: block;
+			// padding: 2% 5%;
+			clear: both;
+			font-weight: normal;
+			font-size: 2em;
+			line-height:2em;
+			// line-height: $baseLineHeight;
+			// color: $dropdownLinkColor;
+			white-space: nowrap;
+		}
+	}
+
 }
+
+.input-tooltip {
+	width:43%;
+	margin-left:3%;
+	font-size:$tagFontSize;
+	line-height:$tagFontSize * 1.2;
+}
+
 .male-tag {
 	display: inline-block;
 	padding: 8px 11px;
 	background: #F9F9F9;
-	font-size: 1.8em;
-	line-height: 1em;
+	font-size: $tagFontSize;
+	line-height: $tagFontSize;
 	font-weight:bold;
 	white-space: nowrap;
 	color: #595959;
@@ -59,5 +88,9 @@
 	background-color: #d2002b;
 	.status {
 			background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAASCAYAAAC9+TVUAAABNklEQVQ4EaWTu2oCQRSGVxEJwVJSBBECeYBgkcIq2KROwC5Y+gj2eQQLi5Aq+ACxEbROaS6VEEhgCaRJCptAqsD6HZhdz5wdg+KBj5n/PxfX2dlCkiTRrlHcdYD02yFnGwytUNPQdXbIHslrXWD2ZfQAXrVvh0xInkBoUAl/DDP4hVXIwRpO0TH0lF9kfw9Pysv6so1J9tExdJx/5/SV015fQcxAVPGm8AefIAf5CG3IR2iy8y5ZddQR3hOk2h6s/pWFFuy/jV7JdJpZD9APoOMGEXySoEnxresesrZA3sobdCHXkzMokjcQwxhKIDVNmMMLHILX5wmS8jdGIHdiH3S+gZYh8nTaz30755zWB1yAfyuj6BlP8u9Qgyz0PTnG/YGvLLt+c0QqTtN6SOptvf53TzYetgQapp2NZADQYgAAAABJRU5ErkJggg==);
+			// correct image placement		
+			margin-bottom: 0;
+			margin-top: 5px;
 	}
 }
+

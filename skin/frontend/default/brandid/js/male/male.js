@@ -42,7 +42,6 @@
 // @codekit-prepend "controllers/forms/SaveFormController.js"
 // @codekit-prepend "controllers/forms/CheckoutFormController.js"
 // @codekit-prepend "controllers/forms/SuccessFormController.js"
-// @codekit-prepend "controllers/forms/TagController.js"
 
 // @codekit-prepend "modules/directives/maleUI.js"
 

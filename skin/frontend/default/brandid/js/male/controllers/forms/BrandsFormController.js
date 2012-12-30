@@ -5,94 +5,160 @@ var BrandsFormController = function BrandsFormController($scope,HelperService,$r
 
 		$scope.routeParams = $routeParams;
 
+		$scope.assets = {
+			typeahead: {
+				allBrands: [],
+				typeaheadValue:""
+			},
+			selectedTags: {},
+			allBrands: []
+		};
+		
+
+		// selectedTags should be replaced with user's actual stored data (currentAnswer)
+
+		$scope.assets.selectedTags = [
+			{
+				id: "Ralph Lauren",
+				isSelected:true,
+				text: "Ralph Lauren"
+			},
+			{
+				id: "French Connection",
+				isSelected:true,
+				text: "French Connection"
+			},
+			{
+				id: "Paul Smith",
+				isSelected:true,
+				text: "Paul Smith"
+			},
+			{
+				id: "Ted Baker",
+				isSelected:true,
+				text: "Ted Baker"
+			}
+		];
+
+
 	/***** END CONTROLLER PROPERTIES ******/
 
-
-		// retrieve brand data from service so we can use it below in the buttons
-		var valueBrands = brandsLoader.getValueBrands($routeParams.category);
-		var premiumBrands = brandsLoader.getPremiumBrands($routeParams.category);
-		var skateBrands = brandsLoader.getSkateBrands($routeParams.category);
 
 		$scope.questionTitle = brandsLoader.getQuestionTitle($locale.id);
 		$scope.question = brandsLoader.getQuestion($locale.id);
 		$scope.tooltip = brandsLoader.getTooltip($locale.id);
+		$scope.suggestionsTitle = brandsLoader.getSuggestionsTitle($locale.id);
+		$scope.myTagsTitle = brandsLoader.getMyTagsTitle($routeParams.category,$locale.id);
 
-		// TODO: put these in a .json file and retrieve via AJAX
 
-		if ($locale.id === 'en-gb') {
+		// make data tag friendly and create a typeahead array
+		var brandsData = brandsLoader.getBrands($routeParams.category,$locale.id);
+		
+		var brandsList = brandsLoader.detag(brandsData);
 
-			// Fetch the set of answers
+		// set pre-selected brands
+		brandsLoader.setSelected(brandsData, $scope.assets.selectedTags);
 
-			$scope.brandsButtons = [
-				{
-					brandType: 'value',
-					label: 'Value Brands',
-					isActive: false,
-					priceLower: valueBrands.priceRange.lower,
-					priceUpper: valueBrands.priceRange.upper
-				},
-				{
-					brandType: 'premium',
-					label: 'Premium Brands',
-					isActive: false,
-					priceLower: premiumBrands.priceRange.lower,
-					priceUpper: premiumBrands.priceRange.upper
-				},
-				{
-					brandType: 'skate',
-					label: 'Skate / Snow',
-					isActive: false,
-					priceLower: skateBrands.priceRange.lower,
-					priceUpper: skateBrands.priceRange.upper
-				}
-			];
 
-		} else {
-			// another language
-		}
+		$scope.assets.typeahead.allBrands = brandsList;
 
-		// this is for correct skinning of the multi-button-set
-		$scope.totalNumButtons = $scope.brandsButtons.length;
 
+		$scope.assets.allBrands = brandsData;
+
+
+		
 	/***** END BRANDS PRE-POPULATE BUTTONS ******/
 
 
-	/***** SELECT2 BRANDS DROPDOWN ******/
+	/***** TYPEAHEAD ******/
 
-		// add all the brands retrieved from the service to the $scope.brands object
+	$scope.toggleTag = function(senderId) {
 		
-		// this has to be done by doing a deep copy - copying objects is a javascript limitation
-		$scope.brands = JSON.parse(JSON.stringify(valueBrands.brands));
+		brandsLoader.toggleSelect($scope.assets.allBrands, senderId);
 
-		angular.forEach(premiumBrands.brands, function(premiumBrand) {
-			var copyOfPremiumBrand = JSON.parse(JSON.stringify(premiumBrand));
-			$scope.brands.push(copyOfPremiumBrand);
-		});
 
-		// TODO: do not add skate brands to $scope.brands if skate brands do not apply to this category
-		angular.forEach(skateBrands.brands, function(skateBrand) {
-			var copyOfSkateBrand = JSON.parse(JSON.stringify(skateBrand));
-			$scope.brands.push(copyOfSkateBrand);
-		});
+		var found = false;
+
+
+		// search for and remove it
+		for(var i = 0; i < $scope.assets.selectedTags.length; i++){
+			if($scope.assets.selectedTags[i].id === senderId) {
+				
+				found = true;
+				
+				$scope.assets.selectedTags.splice(i,1);
+					
+				break;
+			}
+
+		}
+
+		// add it if it wasn't there already
+		if(!found) {
+
+
+			var tagToAdd = {
+				id: senderId,
+				isSelected:true,
+				text: senderId
+			}
+
+			$scope.assets.selectedTags.push(tagToAdd);
+
+		}
+		// search selected brands, if exists, add, if not, remove
+
+	}
 
 		
+
+		$scope.typeTag = function() {
+	      var senderId = $scope.assets.typeahead.typeaheadValue;
+
+	      // select brand if not already selected
+		  for(var i=0; i < $scope.assets.selectedTags.length; i++) {
+			if(senderId === $scope.assets.selectedTags[i].text) {
+
+				// brand already is selected, so break out of the function
+				$scope.assets.typeahead.typeaheadValue = "";
+				return;
+			}
+		  };
+
+	      var tagToAdd = [senderId,""]; // hack to make it an array of strings so we can send it to taggerize() down below
+
+	      if(senderId !== "") {
+
+	      	// create tag-friendly array
+	      	tagToAdd = brandsLoader.taggerize(tagToAdd);
+
+	      	tagToAdd[0].isSelected = true;
+
+
+
+	      	$scope.assets.selectedTags.push(tagToAdd[0]);
+			
+	      	// update in allBrands list
+			brandsLoader.toggleSelect($scope.assets.allBrands, senderId);
+
+	      	$scope.assets.typeahead.typeaheadValue = "";
+
+	      }
+	      
+	    };
 	
 	/***** CONTROLLER EVENT RESPONDERS ******/
 	
-		$scope.chooseBrands = function(category,brandType,buttonIndex) {
-
-			// highlight the button
-			angular.forEach($scope.brandsButtons, function(button) {
-				button.isActive = false;
-			});
-			$scope.brandsButtons[buttonIndex].isActive = true;
-			$scope.selectedTags = brandsLoader.getAllBrandsFilteredBy(category,brandType);
-		};
 
 		$scope.saveAnswer = function() {
 			// since we defined the answer in the question in the form controller, the parent controller doesn't have access to it
 			// therefore we need to pass the answer by reference
-			$scope.goToNextQuestion($routeParams.section,$routeParams.category,$routeParams.question,/*answer*/$scope.selectedTags);
+
+			// humanize answers
+			var answers = brandsLoader.detag(angular.copy($scope.assets.selectedTags));
+
+			// call parent
+			$scope.goToNextQuestion($routeParams.section,$routeParams.category,$routeParams.question,answers);
 		}
 
 	/***** END CONTROLLER EVENT RESPONDERS ******/

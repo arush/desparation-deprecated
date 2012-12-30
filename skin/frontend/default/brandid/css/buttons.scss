@@ -101,7 +101,7 @@ button.convert {
 }
 
 
-a.secondary, input.convert.secondary {
+a.secondary, input.convert.secondary, button.secondary {
 	background-image: -moz-linear-gradient(center top , #ddd, #aaa);
 	background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0, #ddd),color-stop(1, #aaa));
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#ddd', EndColorStr='#aaa');
@@ -130,12 +130,12 @@ a.secondary, input.convert.secondary {
 	width:131px;
 }
 
-a.convert.secondary:hover {
+a.convert.secondary:hover, button.convert.secondary:hover {
 	color:black;
 	// border: 1px solid #ddd;
 }
 
-a.convert.secondary.active:hover, a.convert.secondary.true:hover {
+a.convert.secondary.active:hover, a.convert.secondary.true:hover, button.convert.secondary.active:hover {
 	color:white;
 }
 

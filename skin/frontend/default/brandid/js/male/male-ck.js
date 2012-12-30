@@ -26742,7 +26742,12 @@ angular.module('DataServices', [])
 
     // Define Parse Models
     
+    var Feedback = Parse.Object.extend({
+      className: "Feedback"
+    });
+    
     // every Answer must have a question property which directly matches the routeParams.category in the frontend
+
     var Answer = Parse.Object.extend({
       className: "Answer"
       // initialize: function(attributes,options) {
@@ -27849,94 +27854,160 @@ var BrandsFormController = function BrandsFormController($scope,HelperService,$r
 
 		$scope.routeParams = $routeParams;
 
+		$scope.assets = {
+			typeahead: {
+				allBrands: [],
+				typeaheadValue:""
+			},
+			selectedTags: {},
+			allBrands: []
+		};
+		
+
+		// selectedTags should be replaced with user's actual stored data (currentAnswer)
+
+		$scope.assets.selectedTags = [
+			{
+				id: "Ralph Lauren",
+				isSelected:true,
+				text: "Ralph Lauren"
+			},
+			{
+				id: "French Connection",
+				isSelected:true,
+				text: "French Connection"
+			},
+			{
+				id: "Paul Smith",
+				isSelected:true,
+				text: "Paul Smith"
+			},
+			{
+				id: "Ted Baker",
+				isSelected:true,
+				text: "Ted Baker"
+			}
+		];
+
+
 	/***** END CONTROLLER PROPERTIES ******/
 
-
-		// retrieve brand data from service so we can use it below in the buttons
-		var valueBrands = brandsLoader.getValueBrands($routeParams.category);
-		var premiumBrands = brandsLoader.getPremiumBrands($routeParams.category);
-		var skateBrands = brandsLoader.getSkateBrands($routeParams.category);
 
 		$scope.questionTitle = brandsLoader.getQuestionTitle($locale.id);
 		$scope.question = brandsLoader.getQuestion($locale.id);
 		$scope.tooltip = brandsLoader.getTooltip($locale.id);
+		$scope.suggestionsTitle = brandsLoader.getSuggestionsTitle($locale.id);
+		$scope.myTagsTitle = brandsLoader.getMyTagsTitle($routeParams.category,$locale.id);
 
-		// TODO: put these in a .json file and retrieve via AJAX
 
-		if ($locale.id === 'en-gb') {
+		// make data tag friendly and create a typeahead array
+		var brandsData = brandsLoader.getBrands($routeParams.category,$locale.id);
+		
+		var brandsList = brandsLoader.detag(brandsData);
 
-			// Fetch the set of answers
+		// set pre-selected brands
+		brandsLoader.setSelected(brandsData, $scope.assets.selectedTags);
 
-			$scope.brandsButtons = [
-				{
-					brandType: 'value',
-					label: 'Value Brands',
-					isActive: false,
-					priceLower: valueBrands.priceRange.lower,
-					priceUpper: valueBrands.priceRange.upper
-				},
-				{
-					brandType: 'premium',
-					label: 'Premium Brands',
-					isActive: false,
-					priceLower: premiumBrands.priceRange.lower,
-					priceUpper: premiumBrands.priceRange.upper
-				},
-				{
-					brandType: 'skate',
-					label: 'Skate / Snow',
-					isActive: false,
-					priceLower: skateBrands.priceRange.lower,
-					priceUpper: skateBrands.priceRange.upper
-				}
-			];
 
-		} else {
-			// another language
-		}
+		$scope.assets.typeahead.allBrands = brandsList;
 
-		// this is for correct skinning of the multi-button-set
-		$scope.totalNumButtons = $scope.brandsButtons.length;
 
+		$scope.assets.allBrands = brandsData;
+
+
+		
 	/***** END BRANDS PRE-POPULATE BUTTONS ******/
 
 
-	/***** SELECT2 BRANDS DROPDOWN ******/
+	/***** TYPEAHEAD ******/
 
-		// add all the brands retrieved from the service to the $scope.brands object
+	$scope.toggleTag = function(senderId) {
 		
-		// this has to be done by doing a deep copy - copying objects is a javascript limitation
-		$scope.brands = JSON.parse(JSON.stringify(valueBrands.brands));
+		brandsLoader.toggleSelect($scope.assets.allBrands, senderId);
 
-		angular.forEach(premiumBrands.brands, function(premiumBrand) {
-			var copyOfPremiumBrand = JSON.parse(JSON.stringify(premiumBrand));
-			$scope.brands.push(copyOfPremiumBrand);
-		});
 
-		// TODO: do not add skate brands to $scope.brands if skate brands do not apply to this category
-		angular.forEach(skateBrands.brands, function(skateBrand) {
-			var copyOfSkateBrand = JSON.parse(JSON.stringify(skateBrand));
-			$scope.brands.push(copyOfSkateBrand);
-		});
+		var found = false;
+
+
+		// search for and remove it
+		for(var i = 0; i < $scope.assets.selectedTags.length; i++){
+			if($scope.assets.selectedTags[i].id === senderId) {
+				
+				found = true;
+				
+				$scope.assets.selectedTags.splice(i,1);
+					
+				break;
+			}
+
+		}
+
+		// add it if it wasn't there already
+		if(!found) {
+
+
+			var tagToAdd = {
+				id: senderId,
+				isSelected:true,
+				text: senderId
+			}
+
+			$scope.assets.selectedTags.push(tagToAdd);
+
+		}
+		// search selected brands, if exists, add, if not, remove
+
+	}
 
 		
+
+		$scope.typeTag = function() {
+	      var senderId = $scope.assets.typeahead.typeaheadValue;
+
+	      // select brand if not already selected
+		  for(var i=0; i < $scope.assets.selectedTags.length; i++) {
+			if(senderId === $scope.assets.selectedTags[i].text) {
+
+				// brand already is selected, so break out of the function
+				$scope.assets.typeahead.typeaheadValue = "";
+				return;
+			}
+		  };
+
+	      var tagToAdd = [senderId,""]; // hack to make it an array of strings so we can send it to taggerize() down below
+
+	      if(senderId !== "") {
+
+	      	// create tag-friendly array
+	      	tagToAdd = brandsLoader.taggerize(tagToAdd);
+
+	      	tagToAdd[0].isSelected = true;
+
+
+
+	      	$scope.assets.selectedTags.push(tagToAdd[0]);
+			
+	      	// update in allBrands list
+			brandsLoader.toggleSelect($scope.assets.allBrands, senderId);
+
+	      	$scope.assets.typeahead.typeaheadValue = "";
+
+	      }
+	      
+	    };
 	
 	/***** CONTROLLER EVENT RESPONDERS ******/
 	
-		$scope.chooseBrands = function(category,brandType,buttonIndex) {
-
-			// highlight the button
-			angular.forEach($scope.brandsButtons, function(button) {
-				button.isActive = false;
-			});
-			$scope.brandsButtons[buttonIndex].isActive = true;
-			$scope.selectedTags = brandsLoader.getAllBrandsFilteredBy(category,brandType);
-		};
 
 		$scope.saveAnswer = function() {
 			// since we defined the answer in the question in the form controller, the parent controller doesn't have access to it
 			// therefore we need to pass the answer by reference
-			$scope.goToNextQuestion($routeParams.section,$routeParams.category,$routeParams.question,/*answer*/$scope.selectedTags);
+
+			// humanize answers
+			var answers = brandsLoader.detag(angular.copy($scope.assets.selectedTags));
+
+			// call parent
+			$scope.goToNextQuestion($routeParams.section,$routeParams.category,$routeParams.question,answers);
 		}
 
 	/***** END CONTROLLER EVENT RESPONDERS ******/
@@ -28329,99 +28400,6 @@ SuccessFormController.$inject = ['$scope','DataService','HelperService','$routeP
 
 
 /* **********************************************
-     Begin TagController.js
-********************************************** */
-
-
-var TagController = function TagController($scope,HelperService,brandsLoader,$routeParams,brandsLoader,$locale) {
-	$scope.typeahead = {
-			typeaheadValue: ""
-		};
-
-
-	$scope.selectedTags = [
-		{
-			id: "Ralph Lauren",
-			isSelected:true,
-			text: "Ralph Lauren"
-		},
-		{
-			id: "French Connection",
-			isSelected:true,
-			text: "French Connection"
-		},
-		{
-			id: "Paul Smith",
-			isSelected:true,
-			text: "Paul Smith"
-		},
-		{
-			id: "Ted Baker",
-			isSelected:true,
-			text: "Ted Baker"
-		}
-	];
-
-	/***** TYPEAHEAD ******/
-
-	$scope.toggleTag = function(senderId) {
-		// alert('called');
-		console.log(senderId);
-
-		var found = false;
-
-		// search for and remove it
-		for(var i = 0; i < $scope.selectedTags.length; i++){
-			if($scope.selectedTags[i].id === senderId) {
-				
-				console.log('found');
-				found = true;
-				
-				$scope.selectedTags.splice(i,1);
-					
-				break;
-			}
-
-		}
-
-		// add it if it wasn't there already
-		if(!found) {
-			console.log('not found');
-			var tagToAdd = {
-				id: senderId,
-				isSelected:true,
-				text: senderId
-			}
-			// TODO: add element model instead of fakie
-			$scope.selectedTags.unshift(tagToAdd);
-
-		}
-		// search selected brands, if exists, add, if not, remove
-
-	}
-
-		$scope.typeahead.allBrands = ['thing','thing2'];
-
-		$scope.addTag = function() {
-	      if($scope.typeahead.typeaheadValue !== "") {
-	      	var tagToAdd = {
-	      		id: $scope.typeahead.typeaheadValue,
-	      		isSelected:true,
-	      		text: $scope.typeahead.typeaheadValue
-	      	};
-
-	      	$scope.selectedTags.unshift(tagToAdd);
-	      	$scope.typeahead.typeaheadValue = "";
-
-	      }
-	      
-	    };
-
-}
-TagController.$inject = ['$scope','HelperService','brandsLoader','$routeParams','brandsLoader','$locale'];
-
-
-/* **********************************************
      Begin maleUI.js
 ********************************************** */
 
@@ -28443,11 +28421,6 @@ var maleUI = angular.module('maleUI', [])
             element.addClass('text ani fadeIn');
             
             // need to do stuff to the element when it is clicked
-            element.on('click',function() {
-            	// element.toggleClass('selected');
-            	scope.isSelected = !scope.isSelected;
-            	
-            });
         }
 	}
 });
@@ -28480,6 +28453,115 @@ Brands.factory('brandsLoader', function() {
 		    }
 		},
 
+		detag: function(allBrands) {
+			// turns list of brands in to tag-friendly array
+			var returnArray = [];
+
+			// first check how many levels of loops are required
+
+			if(typeof(allBrands[0].data) !== "undefined") {
+				for(var c=0; c < allBrands.length; c++) {
+					
+					var brandsTags = allBrands[c].data.tags;
+
+					for(var i=0; i < brandsTags.length; i++) {
+						returnArray.push(brandsTags[i].text);
+					};
+				};
+			} else {
+				// single loop level
+				for(var i=0; i < allBrands.length; i++) {
+					returnArray[i] = allBrands[i].text;
+				};
+			}
+			
+
+			return returnArray;
+		},
+
+		taggerize: function(list) {
+			// turns list of brands in to tag-friendly array
+			var returnArray = [];
+
+			for(var i=0; i < list.length; i++) {
+				returnArray[i] = {
+					id: list[i],
+					isSelected: false,
+					text: list[i]
+				};
+			}
+
+			return returnArray;
+		},
+
+		getMyTagsTitle: function(category, countryCode) {
+			var suggestionsTitle;
+
+			switch(category) {
+		    	
+		    	case "socks":
+		    		suggestionsTitle = {
+		    			"en-gb": "My Sock Brands",
+		    			"en-us": "My Sock Brands",
+		    		}
+		    		break;
+		    	case "boxers":
+		    		suggestionsTitle = {
+		    			"en-gb": "My Boxer Brands",
+		    			"en-us": "My Boxer Brands",
+		    		}
+		    		break;
+		    	case "tees":
+		    		suggestionsTitle = {
+		    			"en-gb": "My T-Shirt Brands",
+		    			"en-us": "My T-Shirt Brands",
+		    		}
+		    		break;
+		    	case "jumpers":
+		    		suggestionsTitle = {
+		    			"en-gb": "My Jumper Brands",
+		    			"en-us": "My Jumper Brands",
+		    		}
+		    		break;
+		    	case "hoodies":
+		    		suggestionsTitle = {
+		    			"en-gb": "My Hoodie Brands",
+		    			"en-us": "My Hoodie Brands",
+		    		}
+		    		break;
+		    	case "shoes":
+		    		suggestionsTitle = {
+		    			"en-gb": "My Shoe Brands",
+		    			"en-us": "My Shoe Brands",
+		    		}
+		    		break;
+		    	case "other":
+		    		suggestionsTitle = {
+		    			"en-gb": "My Brands",
+		    			"en-us": "My Brands"
+		    		}
+		    		break;
+		    	default:
+		    	// this is just a catchall and should never have to be used
+		    		suggestionsTitle = {
+		    			"en-gb": "My Brands",
+		    			"en-us": "My Brands"
+		    		}
+		    		break;
+		    };
+
+			return suggestionsTitle[countryCode];
+		},
+
+		getSuggestionsTitle: function(countryCode) {
+			var suggestionsTitle = {
+	    			"en-gb": "Suggested Brands",
+	    			"en-us": "Suggested Brands"
+		    };
+
+			return suggestionsTitle[countryCode];
+		},
+
 		getQuestionTitle: function(countryCode) {
 			var questionTitle = {
 	    			"en-gb": "What's your Brand iD?",
@@ -28492,8 +28574,8 @@ Brands.factory('brandsLoader', function() {
 
 		getTooltip: function(countryCode) {
 			var tooltip = {
-				"en-gb": "Hint: Type in your favourite brand and we’ll make sure you get it. 100% guaranteed. Got it? Good.",
-				"en-us": "Hint: Type in your favourite brand and we’ll make sure you get it. 100% guaranteed. Got it? Good."
+				"en-gb": "Type in your favourite brand and we’ll make sure you get it. 100% guaranteed.",
+				"en-us": "Type in your favourite brand and we’ll make sure you get it. 100% guaranteed."
 			};
 			
 			return tooltip[countryCode];
@@ -28502,14 +28584,115 @@ Brands.factory('brandsLoader', function() {
 
 		getQuestion: function(countryCode) {
 			var question = {
-	    			"en-gb": "Ok, this is as hard as it’s going to get. Select the price bracket your wallet likes the look of and we’ll serve you up some brands that fit.",
+	    			"en-gb": "Ok, this is as hard as it’s going to get. Select the brands your wallet likes the look of and we’ll make sure to serve them up in your email.",
 	    			"en-us": "What's Your Brand iD?"
 		    };
 
 			return question[countryCode];
 		},
 
-		getSkateBrands: function(category) {
+		getBrands: function(category,countryCode) {
+
+			var allBrands = [
+				
+				{
+					label:"High St",
+					data: this.getValueBrands(category,countryCode)
+				},
+				{
+					label:"Luxe",
+					data: this.getPremiumBrands(category,countryCode)
+				},
+				{
+					label:"Skate / Snow",
+					data: this.getSkateBrands(category,countryCode)
+				}
+
+			];
+
+			// taggerize
+			for(var i=0; i < allBrands.length; i++) {
+			
+				// save raw list in local variable because we refer to it multiple times
+				var list = allBrands[i].data.tags;
+				
+				allBrands[i].data.tags = this.taggerize(angular.copy(list));
+			};
+
+			return allBrands;
+
+		},
+
+		getBrandsList: function(category,countryCode) {
+			var allBrands = this.getBrands(category,countryCode);
+
+			var brandsList = [];
+
+			for(var i=0; i < allBrands.length; i++) {
+			
+				// save raw list in local variable because we refer to it multiple times
+				var list = allBrands[i].data.tags;
+				
+				brandsList = brandsList.concat(angular.copy(list));
+			};
+
+			return brandsList;
+
+		},
+
+		setSelected: function(allBrands, selectedTags) {
+
+			// set default selected tags
+
+			for(var cc=0; cc < allBrands.length; cc++) {
+
+				var brandsTags = allBrands[cc].data.tags;
+
+				for(var i=0; i < brandsTags.length; i++) {
+				
+					var foundNum = 0;
+
+					for(var c=0; c < selectedTags.length; c++) {
+						if(brandsTags[i].id === selectedTags[c].id) {
+							brandsTags[i].isSelected = true;
+							foundNum++;
+						}
+					}
+
+					if(foundNum === selectedTags.length) {
+						return;
+					}
+
+				};
+
+			};
+		},
+
+		// find a tag within allBrands and toggle its selection
+
+		toggleSelect: function(allBrands, tagId) {
+			// deselect a single tag
+			for(var cc=0; cc < allBrands.length; cc++) {
+
+				var brandsTags = allBrands[cc].data.tags;
+
+				for(var i=0; i < brandsTags.length; i++) {
+				
+					// does it match?
+					if(brandsTags[i].id === tagId) {
+						brandsTags[i].isSelected = !brandsTags[i].isSelected;
+						
+						// exit the function
+						return;
+					}
+
+				};
+
+			};
+		},
+
+
+		getSkateBrands: function(category,countryCode) {
 
 	    	var lowerPriceRange, upperPriceRange;
 
@@ -28550,6 +28733,11 @@ Brands.factory('brandsLoader', function() {
 		    		break;
 		    }
 
+		    var rawBrands = {
+				"en-gb": ["Etnies","Element","DC","Vans","WeSC","SupremeBeing","Famous Stars & Straps","Zoo York"],
+				"en-us": ["Etnies","Element","DC","Vans","WeSC","SupremeBeing","Famous Stars & Straps","Zoo York"]
+			};
+
 	    	var skateBrands = 
 
 	    	{
@@ -28557,58 +28745,17 @@ Brands.factory('brandsLoader', function() {
 	    			upper: upperPriceRange,
 	    			lower: lowerPriceRange
 	    		},
-	    		brands: [
-		    		{
-		    			id: "Etnies",
-		    			text: "Etnies"
-		    		},
-		    		{
-		    			id: "Element",
-		    			text: "Element"
-		    		},
-		    		{
-		    			id: "DC",
-		    			text: "DC"
-		    		},
-		    		{
-		    			id: "Vans",
-		    			text: "Vans"
-		    		},
-		    		{
-		    			id: "WeSC",
-		    			text: "WeSC"
-		    		},
-		    		{
-		    			id: "SupremeBeing",
-		    			text: "SupremeBeing"
-		    		},
-		    		{
-		    			id: "Famous",
-		    			text: "Famous"
-		    		},
-		    		{
-		    			id: "Carhartt",
-		    			text: "Carhartt"
-		    		},
-		    		{
-		    			id: "Stussy",
-		    			text: "Stussy"
-		    		},
-		    		{
-		    			id: "Zoo York",
-		    			text: "Zoo York"
-		    		}
-			    ]
+	    		tags: rawBrands[countryCode]
 			};
 
 			// use the dynamic sort function to order by text field
 
-			skateBrands.brands.sort(this.dynamicSort("text"));
+			// skateBrands.brands.sort();
 
 		    return skateBrands;	
 	    },
 
-    	getValueBrands: function(category) {
+    	getValueBrands: function(category,countryCode) {
 
 	    	var lowerPriceRange, upperPriceRange;
 
@@ -28649,6 +28796,11 @@ Brands.factory('brandsLoader', function() {
 		    		break;
 		    }
 
+		    var rawBrands = {
+				"en-gb": ["ASOS","Pringle","River Island","American Apparel","Next","M&S","Topman","Zara","UniQlo","Muji","Esprit","Benetton"],
+				"en-us": ["ASOS","Pringle","River Island","American Apparel","Next","M&S","Topman","Zara","UniQlo","Muji","Esprit","Benetton"]
+			};
+
 	    	var valueBrands = 
 
 	    	{
@@ -28656,66 +28808,17 @@ Brands.factory('brandsLoader', function() {
 	    			upper: upperPriceRange,
 	    			lower: lowerPriceRange
 	    		},
-	    		brands: [
-		    		{
-		    			id: "asos",
-		    			text: "asos"
-		    		},
-		    		{
-		    			id: "Pringle",
-		    			text: "Pringle"
-		    		},
-		    		{
-		    			id: "River Island",
-		    			text: "River Island"
-		    		},
-		    		{
-		    			id: "American Apparel",
-		    			text: "American Apparel"
-		    		},
-		    		{
-		    			id: "Next",
-		    			text: "Next"
-		    		},
-		    		{
-		    			id: "M&S",
-		    			text: "M&S"
-		    		},
-		    		{
-		    			id: "Topman",
-		    			text: "Topman"
-		    		},
-		    		{
-		    			id: "Zara",
-		    			text: "Zara"
-		    		},
-					{
-		    			id: "UniQlo",
-		    			text: "UniQlo"
-		    		},
-		    		{
-		    			id: "Muji",
-		    			text: "Muji"
-		    		},
-		    		{
-		    			id: "Esprit",
-		    			text: "Esprit"
-		    		},
-		    		{
-		    			id: "Benetton",
-		    			text: "Benetton"
-		    		}
-			    ]
+	    		tags: rawBrands[countryCode]
 			};
 
 			// use the dynamic sort function to order by text field
 
-			valueBrands.brands.sort(this.dynamicSort("text"));
+			// valueBrands.tags.sort();
 
 		    return valueBrands;	
 	    },
 
-	    getPremiumBrands: function(category) {
+	    getPremiumBrands: function(category,countryCode) {
 
 	    	var lowerPriceRange, upperPriceRange;
 
@@ -28756,6 +28859,11 @@ Brands.factory('brandsLoader', function() {
 		    		break;
 		    };
 
+		    var rawBrands = {
+				"en-gb": ["Ralph Lauren","French Connection","Paul Smith","Ted Baker","Lyle & Scott","Calvin Klein","Hugo Boss","Abercombie & Fitch","Diesel","Armani","Superdry","All Saints","Fred Perry","G-Star","Franklin & Marshall","Reiss"],
+				"en-us": ["Ralph Lauren","French Connection","Paul Smith","Ted Baker","Lyle & Scott","Calvin Klein","Hugo Boss","Abercombie & Fitch","Diesel","Armani","Superdry","All Saints","Fred Perry","G-Star","Franklin & Marshall","Reiss"]
+			};
+
 		    var premiumBrands = 
 
 	    	{
@@ -28763,105 +28871,15 @@ Brands.factory('brandsLoader', function() {
 	    			upper: upperPriceRange,
 	    			lower: lowerPriceRange
 	    		},
-	    		brands: [
-		    		{
-		    			id: "Ralph Lauren",
-		    			text: "Ralph Lauren"
-		    		},
-		    		{
-		    			id: "French Connection",
-		    			text: "French Connection"
-		    		},
-		    		{
-		    			id: "Paul Smith",
-		    			text: "Paul Smith"
-		    		},
-		    		{
-		    			id: "Ted Baker",
-		    			text: "Ted Baker"
-		    		},
-		    		{
-		    			id: "Lyle & Scott",
-		    			text: "Lyle & Scott"
-		    		},
-		    		{
-		    			id: "Calvin Klein",
-		    			text: "Calvin Klein"
-		    		},
-		    		{
-		    			id: "Hugo Boss",
-		    			text: "Hugo Boss"
-		    		},
-		    		{
-		    			id: "Abercombie & Fitch",
-		    			text: "Abercombie & Fitch"
-		    		},
-		    		{
-		    			id: "Diesel",
-		    			text: "Diesel"
-		    		},
-		    		{
-		    			id: "Armani",
-		    			text: "Armani"
-		    		},
-		    		{
-		    			id: "Superdry",
-		    			text: "Superdry"
-		    		},
-		    		{
-		    			id: "All Saints",
-		    			text: "All Saints"
-		    		},
-		    		{
-		    			id: "Fred Perry",
-		    			text: "Fred Perry"
-		    		},
-		    		{
-		    			id: "G-Star",
-		    			text: "G-Star"
-		    		},
-		    		{
-		    			id: "Franklin & Marshall",
-		    			text: "Franklin & Marshall"
-		    		},
-		    		{
-		    			id: "Reiss",
-		    			text: "Reiss"
-		    		}
-			    ]
+	    		tags: rawBrands[countryCode]
 			};
 
 			// use the dynamic sort function to order by text field
 
-			premiumBrands.brands.sort(this.dynamicSort("text"));
-
+			// premiumBrands.tags.sort();
 
 		    return premiumBrands;	
 	    },
-
-
-	    // this is a function used by the "auto-populate brands" buttons
-
-	    getAllBrandsFilteredBy: function(category, brandType) {
-	    	var selectedTags = {};
-
-	    	switch(brandType) {
-	    		case 'skate':
-	    			selectedTags = this.getSkateBrands(category);
-	    			break;
-	    		case 'premium':
-	    			selectedTags = this.getPremiumBrands(category);
-	    			break;
-	    		case 'value':
-	    			selectedTags = this.getValueBrands(category);
-	    			break;
-	    		default:
-	    			selectedTags.brands = [];
-	    			break;
-	    	}
-
-	    	return JSON.parse(JSON.stringify(selectedTags.brands));
-	    }
 
 
 	};
@@ -29777,7 +29795,6 @@ Success.factory('successLoader', function() {
 // @codekit-prepend "controllers/forms/SaveFormController.js"
 // @codekit-prepend "controllers/forms/CheckoutFormController.js"
 // @codekit-prepend "controllers/forms/SuccessFormController.js"
-// @codekit-prepend "controllers/forms/TagController.js"
 
 // @codekit-prepend "modules/directives/maleUI.js"
 

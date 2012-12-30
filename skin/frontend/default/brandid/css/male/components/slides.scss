@@ -10,14 +10,27 @@
 	position:relative;
 	margin:5%;
 
-	h1.question-title {
+	.question-title {
 		
 		font-family:"proxima-nova",Helvetica,arial,sans-serif;
 		font-size:34px;
 		font-weight:bold;
 		letter-spacing:-2px;
 		// text-transform:uppercase;
-		margin:0 0 20px 0;
+		margin-bottom:20px;
+	}
+
+	.question-title.smaller {
+		font-size:24px;
+		line-height: 37px;
+	}
+
+	.question-title.on-grey {
+		font-weight:normal;
+		color: #595959;
+		text-shadow: rgba(255, 255, 255, .4) 0 1px 0;
+		letter-spacing:-1px;
+
 	}
 
 	.question {
@@ -49,4 +62,23 @@
 
 .float-left {
 	float:left;
+}
+
+/****** GRID *******/
+
+.half-column, .third-column, .two-thirds-column {
+	float:left;
+}
+
+.half-column {
+	width:50%;
+}
+
+
+.third-column {
+	width:33%;
+}
+
+.two-thirds-column {
+	width:66%;
 }
