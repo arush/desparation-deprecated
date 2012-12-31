@@ -168,7 +168,7 @@
                 </action>
             </block>
 
-	        <action method="addCss"><stylesheet>css/arush/leanlanding/core5.css</stylesheet></action>
+	        <action method="addCss"><stylesheet>css/arush/leanlanding/core5-1.css</stylesheet></action>
 	        <action method="addCss"><stylesheet>css/arush/leanlanding/movember.css</stylesheet></action>
 
 			<action method="addItem"><type>skin_js</type><name>js/jquery-1.7.1.min.js</name></action>
@@ -265,7 +265,7 @@
                 </action>
             </block>
 
-	        <action method="addCss"><stylesheet>css/arush/leanlanding/core5.css</stylesheet></action>
+	        <action method="addCss"><stylesheet>css/arush/leanlanding/core5-1.css</stylesheet></action>
 	        <action method="addCss"><stylesheet>css/arush/leanlanding/app.css</stylesheet></action>
 
 			<action method="addItem"><type>skin_js</type><name>js/jquery-1.7.1.min.js</name></action>

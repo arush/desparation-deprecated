@@ -126,7 +126,15 @@ Checkout.factory('checkoutLoader', ['HelperService', function(HelperService) {
 	    	var humanized = "";
 
 	    	angular.forEach(answer, function(answerItem) {
-	    		humanized += answerItem.text + ", ";
+
+	    		// check the format of the answer, is it { id: ... , text: ...} or ["item","item"]
+	    		if(typeof(answerItem.text) !== "undefined") {
+	    			humanized += answerItem.text + ", ";	
+	    		} else {
+	    			//assume array of strings
+	    			humanized += answerItem + ", ";
+	    		}
+	    		
 	    	});
 
 	    	// remove last comma

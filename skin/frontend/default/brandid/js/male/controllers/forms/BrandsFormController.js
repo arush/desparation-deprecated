@@ -18,26 +18,6 @@ var BrandsFormController = function BrandsFormController($scope,HelperService,$r
 		// selectedTags should be replaced with user's actual stored data (currentAnswer)
 
 		$scope.assets.selectedTags = [
-			{
-				id: "Ralph Lauren",
-				isSelected:true,
-				text: "Ralph Lauren"
-			},
-			{
-				id: "French Connection",
-				isSelected:true,
-				text: "French Connection"
-			},
-			{
-				id: "Paul Smith",
-				isSelected:true,
-				text: "Paul Smith"
-			},
-			{
-				id: "Ted Baker",
-				isSelected:true,
-				text: "Ted Baker"
-			}
 		];
 
 
