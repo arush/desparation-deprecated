@@ -284,31 +284,31 @@ angular.module('DataServices', [])
             "$last_login": new Date()
           };
 
-          if(response.first_name !== "undefined") {
+          if(typeof(response.first_name) !== "undefined") {
             this.setToUser( user, "first_name", response.first_name);
             metricsPayload.first_name = response.first_name;
           }
-          if(response.last_name !== "undefined") {
+          if(typeof(response.last_name) !== "undefined") {
             this.setToUser( user, "last_name", response.last_name);
             metricsPayload.last_name = response.last_name;
           }
-          if(response.gender !== "undefined") {
+          if(typeof(response.gender) !== "undefined") {
             this.setToUser( user, "gender", response.gender);
             metricsPayload.gender = response.gender;
           }
-          if(response.birthday !== "undefined") {
+          if(typeof(response.birthday) !== "undefined") {
             this.setToUser( user, "birthday", response.birthday);
             metricsPayload.birthday = response.birthday;
           }
-          if(response.location !== "undefined") {
+          if(typeof(response.location) !== "undefined") {
             this.setToUser( user, "location", response.location);
-            if(response.location.name !== "undefined") {
+            if(typeof(response.location.name) !== "undefined") {
               metricsPayload.location = response.location.name;
             }
           }
 
           // if email exists, use that as the identity in metrics
-          if(response.email !== "undefined") {
+          if(typeof(response.email) !== "undefined") {
             this.setToUser( user, "email", response.email);
             HelperService.metrics.identify(response.email);
             metricsPayload.email = response.email;
