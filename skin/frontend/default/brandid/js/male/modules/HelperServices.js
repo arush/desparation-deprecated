@@ -153,7 +153,9 @@ angular.module('HelperServices', [])
 					created_at: createdAtTimeStamp,
 
 					'Facebook Connected': facebookConnected,
-
+					widget: {
+						activator: '#IntercomDefaultWidget'
+					},
 					app_id: intercomAppId
 				};
 		      };
