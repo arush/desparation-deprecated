@@ -28234,6 +28234,7 @@ var SaveFormController = function SaveFormController($scope,DataService,HelperSe
 	$scope.question = checkoutLoader.getSaveCopy($locale.id);
 	$scope.facebookReasons = checkoutLoader.getFacebookConnectReasons($locale.id);
 	$scope.emailImage = checkoutLoader.getEmailImageUrl($locale.id);
+	$scope.facebookSubtitle = checkoutLoader.getFacebookSubtitle($locale.id);
 
 	// close the drawer
 	$scope.drawerOpen = !$scope.drawerOpen;
@@ -29507,7 +29508,7 @@ Checkout.factory('checkoutLoader', ['HelperService', function(HelperService) {
 
 	    getSaveTitle: function(countryCode) {
 	    	var title = {
-	    		"en-gb": "What's your email address?"
+	    		"en-gb": "Where shall I send your email?"
 	    	}
 	    	return title[countryCode];
 	    },
@@ -29523,13 +29524,20 @@ Checkout.factory('checkoutLoader', ['HelperService', function(HelperService) {
 
 	    getSaveCopy: function(countryCode) {
 	    	var saveCopy = {
-	    			"en-gb": "I'll send your recommendation via email, so cough it up partner.",
+	    			"en-gb": "I'll send your recommendation via email, so cough it up partner. I promise I'll never spam you. Ever.",
 	    			"en-us": ""
 		    };
 
 		    return saveCopy[countryCode];
 	    },
+	    getFacebookSubtitle: function(countryCode) {
+	    	var saveCopy = {
+	    			"en-gb": "Help me help you. I can make better choices if I understand the world you live in. With Facebook, I can:",
+	    			"en-us": "Help me help you. I can make better choices if I understand the world you live in. With Facebook, I can:"
+		    };
 
+		    return saveCopy[countryCode];
+	    },
 	    getFacebookConnectReasons: function(countryCode) {
 	    	var reasons = {
 	    		"en-gb": [
