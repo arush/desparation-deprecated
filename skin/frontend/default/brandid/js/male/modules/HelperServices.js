@@ -23,7 +23,7 @@ angular.module('HelperServices', [])
 					mixpanel.track(event,payload);
 				}
 				/* GoSquared tracking */
-				if(typeof(GoSquared) !== "undefined") {
+				if(typeof(GoSquared) !== "undefined" && typeof(GoSquared.DefaultTracker) !== "undefined") {
 					if(typeof(payload) !== "undefined") {
 						GoSquared.DefaultTracker.TrackView();	
 					}
