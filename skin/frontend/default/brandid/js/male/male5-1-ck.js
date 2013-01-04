@@ -27238,6 +27238,12 @@ angular.module('HelperServices', [])
 				if(typeof(mixpanel) !== "undefined") {
 					mixpanel.track(event,payload);
 				}
+				/* GoSquared tracking */
+				if(typeof(GoSquared) !== "undefined") {
+					if(typeof(payload) !== "undefined") {
+						GoSquared.DefaultTracker.TrackView();	
+					}
+				}
 			},
 
 			identify: function(identity) {
