@@ -50,14 +50,23 @@ Checkout.factory('checkoutLoader', ['HelperService', function(HelperService) {
 
 	    getSaveTitle: function(countryCode) {
 	    	var title = {
-	    		"en-gb": "Supercharge my intelligence with Facebook"
+	    		"en-gb": "What's your email address?"
 	    	}
 	    	return title[countryCode];
 	    },
 
+	    getEmailImageUrl: function(countryCode) {
+	    	var url = {
+	    		"en-gb": "images/male/email-example.png"
+	    	}
+	    	var skinUrl = HelperService.urls.getSkinUrl();
+
+	    	return skinUrl + url[countryCode];
+	    },
+
 	    getSaveCopy: function(countryCode) {
 	    	var saveCopy = {
-	    			"en-gb": "If you want me to be better at shopping for you than your own mother, I need to get to know you better. It would be amazeballs if you let me...",
+	    			"en-gb": "I'll send your recommendation via email, so cough it up partner.",
 	    			"en-us": ""
 		    };
 
@@ -76,7 +85,7 @@ Checkout.factory('checkoutLoader', ['HelperService', function(HelperService) {
 	    				imageUrl: HelperService.urls.getSkinUrl() + "images/facebook-connect/reason2.png",
 	    			},
 	    			{
-	    				reasonCopy: "Send a Facebook Notification when your recommendation is ready",
+	    				reasonCopy: "Send you important notifications",
 	    				imageUrl: HelperService.urls.getSkinUrl() + "images/facebook-connect/reason3.png",
 	    			}
 	    		]

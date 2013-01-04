@@ -252,45 +252,54 @@
   <script type=text/ng-template id=section/garms/category/generic/question/save.html>
       <div class="slide-container clearfix fadeIn ani">
         <form ng-controller="SaveFormController">
-          <div class="curved-white-block withShadow withRadius">
-            <h1 class="question-title">{{saveTitle}}</h1>
-            <span class="question">{{question}}</span>
+          <h1 class="question-title">{{saveTitle}}</h1>
+          <span id="brands" class="question">{{question}}</span>
 
-            <div class="image-and-copy-container small">
-              <div class="image-and-copy clearfix" ng-repeat="facebookReason in facebookReasons">
-                <img ng-src="{{facebookReason.imageUrl}}" class="float-left small-square-image">
-                <div class="v-outer-container">
+          <div class="half-column big-top-margin">
+            <div class="curved-white-block withShadow withRadius">
 
-                <div class="v-inner-container">
-
-                  <div class="v-aligned-element">
-                    <span class="facebook-reason-copy">{{facebookReason.reasonCopy}}</span>
+              <div class="">
+                <div class="image-and-copy-container small clearfix">
+                  
+                  <a class="facebook-connect center-align" type="submit" ng-click="fbLoginAndSave()">
+                  </a>
+                  <div class="fullWidth top-margin center-align">
+                    <span class="facebook-reason-copy">Help me help you. Help understand your style and environment. With Facebook I can:</span>
                   </div>
-                
+                </div>
+              </div>
+
+              <div class="image-and-copy-container small">
+                <div class="image-and-copy clearfix" ng-repeat="facebookReason in facebookReasons">
+                  <img ng-src="{{facebookReason.imageUrl}}" class="float-left small-square-image">
+                  <div class="v-outer-container">
+
+                    <div class="v-inner-container">
+
+                      <div class="v-aligned-element">
+                        <span class="facebook-reason-copy">{{facebookReason.reasonCopy}}</span>
+                      </div>
+                    
+                    </div>
+
+                  </div>
+
                 </div>
 
               </div>
-            </div>
 
-            <div class="next-question-button-section">
-              <div class="image-and-copy-container small clearfix">
-                
-                  <a class="facebook-connect float-left" type="submit" ng-click="fbLoginAndSave()">
-                  </a>
-                  <div class="v-outer-container aside-facebook-connect">
-
-                  <div class="v-inner-container">
-
-                    <div class="v-aligned-element">
-                      <span class="facebook-reason-copy">otherwise <a ng-click="$emit('goToRegister')">Register via email</a></span>
-                    </div>
-                  
-                  </div>
-
+              <div class="fullWidth center-align">
+                <a style="width:100%" class="fullWidth convert secondary" ng-click="$emit('goToRegister')">or Register via email</a>
               </div>
-            </div>
 
+
+            </div>
+          </div> <!-- third-column -->
+
+          <div class="half-column big-top-margin">
+            <img ng-src="{{emailImage}}" class="center-align scale-with-grid">
           </div>
+          
         </form>
 
         
@@ -536,7 +545,7 @@
               <div class="suggestions big-top-margin fullWidth" ng-repeat="brand in assets.allBrands">
                 <div class="third-column">
 
-                  <div class="top-margin bottom-margin">
+                  <div class="bottom-margin">
                     <span class="question-title on-grey smaller">{{brand.label}}</span><br/>
 
                     <span class="question-title on-grey">{{currencySymbol}}{{brand.data.priceRange.lower}} - {{currencySymbol}}{{brand.data.priceRange.upper}}</span>

@@ -63,7 +63,7 @@ angular.module('HelperServices', [])
 			getSkinUrl: function() {
 				var baseUrl = this.getBaseUrl();
 				var url = baseUrl + 'skin/frontend/default/brandid/';
-				return url;	
+				return url;
 			} 
 		},
 

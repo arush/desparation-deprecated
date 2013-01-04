@@ -1,6 +1,7 @@
 brandidAuth = require "./custom_modules/brandid/auth"
 xmlBodyParser = require "./custom_modules/xmlBodyParser/xmlBodyParser"
 express = require "express"
+intercom = require('node-intercom').app()
 
 ##### MAILCHIMP #####
 
@@ -98,6 +99,22 @@ app.post '/user/new', auth, (req, res) ->
 					res.contentType "application/json"
 					res.send 200, JSON.stringify data
 				else console.log error
+
+		## INTERCOM.IO ##
+
+		# io_payload =
+		# 	"email" : user.email
+		# 	"custom_data" :
+		# 		"Birthday" : mergeVars.BIRTHDAY
+		# 		"DOB" : mergeVars.DOB
+		# 		"Facebook_ID" : mergeVars.FBID
+		
+		# console.log io_payload
+
+		# intercom.users.post io_payload, (code, body) ->
+		# 	console.log 'intercom call complete'
+		# 	console.log code, body
+
 
 app.listen port, ->
 	console.log "Listening on #{port}"

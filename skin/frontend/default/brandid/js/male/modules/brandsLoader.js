@@ -169,7 +169,7 @@ Brands.factory('brandsLoader', function() {
 					data: this.getValueBrands(category,countryCode)
 				},
 				{
-					label:"Luxe",
+					label:"Designer",
 					data: this.getPremiumBrands(category,countryCode)
 				},
 				{

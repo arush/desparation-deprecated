@@ -1,14 +1,15 @@
 {
-  "name": "brandid-webhooks",
-  "description": "BRANDiD Webhooks",
-  "version": "0.0.1-10",
+  "name": "brandid-dev",
+  "description": "BRANDiD Dev",
+  "version": "0.0.1-12",
   "private": true,
   "dependencies": {
     "express": "3.0.5",
     "mailchimp": ">= 0.9.5",
-    "xml2js": ">= 0.2.0"
+    "xml2js": ">= 0.2.0",
+    "node-intercom": "0.0.1"
   },
-  "subdomain": "brandid-webhooks",
+  "subdomain": "brandid-dev",
   "scripts": {
     "start": "server.js"
   },

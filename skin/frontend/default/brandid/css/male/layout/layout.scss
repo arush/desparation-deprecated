@@ -1,3 +1,22 @@
 .fullWidth {
 	width:100%;
 }
+
+/****** GRID *******/
+
+.half-column, .third-column, .two-thirds-column {
+	float:left;
+}
+
+.half-column {
+	width:50%;
+}
+
+
+.third-column {
+	width:33%;
+}
+
+.two-thirds-column {
+	width:66%;
+}

@@ -9,6 +9,7 @@ var SaveFormController = function SaveFormController($scope,DataService,HelperSe
 	$scope.saveTitle = checkoutLoader.getSaveTitle($locale.id);
 	$scope.question = checkoutLoader.getSaveCopy($locale.id);
 	$scope.facebookReasons = checkoutLoader.getFacebookConnectReasons($locale.id);
+	$scope.emailImage = checkoutLoader.getEmailImageUrl($locale.id);
 
 	// close the drawer
 	$scope.drawerOpen = !$scope.drawerOpen;
