@@ -1,0 +1,9 @@
+[submodule "api/node_modules/libxmljs"]
+	path = api/node_modules/libxmljs
+	url = git@github.com:brandid/libxmljs.git
+[submodule "api/node_modules/js2xml"]
+	path = api/node_modules/js2xml
+	url = git@github.com:brandid/js2xml.git
+[submodule "api/node_modules/node-parse-api"]
+	path = api/node_modules/node-parse-api
+	url = git://github.com/brandid/node-parse-api.git
