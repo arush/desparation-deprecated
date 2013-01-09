@@ -15,9 +15,7 @@
 // @codekit-prepend "libs/jquery-male-typewriter.js"
 // @codekit-prepend "app/ngMale.js"
 
-
-
-
+// @codekit-prepend "libs/recurly/recurly.js"
 
 
 
@@ -44,6 +42,7 @@
 // @codekit-prepend "controllers/forms/SuccessFormController.js"
 
 // @codekit-prepend "modules/directives/maleUI.js"
+// @codekit-prepend "modules/directives/RecurlyDirectives.js"
 
 // @codekit-prepend "modules/brandsLoader.js"
 // @codekit-prepend "modules/coloursLoader.js"

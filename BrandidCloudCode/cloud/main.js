@@ -14,8 +14,9 @@ Parse.Cloud.afterSave("_User", function(request) {
 
 	// if(typeof(request.object.email) !== "undefined") {
 
-		var requestUri = 'https://'+brandid.api.user+':'+brandid.api.password+'@'+brandid.api.host;
-
+		var requestUri = 'https://'+brandid.api.user+':'+brandid.api.password+'@'+brandid.api.host + '/user/new';
+		console.log(requestUri);
+		
 		Parse.Cloud.httpRequest({
 		  method: 'POST',
 		  url: requestUri,
@@ -32,8 +33,43 @@ Parse.Cloud.afterSave("_User", function(request) {
 		  },
 		  error: function(httpResponse) {
 		    console.error('Request failed with response code ' + httpResponse.status + ' and data ' + httpResponse.data);
+		    console.error(httpResponse);
 		  }
 		});
 	// }
+
+});
+
+// sign some parameters for Recurly.js checkout form
+
+Parse.Cloud.define("signRecurlyParams", function(request, response) {
+	
+	var requestUri = 'https://' + brandid.api.user + ':' + brandid.api.password + '@' + brandid.api.host + '/recurly/sign';
+
+	console.log(requestUri);
+	console.log(request);
+
+	Parse.Cloud.httpRequest({
+	  method: 'POST',
+	  url: requestUri,
+	  // by setting the header, Parse auto converts body to JSON
+	  headers: {
+	    'Content-Type': 'application/json'
+	  },
+	  
+	  body: request.params,
+
+	  success: function(signature) {
+	  	// returns the signature
+	  	response.success(signature);
+
+	    console.log('successfully signed Recurly params');
+	  },
+	  error: function(httpResponse) {
+	    console.error('Recurly signature request failed with response code ' + httpResponse.status + ' and data ' + httpResponse.data);
+	    console.error(httpResponse);
+	  }
+	});
+	
 
 });

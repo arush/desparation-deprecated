@@ -20,21 +20,21 @@ Checkout.factory('checkoutLoader', ['HelperService', function(HelperService) {
 
 		getCheckoutCopy: function(countryCode) {
 			var copy = {
-				"en-gb": "Ok, let’s talk turkey, let’s make something happen, let’s do a deal. If you register your card details today and credit your BRANDiD account with one English pound, we’ll send you a pair of Muji touchscreen gloves worth £12.95. Bargain right? Right. You don’t need to buy anything, it’s just to make sure that when you are good to go, you can buy your gear with a single click."
+				"en-gb": "In order to .......... £5 towards your first purchase. Bargain right? Right. You don’t need to buy anything, it’s just to make sure that when you are good to go, you can charge your card right from your inbox. No checkout necessary."
 			}
 			return copy[countryCode];
 		},
 
 		getBasketTitle: function(countryCode) {
 			var basketTitle = {
-				"en-gb": "Your email will be based on:"
+				"en-gb": "Email ETA: ≈3 days"
 			}
 			return basketTitle[countryCode];
 		},
 
 		getCheckoutTitle: function(countryCode) {
 			var checkoutTitle = {
-				"en-gb": "Add your credit card and get free touchscreen gloves!"
+				"en-gb": "Jump the queue by adding your credit card, get £5 credit"
 			}
 			return checkoutTitle[countryCode];
 		},

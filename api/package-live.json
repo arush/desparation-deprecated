@@ -1,0 +1,22 @@
+{
+  "name": "brandid-webhooks",
+  "description": "BRANDiD Webhooks",
+  "version": "0.0.1-24",
+  "private": true,
+  "dependencies": {
+    "express": "3.0.5",
+    "mailchimp": ">= 0.9.5",
+    "xml2js": ">= 0.2.0",
+    "node-intercom": "https://github.com/brandid/node-intercom/tarball/master",
+    "node-recurly": "https://github.com/brandid/node-recurly/tarball/master",
+    "js2xml": "https://github.com/brandid/js2xml/tarball/master",
+    "parse-api": "https://github.com/brandid/node-parse-api/tarball/master"
+  },
+  "subdomain": "brandid-webhooks",
+  "scripts": {
+    "start": "server.js"
+  },
+  "engines": {
+    "node": "0.8.x"
+  }
+}

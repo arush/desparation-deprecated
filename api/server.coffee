@@ -2,6 +2,7 @@ brandidAuth = require "./custom_modules/brandid/auth"
 xmlBodyParser = require "./custom_modules/xmlBodyParser/xmlBodyParser"
 express = require "express"
 Recurly = require "node-recurly"
+recurlyjs = require "node-recurlyjs-sign"
 Parse = require("parse-api").Parse
 
 if process.env.NODE_ENV is "production"
@@ -10,6 +11,7 @@ if process.env.NODE_ENV is "production"
 		"API_KEY":"cd79fc0d586c61ed67a710030f88c5049e3ba055",
 		"APP_ID": "myporahm"
 	recurly = new Recurly(require('./recurly-config'))
+	recurlyKeys = require('./recurly-config')
 	parse_settings = 
 		"MASTER_KEY":"BVXQrje6m0q7xghU77q337xa6BH24ZWA0SsrVZyV",
 		"APP_ID": "cWsBzcLQQMy80sF7KOYWPkeVKDxshxQWUwWk1b27"
@@ -20,6 +22,7 @@ else
 		"API_KEY":"199227a1d7597f571a91cc7aabe9418ac0186c19",
 		"APP_ID": "2eqflc09"
 	recurly = new Recurly(require('./recurly-dev-config'))
+	recurlyKeys = require('./recurly-dev-config')
 	parse_settings = 
 		"MASTER_KEY":"ZJT0EjWExU7S7l6sUkKG13Dc6DI8nbssSFoxCv3P",
 		"APP_ID": "oB4lSEsDL1MuJbLiTe4pHQbNvCJAzfu4nUMdsLL2"
@@ -63,6 +66,14 @@ app.get '/', (req, res) ->
 
 	res.contentType "text/html"
 	res.send '<h1>No entry for you mofo!</h1>', 200
+
+app.post '/recurly/sign', auth, (req, res) ->
+	params = req.body
+	signature = recurlyjs.sign(params, recurlyKeys.PRIVATE_KEY)
+
+	res.contentType "text/plain"
+	res.send signature, 200
+
 
 app.post '/recurly/push', auth, (req, res) ->
 

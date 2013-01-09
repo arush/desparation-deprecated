@@ -111,6 +111,37 @@ angular.module('DataServices', [])
         return newAnswers;
       },
 
+
+      // cloud code functions
+
+      cloud: {
+
+        // this function is called from the Recurlyjs directive to sign the Recurly.js form
+
+        signRecurlyParams: function(params, scope) {
+          
+          var deferred = $q.defer();
+          
+          Parse.Cloud.run('signRecurlyParams', params, {
+            success: function(results) {
+              // we wrap this in $apply using the correct scope passed in because we always need angular to recognise changes
+              scope.$apply(function() {
+                deferred.resolve(results);
+              });
+            },
+            error: function(error) {
+
+              // standard error handling
+              console.log(error);
+              deferred.reject(error);
+            }
+          });
+
+          return deferred.promise;
+
+        }
+      },
+
       getUserAnswers: function(user,scope) {
         // to make this promise-aware, we always return a promise
         var deferred = $q.defer();

@@ -12,6 +12,22 @@ var CheckoutFormController = function CheckoutFormController($scope,DataService,
 	var currentAnswer = $scope.currentAnswer;
 	$scope.basket = {};
 
+	$scope.recurly = {
+		transactionType		: "billing",
+		currency			: "GBP",
+		subdomain			: "hackbrandid",
+		payload : {
+			// these are the params to sign
+			// transaction : {
+			// 	"amount_in_cents" : 1999,
+			// 	"currency":"GBP"
+			// }
+			account : {
+				account_code: "arushsehgal@gmail.com"
+			}
+		}
+	};
+
 	// basket title
 	$scope.basketTitle = checkoutLoader.getBasketTitle($locale.id);
 
@@ -27,6 +43,7 @@ var CheckoutFormController = function CheckoutFormController($scope,DataService,
 	    // make human readable answers, we made this non-default because the raw basket can be used
 		  if(typeof(currentAnswer.get("brands")) !== "undefined") {
 				$scope.basket.brands = checkoutLoader.humanizeAnswer(currentAnswer.get("brands"));
+				// $scope.basket.brands = checkoutLoader.taggerize(currentAnswer.get("brands"));
 		  };
 
 			if(typeof(currentAnswer.get("colours")) !== "undefined") {
@@ -71,6 +88,10 @@ var CheckoutFormController = function CheckoutFormController($scope,DataService,
 	/**
 	*  Controller Functions
 	*/
+
+	$scope.receiveRecurlyToken = function(recurly_token) {
+		console.log(recurly_token);
+	}
 
 	// track
 	var metricsPayload = {"B4.0_Funnel": $routeParams.category, "B4.0_Step": "£1 Checkout"};

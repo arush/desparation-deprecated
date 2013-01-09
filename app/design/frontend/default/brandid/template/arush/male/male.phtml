@@ -310,6 +310,29 @@
   <script type=text/ng-template id=section/garms/category/generic/question/checkout.html>
       <div class="slide-container clearfix fadeIn ani">
         <form ng-controller="CheckoutFormController">
+          
+          <span id="brands" class="question">{{question}}</span>
+          <h1 class="question-title">{{basketTitle}}</h1>
+            <span class="bold">Brands:</span> <span class="basket-items">{{basket.brands}}</span><br/>
+            
+            <span class="bold">Size:</span> <span class="basket-items">{{basket.size}}</span><br/>
+            <span class="bold">Colours:</span> <span class="basket-items">{{basket.colours}}</span><br/>
+            <span class="bold">Specifics:</span> <span class="basket-items">{{basket.specifics}}</span>
+
+
+          <div class="curved-white-block withShadow withRadius">
+            <div class="fullWidth clearfix">
+              <h1 class="question-title">{{checkoutTitle}}</h1>              
+              <recurlyjs type="recurly.transactionType" payload="recurly.payload" currency="recurly.currency" subdomain="recurly.subdomain" callback="receiveRecurlyToken"></recurlyjs>
+            </div>
+          </div>
+        </form>
+      </div>
+  </script>
+
+  <script type=text/ng-template id=section/garms/category/generic/question/checkout-old.html>
+      <div class="slide-container clearfix fadeIn ani">
+        <form ng-controller="CheckoutFormController">
           <div class="curved-white-block withShadow withRadius">
             <div class="order-summary">
               <h1 class="question-title">{{basketTitle}}</h1>
