@@ -17,14 +17,14 @@ Success.factory('successLoader', function() {
 
 		getSuccessCopy: function(countryCode) {
 			var copy = {
-				"en-gb": "Ok, now I've got your card on file you won't have to go through that again. I'm working on some options for you, so keep a lookout for an email from male@getbrandid.com in a few hours. Don't forget to check your spam folder just in case."
+				"en-gb": "Ok, since I've got your card on file, I'm ready to roll. I'm working on some options for you, so keep a lookout for an email from male@getbrandid.com in a few hours. Don't forget to check your spam folder just in case."
 			}
 			return copy[countryCode];
 		},
 
 		getSuccessTitle: function(countryCode) {
 			var successTitle = {
-				"en-gb": "M.A.L.E. is about to hit your inbox"
+				"en-gb": "M.A.L.E. will hit your inbox in about 48hrs"
 			}
 			return successTitle[countryCode];
 		}

@@ -81,11 +81,6 @@ angular.module('HelperServices', [])
 			}
 		},
 
-		getKey: function() {
-			var key = '5wZ821rKIQ804Xe';
-			return key;
-		},
-
 		getEnvironment: function() {
 
 			// as long as the live site is the only one using www, then this returns true if live
@@ -97,19 +92,6 @@ angular.module('HelperServices', [])
 			return hostSplit[0];
 		},
 
-		// this function is to restrict access to the success page so as not to accidentally trigger conversion metrics
-		authorizeSuccessKey: function(key) {
-
-			var authorized = false;
-			var authorizedKey = this.getKey();
-
-			if(key === authorizedKey) {
-				authorized = true;
-			}
-
-
-			return authorized;
-		},
 		getIntercomAppId: function() {
 			var app_id;
 

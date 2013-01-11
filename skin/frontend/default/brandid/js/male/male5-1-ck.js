@@ -26297,7 +26297,7 @@ angular.module('$strap.directives')
 // this is for intercom.io integration
 var intercomSettings = {};
 
-var ngMaleApp = angular.module('ngMaleApp', ['ui','$strap','maleUI','recurlyjs','DataServices','HelperServices','BrandsModule','ColoursModule','SizeModule','SpecificsModule','CheckoutModule','SuccessModule']);
+var ngMaleApp = angular.module('ngMaleApp', ['ui','$strap','maleUI','recurlyjs','DataServices','HelperServices','BrandsModule','ColoursModule','SizeModule','SpecificsModule','CheckoutModule','BasketModule','SuccessModule']);
 
 ngMaleApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
@@ -26326,10 +26326,6 @@ ngMaleApp.config(['$routeProvider', function ($routeProvider) {
          controller:MainController
       })
       .when('/section/:section/category/:category/question/:question', {
-         templateUrl: 'detailViewProxy.html',
-         controller:QuestionController
-      })
-      .when('/section/:section/category/:category/question/:question/account_code/:account_code/key/:key', {
          templateUrl: 'detailViewProxy.html',
          controller:QuestionController
       })
@@ -29581,11 +29577,6 @@ angular.module('HelperServices', [])
 			}
 		},
 
-		getKey: function() {
-			var key = '5wZ821rKIQ804Xe';
-			return key;
-		},
-
 		getEnvironment: function() {
 
 			// as long as the live site is the only one using www, then this returns true if live
@@ -29597,19 +29588,6 @@ angular.module('HelperServices', [])
 			return hostSplit[0];
 		},
 
-		// this function is to restrict access to the success page so as not to accidentally trigger conversion metrics
-		authorizeSuccessKey: function(key) {
-
-			var authorized = false;
-			var authorizedKey = this.getKey();
-
-			if(key === authorizedKey) {
-				authorized = true;
-			}
-
-
-			return authorized;
-		},
 		getIntercomAppId: function() {
 			var app_id;
 
@@ -29936,15 +29914,13 @@ var QuestionController = function QuestionController($scope,$routeParams,DataSer
 					questionDecider = 'save';
 				} else {
 
-					var account_code = $scope.currentUser.get("account_code");
+					var account_code = $scope.currentUser.get("recurlyAccountCode");
 					// check if we already have credit card on file, if so redirect to success page
 					if(typeof(account_code) !== "undefined") {
 						// TODO: look up valid credit card info from recurly
 						questionDecider = 'success';
 
-						var key = HelperService.getKey();
-
-						var newPath = '/section/' + $routeParams.section + '/category/generic/question/' + questionDecider + '/account_code/' + account_code + '/key/' + key;
+						var newPath = '/section/' + $routeParams.section + '/category/' + $routeParams.category + '/question/' + questionDecider;
 						$location.path(newPath);
 
 						break;
@@ -29959,18 +29935,8 @@ var QuestionController = function QuestionController($scope,$routeParams,DataSer
 				$scope.detailTemplate = 'section/' + $routeParams.section + '/category/generic/question/' + questionDecider + '.html';
 				break;
 			case 'success':
-
-				// first check the key, this is basic security
-				if(typeof($routeParams.key) !== "undefined") {
-					var auth = HelperService.authorizeSuccessKey($routeParams.key);
-					if(auth) {
-						questionDecider = 'success';
-						$scope.detailTemplate = 'section/' + $routeParams.section + '/category/generic/question/' + questionDecider + '.html';
-					}
-				} else {
-					// unauthorized access to success page
-					window.location = '/male';
-				}
+				questionDecider = 'success';
+				$scope.detailTemplate = 'section/' + $routeParams.section + '/category/generic/question/' + questionDecider + '.html';
 				break;
 			default:
 				// or dashboard
@@ -30547,71 +30513,41 @@ SaveFormController.$inject = ['$scope','DataService','HelperService','$routePara
      Begin CheckoutFormController.js
 ********************************************** */
 
-var CheckoutFormController = function CheckoutFormController($scope,DataService,HelperService,$routeParams,$locale,checkoutLoader) {
+var CheckoutFormController = function CheckoutFormController($scope,$location,DataService,HelperService,$routeParams,$locale,checkoutLoader) {
 
 	/**
 	*  Controller Properties
 	*/
 
-	// need to define this up here first so they can be used in the promise closure below
 	
-	// TODO: should we set male_answers here?
-	// NB we are not using $scope.male_answers because there is a chance it could be asyncronously fetching from DB at this very moment
-	var all_user_answers;
-	var currentAnswer = $scope.currentAnswer;
-	$scope.basket = {};
 
-	$scope.recurly = {
+
+	// set up Recurlyjs inputs
+
+	if(typeof $scope.currentUser.get("recurlyAccountCode") !== "undefined") {
+		var accountCode = $scope.currentUser.get("recurlyAccountCode");
+	} else {
+		var accountCode = $scope.currentUser.get("email");
+	};
+
+	$scope.recurlyPayload = {
+		user 				: $scope.currentUser,
 		transactionType		: "billing",
 		currency			: "GBP",
 		subdomain			: "hackbrandid",
-		payload : {
-			// these are the params to sign
+		params : { // these are the params to sign
+			account : {
+				account_code: accountCode
+			}
 			// transaction : {
 			// 	"amount_in_cents" : 1999,
 			// 	"currency":"GBP"
 			// }
-			account : {
-				account_code: "arushsehgal@gmail.com"
-			}
 		}
+		
 	};
 
-	// basket title
-	$scope.basketTitle = checkoutLoader.getBasketTitle($locale.id);
-
-
-		// fetch collection of answers for the user
-		var promise = DataService.getUserAnswers($scope.currentUser,$scope);
-
-		promise.then(function(answers) {
-
-	    all_user_answers = answers;
-	    currentAnswer = all_user_answers.getByCategory($routeParams.category);
-
-	    // make human readable answers, we made this non-default because the raw basket can be used
-		  if(typeof(currentAnswer.get("brands")) !== "undefined") {
-				$scope.basket.brands = checkoutLoader.humanizeAnswer(currentAnswer.get("brands"));
-				// $scope.basket.brands = checkoutLoader.taggerize(currentAnswer.get("brands"));
-		  };
-
-			if(typeof(currentAnswer.get("colours")) !== "undefined") {
-				$scope.basket.colours = checkoutLoader.humanizeAnswer(currentAnswer.get("colours"));
-			};
-
-			if(typeof(currentAnswer.get("size")) !== "undefined") {
-				$scope.basket.size = checkoutLoader.humanizeSize(currentAnswer.get("size"));
-			};
-
-			$scope.basket.specifics = currentAnswer.get("specifics");
-
-
-	  }, function(reason) {
-	    // something went wrong in the API call, so init new object
-	    console.log("Could not fetch users answers collection");
-	    console.log(reason);
-	    // male_answers.boxers = new Boxers();
-	  });
+	
 
 	// checkout title
 	$scope.checkoutTitle = checkoutLoader.getCheckoutTitle($locale.id);
@@ -30622,55 +30558,78 @@ var CheckoutFormController = function CheckoutFormController($scope,DataService,
 	// gloves image
 	$scope.checkoutIncentiveUrl = checkoutLoader.getCheckoutIncentiveUrl($locale.id);
 
-	var environment = HelperService.getEnvironment();
-	var liveOrDevUrl;
-	
-	if(environment === "www") {
-		liveOrDevUrl = "brandid";
-	} else {
-		liveOrDevUrl = "hackbrandid";
-	}
-
-	$scope.paymentPageUrl = "https://" + liveOrDevUrl + ".recurly.com/subscribe/onboardfee";
-
 
 	/**
 	*  Controller Functions
 	*/
 
 	$scope.receiveRecurlyToken = function(recurly_token) {
-		console.log(recurly_token);
-	}
+		var newLocation = '#/section/' + $routeParams.section + '/category/generic/question/success';
+		window.location = newLocation;
+	};
 
 	// track
 	var metricsPayload = {"B4.0_Funnel": $routeParams.category, "B4.0_Step": "£1 Checkout"};
     HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
 
 }
-CheckoutFormController.$inject = ['$scope','DataService','HelperService','$routeParams','$locale','checkoutLoader'];
+CheckoutFormController.$inject = ['$scope','$location','DataService','HelperService','$routeParams','$locale','checkoutLoader'];
 
 
 /* **********************************************
      Begin SuccessFormController.js
 ********************************************** */
 
-var SuccessFormController = function SuccessFormController($scope,DataService,HelperService,$routeParams,$locale,successLoader) {
+var SuccessFormController = function SuccessFormController($scope,DataService,HelperService,$routeParams,$locale,successLoader,basketLoader) {
 
 	/**
 	*  Controller Properties
 	*/
 
+	// need to define this up here first so they can be used in the promise closure below
+	var all_user_answers;
+	var currentAnswer = $scope.currentAnswer;
+	$scope.basket = {};
+	
+	// TODO: should we set male_answers here?
+	// NB we are not using $scope.male_answers because there is a chance it could be asyncronously fetching from DB at this very moment
+	
+	// basket title
+	$scope.basketTitle = basketLoader.getBasketTitle($locale.id);
 
-	// receive the account code from Recurly success form and store it against the user as teh email and the account_code
-	if($scope.currentUser) {
-		DataService.setToUser($scope.currentUser,"recurly_account_code",$routeParams.account_code);
-		// only use the recurly email as the user's email if it was not saved before, e.g. if they blocked access to email when connecting to facebook
-		if(!$scope.currentUser.get("email")) {
-			DataService.setToUser($scope.currentUser,"email",$routeParams.account_code);
-		}
-		DataService.saveUser($scope.currentUser);
-		console.log($routeParams.account_code);
-	}
+
+	// fetch collection of answers for the user
+	var promise = DataService.getUserAnswers($scope.currentUser,$scope);
+
+	promise.then(function(answers) {
+
+	    all_user_answers = answers;
+	    currentAnswer = all_user_answers.getByCategory($routeParams.category);
+
+    	// make human readable answers, we made this non-default because the raw basket can be used
+		if(typeof(currentAnswer.get("brands")) !== "undefined") {
+			$scope.basket.brands = basketLoader.humanizeAnswer(currentAnswer.get("brands"));
+			// $scope.basket.brands = basketLoader.taggerize(currentAnswer.get("brands"));
+		};
+
+		if(typeof(currentAnswer.get("colours")) !== "undefined") {
+			$scope.basket.colours = basketLoader.humanizeAnswer(currentAnswer.get("colours"));
+		};
+
+		if(typeof(currentAnswer.get("size")) !== "undefined") {
+			$scope.basket.size = basketLoader.humanizeSize(currentAnswer.get("size"));
+		};
+
+		$scope.basket.specifics = currentAnswer.get("specifics");
+
+
+	}, function(reason) {
+	  // something went wrong in the API call, so init new object
+	  console.log("Could not fetch users answers collection");
+	  console.log(reason);
+	  // male_answers.boxers = new Boxers();
+	});
+
 
 	// success title
 	$scope.successTitle = successLoader.getSuccessTitle($locale.id);
@@ -30679,19 +30638,17 @@ var SuccessFormController = function SuccessFormController($scope,DataService,He
 	$scope.successCopy = successLoader.getSuccessCopy($locale.id);
 
 	
-
 	/**
 	*  Controller Functions
 	*/
 
-
 	// track
 	var metricsPayload = {"B4.0_Funnel": $routeParams.category, "B4.0_Step": "Success"};
     HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
+    // TODO: add intercom
 
-
-}
-SuccessFormController.$inject = ['$scope','DataService','HelperService','$routeParams','$locale','successLoader'];
+};
+SuccessFormController.$inject = ['$scope','DataService','HelperService','$routeParams','$locale','successLoader','basketLoader'];
 
 
 /* **********************************************
@@ -30729,68 +30686,142 @@ var Recurlyjs = angular.module('recurlyjs', [])
 .directive('recurlyjs', ['DataService','$http', function(DataService, $http) {
 	return {
 		restrict: 'E',
-		template:'<div id="recurlyDiv">test</div>',
+		template:'<div id="recurlyDiv"><div class="loading recurly-loading"></div></div>',
 		replace:true,
 		// transclude:false,
 		scope: {
-			subdomain: '=',
-			currency: '=',
-			type: '=',
 			payload: '=',
+			user: '=',
 			callback: '=' // this calls the parent controller's function defined in the markup
 		},
 		link:function (scope, element, attrs) {
 
+
+			// set up Recurlyjs globals
+
 			Recurly.config({
-					subdomain: scope.subdomain
-				, currency: scope.currency
+					subdomain: scope.payload.subdomain
+				, currency: scope.payload.currency
 			});
+
+
+			// set up form defaults
+
+			var accountInfo = {
+				  firstName: ''
+				, lastName: ''
+				, email: ''
+				, phone: ''
+			};
+
+			var billingInfo = {
+					firstName: ''
+				, lastName: ''
+				, address1: ''
+				, address2: ''
+				, city: ''
+				, state: ''
+				// , country: '' // must leave this out because Recurly detects current country
+				, zip: ''
+			};
+
+			var user = scope.payload.user; // cleaner to read and its faster to execute
+
+			if(typeof user.get("first_name") !== "undefined") {
+				accountInfo.firstName = user.get("first_name");
+				billingInfo.firstName = user.get("first_name");
+			}
+
+			if(typeof user.get("last_name") !== "undefined") {
+				accountInfo.lastName = user.get("last_name");
+				billingInfo.firstName = user.get("last_name");
+			}
+
+			if(typeof user.get("email") !== "undefined") {
+				accountInfo.email = user.get("email");
+			}
+
+			if(typeof user.get("phone") !== "undefined") {
+				accountInfo.phone = user.get("phone");
+			}
+				
+
 
 			var signature; // once ajax call is complete, this is where we store the Recurly.js signature
 
-			var promise = DataService.cloud.signRecurlyParams(scope.payload, scope);
+			var paramsToSign = scope.payload.params;
+
+			// console.log(scope.payload.params);
+
+			// send off the request for signature
+			var promise = DataService.cloud.signRecurlyParams(paramsToSign, scope);
 
 			promise.then(function(result) {
-
 				signature = result.text;
 
-				switch(scope.type) {
+				switch(scope.payload.transactionType) {
 					case 'one-off':
 						Recurly.buildTransactionForm({
+					    
+					    // defaults
 					    	target: '#recurlyDiv'
 					    , signature: signature
-					    , transaction: scope.transaction
-					    , successHandler: scope.callback
-							// , accountCode: 'arushsehgal@gmail.com'
+					    , collectCompany: false
 							, distinguishContactFromBillingInfo: false
-							, collectCompany: false
-							// , account: accountInfo
-							// , billingInfo: billingInfo				
+
+					    // form specifics
+					    , transaction: scope.payload.params.transaction
+							, accountCode: scope.payload.accountCode
+							
+							// pre-filled
+							, account: accountInfo
+							, billingInfo: billingInfo
+							
+							, successHandler: scope.callback
+							// , afterInject: recurlyPostProcess
 						});
 						break;
 					case 'subscription':
 						Recurly.buildSubscriptionForm({
+					    
+					    // defaults
 					    	target: '#recurlyDiv'
 					    , signature: signature
-					    , successHandler: scope.callback
-							, planCode: sku
-							, accountCode: customerId
-							, distinguishContactFromBillingInfo: false
 							, collectCompany: false
+							, distinguishContactFromBillingInfo: false
+
+					    // form specifics
+							, planCode: scope.payload.sku
+
+							// pre-filled
 							, account: accountInfo
-							, billingInfo: billingInfo				
+							, billingInfo: billingInfo
+
+							, successHandler: scope.callback
 							// , afterInject: recurlyPostProcess
 						});
 						break;
 					case 'billing':
 						Recurly.buildBillingInfoUpdateForm({
-							target: '#recurlyDiv'
-						, signature: signature
-						, collectCompany: false
-						// , accountCode: "arushsehgal@gmail.com"
-						, successHandler: scope.callback
-							// accountCode: accountCode
+
+							// defaults
+								target: '#recurlyDiv'
+							, signature: signature
+							, collectCompany: false
+							, distinguishContactFromBillingInfo: false
+							, addressRequirement: 'zipstreet'
+							
+							// form specifics
+							, accountCode: scope.payload.params.account.account_code
+							
+							// pre-filled
+							, account: accountInfo
+							, billingInfo: billingInfo
+
+							, successHandler: scope.callback
+							// , afterInject: recurlyPostProcess
 						});
+						break;
 				}
 
 
@@ -31877,16 +31908,9 @@ Checkout.factory('checkoutLoader', ['HelperService', function(HelperService) {
 			return copy[countryCode];
 		},
 
-		getBasketTitle: function(countryCode) {
-			var basketTitle = {
-				"en-gb": "Email ETA: ≈3 days"
-			}
-			return basketTitle[countryCode];
-		},
-
 		getCheckoutTitle: function(countryCode) {
 			var checkoutTitle = {
-				"en-gb": "Jump the queue by adding your credit card, get £5 credit"
+				"en-gb": "Add your credit card today, get £5 credit"
 			}
 			return checkoutTitle[countryCode];
 		},
@@ -31950,8 +31974,48 @@ Checkout.factory('checkoutLoader', ['HelperService', function(HelperService) {
 	    		]
 	    	}
 	    	return reasons[countryCode];
-	    },
+	    }
 
+
+	};
+
+	/* This factory method is dependent on other factory methods as declared in function(...here...).
+	 * We must inject these dependencies as strings so the file can be minified
+	 **/
+
+	// brandLoader.$inject = ['boxersCheckout','socksCheckout'];
+
+	return checkoutLoader;
+}]);
+
+/* **********************************************
+     Begin basketLoader.js
+********************************************** */
+
+
+/* Here we are defining a global variable Checkout so we can extend it with factory methods in other files.
+ * This allows us to make brand sets in separate files and make the main colleciton of checkout depend on them if we want
+ * But here we've just included all the brand sets in one file for simplicity. We could retrieve the list of checkout from
+ * an external data source if we wanted.
+ **/
+
+var Basket = angular.module('BasketModule', []);
+
+Basket.factory('basketLoader', ['HelperService', function(HelperService) {
+    
+	/* This factory method returns an object that is accessible to the controller which it is injected into.
+	 * Here we define the object including its own methods.
+	 **/
+
+
+	var basketLoader = {
+		getBasketTitle: function(countryCode) {
+			var basketTitle = {
+				"en-gb": "Email ETA: ≈3 days"
+			}
+			return basketTitle[countryCode];
+		},
+		
 	    getBasket: function(category,male_answers) {
 
 	    	var basket = {
@@ -31989,7 +32053,7 @@ Checkout.factory('checkoutLoader', ['HelperService', function(HelperService) {
 	    	return brands;
 	    },
 
-    	// human readable version of SELECT2 elements
+		// human readable version of SELECT2 elements
 	    humanizeAnswer: function(answer) {
 	    	var humanized = "";
 
@@ -32096,9 +32160,8 @@ Checkout.factory('checkoutLoader', ['HelperService', function(HelperService) {
 
 	    	return specifics;
 	    }
-
-
 	};
+
 
 	/* This factory method is dependent on other factory methods as declared in function(...here...).
 	 * We must inject these dependencies as strings so the file can be minified
@@ -32106,7 +32169,7 @@ Checkout.factory('checkoutLoader', ['HelperService', function(HelperService) {
 
 	// brandLoader.$inject = ['boxersCheckout','socksCheckout'];
 
-	return checkoutLoader;
+	return basketLoader;
 }]);
 
 /* **********************************************
@@ -32132,14 +32195,14 @@ Success.factory('successLoader', function() {
 
 		getSuccessCopy: function(countryCode) {
 			var copy = {
-				"en-gb": "Ok, now I've got your card on file you won't have to go through that again. I'm working on some options for you, so keep a lookout for an email from male@getbrandid.com in a few hours. Don't forget to check your spam folder just in case."
+				"en-gb": "Ok, since I've got your card on file, I'm ready to roll. I'm working on some options for you, so keep a lookout for an email from male@getbrandid.com in a few hours. Don't forget to check your spam folder just in case."
 			}
 			return copy[countryCode];
 		},
 
 		getSuccessTitle: function(countryCode) {
 			var successTitle = {
-				"en-gb": "M.A.L.E. is about to hit your inbox"
+				"en-gb": "M.A.L.E. will hit your inbox in about 48hrs"
 			}
 			return successTitle[countryCode];
 		}
@@ -32210,6 +32273,7 @@ Success.factory('successLoader', function() {
 // @codekit-prepend "modules/sizeLoader.js"
 // @codekit-prepend "modules/specificsLoader.js"
 // @codekit-prepend "modules/checkoutLoader.js"
+// @codekit-prepend "modules/basketLoader.js"
 // @codekit-prepend "modules/successLoader.js"
 
 

@@ -49,6 +49,7 @@
 // @codekit-prepend "modules/sizeLoader.js"
 // @codekit-prepend "modules/specificsLoader.js"
 // @codekit-prepend "modules/checkoutLoader.js"
+// @codekit-prepend "modules/basketLoader.js"
 // @codekit-prepend "modules/successLoader.js"
 
 

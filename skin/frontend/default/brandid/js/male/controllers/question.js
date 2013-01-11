@@ -117,15 +117,13 @@ var QuestionController = function QuestionController($scope,$routeParams,DataSer
 					questionDecider = 'save';
 				} else {
 
-					var account_code = $scope.currentUser.get("account_code");
+					var account_code = $scope.currentUser.get("recurlyAccountCode");
 					// check if we already have credit card on file, if so redirect to success page
 					if(typeof(account_code) !== "undefined") {
 						// TODO: look up valid credit card info from recurly
 						questionDecider = 'success';
 
-						var key = HelperService.getKey();
-
-						var newPath = '/section/' + $routeParams.section + '/category/generic/question/' + questionDecider + '/account_code/' + account_code + '/key/' + key;
+						var newPath = '/section/' + $routeParams.section + '/category/' + $routeParams.category + '/question/' + questionDecider;
 						$location.path(newPath);
 
 						break;
@@ -140,18 +138,8 @@ var QuestionController = function QuestionController($scope,$routeParams,DataSer
 				$scope.detailTemplate = 'section/' + $routeParams.section + '/category/generic/question/' + questionDecider + '.html';
 				break;
 			case 'success':
-
-				// first check the key, this is basic security
-				if(typeof($routeParams.key) !== "undefined") {
-					var auth = HelperService.authorizeSuccessKey($routeParams.key);
-					if(auth) {
-						questionDecider = 'success';
-						$scope.detailTemplate = 'section/' + $routeParams.section + '/category/generic/question/' + questionDecider + '.html';
-					}
-				} else {
-					// unauthorized access to success page
-					window.location = '/male';
-				}
+				questionDecider = 'success';
+				$scope.detailTemplate = 'section/' + $routeParams.section + '/category/generic/question/' + questionDecider + '.html';
 				break;
 			default:
 				// or dashboard

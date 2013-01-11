@@ -1,7 +1,17 @@
-.recurly {
+$fieldWidth : 300px;
+
+.recurly-loading.loading {
+  height:450px;
+}
+
+.recurly, .recurly-loading.loading {
   display: block;
   position: relative;
-  width: 500px;
+  width: 345px;
+  margin: 0 auto;
+  background-color: white;
+  @include border-radius(3px);
+  @include box-shadow(rgba(0, 0, 0, 0.3) 0 1px 3px);
 }
 .recurly .cost,
 .recurly .discount {
@@ -284,16 +294,13 @@
   vertical-align: middle;
 }
 .recurly .error {
-  padding: 5px;
-  line-height: 22px;
+  padding: 0 0 0 6px;
+  // line-height: 22px;
   vertical-align: middle;
-  color: #000;
-  text-shadow: 0 1px 0 #fec;
-  background: #ffc;
-  border: 1px solid #ba1;
-  box-shadow: 3px 5px 5px 0 rgba(0,0,0,0.1);
-  border-radius: 5px;
-  font-size: 13px;
+  color: #C09853;
+  background: #FEE;
+  border: 1px solid #FBEED5;
+  font-size: 10px;
 }
 .recurly .server_errors {
   color: #fff;
@@ -303,7 +310,9 @@
 }
 .recurly .server_errors .error {
   padding-left: 26px;
-  background: rgba(240,250,0,0.5) url("recurly/images/error.png") no-repeat 5px 9px;
+  background: #FEE url("recurly/images/error.png") no-repeat 4px 4px;
+  font-size:13px;
+
 }
 .recurly .server_errors.any {
   opacity: 1;
@@ -316,7 +325,7 @@
 .recurly .billing_info,
 .recurly .accept_tos {
   position: relative;
-  padding: 20px 20px;
+  padding: 20px 20px 0;
   overflow: hidden;
   zoom: 1;
 }
@@ -361,9 +370,9 @@
   display: inline;
   float: left;
   clear: left;
-  width: 300px;
-  height: 34px;
-  margin-bottom: 20px;
+  width: $fieldWidth;
+  height: 26px;
+  margin-bottom: 30px;
   position: relative;
 }
 .recurly .field input[type=text] {
@@ -373,12 +382,12 @@
   margin-bottom: 0;
 }
 .recurly .field .error {
-  min-width: 128px;
+  // min-width: 128px;
   white-space: nowrap;
-  position: absolute;
+  // position: absolute;
   top: 0;
   left: 100%;
-  margin-left: 20px;
+  // margin-left: 20px;
   z-index: 1337;
 }
 .recurly .field .placeholder {
@@ -451,7 +460,7 @@
   width: 48px;
 }
 .recurly .field.expires {
-  width: 300px;
+  width: $fieldWidth;
 }
 .recurly .field.expires input[type=text] {
   width: 288px;
@@ -513,8 +522,8 @@
 }
 .recurly .accepted_cards {
   position: absolute;
-  top: 20px;
-  right: 180px;
+  top: 12px;
+  right: 21px;
 }
 .recurly .card {
   background-position: right top;
@@ -617,33 +626,35 @@
   text-shadow: 0px 1px 1px rgba(0,0,0,0.9);
 }
 .recurly .footer {
-  border-radius: 0px 0px 9px 9px;
+  // border-radius: 0px 0px 9px 9px;
   margin: 0px;
-  padding: 20px;
+  background:none;
+  padding: 0 20px 20px 20px;
 }
 .recurly.submitting .footer {
-  background: url("recurly/images/submitting.gif") no-repeat 180px 28px;
+  background: url("recurly/images/submitting.gif") no-repeat 50% 7px;
 }
 .recurly button.submit {
-  height: 46px;
-  max-width: 600px;
-  font-size: 18px;
-  font-weight: 700;
-  color: #302106;
-  text-align: center;
-  margin-left: 0px;
-  border: 1px solid #767674;
-  background: #e7a500;
-  border-radius: 10px;
-  outline: none;
-  box-shadow: inset rgba(255,255,255,0.7) 0px 1px 0px, rgba(0,0,0,0.5) 0px 1px 3px;
-  background-image: -webkit-gradient(linear, 0% 20%, 0% 100%, from(#fecd00), to(#ce7b00));
-  background: -moz-linear-gradient(top, #fecd00, #ce7b00);
-  text-shadow: rgba(255,255,255,0.5) 0 1px 0;
-  padding: 10px 20px;
+  width: $fieldWidth;
+  // height: 46px;
+  // max-width: 600px;
+  // font-size: 18px;
+  // font-weight: 700;
+  // color: #302106;
+  // text-align: center;
+  // margin-left: 0px;
+  // border: 1px solid #767674;
+  // background: #e7a500;
+  // border-radius: 10px;
+  // outline: none;
+  // box-shadow: inset rgba(255,255,255,0.7) 0px 1px 0px, rgba(0,0,0,0.5) 0px 1px 3px;
+  // background-image: -webkit-gradient(linear, 0% 20%, 0% 100%, from(#fecd00), to(#ce7b00));
+  // background: -moz-linear-gradient(top, #fecd00, #ce7b00);
+  // text-shadow: rgba(255,255,255,0.5) 0 1px 0;
+  // padding: 10px 20px;
 }
 .recurly button.submit:hover {
-  color: #451;
+  // color: #451;
 }
 .recurly button.submit:active {
   top: 2px;
@@ -664,19 +675,18 @@
   text-shadow: rgba(255,255,255,0.569) 0 1px 0;
   text-align: center;
   opacity: 0.75;
-  border: 1px solid #767674;
+  // border: 1px solid #767674;
   background: #e7a500;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
   -webkit-user-select: none;
   -moz-user-select: -moz-none;
   outline: none;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dbd9d2), to(#999));
   background: -moz-linear-gradient(top, #dbd9d2, #999);
   -webkit-background-clip: padding-box;
-  -webkit-box-shadow: rgba(255,255,255,0.69) 0px 1px 0px inset, rgba(0,0,0,0.26) 0px 2px 3px;
-  box-shadow: rgba(255,255,255,0.699) 0px 1px 0px inset, rgba(0,0,0,0.269) 0px 2px 3px;
+
 }
 .iefail {
   background: #666;

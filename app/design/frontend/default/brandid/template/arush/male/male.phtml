@@ -311,21 +311,12 @@
       <div class="slide-container clearfix fadeIn ani">
         <form ng-controller="CheckoutFormController">
           
-          <span id="brands" class="question">{{question}}</span>
-          <h1 class="question-title">{{basketTitle}}</h1>
-            <span class="bold">Brands:</span> <span class="basket-items">{{basket.brands}}</span><br/>
-            
-            <span class="bold">Size:</span> <span class="basket-items">{{basket.size}}</span><br/>
-            <span class="bold">Colours:</span> <span class="basket-items">{{basket.colours}}</span><br/>
-            <span class="bold">Specifics:</span> <span class="basket-items">{{basket.specifics}}</span>
-
-
-          <div class="curved-white-block withShadow withRadius">
-            <div class="fullWidth clearfix">
-              <h1 class="question-title">{{checkoutTitle}}</h1>              
-              <recurlyjs type="recurly.transactionType" payload="recurly.payload" currency="recurly.currency" subdomain="recurly.subdomain" callback="receiveRecurlyToken"></recurlyjs>
-            </div>
+          <h1 class="question-title center-align">{{checkoutTitle}}</h1><br/>
+          <recurlyjs payload="recurlyPayload" callback="receiveRecurlyToken" user="currentUser"></recurlyjs>
+          
+          <div class="fullWidth clearfix">              
           </div>
+
         </form>
       </div>
   </script>
@@ -370,11 +361,27 @@
             
             <div class="fullWidth clearfix">
               <h1 class="question-title">{{successTitle}}</h1>
-              <div class="incentive-message float-left question" class="question">{{successCopy}}</div>
-            </div>
+              
+              <br/>
+              <span class="bold">Brands:</span> <span class="basket-items">{{basket.brands}}</span><br/>
+            
+              <span class="bold">Size:</span> <span class="basket-items">{{basket.size}}</span><br/>
+              <span class="bold">Colours:</span> <span class="basket-items">{{basket.colours}}</span><br/>
+              <span class="bold">Specifics:</span> <span class="basket-items">{{basket.specifics}}</span>
 
+              <br/>
+              <br/>
+              <div class="incentive-message float-left question" class="question">{{successCopy}}</div>
+              
+              <!-- <h1 class="question-title">{{basketTitle}}</h1> -->
+
+            </div>
             
-            
+          </div>
+          <div class="next-question-button-section clearfix">
+            <a class="convert submit checkout" type="submit" href="#/">
+                  Configure another item
+            </a>
           </div>
         </form>
 

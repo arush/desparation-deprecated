@@ -3,7 +3,7 @@
 // this is for intercom.io integration
 var intercomSettings = {};
 
-var ngMaleApp = angular.module('ngMaleApp', ['ui','$strap','maleUI','recurlyjs','DataServices','HelperServices','BrandsModule','ColoursModule','SizeModule','SpecificsModule','CheckoutModule','SuccessModule']);
+var ngMaleApp = angular.module('ngMaleApp', ['ui','$strap','maleUI','recurlyjs','DataServices','HelperServices','BrandsModule','ColoursModule','SizeModule','SpecificsModule','CheckoutModule','BasketModule','SuccessModule']);
 
 ngMaleApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
@@ -32,10 +32,6 @@ ngMaleApp.config(['$routeProvider', function ($routeProvider) {
          controller:MainController
       })
       .when('/section/:section/category/:category/question/:question', {
-         templateUrl: 'detailViewProxy.html',
-         controller:QuestionController
-      })
-      .when('/section/:section/category/:category/question/:question/account_code/:account_code/key/:key', {
          templateUrl: 'detailViewProxy.html',
          controller:QuestionController
       })
