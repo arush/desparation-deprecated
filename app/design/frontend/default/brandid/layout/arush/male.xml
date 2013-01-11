@@ -25,7 +25,7 @@
 	        </block> -->
 
             <!-- <action method="addCss"><stylesheet>css/arush/landing5.css</stylesheet></action>      -->
-            <action method="addCss"><stylesheet>css/male/male5-1.css</stylesheet></action>     
+            <action method="addCss"><stylesheet>css/male/male5-2.css</stylesheet></action>     
             <block type="page/html" name="bg_css" template="page/keep-calm-base64.phtml"/>
             <block type="core/text" name="fb-meta">
                 <action method="setText">
@@ -42,9 +42,9 @@
                 </action>
             </block>
 
-	        <action method="addCss"><stylesheet>css/arush/leanlanding/core5-1.css</stylesheet></action>
+	        <action method="addCss"><stylesheet>css/arush/leanlanding/core5-2.css</stylesheet></action>
             <action method="addItem"><type>skin_js</type><name>js/male/libs/jquery-1.8.3.min.js</name></action>
-			<action method="addItem"><type>skin_js</type><name>js/male/male5-1-ck.js</name></action>
+			<action method="addItem"><type>skin_js</type><name>js/male/male5-2-ck.js</name></action>
             
 
 			<!-- <action method="addItem"><type>skin_js</type><name>js/arush/subscribe/jquery.cookie.js</name></action> -->
