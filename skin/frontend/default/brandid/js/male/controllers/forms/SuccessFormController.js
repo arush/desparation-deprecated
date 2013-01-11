@@ -27,10 +27,21 @@ var SuccessFormController = function SuccessFormController($scope,DataService,He
 
 	promise.then(function(answers) {
 
+		// update systems with number of completed answers
+		var numCompleted = HelperService.countCompletedAnswers(answers);
+
+		var metricsPayload = {
+			"Answers Completed": numCompleted
+		};
+
+		HelperService.metrics.set(metricsPayload);
+		
+		DataService.cloud.updateAnswers(answers, $scope.currentUser);
+
+
+
     all_user_answers = answers;
     currentAnswer = all_user_answers.getByCategory($routeParams.category);
-
-    // TODO: update answers in Intercom and tell keep Mixpanel People up to date with "number of answers answered" for the user
 
   	// make human readable answers, we made this non-default because the raw basket can be used
 		if(typeof(currentAnswer.get("brands")) !== "undefined") {

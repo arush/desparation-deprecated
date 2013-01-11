@@ -93,14 +93,14 @@ Parse.Cloud.define("updateAnswers", function(request, response) {
 	  
 	  body: request.params,
 
-	  success: function(signature) {
+	  success: function(results) {
 	  	// returns the signature
-	  	response.success(signature);
+	  	response.success(results);
 
-	    console.log('successfully signed Recurly params');
+	    console.log('successfully sent updated answers to BRANDiD systems');
 	  },
 	  error: function(httpResponse) {
-	    console.error('Recurly signature request failed with response code ' + httpResponse.status + ' and data ' + httpResponse.data);
+	    console.error('Answer update request failed with response code ' + httpResponse.status + ' and data ' + httpResponse.data);
 	    console.error(httpResponse);
 	  }
 	});

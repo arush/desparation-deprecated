@@ -53,8 +53,8 @@ angular.module('HelperServices', [])
 			set: function(payload) {
 
 
-            // It is important to note that you must call mixpanel.identify() in conjunction with People requests like set()
-            // identify would have been called already if email was provided
+        // It is important to note that you must call mixpanel.identify() in conjunction with People requests like set()
+        // identify would have been called already if email was provided
 
 
 				if(typeof(mixpanel) !== "undefined") {
@@ -186,8 +186,49 @@ angular.module('HelperServices', [])
 	        };
 		},
 
+		isAnswerComplete: function(answer) {
+			var complete = true;
+			var category = answer.get("category");
+			var sizeRequired = true;
+
+			if(category === "socks") {
+				sizeRequired = false;
+			};
+
+
+			// check all required fields and invalidate 'complete' as necessary
+
+			if(sizeRequired) {
+				if(typeof answer.get("size") === "undefined") {
+					complete = false;
+				}
+			}
+
+			if(typeof answer.get("brands") === "undefined") {
+				complete = false;
+			}
+
+			if(typeof answer.get("colours") === "undefined") {
+				complete = false;
+			}
+
+			return complete;
+
+		},
+
 		countCompletedAnswers: function(answers) {
-			
+			var numCompleted = 0;
+
+			for(var i = 0; i < answers.length; i++) {
+				
+				// check if answer is complete
+				if(this.isAnswerComplete(answers.at(i))) {
+					numCompleted++;
+				};
+
+			};
+
+			return numCompleted;
 		}
 	}
 	

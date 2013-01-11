@@ -29110,6 +29110,45 @@ angular.module('DataServices', [])
 
         updateAnswers: function(answers, user) {
           // this keeps various BRANDiD systems up to date whenever an answer is answered
+
+
+          var params = {
+            email: user.get("email")
+          };
+
+          for(var i = 0; i < answers.length; i++) {
+        
+            // add complete answers to answers array to be sent with the params
+
+            if(HelperService.isAnswerComplete(answers.at(i))) {
+              var category = "Answered " + answers.at(i).get("category");
+
+              params[category] = true;
+
+            };
+            
+          };
+
+          console.log(params);
+
+
+          Parse.Cloud.run('updateAnswers', params, {
+            success: function(results) {
+              // we wrap this in $apply using the correct scope passed in because we always need angular to recognise changes
+              // nothing really to do here
+              console.log("successfully sent answers to BRANDiD");
+              console.log(results);
+
+            },
+            error: function(error) {
+
+              // standard error handling
+              console.log("failed to send answers to BRANDiD");
+              console.log(error);
+            }
+          });
+
+
         }
       },
 
@@ -29571,8 +29610,8 @@ angular.module('HelperServices', [])
 			set: function(payload) {
 
 
-            // It is important to note that you must call mixpanel.identify() in conjunction with People requests like set()
-            // identify would have been called already if email was provided
+        // It is important to note that you must call mixpanel.identify() in conjunction with People requests like set()
+        // identify would have been called already if email was provided
 
 
 				if(typeof(mixpanel) !== "undefined") {
@@ -29704,8 +29743,49 @@ angular.module('HelperServices', [])
 	        };
 		},
 
+		isAnswerComplete: function(answer) {
+			var complete = true;
+			var category = answer.get("category");
+			var sizeRequired = true;
+
+			if(category === "socks") {
+				sizeRequired = false;
+			};
+
+
+			// check all required fields and invalidate 'complete' as necessary
+
+			if(sizeRequired) {
+				if(typeof answer.get("size") === "undefined") {
+					complete = false;
+				}
+			}
+
+			if(typeof answer.get("brands") === "undefined") {
+				complete = false;
+			}
+
+			if(typeof answer.get("colours") === "undefined") {
+				complete = false;
+			}
+
+			return complete;
+
+		},
+
 		countCompletedAnswers: function(answers) {
-			
+			var numCompleted = 0;
+
+			for(var i = 0; i < answers.length; i++) {
+				
+				// check if answer is complete
+				if(this.isAnswerComplete(answers.at(i))) {
+					numCompleted++;
+				};
+
+			};
+
+			return numCompleted;
 		}
 	}
 	
@@ -30679,10 +30759,21 @@ var SuccessFormController = function SuccessFormController($scope,DataService,He
 
 	promise.then(function(answers) {
 
+		// update systems with number of completed answers
+		var numCompleted = HelperService.countCompletedAnswers(answers);
+
+		var metricsPayload = {
+			"Answers Completed": numCompleted
+		};
+
+		HelperService.metrics.set(metricsPayload);
+		
+		DataService.cloud.updateAnswers(answers, $scope.currentUser);
+
+
+
     all_user_answers = answers;
     currentAnswer = all_user_answers.getByCategory($routeParams.category);
-
-    // TODO: update answers in Intercom and tell keep Mixpanel People up to date with "number of answers answered" for the user
 
   	// make human readable answers, we made this non-default because the raw basket can be used
 		if(typeof(currentAnswer.get("brands")) !== "undefined") {

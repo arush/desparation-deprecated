@@ -143,6 +143,45 @@ angular.module('DataServices', [])
 
         updateAnswers: function(answers, user) {
           // this keeps various BRANDiD systems up to date whenever an answer is answered
+
+
+          var params = {
+            email: user.get("email")
+          };
+
+          for(var i = 0; i < answers.length; i++) {
+        
+            // add complete answers to answers array to be sent with the params
+
+            if(HelperService.isAnswerComplete(answers.at(i))) {
+              var category = "Answered " + answers.at(i).get("category");
+
+              params[category] = true;
+
+            };
+            
+          };
+
+          console.log(params);
+
+
+          Parse.Cloud.run('updateAnswers', params, {
+            success: function(results) {
+              // we wrap this in $apply using the correct scope passed in because we always need angular to recognise changes
+              // nothing really to do here
+              console.log("successfully sent answers to BRANDiD");
+              console.log(results);
+
+            },
+            error: function(error) {
+
+              // standard error handling
+              console.log("failed to send answers to BRANDiD");
+              console.log(error);
+            }
+          });
+
+
         }
       },
 

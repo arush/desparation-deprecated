@@ -84,6 +84,16 @@
     return res.send(signature, 200);
   });
 
+  app.post('/answers/update', auth, function(req, res) {
+    var intercom_payload;
+    intercom_payload = req.body;
+    return intercom.users.put(intercom_payload, function(code, body) {
+      console.log(code, body);
+      res.contentType("application/json");
+      return res.send(body, code);
+    });
+  });
+
   app.post('/recurly/push', auth, function(req, res) {
     var accountCode, attr, recurlyPush, value, _results;
     recurlyPush = req.body;

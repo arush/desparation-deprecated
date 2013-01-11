@@ -74,6 +74,16 @@ app.post '/recurly/sign', auth, (req, res) ->
 	res.contentType "text/plain"
 	res.send signature, 200
 
+app.post '/answers/update', auth, (req, res) ->
+
+	# update intercom
+	intercom_payload = req.body
+
+	intercom.users.put intercom_payload, (code, body) ->
+		console.log code, body
+		res.contentType "application/json"
+		res.send body, code
+
 
 app.post '/recurly/push', auth, (req, res) ->
 
