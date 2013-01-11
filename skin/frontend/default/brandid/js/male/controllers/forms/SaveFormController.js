@@ -27,8 +27,8 @@ var SaveFormController = function SaveFormController($scope,DataService,HelperSe
 	}
 
 	// track
-	var metricsPayload = {"B4.0_Funnel": $routeParams.category, "B4.0_Step": "Register (Save Basket)"};
-    HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
+	var metricsPayload = {"B4.1_Funnel": $routeParams.category, "B4.1_Step": "Register (Save Basket)"};
+    HelperService.metrics.track('B4.1_Reached Funnel Step', metricsPayload);
 
 
 }

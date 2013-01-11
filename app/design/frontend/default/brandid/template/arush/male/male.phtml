@@ -312,11 +312,10 @@
         <form ng-controller="CheckoutFormController">
           
           <h1 class="question-title center-align">{{checkoutTitle}}</h1><br/>
+          <div class="incentive-message center-align question" class="question">{{checkoutCopy}}</div><br/><br/><br/>
+
           <recurlyjs payload="recurlyPayload" callback="receiveRecurlyToken" user="currentUser"></recurlyjs>
           
-          <div class="fullWidth clearfix">              
-          </div>
-
         </form>
       </div>
   </script>

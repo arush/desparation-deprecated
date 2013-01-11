@@ -49,13 +49,24 @@ var CheckoutFormController = function CheckoutFormController($scope,$location,Da
 	*/
 
 	$scope.receiveRecurlyToken = function(recurly_token) {
-		var newLocation = '#/section/' + $routeParams.section + '/category/generic/question/success';
-		window.location = newLocation;
+		
+		// update user with recurly data from Parse (data gets pushed to Parse from recurly automatically during payment)
+		DataService.fetchUser($scope.currentUser, $scope);
+
+		var newLocation = '#/section/' + $routeParams.section + '/category/' + $routeParams.category + '/question/success';
+
+		// track
+		var metricsPayload = {"B4.1_Funnel": $routeParams.category, "B4.1_Step": "Registered Credit Card"};
+	    HelperService.metrics.track('B4.1_Reached Funnel Step', metricsPayload);
+	    // TODO: add intercom
+
+	    window.location = newLocation;
+
 	};
 
 	// track
-	var metricsPayload = {"B4.0_Funnel": $routeParams.category, "B4.0_Step": "£1 Checkout"};
-    HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
+	var metricsPayload = {"B4.1_Funnel": $routeParams.category, "B4.1_Step": "£1 Checkout"};
+    HelperService.metrics.track('B4.1_Reached Funnel Step', metricsPayload);
 
 }
 CheckoutFormController.$inject = ['$scope','$location','DataService','HelperService','$routeParams','$locale','checkoutLoader'];

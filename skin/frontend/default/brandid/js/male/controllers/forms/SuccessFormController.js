@@ -15,6 +15,12 @@ var SuccessFormController = function SuccessFormController($scope,DataService,He
 	// basket title
 	$scope.basketTitle = basketLoader.getBasketTitle($locale.id);
 
+	// success title
+	$scope.successTitle = successLoader.getSuccessTitle($locale.id);
+
+	// success copy
+	$scope.successCopy = successLoader.getSuccessCopy($locale.id);
+
 
 	// fetch collection of answers for the user
 	var promise = DataService.getUserAnswers($scope.currentUser,$scope);
@@ -48,22 +54,11 @@ var SuccessFormController = function SuccessFormController($scope,DataService,He
 	  // male_answers.boxers = new Boxers();
 	});
 
-
-	// success title
-	$scope.successTitle = successLoader.getSuccessTitle($locale.id);
-
-	// success copy
-	$scope.successCopy = successLoader.getSuccessCopy($locale.id);
-
 	
 	/**
 	*  Controller Functions
 	*/
 
-	// track
-	var metricsPayload = {"B4.0_Funnel": $routeParams.category, "B4.0_Step": "Success"};
-    HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
-    // TODO: add intercom
 
 };
 SuccessFormController.$inject = ['$scope','DataService','HelperService','$routeParams','$locale','successLoader','basketLoader'];

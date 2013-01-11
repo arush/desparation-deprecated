@@ -19,8 +19,8 @@ var CategoryController = function CategoryController($scope,DataService,HelperSe
 		$scope.setCurrentAnswer(chosenCategory);
 
 
-		var metricsPayload = {"B4.0_Item Name":chosenCategory};
-		HelperService.metrics.track("B4.0_Chose Basket Item",metricsPayload);
+		var metricsPayload = {"B4.1_Item Name":chosenCategory};
+		HelperService.metrics.track("B4.1_Chose Basket Item",metricsPayload);
 
 		/* Clear the submenuItems and replace with chosenItem to update the menu */
 		$scope.menu[0].submenuItems = [];
@@ -103,8 +103,8 @@ var CategoryController = function CategoryController($scope,DataService,HelperSe
 
 
 	// track
-	var metricsPayload = {"B4.0_Funnel": "M.A.L.E.","B4.0_Step": "Intro"};
-    HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
+	var metricsPayload = {"B4.1_Funnel": "M.A.L.E.","B4.1_Step": "Intro"};
+    HelperService.metrics.track('B4.1_Reached Funnel Step', metricsPayload);
 
 }
 CategoryController.$inject = ['$scope','DataService','HelperService','$routeParams','$locale','$location'];

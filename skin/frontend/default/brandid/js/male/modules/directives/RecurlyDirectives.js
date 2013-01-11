@@ -126,7 +126,7 @@ var Recurlyjs = angular.module('recurlyjs', [])
 							, signature: signature
 							, collectCompany: false
 							, distinguishContactFromBillingInfo: false
-							, addressRequirement: 'zipstreet'
+							// , addressRequirement: 'zipstreet'
 							
 							// form specifics
 							, accountCode: scope.payload.params.account.account_code

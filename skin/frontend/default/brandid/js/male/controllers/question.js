@@ -70,7 +70,7 @@ var QuestionController = function QuestionController($scope,$routeParams,DataSer
 				questionRouter = 'checkout';
 				break;
 			default:
-				// or dashboard
+				// TODO: where should this go?
 				questionRouter = $routeParams.question;
 				break;
 		}

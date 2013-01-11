@@ -53,8 +53,8 @@ var SizeFormController = function SizeFormController($scope,HelperService,$route
 	/***** END CONTROLLER EVENT RESPONDERS ******/
 
 	// track
-	var metricsPayload = {"B4.0_Funnel": $routeParams.category, "B4.0_Step": "Size"};
-    HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
+	var metricsPayload = {"B4.1_Funnel": $routeParams.category, "B4.1_Step": "Size"};
+    HelperService.metrics.track('B4.1_Reached Funnel Step', metricsPayload);
 
 
 }

@@ -20,7 +20,7 @@ Checkout.factory('checkoutLoader', ['HelperService', function(HelperService) {
 
 		getCheckoutCopy: function(countryCode) {
 			var copy = {
-				"en-gb": "In order to .......... £5 towards your first purchase. Bargain right? Right. You don’t need to buy anything, it’s just to make sure that when you are good to go, you can charge your card right from your inbox. No checkout necessary."
+				"en-gb": "You will not be charged. This is just so when we send you something you like, you can checkout in seconds."
 			}
 			return copy[countryCode];
 		},

@@ -29369,7 +29369,26 @@ angular.module('DataServices', [])
         return deferred.promise;
 
       },
+      
+      fetchUser: function(user,scope) {
+
+        user.fetch({
+          success: function (results) {
             
+            // we wrap this in $apply using the correct scope passed in because we always need angular to recognise changes
+            scope.$apply(function() {
+              user = results;
+            });
+          },
+          error: function (results,error) {
+              console.log(results);
+              console.log(error);
+          }
+        });
+
+      },
+
+
       // TODO: execute this after FB registration
       saveAnswer: function(currentAnswer,scope) {
 
@@ -29867,7 +29886,7 @@ var QuestionController = function QuestionController($scope,$routeParams,DataSer
 				questionRouter = 'checkout';
 				break;
 			default:
-				// or dashboard
+				// TODO: where should this go?
 				questionRouter = $routeParams.question;
 				break;
 		}
@@ -29978,8 +29997,8 @@ var CategoryController = function CategoryController($scope,DataService,HelperSe
 		$scope.setCurrentAnswer(chosenCategory);
 
 
-		var metricsPayload = {"B4.0_Item Name":chosenCategory};
-		HelperService.metrics.track("B4.0_Chose Basket Item",metricsPayload);
+		var metricsPayload = {"B4.1_Item Name":chosenCategory};
+		HelperService.metrics.track("B4.1_Chose Basket Item",metricsPayload);
 
 		/* Clear the submenuItems and replace with chosenItem to update the menu */
 		$scope.menu[0].submenuItems = [];
@@ -30062,8 +30081,8 @@ var CategoryController = function CategoryController($scope,DataService,HelperSe
 
 
 	// track
-	var metricsPayload = {"B4.0_Funnel": "M.A.L.E.","B4.0_Step": "Intro"};
-    HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
+	var metricsPayload = {"B4.1_Funnel": "M.A.L.E.","B4.1_Step": "Intro"};
+    HelperService.metrics.track('B4.1_Reached Funnel Step', metricsPayload);
 
 }
 CategoryController.$inject = ['$scope','DataService','HelperService','$routeParams','$locale','$location'];
@@ -30252,8 +30271,8 @@ var BrandsFormController = function BrandsFormController($scope,HelperService,$r
 
 
 	// track
-	var metricsPayload = {"B4.0_Funnel": $routeParams.category,"B4.0_Step": "Brands"};
-    HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
+	var metricsPayload = {"B4.1_Funnel": $routeParams.category,"B4.1_Step": "Brands"};
+    HelperService.metrics.track('B4.1_Reached Funnel Step', metricsPayload);
 
 }
 BrandsFormController.$inject = ['$scope','HelperService','$routeParams','brandsLoader','$locale'];
@@ -30318,8 +30337,8 @@ var SizeFormController = function SizeFormController($scope,HelperService,$route
 	/***** END CONTROLLER EVENT RESPONDERS ******/
 
 	// track
-	var metricsPayload = {"B4.0_Funnel": $routeParams.category, "B4.0_Step": "Size"};
-    HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
+	var metricsPayload = {"B4.1_Funnel": $routeParams.category, "B4.1_Step": "Size"};
+    HelperService.metrics.track('B4.1_Reached Funnel Step', metricsPayload);
 
 
 }
@@ -30422,8 +30441,8 @@ var ColoursFormController = function ColoursFormController($scope,HelperService,
 	/***** END CONTROLLER EVENT RESPONDERS ******/
 
     // track
-	var metricsPayload = {"B4.0_Funnel": $routeParams.category, "B4.0_Step": "Colours"};
-    HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
+	var metricsPayload = {"B4.1_Funnel": $routeParams.category, "B4.1_Step": "Colours"};
+    HelperService.metrics.track('B4.1_Reached Funnel Step', metricsPayload);
 
 
 }
@@ -30462,8 +30481,8 @@ var SpecificsFormController = function SpecificsFormController($scope,HelperServ
 	/***** END CONTROLLER EVENT RESPONDERS ******/
 
 	// track
-	var metricsPayload = {"B4.0_Funnel": $routeParams.category, "B4.0_Step": "Specifics"};
-    HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
+	var metricsPayload = {"B4.1_Funnel": $routeParams.category, "B4.1_Step": "Specifics"};
+    HelperService.metrics.track('B4.1_Reached Funnel Step', metricsPayload);
 
 }
 SpecificsFormController.$inject = ['$scope','HelperService','$routeParams','specificsLoader','$locale'];
@@ -30501,8 +30520,8 @@ var SaveFormController = function SaveFormController($scope,DataService,HelperSe
 	}
 
 	// track
-	var metricsPayload = {"B4.0_Funnel": $routeParams.category, "B4.0_Step": "Register (Save Basket)"};
-    HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
+	var metricsPayload = {"B4.1_Funnel": $routeParams.category, "B4.1_Step": "Register (Save Basket)"};
+    HelperService.metrics.track('B4.1_Reached Funnel Step', metricsPayload);
 
 
 }
@@ -30564,13 +30583,24 @@ var CheckoutFormController = function CheckoutFormController($scope,$location,Da
 	*/
 
 	$scope.receiveRecurlyToken = function(recurly_token) {
-		var newLocation = '#/section/' + $routeParams.section + '/category/generic/question/success';
-		window.location = newLocation;
+		
+		// update user with recurly data from Parse (data gets pushed to Parse from recurly automatically during payment)
+		DataService.fetchUser($scope.currentUser, $scope);
+
+		var newLocation = '#/section/' + $routeParams.section + '/category/' + $routeParams.category + '/question/success';
+
+		// track
+		var metricsPayload = {"B4.1_Funnel": $routeParams.category, "B4.1_Step": "Registered Credit Card"};
+	    HelperService.metrics.track('B4.1_Reached Funnel Step', metricsPayload);
+	    // TODO: add intercom
+
+	    window.location = newLocation;
+
 	};
 
 	// track
-	var metricsPayload = {"B4.0_Funnel": $routeParams.category, "B4.0_Step": "£1 Checkout"};
-    HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
+	var metricsPayload = {"B4.1_Funnel": $routeParams.category, "B4.1_Step": "£1 Checkout"};
+    HelperService.metrics.track('B4.1_Reached Funnel Step', metricsPayload);
 
 }
 CheckoutFormController.$inject = ['$scope','$location','DataService','HelperService','$routeParams','$locale','checkoutLoader'];
@@ -30596,6 +30626,12 @@ var SuccessFormController = function SuccessFormController($scope,DataService,He
 	
 	// basket title
 	$scope.basketTitle = basketLoader.getBasketTitle($locale.id);
+
+	// success title
+	$scope.successTitle = successLoader.getSuccessTitle($locale.id);
+
+	// success copy
+	$scope.successCopy = successLoader.getSuccessCopy($locale.id);
 
 
 	// fetch collection of answers for the user
@@ -30630,22 +30666,11 @@ var SuccessFormController = function SuccessFormController($scope,DataService,He
 	  // male_answers.boxers = new Boxers();
 	});
 
-
-	// success title
-	$scope.successTitle = successLoader.getSuccessTitle($locale.id);
-
-	// success copy
-	$scope.successCopy = successLoader.getSuccessCopy($locale.id);
-
 	
 	/**
 	*  Controller Functions
 	*/
 
-	// track
-	var metricsPayload = {"B4.0_Funnel": $routeParams.category, "B4.0_Step": "Success"};
-    HelperService.metrics.track('B4.0_Reached Funnel Step', metricsPayload);
-    // TODO: add intercom
 
 };
 SuccessFormController.$inject = ['$scope','DataService','HelperService','$routeParams','$locale','successLoader','basketLoader'];
@@ -30809,7 +30834,7 @@ var Recurlyjs = angular.module('recurlyjs', [])
 							, signature: signature
 							, collectCompany: false
 							, distinguishContactFromBillingInfo: false
-							, addressRequirement: 'zipstreet'
+							// , addressRequirement: 'zipstreet'
 							
 							// form specifics
 							, accountCode: scope.payload.params.account.account_code
@@ -31903,7 +31928,7 @@ Checkout.factory('checkoutLoader', ['HelperService', function(HelperService) {
 
 		getCheckoutCopy: function(countryCode) {
 			var copy = {
-				"en-gb": "In order to .......... £5 towards your first purchase. Bargain right? Right. You don’t need to buy anything, it’s just to make sure that when you are good to go, you can charge your card right from your inbox. No checkout necessary."
+				"en-gb": "You will not be charged. This is just so when we send you something you like, you can checkout in seconds."
 			}
 			return copy[countryCode];
 		},

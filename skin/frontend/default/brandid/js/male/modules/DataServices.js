@@ -406,7 +406,26 @@ angular.module('DataServices', [])
         return deferred.promise;
 
       },
+      
+      fetchUser: function(user,scope) {
+
+        user.fetch({
+          success: function (results) {
             
+            // we wrap this in $apply using the correct scope passed in because we always need angular to recognise changes
+            scope.$apply(function() {
+              user = results;
+            });
+          },
+          error: function (results,error) {
+              console.log(results);
+              console.log(error);
+          }
+        });
+
+      },
+
+
       // TODO: execute this after FB registration
       saveAnswer: function(currentAnswer,scope) {
 
