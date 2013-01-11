@@ -27,10 +27,12 @@ var SuccessFormController = function SuccessFormController($scope,DataService,He
 
 	promise.then(function(answers) {
 
-	    all_user_answers = answers;
-	    currentAnswer = all_user_answers.getByCategory($routeParams.category);
+    all_user_answers = answers;
+    currentAnswer = all_user_answers.getByCategory($routeParams.category);
 
-    	// make human readable answers, we made this non-default because the raw basket can be used
+    // TODO: update answers in Intercom and tell keep Mixpanel People up to date with "number of answers answered" for the user
+
+  	// make human readable answers, we made this non-default because the raw basket can be used
 		if(typeof(currentAnswer.get("brands")) !== "undefined") {
 			$scope.basket.brands = basketLoader.humanizeAnswer(currentAnswer.get("brands"));
 			// $scope.basket.brands = basketLoader.taggerize(currentAnswer.get("brands"));

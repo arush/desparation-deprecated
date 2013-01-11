@@ -29106,6 +29106,10 @@ angular.module('DataServices', [])
 
           return deferred.promise;
 
+        },
+
+        updateAnswers: function(answers, user) {
+          // this keeps various BRANDiD systems up to date whenever an answer is answered
         }
       },
 
@@ -29153,6 +29157,9 @@ angular.module('DataServices', [])
         
         Parse.User.logIn(loginAttempt.email, loginAttempt.password, {
           success: function(user) {
+
+            HelperService.metrics.setLastLogin('email login');
+
             // we wrap this in $apply using the correct scope passed in because we always need angular to recognise changes
             scope.$apply(function() {
               deferred.resolve(user);
@@ -29193,6 +29200,9 @@ angular.module('DataServices', [])
         var deferred = $q.defer();
         Parse.FacebookUtils.logIn("user_likes,email,user_photos", {
           success: function(user) {
+
+            HelperService.metrics.setLastLogin('facebook login');
+
             // Handle successful login
             scope.$apply(function() {
               deferred.resolve(user);
@@ -29227,7 +29237,7 @@ angular.module('DataServices', [])
 
                 // if not identify the user in metrics and reload the page
                 HelperService.metrics.identify(user.get('email'));
-                HelperService.metrics.setLastLogin();
+                HelperService.metrics.setLastLogin('facebook login');
 
                 location.reload();
                 // self.saveAnswersAfterSuccessfulLogin(male_answers,category,user);
@@ -30669,10 +30679,12 @@ var SuccessFormController = function SuccessFormController($scope,DataService,He
 
 	promise.then(function(answers) {
 
-	    all_user_answers = answers;
-	    currentAnswer = all_user_answers.getByCategory($routeParams.category);
+    all_user_answers = answers;
+    currentAnswer = all_user_answers.getByCategory($routeParams.category);
 
-    	// make human readable answers, we made this non-default because the raw basket can be used
+    // TODO: update answers in Intercom and tell keep Mixpanel People up to date with "number of answers answered" for the user
+
+  	// make human readable answers, we made this non-default because the raw basket can be used
 		if(typeof(currentAnswer.get("brands")) !== "undefined") {
 			$scope.basket.brands = basketLoader.humanizeAnswer(currentAnswer.get("brands"));
 			// $scope.basket.brands = basketLoader.taggerize(currentAnswer.get("brands"));

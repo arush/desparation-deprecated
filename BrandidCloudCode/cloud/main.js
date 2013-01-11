@@ -73,3 +73,37 @@ Parse.Cloud.define("signRecurlyParams", function(request, response) {
 	
 
 });
+
+// keep systems updated when users configure Answers
+
+Parse.Cloud.define("updateAnswers", function(request, response) {
+	
+	var requestUri = 'https://' + brandid.api.user + ':' + brandid.api.password + '@' + brandid.api.host + '/answers/update';
+
+	console.log(requestUri);
+	console.log(request);
+
+	Parse.Cloud.httpRequest({
+	  method: 'POST',
+	  url: requestUri,
+	  // by setting the header, Parse auto converts body to JSON
+	  headers: {
+	    'Content-Type': 'application/json'
+	  },
+	  
+	  body: request.params,
+
+	  success: function(signature) {
+	  	// returns the signature
+	  	response.success(signature);
+
+	    console.log('successfully signed Recurly params');
+	  },
+	  error: function(httpResponse) {
+	    console.error('Recurly signature request failed with response code ' + httpResponse.status + ' and data ' + httpResponse.data);
+	    console.error(httpResponse);
+	  }
+	});
+	
+
+});
