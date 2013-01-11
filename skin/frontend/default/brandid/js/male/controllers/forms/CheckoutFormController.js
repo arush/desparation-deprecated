@@ -56,8 +56,8 @@ var CheckoutFormController = function CheckoutFormController($scope,$location,Da
 		var newLocation = '#/section/' + $routeParams.section + '/category/' + $routeParams.category + '/question/success';
 
 		// track
-		var metricsPayload = {"B4.1_Funnel": $routeParams.category, "B4.1_Step": "Registered Credit Card"};
-	    HelperService.metrics.track('B4.1_Reached Funnel Step', metricsPayload);
+		var metricsPayload = {'B4.1_Funnel': $routeParams.category};
+	    HelperService.metrics.track('Registered Credit Card', metricsPayload);
 	    // TODO: add intercom
 
 	    window.location = newLocation;
@@ -65,8 +65,8 @@ var CheckoutFormController = function CheckoutFormController($scope,$location,Da
 	};
 
 	// track
-	var metricsPayload = {"B4.1_Funnel": $routeParams.category, "B4.1_Step": "£1 Checkout"};
-    HelperService.metrics.track('B4.1_Reached Funnel Step', metricsPayload);
+	var metricsPayload = {'B4.1_Funnel': $routeParams.category};
+    HelperService.metrics.track('Reached Checkout Funnel Step', metricsPayload);
 
 }
 CheckoutFormController.$inject = ['$scope','$location','DataService','HelperService','$routeParams','$locale','checkoutLoader'];

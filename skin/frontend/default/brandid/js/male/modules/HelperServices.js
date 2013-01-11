@@ -14,7 +14,13 @@ angular.module('HelperServices', [])
 
 		metrics: {
 			track: function(event,payload) {
+				
+				// so we can segment any event by deployment version
+				payload.deployment = "B4.1";
+
+
 				/* KISSmetrics Tracking */
+
 				if(typeof(_kmq) !== "undefined") {
 					_kmq.push(['record', event, payload]);
 				}
@@ -40,6 +46,32 @@ angular.module('HelperServices', [])
 					mixpanel.identify(identity);
 				}
 			},
+
+
+			// special function for Mixpanel People
+
+			set: function(payload) {
+
+
+            // It is important to note that you must call mixpanel.identify() in conjunction with People requests like set()
+            // identify would have been called already if email was provided
+
+
+				if(typeof(mixpanel) !== "undefined") {
+
+					mixpanel.people.set(payload, function(response) {
+		              if (response == -1) {
+		                  console.log("Mixpanel - Request queued until identify() is called.");
+		              } else if (response == 0) {
+		                  console.log("Mixpanel - Invalid request, rejected by API.");
+		              } else if (response == 1) {
+		                  console.log("Mixpanel - Successful response from server.");
+		              }
+		            });
+
+				}
+			},
+
 			setLastLogin: function(loginMethod) {
 				var loginTime = new Date();
 				var metricsPayload = {"$last_login": loginTime, "login_method": loginMethod};
@@ -152,6 +184,10 @@ angular.module('HelperServices', [])
 	            created_at: "guest",
 	            app_id: intercomAppId
 	        };
+		},
+
+		countCompletedAnswers: function(answers) {
+			
 		}
 	}
 	

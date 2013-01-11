@@ -27,8 +27,8 @@ var SpecificsFormController = function SpecificsFormController($scope,HelperServ
 	/***** END CONTROLLER EVENT RESPONDERS ******/
 
 	// track
-	var metricsPayload = {"B4.1_Funnel": $routeParams.category, "B4.1_Step": "Specifics"};
-    HelperService.metrics.track('B4.1_Reached Funnel Step', metricsPayload);
+	var metricsPayload = {'B4.1_Funnel': $routeParams.category};
+    HelperService.metrics.track('Reached Specifics Funnel Step', metricsPayload);
 
 }
 SpecificsFormController.$inject = ['$scope','HelperService','$routeParams','specificsLoader','$locale'];

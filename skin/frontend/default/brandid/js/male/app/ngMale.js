@@ -280,10 +280,14 @@ ngMaleApp.run(['$rootScope', '$locale','$routeParams', 'DataService', 'HelperSer
           var metricsPayload = {
             "Registration Method": "Email Signup",
             "$created": new Date(),
-            "$last_login": new Date()
-          };
+            "$last_login": new Date(),
+            "$first_name": user.get("first_name"),
+            "$email": user.get("email")
+          };  
           HelperService.metrics.track("Registered", metricsPayload);
-
+          
+          // this is for Mixpanel People
+          HelperService.metrics.set(metricsPayload);
 
           // User has no answers in Parse, so create the collection and save the answer to it
           $rootScope.male_answers = DataService.initNewAnswerCollection($rootScope.currentUser);

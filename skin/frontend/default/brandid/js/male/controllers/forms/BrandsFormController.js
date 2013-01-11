@@ -145,8 +145,8 @@ var BrandsFormController = function BrandsFormController($scope,HelperService,$r
 
 
 	// track
-	var metricsPayload = {"B4.1_Funnel": $routeParams.category,"B4.1_Step": "Brands"};
-    HelperService.metrics.track('B4.1_Reached Funnel Step', metricsPayload);
+	var metricsPayload = {'B4.1_Funnel': $routeParams.category};
+    HelperService.metrics.track('Reached Brands Funnel Step', metricsPayload);
 
 }
 BrandsFormController.$inject = ['$scope','HelperService','$routeParams','brandsLoader','$locale'];

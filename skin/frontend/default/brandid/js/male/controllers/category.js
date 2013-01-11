@@ -20,7 +20,7 @@ var CategoryController = function CategoryController($scope,DataService,HelperSe
 
 
 		var metricsPayload = {"B4.1_Item Name":chosenCategory};
-		HelperService.metrics.track("B4.1_Chose Basket Item",metricsPayload);
+		HelperService.metrics.track("B4.0_Chose Basket Item",metricsPayload); // this stays as B4.0 until the page radically changes, no use in losing all that data
 
 		/* Clear the submenuItems and replace with chosenItem to update the menu */
 		$scope.menu[0].submenuItems = [];
@@ -98,13 +98,14 @@ var CategoryController = function CategoryController($scope,DataService,HelperSe
 
 	  $scope.totalNumButtons = $scope.answers.length;
 
+	  // TODO: This should be a directive
 	  // M.A.L.E. speaking
 	  setTimeout(function() {jQuery('#intro').typewriter();},500);
 
 
 	// track
-	var metricsPayload = {"B4.1_Funnel": "M.A.L.E.","B4.1_Step": "Intro"};
-    HelperService.metrics.track('B4.1_Reached Funnel Step', metricsPayload);
+	var metricsPayload = {"B4.1_Funnel": "All"};
+    HelperService.metrics.track('Reached Intro Funnel Step', metricsPayload);
 
 }
 CategoryController.$inject = ['$scope','DataService','HelperService','$routeParams','$locale','$location'];

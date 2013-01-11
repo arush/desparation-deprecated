@@ -110,17 +110,6 @@
       "initialSize" : 613,
       "fileType" : 8192
     },
-    "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/with.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/with.js",
-      "outputStyle" : 0,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/with-ck.js",
-      "fileType" : 64
-    },
     "\/node_modules\/xml2js\/node_modules\/sax\/test\/unquoted.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -130,6 +119,17 @@
       "outputStyle" : 0,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/xml2js\/node_modules\/sax\/test\/unquoted-ck.js",
+      "fileType" : 64
+    },
+    "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/with.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/with.js",
+      "outputStyle" : 0,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/with-ck.js",
       "fileType" : 64
     },
     "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_white_zip.png" : {
@@ -666,17 +666,6 @@
       "initialSize" : 90,
       "fileType" : 8192
     },
-    "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_excel.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_excel.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_excel.png",
-      "initialSize" : 817,
-      "fileType" : 8192
-    },
     "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/node_modules\/combined-stream\/node_modules\/delayed-stream\/test\/integration\/test-delayed-stream.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -687,6 +676,17 @@
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/node_modules\/combined-stream\/node_modules\/delayed-stream\/test\/integration\/test-delayed-stream-ck.js",
       "fileType" : 64
+    },
+    "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_excel.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_excel.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_excel.png",
+      "initialSize" : 817,
+      "fileType" : 8192
     },
     "\/node_modules\/xml2js\/node_modules\/sax\/test\/xmlns-xml-default-prefix.js" : {
       "ignoreWasSetByUser" : 0,
@@ -1661,17 +1661,6 @@
       "initialSize" : 375,
       "fileType" : 8192
     },
-    "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/test\/integration\/test-pipe.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/test\/integration\/test-pipe.js",
-      "outputStyle" : 0,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/test\/integration\/test-pipe-ck.js",
-      "fileType" : 64
-    },
     "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/redis\/benches\/re_sub_test.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -1681,6 +1670,17 @@
       "outputStyle" : 0,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/redis\/benches\/re_sub_test-ck.js",
+      "fileType" : 64
+    },
+    "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/test\/integration\/test-pipe.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/test\/integration\/test-pipe.js",
+      "outputStyle" : 0,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/test\/integration\/test-pipe-ck.js",
       "fileType" : 64
     },
     "\/node_modules\/express\/node_modules\/connect\/lib\/proto.js" : {
@@ -2903,17 +2903,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/js2xml\/node_modules\/libxmljs\/test\/xml_parser-ck.js",
       "fileType" : 64
     },
-    "\/node_modules\/node-inspector\/front-end\/Images\/navigatorShowHideButton.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/front-end\/Images\/navigatorShowHideButton.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/front-end\/Images\/navigatorShowHideButton.png",
-      "initialSize" : 335,
-      "fileType" : 8192
-    },
     "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/with.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -2924,6 +2913,17 @@
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/with-ck.js",
       "fileType" : 64
+    },
+    "\/node_modules\/node-inspector\/front-end\/Images\/navigatorShowHideButton.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/front-end\/Images\/navigatorShowHideButton.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/front-end\/Images\/navigatorShowHideButton.png",
+      "initialSize" : 335,
+      "fileType" : 8192
     },
     "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/test.js" : {
       "ignoreWasSetByUser" : 0,
@@ -3153,6 +3153,17 @@
       "outputStyle" : 0,
       "fileType" : 32
     },
+    "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_white_error.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_white_error.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_white_error.png",
+      "initialSize" : 623,
+      "fileType" : 8192
+    },
     "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_delete.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -3163,17 +3174,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_delete.png",
       "initialSize" : 740,
       "fileType" : 8192
-    },
-    "\/node_modules\/express\/node_modules\/connect\/lib\/middleware\/cookieParser.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/lib\/middleware\/cookieParser.js",
-      "outputStyle" : 0,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/lib\/middleware\/cookieParser-ck.js",
-      "fileType" : 64
     },
     "\/node_modules\/node-inspector\/front-end\/Images\/toolbarIconsSmall.png" : {
       "ignoreWasSetByUser" : 0,
@@ -3186,16 +3186,16 @@
       "initialSize" : 23586,
       "fileType" : 8192
     },
-    "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_white_error.png" : {
+    "\/node_modules\/express\/node_modules\/connect\/lib\/middleware\/cookieParser.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_white_error.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_white_error.png",
-      "initialSize" : 623,
-      "fileType" : 8192
+      "inputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/lib\/middleware\/cookieParser.js",
+      "outputStyle" : 0,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/lib\/middleware\/cookieParser-ck.js",
+      "fileType" : 64
     },
     "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/node_modules\/combined-stream\/node_modules\/delayed-stream\/test\/integration\/test-handle-source-errors.js" : {
       "ignoreWasSetByUser" : 0,
@@ -4691,17 +4691,6 @@
       "initialSize" : 6672,
       "fileType" : 8192
     },
-    "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/tmp\/uglify-hangs2.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/tmp\/uglify-hangs2.js",
-      "outputStyle" : 0,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/tmp\/uglify-hangs2-ck.js",
-      "fileType" : 64
-    },
     "\/node_modules\/node-inspector\/node_modules\/socket.io\/lib\/transports\/http-polling.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -4711,6 +4700,17 @@
       "outputStyle" : 0,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/lib\/transports\/http-polling-ck.js",
+      "fileType" : 64
+    },
+    "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/tmp\/uglify-hangs2.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/tmp\/uglify-hangs2.js",
+      "outputStyle" : 0,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/tmp\/uglify-hangs2-ck.js",
       "fileType" : 64
     },
     "\/node_modules\/node-inspector\/node_modules\/socket.io\/index.js" : {
@@ -5961,17 +5961,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/cookie\/test\/serialize-ck.js",
       "fileType" : 64
     },
-    "\/node_modules\/mailchimp\/node_modules\/request\/tests\/test-https.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/tests\/test-https.js",
-      "outputStyle" : 0,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/tests\/test-https-ck.js",
-      "fileType" : 64
-    },
     "\/node_modules\/node-inspector\/front-end\/Images\/timelineHollowPillOrange.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -5982,6 +5971,17 @@
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/front-end\/Images\/timelineHollowPillOrange.png",
       "initialSize" : 807,
       "fileType" : 8192
+    },
+    "\/node_modules\/mailchimp\/node_modules\/request\/tests\/test-https.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/tests\/test-https.js",
+      "outputStyle" : 0,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/tests\/test-https-ck.js",
+      "fileType" : 64
     },
     "\/node_modules\/node-recurly\/lib\/routes\/v2.js" : {
       "ignoreWasSetByUser" : 0,
@@ -6236,17 +6236,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/node-recurly\/index-ck.js",
       "fileType" : 64
     },
-    "\/node_modules\/node-inspector\/node_modules\/connect\/lib\/public\/icons\/page_code.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/connect\/lib\/public\/icons\/page_code.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/connect\/lib\/public\/icons\/page_code.png",
-      "initialSize" : 818,
-      "fileType" : 8192
-    },
     "\/node_modules\/express\/node_modules\/mkdirp\/test\/umask_sync.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -6257,6 +6246,17 @@
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/mkdirp\/test\/umask_sync-ck.js",
       "fileType" : 64
+    },
+    "\/node_modules\/node-inspector\/node_modules\/connect\/lib\/public\/icons\/page_code.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/connect\/lib\/public\/icons\/page_code.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/connect\/lib\/public\/icons\/page_code.png",
+      "initialSize" : 818,
+      "fileType" : 8192
     },
     "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/node_modules\/async\/dist\/async.min.js" : {
       "ignoreWasSetByUser" : 0,
@@ -6322,17 +6322,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/lib\/stores\/memory-ck.js",
       "fileType" : 64
     },
-    "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/node_modules\/async\/deps\/nodeunit.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/node_modules\/async\/deps\/nodeunit.js",
-      "outputStyle" : 0,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/node_modules\/async\/deps\/nodeunit-ck.js",
-      "fileType" : 64
-    },
     "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/issue69.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -6342,6 +6331,17 @@
       "outputStyle" : 0,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/issue69-ck.js",
+      "fileType" : 64
+    },
+    "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/node_modules\/async\/deps\/nodeunit.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/node_modules\/async\/deps\/nodeunit.js",
+      "outputStyle" : 0,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/node_modules\/async\/deps\/nodeunit-ck.js",
       "fileType" : 64
     },
     "\/node_modules\/node-inspector\/front-end\/Images\/resourceDocumentIcon.png" : {
@@ -7479,17 +7479,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/express\/lib\/router\/index-ck.js",
       "fileType" : 64
     },
-    "\/node_modules\/node-intercom\/intercom.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/node-intercom\/intercom.js",
-      "outputStyle" : 0,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/node-intercom\/intercom-ck.js",
-      "fileType" : 64
-    },
     "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/lib\/Sender.hixie.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -7499,6 +7488,17 @@
       "outputStyle" : 0,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/lib\/Sender.hixie-ck.js",
+      "fileType" : 64
+    },
+    "\/node_modules\/node-intercom\/intercom.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/node-intercom\/intercom.js",
+      "outputStyle" : 0,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/node-intercom\/intercom-ck.js",
       "fileType" : 64
     },
     "\/node_modules\/node-inspector\/front-end\/Images\/thumbActiveVert.png" : {
@@ -8706,17 +8706,6 @@
       "initialSize" : 665,
       "fileType" : 8192
     },
-    "\/node_modules\/node-inspector\/node_modules\/connect\/node_modules\/formidable\/lib\/index.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/connect\/node_modules\/formidable\/lib\/index.js",
-      "outputStyle" : 0,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/connect\/node_modules\/formidable\/lib\/index-ck.js",
-      "fileType" : 64
-    },
     "\/node_modules\/node-inspector\/node_modules\/connect\/lib\/public\/icons\/page_link.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -8727,6 +8716,17 @@
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/connect\/lib\/public\/icons\/page_link.png",
       "initialSize" : 830,
       "fileType" : 8192
+    },
+    "\/node_modules\/node-inspector\/node_modules\/connect\/node_modules\/formidable\/lib\/index.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/connect\/node_modules\/formidable\/lib\/index.js",
+      "outputStyle" : 0,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/connect\/node_modules\/formidable\/lib\/index-ck.js",
+      "fileType" : 64
     },
     "\/node_modules\/node-inspector\/node_modules\/connect\/lib\/middleware\/errorHandler.js" : {
       "ignoreWasSetByUser" : 0,
@@ -9296,6 +9296,17 @@
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/connect\/node_modules\/qs\/test\/parse-ck.js",
       "fileType" : 64
     },
+    "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/redis\/examples\/file.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/redis\/examples\/file.js",
+      "outputStyle" : 0,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/redis\/examples\/file-ck.js",
+      "fileType" : 64
+    },
     "\/node_modules\/node-inspector\/front-end\/Images\/timelineBarBlue.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -9306,17 +9317,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/front-end\/Images\/timelineBarBlue.png",
       "initialSize" : 403,
       "fileType" : 8192
-    },
-    "\/node_modules\/js2xml\/node_modules\/libxmljs\/test\/xml_sax_parser.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/js2xml\/node_modules\/libxmljs\/test\/xml_sax_parser.js",
-      "outputStyle" : 0,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/js2xml\/node_modules\/libxmljs\/test\/xml_sax_parser-ck.js",
-      "fileType" : 64
     },
     "\/node_modules\/node-inspector\/node_modules\/connect\/lib\/public\/icons\/page_excel.png" : {
       "ignoreWasSetByUser" : 0,
@@ -9329,15 +9329,15 @@
       "initialSize" : 817,
       "fileType" : 8192
     },
-    "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/redis\/examples\/file.js" : {
+    "\/node_modules\/js2xml\/node_modules\/libxmljs\/test\/xml_sax_parser.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/redis\/examples\/file.js",
+      "inputAbbreviatedPath" : "\/node_modules\/js2xml\/node_modules\/libxmljs\/test\/xml_sax_parser.js",
       "outputStyle" : 0,
       "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/redis\/examples\/file-ck.js",
+      "outputAbbreviatedPath" : "\/node_modules\/js2xml\/node_modules\/libxmljs\/test\/xml_sax_parser-ck.js",
       "fileType" : 64
     },
     "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/ws\/lib\/Receiver.hixie.js" : {
@@ -10126,17 +10126,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/front-end\/node\/InspectorBackendStub-ck.js",
       "fileType" : 64
     },
-    "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/index.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/index.js",
-      "outputStyle" : 0,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/index-ck.js",
-      "fileType" : 64
-    },
     "\/node_modules\/node-intercom\/node_modules\/request\/tests\/test-defaults.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -10158,6 +10147,17 @@
       "outputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_white.png",
       "initialSize" : 294,
       "fileType" : 8192
+    },
+    "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/index.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/index.js",
+      "outputStyle" : 0,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/index-ck.js",
+      "fileType" : 64
     },
     "\/node_modules\/mailchimp\/node_modules\/request\/tests\/test-protocol-changing-redirect.js" : {
       "ignoreWasSetByUser" : 0,
@@ -10947,17 +10947,6 @@
       "initialSize" : 818,
       "fileType" : 8192
     },
-    "\/node_modules\/node-inspector\/front-end\/Images\/resourceDocumentIconSmall.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/front-end\/Images\/resourceDocumentIconSmall.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/front-end\/Images\/resourceDocumentIconSmall.png",
-      "initialSize" : 158,
-      "fileType" : 8192
-    },
     "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/unicodecategories.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -10968,6 +10957,17 @@
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/unicodecategories-ck.js",
       "fileType" : 64
+    },
+    "\/node_modules\/node-inspector\/front-end\/Images\/resourceDocumentIconSmall.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/front-end\/Images\/resourceDocumentIconSmall.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/front-end\/Images\/resourceDocumentIconSmall.png",
+      "initialSize" : 158,
+      "fileType" : 8192
     },
     "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/active-x-obfuscator\/node_modules\/zeparser\/ZeParser.js" : {
       "ignoreWasSetByUser" : 0,
@@ -11504,17 +11504,6 @@
       "initialSize" : 309,
       "fileType" : 8192
     },
-    "\/node_modules\/node-inspector\/front-end\/Images\/timelineBarOrange.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/front-end\/Images\/timelineBarOrange.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/front-end\/Images\/timelineBarOrange.png",
-      "initialSize" : 376,
-      "fileType" : 8192
-    },
     "\/node_modules\/express\/node_modules\/mkdirp\/test\/return.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -11525,6 +11514,17 @@
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/mkdirp\/test\/return-ck.js",
       "fileType" : 64
+    },
+    "\/node_modules\/node-inspector\/front-end\/Images\/timelineBarOrange.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/front-end\/Images\/timelineBarOrange.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/front-end\/Images\/timelineBarOrange.png",
+      "initialSize" : 376,
+      "fileType" : 8192
     },
     "\/node_modules\/express\/node_modules\/connect\/node_modules\/qs\/examples.js" : {
       "ignoreWasSetByUser" : 0,

@@ -159,7 +159,7 @@ angular.module('DataServices', [])
             if(typeof(results) === "undefined") {
               // user has no answers in Parse, so create a new collection
               console.log(results);
-              alert('creating new collection');
+              console.log('creating new collection');
               results = self.initNewAnswerCollection(user);
             }
 
@@ -180,6 +180,7 @@ angular.module('DataServices', [])
 
         return deferred.promise;
       },
+
       emailLogin: function(loginAttempt,scope) {
         var deferred = $q.defer();
         
@@ -317,11 +318,11 @@ angular.module('DataServices', [])
 
           if(typeof(response.first_name) !== "undefined") {
             this.setToUser( user, "first_name", response.first_name);
-            metricsPayload.first_name = response.first_name;
+            metricsPayload.$first_name = response.first_name;
           }
           if(typeof(response.last_name) !== "undefined") {
             this.setToUser( user, "last_name", response.last_name);
-            metricsPayload.last_name = response.last_name;
+            metricsPayload.$last_name = response.last_name;
           }
           if(typeof(response.gender) !== "undefined") {
             this.setToUser( user, "gender", response.gender);
@@ -342,35 +343,23 @@ angular.module('DataServices', [])
           if(typeof(response.email) !== "undefined") {
             this.setToUser( user, "email", response.email);
             HelperService.metrics.identify(response.email);
-            metricsPayload.email = response.email;
+            metricsPayload.$email = response.email;
           }
 
           HelperService.metrics.track("Registered", metricsPayload);
 
-          // /* KISSmetrics Tracking */
-          // if(typeof(_kmq) !== "undefined") {
-          //   _kmq.push(['record', 'Registered', metricsPayload]);
-          // }
-          // /* Mixpanel Tracking */
-          // if(typeof(mixpanel) !== "undefined") {
+          // this is for Mixpanel People
+          HelperService.metrics.set(metricsPayload);
 
-          //   // it is imperative alias is only called once on a user - at registration. all other places, use identify
-          //   /*****/
-          //   // mixpanel.alias(response.email);
-          //   /*****/
+          
+          /* Special Mixpanel Alias */
+          if(typeof(mixpanel) !== "undefined") {
 
-          //   // NB - mixpanel.identify may or may not have been called earlier depending if email address was given or not
-          //   mixpanel.track('Registered',metricsPayload);
-          //   mixpanel.people.set(metricsPayload);
-          //   // mixpanel.register({
-          //   //   first_name: response.first_name,
-          //   //   last_name: response.last_name,
-          //   //   email: response.email,
-          //   //   gender: response.gender,
-          //   //   birthday: response.birthday,
-          //   //   location: response.location.name
-          //   // });
-          // }
+            // it is imperative alias is only called once on a user - at registration. all other places, use identify
+            /*****/
+            mixpanel.alias(response.email);
+            /*****/
+          }
 
       },
 

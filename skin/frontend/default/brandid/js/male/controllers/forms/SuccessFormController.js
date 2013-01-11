@@ -48,10 +48,10 @@ var SuccessFormController = function SuccessFormController($scope,DataService,He
 
 
 	}, function(reason) {
-	  // something went wrong in the API call, so init new object
-	  console.log("Could not fetch users answers collection");
-	  console.log(reason);
-	  // male_answers.boxers = new Boxers();
+		// something went wrong in the API call, so init new object
+		console.log("Could not fetch users answers collection");
+		console.log(reason);
+		// male_answers.boxers = new Boxers();
 	});
 
 	
