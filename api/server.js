@@ -78,8 +78,10 @@
 
   app.post('/recurly/sign', auth, function(req, res) {
     var params, signature;
+    console.dir('received request to /recurly/sign of' + req.body);
     params = req.body;
     signature = recurlyjs.sign(params, recurlyKeys.PRIVATE_KEY);
+    console.dir('generated signature ' + signature);
     res.contentType("text/plain");
     return res.send(signature, 200);
   });

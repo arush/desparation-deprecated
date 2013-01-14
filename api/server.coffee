@@ -68,9 +68,12 @@ app.get '/', (req, res) ->
 	res.send '<h1>No entry for you mofo!</h1>', 200
 
 app.post '/recurly/sign', auth, (req, res) ->
+	console.dir 'received request to /recurly/sign of' + req.body
 	params = req.body
 	signature = recurlyjs.sign(params, recurlyKeys.PRIVATE_KEY)
 
+	console.dir 'generated signature ' + signature
+	
 	res.contentType "text/plain"
 	res.send signature, 200
 

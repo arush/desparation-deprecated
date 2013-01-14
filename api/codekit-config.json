@@ -1,6 +1,6 @@
 {
   "CodeKitInfo" : "This is a CodeKit project configuration file. It is designed to sync project settings across multiple machines. Modifying the contents of this file can be a poor life decision if you don't know what you're doing. This file is not useful unless accompanied by the project that created it in CodeKit. For more information, see: http:\/\/incident57.com\/codekit",
-  "creatorBuild" : "8241",
+  "creatorBuild" : "8248",
   "files" : {
     "\/node_modules\/node-inspector\/front-end\/Images\/glossyHeader.png" : {
       "ignoreWasSetByUser" : 0,
@@ -110,17 +110,6 @@
       "initialSize" : 613,
       "fileType" : 8192
     },
-    "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/with.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/with.js",
-      "outputStyle" : 0,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/with-ck.js",
-      "fileType" : 64
-    },
     "\/node_modules\/xml2js\/node_modules\/sax\/test\/unquoted.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -130,6 +119,17 @@
       "outputStyle" : 0,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/xml2js\/node_modules\/sax\/test\/unquoted-ck.js",
+      "fileType" : 64
+    },
+    "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/with.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/with.js",
+      "outputStyle" : 0,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/with-ck.js",
       "fileType" : 64
     },
     "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_white_zip.png" : {
@@ -514,6 +514,15 @@
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/connect\/lib\/middleware\/logger-ck.js",
       "fileType" : 64
     },
+    "\/node_modules\/node-recurlyjs-sign\/node_modules\/qs\/test\/browser\/qs.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/node-recurlyjs-sign\/node_modules\/qs\/test\/browser\/qs.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
+    },
     "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/redis\/lib\/util.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -524,15 +533,6 @@
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/redis\/lib\/util-ck.js",
       "fileType" : 64
-    },
-    "\/node_modules\/node-recurlyjs-sign\/node_modules\/qs\/test\/browser\/qs.css" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/node-recurlyjs-sign\/node_modules\/qs\/test\/browser\/qs.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
     },
     "\/node_modules\/mailchimp\/node_modules\/request\/tests\/test-proxy.js" : {
       "ignoreWasSetByUser" : 0,
@@ -710,6 +710,15 @@
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/xmlhttprequest\/tests\/test-exceptions-ck.js",
       "fileType" : 64
     },
+    "\/node_modules\/express\/node_modules\/connect\/lib\/public\/error.html" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/lib\/public\/error.html",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 2048
+    },
     "\/node_modules\/node-inspector\/front-end\/Images\/trackVert.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -720,15 +729,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/front-end\/Images\/trackVert.png",
       "initialSize" : 565,
       "fileType" : 8192
-    },
-    "\/node_modules\/express\/node_modules\/connect\/lib\/public\/error.html" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/lib\/public\/error.html",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 2048
     },
     "\/node_modules\/express\/node_modules\/connect\/node_modules\/formidable\/node-gently\/example\/event_emitter.js" : {
       "ignoreWasSetByUser" : 0,
@@ -935,16 +935,16 @@
       "initialSize" : 530,
       "fileType" : 8192
     },
-    "\/node_modules\/node-inspector\/node_modules\/connect\/lib\/public\/icons\/page_paste.png" : {
+    "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/redis\/test.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/connect\/lib\/public\/icons\/page_paste.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/connect\/lib\/public\/icons\/page_paste.png",
-      "initialSize" : 703,
-      "fileType" : 8192
+      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/redis\/test.js",
+      "outputStyle" : 0,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/redis\/test-ck.js",
+      "fileType" : 64
     },
     "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_white_dvd.png" : {
       "ignoreWasSetByUser" : 0,
@@ -990,15 +990,15 @@
       "outputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/qs\/test\/browser\/expect-ck.js",
       "fileType" : 64
     },
-    "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/redis\/test.js" : {
+    "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/test\/integration\/test-get-boundary.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/redis\/test.js",
+      "inputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/test\/integration\/test-get-boundary.js",
       "outputStyle" : 0,
       "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/redis\/test-ck.js",
+      "outputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/test\/integration\/test-get-boundary-ck.js",
       "fileType" : 64
     },
     "\/node_modules\/mailchimp\/node_modules\/request\/tests\/unicycle.jpg" : {
@@ -1023,16 +1023,16 @@
       "initialSize" : 523,
       "fileType" : 8192
     },
-    "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/test\/integration\/test-get-boundary.js" : {
+    "\/node_modules\/node-inspector\/node_modules\/connect\/lib\/public\/icons\/page_paste.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/test\/integration\/test-get-boundary.js",
-      "outputStyle" : 0,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/test\/integration\/test-get-boundary-ck.js",
-      "fileType" : 64
+      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/connect\/lib\/public\/icons\/page_paste.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/connect\/lib\/public\/icons\/page_paste.png",
+      "initialSize" : 703,
+      "fileType" : 8192
     },
     "\/node_modules\/express\/node_modules\/connect\/node_modules\/formidable\/lib\/index.js" : {
       "ignoreWasSetByUser" : 0,
@@ -1826,17 +1826,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/lib\/transports\/flashsocket-ck.js",
       "fileType" : 64
     },
-    "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/lib\/transports\/xhr.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/lib\/transports\/xhr.js",
-      "outputStyle" : 0,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/lib\/transports\/xhr-ck.js",
-      "fileType" : 64
-    },
     "\/node_modules\/node-inspector\/node_modules\/connect\/lib\/public\/icons\/page_white_php.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -1847,6 +1836,17 @@
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/connect\/lib\/public\/icons\/page_white_php.png",
       "initialSize" : 538,
       "fileType" : 8192
+    },
+    "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/lib\/transports\/xhr.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/lib\/transports\/xhr.js",
+      "outputStyle" : 0,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/lib\/transports\/xhr-ck.js",
+      "fileType" : 64
     },
     "\/node_modules\/node-inspector\/bin\/inspector.js" : {
       "ignoreWasSetByUser" : 0,
@@ -2467,17 +2467,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/redis\/benches\/stress\/rpushblpop\/pub-ck.js",
       "fileType" : 64
     },
-    "\/node_modules\/xml2js\/node_modules\/sax\/test\/cdata-multiple.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/xml2js\/node_modules\/sax\/test\/cdata-multiple.js",
-      "outputStyle" : 0,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/xml2js\/node_modules\/sax\/test\/cdata-multiple-ck.js",
-      "fileType" : 64
-    },
     "\/node_modules\/mailchimp\/node_modules\/request\/uuid.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -2487,6 +2476,17 @@
       "outputStyle" : 0,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/uuid-ck.js",
+      "fileType" : 64
+    },
+    "\/node_modules\/xml2js\/node_modules\/sax\/test\/cdata-multiple.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/xml2js\/node_modules\/sax\/test\/cdata-multiple.js",
+      "outputStyle" : 0,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/xml2js\/node_modules\/sax\/test\/cdata-multiple-ck.js",
       "fileType" : 64
     },
     "\/node_modules\/node-inspector\/node_modules\/connect\/lib\/public\/icons\/page_white_delete.png" : {
@@ -3558,17 +3558,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/connect\/lib\/middleware\/csrf-ck.js",
       "fileType" : 64
     },
-    "\/node_modules\/express\/node_modules\/mkdirp\/test\/clobber.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/mkdirp\/test\/clobber.js",
-      "outputStyle" : 0,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/mkdirp\/test\/clobber-ck.js",
-      "fileType" : 64
-    },
     "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/node_modules\/combined-stream\/node_modules\/delayed-stream\/test\/integration\/test-proxy-readable.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -3578,6 +3567,17 @@
       "outputStyle" : 0,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/node_modules\/combined-stream\/node_modules\/delayed-stream\/test\/integration\/test-proxy-readable-ck.js",
+      "fileType" : 64
+    },
+    "\/node_modules\/xml2js\/node_modules\/sax\/test\/parser-position.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/xml2js\/node_modules\/sax\/test\/parser-position.js",
+      "outputStyle" : 0,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/xml2js\/node_modules\/sax\/test\/parser-position-ck.js",
       "fileType" : 64
     },
     "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/lib\/squeeze-more.js" : {
@@ -3602,17 +3602,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/lib\/events-ck.js",
       "fileType" : 64
     },
-    "\/node_modules\/xml2js\/node_modules\/sax\/test\/parser-position.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/xml2js\/node_modules\/sax\/test\/parser-position.js",
-      "outputStyle" : 0,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/xml2js\/node_modules\/sax\/test\/parser-position-ck.js",
-      "fileType" : 64
-    },
     "\/node_modules\/node-recurly\/lib\/client.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -3622,6 +3611,17 @@
       "outputStyle" : 0,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/node-recurly\/lib\/client-ck.js",
+      "fileType" : 64
+    },
+    "\/node_modules\/express\/node_modules\/mkdirp\/test\/clobber.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/mkdirp\/test\/clobber.js",
+      "outputStyle" : 0,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/mkdirp\/test\/clobber-ck.js",
       "fileType" : 64
     },
     "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/test\/issue13.js" : {
@@ -5939,16 +5939,16 @@
       "initialSize" : 613,
       "fileType" : 8192
     },
-    "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_white_cplusplus.png" : {
+    "\/node_modules\/mailchimp\/node_modules\/request\/tests\/test-https.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_white_cplusplus.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_white_cplusplus.png",
-      "initialSize" : 621,
-      "fileType" : 8192
+      "inputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/tests\/test-https.js",
+      "outputStyle" : 0,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/tests\/test-https-ck.js",
+      "fileType" : 64
     },
     "\/node_modules\/express\/node_modules\/cookie\/test\/serialize.js" : {
       "ignoreWasSetByUser" : 0,
@@ -5961,17 +5961,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/cookie\/test\/serialize-ck.js",
       "fileType" : 64
     },
-    "\/node_modules\/mailchimp\/node_modules\/request\/tests\/test-https.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/tests\/test-https.js",
-      "outputStyle" : 0,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/tests\/test-https-ck.js",
-      "fileType" : 64
-    },
     "\/node_modules\/node-inspector\/front-end\/Images\/timelineHollowPillOrange.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -5981,6 +5970,17 @@
       "processed" : 0,
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/front-end\/Images\/timelineHollowPillOrange.png",
       "initialSize" : 807,
+      "fileType" : 8192
+    },
+    "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_white_cplusplus.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_white_cplusplus.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_white_cplusplus.png",
+      "initialSize" : 621,
       "fileType" : 8192
     },
     "\/node_modules\/node-recurly\/lib\/routes\/v2.js" : {
@@ -6148,17 +6148,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/mailchimp\/test\/MailChimpExportAPI\/MailChimpExportAPI_v1_0-ck.js",
       "fileType" : 64
     },
-    "\/node_modules\/node-inspector\/front-end\/Images\/searchSmallGray.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/front-end\/Images\/searchSmallGray.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/front-end\/Images\/searchSmallGray.png",
-      "initialSize" : 264,
-      "fileType" : 8192
-    },
     "\/node_modules\/node-inspector\/node_modules\/connect\/lib\/public\/icons\/page_white_cplusplus.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -6191,6 +6180,17 @@
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/lib\/store-ck.js",
       "fileType" : 64
+    },
+    "\/node_modules\/node-inspector\/front-end\/Images\/searchSmallGray.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/front-end\/Images\/searchSmallGray.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/front-end\/Images\/searchSmallGray.png",
+      "initialSize" : 264,
+      "fileType" : 8192
     },
     "\/node_modules\/node-inspector\/front-end\/Images\/timelinePillPurple.png" : {
       "ignoreWasSetByUser" : 0,
@@ -6291,6 +6291,15 @@
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/test\/hello-ck.js",
       "fileType" : 64
     },
+    "\/node_modules\/node-inspector\/front-end\/index.html" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/front-end\/index.html",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 2048
+    },
     "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/redis\/diff_multi_bench_output.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -6313,17 +6322,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/lib\/stores\/memory-ck.js",
       "fileType" : 64
     },
-    "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/node_modules\/async\/deps\/nodeunit.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/node_modules\/async\/deps\/nodeunit.js",
-      "outputStyle" : 0,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/node_modules\/async\/deps\/nodeunit-ck.js",
-      "fileType" : 64
-    },
     "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/issue69.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -6335,14 +6333,16 @@
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/issue69-ck.js",
       "fileType" : 64
     },
-    "\/node_modules\/node-inspector\/front-end\/index.html" : {
+    "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/node_modules\/async\/deps\/nodeunit.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/front-end\/index.html",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 2048
+      "inputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/node_modules\/async\/deps\/nodeunit.js",
+      "outputStyle" : 0,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/request\/node_modules\/form-data\/node_modules\/async\/deps\/nodeunit-ck.js",
+      "fileType" : 64
     },
     "\/node_modules\/node-inspector\/front-end\/Images\/resourceDocumentIcon.png" : {
       "ignoreWasSetByUser" : 0,
@@ -6990,17 +6990,6 @@
       "initialSize" : 357,
       "fileType" : 8192
     },
-    "\/node_modules\/node-inspector\/lib\/v2w.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/lib\/v2w.js",
-      "outputStyle" : 0,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/lib\/v2w-ck.js",
-      "fileType" : 64
-    },
     "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/test\/worker.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -7010,6 +6999,17 @@
       "outputStyle" : 0,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/test\/worker-ck.js",
+      "fileType" : 64
+    },
+    "\/node_modules\/node-inspector\/lib\/v2w.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/lib\/v2w.js",
+      "outputStyle" : 0,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/lib\/v2w-ck.js",
       "fileType" : 64
     },
     "\/node_modules\/node-inspector\/node_modules\/connect\/lib\/public\/icons\/page_white_cup.png" : {
@@ -7512,17 +7512,6 @@
       "initialSize" : 567,
       "fileType" : 8192
     },
-    "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/issue278.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/issue278.js",
-      "outputStyle" : 0,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/issue278-ck.js",
-      "fileType" : 64
-    },
     "\/node_modules\/node-inspector\/node_modules\/connect\/node_modules\/formidable\/node-gently\/lib\/gently\/index.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -7532,6 +7521,17 @@
       "outputStyle" : 0,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/connect\/node_modules\/formidable\/node-gently\/lib\/gently\/index-ck.js",
+      "fileType" : 64
+    },
+    "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/issue278.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/issue278.js",
+      "outputStyle" : 0,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/test\/unit\/compress\/expected\/issue278-ck.js",
       "fileType" : 64
     },
     "\/node_modules\/node-inspector\/node_modules\/connect\/lib\/public\/icons\/page_white_freehand.png" : {
@@ -7963,6 +7963,17 @@
       "initialSize" : 262,
       "fileType" : 8192
     },
+    "\/node_modules\/express\/node_modules\/connect\/lib\/connect.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/lib\/connect.js",
+      "outputStyle" : 0,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/lib\/connect-ck.js",
+      "fileType" : 64
+    },
     "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_green.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -7973,17 +7984,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_green.png",
       "initialSize" : 621,
       "fileType" : 8192
-    },
-    "\/node_modules\/node-inspector\/node_modules\/connect\/node_modules\/formidable\/test\/unit\/test-incoming-form.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/connect\/node_modules\/formidable\/test\/unit\/test-incoming-form.js",
-      "outputStyle" : 0,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/connect\/node_modules\/formidable\/test\/unit\/test-incoming-form-ck.js",
-      "fileType" : 64
     },
     "\/node_modules\/node-recurlyjs-sign\/node_modules\/qs\/test\/browser\/expect.js" : {
       "ignoreWasSetByUser" : 0,
@@ -7996,15 +7996,15 @@
       "outputAbbreviatedPath" : "\/node_modules\/node-recurlyjs-sign\/node_modules\/qs\/test\/browser\/expect-ck.js",
       "fileType" : 64
     },
-    "\/node_modules\/express\/node_modules\/connect\/lib\/connect.js" : {
+    "\/node_modules\/node-inspector\/node_modules\/connect\/node_modules\/formidable\/test\/unit\/test-incoming-form.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/lib\/connect.js",
+      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/connect\/node_modules\/formidable\/test\/unit\/test-incoming-form.js",
       "outputStyle" : 0,
       "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/lib\/connect-ck.js",
+      "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/connect\/node_modules\/formidable\/test\/unit\/test-incoming-form-ck.js",
       "fileType" : 64
     },
     "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/redis\/examples\/monitor.js" : {
@@ -8926,15 +8926,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/lib\/index-ck.js",
       "fileType" : 64
     },
-    "\/node_modules\/node-inspector\/front-end\/textViewer.css" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/front-end\/textViewer.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
-    },
     "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/lib\/namespace.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -8945,6 +8936,15 @@
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/lib\/namespace-ck.js",
       "fileType" : 64
+    },
+    "\/node_modules\/node-inspector\/front-end\/textViewer.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/node-inspector\/front-end\/textViewer.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
     },
     "\/node_modules\/express\/node_modules\/connect\/lib\/public\/icons\/page_white_cup.png" : {
       "ignoreWasSetByUser" : 0,
@@ -9928,6 +9928,17 @@
       "initialSize" : 179,
       "fileType" : 8192
     },
+    "\/node_modules\/express\/node_modules\/connect\/node_modules\/formidable\/node-gently\/lib\/gently\/gently.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/node_modules\/formidable\/node-gently\/lib\/gently\/gently.js",
+      "outputStyle" : 0,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/node_modules\/formidable\/node-gently\/lib\/gently\/gently-ck.js",
+      "fileType" : 64
+    },
     "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/redis\/examples\/web_server.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -9948,17 +9959,6 @@
       "outputStyle" : 0,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/mailchimp\/node_modules\/qs\/examples-ck.js",
-      "fileType" : 64
-    },
-    "\/node_modules\/express\/node_modules\/connect\/node_modules\/formidable\/node-gently\/lib\/gently\/gently.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/node_modules\/formidable\/node-gently\/lib\/gently\/gently.js",
-      "outputStyle" : 0,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/express\/node_modules\/connect\/node_modules\/formidable\/node-gently\/lib\/gently\/gently-ck.js",
       "fileType" : 64
     },
     "\/node_modules\/node-inspector\/node_modules\/connect\/node_modules\/formidable\/lib\/querystring_parser.js" : {
@@ -10027,17 +10027,6 @@
       "outputAbbreviatedPath" : "\/node_modules\/node-inspector\/node_modules\/socket.io\/node_modules\/socket.io-client\/node_modules\/uglify-js\/tmp\/test-ck.js",
       "fileType" : 64
     },
-    "\/node_modules\/node-recurly\/lib\/recurly.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/node_modules\/node-recurly\/lib\/recurly.js",
-      "outputStyle" : 0,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/node_modules\/node-recurly\/lib\/recurly-ck.js",
-      "fileType" : 64
-    },
     "\/node_modules\/mailchimp\/test\/MailChimpExportAPI\/MailChimpExportAPI.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -10047,6 +10036,17 @@
       "outputStyle" : 0,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/node_modules\/mailchimp\/test\/MailChimpExportAPI\/MailChimpExportAPI-ck.js",
+      "fileType" : 64
+    },
+    "\/node_modules\/node-recurly\/lib\/recurly.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/node_modules\/node-recurly\/lib\/recurly.js",
+      "outputStyle" : 0,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/node_modules\/node-recurly\/lib\/recurly-ck.js",
       "fileType" : 64
     },
     "\/node_modules\/node-inspector\/front-end\/Images\/consoleIcon.png" : {
